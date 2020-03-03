@@ -1,0 +1,150 @@
+
+.menuBar-background {
+  background-color: #333;
+}
+
+.menuBar-position {
+  display: flex;
+  margin: auto;
+  width: 1200px;
+  min-width: 800px;
+}
+
+.appMenu {
+  overflow: hidden;
+}
+
+.menu-item{
+    border-right: #f0f0f0 1px solid;
+	color: #f2f2f2;
+	display: block;
+	float: left;
+	fill:white;
+	min-width: 12em;
+	padding: 0.4em 1em;
+	text-decoration: none;
+}
+
+
+.menu-dropdown{
+  float: left;
+  padding: 0em 0.6em 0em 0em;
+}
+
+.menu-dropdown-complement{
+/* 	text-decoration: none; */
+}
+
+.bottomNavBar {
+	position: fixed;
+	width: 1190px;
+	overflow: hidden;
+	background-color: #333;
+	bottom:0;
+	margin: 0.3em 0;
+}
+
+.menu-item a, .bottomNavBar a, .dropMenuLayout a{
+  color: #f2f2f2;
+  fill:white;
+  text-decoration: none;
+  text-align: -webkit-center;  
+}
+
+
+.sub-menu-item{
+  padding: 0.4em 1.6em;
+  min-width: 12em;
+}
+.sub-menu-item:hover{
+	background-color: #82aa37;
+/* 	color: white; */
+/* 	fill:white; */
+/* 	text-decoration: none; */
+}
+.menu-dropdown-container:hover, .menu-item:hover, .menu-item a:hover, .bottomNavBar a:hover , .dropMenuLayout a:hover {
+/* 	background-color: #82aa37; */
+	color: white;
+	fill:white;
+	text-decoration: none;
+ }
+
+.menu-active, .bottomNavBar-active {
+    background-color: #82aa37;
+    color: white;
+    fill:white;
+}
+
+.menu-item-icon, .bottomNavBar-icon, .optionDropDown-icon{
+	height:1.5em;
+	vertical-align: middle;
+	width:1.5em;
+}
+
+/*  Positionnement de la barre de menu apres scroll */
+.sticky {
+  position: fixed !important;
+  top: 0 !important;
+  width: 100%;
+}
+
+.sticky-dropdown {
+	position: fixed !important;
+	top: 1.9em !important;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+
+.dropdown a{
+  color: #f2f2f2;
+  fill:#f2f2f2;
+}
+
+.menu-dropdown-container {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+/*   width: 160px; */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  margin: 0em 0 0 -1em; 
+/*   padding: 0.4em 1.6em; */
+  z-index: 1;
+  width: auto;
+}
+
+.first-element {
+	color: #f2f2f2 !important;
+	fill:#f2f2f2 !important;
+}
+
+.menu-dropdown-container a {
+  float: none;
+  color: black;
+  fill: black;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.menu-dropdown:hover .menu-dropdown-container {
+  display: block;
+}
+
+.optionDropDown{
+	padding: 10px;
+	margin:5px 0;
+    color: #ffffff;
+    display: inline-block;
+/*     min-width: 220px; */
+    background-color: #82aa37;
+    border: 0 none;
+    border-radius: 0.4em;
+    -webkit-appearance: none;
+    font-weight: bold;
+    }
+
+.simpleDropDown{
+	
+}

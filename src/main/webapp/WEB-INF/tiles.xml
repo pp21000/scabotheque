@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?> 
+<!DOCTYPE tiles-definitions PUBLIC  
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd"> 
+       
+<tiles-definitions>
+
+    <definition name="base.definition" template="/vues/layout.jsp">
+    	<put-attribute name="header"  value="/vues/header.jsp" />
+    	<put-attribute name="menu"  value="/vues/menu.jsp" />
+    	<put-attribute name="menu-v2"  value="/vues/menu-v2.jsp" />
+    	<put-attribute name="body" value="" />  
+        <put-attribute name="footer" value="/vues/footer.jsp" />  
+        <put-attribute name="adherentBottomNavBar" value="/vues/adherent/bottomNavBar.jsp" />  
+    </definition>
+
+    <definition name="login" extends="base.definition">
+        <put-attribute name="body"  value="/vues/login.jsp" />
+        <put-attribute name="pageName"  value="login" />
+    </definition>
+
+    <definition name="accessDenied" extends="base.definition">
+        <put-attribute name="body"  value="/vues/exceptions/forbidden.jsp" />
+        <put-attribute name="pageName"  value="accessDenied" />
+    </definition>
+
+	<!-- Vues Adherents -->
+    <definition name="listeAdh" extends="base.definition">
+        <put-attribute name="body"  value="/vues/adherent/listeAdherents.jsp" />
+        <put-attribute name="pageName"  value="listeAdh" />
+    </definition>
+
+	<definition name="adherentDetail" extends="base.definition">
+        <put-attribute name="body"  value="/vues/adherent/adherentDetail.jsp" />
+        <put-attribute name="pageName"  value="adherentDetail" />
+    </definition>
+
+	<definition name="adherentActivite" extends="base.definition">
+        <put-attribute name="body"  value="/vues/adherent/adherentActivite.jsp" />
+        <put-attribute name="pageName"  value="adherentActivite" />
+    </definition>
+
+	<definition name="adherentArtipole" extends="base.definition">
+        <put-attribute name="body"  value="/vues/adherent/adherentArtipole.jsp" />
+        <put-attribute name="pageName"  value="adherentArtipole" />
+    </definition>
+
+	<definition name="adherentAdministratif" extends="base.definition">
+        <put-attribute name="body"  value="/vues/adherent/adherentAdministratif.jsp" />
+        <put-attribute name="pageName"  value="adherentAdministratif" />
+    </definition>
+
+	<definition name="adherentExploitation" extends="base.definition">
+        <put-attribute name="body"  value="/vues/adherent/adherentExploitation.jsp" />
+        <put-attribute name="pageName"  value="adherentExploitation" />
+    </definition>
+
+	<definition name="adherentInformatique" extends="base.definition">
+        <put-attribute name="body"  value="/vues/adherent/adherentInformatique.jsp" />
+        <put-attribute name="pageName"  value="adherentInformatique" />
+    </definition>
+
+	<definition name="addAdh" extends="base.definition">
+        <put-attribute name="body"  value="/vues/adherent/addAdherent.jsp" />
+        <put-attribute name="pageName"  value="listeAdh" />
+    </definition>
+    
+	<definition name="editActiviteAdh" extends="base.definition">
+        <put-attribute name="body"  value="/vues/adherent/edit/editActiviteAdherent.jsp" />
+        <put-attribute name="pageName"  value="listeAdh" />
+    </definition>
+
+	<definition name="editArtipoleAdh" extends="base.definition">
+        <put-attribute name="body"  value="/vues/adherent/edit/editArtipoleAdherent.jsp" />
+        <put-attribute name="pageName"  value="listeAdh" />
+    </definition>
+
+	<definition name="editAdministratifAdh" extends="base.definition">
+        <put-attribute name="body"  value="/vues/adherent/edit/editAdministratifAdherent.jsp" />
+        <put-attribute name="pageName"  value="listeAdh" />
+    </definition>
+
+    <definition name="editContactAdh" extends="base.definition">
+        <put-attribute name="body"  value="/vues/adherent/edit/editContactAdherent.jsp" />
+        <put-attribute name="pageName"  value="listeAdh" />
+    </definition>
+
+	<definition name="editIdentiteAdh" extends="base.definition">
+        <put-attribute name="body"  value="/vues/adherent/edit/editIdentiteAdherent.jsp" />
+        <put-attribute name="pageName"  value="listeAdh" />
+    </definition>
+
+	<definition name="editExploitationAdh" extends="base.definition">
+        <put-attribute name="body"  value="/vues/adherent/edit/editExploitationAdherent.jsp" />
+        <put-attribute name="pageName"  value="listeAdh" />
+    </definition>
+
+	<definition name="editInformatiqueAdh" extends="base.definition">
+        <put-attribute name="body"  value="/vues/adherent/edit/editInformatiqueAdherent.jsp" />
+        <put-attribute name="pageName"  value="adherentInformatique" />
+    </definition>
+
+	<definition name="listIdLibelle" extends="base.definition">
+        <put-attribute name="body"  value="/vues/parametrage/listeIdLibelle.jsp" />
+        <put-attribute name="pageName"  value="listeAdh" />
+    </definition>
+
+	<definition name="listeCommunes" extends="base.definition">
+        <put-attribute name="body"  value="/vues/parametrage/listeCommunes.jsp" />
+        <put-attribute name="pageName"  value="listeCommunes" />
+    </definition>
+
+	<definition name="listeUtilisateurs" extends="base.definition">
+        <put-attribute name="body"  value="/vues/parametrage/listeUtilisateurs.jsp" />
+        <put-attribute name="pageName"  value="listeUtl" />
+    </definition>
+
+    <definition name="enCours" extends="base.definition">
+        <put-attribute name="body"  value="/vues/enCours.jsp" />
+        <put-attribute name="pageName"  value="enCours" />
+    </definition>
+
+</tiles-definitions>

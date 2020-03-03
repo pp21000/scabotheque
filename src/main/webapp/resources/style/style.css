@@ -1,0 +1,487 @@
+@import 'commun.css';
+@import 'header.css';
+@import 'dialogBox.css';
+
+
+ 
+/* Forms --------------------------------------------------------------------------------------- */
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #D5DBDB;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #D5DBDB;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #D5DBDB;
+}
+
+.legend {
+    font-weight: bold;
+    font-size:1.5em;
+    padding-left: 1em;
+}
+
+form .valeur{
+	width:30em;
+}
+
+form .valeurCivilite{
+	width:10em;
+}
+
+/* form label { */
+/*     float: left; */
+/*     width: 25em; */
+/*     margin: 3px 0px 0px 0px; */
+/* } */
+
+form textArea {
+    float: left;
+/*     width: 25em; */
+    margin: 0.3em 0 0 0;
+    padding: 1em;
+}
+
+form input, form select {
+    margin: 3px 3px 0px 0px;
+    border: 1px #ccc solid ;
+    border-radius: 0.4em;
+    margin: 0.2em;
+    padding: 0.4em;    
+}
+
+/* form .errors{ */
+/* 	color:red;     */
+/* } */
+
+/* input { */
+/*     margin: 3px 3px 0px 0px; */
+/*     border: 1px #999 solid ; */
+    
+/* } */
+
+form input.sansLabel {
+    margin-left: 200px;
+}
+
+.displayInline{
+	display: inline-flex;
+}
+
+/* Styles et couleurs -------------------------------------------------------------------------- */
+.requis {
+    color: #c00;
+}
+
+.errors {
+    color: #f53;
+    
+}
+
+.succes {
+    color: #090;
+}
+
+.colonnesDouble{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.colonnesTriple{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.colonnesEditContact{
+    display: grid;
+    grid-template-columns: 20em 1fr 1fr 2em;
+    padding: 0.5em;
+    border-bottom: 1px #ccc solid;
+}
+
+.colonnesEditContact .editData{
+    display: grid;
+    padding: 0 1.1em;
+}
+
+.editDataList{
+    display: grid;
+    padding: 0 1.1em;
+}
+
+/* .info { */
+/*     font-style: italic; */
+/*     color: #E8A22B; */
+/* } */
+
+/* Détail adherents et modification -------------------------------------------------------------------------- */
+
+.listAdherent-recherche{
+	display:flex;
+}
+
+.listAdherent-recherche-button{
+	display:flex;
+}
+
+.listAdherent-recherche-criteres{
+	flex:1;	
+}
+
+.showAdherent, .editAdherent, .listeIdLibelle, .addAdherentContact{
+	display:flex;
+	flex-direction:column;
+/* 	font-size:1.3em; */
+}
+
+.showAdherent H2{
+    font-size: 2.35294em;
+    line-height: 40px;
+   	text-align:center;
+    color: #004462;
+    font-size: 1.76471em;
+    margin: 0 0 10px;
+}
+
+.colonne-commune{
+	display: grid;
+    grid-template-columns: 1fr 9em 9em;
+}
+
+.saveButton{
+	text-align :right;	
+	float :right;
+}
+
+.fieldsetCommentaire{
+	padding: 0.5em;
+	margin : 0.5 em;
+}
+
+.editAdherentEntete .entete, .editAdherentContact .entete, .addAdherentContact .entete{
+    align-items: center;
+	display: grid;
+    grid-template-columns: 9em 1fr 9em;
+    padding: 0.2em 0.4em;
+    text-align : center;
+}
+
+.editAdherentEntete .entete img, .editAdherent .entete img, .editAdherentContact .entete img{
+	width:9em;
+}
+
+/* .editAdherent .error, .editAdherentContact .error, .addAdherentContact .error{ */
+.error{
+	color: red;
+    font-style: italic;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.showAdherent .entete{
+    align-items: center;
+	display: grid;
+    grid-template-columns: 12em 1fr;
+    padding: 1em 0;
+}
+
+.showAdherent .listContact{
+	display: grid;
+    grid-template-columns: 3em 1fr 1fr 7em 7em;
+}
+
+.showAdherent .data {
+    padding: 0em 0.2em;
+    font-weight: bold;
+}
+
+/* .editAdherentContact hr, .showAdherent hr{ */
+/* 	margin: 5px 0; */
+/* } */
+/* .editAdherent .showDetail { */
+/* 	display: grid; */
+/*     grid-template-columns: 12em 1fr 1fr; */
+/* 	padding: 0.2em 0.4em; */
+/* 	font-size: 15px; */
+/* } */
+
+.showDetailCommentaire{
+	display: grid;
+    grid-template-columns: 12em 13em 1fr;
+	padding: 0.2em 1em;
+	font-size: 15px;	
+}
+
+/* .addAdherentContact .showDetail{ */
+/* 	display: grid; */
+/*     grid-template-columns: 1fr 1fr 2em; */
+/* /* 	padding: 0.2em 0.4em; */ */
+/* /* 	font-size: 15px; */ */
+/* }  */
+
+/* .addAdherentContact .showDetail{ */
+/* 	display: grid; */
+/*     grid-template-columns: 10em 1fr 1fr; */
+/* 	padding: 0.2em 0.4em; */
+/* 	font-size: 15px; */
+/* }  */
+
+/* .editAdherentContact .typeDetail, .showAdherent .typeDetail{ */
+/* 	color: #82aa37; */
+/*     line-height: 0.6em; */
+/*     padding-top: 0.8em; */
+/* } */
+
+/* .editAdherentContact .showDetail { */
+/* 	display: grid; */
+/*     grid-template-columns: 4.9em 1fr 1fr 1fr 7.5em 7.5em 2em; */
+/*     font-size: 15px; */
+/* } */
+
+.showAdherent .showContact{
+    padding-bottom: 1em;	
+}
+
+.showAdherent .showCommentaire{
+    margin-bottom: 3.5em;	
+}
+
+.editAdherent label, .editAdherentContact label, .editAdherentContact input , .editAdherentContact select {
+	float:none;
+	width:16em;
+}
+
+.showDetailAdherent{
+	align-items: center;
+	display: grid;
+    grid-template-columns: 12em 1fr;
+	padding: 0.2em 1em;
+}
+
+.showDetailAdherentTriple{
+	align-items: center;
+	display: grid;
+    grid-template-columns: 12em 1fr 1fr;
+	padding: 0.2em 1em;
+}
+
+.showDetailEditContact{
+	align-items: center;
+	display: grid;
+    grid-template-columns: 12em 1fr 1fr;
+	padding: 0.2em 1em;
+}
+
+.showDetailAdherentCommune{
+	align-items: center;
+	display: grid;
+    grid-template-columns: 12em 1fr 3em 1fr;
+	padding: 0.2em 1em;
+	
+}
+/* #showAdherent fieldset , #editAdherent fieldset, #editAdherentContact fieldset{ */
+fieldset {
+	background-color: #ffffff;
+    border: 1px solid #d4d4d4;
+    border-radius: 0.4em;
+}
+
+/* .showAdherent svg, .editAdherent svg, .editAdherentContact svg, .listeIdLibelle svg{ */
+/* 	height:1.5em; */
+/* 	width:1.5em; */
+/* } */
+
+.showAdherent .delete, .editAdherent .delete, .editAdherentContact .delete, .listeIdLibelle .delete{
+    width: 1.5em;
+/*     height: 40px; */
+}
+
+.login {
+	font-size: 1.3em;
+	width: 400px;
+	padding: 20px;
+	margin: 100px auto;
+}
+
+.login div {
+	display: flex;
+}
+
+.login input {
+    margin: 0.5em;
+    border: 2px #999 solid;
+	flex:1;
+    border-radius: 4px;
+    font-size: 16px;
+    height: 28px;
+   	padding: 13px 15px;
+}
+	
+.login .error {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+}
+
+.login .msg {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #31708f;
+	background-color: #d9edf7;
+	border-color: #bce8f1;
+}
+
+/* Liste des adherents -------------------------------------------------------------------------- */
+.listeAdherents {
+	display :flex;
+	flex-direction:column;
+	width: 100%;
+}
+
+.adherents-item {
+	display:flex;
+	}
+
+.adherents-item .data {
+    font-size: 0.95em;
+    line-height: 1em;
+    padding: 0 0.2em;
+    font-weight: bold;
+}
+
+.listeAdherents div.photo{
+	float:left;
+    margin: auto;
+	text-align:center;
+	width:8em;
+}
+
+.photoContact{
+	float:left;
+    margin: auto;
+	text-align:center;
+	display: grid;
+}
+
+.photoContact img{
+    margin: auto;
+}
+
+.showIcone{
+	max-width: 15px; 
+	vertical-align: middle;
+}
+
+.showAdherent div.photo{
+	float:left;
+/* 	margin-top:2.4em; */
+	text-align:center;
+}
+
+.listeUtilisateur .detail {
+	background-color: #ffffff;
+	border: 1px solid #d4d4d4;
+	border-radius: 0.4em;
+	flex:1;
+	margin:0.2em;
+	padding: 0.4em;
+}
+
+.listeAdherents div.photo img, .showAdherent div.photo img{
+    max-width: 8em;
+    max-height: 8em;
+}
+
+.listeAdherents .detail {
+	background-color: #ffffff;
+	border: 1px solid #d4d4d4;
+	border-radius: 0.4em;
+	flex:1;
+	margin:0.2em;
+	padding: 0.4em;
+}
+
+.listeAdherents .detail a{
+    color: #004462;
+	text-decoration: none; 
+  }
+
+.listeAdherents .info{
+	display :flex;
+	}  
+
+.listeAdherents .code{
+	flex:1;
+    display: grid;
+    grid-template-columns: 7em 1fr;
+	margin:auto;
+	}  
+
+.listeAdherents .statut{
+	flex:1;
+    display: grid;
+    grid-template-columns: 4em 1fr;
+	margin:auto;
+	}  
+
+.listeAdherents .raccourcis{
+	-flex:1;
+	margin:auto;
+	text-align:right;
+}  
+
+.alignLeft{
+	text-align:left;
+}  
+
+.alignRight{
+	text-align:right;
+}  
+
+.listeAdherents .etatAdh{
+    display: grid;
+    grid-template-columns: 4em 1fr 2em ;
+}  
+
+.listeAdherents .detail a:hover {
+    text-decoration: underline; }
+}
+.listeAdherents td, #customers th {
+/*   border: 1px solid #ddd; */
+  padding: 5px;
+}
+
+.listeAdherents .link{
+	width:25px;
+}
+
+.listeAdherents .detail img{
+	height:20px;
+	align:center;
+	width:20px;
+}
+
+/* #adherents tr:nth-child(even){background-color: #e8e8e8;} */
+
+/* #adherents tr:hover {background-color: #ddd;} */
+
+/* #listeAdherents th { */
+/*   padding-top: 12px; */
+/*   padding-bottom: 12px; */
+/*   text-align: center; */
+/*   color: white; */
+/* } */
+
+svg {
+	width:2em;
+	height:2em;
+}
