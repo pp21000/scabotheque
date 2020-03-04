@@ -218,8 +218,8 @@ form input.sansLabel {
 /* .addAdherentContact .showDetail{ */
 /* 	display: grid; */
 /*     grid-template-columns: 1fr 1fr 2em; */
-/* /* 	padding: 0.2em 0.4em; */ */
-/* /* 	font-size: 15px; */ */
+/* /* 	padding: 0.2em 0.4em; */
+/* /* 	font-size: 15px; */
 /* }  */
 
 /* .addAdherentContact .showDetail{ */
@@ -453,7 +453,7 @@ fieldset {
 }  
 
 .listeAdherents .detail a:hover {
-    text-decoration: underline; }
+    text-decoration: underline; 
 }
 .listeAdherents td, #customers th {
 /*   border: 1px solid #ddd; */
