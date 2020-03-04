@@ -25,9 +25,7 @@ public class ApplicationMailer {
     @Autowired
     private SimpleMailMessage preConfiguredMessage;
 
-    public void sendAdherentMail(Criteria criteria) {
-
-    }
+    public void sendAdherentMail(Criteria criteria) {}
 
     public void sendHTMLMail(String from, String to, String subject, String body) {
 	try {
