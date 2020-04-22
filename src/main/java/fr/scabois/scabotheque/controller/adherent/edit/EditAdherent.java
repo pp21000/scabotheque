@@ -1,5 +1,7 @@
 package fr.scabois.scabotheque.controller.adherent.edit;
 
+import fr.scabois.scabotheque.bean.adherent.AdherentType;
+import fr.scabois.scabotheque.bean.adherent.CompteType;
 import java.util.Date;
 
 import javax.validation.constraints.NotNull;
@@ -7,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import fr.scabois.scabotheque.bean.adherent.Etat;
+import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
 import fr.scabois.scabotheque.bean.adherent.FormeJuridique;
 import fr.scabois.scabotheque.bean.adherent.Pole;
 import fr.scabois.scabotheque.bean.adherent.Role;
@@ -37,7 +39,7 @@ public class EditAdherent {
     private Date dateEntree;
     @NotEmpty(message = "{modification.notempty}")
     private String denomination;
-    private Etat etat;
+    private AdherentEtat etat;
     private FormeJuridique formeJuridique;
     private Integer id;
     private boolean isArtipole;
@@ -63,6 +65,24 @@ public class EditAdherent {
     private Integer siren;
     private Long siret;
     private Tournee tournee;
+    private AdherentType adherentType;
+    private CompteType compteType;
+
+    public AdherentType getAdherentType() {
+        return adherentType;
+    }
+
+    public void setAdherentType(AdherentType adherentType) {
+        this.adherentType = adherentType;
+    }
+
+    public CompteType getCompteType() {
+        return compteType;
+    }
+
+    public void setCompteType(CompteType compteType) {
+        this.compteType = compteType;
+    }
 
     public String getAdresse() {
 	return adresse;
@@ -112,7 +132,7 @@ public class EditAdherent {
 	return denomination;
     }
 
-    public Etat getEtat() {
+    public AdherentEtat getEtat() {
 	return etat;
     }
 
@@ -248,7 +268,7 @@ public class EditAdherent {
 	this.denomination = denomination;
     }
 
-    public void setEtat(Etat etat) {
+    public void setEtat(AdherentEtat etat) {
 	this.etat = etat;
     }
 

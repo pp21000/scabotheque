@@ -9,7 +9,9 @@ import fr.scabois.scabotheque.bean.adherent.Adherent;
 import fr.scabois.scabotheque.bean.adherent.AdherentActivite;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
 import fr.scabois.scabotheque.bean.adherent.AdherentExploitation;
-import fr.scabois.scabotheque.bean.adherent.Etat;
+import fr.scabois.scabotheque.bean.adherent.AdherentType;
+import fr.scabois.scabotheque.bean.adherent.CompteType;
+import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
 import fr.scabois.scabotheque.bean.adherent.FormeJuridique;
 import fr.scabois.scabotheque.bean.adherent.Pole;
 import fr.scabois.scabotheque.bean.adherent.Role;
@@ -31,6 +33,16 @@ public class ServiceAdherent implements IServiceAdherent {
 
     @Autowired
     private IAdherentDAO dao;
+
+    @Override
+    public List<AdherentType> LoadAdherentTypes() {
+        return dao.LoadAdherentTypes();
+    }
+
+    @Override
+    public List<CompteType> LoadCompteTypes() {
+        return dao.LoadCompteTypes();
+    }
 
     @Override
     public void createActivite(String libelle) {
@@ -155,7 +167,7 @@ public class ServiceAdherent implements IServiceAdherent {
     }
 
     @Override
-    public List<Etat> LoadEtats() {
+    public List<AdherentEtat> LoadEtats() {
 	return dao.loadEtats();
     }
 

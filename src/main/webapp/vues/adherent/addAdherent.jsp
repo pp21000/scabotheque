@@ -235,6 +235,18 @@
 				<form:options items="${etatList}" itemValue="id" itemLabel="libelle" />
 			</form:select>
 		</div>
+                <div class="showDetailAdherent">
+			<form:label path="adherent.adherentType" ><spring:message code="label.etat"/></form:label>
+			<form:select class="valeur" name="adherent.adherentType" path="adherent.adherentType.id">
+				<form:options items="${adherentTypeList}" itemValue="id" itemLabel="libelle" />
+			</form:select>
+		</div>
+                <div class="showDetailAdherent">
+			<form:label path="adherent.compteType" ><spring:message code="label.etat"/></form:label>
+			<form:select class="valeur" name="adherent.compteType" path="adherent.compteType.id">
+				<form:options items="${compteTypeList}" itemValue="id" itemLabel="libelle" />
+			</form:select>
+		</div>
 
 		
 	</fieldset>

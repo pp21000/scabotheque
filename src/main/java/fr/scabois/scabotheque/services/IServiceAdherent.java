@@ -6,7 +6,9 @@ import fr.scabois.scabotheque.bean.adherent.Adherent;
 import fr.scabois.scabotheque.bean.adherent.AdherentActivite;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
 import fr.scabois.scabotheque.bean.adherent.AdherentExploitation;
-import fr.scabois.scabotheque.bean.adherent.Etat;
+import fr.scabois.scabotheque.bean.adherent.AdherentType;
+import fr.scabois.scabotheque.bean.adherent.CompteType;
+import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
 import fr.scabois.scabotheque.bean.adherent.FormeJuridique;
 import fr.scabois.scabotheque.bean.adherent.Pole;
 import fr.scabois.scabotheque.bean.adherent.Role;
@@ -71,7 +73,7 @@ public interface IServiceAdherent {
 
     List<ContactFonction> LoadContactFonctions();
 
-    List<Etat> LoadEtats();
+    List<AdherentEtat> LoadEtats();
 
     List<FormeJuridique> LoadFormesJuridiques();
 
@@ -82,6 +84,8 @@ public interface IServiceAdherent {
     List<Secteur> LoadSecteurs();
 
     List<Tournee> LoadTournees();
+    List<AdherentType> LoadAdherentTypes();
+    List<CompteType> LoadCompteTypes();
 
     User LoadUtilisateur(int userId);
 

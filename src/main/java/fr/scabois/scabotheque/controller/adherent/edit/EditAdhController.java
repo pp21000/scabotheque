@@ -27,7 +27,9 @@ import org.springframework.web.multipart.MultipartFile;
 import fr.scabois.scabotheque.bean.adherent.Adherent;
 import fr.scabois.scabotheque.bean.adherent.AdherentActivite;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
-import fr.scabois.scabotheque.bean.adherent.Etat;
+import fr.scabois.scabotheque.bean.adherent.AdherentType;
+import fr.scabois.scabotheque.bean.adherent.CompteType;
+import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
 import fr.scabois.scabotheque.bean.adherent.FormeJuridique;
 import fr.scabois.scabotheque.bean.adherent.Pole;
 import fr.scabois.scabotheque.bean.adherent.Role;
@@ -66,7 +68,9 @@ public class EditAdhController {
     private void addSelectLists(final ModelMap pModel) {
 	List<Agence> agences = service.LoadAgences();
 	List<Ape> codeApes = service.LoadCodeApes();
-	List<Etat> etats = service.LoadEtats();
+	List<AdherentEtat> etats = service.LoadEtats();
+	List<AdherentType> adhTypes = service.LoadAdherentTypes();
+	List<CompteType> cptTypes = service.LoadCompteTypes();
 	List<FormeJuridique> formesJuridiques = service.LoadFormesJuridiques();
 	List<Pole> poles = service.LoadPoles();
 	List<Role> roles = service.LoadRoles();
@@ -76,6 +80,8 @@ public class EditAdhController {
 	pModel.addAttribute("agenceList", agences);
 	pModel.addAttribute("apeList", codeApes);
 	pModel.addAttribute("etatList", etats);
+	pModel.addAttribute("adhTypesList", adhTypes);
+	pModel.addAttribute("compteTypeList", cptTypes);
 	pModel.addAttribute("formJuridList", formesJuridiques);
 	pModel.addAttribute("poleList", poles);
 	pModel.addAttribute("roleList", roles);
@@ -84,7 +90,7 @@ public class EditAdhController {
 
     }
 
-    private List<EditAdherentContact> adhContactToEdit(List<AdherentContactRole> contacts) {
+    private List<EditAdherentContact> contactToEdit(List<AdherentContactRole> contacts) {
 	final List<EditAdherentContact> ret = new ArrayList<>();
 
 	contacts.stream().forEach(c -> {
@@ -106,7 +112,10 @@ public class EditAdhController {
 	    edit.setPrenom(c.getPrenom());
 	    edit.setFonction(c.getFonction());
 	    edit.setContactFonctionId(c.getFonction().getId());
-
+            edit.setIsAccessEOLAS(c.getIsAccessEOLAS());
+            edit.setLoginEOLAS(c.getLoginEOLAS());
+            edit.setPassEOLAS(c.getPassEOLAS());            
+            
 	    ret.add(edit);
 	});
 	return ret;
@@ -150,12 +159,14 @@ public class EditAdhController {
 	editableAdh.setIsOutilDechargement(adh.getIsOutilDechargement());
 	editableAdh.setContactComptable(adh.getContactComptable());
 	editableAdh.setEtat(adh.getEtat());
+	editableAdh.setAdherentType(adh.getAdherentType());
+	editableAdh.setCompteType(adh.getCompteType());
 
 	return editableAdh;
     }
 
     @RequestMapping(value = { "/edit/editArtipoleAdh", "/edit/editAdministratifAdh", "/edit/editExploitationAdh",
-	    "/edit/editInformatiqueAdh", "/edit/editArtipoleAdh", "/edit/editIdentiteAdh" }, method = RequestMethod.GET)
+	    "/edit/editArtipoleAdh", "/edit/editIdentiteAdh" }, method = RequestMethod.GET)
     public String editAdherent(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel,
 	    HttpServletRequest request) {
 
@@ -249,7 +260,7 @@ public class EditAdhController {
 	    final EditAdherentContactsForm editAdhContactsForm = new EditAdherentContactsForm();
 
 	    editAdhContactsForm.setCommentaire(service.LoadAdherentCommentaire(idAdh, PageType.ADHERENT_DETAIL));
-	    List<EditAdherentContact> editableAdhContacts = adhContactToEdit(adh.getContacts());
+	    List<EditAdherentContact> editableAdhContacts = contactToEdit(adh.getContacts());
 	    editAdhContactsForm.setAdherentContacts(editableAdhContacts);
 	    pModel.addAttribute("contactToEdit", editAdhContactsForm);
 	} else {
@@ -312,6 +323,8 @@ public class EditAdhController {
 	adh.setOutilDechargement(editAdh.getIsOutilDechargement());
 	adh.setContactComptable(editAdh.getContactComptable());
 	adh.setEtat(editAdh.getEtat());
+	adh.setAdherentType(editAdh.getAdherentType());
+	adh.setCompteType(editAdh.getCompteType());
 
 	return adh;
     }
@@ -347,6 +360,9 @@ public class EditAdhController {
 	}
 	contact.setPhoto(fileName.getBytes());
 	contact.setPrenom(adhContactEditable.getPrenom());
+	contact.setIsAccessEOLAS(adhContactEditable.getIsAccessEOLAS());
+	contact.setLoginEOLAS(adhContactEditable.getLoginEOLAS());
+	contact.setPassEOLAS(adhContactEditable.getPassEOLAS());
 
 	return contact;
     }
@@ -372,8 +388,8 @@ public class EditAdhController {
 	    return PageType.ADHERENT_ADMINISTRATIF;
 	case "editExploitationAdh":
 	    return PageType.ADHERENT_EXPLOITATION;
-	case "editInformatiqueAdh":
-	    return PageType.ADHERENT_INFORMATIQUE;
+//	case "editInformatiqueAdh":
+//	    return PageType.ADHERENT_INFORMATIQUE;
 	case "editDetailAdh":
 	    return PageType.ADHERENT_DETAIL;
 	default:
@@ -409,6 +425,23 @@ public class EditAdhController {
 	}
 
 	return editAdherentActivite(adhId, pModel, request);
+    }
+                            
+    @RequestMapping(value = "/edit/editInformatiqueAdh", method = RequestMethod.POST)
+    public String modifieInformatiqueAdh(
+	    @Valid @ModelAttribute(value = "editForm") final EditAdherentActivitesForm editForm,
+	    final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
+
+	int adhId = editForm.getActivitesAdh().get(0).getAdherentId();
+
+	if (!pBindingResult.hasErrors()) {
+	    service.saveAdherentCommentaire(adhId, PageType.ADHERENT_INFORMATIQUE, editForm.getCommentaire());
+
+//	    service.saveInformatiqueAdherent(adhId, );
+	    return redirectOkPage(PageType.ADHERENT_INFORMATIQUE, adhId);
+	}
+
+	return "editInformatiqueAdh" ;//editad(adhId, pModel, request);
     }
 
     @RequestMapping(value = { "/edit/editAdministratifAdh", "/edit/editExploitationAdh", "/edit/editInformatiqueAdh",

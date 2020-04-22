@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import fr.scabois.scabotheque.bean.adherent.Adherent;
-import fr.scabois.scabotheque.bean.adherent.Etat;
+import fr.scabois.scabotheque.bean.adherent.AdherentType;
+import fr.scabois.scabotheque.bean.adherent.CompteType;
+import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
 import fr.scabois.scabotheque.bean.adherent.FormeJuridique;
 import fr.scabois.scabotheque.bean.adherent.Pole;
 import fr.scabois.scabotheque.bean.adherent.Role;
@@ -42,12 +44,14 @@ public class AddAdherentController {
     private void addSelectLists(final ModelMap pModel) {
 	List<Agence> agences = service.LoadAgences();
 	List<Ape> codeApes = service.LoadCodeApes();
-	List<Etat> etats = service.LoadEtats();
+	List<AdherentEtat> etats = service.LoadEtats();
 	List<FormeJuridique> formesJuridiques = service.LoadFormesJuridiques();
 	List<Pole> poles = service.LoadPoles();
 	List<Role> roles = service.LoadRoles();
 	List<Secteur> secteurs = service.LoadSecteurs();
 	List<Tournee> tournees = service.LoadTournees();
+	List<AdherentType> adherentTypes = service.LoadAdherentTypes();
+	List<CompteType> compteTypes = service.LoadCompteTypes();
 
 	pModel.addAttribute("agenceList", agences);
 	pModel.addAttribute("apeList", codeApes);
@@ -57,6 +61,8 @@ public class AddAdherentController {
 	pModel.addAttribute("roleList", roles);
 	pModel.addAttribute("secteurList", secteurs);
 	pModel.addAttribute("tourneeList", tournees);
+	pModel.addAttribute("adherentTypeList", adherentTypes);
+	pModel.addAttribute("compteTypeList", compteTypes);
 
     }
 
@@ -116,6 +122,8 @@ public class AddAdherentController {
 	adh.setOutilDechargement(editAdh.getIsOutilDechargement());
 	adh.setContactComptable(editAdh.getContactComptable());
 	adh.setEtat(editAdh.getEtat());
+	adh.setAdherentType(editAdh.getAdherentType());
+	adh.setCompteType(editAdh.getCompteType());
 	adh.setPhoto(editAdh.getPhoto() == null ? "".getBytes() : editAdh.getPhoto().getBytes());
 
 	return adh;

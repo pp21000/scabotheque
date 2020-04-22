@@ -93,12 +93,16 @@ public class ListeAdherentsController {
     public String sendMail(@ModelAttribute(value = "criteria") final CriteriaAdherent criteria,
 	    final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
 
-	// recherche de tous mes contact pour envoy de message.
+	// recherche de tous les contacts pour envoy du message.
 	final List<Adherent> listeAdherents = service.LoadAdherents(criteria);
 	List<AdherentContactRole> listeTotal = new ArrayList<>();
 
 	try {
-	    listeAdherents.stream().forEach(a -> {
+            
+            mailer.sendHTMLMail(criteria.getSender(), criteria.getSender(),
+                "Copie de votre message :" + criteria.getObject(), criteria.getMessageMail());
+
+            listeAdherents.stream().forEach(a -> {
 		final List<AdherentContactRole> contacts = service.loadAdherentContactFonction(a.getId(),
 			criteria.isMailingDirigeant(), criteria.isMailingCommerce(), criteria.isMailingAdministratif(),
 			criteria.isMailingCompta());

@@ -62,6 +62,8 @@
 <%-- 	<form:input type="hidden" path="adherent.contactComptable"/> --%>
 <%-- 	<form:input type="hidden" path="adherent.isFormationCommerce"/> --%>
 <%-- 	<form:input type="hidden" path="adherent.etat.id"/> --%>
+	<form:input type="hidden" path="adherent.adherentType.id"/>
+	<form:input type="hidden" path="adherent.compteType.id"/>
 	
 	<fieldset>
 	   	<legend class="legend"><spring:message code="label.administratif"/></legend>
@@ -81,7 +83,21 @@
 			</form:select>
 			<b><i><form:errors path="adherent.role" /></i></b>
 		</div>
-	
+	        
+                 <div class="showDetail">
+                    <form:label path="adherent.adherentType" ><spring:message code="label.adherentType"/></form:label>
+                    <form:select class="valeur" name="adherent.adherentType" path="adherent.adherentType.id">
+                            <form:options items="${adhTypesList}" itemValue="id" itemLabel="libelle" />
+                    </form:select>
+		</div>
+
+                <div class="showDetail">
+                    <form:label path="adherent.compteType" ><spring:message code="label.reglement"/></form:label>
+                    <form:select class="valeur" name="adherent.compteType" path="adherent.compteType.id">
+                            <form:options items="${compteTypeList}" itemValue="id" itemLabel="libelle" />
+                    </form:select>
+		</div>
+                    
 		<div class="showDetail"> 
 			<form:label path="adherent.formeJuridique" ><spring:message code="label.formeJuridique"/></form:label>
 			<form:select class="valeur" name="adherent.formeJuridique" path="adherent.formeJuridique.id">
@@ -157,7 +173,8 @@
 				<form:options items="${etatList}" itemValue="id" itemLabel="libelle" />
 			</form:select>
 		</div>
-	</fieldset>
+
+</fieldset>
 	
 	<fieldset>
 	   	<legend class="legend"><spring:message code="label.commentaire"/></legend>

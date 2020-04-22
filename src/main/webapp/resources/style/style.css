@@ -140,42 +140,42 @@ form input.sansLabel {
 .showAdherent H2{
     font-size: 2.35294em;
     line-height: 40px;
-   	text-align:center;
+    text-align:center;
     color: #004462;
     font-size: 1.76471em;
     margin: 0 0 10px;
 }
 
 .colonne-commune{
-	display: grid;
+    display: grid;
     grid-template-columns: 1fr 9em 9em;
 }
 
 .saveButton{
-	text-align :right;	
-	float :right;
+    text-align :right;	
+    float :right;
 }
 
 .fieldsetCommentaire{
-	padding: 0.5em;
-	margin : 0.5 em;
+    padding: 0.5em;
+    margin : 0.5em;
 }
 
 .editAdherentEntete .entete, .editAdherentContact .entete, .addAdherentContact .entete{
     align-items: center;
-	display: grid;
+    display: grid;
     grid-template-columns: 9em 1fr 9em;
     padding: 0.2em 0.4em;
     text-align : center;
 }
 
 .editAdherentEntete .entete img, .editAdherent .entete img, .editAdherentContact .entete img{
-	width:9em;
+    width:9em;
 }
 
 /* .editAdherent .error, .editAdherentContact .error, .addAdherentContact .error{ */
 .error{
-	color: red;
+    color: red;
     font-style: italic;
     font-size: 0.9em;
     font-weight: bold;
@@ -183,13 +183,13 @@ form input.sansLabel {
 
 .showAdherent .entete{
     align-items: center;
-	display: grid;
+    display: grid;
     grid-template-columns: 12em 1fr;
     padding: 1em 0;
 }
 
 .showAdherent .listContact{
-	display: grid;
+    display: grid;
     grid-template-columns: 3em 1fr 1fr 7em 7em;
 }
 
@@ -209,37 +209,11 @@ form input.sansLabel {
 /* } */
 
 .showDetailCommentaire{
-	display: grid;
+    display: grid;
     grid-template-columns: 12em 13em 1fr;
-	padding: 0.2em 1em;
-	font-size: 15px;	
+    padding: 0.2em 1em;
+    font-size: 15px;	
 }
-
-/* .addAdherentContact .showDetail{ */
-/* 	display: grid; */
-/*     grid-template-columns: 1fr 1fr 2em; */
-/* /* 	padding: 0.2em 0.4em; */
-/* /* 	font-size: 15px; */
-/* }  */
-
-/* .addAdherentContact .showDetail{ */
-/* 	display: grid; */
-/*     grid-template-columns: 10em 1fr 1fr; */
-/* 	padding: 0.2em 0.4em; */
-/* 	font-size: 15px; */
-/* }  */
-
-/* .editAdherentContact .typeDetail, .showAdherent .typeDetail{ */
-/* 	color: #82aa37; */
-/*     line-height: 0.6em; */
-/*     padding-top: 0.8em; */
-/* } */
-
-/* .editAdherentContact .showDetail { */
-/* 	display: grid; */
-/*     grid-template-columns: 4.9em 1fr 1fr 1fr 7.5em 7.5em 2em; */
-/*     font-size: 15px; */
-/* } */
 
 .showAdherent .showContact{
     padding-bottom: 1em;	
@@ -250,49 +224,45 @@ form input.sansLabel {
 }
 
 .editAdherent label, .editAdherentContact label, .editAdherentContact input , .editAdherentContact select {
-	float:none;
-	width:16em;
+    float:none;
+    width:16em;
 }
 
 .showDetailAdherent{
-	align-items: center;
-	display: grid;
+    align-items: center;
+    display: grid;
     grid-template-columns: 12em 1fr;
-	padding: 0.2em 1em;
+    padding: 0.2em;
 }
 
 .showDetailAdherentTriple{
-	align-items: center;
-	display: grid;
+    align-items: center;
+    display: grid;
     grid-template-columns: 12em 1fr 1fr;
-	padding: 0.2em 1em;
+    padding: 0.2em;
 }
 
 .showDetailEditContact{
-	align-items: center;
-	display: grid;
+    align-items: center;
+    display: grid;
     grid-template-columns: 12em 1fr 1fr;
-	padding: 0.2em 1em;
+    padding: 0.2em 1em;
 }
 
 .showDetailAdherentCommune{
-	align-items: center;
-	display: grid;
+    align-items: center;
+    display: grid;
     grid-template-columns: 12em 1fr 3em 1fr;
-	padding: 0.2em 1em;
+    padding: 0.2em 1em;
 	
 }
 /* #showAdherent fieldset , #editAdherent fieldset, #editAdherentContact fieldset{ */
 fieldset {
-	background-color: #ffffff;
+    background-color: #ffffff;
     border: 1px solid #d4d4d4;
     border-radius: 0.4em;
+    padding: 1em !important;
 }
-
-/* .showAdherent svg, .editAdherent svg, .editAdherentContact svg, .listeIdLibelle svg{ */
-/* 	height:1.5em; */
-/* 	width:1.5em; */
-/* } */
 
 .showAdherent .delete, .editAdherent .delete, .editAdherentContact .delete, .listeIdLibelle .delete{
     width: 1.5em;
@@ -300,56 +270,56 @@ fieldset {
 }
 
 .login {
-	font-size: 1.3em;
-	width: 400px;
-	padding: 20px;
-	margin: 100px auto;
+    font-size: 1.3em;
+    width: 400px;
+    padding: 20px;
+    margin: 100px auto;
 }
 
 .login div {
-	display: flex;
+    display: flex;
 }
 
 .login input {
     margin: 0.5em;
     border: 2px #999 solid;
-	flex:1;
+    flex:1;
     border-radius: 4px;
     font-size: 16px;
     height: 28px;
-   	padding: 13px 15px;
+    padding: 13px 15px;
 }
 	
 .login .error {
-	padding: 15px;
-	margin-bottom: 20px;
-	border: 1px solid transparent;
-	border-radius: 4px;
-	color: #a94442;
-	background-color: #f2dede;
-	border-color: #ebccd1;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
 }
 
 .login .msg {
-	padding: 15px;
-	margin-bottom: 20px;
-	border: 1px solid transparent;
-	border-radius: 4px;
-	color: #31708f;
-	background-color: #d9edf7;
-	border-color: #bce8f1;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
 }
 
-/* Liste des adherents -------------------------------------------------------------------------- */
+/* Liste des adherents --------------------------- */
 .listeAdherents {
-	display :flex;
-	flex-direction:column;
-	width: 100%;
+    display :flex;
+    flex-direction:column;
+    width: 100%;
 }
 
 .adherents-item {
-	display:flex;
-	}
+    display:flex;
+}
 
 .adherents-item .data {
     font-size: 0.95em;
@@ -359,17 +329,17 @@ fieldset {
 }
 
 .listeAdherents div.photo{
-	float:left;
+    float:left;
     margin: auto;
-	text-align:center;
-	width:8em;
+    text-align:center;
+    width:8em;
 }
 
 .photoContact{
-	float:left;
+    float:left;
     margin: auto;
-	text-align:center;
-	display: grid;
+    text-align:center;
+    display: grid;
 }
 
 .photoContact img{
@@ -377,23 +347,23 @@ fieldset {
 }
 
 .showIcone{
-	max-width: 15px; 
-	vertical-align: middle;
+    max-width: 15px; 
+    vertical-align: middle;
 }
 
 .showAdherent div.photo{
-	float:left;
+    float:left;
 /* 	margin-top:2.4em; */
-	text-align:center;
+    text-align:center;
 }
 
 .listeUtilisateur .detail {
-	background-color: #ffffff;
-	border: 1px solid #d4d4d4;
-	border-radius: 0.4em;
-	flex:1;
-	margin:0.2em;
-	padding: 0.4em;
+    background-color: #ffffff;
+    border: 1px solid #d4d4d4;
+    border-radius: 0.4em;
+    flex:1;
+    margin:0.2em;
+    padding: 0.4em;
 }
 
 .listeAdherents div.photo img, .showAdherent div.photo img{
@@ -402,49 +372,49 @@ fieldset {
 }
 
 .listeAdherents .detail {
-	background-color: #ffffff;
-	border: 1px solid #d4d4d4;
-	border-radius: 0.4em;
-	flex:1;
-	margin:0.2em;
-	padding: 0.4em;
+    background-color: #ffffff;
+    border: 1px solid #d4d4d4;
+    border-radius: 0.4em;
+    flex:1;
+    margin:0.2em;
+    padding: 0.4em;
 }
 
 .listeAdherents .detail a{
     color: #004462;
-	text-decoration: none; 
-  }
+    text-decoration: none; 
+}
 
 .listeAdherents .info{
-	display :flex;
-	}  
+    display :flex;
+}  
 
 .listeAdherents .code{
-	flex:1;
+    flex:1;
     display: grid;
     grid-template-columns: 7em 1fr;
-	margin:auto;
-	}  
+    margin:auto;
+}  
 
 .listeAdherents .statut{
-	flex:1;
+    flex:1;
     display: grid;
     grid-template-columns: 4em 1fr;
-	margin:auto;
-	}  
+    margin:auto;
+} 
 
 .listeAdherents .raccourcis{
-	-flex:1;
-	margin:auto;
-	text-align:right;
+    -flex:1;
+    margin:auto;
+    text-align:right;
 }  
 
 .alignLeft{
-	text-align:left;
+    text-align:left;
 }  
 
 .alignRight{
-	text-align:right;
+    text-align:right;
 }  
 
 .listeAdherents .etatAdh{
@@ -461,27 +431,16 @@ fieldset {
 }
 
 .listeAdherents .link{
-	width:25px;
+    width:25px;
 }
 
 .listeAdherents .detail img{
-	height:20px;
-	align:center;
-	width:20px;
+    height:20px;
+    text-align: center;
+    width:20px;
 }
 
-/* #adherents tr:nth-child(even){background-color: #e8e8e8;} */
-
-/* #adherents tr:hover {background-color: #ddd;} */
-
-/* #listeAdherents th { */
-/*   padding-top: 12px; */
-/*   padding-bottom: 12px; */
-/*   text-align: center; */
-/*   color: white; */
-/* } */
-
 svg {
-	width:2em;
-	height:2em;
+    width:2em;
+    height:2em;
 }

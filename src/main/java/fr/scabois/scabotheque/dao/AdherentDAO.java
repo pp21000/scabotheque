@@ -18,7 +18,9 @@ import fr.scabois.scabotheque.bean.adherent.AdherentActivite;
 import fr.scabois.scabotheque.bean.adherent.AdherentCommentaire;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
 import fr.scabois.scabotheque.bean.adherent.AdherentExploitation;
-import fr.scabois.scabotheque.bean.adherent.Etat;
+import fr.scabois.scabotheque.bean.adherent.AdherentType;
+import fr.scabois.scabotheque.bean.adherent.CompteType;
+import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
 import fr.scabois.scabotheque.bean.adherent.FormeJuridique;
 import fr.scabois.scabotheque.bean.adherent.Pole;
 import fr.scabois.scabotheque.bean.adherent.Role;
@@ -39,6 +41,16 @@ public class AdherentDAO implements IAdherentDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
+
+    @Override
+    public List<AdherentType> LoadAdherentTypes() {
+        return entityManager.createQuery("from AdherentType", AdherentType.class).getResultList();
+    }
+
+    @Override
+    public List<CompteType> LoadCompteTypes() {
+        return entityManager.createQuery("from CompteType", CompteType.class).getResultList();
+    }
 
     @Override
     @Transactional
@@ -328,8 +340,8 @@ public class AdherentDAO implements IAdherentDAO {
     }
 
     @Override
-    public List<Etat> loadEtats() {
-	return entityManager.createQuery("from Etat", Etat.class).getResultList();
+    public List<AdherentEtat> loadEtats() {
+	return entityManager.createQuery("from AdherentEtat", AdherentEtat.class).getResultList();
     }
 
     @Override
@@ -597,6 +609,9 @@ public class AdherentDAO implements IAdherentDAO {
 	dbbContact.setNom(adhContact.getNom());
 	dbbContact.setPhoto(adhContact.getPhoto());
 	dbbContact.setPrenom(adhContact.getPrenom());
+	dbbContact.setIsAccessEOLAS(adhContact.getIsAccessEOLAS());
+	dbbContact.setLoginEOLAS(adhContact.getLoginEOLAS());
+	dbbContact.setPassEOLAS(adhContact.getPassEOLAS());
 
 	return dbbContact;
 
@@ -643,6 +658,8 @@ public class AdherentDAO implements IAdherentDAO {
 	bddAdherent.setOutilDechargement(adherent.getIsOutilDechargement());
 	bddAdherent.setContactComptable(adherent.getContactComptable());
 	bddAdherent.setEtat(adherent.getEtat());
+	bddAdherent.setAdherentType(adherent.getAdherentType());
+	bddAdherent.setCompteType(adherent.getCompteType());
 
 	return bddAdherent;
     }

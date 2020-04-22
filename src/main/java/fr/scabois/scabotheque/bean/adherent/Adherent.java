@@ -63,7 +63,13 @@ public class Adherent {
     private String denomination;
 
     @ManyToOne
-    private Etat etat;
+    private AdherentEtat etat;
+
+    @ManyToOne
+    private AdherentType adherentType;
+
+    @ManyToOne
+    private CompteType compteType;
 
     @ManyToOne
     @JoinColumn(name = "form_juridique_id")
@@ -179,7 +185,7 @@ public class Adherent {
 	return denomination;
     }
 
-    public Etat getEtat() {
+    public AdherentEtat getEtat() {
 	return etat;
     }
 
@@ -247,6 +253,10 @@ public class Adherent {
 	return rcsRm;
     }
 
+    public CompteType getCompteType() {
+        return compteType;
+    }
+
     public Commune getRmCommune() {
 	return rmCommune;
     }
@@ -269,6 +279,10 @@ public class Adherent {
 
     public Tournee getTournee() {
 	return tournee;
+    }
+
+    public AdherentType getAdherentType() {
+        return adherentType;
     }
 
     public void setAdresse(String adresse) {
@@ -324,7 +338,7 @@ public class Adherent {
 	this.denomination = denomination;
     }
 
-    public void setEtat(Etat etat) {
+    public void setEtat(AdherentEtat etat) {
 	this.etat = etat;
     }
 
@@ -388,6 +402,10 @@ public class Adherent {
 	this.rcsRm = rcsRm;
     }
 
+    public void setCompteType(CompteType compteType) {
+        this.compteType = compteType;
+    }
+
     public void setRmCommune(Commune rmCommune) {
 	this.rmCommune = rmCommune;
     }
@@ -414,5 +432,9 @@ public class Adherent {
 
 //    @Column(name = "nb_parts")
 //    private Integer nbParts;
+
+    public void setAdherentType(AdherentType adherentType) {
+        this.adherentType = adherentType;
+    }
 
 }

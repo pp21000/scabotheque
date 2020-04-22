@@ -27,46 +27,16 @@
 </div>  
 
 <form:form class="editAdherent" method="post" modelAttribute="adhToEdit" action="editInformatiqueAdh">
-	<form:input type="hidden" path="adherent.id"/>
+ 	<fieldset> 
+ 	   	<legend><spring:message code="label.informatique"/></legend> 
 
-<!-- Permet de ne pas perdre les données autre que celles modifié -->
-	<form:input type="hidden" name="adherent.code" path="adherent.code"/>
-	<form:input type="hidden" name="adherent.code" path="adherent.codeERP"/>
-	<form:input type="hidden" name="adherent.codeParent" path="adherent.codeERPParent"/>
-	<form:input type="hidden" name="adherent.libelle" path="adherent.libelle"/>
-	<form:input type="hidden" name="adherent.denomination" path="adherent.denomination"/>
-	<form:input type="hidden" name="adherent.adresse" path="adherent.adresse"/>
-	<form:input type="hidden" name="adherent.adresseComplement" path="adherent.adresseComplement"/>
-	<form:input type="hidden" path="adherent.commune.id"/>
-	<form:input type="hidden" path="adherent.pole.id"/>
-	<form:input type="hidden" path="adherent.isArtipole"/>
-	<form:input type="hidden" path="adherent.isCharteArtipole"/>
-	<form:input type="hidden" path="adherent.isFlocageArtipole"/>
-	<form:input type="hidden" path="adherent.isWebArtipole"/>
-	<form:input type="hidden" path="adherent.isFacebookArtipole"/>
-	<form:input type="hidden" path="adherent.agence.id"/>
-	<form:input type="hidden" path="adherent.secteur.id"/>
-	<form:input type="hidden" path="adherent.tournee.id"/>
-	<form:input type="hidden" path="adherent.isOutilDechargement"/>
-	<form:input type="hidden" path="adherent.dateEntree"/>
-	<form:input type="hidden" path="adherent.role.id"/>
-	<form:input type="hidden" path="adherent.formeJuridique.id"/>
-	<form:input type="hidden" path="adherent.siren"/>
-	<form:input type="hidden" path="adherent.siret"/>
-	<form:input type="hidden" path="adherent.ape.id"/>
-	<form:input type="hidden" path="adherent.numRepMetier"/>
-	<form:input type="hidden" path="adherent.rcsRm"/>
-	<form:input type="hidden" path="adherent.rcsCommune.id"/>
-	<form:input type="hidden" path="adherent.rmCommune.id"/>
-	<form:input type="hidden" path="adherent.dateClotureExe"/>
-	<form:input type="hidden" path="adherent.contactComptable"/>
-	<form:input type="hidden" path="adherent.isFormationCommerce"/>
-	<form:input type="hidden" path="adherent.etat.id"/>
-	
-<!-- 	<fieldset> -->
-<%-- 	   	<legend><spring:message code="label.exploitation"/></legend> --%>
-
-<!-- 		<div class="showDetail"> -->
+ 		<div class="showDetail"> 
+                    
+                    <div  class="showDetailAdherent">
+                        Liste des sous compte EOLAS:
+                        pour ce faire on à besoin du : identifiant - MDP - Nom - prenom - mail - tels
+                    </div>
+        
 <%-- 			<form:label path="adherent.agence"><spring:message code="label.agenceRattachement"/></form:label> --%>
 <%-- 			<form:select class="valeur" name="adherent.agence" path="adherent.agence.id"> --%>
 <%-- 				<form:options items="${agenceList}" itemValue="id" itemLabel="libelle" /> --%>
@@ -91,7 +61,7 @@
 <%-- 			<form:label path="adherent.isOutilDechargement"><spring:message code="label.outilDechargement"/></form:label> --%>
 <%-- 			<form:checkbox path="adherent.isOutilDechargement"/> --%>
 <!-- 		</div> -->
-<!-- 	</fieldset> -->
+ 	</fieldset> 
 
 	<fieldset>
 	   	<legend class="legend"><spring:message code="label.commentaire"/></legend>

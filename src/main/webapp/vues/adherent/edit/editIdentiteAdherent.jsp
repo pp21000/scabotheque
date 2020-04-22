@@ -61,6 +61,8 @@
 	<form:input type="hidden" path="adherent.contactComptable"/>
 	<form:input type="hidden" path="adherent.isFormationCommerce"/>
 	<form:input type="hidden" path="adherent.etat.id"/>
+	<form:input type="hidden" path="adherent.adherentType.id"/>
+	<form:input type="hidden" path="adherent.compteType.id"/>
 
 	<fieldset>
 	   	<legend class="legend"><spring:message code="label.identite"/></legend>

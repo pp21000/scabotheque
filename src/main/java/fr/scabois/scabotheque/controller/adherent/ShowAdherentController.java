@@ -47,13 +47,16 @@ public class ShowAdherentController {
 //	    pageType = PageType.ADHERENT_EXPLOITATION;
 //	    break;
 	case "adherentInformatique":
-	    pageType = PageType.ADHERENT_INFORMATIQUE;
+        case "adherentDetail":
+            final List<AdherentContactRole> contacts = service.LoadAdherentContact(idAdh);
+	    pageType = request.getServletPath().substring(1).equals("adherentDetail")? PageType.ADHERENT_DETAIL: PageType.ADHERENT_INFORMATIQUE;
+            pModel.addAttribute("contacts", contacts);
 	    break;
-	case "adherentDetail":
-	    final List<AdherentContactRole> contacts = service.LoadAdherentContact(idAdh);
-	    pModel.addAttribute("contacts", contacts);
-	    pageType = PageType.ADHERENT_DETAIL;
-	    break;
+//	case "adherentDetail":
+//	    final List<AdherentContactRole> contacts = service.LoadAdherentContact(idAdh);
+//	    pModel.addAttribute("contacts", contacts);
+//	    pageType = PageType.ADHERENT_DETAIL;
+//	    break;
 	default:
 	    pageType = PageType.LIST_ADHERENT;
 	}

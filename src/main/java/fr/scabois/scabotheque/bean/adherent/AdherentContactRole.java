@@ -43,138 +43,165 @@ public class AdherentContactRole implements HasId {
     @Column(name = "dirigeant")
 //    @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean isMailingDirigeant;
+    @Column(name = "accesEOLAS")
+    private boolean isAccessEOLAS;
     private String mail;
     private String mobile;
-
+    private String loginEOLAS;
+    private String passEOLAS;
     private Date naissance;
     private String nom;
     private byte[] photo;
     private String prenom;
 
+    public boolean getIsAccessEOLAS() {
+        return isAccessEOLAS;
+    }
+
+    public void setIsAccessEOLAS(boolean isAccessEOLAS) {
+        this.isAccessEOLAS = isAccessEOLAS;
+    }
+
+    public String getLoginEOLAS() {
+        return loginEOLAS;
+    }
+
+    public void setLoginEOLAS(String loginEOLAS) {
+        this.loginEOLAS = loginEOLAS;
+    }
+
+    public String getPassEOLAS() {
+        return passEOLAS;
+    }
+
+    public void setPassEOLAS(String passEOLAS) {
+        this.passEOLAS = passEOLAS;
+    }
+
     public Adherent getAdherent() {
-	return adherent;
+        return adherent;
     }
 
     public String getCivilite() {
-	return civilite;
+        return civilite;
     }
 
     public String getFixe() {
-	return fixe;
+        return fixe;
     }
 
     public ContactFonction getFonction() {
-	return fonction;
+        return fonction;
     }
 
     @Override
     public Integer getId() {
-	return id;
+        return id;
     }
 
     public boolean getIsMailingAdministratif() {
-	return isMailingAdministratif;
+        return isMailingAdministratif;
     }
 
     public boolean getIsMailingCommerce() {
-	return isMailingCommerce;
+        return isMailingCommerce;
     }
 
     public boolean getIsMailingCompta() {
-	return isMailingCompta;
+        return isMailingCompta;
     }
 
     public boolean getIsMailingDirigeant() {
-	return isMailingDirigeant;
+        return isMailingDirigeant;
     }
 
     public String getMail() {
-	return mail;
+        return mail;
     }
 
     public String getMobile() {
-	return mobile;
+        return mobile;
     }
 
     public Date getNaissance() {
-	return naissance;
+        return naissance;
     }
 
     public String getNom() {
-	return nom;
+        return nom;
     }
 
     public byte[] getPhoto() {
-	return photo;
+        return photo;
     }
 
     public String getPhotoImg() {
-	return photo == null ? "" : new String(photo);
+        return photo == null ? "" : new String(photo);
     }
 
     public String getPrenom() {
-	return prenom;
+        return prenom;
     }
 
     public void setAdherent(Adherent adherent) {
-	this.adherent = adherent;
+        this.adherent = adherent;
     }
 
     public void setCivilite(String civilite) {
-	this.civilite = civilite;
+        this.civilite = civilite;
     }
 
     public void setFixe(String fixe) {
-	this.fixe = fixe;
+        this.fixe = fixe;
     }
 
     public void setFonction(ContactFonction fonction) {
-	this.fonction = fonction;
+        this.fonction = fonction;
     }
 
     @Override
     public void setId(Integer id) {
-	this.id = id;
+        this.id = id;
     }
 
     public void setIsMailingAdministratif(boolean isAdministratif) {
-	this.isMailingAdministratif = isAdministratif;
+        this.isMailingAdministratif = isAdministratif;
     }
 
     public void setIsMailingCommerce(boolean isCommerce) {
-	this.isMailingCommerce = isCommerce;
+        this.isMailingCommerce = isCommerce;
     }
 
     public void setIsMailingCompta(boolean isCompta) {
-	this.isMailingCompta = isCompta;
+        this.isMailingCompta = isCompta;
     }
 
     public void setIsMailingDirigeant(boolean isDirigeant) {
-	this.isMailingDirigeant = isDirigeant;
+        this.isMailingDirigeant = isDirigeant;
     }
 
     public void setMail(String mail) {
-	this.mail = mail;
+        this.mail = mail;
     }
 
     public void setMobile(String mobile) {
-	this.mobile = mobile;
+        this.mobile = mobile;
     }
 
     public void setNaissance(Date naissance) {
-	this.naissance = naissance;
+        this.naissance = naissance;
     }
 
     public void setNom(String nom) {
-	this.nom = nom;
+        this.nom = nom;
     }
 
     public void setPhoto(byte[] photo) {
-	this.photo = photo;
+        this.photo = photo;
     }
 
     public void setPrenom(String prenom) {
-	this.prenom = prenom;
+        this.prenom = prenom;
     }
 
 }
