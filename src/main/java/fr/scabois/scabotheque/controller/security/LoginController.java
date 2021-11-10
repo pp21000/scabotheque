@@ -2,7 +2,6 @@ package fr.scabois.scabotheque.controller.security;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.security.core.Authentication;
@@ -21,25 +20,25 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
-	return "login";
+        return "login";
     }
 
     @RequestMapping(value = "/loginFailed", method = RequestMethod.GET)
     public String loginError(final ModelMap pModel) {
 
-	log.info("Login attempt failed");
-	pModel.addAttribute("error", "Nom d'utilisateur ou mot de passe incorrect !");
-	return "login";
+        log.info("Login attempt failed");
+        pModel.addAttribute("error", "Nom d'utilisateur ou mot de passe incorrect !");
+        return "login";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(final ModelMap pModel, HttpServletRequest request, HttpServletResponse response) {
 
-	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	new SecurityContextLogoutHandler().logout(request, response, auth);
-	pModel.addAttribute("msg", "Vous êtes déconnecté !");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        new SecurityContextLogoutHandler().logout(request, response, auth);
+        pModel.addAttribute("msg", "Vous Ãªtes dÃ©connectÃ© !");
 
-	return "redirect:/listeAdherents";
+        return "login";
 
     }
 

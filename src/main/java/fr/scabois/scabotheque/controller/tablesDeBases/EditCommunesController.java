@@ -26,7 +26,7 @@ public class EditCommunesController {
     public String afficher(@RequestParam(value = "filterCP", required = false, defaultValue = "") String filtreCP,
 	    final ModelMap pModel) {
 
-	List<Commune> communeList = service.LoadCommunes();
+	List<Commune> communeList = service.loadCommunes();
 	Set<String> departementList = communeList.stream().map(c -> c.getDepartement()).collect(Collectors.toSet());
 
 	pModel.addAttribute("departementListe", departementList);
@@ -64,7 +64,7 @@ public class EditCommunesController {
 //    public String rechercheCommune(@RequestParam("filterCP") String filterCP, final BindingResult pBindingResult,
 //	    final ModelMap pModel, HttpServletRequest request) {
 //
-//	List<Commune> communeList = service.LoadCommunes();
+//	List<Commune> communeList = service.loadCommunes();
 //	List<EditCommune> editCommuneList = communeToEdit(
 //		communeList.stream().filter(c -> c.getDepartement().equals(filterCP)).collect(Collectors.toList()));
 //	EditCommunesForm communeForm = new EditCommunesForm(editCommuneList);

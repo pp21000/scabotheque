@@ -1,17 +1,19 @@
 package fr.scabois.scabotheque.services;
 
-import java.util.List;
-
 import fr.scabois.scabotheque.bean.adherent.Adherent;
 import fr.scabois.scabotheque.bean.adherent.AdherentActivite;
+import fr.scabois.scabotheque.bean.adherent.AdherentContactComptable;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
+import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
 import fr.scabois.scabotheque.bean.adherent.AdherentExploitation;
+import fr.scabois.scabotheque.bean.adherent.AdherentInformatique;
+import fr.scabois.scabotheque.bean.adherent.AdherentSuiviVisite;
 import fr.scabois.scabotheque.bean.adherent.AdherentType;
 import fr.scabois.scabotheque.bean.adherent.CompteType;
-import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
 import fr.scabois.scabotheque.bean.adherent.FormeJuridique;
 import fr.scabois.scabotheque.bean.adherent.Pole;
 import fr.scabois.scabotheque.bean.adherent.Role;
+import fr.scabois.scabotheque.bean.adherent.RoleSalarieEOLAS;
 import fr.scabois.scabotheque.bean.adherent.Secteur;
 import fr.scabois.scabotheque.bean.adherent.Tournee;
 import fr.scabois.scabotheque.bean.commun.Activite;
@@ -22,112 +24,153 @@ import fr.scabois.scabotheque.bean.commun.ContactFonction;
 import fr.scabois.scabotheque.bean.security.User;
 import fr.scabois.scabotheque.bean.security.UserRole;
 import fr.scabois.scabotheque.controller.adherent.CriteriaAdherent;
+import fr.scabois.scabotheque.controller.adherent.CriteriaCRM;
 import fr.scabois.scabotheque.enums.PageType;
+import java.util.List;
 
 public interface IServiceAdherent {
-    void createActivite(String libelle);
 
-    int createAdherent(Adherent dataAdherent);
+  void createActivite(String libelle);
 
-    void createAgence(String libelle);
+  int createAdherent(Adherent dataAdherent);
 
-    void createContactAdherent(AdherentContactRole contact);
+  void createAgence(String libelle);
 
-    void createContactFonction(String libelle);
+  void createContactAdherent(AdherentContactRole contact);
 
-    void createPole(String libelle);
+  void createContactFonction(String libelle);
 
-    void createRole(String libelle);
+  void createPole(String libelle);
 
-    void createSecteur(String libelle);
+  void createRole(String libelle);
 
-    void createUtilisateur(String userName, String password);
+  void createSecteur(String libelle);
 
-    Activite LoadActivite(int activiteId);
+  void createSuiviAdherent(AdherentSuiviVisite suivi);
 
-    List<Activite> LoadActivites();
+  void createUtilisateur(String userName, String password);
 
-    List<AdherentActivite> LoadActivitesAdherent(int idAdh);
+  Activite loadActivite(int activiteId);
 
-    Adherent LoadAdherent(int idAdh);
+  List<Activite> loadActivites();
 
-    String LoadAdherentCommentaire(int idAdh, PageType pageType);
+  List<AdherentActivite> loadActivitesAdherent(int idAdh);
 
-    // Map<TypeContact, List<AdherentContact>> LoadAdherentContact(int adhId);
-    List<AdherentContactRole> LoadAdherentContact(int adhId);
+  Adherent loadAdherent(int idAdh);
 
-    List<AdherentContactRole> loadAdherentContactFonction(int adhId, Boolean isDirigeant, Boolean isCommerce,
-	    Boolean isAdmin, Boolean isCompta);
+  String loadAdherentCommentaire(int idAdh, PageType pageType);
 
-    AdherentExploitation LoadAdherentExploitation(int idAdh);
+  List<AdherentContactRole> loadAdherentContact(int adhId);
 
-    List<Adherent> LoadAdherents();
+  List<AdherentContactRole> loadAdherentContactFonction(int adhId, Boolean isDirigeant, Boolean isCommerce,
+          Boolean isAdmin, Boolean isCompta);
 
-    List<Adherent> LoadAdherents(CriteriaAdherent criteria);
+  AdherentExploitation loadAdherentExploitation(int idAdh);
 
-    List<Agence> LoadAgences();
+  AdherentInformatique loadAdherentInformatique(int idAdh);
 
-    List<Ape> LoadCodeApes();
+  AdherentSuiviVisite loadAdherentSuiviVisite(int suiviId);
 
-    List<Commune> LoadCommunes();
+  List<AdherentSuiviVisite> loadAdherentSuivisVisites(int adhId);
 
-    List<ContactFonction> LoadContactFonctions();
+  List<AdherentSuiviVisite> loadAdherentSuivisVisites(Integer adhId, CriteriaCRM criteria);
 
-    List<AdherentEtat> LoadEtats();
+  List<AdherentType> loadAdherentTypes();
 
-    List<FormeJuridique> LoadFormesJuridiques();
+  List<Adherent> loadAdherents();
 
-    List<Pole> LoadPoles();
+  List<AdherentContactRole> loadAdherentsContact();
 
-    List<Role> LoadRoles();
+  List<Adherent> loadAdherents(CriteriaAdherent criteria);
 
-    List<Secteur> LoadSecteurs();
+  List<Agence> loadAgences();
 
-    List<Tournee> LoadTournees();
-    List<AdherentType> LoadAdherentTypes();
-    List<CompteType> LoadCompteTypes();
+  List<Ape> loadCodeApes();
 
-    User LoadUtilisateur(int userId);
+  List<Commune> loadCommunes();
 
-    List<User> LoadUtilisateurs();
+  List<CompteType> loadCompteTypes();
 
-    void saveActivitesAdherent(int adhId, List<AdherentActivite> activitesAdh);
+  List<ContactFonction> loadContactFonctions();
 
-    void saveAdherent(final Adherent pAdherent);
+  List<AdherentEtat> loadEtats();
 
-    void saveAdherentCommentaire(int adhId, PageType type, String commentaire);
+  List<FormeJuridique> loadFormesJuridiques();
 
-    void saveAdherentContacts(List<AdherentContactRole> contacts);
+  List<Pole> loadPoles();
 
-    void saveAgences(List<Agence> agences);
+  List<Role> loadRoles();
 
-    void saveContactFonctions(List<ContactFonction> contactFonctions);
+  List<RoleSalarieEOLAS> loadRolesEOLAS();
 
-    void savePoles(List<Pole> setEditList);
+  List<Secteur> loadSecteurs();
 
-    void saveRoles(List<Role> setEditList);
+  List<Tournee> loadTournees();
 
-    void saveSecteurs(List<Secteur> setEditList);
+  User loadUtilisateur(int userId);
 
-    void saveUtilisateur(List<User> users);
+  List<User> loadUtilisateurs();
 
-    void saveUtilisateurRoles(int usrId, List<UserRole> newUserRoles);
+  void saveActivites(List<Activite> activites);
 
-    void setAdherentImage(int adhId, byte[] bytes);
+  void saveActivitesAdherent(int adhId, List<AdherentActivite> activitesAdh);
 
-    void setContactImage(int contactId, byte[] bytes);
+  void saveAdherent(final Adherent pAdherent);
 
-    void supprimeActivite(Integer id);
+  void saveAdherentCommentaire(int adhId, PageType type, String commentaire);
 
-    void supprimeAdherentContact(Integer id);
+  void saveAdherentContacts(List<AdherentContactRole> contacts);
 
-    void supprimeAgence(Integer id);
+  void saveAdherentSuiviVisite(AdherentSuiviVisite suivi);
 
-    void supprimeContactFonction(Integer id);
+  void saveAgences(List<Agence> agences);
 
-    void supprimePole(Integer id);
+  void saveContactFonctions(List<ContactFonction> contactFonctions);
 
-    void supprimeRole(Integer id);
+  void savePoles(List<Pole> setEditList);
 
-    void supprimeSecteur(Integer id);
+  void saveRoles(List<Role> setEditList);
+
+  void saveSecteurs(List<Secteur> setEditList);
+
+  void saveUtilisateur(List<User> users);
+
+  void saveUtilisateurRoles(int usrId, List<UserRole> newUserRoles);
+
+  void setAdherentImage(int adhId, byte[] bytes);
+
+  void setContactImage(int contactId, byte[] bytes);
+
+  void supprimeActivite(Integer id);
+
+  void supprimeAdherentContact(Integer id);
+
+  void supprimeAgence(Integer id);
+
+  void supprimeContactFonction(Integer id);
+
+  void supprimePole(Integer id);
+
+  void supprimeRole(Integer id);
+
+  void supprimeSecteur(Integer id);
+
+  Long countAdherents();
+
+  Long countAdherentsInactif();
+
+  Long countAdherentsSansEOLAS();
+
+  AdherentContactComptable loadAdherentContactComptable(int idAdh);
+
+  List<AdherentContactRole> loadAdherentContact(CriteriaAdherent criteria);
+
+  void saveContactComptableAdherent(AdherentContactComptable contact);
+
+  String chartDataActif();
+
+  String chartDataAnnee();
+
+  String chartDataInactif();
+
 }

@@ -22,7 +22,7 @@
 			<div class="textAlignCenter">
 				<span class="scabotheque-h3 textAlignCenter">${adherent.denomination}</span>
 				<div>
-					<span class="adherentLabel"><spring:message code="label.codeAdh"/></span>
+					<span class="detailLabel"><spring:message code="label.codeAdh"/></span>
 					<span class="data" > ${adherent.code} </span>
 				</div>
 	    	</div>
@@ -41,7 +41,7 @@
 			<div>
 				Les qualifications
 				<div  class="showDetailAdherent">
-					<span class="adherentLabel"><spring:message code="label.adhArtipole"/></span>
+					<span class="detailLabel"><spring:message code="label.adhArtipole"/></span>
 					<span class="data">
 						<c:choose>
 							<c:when test="${adherent.isArtipole}"><spring:message code="yes"/></c:when> 
@@ -51,7 +51,7 @@
 				</div>
 			
 				<div  class="showDetailAdherent">
-					<span class="adherentLabel"><spring:message code="label.charteArtipole"/></span>
+					<span class="detailLabel"><spring:message code="label.charteArtipole"/></span>
 					<span class="data">
 						<c:choose>
 							<c:when test="${adherent.isCharteArtipole}"><spring:message code="yes"/></c:when> 
@@ -62,7 +62,7 @@
 			</div>
 			<div>
 				<div  class="showDetailAdherent">
-					<span class="adherentLabel"><spring:message code="label.adhArtipole"/></span>
+					<span class="detailLabel"><spring:message code="label.adhArtipole"/></span>
 					<span class="data">
 						<c:choose>
 							<c:when test="${adherent.isArtipole}"><spring:message code="yes"/></c:when> 
@@ -72,7 +72,7 @@
 				</div>
 			
 				<div  class="showDetailAdherent">
-					<span class="adherentLabel"><spring:message code="label.charteArtipole"/></span>
+					<span class="detailLabel"><spring:message code="label.charteArtipole"/></span>
 					<span class="data">
 						<c:choose>
 							<c:when test="${adherent.isCharteArtipole}"><spring:message code="yes"/></c:when> 
@@ -82,7 +82,7 @@
 				</div>
 			
 				<div  class="showDetailAdherent">
-					<span class="adherentLabel"><spring:message code="label.flocageArtipole"/></span>
+					<span class="detailLabel"><spring:message code="label.flocageArtipole"/></span>
 					<span class="data"><c:choose>
 							<c:when test="${adherent.isFlocageArtipole}"><spring:message code="yes"/></c:when> 
 							<c:otherwise><spring:message code="no"/></c:otherwise> 
@@ -91,7 +91,7 @@
 				</div>
 				
 				<div  class="showDetailAdherent">
-					<span class="adherentLabel"><spring:message code="label.siteArtipole"/></span>
+					<span class="detailLabel"><spring:message code="label.siteArtipole"/></span>
 					<span class="data"><c:choose>
 							<c:when test="${adherent.isWebArtipole}"><spring:message code="yes"/></c:when> 
 							<c:otherwise><spring:message code="no"/></c:otherwise> 
@@ -100,7 +100,7 @@
 				</div>
 		
 				<div  class="showDetailAdherent">
-					<span class="adherentLabel"><spring:message code="label.facebookArtipole"/></span>
+					<span class="detailLabel"><spring:message code="label.facebookArtipole"/></span>
 					<span class="data"><c:choose>
 							<c:when test="${adherent.isFacebookArtipole}"><spring:message code="yes"/></c:when> 
 							<c:otherwise><spring:message code="no"/></c:otherwise> 

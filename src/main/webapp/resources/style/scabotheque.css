@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+:root{
+    --CouleurVerte: #4BC00C;
+    --CouleurBleu: #0F638C;
+    --CouleurOrange: #DD7D0E;
+    --CouleurRouge: #CC0D36;
+}
+
+.profil-user-img{
+    border: 3px solid #adb5bd;
+    margin: 0 auto;
+    max-height: 10em;
+    max-width: 10em;
+    padding: 3px;
+
+}

@@ -5,17 +5,72 @@
        
 <tiles-definitions>
 
+    <definition name="base.board.definition" template="/vues/layoutTMP.jsp">
+      <put-attribute name="menu"  value="/vues/menu/menu.jsp" />
+      <put-attribute name="navBar" value="/vues/menu/navBar.jsp" />
+      <put-attribute name="body" value="" />  
+      <put-attribute name="footer" value="/vues/footer.jsp" />  
+    </definition>
+    
+    <definition name="dashboard" extends="base.board.definition">
+      <put-attribute name="body" value="/vues/dashboard.jsp" />  
+    </definition>
+    
+    <definition name="adherentListe" extends="base.board.definition">
+      <put-attribute name="menu" value="/vues/menu/menuAdherent.jsp" />      
+      <put-attribute name="body" value="/vues/adherent/adherentListe.jsp" />  
+    </definition>
+
+    <definition name="listeContact" extends="base.board.definition">
+      <put-attribute name="menu" value="/vues/menu/menuAdherent.jsp" />      
+      <put-attribute name="body" value="/vues/adherent/listeContact.jsp" />  
+    </definition>
+
+    <definition name="adherentProfil" extends="base.board.definition">
+      <put-attribute name="menu" value="/vues/menu/menuAdherent.jsp" />      
+      <put-attribute name="body" value="/vues/adherent/adherentProfil.jsp" />  
+    </definition>
+
+    <definition name="adherentProfilArtipole" extends="base.board.definition">
+      <put-attribute name="body" value="/vues/adherent/adherentProfilArtipole.jsp" />  
+    </definition>
+
+    <definition name="adherentProfilAdmin" extends="base.board.definition">
+      <put-attribute name="body" value="/vues/adherent/adherentProfilAdmin.jsp" />  
+    </definition>
+    
+    <definition name="ordreTournee" extends="base.board.definition">
+      <put-attribute name="menu" value="/vues/menu/menuLogistique.jsp" />      
+      <put-attribute name="body" value="/vues/logistique/ordreTournee.jsp" />  
+    </definition>
+    
+    <definition name="listeCamions" extends="base.board.definition">
+      <put-attribute name="menu" value="/vues/menu/menuLogistique.jsp" />      
+      <put-attribute name="body" value="/vues/logistique/edit/listeCamions.jsp" />  
+    </definition>
+
+    <definition name="listeConducteurs" extends="base.board.definition">
+      <put-attribute name="menu" value="/vues/menu/menuLogistique.jsp" />      
+      <put-attribute name="body" value="/vues/logistique/edit/listeConducteurs.jsp" />  
+    </definition>
+    
+    <definition name="addAdherent" extends="base.board.definition">
+      <put-attribute name="body" value="/vues/adherent/addAssistant/addIdentite.jsp" />  
+    </definition>
+    
+    
+    
+    
+    <!--<definition name="base.definition" template="/vues/StartV2.jsp">-->
     <definition name="base.definition" template="/vues/layout.jsp">
     	<put-attribute name="header"  value="/vues/header.jsp" />
-    	<put-attribute name="menu"  value="/vues/menu.jsp" />
     	<put-attribute name="menu-v2"  value="/vues/menu-v2.jsp" />
     	<put-attribute name="body" value="" />  
-        <put-attribute name="footer" value="/vues/footer.jsp" />  
+        <put-attribute name="footer" value="" />  
         <put-attribute name="adherentBottomNavBar" value="/vues/adherent/bottomNavBar.jsp" />  
     </definition>
 
-    <definition name="login" extends="base.definition">
-        <put-attribute name="body"  value="/vues/login.jsp" />
+    <definition name="login" template="/vues/login.jsp">
         <put-attribute name="pageName"  value="login" />
     </definition>
 
@@ -24,58 +79,80 @@
         <put-attribute name="pageName"  value="accessDenied" />
     </definition>
 
+	<!-- Vues Fournisseurs -->
+    <definition name="listeFournisseur" extends="base.definition">
+        <put-attribute name="body"  value="/vues/fournisseur/listeFournisseurs.jsp" />
+        <put-attribute name="pageName"  value="listeFournisseur" />
+    </definition>
+    
+    <definition name="fournisseurDetail" extends="base.definition">
+        <put-attribute name="body"  value="/vues/fournisseur/fournisseurDetail.jsp" />
+        <put-attribute name="pageName"  value="fournisseurDetail" />
+    </definition>
+
 	<!-- Vues Adherents -->
     <definition name="listeAdh" extends="base.definition">
         <put-attribute name="body"  value="/vues/adherent/listeAdherents.jsp" />
         <put-attribute name="pageName"  value="listeAdh" />
     </definition>
 
-	<definition name="adherentDetail" extends="base.definition">
+    <definition name="adherentDetail" extends="base.definition">
         <put-attribute name="body"  value="/vues/adherent/adherentDetail.jsp" />
         <put-attribute name="pageName"  value="adherentDetail" />
     </definition>
 
-	<definition name="adherentActivite" extends="base.definition">
+    <definition name="adherentActivite" extends="base.definition">
         <put-attribute name="body"  value="/vues/adherent/adherentActivite.jsp" />
         <put-attribute name="pageName"  value="adherentActivite" />
     </definition>
 
-	<definition name="adherentArtipole" extends="base.definition">
+    <definition name="adherentArtipole" extends="base.definition">
         <put-attribute name="body"  value="/vues/adherent/adherentArtipole.jsp" />
         <put-attribute name="pageName"  value="adherentArtipole" />
     </definition>
 
-	<definition name="adherentAdministratif" extends="base.definition">
+    <definition name="adherentCRM" extends="base.definition">
+        <put-attribute name="body"  value="/vues/adherent/adherentCRM.jsp" />
+        <put-attribute name="pageName"  value="adherentAdministratif" />
+    </definition>
+
+    <definition name="adherentAdministratif" extends="base.definition">
         <put-attribute name="body"  value="/vues/adherent/adherentAdministratif.jsp" />
         <put-attribute name="pageName"  value="adherentAdministratif" />
     </definition>
 
-	<definition name="adherentExploitation" extends="base.definition">
+    <definition name="adherentCapitalSocial" extends="base.definition">
+        <put-attribute name="body"  value="/vues/adherent/adherentCapitalSocial.jsp" />
+        <put-attribute name="pageName"  value="adherentAdministratif" />
+    </definition>
+
+    <definition name="adherentExploitation" extends="base.definition">
         <put-attribute name="body"  value="/vues/adherent/adherentExploitation.jsp" />
         <put-attribute name="pageName"  value="adherentExploitation" />
     </definition>
 
-	<definition name="adherentInformatique" extends="base.definition">
+    <definition name="adherentInformatique" extends="base.definition">
         <put-attribute name="body"  value="/vues/adherent/adherentInformatique.jsp" />
         <put-attribute name="pageName"  value="adherentInformatique" />
     </definition>
 
-	<definition name="addAdh" extends="base.definition">
+    <definition name="addAdh" extends="base.definition">
         <put-attribute name="body"  value="/vues/adherent/addAdherent.jsp" />
         <put-attribute name="pageName"  value="listeAdh" />
     </definition>
     
-	<definition name="editActiviteAdh" extends="base.definition">
+    <!--Vues Tables de bases-->
+    <definition name="editActiviteAdh" extends="base.definition">
         <put-attribute name="body"  value="/vues/adherent/edit/editActiviteAdherent.jsp" />
         <put-attribute name="pageName"  value="listeAdh" />
     </definition>
 
-	<definition name="editArtipoleAdh" extends="base.definition">
+    <definition name="editArtipoleAdh" extends="base.definition">
         <put-attribute name="body"  value="/vues/adherent/edit/editArtipoleAdherent.jsp" />
         <put-attribute name="pageName"  value="listeAdh" />
     </definition>
 
-	<definition name="editAdministratifAdh" extends="base.definition">
+    <definition name="editAdministratifAdh" extends="base.definition">
         <put-attribute name="body"  value="/vues/adherent/edit/editAdministratifAdherent.jsp" />
         <put-attribute name="pageName"  value="listeAdh" />
     </definition>
@@ -85,39 +162,77 @@
         <put-attribute name="pageName"  value="listeAdh" />
     </definition>
 
-	<definition name="editIdentiteAdh" extends="base.definition">
+    <definition name="editIdentiteAdh" extends="base.definition">
         <put-attribute name="body"  value="/vues/adherent/edit/editIdentiteAdherent.jsp" />
         <put-attribute name="pageName"  value="listeAdh" />
     </definition>
 
-	<definition name="editExploitationAdh" extends="base.definition">
+    <definition name="editExploitationAdh" extends="base.definition">
         <put-attribute name="body"  value="/vues/adherent/edit/editExploitationAdherent.jsp" />
         <put-attribute name="pageName"  value="listeAdh" />
     </definition>
 
-	<definition name="editInformatiqueAdh" extends="base.definition">
-        <put-attribute name="body"  value="/vues/adherent/edit/editInformatiqueAdherent.jsp" />
-        <put-attribute name="pageName"  value="adherentInformatique" />
+    <definition name="editCRMAdh" extends="base.definition">
+        <put-attribute name="body"  value="/vues/adherent/edit/editSuiviVisiteAdherent.jsp" />
+        <put-attribute name="pageName"  value="listeAdh" />
     </definition>
 
-	<definition name="listIdLibelle" extends="base.definition">
+    <definition name="editContactComptableAdh" extends="base.definition">
+        <put-attribute name="body"  value="/vues/adherent/edit/editContactComptableAdherent.jsp" />
+        <put-attribute name="pageName"  value="listeAdh" />
+    </definition>
+
+    <definition name="editCapitalSocialAdh" extends="base.definition">
+        <put-attribute name="body"  value="/vues/adherent/edit/editCapitalSocialAdherent.jsp" />
+        <put-attribute name="pageName"  value="listeAdh" />
+    </definition>
+
+    <definition name="editInformatiqueAdh" extends="base.definition">
+        <put-attribute name="body"  value="/vues/adherent/edit/editInformatiqueAdherent.jsp" />
+        <put-attribute name="pageName"  value="listeAdh" />
+        <!--<put-attribute name="pageName"  value="adherentInformatique" />-->
+    </definition>
+
+    <definition name="listIdLibelle" extends="base.definition">
         <put-attribute name="body"  value="/vues/parametrage/listeIdLibelle.jsp" />
         <put-attribute name="pageName"  value="listeAdh" />
     </definition>
 
-	<definition name="listeCommunes" extends="base.definition">
+    <definition name="listeActivites" extends="base.definition">
+        <put-attribute name="body"  value="/vues/parametrage/listeActivites.jsp" />
+        <put-attribute name="pageName"  value="listeActivites" />
+    </definition>
+
+    <definition name="listeCommunes" extends="base.definition">
         <put-attribute name="body"  value="/vues/parametrage/listeCommunes.jsp" />
         <put-attribute name="pageName"  value="listeCommunes" />
     </definition>
 
-	<definition name="listeUtilisateurs" extends="base.definition">
+    <definition name="listeUtilisateurs" extends="base.definition">
         <put-attribute name="body"  value="/vues/parametrage/listeUtilisateurs.jsp" />
         <put-attribute name="pageName"  value="listeUtl" />
+    </definition>
+
+    <definition name="listeRolesEOLAS" extends="base.definition">
+        <put-attribute name="body"  value="/vues/parametrage/listeRolesEOLAS.jsp" />
+        <put-attribute name="pageName"  value="listeRoleEOLAS" />
     </definition>
 
     <definition name="enCours" extends="base.definition">
         <put-attribute name="body"  value="/vues/enCours.jsp" />
         <put-attribute name="pageName"  value="enCours" />
+    </definition>
+    
+    <definition name="analyse" extends="base.definition">
+        <put-attribute name="body"  value="/vues/analyse/listeAnalyses.jsp" />
+        <put-attribute name="pageName"  value="analyse" />
+    </definition>
+
+
+
+    <definition name="startV2" extends="base.definition">
+        <put-attribute name="body"  value="/vues/StartV2.jsp" />
+        <put-attribute name="pageName"  value="startV2" />
     </definition>
 
 </tiles-definitions>

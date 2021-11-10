@@ -13,5 +13,5 @@ public class AddAdherentContactForm {
 
     public void setContact(final EditAdherentContact contact) {
 	this.contact = contact;
-    }
+    } 
 }

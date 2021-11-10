@@ -19,7 +19,7 @@
 		<div>
 			<span class="scabotheque-h3">${adhToEdit.adherent.denomination}</span>
 			<div>
-				<span class="adherentLabel"><spring:message code="label.codeAdh"/></span>
+				<span class="detailLabel"><spring:message code="label.codeAdh"/></span>
 				<span class="data" > ${adhToEdit.adherent.code} </span>
 			</div>
 		</div>
@@ -32,10 +32,9 @@
 
  		<div class="showDetail"> 
                     
-                    <div  class="showDetailAdherent">
-                        Liste des sous compte EOLAS:
-                        pour ce faire on à besoin du : identifiant - MDP - Nom - prenom - mail - tels
-                    </div>
+                    <!--<div  class="showDetailAdherent">-->
+                        La super page de mofidication de l'informatique ...
+                    <!--</div>-->
         
 <%-- 			<form:label path="adherent.agence"><spring:message code="label.agenceRattachement"/></form:label> --%>
 <%-- 			<form:select class="valeur" name="adherent.agence" path="adherent.agence.id"> --%>

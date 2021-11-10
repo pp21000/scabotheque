@@ -19,7 +19,7 @@
 	  		<a href="<c:url value="/login" />">Connexion</a>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
-			Vous êtes conencté en <sec:authentication property="name"/>
+			Vous êtes connecté en <sec:authentication property="name"/>
 			<br>
 	  		<a href="<c:url value="/logout" />">Déconnexion</a>
 		</sec:authorize>

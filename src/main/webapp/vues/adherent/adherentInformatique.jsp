@@ -22,12 +22,44 @@
             <div class="textAlignCenter">
                 <span class="scabotheque-h3 textAlignCenter">${adherent.denomination}</span>
                 <div>
-                    <span class="adherentLabel"><spring:message code="label.codeAdh"/></span>
+                    <span class="detailLabel"><spring:message code="label.codeAdh"/></span>
                     <span class="data" > ${adherent.code} </span>
                 </div>
             </div>
         </div>
     </div>
+                
+    <fieldset>
+    	<legend class="legend"><spring:message code="label.siteIndentifiant"/></legend>
+    	<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_INFORMATIQUE_EDIT')">    	
+            <div class="editIcone">
+                <c:url value="/edit/editInformatiqueAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
+                <span><a href="${url}"><svg><use xlink:href="resources/images/icones.svg#edit"></use></svg></a></span>
+            </div>	
+        </sec:authorize>
+
+        <div class="colonnesDouble" style ="padding:10px;">
+            <div>
+<!--                <div class="showDetailAdherent">
+                    <span class="adherentLabel"> Identifiant EOLAS</span>
+                    <span class="data" > ${informatique.loginEOLAS} </span>
+                </div>-->
+                <div class="showDetailAdherent">
+                    <span class="detailLabel"> Identifiant DFIWEB</span>
+                    <span class="data" > ${informatique.loginDFIWEB} </span>
+                </div>
+                <div  class="showDetailAdherent">
+                    <span class="detailLabel"> Identifiant ORCAB Electro</span>
+                    <span class="data">${informatique.loginOrcabElectro}</span>
+                </div>
+<!--                <div  class="showDetailAdherent">
+                    <span class="adherentLabel"><spring:message code="label.denomination"/></span>
+                    <span class="data">${adherent.denomination}</span>
+                </div>-->
+            </div>
+        </div>
+    </fieldset>
+                
     <fieldset>
         <legend class="legend"><spring:message code="label.accessEOLAS"/></legend>
         <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_INFORMATIQUE_EDIT')">    	

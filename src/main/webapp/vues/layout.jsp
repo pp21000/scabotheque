@@ -13,10 +13,10 @@
     	
 		        <!-- specifique textEditor -->
 		<!-- include libraries(jQuery, bootstrap) -->
-		<script src="<c:url value="/resources/js/jquery-3.4.1.js"/>"></script> 
+		<script src="<c:url value="/resources/dist/js/jquery-3.6.0.js"/>"></script> 
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<link href="<c:url value="/resources/style/textEditor/bootstrap.css"/>" rel="stylesheet">
-		<script src="<c:url value="/resources/js/textEditor/bootstrap.js"/>"></script> 
+		<script src="<c:url value="/resources/dist/js/textEditor/bootstrap.js"/>"></script> 
 		
 		<!-- include summernote css/js -->
 		<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
@@ -24,17 +24,19 @@
     	
     </head>
     <body>
-        <div class="header">
+        <!--<div class="header">-->
         	<tiles:insertAttribute name="header" />
         	<tiles:insertAttribute name="menu-v2" />
-        </div>    
+        <!--</div>-->    
     	<div class="body">
     	    <div class="content">    
+                
     	    	<tiles:insertAttribute name="body" />
     	    	<c:if test = "${pageType == 'ADHERENT_DETAIL' || pageType == 'ADHERENT_ACTIVITE' || pageType == 'ADHERENT_ARTIPOLE' || 
-    	    					pageType == 'ADHERENT_EXPLOITATION' || pageType == 'ADHERENT_ADMINISTRATIF' || pageType == 'ADHERENT_INFORMATIQUE'}">
+    	    			pageType == 'ADHERENT_EXPLOITATION' || pageType == 'ADHERENT_ADMINISTRATIF' || pageType == 'ADHERENT_INFORMATIQUE' ||
+                                pageType == 'ADHERENT_CRM' || pageType == 'ADHERENT_CAPITAL_SOCIAL' }">
 					<tiles:insertAttribute name="adherentBottomNavBar" />	
-	    	   	</c:if>
+	    	</c:if>
     	    </div>    
     	</div>
     	<div class="footer">

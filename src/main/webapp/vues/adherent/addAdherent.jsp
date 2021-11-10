@@ -67,10 +67,10 @@
 	   	<legend><spring:message code="label.activite"/></legend>
 	
 		<div class="showDetailAdherent">
-			<form:label path="adherent.pole" ><spring:message code="label.pole"/></form:label>
+			<form:label path="adherent.pole"><spring:message code="label.pole"/></form:label>
 			<form:select class="valeur" name="adherent.pole" path="adherent.pole.id">
-				<form:option value="" ></form:option>
-				<form:options items="${poleList}" itemValue="id" itemLabel="libelle" />
+                          <%--<form:options items="${zonePrep}"/>--%>
+                          <form:options items="${poleList}" itemValue="id" itemLabel="libelle" />
 			</form:select>
 			<form:errors class="error" path="adherent.pole" />
 		</div>
@@ -218,15 +218,10 @@
 			<form:errors class="errors" path="adherent.dateClotureExe" />
 		</div>
 		
-<!-- 		<div class="showDetail"> -->
-<%-- 			<form:label path="adherent.contactComptable"><spring:message code="label.contactComptable"/></form:label> --%>
-<%-- 			<form:input class="valeur" name="adherent.contactComptable" path="adherent.contactComptable"/> --%>
-<%-- 			<b><i><form:errors path="adherent.contactComptable" /></i></b> --%>
-<!-- 		</div> -->
-		
-		<div class="showDetailAdherent">
-			<form:label path="adherent.isFormationCommerce" ><spring:message code="label.formationCommerce"/></form:label>
-			<form:checkbox path="adherent.isFormationCommerce"/>
+                <div class="showDetailAdherent">
+			<form:label path="adherent.FormationDirigeant" ><spring:message code="label.formationCommerce"/></form:label>
+			<form:input class="valeur" name="adherent.FormationDirigeant" path="adherent.FormationDirigeant"/>
+			<form:errors class="error" path="adherent.FormationDirigeant" />
 		</div>
 
 		<div class="showDetailAdherent">
@@ -318,16 +313,15 @@ $( function() {
 	});
 	  
 	$('#filterCP').bind("keyup", function(){
-		// Si un delay est en cour, on le supprime
-		if (globalTimeout != null) {
-			clearTimeout(globalTimeout);
-		}
-		
-		// execution d'un delay
-		globalTimeout = setTimeout(function() {
-			globalTimeout = null;  
-			populateListe();
-		}, 1000);  
+            // Si un delay est en cour, on le supprime
+            if (globalTimeout != null) {
+                clearTimeout(globalTimeout);
+            }		
+            // execution d'un delay
+            globalTimeout = setTimeout(function() {
+                globalTimeout = null;  
+                populateListe();
+            }, 1000);  
 	});
 
 	
@@ -336,15 +330,16 @@ $( function() {
  		console.log (params);
 		
 		$.get("/scabotheque/loadCommuneListe",params, function(response) {
-			console.log("retour servlet : " + response.length);
-					
-			        $selectList = $("#communeListe");
-			        $selectList.find("option").remove();  
-			        $.each(JSON.parse(response), function(index, commune) {
-				        $("<option>").val(commune.id).text(commune.codePostal + " - " + commune.libelle).appendTo($selectList);
-			        });                   
-			 
-			    });
+//                    alert(response);
+                    console.log("retour servlet : " + response.length);
+
+                        $selectList = $("#communeListe");
+                        $selectList.find("option").remove();
+                        $.each(JSON.parse(response), function(index, commune) {
+                            $("<option>").val(commune.id).text(commune.codePostal + " - " + commune.libelle).appendTo($selectList);
+                        });                   
+                 
+                    });
 	}
   } );
   </script>

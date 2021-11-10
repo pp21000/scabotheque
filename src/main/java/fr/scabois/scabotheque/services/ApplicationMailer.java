@@ -1,11 +1,10 @@
 package fr.scabois.scabotheque.services;
 
-import javax.annotation.Resource;
+//import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
 import org.hibernate.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
@@ -16,58 +15,78 @@ import org.springframework.stereotype.Service;
 
 @Service("mailService")
 public class ApplicationMailer {
-    @Resource
-    private JavaMailSender javaMailSender;
+//    @Resource
 
-    @Autowired
-    private MailSender mailSender;
+  private JavaMailSender javaMailSender;
 
-    @Autowired
-    private SimpleMailMessage preConfiguredMessage;
+  @Autowired
+  private MailSender mailSender;
 
-    public void sendAdherentMail(Criteria criteria) {}
+  @Autowired
+  private SimpleMailMessage preConfiguredMessage;
 
-    public void sendHTMLMail(String from, String to, String subject, String body) {
-	try {
-	    InternetAddress[] parsed;
-	    try {
-		parsed = InternetAddress.parse(to.replaceAll("(?:\\[|\\])?", ""));
-	    } catch (AddressException e) {
-		throw new IllegalArgumentException("Not valid email: " + to + "\nSource -> " + e.getMessage(), e);
-	    }
+  /**
+   * Envoy de message à la liste correspondante aux criteres
+   *
+   * @param criteria critere de selection pour filtrer les adherents
+   */
+  public void sendAdherentMail(Criteria criteria) {
+  }
 
-	    MimeMessage mailMessage = javaMailSender.createMimeMessage();
-	    mailMessage.setSubject(subject, "UTF-8");
+  /**
+   * Envoy de message au format HTML
+   *
+   * @param from Expediteur
+   * @param to Destinataire
+   * @param subject Sujet du message
+   * @param body Corp du message
+   */
+  public void sendHTMLMail(String from, String to, String subject, String body) {
+    try {
+      InternetAddress[] parsed;
+      try {
+        parsed = InternetAddress.parse(to.replaceAll("(?:\\[|\\])?", ""));
+      } catch (AddressException e) {
+        throw new IllegalArgumentException("Not valid email: " + to + "\nSource -> " + e.getMessage(), e);
+      }
 
-	    MimeMessageHelper helper = new MimeMessageHelper(mailMessage, true, "UTF-8");
-	    helper.setFrom(from);
-	    helper.setTo(parsed);
-	    helper.setText(body, true);
+      MimeMessage mailMessage = javaMailSender.createMimeMessage();
+      mailMessage.setSubject(subject, "UTF-8");
 
-	    javaMailSender.send(mailMessage);
-	} catch (MessagingException ex) {
-	    throw new RuntimeException(ex);
-	}
+      MimeMessageHelper helper = new MimeMessageHelper(mailMessage, true, "UTF-8");
+      helper.setFrom(from);
+      helper.setTo(parsed);
+      helper.setText(body, true);
+
+      javaMailSender.send(mailMessage);
+    } catch (MessagingException ex) {
+      throw new RuntimeException(ex);
     }
+  }
 
-    /**
-     * This method will send compose and send the message
-     */
-    public void sendMail(String from, String to, String subject, String body) {
-	SimpleMailMessage message = new SimpleMailMessage();
-	message.setFrom(from);
-	message.setTo(to);
-	message.setSubject(subject);
-	message.setText(body);
-	mailSender.send(message);
-    }
+  /**
+   *
+   * @param from Expediteur
+   * @param to Destinataire
+   * @param subject Sujet du message
+   * @param body Corp du message
+   */
+  public void sendMail(String from, String to, String subject, String body) {
+    SimpleMailMessage message = new SimpleMailMessage();
+    message.setFrom(from);
+    message.setTo(to);
+    message.setSubject(subject);
+    message.setText(body);
+    mailSender.send(message);
+  }
 
-    /**
-     * This method will send a pre-configured message
-     */
-    public void sendPreConfiguredMail(String message) {
-	SimpleMailMessage mailMessage = new SimpleMailMessage(preConfiguredMessage);
-	mailMessage.setText(message);
-	mailSender.send(mailMessage);
-    }
+  /**
+   *
+   * @param message Message
+   */
+  public void sendPreConfiguredMail(String message) {
+    SimpleMailMessage mailMessage = new SimpleMailMessage(preConfiguredMessage);
+    mailMessage.setText(message);
+    mailSender.send(mailMessage);
+  }
 }

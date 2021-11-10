@@ -25,8 +25,7 @@
         <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />  
     </bean>
     
-    <bean id="tilesConfigurer"  
-        class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">  
+    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">  
         <property name="definitions">  
             <list>  
                 <value>/WEB-INF/tiles.xml</value>  

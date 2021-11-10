@@ -14,29 +14,27 @@
         <form:errors class="errors" path="libelle"/>
     </form:form>
 
-	<form:form method="post" modelAttribute="editList" action="edit${pageLink}">
-		<div class="textAlignCenter">
-	
-			<c:forEach items="${editList.list}" var="idLibelle" varStatus="status">
-					<div>
-						<form:input type="hidden" name="list[${status.index}].id" path="list[${status.index}].id"/>
-					</div>
-				
-					<div class="showDetail">
-						<form:input class="valeur" name="list[${status.index}].libelle" path="list[${status.index}].libelle"/> 
-						<c:url value="/supprime${pageLink}" var="url"><c:param name="id" value="${idLibelle.id}"/></c:url>
-						<a href="${url}"><svg class="delete"><use xlink:href="resources/images/icones.svg#delete"></use></svg></a>
-						<form:errors class="errors" path="list[${status.index}].libelle" />
-					</div>
-				
-			</c:forEach>
-		</div>
-		<div class="saveButton">
-			<button class="action-button" type="submit">Enregistrer</button>
-<!-- 			<input type="submit"> -->
-	    </div>
-	</form:form>
-	
-	<span class="errors" > ${erreur} </span>
+    <form:form method="post" modelAttribute="editList" action="edit${pageLink}">
+        <div class="textAlignCenter">
+            <c:forEach items="${editList.list}" var="idLibelle" varStatus="status">
+                <div>
+                    <form:input type="hidden" name="list[${status.index}].id" path="list[${status.index}].id"/>
+                </div>
+                <div class="showDetail">
+                    <form:input class="valeur" name="list[${status.index}].libelle" path="list[${status.index}].libelle"/> 
+                    <form:input class="position" name="list[${status.index}].position" path="list[${status.index}].position"/> 
+                    <c:url value="/supprime${pageLink}" var="url"><c:param name="id" value="${idLibelle.id}"/></c:url>
+                    <a href="${url}"><svg class="delete"><use xlink:href="resources/images/icones.svg#delete"></use></svg></a>
+                    <form:errors class="errors" path="list[${status.index}].libelle" />
+                </div>
+
+            </c:forEach>
+        </div>
+        <div class="saveButton">
+            <button class="action-button" type="submit">Enregistrer</button>
+        </div>
+    </form:form>
+
+    <span class="errors" > ${erreur} </span>
 	
 </div>

@@ -1,7 +1,11 @@
 package fr.scabois.scabotheque.bean.adherent;
 
+import fr.scabois.scabotheque.bean.HasId;
+import fr.scabois.scabotheque.bean.commun.ContactFonction;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,196 +16,212 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import fr.scabois.scabotheque.bean.HasId;
-import fr.scabois.scabotheque.bean.commun.ContactFonction;
-
 @Entity
 @Table(name = "adherent_contact")
 public class AdherentContactRole implements HasId {
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "adherent_id")
-    private Adherent adherent;
-    private String civilite;
-    private String fixe;
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "adherent_id")
+  private Adherent adherent;
+  private String civilite;
+  @Column(name = "date_naissance")
+  private Date dateNaissance;
+  private String fixe;
 
-    @ManyToOne
-    @JoinColumn(name = "fonction_contact_id")
-    private ContactFonction fonction;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column(name = "administratif")
+  @ManyToOne
+  @JoinColumn(name = "fonction_contact_id")
+  private ContactFonction fonction;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
+  @Column(name = "accesEOLAS")
+  private boolean isAccessEOLAS;
+  @Column(name = "administratif")
 //    @Type(type = "org.hibernate.type.NumericBooleanType")
-    private boolean isMailingAdministratif;
-    @Column(name = "commerce")
+  private boolean isMailingAdministratif;
+  @Column(name = "commerce")
 //    @Type(type = "org.hibernate.type.NumericBooleanType")
-    private boolean isMailingCommerce;
-    @Column(name = "compta")
+  private boolean isMailingCommerce;
+  @Column(name = "compta")
 //    @Type(type = "org.hibernate.type.NumericBooleanType")
-    private boolean isMailingCompta;
-    @Column(name = "dirigeant")
+  private boolean isMailingCompta;
+  @Column(name = "dirigeant")
 //    @Type(type = "org.hibernate.type.NumericBooleanType")
-    private boolean isMailingDirigeant;
-    @Column(name = "accesEOLAS")
-    private boolean isAccessEOLAS;
-    private String mail;
-    private String mobile;
-    private String loginEOLAS;
-    private String passEOLAS;
-    private Date naissance;
-    private String nom;
-    private byte[] photo;
-    private String prenom;
+  private boolean isMailingDirigeant;
+  private String loginEOLAS;
+  private String mail;
+  private String mobile;
+  private String nom;
+  private String passEOLAS;
 
-    public boolean getIsAccessEOLAS() {
-        return isAccessEOLAS;
-    }
+  private byte[] photo;
+  private String prenom;
 
-    public void setIsAccessEOLAS(boolean isAccessEOLAS) {
-        this.isAccessEOLAS = isAccessEOLAS;
-    }
+//    @ManyToOne()
+  @Column(name = "role_Salarie_EOLAS_id")
+  private Integer roleSalarieEOLASId;
 
-    public String getLoginEOLAS() {
-        return loginEOLAS;
-    }
+  public Adherent getAdherent() {
+    return adherent;
+  }
 
-    public void setLoginEOLAS(String loginEOLAS) {
-        this.loginEOLAS = loginEOLAS;
-    }
+  public void setAdherent(Adherent adherent) {
+    this.adherent = adherent;
+  }
 
-    public String getPassEOLAS() {
-        return passEOLAS;
-    }
+  public int getAge() {
+    LocalDate contactDate = dateNaissance == null ? LocalDate.now() : dateNaissance.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    return Period.between(contactDate, LocalDate.now()).getYears();
+  }
 
-    public void setPassEOLAS(String passEOLAS) {
-        this.passEOLAS = passEOLAS;
-    }
+  public String getCivilite() {
+    return civilite;
+  }
 
-    public Adherent getAdherent() {
-        return adherent;
-    }
+  public void setCivilite(String civilite) {
+    this.civilite = civilite;
+  }
 
-    public String getCivilite() {
-        return civilite;
-    }
+  public Date getDateNaissance() {
+    return dateNaissance;
+  }
 
-    public String getFixe() {
-        return fixe;
-    }
+  public void setDateNaissance(Date dateNaissance) {
+    this.dateNaissance = dateNaissance;
+  }
 
-    public ContactFonction getFonction() {
-        return fonction;
-    }
+  public String getFixe() {
+    return fixe;
+  }
 
-    @Override
-    public Integer getId() {
-        return id;
-    }
+  public void setFixe(String fixe) {
+    this.fixe = fixe;
+  }
 
-    public boolean getIsMailingAdministratif() {
-        return isMailingAdministratif;
-    }
+  public ContactFonction getFonction() {
+    return fonction;
+  }
 
-    public boolean getIsMailingCommerce() {
-        return isMailingCommerce;
-    }
+  public void setFonction(ContactFonction fonction) {
+    this.fonction = fonction;
+  }
 
-    public boolean getIsMailingCompta() {
-        return isMailingCompta;
-    }
+  @Override
+  public Integer getId() {
+    return id;
+  }
 
-    public boolean getIsMailingDirigeant() {
-        return isMailingDirigeant;
-    }
+  @Override
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-    public String getMail() {
-        return mail;
-    }
+  public boolean getIsAccessEOLAS() {
+    return isAccessEOLAS;
+  }
 
-    public String getMobile() {
-        return mobile;
-    }
+  public void setIsAccessEOLAS(boolean isAccessEOLAS) {
+    this.isAccessEOLAS = isAccessEOLAS;
+  }
 
-    public Date getNaissance() {
-        return naissance;
-    }
+  public boolean getIsMailingAdministratif() {
+    return isMailingAdministratif;
+  }
 
-    public String getNom() {
-        return nom;
-    }
+  public void setIsMailingAdministratif(boolean isAdministratif) {
+    this.isMailingAdministratif = isAdministratif;
+  }
 
-    public byte[] getPhoto() {
-        return photo;
-    }
+  public boolean getIsMailingCommerce() {
+    return isMailingCommerce;
+  }
 
-    public String getPhotoImg() {
-        return photo == null ? "" : new String(photo);
-    }
+  public void setIsMailingCommerce(boolean isCommerce) {
+    this.isMailingCommerce = isCommerce;
+  }
 
-    public String getPrenom() {
-        return prenom;
-    }
+  public boolean getIsMailingCompta() {
+    return isMailingCompta;
+  }
 
-    public void setAdherent(Adherent adherent) {
-        this.adherent = adherent;
-    }
+  public void setIsMailingCompta(boolean isCompta) {
+    this.isMailingCompta = isCompta;
+  }
 
-    public void setCivilite(String civilite) {
-        this.civilite = civilite;
-    }
+  public boolean getIsMailingDirigeant() {
+    return isMailingDirigeant;
+  }
 
-    public void setFixe(String fixe) {
-        this.fixe = fixe;
-    }
+  public void setIsMailingDirigeant(boolean isDirigeant) {
+    this.isMailingDirigeant = isDirigeant;
+  }
 
-    public void setFonction(ContactFonction fonction) {
-        this.fonction = fonction;
-    }
+  public String getLoginEOLAS() {
+    return loginEOLAS;
+  }
 
-    @Override
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  public void setLoginEOLAS(String loginEOLAS) {
+    this.loginEOLAS = loginEOLAS;
+  }
 
-    public void setIsMailingAdministratif(boolean isAdministratif) {
-        this.isMailingAdministratif = isAdministratif;
-    }
+  public String getMail() {
+    return mail;
+  }
 
-    public void setIsMailingCommerce(boolean isCommerce) {
-        this.isMailingCommerce = isCommerce;
-    }
+  public void setMail(String mail) {
+    this.mail = mail;
+  }
 
-    public void setIsMailingCompta(boolean isCompta) {
-        this.isMailingCompta = isCompta;
-    }
+  public String getMobile() {
+    return mobile;
+  }
 
-    public void setIsMailingDirigeant(boolean isDirigeant) {
-        this.isMailingDirigeant = isDirigeant;
-    }
+  public void setMobile(String mobile) {
+    this.mobile = mobile;
+  }
 
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
+  public String getNom() {
+    return nom;
+  }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
+  public void setNom(String nom) {
+    this.nom = nom;
+  }
 
-    public void setNaissance(Date naissance) {
-        this.naissance = naissance;
-    }
+  public String getPassEOLAS() {
+    return passEOLAS;
+  }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
+  public void setPassEOLAS(String passEOLAS) {
+    this.passEOLAS = passEOLAS;
+  }
 
-    public void setPhoto(byte[] photo) {
-        this.photo = photo;
-    }
+  public byte[] getPhoto() {
+    return photo;
+  }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
+  public void setPhoto(byte[] photo) {
+    this.photo = photo;
+  }
+
+  public String getPhotoImg() {
+    return photo == null ? "" : new String(photo);
+  }
+
+  public String getPrenom() {
+    return prenom;
+  }
+
+  public void setPrenom(String prenom) {
+    this.prenom = prenom;
+  }
+
+  public Integer getRoleSalarieEOLASId() {
+    return roleSalarieEOLASId;
+  }
+
+  public void setRoleSalarieEOLASId(Integer roleSalarieEOLASId) {
+    this.roleSalarieEOLASId = roleSalarieEOLASId;
+  }
 
 }

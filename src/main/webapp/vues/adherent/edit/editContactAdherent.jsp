@@ -5,29 +5,29 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <div  class="editAdherentEntete" >
-	<div class="entete">				
-		<div class="photo">
-			<c:choose >
-				<c:when test = "${adherent.photoImg == ''}"> 
-					<img src="<c:url value="/resources/images/noAdh.png" />" />
-				</c:when>
-				<c:otherwise> 						
-					<img src="${adherent.photoImg}">
-				</c:otherwise>
-			</c:choose>
-		</div>
-		<div>
-			<span class="scabotheque-h3">${adherent.denomination}</span>
-			<div>
-				<span class="adherentLabel"><spring:message code="label.codeAdh"/></span>
-				<span class="data" > ${adherent.code} </span>
-			</div>
-		</div>
-	</div>
+    <div class="entete">				
+        <div class="photo">
+            <c:choose >
+                <c:when test = "${adherent.photoImg == ''}"> 
+                    <img src="<c:url value="/resources/images/noAdh.png" />" />
+                </c:when>
+                <c:otherwise> 						
+                    <img src="${adherent.photoImg}">
+                </c:otherwise>
+            </c:choose>
+        </div>
+        <div>
+            <span class="scabotheque-h3">${adherent.denomination}</span>
+            <div>
+                <span class="detailLabel"><spring:message code="label.codeAdh"/></span>
+                <span class="data" > ${adherent.code} </span>
+            </div>
+        </div>
+    </div>
 	
-	<div class="textAlignRight">
-		<button class="action-button" id="addContact" type="button">Ajouter un contact</button>
-	</div>
+    <div class="textAlignRight">
+        <button class="action-button" id="addContact" type="button">Ajouter un contact</button>
+    </div>
 	
 </div>
 	
@@ -76,10 +76,11 @@
                         <form:input class="valeur" name="contact.mobile" path="contact.mobile"/>
                         <form:errors class="error" path="contact.mobile" />
                     </div>
-<!-- 					<div  class="showDetailEditContact"> -->
-<%-- 						<form:label path="contact.photoImg">photo à utiliser :</form:label> --%>
-<%-- 						<form:input path="contact.photoImg" class="valeur" type="file" name="file"  accept="image/x-png,image/gif,image/jpeg" />   --%>
-<!-- 					</div> 									 -->
+                    <div  class="showDetailEditContact"> 
+                        <form:label path="contact.dateNaissance" ><spring:message code="label.dateNaissance"/></form:label>
+                        <form:input class="valeur" type="date" name="contact.dateNaissance" path="contact.dateNaissance"/>
+                        <form:errors class="error" path="contact.dateNaissance" />
+                    </div> 									 
                     <div class="editDataList"> inclure dans le mailing :
                         <span class="displayInline">
                             <form:checkbox path="${contact.isMailingDirigeant}" value="dirigeant" style="width: 50px;" name="dirigeant"/> 
@@ -108,6 +109,12 @@
                         <span>Les accès de l'entreprise sont définis avec les informations Rubis </span>
                     </div>
                     <div class="editData">		
+                        <spring:message code="label.role" var="message"/>
+                        <form:select class="valeur" path="contact.roleSalarieEOLASId">
+                            <form:options items="${roleSalarieEOLAS}" itemValue="id" itemLabel="libelle" />
+                        </form:select>
+                    </div>
+                    <div class="editData">		
                         <spring:message code="label.login" var="message"/>
                         <form:input class="valeur" path="${contact.loginEOLAS}" placeholder="${message}"/>
                     </div>
@@ -132,6 +139,7 @@
             <form:input type="hidden" path="adherentContacts[${status.index}].Id"/>
             <form:input type="hidden" path="adherentContacts[${status.index}].adherentId"/>
             <form:input type="hidden" path="adherentContacts[${status.index}].photoImg"/>
+            <%--<form:input type="hidden" path="adherentContacts[${status.index}].roleEOLAS"/>--%>
 
 
             <div class="colonnesEditContact">
@@ -177,6 +185,10 @@
                         <spring:message code="label.mobile" var="message"/>
                         <form:input class="valeur" path="adherentContacts[${status.index}].mobile" placeholder="${message}"/>
                     </div> 
+                    <div class="editData">		
+                        <spring:message code="label.dateNaissance" var="message"/>
+                        <form:input class="valeur" type="date" path="adherentContacts[${status.index}].dateNaissance" placeholder="${message}"/>
+                    </div> 
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <div>
                             <span class="scabotheque-h3">Accès spécifique à EOLAS <form:checkbox style="width: 50px;" path="adherentContacts[${status.index}].isAccessEOLAS" value="accessEOLAS"/></span>
@@ -189,6 +201,10 @@
                         <div class="editData">		
                             <spring:message code="label.pass" var="message"/>
                             <form:input class="valeur" path="adherentContacts[${status.index}].passEOLAS" placeholder="${message}"/>
+                        </div>
+                        <div class="editData">	
+                            <form:select class="valeur" path="adherentContacts[${status.index}].roleSalarieEOLASId">
+                            <form:options items="${roleSalarieEOLAS}" itemValue="id" itemLabel="commentaire" /></form:select>
                         </div>
                     </sec:authorize>       
                 </div>
@@ -220,11 +236,11 @@
                     <div><b><i><form:errors class="error" path="adherentContacts[${status.index}].fixe" /></i></b></div>
                 </div>
                 <div>
-                        <c:url value="/edit/supprimeContact" var="url">
-                                <c:param name="adhId" value="${adherentContact.adherentId}"/>
-                                <c:param name="ctId" value="${adherentContact.id}"/>
-                        </c:url>
-                        <a href="${url}" title="<spring:message code="label.supprimeContact" />" ><svg class="delete"><use xlink:href="../resources/images/icones.svg#delete"></use></svg></a>
+                    <c:url value="/edit/supprimeContact" var="url">
+                            <c:param name="adhId" value="${adherentContact.adherentId}"/>
+                            <c:param name="ctId" value="${adherentContact.id}"/>
+                    </c:url>
+                    <a href="${url}" title="<spring:message code="label.supprimeContact" />" ><svg class="delete"><use xlink:href="../resources/images/icones.svg#delete"></use></svg></a>
                 </div>
             </div>
         </c:forEach>

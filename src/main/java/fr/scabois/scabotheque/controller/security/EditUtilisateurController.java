@@ -30,7 +30,7 @@ public class EditUtilisateurController {
     @RequestMapping(value = "/parametrage/listeUtilisateurs", method = RequestMethod.GET)
     public String afficher(final ModelMap pModel) {
 
-	List<User> utilisateurList = service.LoadUtilisateurs();
+	List<User> utilisateurList = service.loadUtilisateurs();
 
 	List<EditUtilisateur> editUsersList = utilisateurToEdit(utilisateurList);
 
@@ -78,7 +78,7 @@ public class EditUtilisateurController {
 
 		    usrRole.setId(ur.getId());
 		    usrRole.setRole(ur.getRole());
-		    usrRole.setUser(service.LoadUtilisateur(u.getId()));
+		    usrRole.setUser(service.loadUtilisateur(u.getId()));
 
 		    usr.getRoles().add(usrRole);
 		}

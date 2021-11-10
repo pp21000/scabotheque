@@ -5,31 +5,33 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <div class="editAdherentEntete" >
-	<div class="entete">
-		<div class="photo">
-			<c:choose >
-				<c:when test = "${adherent.photoImg == ''}"> 
-					<img src="<c:url value="/resources/images/noAdh.png" />" />
-				</c:when>
-				<c:otherwise> 						
-					<img src="${adherent.photoImg}">
-				</c:otherwise>
-			</c:choose>
-		</div>
-		<div>
-			<span class="scabotheque-h3">${adherent.denomination}</span>
-			<div>
-				<span class="adherentLabel"><spring:message code="label.codeAdh"/></span>
-				<span class="data" > ${adherent.code} </span>
-			</div>
-		</div>
-	</div>
+    <div class="entete">
+        <div class="photo">
+            <c:choose >
+                <c:when test = "${adherent.photoImg == ''}"> 
+                    <img src="<c:url value="/resources/images/noAdh.png" />" />
+                </c:when>
+                <c:otherwise> 						
+                    <img src="${adherent.photoImg}">
+                </c:otherwise>
+            </c:choose>
+        </div>
+        <div>
+            <span class="scabotheque-h3">${adherent.denomination}</span>
+            <div>
+                <span class="detailLabel"><spring:message code="label.codeAdh"/></span>
+                <span class="data" > ${adherent.code} </span>
+            </div>
+        </div>
+    </div>
 </div>   
 	
 <form:form class="editAdherent" method="post" modelAttribute="editForm" action="editActiviteAdh">
 	<fieldset>
 	   	<legend class="legend"><spring:message code="label.activite"/></legend>
-	
+                <form:input type="hidden" placeholder="messageErreur" path="messageErreur"/>
+		<form:errors class="error" path="messageErreur" />
+
 		<c:forEach items="${editForm.activitesAdh}" var="activite" varStatus="status">
 			<form:input type="hidden" path="activitesAdh[${status.index}].id"/>
 			<form:input type="hidden" path="activitesAdh[${status.index}].adherentId"/>

@@ -10,46 +10,47 @@
 		http://www.springframework.org/schema/security/spring-security.xsd">
 	
 	<!-- 	Connection direct à la BDD A REVOIR CAR DANS TOUS LES FICHIERS XML -->
-	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
         <property name="jndiName" value="java:comp/env/jdbc/scabothequeDB" />
     </bean>
 
 	<!-- authorisation d'acces aux fichiers resources -->
-	<sec:http pattern="/resources/**" security="none"/> 
-		
-	<sec:http auto-config="true" use-expressions="true" >
-		<sec:intercept-url pattern="/addAdherent" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')" />
+    <sec:http pattern="/resources/**" security="none"/> 
 
-		<sec:intercept-url pattern="/adherentDetail" access="isFullyAuthenticated()" />
-<!-- 	 	<sec:intercept-url pattern="/**" access="hasAnyRole('ROLE_pole', 'ROLE_ADMIN')" /> -->
-		<sec:intercept-url pattern="/parametrage**" access="hasRole('ROLE_ADMIN')" />
-		<sec:intercept-url pattern="/parametrage/listeUtilisateurs" access="hasRole('ROLE_ADMIN')" />
-<!-- 		<sec:intercept-url pattern="/edit/**" access="hasRole('ROLE_ADMIN')" /> -->
-		
-		<sec:intercept-url pattern="/edit/editIdentiteAdh" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')" />
-		<sec:intercept-url pattern="/edit/editAdherentContact" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')" />
-		<sec:intercept-url pattern="/edit/editActiviteAdh" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ACTIVITE_EDIT')" />
-		<sec:intercept-url pattern="/edit/editArtipoleAdh" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')" />
-		<sec:intercept-url pattern="/edit/editExploitationAdh" access="hasAnyRole('ROLE_ADMIN', 'ROLE_EXPLOITATION_EDIT')" />
-		<sec:intercept-url pattern="/edit/editAdministratifAdh" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADMIN_FINANCE_EDIT')" />
-		<sec:intercept-url pattern="/edit/editInformatiqueAdh" access="hasAnyRole('ROLE_ADMIN', 'ROLE_INFORMATIQUE_EDIT')" />
+    <sec:http auto-config="true" use-expressions="true" >
+        <sec:intercept-url pattern="/login" access="permitAll"/>
 
-		<sec:intercept-url pattern="/downloadFile**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_EXPORT')" />
+        <sec:intercept-url pattern="/**" access="isFullyAuthenticated()" />
 
-		<sec:intercept-url pattern="/login**" access="permitAll"/>
-		<sec:intercept-url pattern="/listeAdherents**" access="permitAll"/>
-		
-		<sec:form-login 
-		    login-page="/login" 
-		    default-target-url="/listeAdherents" 
-			authentication-failure-url="/loginFailed" 
-			login-processing-url="/loginProcess"
-			username-parameter="username"
-			password-parameter="password" />
-		<sec:access-denied-handler error-page="/accessDenied"/>
-		
-		<sec:csrf/>
-	</sec:http>
+        <sec:intercept-url pattern="/downloadFile**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_EXPORT')" />
+        <sec:intercept-url pattern="/addAdherent" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')" />
+        <sec:intercept-url pattern="/edit/editIdentiteAdh" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')" />
+        <sec:intercept-url pattern="/edit/editAdherentContact" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')" />
+        <sec:intercept-url pattern="/edit/editActiviteAdh" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ACTIVITE_EDIT')" />
+        <sec:intercept-url pattern="/edit/editArtipoleAdh" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')" />
+        <sec:intercept-url pattern="/edit/editCRMAdh" access="hasAnyRole('ROLE_ADMIN', 'ROLE_CRM_EDIT')" />
+        <sec:intercept-url pattern="/edit/editAdministratifAdh" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADMIN_FINANCE_EDIT')" />
+        <sec:intercept-url pattern="/edit/editExploitationAdh" access="hasAnyRole('ROLE_ADMIN', 'ROLE_EXPLOITATION_EDIT')" />
+        <sec:intercept-url pattern="/edit/editInformatiqueAdh" access="hasAnyRole('ROLE_ADMIN', 'ROLE_INFORMATIQUE_EDIT')" />
+        <sec:intercept-url pattern="/analyse" access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION')" />
+        <sec:intercept-url pattern="/parametrage**" access="hasRole('ROLE_ADMIN')" />
+        <sec:intercept-url pattern="/parametrage/listeUtilisateurs" access="hasRole('ROLE_ADMIN')" />
+
+        <!--<sec:intercept-url pattern="/listeAdherents**" access="permitAll"/>-->
+        <!--<sec:intercept-url pattern="/initListeAdherents" access="isFullyAuthenticated()"/>-->
+        <!--<sec:intercept-url pattern="/listeFournisseurs**" access="permitAll"/>-->
+
+        <sec:form-login 
+            login-page="/login" 
+            default-target-url="/listeAdherents" 
+                authentication-failure-url="/loginFailed" 
+                login-processing-url="/loginProcess"
+                username-parameter="username"
+                password-parameter="password" />
+        <sec:access-denied-handler error-page="/accessDenied"/>
+
+        <sec:csrf/>
+    </sec:http>
 
  	<!-- Mode BDD fonctionne aussi actuellement utilisé  --> 
 	<sec:authentication-manager>

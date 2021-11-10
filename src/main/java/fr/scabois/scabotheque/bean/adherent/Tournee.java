@@ -1,5 +1,6 @@
 package fr.scabois.scabotheque.bean.adherent;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,20 +15,30 @@ public class Tournee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String libelle;
+    @Column(name = "n_position")
+    private Integer position;
 
     public Integer getId() {
-	return id;
+        return id;
     }
 
     public void setId(final Integer pId) {
-	id = pId;
+        id = pId;
     }
 
     public String getLibelle() {
-	return libelle;
+        return libelle;
     }
 
     public void setLibelle(final String pLibelle) {
-	libelle = pLibelle;
+        libelle = pLibelle;
+    }
+
+    public Integer getPosition() {
+        return position;
+    }
+
+    public void setPosition(Integer position) {
+        this.position = position;
     }
 }

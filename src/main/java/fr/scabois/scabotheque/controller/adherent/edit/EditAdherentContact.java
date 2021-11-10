@@ -1,14 +1,12 @@
 package fr.scabois.scabotheque.controller.adherent.edit;
 
+import fr.scabois.scabotheque.bean.commun.ContactFonction;
 import java.util.Date;
-
 import javax.validation.constraints.Pattern;
-
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
-
-import fr.scabois.scabotheque.bean.commun.ContactFonction;
 
 public class EditAdherentContact {
 
@@ -16,33 +14,138 @@ public class EditAdherentContact {
     private String civilite;
 
     private int contactFonctionId;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dateNaissance;
     private MultipartFile file;
     // @NotEmpty(message = "{modification.fixeNotEmpty}")
     @Pattern(regexp = "^0[1-9](([ ][0-9]{2}){4})$", message = "{modification.phoneFixeFormat}")
     private String fixe;
     private ContactFonction fonction;
     private Integer id;
+    private boolean isAccessEOLAS;
     private boolean isMailingAdministratif;
     private boolean isMailingCommercial;
     private boolean isMailingComptabilite;
     private boolean isMailingDirigeant;
-    private boolean isAccessEOLAS;
+    private String loginEOLAS;
     @NotEmpty(message = "{modification.mailNotEmpty}")
     @Email(message = "{modification.mailNotValid}")
-    @Pattern(regexp = "[^()<>,;:\"|็%&]+", message = "{modification.mailNotValid}")
+    @Pattern(regexp = "[^()<>,;:\"|รง%&]+", message = "{modification.mailNotValid}")
     private String mail;
 
     @Pattern(regexp = "^$|0[6-9](([ ][0-9]{2}){4})$", message = "{modification.phoneMobileFormat}")
     private String mobile;
-    private Date naissance;
     @NotEmpty(message = "{modification.nomNotEmpty}")
     private String nom;
+    private String passEOLAS;
     private String photoImg;
     @NotEmpty(message = "{modification.prenomNotEmpty}")
     private String prenom;
+    private Integer roleSalarieEOLASId = 4;
 
-    private String loginEOLAS;
-    private String passEOLAS;
+    public int getAdherentId() {
+        return adherentId;
+    }
+
+    public void setAdherentId(int adherentId) {
+        this.adherentId = adherentId;
+    }
+
+    public String getCivilite() {
+        return civilite;
+    }
+
+    public void setCivilite(String civilite) {
+        this.civilite = civilite;
+    }
+
+    public int getContactFonctionId() {
+        return contactFonctionId;
+    }
+
+    public void setContactFonctionId(int contactFonctionId) {
+        this.contactFonctionId = contactFonctionId;
+    }
+
+    public Date getDateNaissance() {
+        return dateNaissance;
+    }
+
+    public void setDateNaissance(Date dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
+
+    public String getFixe() {
+        return fixe;
+    }
+
+    public void setFixe(String fixe) {
+        this.fixe = fixe;
+    }
+
+    public ContactFonction getFonction() {
+        return fonction;
+    }
+
+    public void setFonction(ContactFonction fonction) {
+        this.fonction = fonction;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public boolean getIsAccessEOLAS() {
+        return isAccessEOLAS;
+    }
+
+    public void setIsAccessEOLAS(boolean isAccessEOLAS) {
+        this.isAccessEOLAS = isAccessEOLAS;
+    }
+
+    public boolean getIsMailingAdministratif() {
+        return isMailingAdministratif;
+    }
+
+    public void setIsMailingAdministratif(boolean isAdministratif) {
+        this.isMailingAdministratif = isAdministratif;
+    }
+
+    public boolean getIsMailingCommercial() {
+        return isMailingCommercial;
+    }
+
+    public void setIsMailingCommercial(boolean isCommercial) {
+        this.isMailingCommercial = isCommercial;
+    }
+
+    public boolean getIsMailingComptabilite() {
+        return isMailingComptabilite;
+    }
+
+    public void setIsMailingComptabilite(boolean isComptabilite) {
+        this.isMailingComptabilite = isComptabilite;
+    }
+
+    public boolean getIsMailingDirigeant() {
+        return isMailingDirigeant;
+    }
+
+    public void setIsMailingDirigeant(boolean isDirigeant) {
+        this.isMailingDirigeant = isDirigeant;
+    }
 
     public String getLoginEOLAS() {
         return loginEOLAS;
@@ -50,6 +153,30 @@ public class EditAdherentContact {
 
     public void setLoginEOLAS(String loginEOLAS) {
         this.loginEOLAS = loginEOLAS;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public String getPassEOLAS() {
@@ -60,147 +187,27 @@ public class EditAdherentContact {
         this.passEOLAS = passEOLAS;
     }
 
-    public int getAdherentId() {
-        return adherentId;
-    }
-
-    public String getCivilite() {
-        return civilite;
-    }
-
-    public int getContactFonctionId() {
-        return contactFonctionId;
-    }
-
-    public MultipartFile getFile() {
-        return file;
-    }
-
-    public String getFixe() {
-        return fixe;
-    }
-
-    public ContactFonction getFonction() {
-        return fonction;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public boolean getIsMailingAdministratif() {
-        return isMailingAdministratif;
-    }
-
-    public boolean getIsMailingCommercial() {
-        return isMailingCommercial;
-    }
-
-    public boolean getIsMailingComptabilite() {
-        return isMailingComptabilite;
-    }
-
-    public boolean getIsMailingDirigeant() {
-        return isMailingDirigeant;
-    }
-
-    public boolean getIsAccessEOLAS() {
-        return isAccessEOLAS;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public Date getNaissance() {
-        return naissance;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
     public String getPhotoImg() {
         return photoImg;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setAdherentId(int adherentId) {
-        this.adherentId = adherentId;
-    }
-
-    public void setCivilite(String civilite) {
-        this.civilite = civilite;
-    }
-
-    public void setContactFonctionId(int contactFonctionId) {
-        this.contactFonctionId = contactFonctionId;
-    }
-
-    public void setFile(MultipartFile file) {
-        this.file = file;
-    }
-
-    public void setFixe(String fixe) {
-        this.fixe = fixe;
-    }
-
-    public void setFonction(ContactFonction fonction) {
-        this.fonction = fonction;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setIsMailingAdministratif(boolean isAdministratif) {
-        this.isMailingAdministratif = isAdministratif;
-    }
-
-    public void setIsMailingCommercial(boolean isCommercial) {
-        this.isMailingCommercial = isCommercial;
-    }
-
-    public void setIsMailingComptabilite(boolean isComptabilite) {
-        this.isMailingComptabilite = isComptabilite;
-    }
-
-    public void setIsMailingDirigeant(boolean isDirigeant) {
-        this.isMailingDirigeant = isDirigeant;
-    }
-
-    public void setIsAccessEOLAS(boolean isAccessEOLAS) {
-        this.isAccessEOLAS = isAccessEOLAS;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    public void setNaissance(Date naissance) {
-        this.naissance = naissance;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
     }
 
     public void setPhotoImg(String photoImg) {
         this.photoImg = photoImg;
     }
 
+    public String getPrenom() {
+        return prenom;
+    }
+
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public Integer getRoleSalarieEOLASId() {
+        return roleSalarieEOLASId;
+    }
+
+    public void setRoleSalarieEOLASId(Integer roleSalarieEOLASId) {
+        this.roleSalarieEOLASId = roleSalarieEOLASId;
     }
 }

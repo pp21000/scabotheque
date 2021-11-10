@@ -20,34 +20,34 @@ public class Commune {
     private String libelle;
 
     public String getCodePostal() {
-	return codePostal;
+        return codePostal;
+    }
+
+    public void setCodePostal(final String codePostal) {
+        this.codePostal = codePostal;
     }
 
     public String getDepartement() {
-	return departement;
-    }
-
-    public Integer getId() {
-	return id;
-    }
-
-    public String getLibelle() {
-	return libelle;
-    }
-
-    public void setCodePostal(final String pCodePostal) {
-	codePostal = pCodePostal;
+        return departement;
     }
 
     public void setDepartement(String departement) {
-	this.departement = departement;
+        this.departement = departement;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public void setId(final Integer pId) {
-	id = pId;
+        id = pId;
+    }
+
+    public String getLibelle() {
+        return libelle;
     }
 
     public void setLibelle(final String pLibelle) {
-	libelle = pLibelle;
+        libelle = pLibelle;
     }
 }

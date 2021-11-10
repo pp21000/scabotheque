@@ -28,6 +28,11 @@ form .valeur{
 	width:30em;
 }
 
+form .position {
+    text-align: center;
+    width:5em;
+}
+
 form .valeurCivilite{
 	width:10em;
 }
@@ -53,22 +58,17 @@ form input, form select {
     padding: 0.4em;    
 }
 
-/* form .errors{ */
-/* 	color:red;     */
-/* } */
-
-/* input { */
-/*     margin: 3px 3px 0px 0px; */
-/*     border: 1px #999 solid ; */
-    
-/* } */
-
 form input.sansLabel {
     margin-left: 200px;
 }
 
 .displayInline{
-	display: inline-flex;
+    display: inline-flex;
+    margin: 1em 0.5em;
+}
+
+.displayInline .input{
+    margin: 2em 0.5em;
 }
 
 /* Styles et couleurs -------------------------------------------------------------------------- */
@@ -112,12 +112,7 @@ form input.sansLabel {
     padding: 0 1.1em;
 }
 
-/* .info { */
-/*     font-style: italic; */
-/*     color: #E8A22B; */
-/* } */
-
-/* Détail adherents et modification -------------------------------------------------------------------------- */
+/* DÃ©tail adherents et modification -------------------------------------------------------------------------- */
 
 .listAdherent-recherche{
 	display:flex;
@@ -149,6 +144,11 @@ form input.sansLabel {
 .colonne-commune{
     display: grid;
     grid-template-columns: 1fr 9em 9em;
+}
+
+.colonne-roleEOLAS{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .saveButton{
@@ -196,17 +196,63 @@ form input.sansLabel {
 .showAdherent .data {
     padding: 0em 0.2em;
     font-weight: bold;
+    /*border-right: 1px solid #eee;*/
 }
 
-/* .editAdherentContact hr, .showAdherent hr{ */
-/* 	margin: 5px 0; */
-/* } */
-/* .editAdherent .showDetail { */
-/* 	display: grid; */
-/*     grid-template-columns: 12em 1fr 1fr; */
-/* 	padding: 0.2em 0.4em; */
-/* 	font-size: 15px; */
-/* } */
+.showAdherent .dataTableNumeric {
+    text-align: right;
+    padding: 0em 0.4em;
+    font-weight: bold;
+    border-right: 1px solid #ddd;
+}
+
+.showAdherent .fontColorGreen{
+    color: var(--CouleurVerte);
+}
+
+.showAdherent .fontColorRed{
+    color: var(--CouleurRouge);
+}
+
+.showAdherent .dataTableNumericFinColonne {
+    text-align: right;
+    padding: 0em 0.4em;
+    font-weight: bold;
+    border-right: 3px solid #0F638C;
+}
+
+.showAdherent .dataTable {
+    padding: 0em 0.2em;
+    border-right: 1px solid #eee;
+}
+
+.showAdherent .dataTableFinColonne {
+    /*padding: 0em 0.2em;*/
+    border-right: 3px solid #0F638C;
+}
+
+.showAdherent .dataLabel {
+    padding: 0em 0.2em;
+    /*border-right: 1px solid #eee;*/
+}
+.showAdherent .dataTitre {
+    padding: 0em 0.2em;
+    border-right: 1px solid #eee;
+}
+
+.showAdherent .dataCenter {
+    text-align: center;
+    padding: 0em 0.2em;
+    font-weight: bold;
+    /*border-right: 1px solid #eee;*/
+}
+
+.showAdherent .dataRouge {
+    color:var(--CouleurRouge);
+    font-weight: bolder;
+    text-decoration: underline; 
+    padding: 0em 0.2em;
+}
 
 .showDetailCommentaire{
     display: grid;
@@ -215,12 +261,66 @@ form input.sansLabel {
     font-size: 15px;	
 }
 
+.showDetailCommerce{
+    display: grid;
+    grid-template-columns: 15em 3.5em 6em 6em 6em 6em 1fr;
+    padding: 0.2em 1.2em;
+    font-size: 15px;	   
+}
+
+.showDetailCommerceTitre{
+    display: grid;
+    grid-template-columns: 15em 3.5em 6em 6em 6em 6em 1fr;
+    padding: 0.2em 1.2em;
+    font-size: 15px;	
+    background-color: #82aa37;
+    color: white;
+}
+
+.showDetailAnalyse{
+    display: grid;
+    grid-template-columns: 17em 0.6fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    padding: 0.2em 0.5em;
+    font-size: 15px;	   
+}
+
+.showDetailAnalyseTitre1{
+    display: grid;
+    text-align: center;
+    grid-template-columns: 17em 3.6fr 3fr 3fr;
+    padding: 0.2em 0.5em;
+    font-size: 15px;	
+    background-color: #82aa37;
+    color: white;
+}
+.showDetailAnalyseTitre{
+    display: grid;
+    text-align: center;
+    grid-template-columns: 17em 0.6fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    padding: 0.2em 0.5em;
+    font-size: 15px;	
+    background-color: #82aa37;
+    color: white;
+}
+
+.tableauChiffre{
+      
+}
+
+.tableauChiffre > span:nth-child(even){
+    background-color: #eee
+}
+
+.tableauChiffre > span:nth-last-child(-n+1){
+    background-color: #ccc
+}
+
 .showAdherent .showContact{
     padding-bottom: 1em;	
 }
 
 .showAdherent .showCommentaire{
-    margin-bottom: 3.5em;	
+    margin-bottom: 5em;	
 }
 
 .editAdherent label, .editAdherentContact label, .editAdherentContact input , .editAdherentContact select {
@@ -311,10 +411,14 @@ fieldset {
 }
 
 /* Liste des adherents --------------------------- */
-.listeAdherents {
+.listeData {
     display :flex;
     flex-direction:column;
     width: 100%;
+}
+
+.fournisseur-item {
+    display:flex;
 }
 
 .adherents-item {
@@ -328,7 +432,7 @@ fieldset {
     font-weight: bold;
 }
 
-.listeAdherents div.photo{
+.listeData div.photo{
     float:left;
     margin: auto;
     text-align:center;
@@ -366,44 +470,61 @@ fieldset {
     padding: 0.4em;
 }
 
-.listeAdherents div.photo img, .showAdherent div.photo img{
+.listeData div.photo img, .showAdherent div.photo img{
     max-width: 8em;
     max-height: 8em;
 }
 
-.listeAdherents .detail {
+.listeData .adherents-item .detail {
     background-color: #ffffff;
-    border: 1px solid #d4d4d4;
+    border: 2px solid #82aa37;
     border-radius: 0.4em;
     flex:1;
     margin:0.2em;
     padding: 0.4em;
 }
 
-.listeAdherents .detail a{
+.listeData .fournisseur-item .detail {
+    background-color: #ffffff;
+    border: 2px solid #004364;
+    border-radius: 0.4em;
+    flex:1;
+    margin:0.2em;
+    padding: 0.4em;
+}
+.showAdherent .adhernetCRMDetail {
+    background-color: #ffffff;
+    border: 1px solid #82aa37;
+    border-radius: 0.4em;
+    flex:1;
+    margin:0.2em;
+    padding: 0.4em;
+}
+
+.listeData .detail a{
     color: #004462;
     text-decoration: none; 
 }
 
-.listeAdherents .info{
+.listeData .info{
     display :flex;
 }  
 
-.listeAdherents .code{
+.listeData .code{
     flex:1;
     display: grid;
     grid-template-columns: 7em 1fr;
     margin:auto;
 }  
 
-.listeAdherents .statut{
+.listeData .statut{
     flex:1;
     display: grid;
     grid-template-columns: 4em 1fr;
     margin:auto;
 } 
 
-.listeAdherents .raccourcis{
+.listeData .raccourcis{
     -flex:1;
     margin:auto;
     text-align:right;
@@ -417,24 +538,24 @@ fieldset {
     text-align:right;
 }  
 
-.listeAdherents .etatAdh{
+.listeData .etatAdh{
     display: grid;
     grid-template-columns: 4em 1fr 2em ;
 }  
 
-.listeAdherents .detail a:hover {
+.listeData .detail a:hover {
     text-decoration: underline; 
 }
-.listeAdherents td, #customers th {
+.listeData td, #customers th {
 /*   border: 1px solid #ddd; */
   padding: 5px;
 }
 
-.listeAdherents .link{
+.listeData .link{
     width:25px;
 }
 
-.listeAdherents .detail img{
+.listeData .detail img{
     height:20px;
     text-align: center;
     width:20px;

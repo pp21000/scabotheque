@@ -6,7 +6,7 @@
 .menuBar-position {
   display: flex;
   margin: auto;
-  width: 1200px;
+  width: 1400px;
   min-width: 800px;
 }
 
@@ -16,15 +16,25 @@
 
 .menu-item{
     border-right: #f0f0f0 1px solid;
-	color: #f2f2f2;
-	display: block;
-	float: left;
-	fill:white;
-	min-width: 12em;
-	padding: 0.4em 1em;
-	text-decoration: none;
+    color: #f2f2f2;
+    display: block;
+    float: left;
+    fill:white;
+    min-width: 13em;
+    padding: 0.7em 1em;
+    text-decoration: none;
 }
 
+.bottom-menu-item{
+    border-right: #f0f0f0 1px solid;
+    color: #f2f2f2;
+    display: block;
+    float: left;
+    fill:white;
+    min-width: 9.9em;
+    padding: 0.7em 1em;
+    text-decoration: none;
+}
 
 .menu-dropdown{
   float: left;
@@ -36,8 +46,9 @@
 }
 
 .bottomNavBar {
+    text-align: center;
 	position: fixed;
-	width: 1190px;
+	width: 1390px;
 	overflow: hidden;
 	background-color: #333;
 	bottom:0;

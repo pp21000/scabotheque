@@ -18,7 +18,7 @@ public class AppProperties {
 	    ret = prop.get(key).toString();
 	    System.out.println(ret);
 	} catch (NullPointerException npe) {
-	    System.err.println("Erreur lors du chargement du fichier properties : le fichier n'a pas été trouvé.");
+	    System.err.println("Erreur lors du chargement du fichier properties : le fichier n'a pas Ã©tÃ© trouvÃ©.");
 	} catch (IOException e) {
 	    System.err.println("Erreur lors du chargement du fichier properties : " + e.getMessage());
 	}

@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+:root{
+    --CouleurVerte: #4BC00C;
+    --CouleurBleu: #0F638C;
+    --CouleurOrange: #DD7D0E;
+    --CouleurRouge: #CC0D36;
+}
+
 body {
     background: #f0f0f0;
     font-family: Calibri, sans-serif;
@@ -21,7 +28,7 @@ hr{
 .body{
 	display:flex;
 	margin: auto;
-    width: 1200px;
+    width: 1400px;
     min-width: 800px;
 }
 
@@ -78,7 +85,7 @@ hr{
 	text-align:right;
 }
 
-.adherentLabel { 
+.detailLabel { 
     color: #004462;
     font-size: 1em;
 }
@@ -88,7 +95,23 @@ hr{
 }
 
 .cercleVert{
-  	background:#bfd70e;
+  	background:var(--CouleurVerte);
+  	border-radius:50%;
+  	width:15px;
+  	height:15px;
+  	margin:0 0.5em;
+}
+
+.cercleBleu{
+  	background:var(--CouleurBleu);
+  	border-radius:50%;
+  	width:15px;
+  	height:15px;
+  	margin:0 0.5em;
+}
+
+.cercleOrange{
+  	background:var(--CouleurOrange);
   	border-radius:50%;
   	width:15px;
   	height:15px;
@@ -96,7 +119,7 @@ hr{
 }
 
 .cercleRouge{
-  	background:red;
+  	background:var(--CouleurRouge);
   	border-radius:50%;
   	width:15px;
   	height:15px;
@@ -116,6 +139,10 @@ hr{
 	display:none;
 }
 
+#exportContactForm{
+	display:none;
+}
+
 #advanceSearchForm{
 	display:none;
 }
@@ -123,6 +150,23 @@ hr{
 .dropMenuLayout{
 	margin-top:-1.5em;
 	margin-left:-0.5em;
+}
+
+.icon-button{
+    color: #f2f2f2;
+    fill: white;
+    padding: 0 10px; 
+    cursor: pointer;
+    margin:5px;
+    display: inline-block;
+    /*min-width: 13em;*/
+    background-color: #82aa37;
+    border: 0 none;
+    border-radius: 0.4em;
+    -webkit-appearance: none;
+    /*font-weight: bold;*/
+    height: 33px;
+    /*font-size: 15px;*/
 }
 
 .action-button{

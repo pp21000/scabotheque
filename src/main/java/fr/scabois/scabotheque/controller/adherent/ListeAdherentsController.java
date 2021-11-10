@@ -1,138 +1,300 @@
 package fr.scabois.scabotheque.controller.adherent;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 import fr.scabois.scabotheque.bean.adherent.Adherent;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
+import fr.scabois.scabotheque.bean.adherent.AdherentType;
 import fr.scabois.scabotheque.bean.adherent.Pole;
 import fr.scabois.scabotheque.bean.adherent.Secteur;
 import fr.scabois.scabotheque.bean.commun.Activite;
+import fr.scabois.scabotheque.bean.commun.Agence;
 import fr.scabois.scabotheque.bean.commun.ContactFonction;
+import fr.scabois.scabotheque.enums.NavType;
 import fr.scabois.scabotheque.enums.PageType;
 import fr.scabois.scabotheque.services.ApplicationMailer;
 import fr.scabois.scabotheque.services.ExportService;
 import fr.scabois.scabotheque.services.IServiceAdherent;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Comparator;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class ListeAdherentsController {
 
-    @Autowired
-    public ExportService exportService;
+  @Autowired
+  public ExportService exportService;
 
-    @Autowired
-    public ApplicationMailer mailer;
+  @Autowired
+  public ApplicationMailer mailer;
 
-    @Autowired
-    private IServiceAdherent service;
+  @Autowired
+  private IServiceAdherent service;
 
-    @RequestMapping(value = { "/", "/listeAdherents" }, method = RequestMethod.GET)
-    public String afficher(ModelMap pModel) {
+  @RequestMapping(value = {"/", "/listeAdherents", "adherentListe"}, method = RequestMethod.GET)
+  public String afficher(@CookieValue(value = "criteria", defaultValue = "") String cookie, ModelMap pModel, HttpServletRequest request) {
+    String param = request.getParameter("page");
+    Integer page = param == null ? 1 : Integer.parseInt(param);
 
-	// Chargement des listes de recherche rapide
-	List<Pole> poles = service.LoadPoles();
-	List<Secteur> secteurs = service.LoadSecteurs();
-	List<Activite> activites = service.LoadActivites();
-	List<ContactFonction> contactFonctions = service.LoadContactFonctions();
+    CriteriaAdherent criteria = null;
+    try {
+      if (cookie.length() != 0) {
+        criteria = deserialiseAdh(cookie);
+      }
+    } catch (IOException ex) {
+      Logger.getLogger("1" + ListeAdherentsController.class.getName()).log(Level.SEVERE, "lenght:" + cookie.length(), "1" + cookie);
+    } catch (ClassNotFoundException ex) {
+      Logger.getLogger("2" + ListeAdherentsController.class.getName()).log(Level.SEVERE, "lenght:" + cookie.length(), "2" + cookie);
+    }
+    return chargementListe(criteria, pModel, page);
+  }
 
-	pModel.addAttribute("polesList", poles);
-	pModel.addAttribute("secteursList", secteurs);
-	pModel.addAttribute("activitesList", activites);
-	pModel.addAttribute("contactFonctionList", contactFonctions);
+  @RequestMapping(value = "/listeContact", method = RequestMethod.GET)
+  public String contactListe(@CookieValue(value = "criteria", defaultValue = "") String cookie, ModelMap pModel, HttpServletRequest request) {
+    String param = request.getParameter("page");
+    Integer page = param == null ? 1 : Integer.parseInt(param);
 
-	// Si on arrive de la requestMethode POST
-	if (pModel.get("listeAdherents") == null) {
-	    // filtre en même temps sur les actifs
-	    List<Adherent> listeAdherents = service.LoadAdherents().stream().filter(a -> a.getEtat().getId() == 1)
-		    .sorted(Comparator.comparing(Adherent::getLibelle)).collect(Collectors.toList());
-	    pModel.addAttribute("listeAdherents", listeAdherents);
-
-	    final CriteriaAdherent criteria = new CriteriaAdherent();
-	    pModel.addAttribute("criteria", criteria);
-	}
-
-	pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
-
-	return "listeAdh";
+    CriteriaAdherent criteria = null;
+    try {
+      if (cookie.length() != 0) {
+        criteria = deserialiseAdh(cookie);
+      }
+    } catch (IOException ex) {
+      Logger.getLogger("1" + ListeAdherentsController.class.getName()).log(Level.SEVERE, "lenght:" + cookie.length(), "1" + cookie);
+    } catch (ClassNotFoundException ex) {
+      Logger.getLogger("2" + ListeAdherentsController.class.getName()).log(Level.SEVERE, "lenght:" + cookie.length(), "2" + cookie);
     }
 
-    @RequestMapping(value = "/exportList", method = RequestMethod.POST)
-    public void exportList(@ModelAttribute(value = "criteria") final CriteriaAdherent criteria,
-	    final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request,
-	    HttpServletResponse response) {
+    return chargementListeContact(criteria, pModel, page);
+  }
 
-	exportService.downloadFile(criteria, response);
+  @RequestMapping(value = "/initListeAdherents", method = RequestMethod.GET)
+  public String initRechercheAdh(ModelMap pModel, HttpServletResponse response) {
+    response.addCookie(resetCriteriaAdherentCookie());
+    return "redirect:/listeAdherents";
+  }
 
+  @RequestMapping(value = "/initListeContact", method = RequestMethod.GET)
+  public String initRechercheContact(ModelMap pModel, HttpServletResponse response) {
+    response.addCookie(resetCriteriaAdherentCookie());
+    return "redirect:/listeContact";
+  }
+
+  @RequestMapping(value = "/exportContacts", method = RequestMethod.POST)
+  public void exportContacts(@ModelAttribute(value = "criteria") final CriteriaAdherent criteria,
+          final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request,
+          HttpServletResponse response) {
+
+    exportService.exportContactToFile(criteria, response);
+  }
+
+  @RequestMapping(value = "/exportList", method = RequestMethod.POST)
+  public void exportList(@ModelAttribute(value = "criteria") final CriteriaAdherent criteria,
+          final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request,
+          HttpServletResponse response) {
+
+    exportService.exportListToFile(criteria, response);
+  }
+
+  @RequestMapping(value = "/exportMail", method = RequestMethod.POST)
+  public void exportMail(@ModelAttribute(value = "criteria") final CriteriaAdherent criteria,
+          final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request,
+          HttpServletResponse response) {
+
+    exportService.exportListToFile(criteria, response);
+  }
+
+  @RequestMapping(value = {"/", "/listeAdherents", "/adherentListe"}, method = RequestMethod.POST)
+  public String rechercheAdh(@ModelAttribute(value = "criteria") final CriteriaAdherent criteria,
+          final BindingResult pBindingResult, final ModelMap pModel, HttpServletResponse response, HttpServletRequest request) {
+
+    String param = request.getParameter("page");
+    Integer page = param == null ? 1 : Integer.parseInt(param);
+
+    try {
+      Cookie cookie = new Cookie("criteria", serialiseAdh(criteria));
+      cookie.setMaxAge(7 * 24 * 60 * 60);
+      response.addCookie(cookie);
+    } catch (IOException ex) {
+      Logger.getLogger(ListeAdherentsController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return chargementListe(criteria, pModel, page);
+  }
+
+  @RequestMapping(value = "/listeContact", method = RequestMethod.POST)
+  public String rechercheContact(@ModelAttribute(value = "criteria") final CriteriaAdherent criteria,
+          final BindingResult pBindingResult, final ModelMap pModel, HttpServletResponse response, HttpServletRequest request) {
+
+    String param = request.getParameter("page");
+    Integer page = param == null ? 1 : Integer.parseInt(param);
+
+    try {
+      Cookie cookie = new Cookie("criteria", serialiseAdh(criteria));
+      cookie.setMaxAge(7 * 24 * 60 * 60);
+      response.addCookie(cookie);
+    } catch (IOException ex) {
+      Logger.getLogger(ListeAdherentsController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return chargementListeContact(criteria, pModel, page);
+  }
+
+  @RequestMapping(value = "/sendMail", method = RequestMethod.POST)
+  public String sendMail(@ModelAttribute(value = "criteria") final CriteriaAdherent criteria,
+          final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
+
+    String param = request.getParameter("page");
+    Integer page = param == null ? 1 : Integer.parseInt(param);
+
+    // recherche de tous les contacts pour envoy du message.
+    final List<Adherent> listeAdherents = service.loadAdherents(criteria);
+    List<AdherentContactRole> listeTotal = new ArrayList<>();
+    try {
+      mailer.sendHTMLMail(criteria.getSender(), criteria.getSender(),
+              "Copie de votre message :" + criteria.getObject(), criteria.getMessageMail());
+      listeAdherents.stream().forEach(a -> {
+        final List<AdherentContactRole> contacts = service.loadAdherentContactFonction(a.getId(),
+                criteria.isMailingDirigeant(), criteria.isMailingCommerce(), criteria.isMailingAdministratif(),
+                criteria.isMailingCompta());
+
+        listeTotal.addAll(contacts);
+
+        mailer.sendHTMLMail(criteria.getSender(),
+                contacts.stream().map(m -> m.getMail()).collect(Collectors.toSet()).toString(),
+                criteria.getObject(), criteria.getMessageMail());
+      });
+
+      // message de compte rendu
+      mailer.sendHTMLMail(criteria.getSender(), criteria.getSender(), "Compte rendu:" + criteria.getObject(),
+              "Votre message est envoyÃ© Ã  tout les destinataires suivant :"
+              + listeTotal.stream().map(m -> m.getMail()).collect(Collectors.toList()).toString());
+
+      criteria.setAvertissement("Votre message est envoyÃ©.");
+
+    } catch (Exception e) {
+      mailer.sendHTMLMail(criteria.getSender(), criteria.getSender(), "Compte rendu:" + criteria.getObject(),
+              "Une erreur est survenue : \n Exception:" + e.getMessage()
+              + "\n Le message a Ã©tÃ© envoyÃ© aux destinataire suivant : "
+              + listeTotal.stream().map(m -> m.getMail()).collect(Collectors.toList()).toString());
+
+      criteria.setAvertissement("Une erreur est survenue, Le message na pas Ã©tÃ© envoyÃ©." + e.getMessage());
     }
 
-    @RequestMapping(value = { "/", "/listeAdherents" }, method = RequestMethod.POST)
-    public String rechercheAdh(@ModelAttribute(value = "criteria") final CriteriaAdherent criteria,
-	    final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
+    pModel.addAttribute("listeAdherents", listeAdherents);
 
-	final List<Adherent> listeAdherents = service.LoadAdherents(criteria);
+    return chargementListe(criteria, pModel, page);
+  }
 
-	pModel.addAttribute("listeAdherents", listeAdherents);
+  private String chargementListe(CriteriaAdherent criteria, ModelMap pModel, Integer page) {
 
-	return afficher(pModel);
+    List<Adherent> listeAdherents;
+    // Chargement des listes de recherche rapide
+    List<Pole> poles = service.loadPoles();
+    List<Agence> agences = service.loadAgences();
+    List<Secteur> secteurs = service.loadSecteurs();
+    List<Activite> activites = service.loadActivites();
+    List<AdherentType> types = service.loadAdherentTypes();
+    List<ContactFonction> contactFonctions = service.loadContactFonctions();
+
+    pModel.addAttribute("polesList", poles);
+    pModel.addAttribute("agencesList", agences);
+    pModel.addAttribute("secteursList", secteurs);
+    pModel.addAttribute("activitesList", activites);
+    pModel.addAttribute("adhTypesList", types);
+    pModel.addAttribute("contactFonctionList", contactFonctions);
+
+    // Si on a trouvÃ© un cookie avec les criteres de recherche
+    if (criteria == null) {
+      criteria = new CriteriaAdherent();
+    }
+    listeAdherents = service.loadAdherents(criteria).stream().sorted(Comparator.comparing(Adherent::getLibelle)).collect(Collectors.toList());
+
+    pModel.addAttribute("nbAdherent", listeAdherents.size());
+    pModel.addAttribute("page", page);
+    pModel.addAttribute("maxPage", (int) Math.ceil(listeAdherents.size() / 24.0));
+    pModel.addAttribute("listeAdherents", listeAdherents.stream().sorted(Comparator.comparing(Adherent::getLibelle)).skip(24 * (page - 1)).limit(24).collect(Collectors.toList()));
+    pModel.addAttribute("criteria", criteria);
+    pModel.addAttribute("navType", NavType.ADHERENT);
+    pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
+
+    return "adherentListe";
+  }
+
+  private String chargementListeContact(CriteriaAdherent criteria, ModelMap pModel, Integer page) {
+    List<Pole> poles = service.loadPoles();
+    List<Agence> agences = service.loadAgences();
+    List<Secteur> secteurs = service.loadSecteurs();
+    List<Activite> activites = service.loadActivites();
+    List<ContactFonction> contactFonctions = service.loadContactFonctions();
+
+    pModel.addAttribute("polesList", poles);
+    pModel.addAttribute("agencesList", agences);
+    pModel.addAttribute("secteursList", secteurs);
+    pModel.addAttribute("activitesList", activites);
+    pModel.addAttribute("contactFonctionList", contactFonctions);
+
+    List<AdherentContactRole> listContact;
+
+    if (criteria != null) {
+      listContact = service.loadAdherentContact(criteria).stream().sorted(Comparator.comparing(AdherentContactRole::getNom)).collect(Collectors.toList());
+    } else {
+      criteria = new CriteriaAdherent();
+      // filtre quand mÃªme temps sur les actifs
+      listContact = service.loadAdherentsContact().stream().filter(a -> a.getAdherent().getEtat().getId() == 1)
+              .sorted(Comparator.comparing(AdherentContactRole::getNom)).collect(Collectors.toList());
     }
 
-    @RequestMapping(value = "/sendMail", method = RequestMethod.POST)
-    public String sendMail(@ModelAttribute(value = "criteria") final CriteriaAdherent criteria,
-	    final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
+    pModel.addAttribute("page", page);
+    pModel.addAttribute("maxPage", (int) Math.ceil(listContact.size() / 24.0));
+    pModel.addAttribute("listeContacts", listContact.stream().sorted(Comparator.comparing(AdherentContactRole::getNom)).skip(24 * (page - 1)).limit(24).collect(Collectors.toList()));
+    pModel.addAttribute("nbContact", listContact.size());
+    pModel.addAttribute("criteria", criteria);
+    pModel.addAttribute("navType", NavType.ADHERENT);
+    pModel.addAttribute("pageType", PageType.LIST_CONTACT);
 
-	// recherche de tous les contacts pour envoy du message.
-	final List<Adherent> listeAdherents = service.LoadAdherents(criteria);
-	List<AdherentContactRole> listeTotal = new ArrayList<>();
+    return "listeContact";
+  }
 
-	try {
-            
-            mailer.sendHTMLMail(criteria.getSender(), criteria.getSender(),
-                "Copie de votre message :" + criteria.getObject(), criteria.getMessageMail());
+  /**
+   * DÃ©serialise Base64 string.
+   */
+  private CriteriaAdherent deserialiseAdh(String s) throws IOException, ClassNotFoundException {
+    byte[] data = Base64.getDecoder().decode(s);
+    ObjectInputStream ois = new ObjectInputStream(
+            new ByteArrayInputStream(data));
+    Object cookie = ois.readObject();
+    ois.close();
+    return (CriteriaAdherent) cookie;
+  }
 
-            listeAdherents.stream().forEach(a -> {
-		final List<AdherentContactRole> contacts = service.loadAdherentContactFonction(a.getId(),
-			criteria.isMailingDirigeant(), criteria.isMailingCommerce(), criteria.isMailingAdministratif(),
-			criteria.isMailingCompta());
+  private Cookie resetCriteriaAdherentCookie() {
+    Cookie cookie = new Cookie("criteria", null);
+    cookie.setMaxAge(0);
+    return cookie;
+  }
 
-		listeTotal.addAll(contacts);
+  /**
+   * Write the object to a Base64 string.
+   */
+  private String serialiseAdh(CriteriaAdherent o) throws IOException {
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    ObjectOutputStream oos = new ObjectOutputStream(baos);
+    oos.writeObject(o);
+    oos.close();
+    return Base64.getEncoder().encodeToString(baos.toByteArray());
+  }
 
-		mailer.sendHTMLMail(criteria.getSender(),
-			contacts.stream().map(m -> m.getMail()).collect(Collectors.toSet()).toString(),
-			criteria.getObject(), criteria.getMessageMail());
-
-	    });
-
-	    // message de compte rendu
-	    mailer.sendHTMLMail(criteria.getSender(), criteria.getSender(), "Compte rendu:" + criteria.getObject(),
-		    "Votre message est envoyé à tout les destinataires suivant :"
-			    + listeTotal.stream().map(m -> m.getMail()).collect(Collectors.toList()).toString());
-
-	    criteria.setAvertissement("Votre message est envoyé.");
-
-	} catch (Exception e) {
-	    mailer.sendHTMLMail(criteria.getSender(), criteria.getSender(), "Compte rendu:" + criteria.getObject(),
-		    "Une erreur est survenue : \n Exception:" + e.getMessage()
-			    + "\n Le message a été envoyé aux destinataire suivant : "
-			    + listeTotal.stream().map(m -> m.getMail()).collect(Collectors.toList()).toString());
-
-	    criteria.setAvertissement("Une erreur est survenue, Le message na pas été envoyé." + e.getMessage());
-	}
-
-	pModel.addAttribute("listeAdherents", listeAdherents);
-
-	return afficher(pModel);
-    }
 }

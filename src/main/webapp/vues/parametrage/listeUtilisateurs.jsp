@@ -9,7 +9,7 @@
 
 <div class="listeUtilisateur">
 	<form:form method="post" modelAttribute="creation" action="AjoutUtilisateur">
-		<span class="adherentLabel">Nouvel utilisateur</span>
+		<span class="detailLabel">Nouvel utilisateur</span>
 		<form:input path="userName" placeholder="Nom de l'utilisateur" autofocus="true"/>
 		<form:input path="password" placeholder="Mot de passe"/>
 <%-- 		<form:input name="username" value="${username}" type="text" placeholder="Nom de l'utilisateur" autofocus="true" /> --%>
@@ -26,7 +26,7 @@
 				<div class="detail">
 <!-- 				style="display: grid; grid-template-columns: 20em 1fr; border-bottom: solid 1px gray; -->
 					<div class="showDetail" style="display: grid; grid-template-columns: 15em 5em; ">
-						<span id="user-1${editUser.username}" class="adherentLabel" style="margin: auto; margin-left:0;" >${editUser.username}</span>
+						<span id="user-1${editUser.username}" class="detailLabel" style="margin: auto; margin-left:0;" >${editUser.username}</span>
 						<a  id="user-2${editUser.username}" ><svg><use xlink:href="../resources/images/icones.svg#edit"></use></svg></a>
 					</div>
 				

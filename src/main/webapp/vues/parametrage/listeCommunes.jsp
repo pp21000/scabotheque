@@ -8,7 +8,7 @@
 <div class="listeIdLibelle">
 
 	<form:form method="get" action="listeCommunes">
-		<span class="adherentLabel"><spring:message code="label.adhArtipole"/></span>
+		<span class="detailLabel"><spring:message code="label.adhArtipole"/></span>
 		${communeListe.departementFilter}
 		<input name="filterCP" value="${filtreCP}" type="text" placeholder="Code postale ou Nom" autofocus="true" />
 		<button class="action-button" type="submit">Rechercher</button>
@@ -22,7 +22,7 @@
 <!-- 			<option value="" >trop de résultat</option> -->
 <!-- 		</select> -->
 		<div>
-			<spring:message code="count.adherent" arguments="${communeListe.list.size()}"/>
+                    <spring:message code="count.adherent" arguments="${communeListe.list.size()}"/>
 		</div>
 		<div class="textAlignCenter">
 			<c:if test = "${communeListe.list.size() < 200}">
