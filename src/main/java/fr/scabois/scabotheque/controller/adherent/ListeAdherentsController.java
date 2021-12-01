@@ -45,7 +45,7 @@ public class ListeAdherentsController {
   @Autowired
   private IServiceAdherent service;
 
-  @RequestMapping(value = {"/", "/listeAdherents", "adherentListe"}, method = RequestMethod.GET)
+  @RequestMapping(value = {"/listeAdherents", "adherentListe"}, method = RequestMethod.GET)
   public String afficher(@CookieValue(value = "criteria", defaultValue = "") String cookie, ModelMap pModel, HttpServletRequest request) {
     String param = request.getParameter("page");
     Integer page = param == null ? 1 : Integer.parseInt(param);
@@ -107,6 +107,15 @@ public class ListeAdherentsController {
           final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request,
           HttpServletResponse response) {
 
+    exportService.exportListToFile(criteria, response);
+  }
+
+  @RequestMapping(value = "/exportListAll", method = RequestMethod.POST)
+  public void exportListAll(@ModelAttribute(value = "criteria") final CriteriaAdherent criteria,
+          final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request,
+          HttpServletResponse response) {
+
+    criteria.setExportAll(Boolean.TRUE);
     exportService.exportListToFile(criteria, response);
   }
 

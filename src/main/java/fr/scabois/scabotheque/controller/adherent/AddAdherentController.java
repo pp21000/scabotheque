@@ -106,7 +106,7 @@ public class AddAdherentController {
 
     pModel.addAttribute("pageType", PageType.CREATE_ADHERENT);
 
-    return "addAdherent";
+    return "addIdentite";
   }
 
   public Adherent editToAdh(EditAdherent editAdh) {

@@ -4,6 +4,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 
 
 <!-- Navbar -->
@@ -16,21 +17,29 @@
     <li class="nav-item d-sm-inline-block">
       <a href="listeAdherents" class="nav-link bg-secondary <c:if test = "${navType == 'ADHERENT'}"> bg-success </c:if>">Adherent</a>
     </li>
-    <li class="nav-item d-sm-inline-block">
-      <a href="ordreTournee" class="nav-link bg-secondary <c:if test = "${navType == 'LOGISTIQUE'}"> bg-success </c:if>">Logistique</a>
-    </li>
-    <li class="nav-item d-sm-inline-block">
-      <a href="listeAdherents" class="nav-link bg-secondary <c:if test = "${navType == 'COMMERCE'}"> bg-success </c:if>">Commerce</a>
-    </li>
+    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_EXPLOITATION')">
+      <li class="nav-item d-sm-inline-block">
+        <a href="ordreTournee" class="nav-link bg-secondary <c:if test = "${navType == 'LOGISTIQUE'}"> bg-success </c:if>">Logistique</a>
+      </li>
+    </sec:authorize>
+    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_DIRECTION')">
+      <li class="nav-item d-sm-inline-block">
+        <a href="listeAdherents" class="nav-link bg-secondary <c:if test = "${navType == 'COMMERCE'}"> bg-success </c:if>">Commerce</a>
+      </li>
+    </sec:authorize>
     <li class="nav-item d-sm-inline-block">
       <a href="listeAdherents" class="nav-link bg-secondary <c:if test = "${navType == 'FOURNISSEUR'}"> bg-success </c:if>">Fournisseur</a>
     </li>
-    <li class="nav-item d-sm-inline-block">
-      <a href="listeAdherents" class="nav-link bg-secondary <c:if test = "${navType == 'ARTIPOLE'}"> bg-success </c:if>">Artipôle</a>
-    </li>
-    <li class="nav-item d-sm-inline-block">
-      <a href="listeAdherents" class="nav-link bg-secondary <c:if test = "${navType == 'INFORMATIQUE'}"> bg-success </c:if>">Informatique</a>
-    </li>
+    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_ARTIPOLE')">
+      <li class="nav-item d-sm-inline-block">
+        <a href="listeAdherents" class="nav-link bg-secondary <c:if test = "${navType == 'ARTIPOLE'}"> bg-success </c:if>">Artipôle</a>
+      </li>
+    </sec:authorize>
+    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_INFORMATIQUE')">
+      <li class="nav-item d-sm-inline-block">
+        <a href="listeAdherents" class="nav-link bg-secondary <c:if test = "${navType == 'INFORMATIQUE'}"> bg-success </c:if>">Informatique</a>
+      </li>
+    </sec:authorize>
     
     <li class="nav-item dropdown">
       <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle bg-secondary">Liens utiles</a>
@@ -73,7 +82,7 @@
       </li> 
       <li class="nav-item">
           <a class="nav-link bg-secondary" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-              <i class="fas fa-th-large"></i>
+              <i class="fas fa-ellipsis-v"></i>
           </a>
       </li>
   </ul>

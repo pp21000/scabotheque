@@ -46,7 +46,7 @@ public class LogistiqueDAO implements ILogistiqueDAO {
 
     // Le but serait d'avoir une ligne par adherent
     List<LogistiqueTournee> list = entityManager.createQuery("from LogistiqueTournee lt "
-            + "where lt.agence = :codeAgence and lt.zone = :zone and dateBonLiv = :dateLiv and user like :user", LogistiqueTournee.class)
+            + "where lt.agence = :codeAgence and lt.zone = :zone and dateLivraison = :dateLiv and user like :user", LogistiqueTournee.class)
             .setParameter("codeAgence", codeAgence)
             .setParameter("zone", zone)
             .setParameter("dateLiv", dateLivraison)

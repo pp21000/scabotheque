@@ -42,7 +42,7 @@
 
         <sec:form-login 
             login-page="/login" 
-            default-target-url="/listeAdherents" 
+            default-target-url="/dashboard" 
                 authentication-failure-url="/loginFailed" 
                 login-processing-url="/loginProcess"
                 username-parameter="username"

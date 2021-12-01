@@ -54,21 +54,23 @@
           <a href="adherentListe?list=admin" class="small-box-footer">Base adhérent <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
-    <!--</div>-->
-      <div class="col-lg-3 col-6">
-        <!-- small box -->
-        <div class="small-box bg-success">
-          <div class="inner">
-            <h3>Base Logistique</h3>
-            <p> -</p>
+
+      <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_EXPLOITATION')">
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-success">
+            <div class="inner">
+              <h3>Base Logistique</h3>
+              <p> -</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-truck"></i>
+              <ion-icon name="people-outline"></ion-icon>
+            </div>
+            <a href="ordreTournee" class="small-box-footer">Logistique <i class="fas fa-arrow-circle-right"></i></a>
           </div>
-          <div class="icon">
-            <i class="fas fa-truck"></i>
-            <ion-icon name="people-outline"></ion-icon>
-          </div>
-          <a href="ordreTournee" class="small-box-footer">Logistique <i class="fas fa-arrow-circle-right"></i></a>
         </div>
-      </div>
+      </sec:authorize>
     </div>
     <!-- ./row -->
     <div class="row">

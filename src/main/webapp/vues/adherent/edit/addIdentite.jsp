@@ -64,11 +64,17 @@
             <form:input class="form-control" name="adherent.code" path="adherent.code" autofocus="true"/>
             <form:errors class="bg-danger" path="adherent.code" />
           </div>
-		
+
           <div class="form-group">
             <form:label path="adherent.codeERP" ><spring:message code="label.codeERP"/></form:label>
-            <form:input class="form-control" name="adherent.codeERP" path="adherent.codeERP" autofocus="true"/>
+            <form:input class="form-control" name="adherent.codeERP" path="adherent.codeERP"/>
             <form:errors class="bg-danger" path="adherent.codeERP" />
+          </div>
+
+          <div class="form-group">
+            <form:label path="adherent.codeERPParent" ><spring:message code="label.codeERPParent"/></form:label>
+            <form:input class="form-control" name="adherent.codeERPParent" path="adherent.codeERPParent"/>
+            <form:errors class="bg-danger" path="adherent.codeERPParent" />
           </div>
 		
           <div class="form-group">
@@ -122,7 +128,7 @@
             <form:select class="form-control" name="adherent.agence" path="adherent.agence.id">
               <form:options items="${agenceList}" itemValue="id" itemLabel="libelle" />
             </form:select>					        
-            <form:errors class="bg-danger" path="adherent.pole" /> 
+            <form:errors class="bg-danger" path="adherent.agence" /> 
           </div>
 	
           <div class="form-group">
@@ -146,11 +152,6 @@
             <form:checkbox path="adherent.isOutilDechargement"/>
           </div>
           
-          
-          
-          
-          
-          
         </div>
         <!-- /.card-body -->
       </div>
@@ -173,6 +174,14 @@
             <form:label path="adherent.role" ><spring:message code="label.role"/></form:label>
             <form:select class="form-control" name="adherent.role" path="adherent.role.id">
               <form:options items="${roleList}" itemValue="id" itemLabel="libelle" />
+            </form:select>
+            <form:errors class="bg-danger" path="adherent.role" />
+          </div>
+	
+          <div class="form-group">
+            <form:label path="adherent.pole" ><spring:message code="label.pole"/></form:label>
+            <form:select class="form-control" name="adherent.pole" path="adherent.pole.id">
+              <form:options items="${poleList}" itemValue="id" itemLabel="libelle" />
             </form:select>
             <form:errors class="bg-danger" path="adherent.role" />
           </div>

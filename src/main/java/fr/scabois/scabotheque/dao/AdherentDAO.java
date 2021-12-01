@@ -1080,6 +1080,8 @@ public class AdherentDAO implements IAdherentDAO {
     bddAdherent.setEtat(adherent.getEtat());
     bddAdherent.setAdherentType(adherent.getAdherentType());
     bddAdherent.setCompteType(adherent.getCompteType());
+    bddAdherent.setLatitude(adherent.getLatitude());
+    bddAdherent.setLongitude(adherent.getLongitude());
 //        if (adherent.getContactComptable() != null) {
 //            bddAdherent.setContactComptable(adherent.getContactComptable());
 //        }

@@ -39,11 +39,8 @@
             <div class="card">
                 <div class="card-body login-card-body">
                     <p class="login-box-msg"><spring:message code="label.connect"/></p>
-
+                    <div class="msg"><%=request.getParameter("msg")%></div>
                     <form name='f' action="loginProcess" method='POST'>
-                        <c:if test="${not empty error}">
-                            <div class="error">${error}</div>
-                        </c:if>
                         <c:if test="${not empty msg}">
                             <div class="msg">${msg}</div>
                         </c:if>

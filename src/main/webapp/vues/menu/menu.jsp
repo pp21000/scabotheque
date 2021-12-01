@@ -51,15 +51,17 @@
             </a>
           </li>
 
-          <li class="nav-item has-treeview ">
-            <a href="ordreTournee" class="nav-link <c:if test = "${navType == 'LOGISTIQUE'}"> active </c:if>">
-              <i class="nav-icon fas fa-user-friends"></i>
-              <p>
-                Base Logistique
-                <!--<i class="right fas fa-angle-left"></i>-->
-              </p>
-            </a>
-          </li>
+          <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_EXPLOITATION')">
+            <li class="nav-item has-treeview ">
+              <a href="ordreTournee" class="nav-link <c:if test = "${navType == 'LOGISTIQUE'}"> active </c:if>">
+                <i class="nav-icon fas fa-user-friends"></i>
+                <p>
+                  Base Logistique
+                  <!--<i class="right fas fa-angle-left"></i>-->
+                </p>
+              </a>
+            </li>
+          </sec:authorize>
 
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link">

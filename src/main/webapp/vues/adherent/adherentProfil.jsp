@@ -307,6 +307,24 @@
                         </div>
                       </div>
                     </div>
+                            
+                    <div class="post">
+                      <div class="user-block">
+                        <span class="username text-success">
+                            Information Complementaires
+                        </span>
+                      </div>
+                      <div class="form-group row">
+                        <label for="agence" class="col-sm-2 col-form-label">Longitude</label>
+                        <div class="col-sm-10 col-form-label">
+                          <span id="agence">${adherent.longitude}</span> 
+                        </div>
+                        <label for="agence" class="col-sm-2 col-form-label">Longitude</label>
+                        <div class="col-sm-10 col-form-label">
+                          <span id="agence">${adherent.latitude}</span> 
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <!-- /.card-body -->
                 </div>

@@ -141,6 +141,8 @@ public class EditAdhController {
         editableAdh.setEtat(adh.getEtat());
         editableAdh.setAdherentType(adh.getAdherentType());
         editableAdh.setCompteType(adh.getCompteType());
+        editableAdh.setLatitude(adh.getLatitude());
+        editableAdh.setLongitude(adh.getLongitude());
 //        editableAdh.setContactComptable(adh.getContactComptable());
 
         return editableAdh;

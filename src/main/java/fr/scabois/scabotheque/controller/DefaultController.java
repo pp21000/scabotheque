@@ -21,7 +21,7 @@ public class DefaultController {
     return "enCours";
   }
 
-  @RequestMapping(value = {"/--", "/dashboard"}, method = RequestMethod.GET)
+  @RequestMapping(value = {"/", "/dashboard"}, method = RequestMethod.GET)
   public String dashboard(final ModelMap pModel) {
 
     pModel.addAttribute("pageType", PageType.DASHBOARD);

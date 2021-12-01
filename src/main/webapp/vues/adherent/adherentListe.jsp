@@ -316,35 +316,53 @@
 
     <!-- Control sidebar content goes here -->
     <div class="mb-1" >
-      <a href="addAdherent" class="nav-link">
-        <p>
-          <i class="nav-icon fas fa-user-lock"></i>
-          Ajouter un adhérent
-        </p>
-      </a>
-     
-      <form:form id="exportListForm" method="post" modelAttribute="criteria" action="exportList">
-        <form:input type="hidden" name="text" path="text"/>
-        <form:input type="hidden" name="poleIds" path="poleIds"/>
-        <form:input type="hidden" name="secteurIds" path="secteurIds"/>
-        <form:input type="hidden" name="activiteIds" path="activiteIds"/>
-        <form:input type="hidden" name="showAll" path="showAll"/>
-        <form:input type="hidden" name="showSousCompte" path="showSousCompte"/>
-        <form:input type="hidden" name="showAdminOnly" path="showAdminOnly"/>
-        <form:input type="hidden" name="showArtipoleOnly" path="showArtipoleOnly"/>
-
-        
-        <a href="javascript:;" onclick="parentNode.submit();">
+      <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ACTIVITE_EDIT')">
+        <a href="addAdherent" class="nav-link">
           <p>
-            <%--<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_EXPORT_INTERNE )">--%>
-              <%--<form:checkbox id="exportAll" name="exportAll" path="exportAll"/>--%> 
-              <!--<label for="exportAll"><spring:message code="label.exportAll"/></label>-->
-            <%--</sec:authorize>--%>
-            <i class="nav-icon fas fa-user-lock"></i>
-            <spring:message code="menu.exportExcel"/>
+            <i class="nav-icon fas fa-user-plus"></i>
+            Ajouter un adhérent
           </p>
         </a>
-      </form:form>
+      </sec:authorize>
+      
+        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_EXPORT', 'ROLE_EXPORT_INTERNE' )">
+        <form:form id="exportListForm" method="post" modelAttribute="criteria" action="exportList">
+          <form:input type="hidden" name="text" path="text"/>
+          <form:input type="hidden" name="poleIds" path="poleIds"/>
+          <form:input type="hidden" name="secteurIds" path="secteurIds"/>
+          <form:input type="hidden" name="activiteIds" path="activiteIds"/>
+          <form:input type="hidden" name="showAll" path="showAll"/>
+          <form:input type="hidden" name="showSousCompte" path="showSousCompte"/>
+          <form:input type="hidden" name="showAdminOnly" path="showAdminOnly"/>
+          <form:input type="hidden" name="showArtipoleOnly" path="showArtipoleOnly"/>
+          <a href="javascript:;" onclick="parentNode.submit();" class="nav-link">
+            <p>
+              <i class="nav-icon fas fa-file-excel"></i>
+              <spring:message code="menu.exportExcel"/>
+            </p>
+          </a>
+        </form:form>
+      </sec:authorize>
+      
+      <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_EXPORT_INTERNE' )">
+        <form:form id="exportListForm" method="post" modelAttribute="criteria" action="exportListAll">
+          <form:input type="hidden" name="text" path="text"/>
+          <form:input type="hidden" name="poleIds" path="poleIds"/>
+          <form:input type="hidden" name="secteurIds" path="secteurIds"/>
+          <form:input type="hidden" name="activiteIds" path="activiteIds"/>
+          <form:input type="hidden" name="showAll" path="showAll"/>
+          <form:input type="hidden" name="showSousCompte" path="showSousCompte"/>
+          <form:input type="hidden" name="showAdminOnly" path="showAdminOnly"/>
+          <form:input type="hidden" name="showArtipoleOnly" path="showArtipoleOnly"/>
+          <a href="javascript:;" onclick="parentNode.submit();" class="nav-link">
+            <p>
+              <i class="nav-icon fas fa-file-excel"></i>
+              <spring:message code="label.exportAll"/>
+            </p>
+          </a>
+        </form:form>
+      </sec:authorize>
+
     </div>
   </div>
 </aside>
