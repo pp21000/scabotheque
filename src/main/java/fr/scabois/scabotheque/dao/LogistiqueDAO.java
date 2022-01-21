@@ -9,6 +9,7 @@ import fr.scabois.scabotheque.utils.AppProperties;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -46,7 +47,7 @@ public class LogistiqueDAO implements ILogistiqueDAO {
 
     // Le but serait d'avoir une ligne par adherent
     List<LogistiqueTournee> list = entityManager.createQuery("from LogistiqueTournee lt "
-            + "where lt.agence = :codeAgence and lt.zone = :zone and dateLivraison = :dateLiv and user like :user", LogistiqueTournee.class)
+            + "where lt.agence = :codeAgence and lt.zone = :zone and lt.dateLivraison = :dateLiv and lt.user like :user", LogistiqueTournee.class)
             .setParameter("codeAgence", codeAgence)
             .setParameter("zone", zone)
             .setParameter("dateLiv", dateLivraison)
@@ -54,11 +55,14 @@ public class LogistiqueDAO implements ILogistiqueDAO {
             .getResultList();
 
     list.stream().forEach(l -> l.getTourneeCommande().addAll(
-            entityManager.createQuery("from LogistiqueTourneeCmd lt where lt.key = :key and lt.user = :user", LogistiqueTourneeCmd.class)
+            entityManager.createQuery("from LogistiqueTourneeCmd lt where lt.transmis != 1 and lt.key = :key and lt.user = :user", LogistiqueTourneeCmd.class)
                     .setParameter("key", l.getKey())
                     .setParameter("user", l.getUser())
                     .getResultList()));
-    return list;
+
+    return list.stream()
+            .filter(f -> !f.getTourneeCommande().isEmpty())
+            .collect(Collectors.toList());
   }
 
 //    @Override

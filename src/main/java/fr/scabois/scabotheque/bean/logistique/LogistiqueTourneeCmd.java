@@ -35,6 +35,7 @@ public class LogistiqueTourneeCmd implements HasId {
   @Column(name = "nb_colis")
   private int nbColis;
   private String user;
+  private int transmis;
 
   public LogistiqueTourneeCmd() {
   }
@@ -129,6 +130,14 @@ public class LogistiqueTourneeCmd implements HasId {
 
   public void setRefBon(String refBon) {
     this.refBon = refBon;
+  }
+
+  public int getTransmis() {
+    return transmis;
+  }
+
+  public void setTransmis(int transmis) {
+    this.transmis = transmis;
   }
 
   public String getUser() {

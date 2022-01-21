@@ -202,12 +202,12 @@ public class LogistiqueController {
   }
 
   @RequestMapping(value = "/sendMissionConducteur", method = RequestMethod.POST)
-  public String sendMission(@Valid @ModelAttribute(value = "tourneeForm") final EditLogistiqueTourneeForm tourneeForm,
+  public void sendMission(@Valid @ModelAttribute(value = "tourneeForm") final EditLogistiqueTourneeForm tourneeForm,
           @CookieValue(value = "criteriaLog", defaultValue = "") String cookie,
           final BindingResult pBindingResult, final ModelMap pModel, HttpServletResponse response, HttpServletRequest request) {
 
     if (tourneeForm.getTournees() == null) {
-      pBindingResult.addError(new FieldError("messageErreur", "messageErreur", "Candice, t'es quand même une buse... Merci de charger les données avant d'envoyer! "));
+      pBindingResult.addError(new FieldError("messageErreur", "messageErreur", "Candice, quand même... Merci de charger les données avant d'envoyer! "));
     } else {
       // validation de la suite des ordres de tournées
       List<Integer> ordres = new ArrayList<>();
@@ -236,11 +236,11 @@ public class LogistiqueController {
               + AppProperties.getPropertie("export.exportOrdreMissionFileName");
       serviceExport.downloadFile(fileName, response);
 
-//      return rechercheTournee(, pBindingResult, pModel, response, request);
-      return "redirect:/ordreTournee";
+//      return rechercheTournee(cookie, pBindingResult, pModel, response, request);
+//      return "redirect:/ordreTournee";
     }
 
-    return afficherTounee(cookie, pModel, tourneeForm);
+//    return afficherTounee(cookie, pModel, tourneeForm);
   }
 
   /**

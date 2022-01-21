@@ -130,7 +130,7 @@ public class ExportService {
         row.createCell(i++).setCellValue(contact == null ? "" : contact.getCivilite());
         row.createCell(i++).setCellValue(contact == null ? "" : contact.getNom());
         row.createCell(i++).setCellValue(contact == null ? "" : contact.getPrenom());
-        row.createCell(i++).setCellValue(a.getSiren());
+        row.createCell(i++).setCellValue(a.getSiret() == null ? a.getSiren() : a.getSiret().isEmpty() ? a.getSiren() : a.getSiret());
         row.createCell(i++).setCellValue(a.getPole().getLibelle());
 //		row.createCell(i++).setCellValue(a.getFormeJuridique().getLibelle() + " " + a.getDenomination());
         row.createCell(i++).setCellValue(a.getDenomination());

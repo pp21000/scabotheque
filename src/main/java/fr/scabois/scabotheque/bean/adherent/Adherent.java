@@ -41,7 +41,7 @@ public class Adherent {
   private String codeERP;
 
   @Column(name = "code_erp_parent")
-  private String codeERPParent;
+  private String codeERPParent = "";
 
   @ManyToOne
   private Commune commune;
@@ -229,7 +229,7 @@ public class Adherent {
   }
 
   public double getLatitude() {
-    return latitude;
+    return latitude == null ? 0 : latitude;
   }
 
   public void setLatitude(double latitude) {
@@ -237,7 +237,7 @@ public class Adherent {
   }
 
   public double getLongitude() {
-    return longitude;
+    return longitude == null ? 0 : longitude;
   }
 
   public void setLongitude(double longitude) {

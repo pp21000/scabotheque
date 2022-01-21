@@ -48,24 +48,8 @@
     <form:input type="hidden" path="adherent.secteur.id"/>
     <form:input type="hidden" path="adherent.tournee.id"/>
     <form:input type="hidden" path="adherent.isOutilDechargement"/>
-    <%--<form:input type="hidden" path="adherent.adherentType.id"/>--%>
-    <%--<form:input type="hidden" path="adherent.compteType.id"/>--%>
-<%-- 	<form:input type="hidden" path="adherent.dateEntree"/> --%>
-<%-- 	<form:input type="hidden" path="adherent.dateSortie"/> --%>
-<%-- 	<form:input type="hidden" path="adherent.role.id"/> --%>
-<%-- 	<form:input type="hidden" path="adherent.formeJuridique.id"/> --%>
-<%--    <form:input type="hidden" path="adherent.cnxEolasAllow"/>--%>
-<%-- 	<form:input type="hidden" path="adherent.siren"/> --%>
-<%-- 	<form:input type="hidden" path="adherent.siret"/> --%>
-<%-- 	<form:input type="hidden" path="adherent.ape.id"/> --%>
-<%-- 	<form:input type="hidden" path="adherent.numRepMetier"/> --%>
-<%-- 	<form:input type="hidden" path="adherent.rcsRm"/> --%>
-<%-- 	<form:input type="hidden" path="adherent.rmCommune.id"/> --%>
-<%-- 	<form:input type="hidden" path="adherent.rcsCommune.id"/> --%>
-<%-- 	<form:input type="hidden" path="adherent.dateClotureExe"/> --%>
-<%-- 	<form:input type="hidden" path="adherent.contactComptable"/> --%>
-<%-- 	<form:input type="hidden" path="adherent.formationDirigeant"/> --%>
-<%-- 	<form:input type="hidden" path="adherent.etat.id"/> --%>
+    <form:input type="hidden" path="adherent.longitude"/>
+    <form:input type="hidden" path="adherent.latitude"/>
 	
     <fieldset>
         <legend class="legend"><spring:message code="label.administratif"/></legend>
