@@ -31,7 +31,8 @@ public class DefaultController {
     pModel.addAttribute("adherentInactif", service.countAdherentsInactif());
 
     pModel.addAttribute("dataChartAnnee", service.chartDataAnnee());
-    pModel.addAttribute("dataCahrtActif", service.chartDataActif());
+    pModel.addAttribute("dataChartActif", service.chartDataActif());
+    pModel.addAttribute("dataChartNew", service.chartDataNew());
     pModel.addAttribute("dataChartInactif", service.chartDataInactif());
 
     return "dashboard";

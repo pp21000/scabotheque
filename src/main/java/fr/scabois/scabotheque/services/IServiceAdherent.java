@@ -169,6 +169,8 @@ public interface IServiceAdherent {
 
   String chartDataActif();
 
+  String chartDataNew();
+
   String chartDataAnnee();
 
   String chartDataInactif();

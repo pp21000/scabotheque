@@ -31,6 +31,8 @@ public interface IAdherentDAO {
 
   public String chartDataActif();
 
+  public String chartDataNew();
+
   public String chartDataAnnee();
 
   public String chartDataInactif();

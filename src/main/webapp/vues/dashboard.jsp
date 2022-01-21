@@ -110,7 +110,7 @@
     var chartCanvas = $('#areaChart').get(0).getContext('2d');
 
     var chartData = {
-      labels  : ['2015', '2016', '2017', '2018', '2019', '2020', '2021'],
+      labels  : [<c:out value="${dataChartAnnee}"/>],
       datasets: [
         {
           label               : 'Adhérents actif',
@@ -122,7 +122,7 @@
           pointStrokeColor    : 'rgba(60,141,188,1)',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(60,141,100,1)',
-          data                : [<c:out value="${dataCahrtActif}"/>]
+          data                : [<c:out value="${dataChartActif}"/>]
         },
         {
           label               : 'Nouveau',
@@ -134,7 +134,7 @@
           pointStrokeColor    : '#c1c7d1',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(220,240,220,1)',
-          data                : [26, 18, 17, 19, 41, 16, 14]
+          data                : [<c:out value="${dataChartNew}"/>]
         }
       ]
     };

@@ -48,6 +48,11 @@ public class ServiceAdherent implements IServiceAdherent {
   }
 
   @Override
+  public String chartDataNew() {
+    return dao.chartDataNew();
+  }
+
+  @Override
   public String chartDataAnnee() {
     return dao.chartDataAnnee();
   }

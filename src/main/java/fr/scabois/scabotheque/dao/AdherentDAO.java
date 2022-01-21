@@ -30,6 +30,7 @@ import fr.scabois.scabotheque.controller.security.LoginController;
 import fr.scabois.scabotheque.enums.PageType;
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -45,20 +46,54 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public class AdherentDAO implements IAdherentDAO {
 
+  private int startYear = 2008;
   @PersistenceContext
   private EntityManager entityManager;
   private static final Logger log = LogManager.getLogger(LoginController.class);
 
   @Override
   public String chartDataActif() {
-    return "";
-    // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    String ret = "";
+    for (int year = startYear; year <= Calendar.getInstance().get(Calendar.YEAR); year++) {
+      TypedQuery<Long> query = entityManager.createQuery("select count(*) from Adherent "
+              + "where etat_id = 1 "
+              + "and adherentType_id = 1"
+              + "and date_entree <= :date",
+              Long.class)
+              .setParameter("date", year + "-12-31");
+
+      ret += query.getSingleResult() + ",";
+    };
+
+    return ret;
+  }
+
+  @Override
+  public String chartDataNew() {
+    String ret = "";
+    for (int year = startYear; year <= Calendar.getInstance().get(Calendar.YEAR); year++) {
+      TypedQuery<Long> query = entityManager.createQuery("select count(*) from Adherent "
+              + "where etat_id = 1 "
+              + "and adherentType_id = 1"
+              + "and date_entree between :dateDeb and :dateFin",
+              Long.class)
+              .setParameter("dateDeb", year + "-01-01")
+              .setParameter("dateFin", year + "-12-31");
+
+      ret += query.getSingleResult() + ",";
+    };
+
+    return ret;
   }
 
   @Override
   public String chartDataAnnee() {
-    return "";
-//    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    String ret = "";
+    for (int year = startYear; year <= Calendar.getInstance().get(Calendar.YEAR); year++) {
+      ret += year + ",";
+    };
+
+    return ret;
   }
 
   @Override
