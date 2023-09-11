@@ -237,7 +237,7 @@
             <div class="detail">
                 <c:url value="/adherentDetail" var="urlShowAdh"><c:param name="idAdh" value="${adherent.id}"/></c:url>
                 <a href="${urlShowAdh}" class="scabotheque-h3">
-                    <c:out value="${adherent.libelle}"/>
+                  <c:out value="${adherent.libelle}"/>
                 </a>
                 <div class="info">
                     <div class="code">
