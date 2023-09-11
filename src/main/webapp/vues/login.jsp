@@ -35,7 +35,7 @@
         </div>
             
         <div class="login-box">
-            <!-- /.login-logo -->
+            <!-- /.login-logo --> toto
             <div class="card">
                 <div class="card-body login-card-body">
                     <p class="login-box-msg"><spring:message code="label.connect"/></p>
