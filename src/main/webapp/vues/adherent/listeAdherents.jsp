@@ -12,7 +12,6 @@
     <form:input type="hidden" name="object" path="object"/>
     <form:input type="hidden" name="messageMail" path="messageMail"/>
     <form:input type="hidden" name="contactFonctionIds" path="contactFonctionIds"/>
-
     <spring:message code="label.texteRecherche" var="recherchePH"/>
     <spring:message code="label.filtre.pole" var="poleLib"/>
     <spring:message code="label.filtre.secteur" var="secteurLib"/>
