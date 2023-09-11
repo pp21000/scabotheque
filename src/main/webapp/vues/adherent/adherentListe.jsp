@@ -22,20 +22,16 @@
           <form:input type="hidden" name="contactFonctionIds" path="contactFonctionIds"/>
 
           <spring:message code="label.texteRecherche" var="recherchePH"/>
-          <%--<spring:message code="label.filtre.pole" var="poleLib"/>--%>
-          <%--<spring:message code="label.filtre.secteur" var="secteurLib"/>--%>
-          <%--<spring:message code="label.filtre.activite" var="activiteLib"/>--%>
-          <%--<spring:message code="label.filtre.agence" var="agenceLib"/>--%>
+          <spring:message code="label.filtre.pole" var="poleLib"/>
+          <spring:message code="label.filtre.secteur" var="secteurLib"/>
+          <spring:message code="label.filtre.activite" var="activiteLib"/>
+          <spring:message code="label.filtre.agence" var="agenceLib"/>
 
           <div class="input-group input-group-sm">
             <form:input class="form-control" type="search" path="text" placeholder="${recherchePH}" aria-label="Search" autofocus="true"/>
             <span class="input-group-append">
               <button class="btn btn-info btn-flat" type="submit"> 
                 <i class="fas fa-search"></i>
-              </button>
-              <c:url value="/initListeAdherents" var="urlInit"/>
-              <button class="btn btn-info btn-flat" type="reset" title="<spring:message code="label.initRecherche"/>" onclick="window.location.href='${urlInit}'"> 
-                <i class="fas fa-redo-alt"></i>
               </button>
             </span>
           </div>
@@ -94,15 +90,6 @@
         <!-- /.form-group -->
       </div>
       <!-- /.col -->
-      <div class="col-md-4">
-        <div class="form-group">
-          <label>Type</label>
-          <form:select class="form-control select2" name="typeAdhIds" data-placeholder="Type d'adhérent" path="typeAdhIds" multiple="multiple" >
-            <form:options items="${adhTypesList}" itemValue="id" itemLabel="libelle" />
-          </form:select>
-        </div>
-        <!-- /.form-group -->
-      </div>
     </div>
     <!-- /.row -->
     <div class="row">
@@ -176,138 +163,111 @@
 </sec:authorize>
  Statistique box -->
 
-
 <!-- Default box -->
-<div class="card card-lightblue">
+<div class="card card-secondary">
   <div class="card-header">
     <h3 class="card-title">Résultat : <spring:message code="count.adherent" arguments="${nbAdherent}"/></h3>
-
     <div class="card-tools">
-      <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-        <i class="fas fa-minus"></i></button>
-      <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title=""></button>
+      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+      <button type="button" class="btn btn-tool" data-card-widget=""></i></button>
     </div>
   </div>
-  <div class="card-body p-0">
-    <table class="table table-striped contacts-list">
-      <thead>
-        <tr>
-          <th style="width: 1%">
-          </th>
-          <th>
-            <spring:message code="label.identite"/>
-          </th>
-          <th style="width: 10%">
-            <spring:message code="label.secteur"/>
-          </th>
-          <th style="width: 10%">
-            <spring:message code="label.agenceRattachement"/>
-          </th>
-          <th style="width: 10%">
-            <spring:message code="label.pole"/>
-          </th>
-          <th style="width: 10%">
-            <spring:message code="label.role"/>
-          </th>
-          <th style="width: 15%">
-            <spring:message code="label.commune"/>
-          </th>
-          <th style="width: 6.5em">
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <c:forEach items="${listeAdherents}" var="adherent">
-          <tr>
-            <td>
-              <img alt="Avatar" class="img-fluid" style="max-width: 5em; max-height: 4em;"
-                <c:choose >
-                  <c:when test = "${adherent.photoImg == ''}"> 
-                    src="<c:url value="/resources/images/noAdh.png" />"
-                  </c:when>
-                  <c:otherwise> 						
-                    src="${adherent.photoImg}"
-                  </c:otherwise>
-              </c:choose>>
-            </td>
-            <td>
-              <strong>
-                <c:out value="${adherent.libelle}"/>
-              </strong>
+   
+  <div class="card-body">
+    <div class="row d-flex align-items-stretch">
+      <c:forEach items="${listeAdherents}" var="adherent">
+        <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch">
+          <div class="card bg-light" style="width: 100%;">
+            <div class="ribbon-wrapper ribbon-lg">
               <c:choose >
                 <c:when test = "${adherent.compteType.id != '1'}"> 
-                  <span class="badge bg-gradient-warning">
+                  <div class="ribbon bg-gradient-warning">
                     ${adherent.compteType.libelle}
-                  </span>
+                  </div>
                 </c:when>
                 <c:when test = "${adherent.cnxEolasAllow == false}"> 
-                  <span class="badge bg-gradient-warning">
+                  <div class="ribbon bg-gradient-warning">
                     ! Access EOLAS !
-                  </span>
+                  </div>
+                  <div class="cercleOrange"></div>
                 </c:when>
                 <c:when test = "${adherent.etat.id == '2'}"> 
-                  <span class="badge bg-gradient-danger">
+                  <div class="ribbon bg-gradient-danger">
                     <c:out value="${adherent.etat.libelle}"/>
-                  </span>
+                  </div>
                 </c:when>
               </c:choose>
-              <br/>
-              <small>
-                <c:out value="${adherent.code}"/>
-              </small>
-            </td>
-            <td>
-              <c:out value="${adherent.secteur.libelle}"/>
-            </td>
-            <td>
-              <c:out value="${adherent.agence.libelle}"/>
-            </td>
-            <td>
-              <c:out value="${adherent.pole.libelle}"/>
-            </td>
-            <td>
-              <c:out value="${adherent.role.libelle}"/>
-            </td>
-            <td>
-              <c:out value="${adherent.commune.codePostal}"/>  <c:out value="${adherent.commune.libelle}"/>
-            </td>
-            <td>
-              <c:url value="/adherentProfil" var="urlShowAdh"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-              <a class="btn btn-success btn-sm" href="${urlShowAdh}">
-                <i class="fas fa-user"></i>
-                Detail
-              </a>
             </div>
-            </td>
-          </tr>
-        </c:forEach>
-      </tbody>
-    </table>
+            <div class="card-header text-muted border-bottom-0">
+              <!--eventuellement un titre-->
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-7">
+                  <h2 class="lead"><b><c:out value="${adherent.libelle}"/></b></h2>
+                  <p class="text-muted text-sm"><b> <spring:message code="label.codeAdh"/> </b><c:out value="${adherent.code}"/> </p>
+                  <ul class="ml-4 mb-0 fa-ul text-muted">
+                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> <c:out value="${adherent.agence.libelle}"/></li>
+                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-address-card"></i></span> <c:out value="${adherent.commune.codePostal}"/>  <c:out value="${adherent.commune.libelle}"/></li>
+                    <!--<li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> </li>-->
+                  </ul>
+                </div>
+                <div class="col-5 text-center">
+                  <c:choose >
+                    <c:when test = "${adherent.photoImg == ''}"> 
+                      <img src="<c:url value="/resources/images/noAdh.png" />" alt="" class="img-fluid" style="max-width: 8em; max-height: 8em;">
+                    </c:when>
+                    <c:otherwise> 						
+                      <img src="${adherent.photoImg}" alt="" class="mb-2 img-fluid" style="max-width: 8em; max-height: 8em;">
+                    </c:otherwise>
+                  </c:choose>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="text-right">
+                <c:url value="/adherentProfil" var="urlShowAdh"><c:param name="idAdh" value="${adherent.id}"/></c:url>
+                <a href="${urlShowAdh}" class="btn btn-sm btn-success">
+                  <i class="fas fa-user"></i> Profil adherent
+                </a>
+                  <c:url value="/adherentProfilAdmin" var="urlShowAdhAdmin"><c:param name="idAdh" value="${adherent.id}"/></c:url>
+                <a href="${urlShowAdhAdmin}" class="btn btn-sm btn-success">
+                  <i class="fas fa-euro-sign"></i> Administratif
+                </a>
+                  <c:url value="/adherentProfilArtipole" var="urlShowAdhArtipole"><c:param name="idAdh" value="${adherent.id}"/></c:url>
+                <a href="${urlShowAdhArtipole}" class="btn btn-sm btn-success">
+                  <i class="fas fa-user"></i> Artipôle
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </c:forEach>
+    </div>
   </div>
-    <!-- /.card-body -->
+  <!-- /.card-body -->
+
   <div class="card-footer">
     <nav aria-label="Contacts Page Navigation">
       <ul class="pagination justify-content-center m-0">
-        <c:if test="${maxPage > 0}"> 
-          <c:if test="${page > 2}"> 
-            <li class="page-item"><a class="page-link" href="adherentListe?page=1">&laquo;</a></li>
-            <li class="page-item"><a class="page-link" href="adherentListe?page=${page - 1}">&lsaquo;</a></li>
-          </c:if>
-          <c:forEach var="i" begin="${page == 1 ? 1 : page-1}" end="${page == maxPage ? maxPage : page+1 }">
-            <li class="page-item <c:if test="${page == i}"> active </c:if>"><a class="page-link" href="adherentListe?page=${i}">${i}</a></li>
-          </c:forEach>
-          <c:if test="${page < maxPage -1 }"> 
-            <li class="page-item"><a class="page-link" href="adherentListe?page=${page + 1}">&rsaquo;</a></li>
-            <li class="page-item"><a class="page-link" href="adherentListe?page=${maxPage}">&raquo;</a></li>
-          </c:if>
+        <c:if test="${page > 2}"> 
+          <li class="page-item"><a class="page-link" href="adherentListe?page=1">&laquo;</a></li>
+          <li class="page-item"><a class="page-link" href="adherentListe?page=${page - 1}">&lsaquo;</a></li>
+        </c:if>
+        <c:forEach var="i" begin="${page == 1 ? 1 : page-1}" end="${page == maxPage ? maxPage : page+1 }">
+          <li class="page-item <c:if test="${page == i}"> active </c:if>"><a class="page-link" href="adherentListe?page=${i}">${i}</a></li>
+        </c:forEach>
+        <c:if test="${page < maxPage -1 }"> 
+          <li class="page-item"><a class="page-link" href="adherentListe?page=${page + 1}">&rsaquo;</a></li>
+          <li class="page-item"><a class="page-link" href="adherentListe?page=${maxPage}">&raquo;</a></li>
         </c:if>
       </ul>
     </nav>
   </div>
-  <!-- /.card-footer --> 
+  <!-- /.card-footer -->
 </div>
 <!-- /.card -->
-
+      
 <!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark">
   <div class="p-3 control-sidebar-content">
@@ -316,53 +276,12 @@
 
     <!-- Control sidebar content goes here -->
     <div class="mb-1" >
-      <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ACTIVITE_EDIT')">
-        <a href="addAdherent" class="nav-link">
-          <p>
-            <i class="nav-icon fas fa-user-plus"></i>
-            Ajouter un adhérent
-          </p>
-        </a>
-      </sec:authorize>
-      
-        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_EXPORT', 'ROLE_EXPORT_INTERNE' )">
-        <form:form id="exportListForm" method="post" modelAttribute="criteria" action="exportList">
-          <form:input type="hidden" name="text" path="text"/>
-          <form:input type="hidden" name="poleIds" path="poleIds"/>
-          <form:input type="hidden" name="secteurIds" path="secteurIds"/>
-          <form:input type="hidden" name="activiteIds" path="activiteIds"/>
-          <form:input type="hidden" name="showAll" path="showAll"/>
-          <form:input type="hidden" name="showSousCompte" path="showSousCompte"/>
-          <form:input type="hidden" name="showAdminOnly" path="showAdminOnly"/>
-          <form:input type="hidden" name="showArtipoleOnly" path="showArtipoleOnly"/>
-          <a href="javascript:;" onclick="parentNode.submit();" class="nav-link">
-            <p>
-              <i class="nav-icon fas fa-file-excel"></i>
-              <spring:message code="menu.exportExcel"/>
-            </p>
-          </a>
-        </form:form>
-      </sec:authorize>
-      
-      <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_EXPORT_INTERNE' )">
-        <form:form id="exportListForm" method="post" modelAttribute="criteria" action="exportListAll">
-          <form:input type="hidden" name="text" path="text"/>
-          <form:input type="hidden" name="poleIds" path="poleIds"/>
-          <form:input type="hidden" name="secteurIds" path="secteurIds"/>
-          <form:input type="hidden" name="activiteIds" path="activiteIds"/>
-          <form:input type="hidden" name="showAll" path="showAll"/>
-          <form:input type="hidden" name="showSousCompte" path="showSousCompte"/>
-          <form:input type="hidden" name="showAdminOnly" path="showAdminOnly"/>
-          <form:input type="hidden" name="showArtipoleOnly" path="showArtipoleOnly"/>
-          <a href="javascript:;" onclick="parentNode.submit();" class="nav-link">
-            <p>
-              <i class="nav-icon fas fa-file-excel"></i>
-              <spring:message code="label.exportAll"/>
-            </p>
-          </a>
-        </form:form>
-      </sec:authorize>
-
+      <a href="addAdherent" class="nav-link">
+      <p>
+        <i class="nav-icon fas fa-user-lock"></i>
+        Ajouter un adhérent
+      </p>
+      </a>
     </div>
   </div>
 </aside>
