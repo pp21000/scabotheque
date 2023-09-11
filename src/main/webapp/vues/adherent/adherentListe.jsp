@@ -1,289 +1,286 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" isELIgnored="false"
-    pageEncoding="ISO-8859-1"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
+         pageEncoding="UTF-8" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
-  
-<!-- Content Header (Page header) -->
-<div class="content-header">
-  <div class="container-fluid">
-    <div class="row mb-2">
-      <div class="col-sm-2">
-        <h1 class="m-0 text-dark">Base adhérents</h1>
-        <div <c:if test = "${criteria.avertissement == ''}"> style="display: none;" </c:if> >
-          ${criteria.avertissement}
-        </div>
-      </div><!-- /.col -->
-      <div class="col-sm-6">
-        <!-- ADH SEARCH FORM -->
-        <form:form class="form-inline ml-3" id="searchform" method="post" modelAttribute="criteria" action="adherentListe">
-          <form:input type="hidden" name="contactFonctionIds" path="contactFonctionIds"/>
+<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
-          <spring:message code="label.texteRecherche" var="recherchePH"/>
-          <spring:message code="label.filtre.pole" var="poleLib"/>
-          <spring:message code="label.filtre.secteur" var="secteurLib"/>
-          <spring:message code="label.filtre.activite" var="activiteLib"/>
-          <spring:message code="label.filtre.agence" var="agenceLib"/>
 
-          <div class="input-group input-group-sm">
-            <form:input class="form-control" type="search" path="text" placeholder="${recherchePH}" aria-label="Search" autofocus="true"/>
-            <span class="input-group-append">
-              <button class="btn btn-info btn-flat" type="submit"> 
-                <i class="fas fa-search"></i>
-              </button>
-            </span>
-          </div>
-        </form:form>  
-      </div >
-    </div><!-- /.row -->
-  </div><!-- /.container-fluid -->
+<div class="flex justify-left gap-10">
+    <div class="text-2xl mb-4">Base adhÃ©rents</div>
 </div>
-<!-- /.content-header -->
+<div>
+    <div>
+        <div class="flex justify-center">
+            <form:form id="searchform" method="post" modelAttribute="criteria"
+                       action="adherentListe">
+                <label for="default-search"
+                       class="mb-2 text-sm font-medium text-gray-900 sr-only"><spring:message
+                        code="label.texteRecherche" var="recherchePH"/></label>
+                <form:input type="hidden" name="contactFonctionIds" path="contactFonctionIds"/>
+                <div class="flex gap-2">
+                    <form:input
+                            class="p-2 w-96 bg-white rounded-lg border border-gray-200 focus:ring-neutral-400 focus:border-neutral-400"
+                            type="search" path="text" placeholder="${recherchePH}"
+                            aria-label="Search" autofocus="true"/>
+                    <c:url value="/initListeAdherents" var="urlInit"/>
+                    <div class="flex gap-2">
+                        <button type="submit"
+                                class="px-3 py-2 text-xs font-medium text-center text-white bg-neutral-700 rounded-lg hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300">
+                            Rechercher
+                        </button>
+                        <button class="px-3 py-2 text-xs font-medium text-center text-white bg-neutral-700 rounded-lg hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+                                type="reset" onclick="window.location.href='${urlInit}'">
+                            Effacer
+                        </button>
+                    </div>
+                </div>
+            </form:form>
+        </div>
 
-<!-- ADVANCE SEARCH -->
-<form:form class="card card-outline card-info collapsed-card" id="advanceSerachForm" method="post" modelAttribute="criteria" action="adherentListe">
-  <form:input type="hidden" name="text" path="text"/>
-  <spring:message code="label.texteRecherche" var="recherchePH"/>
-  <div class="card-header">
-    <h3 class="card-title">Recherche avancée</h3>
-    <div class="card-tools">
-      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i></button>
-      <button type="button" class="btn btn-tool" data-card-widget="collapse"></i></button>
-    </div>
-  </div>
-  <!-- /.card-header -->
-  <div class="card-body">
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label>Pôle</label>
-          <form:select class="form-control select2" name="poleIds" data-placeholder="Tous les poles" path="poleIds" multiple="multiple" >
-            <form:options items="${polesList}" itemValue="id" itemLabel="libelle" />
-          </form:select>
+        <div id="accordion-collapse" data-accordion="collapse">
+            <h2 id="accordion-collapse-head-1">
+                <button type="button"
+                        class="flex items-center justify-center w-full p-3 font-medium text-left text-gray-500 hover:bg-gray-100 bg-gray-100 "
+                        data-accordion-target="#accordion-collapse-body-1" aria-expanded="false"
+                        aria-controls="accordion-collapse-body-1">
+                    <span class="text-center"><spring:message code="label.rechercheAvance"/></span>
+                </button>
+            </h2>
+            
+            <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-head-1">
+                <div class="bg-gray-100">
+                    <form:form class="card card-outline card-info collapsed-card" id="advanceSerachForm" method="post" modelAttribute="criteria" action="adherentListe">
+                        <form:input type="hidden" name="text" path="text"/>
+                        <form:input type="hidden" name="contactFonctionIds" path="contactFonctionIds"/>
+                        <spring:message code="label.texteRecherche" var="recherchePH"/>
+                        <div class="card-body">
+                            <div class="flex justify-evenly pb-2">
+                                <div class="flex flex-col w-full px-6">
+                                    <label>Type</label>
+                                    <form:select class="form-control select2" name="typeAdhIds"
+                                                 data-placeholder="Type d'adhÃ©rent"
+                                                 path="typeAdhIds" multiple="multiple">
+                                        <form:options items="${adhTypesList}" itemValue="id" itemLabel="libelle"/>
+                                    </form:select>
+
+                                    <label>PÃ´le</label>
+                                    <form:select class=" form-control select2" name="poleIds"
+                                                 data-placeholder="Tous les poles"
+                                                 path="poleIds" multiple="multiple">
+                                        <form:options items="${polesList}" itemValue="id" itemLabel="libelle"/>
+                                    </form:select>
+                                    <label>Secteurs</label>
+                                    <form:select class="form-control select2" name="secteurIds"
+                                                 data-placeholder="Tous les secteurs"
+                                                 path="secteurIds" multiple="multiple">
+                                        <form:options items="${secteursList}" itemValue="id" itemLabel="libelle"/>
+                                    </form:select>
+                                </div>
+                                <div class="flex flex-col w-full px-6">
+                                    <label>ActivitÃ©es</label>
+                                    <form:select class="form-control select2" name="activiteIds"
+                                                 data-placeholder="Toutes les activitÃ©es"
+                                                 path="activiteIds" multiple="multiple">
+                                        <form:options items="${activitesList}" itemValue="id" itemLabel="libelle"/>
+                                    </form:select>
+                                    <label>Agences</label>
+                                    <form:select class="form-control select2" name="agenceIds"
+                                                 data-placeholder="Toutes les agences"
+                                                 path="agenceIds" multiple="multiple">
+                                        <form:options items="${agencesList}" itemValue="id" itemLabel="libelle"/>
+                                    </form:select>
+                                </div>
+                                <div class="flex flex-col w-full px-6">
+                                    <div class="w-100 col-md-3">
+                                        <div class="form-group clearfix">
+                                            <form:checkbox
+                                                    class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
+                                                    id="showAdminOnly" name="showAdminOnly" path="showAdminOnly"/>
+                                            <label style="float:none;" for="showAdminOnly"><spring:message
+                                                    code="label.filtre.isAdministrateur"/></label>
+                                        </div>
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="w-100 col-md-3">
+                                        <!-- checkbox -->
+                                        <div class="form-group clearfix">
+                                            <form:checkbox
+                                                    class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
+                                                    id="showSousCompte" name="showSousCompte" path="showSousCompte"/>
+                                            <label style="float:none;" for="showSousCompte"><spring:message
+                                                    code="label.filtre.sousCompte"/></label>
+                                        </div>
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="w-100 col-md-3">
+                                        <div class="form-group clearfix">
+                                            <form:checkbox
+                                                    class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
+                                                    id="showArtipoleOnly" name="showArtipoleOnly"
+                                                    path="showArtipoleOnly"/>
+                                            <label style="float:none;" for="showArtipoleOnly"><spring:message
+                                                    code="label.filtre.isArtipole"/></label>
+                                        </div>
+                                    </div>
+                                    <!-- /.col -->
+<!--                                    <div class="w-100 col-md-3">
+                                        <div class="form-group clearfix">
+                                            <form:checkbox
+                                                    class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
+                                                    id="showAll" name="showAll" path="showAll"/>
+                                            <label style="float:none;" for="showAll"><spring:message
+                                                    code="label.filtre.inactif"/></label>
+                                        </div>
+                                    </div>-->
+                                    <div class="flex gap-2 mt-2 pt-6">
+                                        <button id="actionButton"
+                                                class="px-3 py-2 text-xs font-medium text-center text-white bg-neutral-700 rounded-lg hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+                                                type="submit">
+                                            Rechercher
+                                        </button>
+                                        <button class="px-3 py-2 text-xs font-medium text-center text-white bg-neutral-700 rounded-lg hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+                                                type="reset" onclick="window.location.href='${urlInit}'">
+                                            Effacer
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form:form>
+
+                </div>
+            </div>
         </div>
-        <!-- /.form-group -->
-        <div class="form-group">
-          <label>Secteurs</label>
-          <form:select class="form-control select2" name="secteurIds" data-placeholder="Tous les secteurs" path="secteurIds" multiple="multiple" >
-            <form:options items="${secteursList}" itemValue="id" itemLabel="libelle" />
-          </form:select>
-        </div>
-        <!-- /.form-group -->
-      </div>
-      <!-- /.col -->
-      <div class="col-md-4">
-        <div class="form-group">
-          <label>Activitées</label>
-          <form:select class="form-control select2" name="activiteIds" data-placeholder="Tous les activitées" path="activiteIds" multiple="multiple" >
-            <form:options items="${activitesList}" itemValue="id" itemLabel="libelle" />
-          </form:select>
-        </div>
-        <!-- /.form-group -->
-        <div class="form-group">
-          <label>Agences</label>
-          <form:select class="form-control select2" name="agenceIds" data-placeholder="Toutes les agences" path="agenceIds" multiple="multiple" >
-            <form:options items="${agencesList}" itemValue="id" itemLabel="libelle" />
-          </form:select>
-        </div>
-        <!-- /.form-group -->
-      </div>
-      <!-- /.col -->
-    </div>
-    <!-- /.row -->
-    <div class="row">
-      <div class="w-100 col-md-3">
-        <div class="form-group clearfix">
-          <form:checkbox id="showAdminOnly" name="showAdminOnly" path="showAdminOnly"/> 
-          <label style="float:none;" for="showAdminOnly"><spring:message code="label.filtre.isAdministrateur"/></label>
-        </div>
-      </div>
-      <!-- /.col -->
-      <div class="w-100 col-md-3">
-        <!-- checkbox -->
-        <div class="form-group clearfix">
-          <form:checkbox id="showSousCompte" name="showSousCompte" path="showSousCompte"/> 
-          <label style="float:none;" for="showSousCompte"><spring:message code="label.filtre.sousCompte"/></label>                                                        
-        </div>
-      </div>
-      <!-- /.col -->
-      <div class="w-100 col-md-3">
-        <div class="form-group clearfix">
-          <form:checkbox id="showArtipoleOnly" name="showArtipoleOnly" path="showArtipoleOnly"/> 
-          <label style="float:none;" for="showArtipoleOnly"><spring:message code="label.filtre.isArtipole"/></label>
-        </div>
-      </div>
-      <!-- /.col -->
-      <div class="w-100 col-md-3">
-        <div class="form-group clearfix">
-          <form:checkbox id="showAll" name="showAll" path="showAll"/> 
-          <label style="float:none;" for="showAll"><spring:message code="label.filtre.inactif"/></label>
-        </div>
-      </div>
-      <!-- /.col -->
-    </div>
-    <!-- /.row -->
-  </div>
-  <!-- /.card-body -->
-  <div class="card-footer">
-    <button id="actionButton" class="btn btn-info float-right" type="submit">
-      <span id="actionSpinner" class="spinner-border text-light spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-      Rechercher
-    </button>
-  </div>
-  <!--</div>-->
-</form:form>
-<!-- ADVANCE SEARCH -->
 
 
-<!-- Statistique box 
-<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION')">
-  <div class="card card-secondary collapsed-card">
-    <div class="card-header">
-      <h3 class="card-title">Statistique</h3>
-      <div class="card-tools">
-        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-          <i class="fas fa-plus"></i>
-        </button>
-      </div>
     </div>
-    <div class="card-body">
-      <div class="card-body pad table-responsive">
-        On peut imaginer ici des liens vers des graphiques concernant le resultat de la recherche ?
-        sous forme de boutons:
-        <br>
-        <button type="button" class="btn btn-success ">Un graphique</button>
-        <button type="button" class="btn btn-success">Un camembert</button>
-        <button type="button" class="btn btn-success ">Un tableau</button>
-        <button type="button" class="btn btn-success ">ou autre chose</button>
-      </div>
-    </div>
-  </div>
-</sec:authorize>
- Statistique box -->
-
+</div>
 <!-- Default box -->
-<div class="card card-secondary">
+<div class="card card-lightneutral">
   <div class="card-header">
-    <h3 class="card-title">Résultat : <spring:message code="count.adherent" arguments="${nbAdherent}"/></h3>
-    <div class="card-tools">
-      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-      <button type="button" class="btn btn-tool" data-card-widget=""></i></button>
-    </div>
+    <h3 class="card-title">RÃ©sultat : <spring:message code="count.adherent" arguments="${nbAdherent}"/></h3>
   </div>
-   
+  
   <div class="card-body">
-    <div class="row d-flex align-items-stretch">
+    <div class="grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
       <c:forEach items="${listeAdherents}" var="adherent">
-        <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch">
-          <div class="card bg-light" style="width: 100%;">
-            <div class="ribbon-wrapper ribbon-lg">
-              <c:choose >
-                <c:when test = "${adherent.compteType.id != '1'}"> 
-                  <div class="ribbon bg-gradient-warning">
-                    ${adherent.compteType.libelle}
-                  </div>
-                </c:when>
-                <c:when test = "${adherent.cnxEolasAllow == false}"> 
-                  <div class="ribbon bg-gradient-warning">
-                    ! Access EOLAS !
-                  </div>
-                  <div class="cercleOrange"></div>
-                </c:when>
-                <c:when test = "${adherent.etat.id == '2'}"> 
-                  <div class="ribbon bg-gradient-danger">
-                    <c:out value="${adherent.etat.libelle}"/>
-                  </div>
-                </c:when>
+        <div class="w-full pt-2 max-w-s bg-white rounded-lg border border-gray-200 shadow-md hover:bg-neutral-100 cursor-pointer"  id="${adherent.id}">
+          <c:url value="/adherentProfil" var="urlShowAdh"><c:param name="idAdh" value="${adherent.id}"/></c:url>
+          <h5 class=" mb-2 text-center bg-[#0F638C;] gray-100 font-medium text-gray-100"><c:out value="${contact.prenom}"/> <c:out value="${adherent.libelle}"/></h5>
+         
+          <div class="grid grid-cols-3 items-center pb-5 px-2">
+           <div>
+            
+              <c:choose>
+                  <c:when test="${adherent.photoImg == ''}">
+                    <img src="<c:url value="/resources/images/noAdh.png"/>" class="mt-6 max-w-24 max-h-24 rounded-full object-cover shadow-lg">
+                  </c:when>
+                <c:otherwise>
+                  <img src="${adherent.photoImg}" alt="Avatar" class="mt-6 max-w-24 max-h-24 object-cover shadow-lg">
+                </c:otherwise>
               </c:choose>
             </div>
-            <div class="card-header text-muted border-bottom-0">
-              <!--eventuellement un titre-->
-            </div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-7">
-                  <h2 class="lead"><b><c:out value="${adherent.libelle}"/></b></h2>
-                  <p class="text-muted text-sm"><b> <spring:message code="label.codeAdh"/> </b><c:out value="${adherent.code}"/> </p>
-                  <ul class="ml-4 mb-0 fa-ul text-muted">
-                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> <c:out value="${adherent.agence.libelle}"/></li>
-                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-address-card"></i></span> <c:out value="${adherent.commune.codePostal}"/>  <c:out value="${adherent.commune.libelle}"/></li>
-                    <!--<li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> </li>-->
-                  </ul>
-                </div>
-                <div class="col-5 text-center">
-                  <c:choose >
-                    <c:when test = "${adherent.photoImg == ''}"> 
-                      <img src="<c:url value="/resources/images/noAdh.png" />" alt="" class="img-fluid" style="max-width: 8em; max-height: 8em;">
+            <div class="col-span-2 ml-2">
+              <div class="flex flex-col">
+                <c:choose>
+                    <c:when test="${adherent.compteType.id != '1'}">
+                        <div class="bg-gray-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded m-1">
+                                ${adherent.compteType.libelle}
+                        </div>
                     </c:when>
-                    <c:otherwise> 						
-                      <img src="${adherent.photoImg}" alt="" class="mb-2 img-fluid" style="max-width: 8em; max-height: 8em;">
-                    </c:otherwise>
-                  </c:choose>
-                </div>
-              </div>
-            </div>
-            <div class="card-footer">
-              <div class="text-right">
-                <c:url value="/adherentProfil" var="urlShowAdh"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-                <a href="${urlShowAdh}" class="btn btn-sm btn-success">
-                  <i class="fas fa-user"></i> Profil adherent
-                </a>
-                  <c:url value="/adherentProfilAdmin" var="urlShowAdhAdmin"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-                <a href="${urlShowAdhAdmin}" class="btn btn-sm btn-success">
-                  <i class="fas fa-euro-sign"></i> Administratif
-                </a>
-                  <c:url value="/adherentProfilArtipole" var="urlShowAdhArtipole"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-                <a href="${urlShowAdhArtipole}" class="btn btn-sm btn-success">
-                  <i class="fas fa-user"></i> Artipôle
-                </a>
+                    <c:when test="${adherent.cnxEolasAllow == false}">
+                        <div class="bg-red-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded m-1">
+                            ! Access EOLAS !
+                        </div>
+                    </c:when>
+                    <c:when test="${adherent.etat.id == '2'}">
+                        <div class="bg-gray-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded m-1">
+                            <c:out value="${adherent.etat.libelle}"/>
+                        </div>
+                    </c:when>
+                </c:choose>
+
+                <small class="text-center bg-gray-100 text-green-800 text-xs font-semibold  px-1.5 py-0.5 rounded m-1">
+                  <c:out value="${adherent.code}"/>
+                </small>
+                  <span><c:out value="${adherent.secteur.libelle}"/></span> 
+                <span><c:out value="${adherent.agence.libelle}"/></span>
+                <span><c:out value="${adherent.pole.libelle}"/></span> 
+                <!--<span><c:out value="${adherent.role.libelle}"/></span>-->
+                <span><c:out value="${adherent.commune.codePostal}"/> <c:out value="${adherent.commune.libelle}"/></span> 
               </div>
             </div>
           </div>
-        </div>
+          <script>
+            document.getElementById("${adherent.id}").addEventListener("click", function () {
+                window.location.href = "${urlShowAdh}";
+            })
+          </script>
+        </div>      
       </c:forEach>
     </div>
   </div>
-  <!-- /.card-body -->
 
-  <div class="card-footer">
-    <nav aria-label="Contacts Page Navigation">
-      <ul class="pagination justify-content-center m-0">
-        <c:if test="${page > 2}"> 
-          <li class="page-item"><a class="page-link" href="adherentListe?page=1">&laquo;</a></li>
-          <li class="page-item"><a class="page-link" href="adherentListe?page=${page - 1}">&lsaquo;</a></li>
-        </c:if>
-        <c:forEach var="i" begin="${page == 1 ? 1 : page-1}" end="${page == maxPage ? maxPage : page+1 }">
-          <li class="page-item <c:if test="${page == i}"> active </c:if>"><a class="page-link" href="adherentListe?page=${i}">${i}</a></li>
-        </c:forEach>
-        <c:if test="${page < maxPage -1 }"> 
-          <li class="page-item"><a class="page-link" href="adherentListe?page=${page + 1}">&rsaquo;</a></li>
-          <li class="page-item"><a class="page-link" href="adherentListe?page=${maxPage}">&raquo;</a></li>
-        </c:if>
-      </ul>
+
+    <nav class="flex justify-center mt-4" aria-label="Contacts Page Navigation">
+        <ul class="inline-flex items-center -space-x-px">
+            <c:if test="${maxPage > 0}">
+                <li>
+                    <a class="block py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+                       href="adherentListe?page=1">
+                        DÃ©but
+                    </a>
+                </li>
+                <li>
+                    <a class="block py-2 px-3 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+                       href="adherentListe?page=${page - 1}">
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                  clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                </li>
+
+                <c:forEach var="i" begin="${page == 1 ? 1 : page-1}" end="${page == maxPage ? maxPage : page+1 }">
+                    <li>
+                        <a class="<c:if test="${page == i}"> text-neutral-600 bg-neutral-50 border-neutral-300 </c:if> py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+                           href="adherentListe?page=${i}">${i}</a>
+                    </li>
+                </c:forEach>
+                <li>
+                    <a class="block py-2 px-3 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+                       href="adherentListe?page=${page + 1}">
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                  clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a class="block py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+                       href="adherentListe?page=${maxPage}">
+                        Fin
+                    </a>
+                </li>
+            </c:if>
+        </ul>
     </nav>
-  </div>
-  <!-- /.card-footer -->
-</div>
-<!-- /.card -->
-      
-<!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-  <div class="p-3 control-sidebar-content">
-    <h5> Options </h5>
-    <hr class="mb-2"/>
 
-    <!-- Control sidebar content goes here -->
-    <div class="mb-1" >
-      <a href="addAdherent" class="nav-link">
-      <p>
-        <i class="nav-icon fas fa-user-lock"></i>
-        Ajouter un adhérent
-      </p>
-      </a>
-    </div>
-  </div>
-</aside>
-<!-- /.control-sidebar -->      
+</div>
+<style>
+    .select2-selection__choice {
+        margin-bottom: 5px;
+    }
+</style>
+
+
+
+
 
