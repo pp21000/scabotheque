@@ -18,6 +18,8 @@
     <spring:message code="label.filtre.activite" var="activiteLib"/>
     <spring:message code="label.filtre.agence" var="agenceLib"/>
 
+    
+    
     <div class="listAdherent-recherche">
         <div class="listAdherent-recherche-criteres">
             <div style="display:inline-flex;">
