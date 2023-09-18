@@ -5,8 +5,8 @@ import fr.scabois.scabotheque.bean.adherent.AdherentActivite;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactComptable;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
 import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
-import fr.scabois.scabotheque.bean.adherent.AdherentExploitation;
 import fr.scabois.scabotheque.bean.adherent.AdherentInformatique;
+import fr.scabois.scabotheque.bean.adherent.AdherentLogistique;
 import fr.scabois.scabotheque.bean.adherent.AdherentSuiviVisite;
 import fr.scabois.scabotheque.bean.adherent.AdherentType;
 import fr.scabois.scabotheque.bean.adherent.CompteType;
@@ -175,8 +175,8 @@ public class ServiceAdherent implements IServiceAdherent {
   }
 
   @Override
-  public AdherentExploitation loadAdherentExploitation(int idAdh) {
-    return dao.loadAdherentExploitation(idAdh);
+  public AdherentLogistique loadAdherentLogistique(int idAdh) {
+    return dao.loadAdherentLogistique(idAdh);
   }
 
   @Override

@@ -6,8 +6,8 @@ import fr.scabois.scabotheque.bean.adherent.AdherentCommentaire;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactComptable;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
 import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
-import fr.scabois.scabotheque.bean.adherent.AdherentExploitation;
 import fr.scabois.scabotheque.bean.adherent.AdherentInformatique;
+import fr.scabois.scabotheque.bean.adherent.AdherentLogistique;
 import fr.scabois.scabotheque.bean.adherent.AdherentSuiviVisite;
 import fr.scabois.scabotheque.bean.adherent.AdherentType;
 import fr.scabois.scabotheque.bean.adherent.CompteType;
@@ -415,11 +415,11 @@ public class AdherentDAO implements IAdherentDAO {
   }
 
   @Override
-  public AdherentExploitation loadAdherentExploitation(int idAdh) {
+  public AdherentLogistique loadAdherentLogistique(int idAdh) {
     try {
-      return entityManager.createQuery("from AdherentExploitation", AdherentExploitation.class).getSingleResult();
+      return entityManager.createQuery("from AdherentExploitation", AdherentLogistique.class).getSingleResult();
     } catch (NoResultException e) {
-      return new AdherentExploitation();
+      return new AdherentLogistique();
     }
   }
 

@@ -5,8 +5,8 @@ import fr.scabois.scabotheque.bean.adherent.AdherentActivite;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactComptable;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
 import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
-import fr.scabois.scabotheque.bean.adherent.AdherentExploitation;
 import fr.scabois.scabotheque.bean.adherent.AdherentInformatique;
+import fr.scabois.scabotheque.bean.adherent.AdherentLogistique;
 import fr.scabois.scabotheque.bean.adherent.AdherentSuiviVisite;
 import fr.scabois.scabotheque.bean.adherent.AdherentType;
 import fr.scabois.scabotheque.bean.adherent.CompteType;
@@ -84,7 +84,7 @@ public interface IAdherentDAO {
   public List<AdherentContactRole> loadAdherentContactFonction(int adhId, Boolean isDirigeant, Boolean isCommerce,
           Boolean isAdmin, Boolean isCompta);
 
-  public AdherentExploitation loadAdherentExploitation(int idAdh);
+  public AdherentLogistique loadAdherentLogistique(int idAdh);
 
   public AdherentInformatique loadAdherentInformatique(int idAdh);
 

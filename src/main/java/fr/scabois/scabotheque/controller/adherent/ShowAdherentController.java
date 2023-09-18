@@ -3,8 +3,8 @@ package fr.scabois.scabotheque.controller.adherent;
 import fr.scabois.scabotheque.bean.adherent.Adherent;
 import fr.scabois.scabotheque.bean.adherent.AdherentActivite;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
-import fr.scabois.scabotheque.bean.adherent.AdherentExploitation;
 import fr.scabois.scabotheque.bean.adherent.AdherentInformatique;
+import fr.scabois.scabotheque.bean.adherent.AdherentLogistique;
 import fr.scabois.scabotheque.bean.adherent.AdherentSuiviVisite;
 import fr.scabois.scabotheque.controller.adherent.edit.EditAdherentSuiviVisite;
 import fr.scabois.scabotheque.controller.adherent.edit.EditAdherentSuiviVisiteForm;
@@ -14,6 +14,7 @@ import fr.scabois.scabotheque.services.IServiceAdherent;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,27 +37,33 @@ public class ShowAdherentController {
           HttpServletRequest request) {
 
     PageType pageType = PageType.LIST_ADHERENT;
-
     String commentaire = "";
-    commentaire = service.loadAdherentCommentaire(idAdh, pageType);
-    final Adherent adherent = service.loadAdherent(idAdh);
-
-    final List<AdherentContactRole> contacts = service.loadAdherentContact(idAdh);
-    List<AdherentSuiviVisite> infoSuiviVisite = service.loadAdherentSuivisVisites(idAdh);
-
-    // EXCEPTION -> le nouveau suivi est saisie avec la liste ...
+    commentaire = this.service.loadAdherentCommentaire(idAdh, pageType);
+    Adherent adherent = this.service.loadAdherent(idAdh);
+    List contacts = this.service.loadAdherentContact(idAdh);
+    List infoSuiviVisite = this.service.loadAdherentSuivisVisites(idAdh);
     EditAdherentSuiviVisite newSuivi = new EditAdherentSuiviVisite(idAdh);
     EditAdherentSuiviVisiteForm newSuiviForm = new EditAdherentSuiviVisiteForm();
     newSuiviForm.setSuiviVisiteAdh(newSuivi);
-    pModel.addAttribute("suiviToAdd", newSuiviForm);
+    pModel.addAttribute("suiviToAdd", (Object) newSuiviForm);
+    List adhActivites = this.service.loadActivitesAdherent(idAdh);
 
-    pModel.addAttribute("contacts", contacts);
-    pModel.addAttribute("infoSuiviVisite", infoSuiviVisite);
-//    pModel.addAttribute("criteria", new CriteriaCRM());
-    pModel.addAttribute("commentaire", commentaire);
-    pModel.addAttribute("adherent", adherent);
-    pModel.addAttribute("navType", NavType.ADHERENT);
-    pModel.addAttribute("pageType", pageType);
+    AdherentLogistique infoExploitation = this.service.loadAdherentLogistique(idAdh);
+    AdherentContactRole contactReception = this.service.loadContact(infoExploitation.getContactReceptionId());
+    List adherentMetiersId = this.service.loadAdherentMetiers(idAdh).stream().map(am -> am.getMetierId()).collect(Collectors.toList());
+    pModel.addAttribute("contacts", (Object) contacts);
+    pModel.addAttribute("infoSuiviVisite", (Object) infoSuiviVisite);
+    pModel.addAttribute("criteria", (Object) new CriteriaAdherent());
+    pModel.addAttribute("commentaire", (Object) commentaire);
+    pModel.addAttribute("contactComptable", (Object) this.service.loadAdherentContactComptable(idAdh));
+    pModel.addAttribute("adhActivites", (Object) adhActivites);
+    pModel.addAttribute("infoExploitation", (Object) infoExploitation);
+    pModel.addAttribute("contactReception", (Object) contactReception);
+    pModel.addAttribute("adherent", (Object) adherent);
+    pModel.addAttribute("metiers", (Object) this.serviceArtisantArtipole.loadMetiers());
+    pModel.addAttribute("metiersAdherentId", adherentMetiersId);
+    pModel.addAttribute("navType", (Object) NavType.ADHERENT);
+    pModel.addAttribute("pageType", (Object) pageType);
     return "adherentProfil";
   }
 
@@ -213,7 +220,7 @@ public class ShowAdherentController {
           HttpServletRequest request) {
 
     Adherent adherent = service.loadAdherent(idAdh);
-    AdherentExploitation infoExploitation = service.loadAdherentExploitation(idAdh);
+    AdherentLogistique infoExploitation = service.loadAdherentExploitation(idAdh);
     String commentaire = service.loadAdherentCommentaire(idAdh, PageType.ADHERENT_EXPLOITATION);
 
     pModel.addAttribute("adherent", adherent);
