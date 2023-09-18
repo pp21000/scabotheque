@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" isELIgnored="false"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
+    pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
@@ -30,7 +30,7 @@
                         </a>
                     </div>
                 </div> 
-		<!-- 	Menu liste des adherents sans menu déroulant -->
+		<!-- 	Menu liste des adherents sans menu dÃ©roulant -->
 		<a class="menu-dropdown-complement <c:if test = "${pageType == 'LIST_ADHERENT' || pageType == 'CREATE_ADHERENT' || pageType == 'ADHERENT_DETAIL' || 
                                                     pageType == 'ADHERENT_ACTIVITE' || pageType == 'ADHERENT_EXPLOITATION' || pageType == 'ADHERENT_ADMINISTRATIF' ||
                                                     pageType == 'ADHERENT_INFORMATIQUE'}"> 
@@ -60,7 +60,7 @@
             </sec:authorize>
 <!--/*************************************************************************************************/-->
  			
-            <!-- 	Menu Fournisseur menu déroulant -->
+            <!-- 	Menu Fournisseur menu dÃ©roulant -->
             <c:url value="/listeFournisseur" var="urlListeFour" />
             <c:url value="/addAdherent" var="urlAdd" />
             <c:url value="/enCours" var="url" /> 
@@ -79,7 +79,7 @@
                         </a>
                     </div>
                 </div> 
-		<!-- 	Menu liste des adhernets sans menu déroulant -->
+		<!-- 	Menu liste des adhernets sans menu dÃ©roulant -->
 		<a class="menu-dropdown-complement <c:if test = "${pageType == 'GESTION_FOURNISSEUR'}"> 
                                                         appMenu-active
                                                     </c:if>"  href="${urlListeFour}">
@@ -110,7 +110,7 @@
                         </a>
                     </div>
                 </div> 
-                <!-- 	Menu gestion des produits, partie sans menu déroulant -->
+                <!-- 	Menu gestion des produits, partie sans menu dÃ©roulant -->
                 <a class="menu-dropdown-complement <c:if test = "${pageType == 'GESTION_PRODUIT'}"> appMenu-active</c:if>"  > <%-- href="#"> --%>
                     <svg class="menu-item-icon" ><use xlink:href="<c:url value="/resources/images/icones.svg#excel"/>"></use></svg>
                     <spring:message code="menu.produit"/>

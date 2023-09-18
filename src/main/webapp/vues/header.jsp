@@ -14,19 +14,19 @@
 	<div class="identification">
 
 		<sec:authorize access="!isAuthenticated()">
-			Vous n'êtes pas connecté		 
+			Vous n'&ecirc;tes pas connectÃ©
 			<br>
 	  		<a href="<c:url value="/login" />">Connexion</a>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
-			Vous êtes connecté en <sec:authentication property="name"/>
+                  Vous &ecirc;tes connectÃ© en <sec:authentication property="name"/>
 			<br>
-	  		<a href="<c:url value="/logout" />">Déconnexion</a>
+	  		<a href="<c:url value="/logout" />">DÃ©connexion</a>
 		</sec:authorize>
 
 	</div>
 	<div class="version">
-		Version : ${project.version}
+		Version : 2.2.0.18
 	</div>
 </div>
 	

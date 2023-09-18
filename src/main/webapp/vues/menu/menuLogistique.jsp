@@ -1,61 +1,80 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" isELIgnored="false"
-    pageEncoding="ISO-8859-1"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
+         pageEncoding="UTF-8" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-success elevation-4 ">
-    <!-- Brand Logo -->
-    <a href="listeAdherents" class="brand-link">
-      <img src="resources/dist/img/modus.png" alt="SCABOthéques" class="brand-image img-circle elevation-3"
-        style="opacity: .8">
-      <span class="brand-text font-weight-light">SCABOthèque</span>
-    </a>
+<aside class="w-60 fixed" aria-label="Sidebar">
+    <div class="overflow-y-auto flex flex-col justify-between py-4 px-3 bg-zinc-200 min-h-screen">
+        <ul class="space-y-2">
+            <li class="mt-20"></li>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <!--<img src="resources/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">-->
-        </div>
-        <div class="info">
-          <a href="#" class="d-block"><sec:authentication property="name"/></a>
-        </div>
-      </div>
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
-        <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="dashboard" class="nav-link <c:if test = "${pageType == 'DASHBOARD'}"> active </c:if>">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Tableau de bord
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
-          
-          <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_EXPLOITATION')">
-            <c:url value="/ordreTournee" var="urlOrdreTournee" />
-            <li class="nav-item">
-              <a href="ordreTournee" class="nav-link <c:if test = "${pageType == 'LOGISTIQUE_TOURNEE'}"> active </c:if>">
-                <i class="nav-icon fas fa-truck"></i>
-                <p>
-                  <spring:message code="menu.gestionTournee"/>
-                  <!--<span class="right badge badge-danger">Nouveau</span>-->
-                </p>
-              </a>
+            <li class="flex justify-center">
+                <a href="<c:url value="/dashboard"/>"
+                   class="flex items-center text-xl font-normal text-gray-900 py-1 px-1 rounded-lg hover:bg-gray-100">
+                    <span class="text-gray-600 font-medium">Logistique</span>
+                </a>
             </li>
-          </sec:authorize>
+
+            <li class="h-2 w-full border-b border-gray-300"></li>
+            <li>
+                <a href="<c:url value="/dashboard"/>"
+                   class="<c:if test = "${pageType == 'DASHBOARD'}"> text-green-500 font-bold </c:if> flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
+                    <svg aria-hidden="true"
+                         class="w-6 h-6 text-gray-500 transition duration-75  group-hover:text-gray-900"
+                         fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                        <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                    </svg>
+                    <span class="ml-3">Dashboard</span>
+                </a>
+            </li>
+            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_EXPLOITATION')">
+            <c:url value="/ordreTournee" var="urlOrdreTournee"/>
+            <li>
+              <a href="<c:url value="/ordreTournee"/>"
+                   class="<c:if test = "${pageType == 'LOGISTIQUE_TOURNEE'}"> text-green-500 font-bold </c:if> flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
+                    <svg aria-hidden="true"
+                         class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                         fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                    </svg>
+                    <span class="flex-1 ml-3 whitespace-nowrap"><spring:message code="menu.gestionTournee"/></span>
+                </a>
+            </li>
         </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
+        <ul class="mb-20 flex flex-col">
+            </sec:authorize>
+            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_EXPLOITATION')">
+                <li>
+                    <a href="../scabotheque/listeCamions"
+                       class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
+                        <svg aria-hidden="true"
+                             class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                             fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                        </svg>
+                        <span class="flex-1 ml-3 text-gray-600 whitespace-nowrap">Liste des camions</span>
+                    </a>
+                </li>
+            </sec:authorize>
+            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_EXPLOITATION')">
+                <li>
+                  <a href="<c:url value="/listeConducteurs"/>"
+                       class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
+                        <svg aria-hidden="true"
+                             class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                             fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                        </svg>
+                        <span class="flex-1 ml-3 text-gray-600 whitespace-nowrap">Liste des conducteurs</span>
+                    </a>
+                </li>
+            </sec:authorize>
+        </ul>
     </div>
-    <!-- /.sidebar -->
-  </aside>
+</aside>
+
+

@@ -6,7 +6,7 @@
 <c:url value="/adherentDetail" var="urlDetail"><c:param name="idAdh" value="${adherent.id}"/></c:url>
 <c:url value="/adherentActivite" var="urlActivite"><c:param name="idAdh" value="${adherent.id}"/></c:url>
 <c:url value="/adherentArtipole" var="urlArtipole"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-<c:url value="/adherentExploitation" var="urlExploit"><c:param name="idAdh" value="${adherent.id}"/></c:url>
+<c:url value="/adherentLogistique" var="urlExploit"><c:param name="idAdh" value="${adherent.id}"/></c:url>
 <c:url value="/adherentAdministratif" var="urlAdmin"><c:param name="idAdh" value="${adherent.id}"/></c:url>
 <c:url value="/adherentInformatique" var="urlInfo"><c:param name="idAdh" value="${adherent.id}"/></c:url>
 <c:url value="/adherentCRM" var="urlCRM"><c:param name="idAdh" value="${adherent.id}"/></c:url>

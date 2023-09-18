@@ -1,200 +1,250 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" isELIgnored="false"
-    pageEncoding="ISO-8859-1"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
+         pageEncoding="UTF-8" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 
 <div class="showAdherent">
-    <div class="entete">
-        <div class="photo">
-            <c:choose >
-                <c:when test = "${adherent.photoImg == ''}"> 
-                    <img src="<c:url value="/resources/images/noAdh.png" />" />
-                </c:when>
-                <c:otherwise> 						
-                    <img src="${adherent.photoImg}">
-                </c:otherwise>
-            </c:choose>
-        </div>
-        <div>
-            <div class="textAlignCenter">
-                <span class="scabotheque-h3 textAlignCenter">${adherent.denomination}</span>
-                <div>
-                    <span class="detailLabel"><spring:message code="label.codeAdh"/></span>
-                    <span class="data" > ${adherent.code} </span>
+    <div class="flex justify-center">
+        <div class="rounded bg-neutral-50 p-4 border border-neutral-200 flex flex-col items-center">
+            <div>
+                <c:choose>
+                    <c:when test="${adherent.photoImg == ''}">
+                        <img class="rounded-full" src="<c:url value="/resources/images/noAdh.png" />"/>
+                    </c:when>
+                    <c:otherwise>
+                        <img class="rounded-full" src="${adherent.photoImg}">
+                    </c:otherwise>
+                </c:choose>
+            </div>
+            <div class="flex flex-col">
+                <div class="text-center text-lg font-semibold">
+                    ${adherent.denomination}
+                </div>
+                <div class="text-center text-sm">
+                    <spring:message code="label.codeAdh"/> :
+                    ${adherent.code}
                 </div>
             </div>
         </div>
     </div>
+
     <fieldset>
-    	<legend class="legend"><spring:message code="label.administratif"/></legend>
-            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADMIN_FINANCE_EDIT')">    	
-                <div class="editIcone">
-                    <c:url value="/edit/editAdministratifAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-                    <span><a href="${url}"><svg><use xlink:href="resources/images/icones.svg#edit"></use></svg></a></span>
-                </div>
-            </sec:authorize>	
-            <div class="colonnesDouble" style ="padding:10px;">
-            <div>
+        <div class="">
+            <legend class="text-center underline mt-4 mb-2">
+                <spring:message code="label.administratif"/>
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADMIN_FINANCE_EDIT')">
+                    <div class="inline-block ml-2">
+                        <c:url value="/edit/editAdministratifAdh" var="url">
+                            <c:param name="idAdh" value="${adherent.id}"/>
+                        </c:url>
+                        <a href="${url}" class="">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </sec:authorize>
+            </legend>
+        </div>
 
-                <div  class="showDetailAdherent">
-                    <span class="detailLabel"><spring:message code="label.dateEntree"/></span>
-                    <span class="data"><fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateEntree}" /></span>
-                </div>
-                
-                <div  class="showDetailAdherent">
-                    <span class="detailLabel"><spring:message code="label.nbSalarie"/></span>
-                    <span class="data">${adherent.nbSalaries}</span>
-                </div>
-            
-                <div  class="showDetailAdherent">
-                    <span class="detailLabel"><spring:message code="label.role"/></span>
-                    <span class="data">${adherent.role.libelle}</span>
-                </div>
+        <div class="grid grid-cols-2">
+            <div class="grid grid-cols-2 gap-2">
 
-                <div  class="showDetailAdherent">
-                    <span class="detailLabel"><spring:message code="label.adherentType"/></span>
-                    <span class="data">${adherent.adherentType.libelle}</span>
-                </div>
-            
-                <div  class="showDetailAdherent">
-                    <span class="detailLabel"><spring:message code="label.dateEntree"/></span>
-                    <span class="data"><fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateEntree}" /></span>
-                </div>
-
-                <div  class="showDetailAdherent"> 
-                    <span class="detailLabel"><spring:message code="label.formeJuridique"/></span>
-                    <span class="data">${adherent.formeJuridique.libelle}</span>
-                </div>
-
-                <div  class="showDetailAdherent">
-                    <span class="detailLabel"><spring:message code="label.siren"/></span>
-                    <span class="data">${adherent.siren}</span>
-                </div>
-
-                <div  class="showDetailAdherent">
-                    <span class="detailLabel"><spring:message code="label.siret"/></span>
-                    <span class="data">${adherent.siret}</span>
-                </div>
-
-                <div  class="showDetailAdherent">
-                    <span class="detailLabel"><spring:message code="label.ape"/></span>
-                    <span class="data">${adherent.ape.libelle}</span>
-                </div>
-
-                <div  class="showDetailAdherent">
-                    <span class="detailLabel"><spring:message code="label.numRepMetier"/></span>
-                    <span class="data">${adherent.numRepMetier}</span>
-                </div>
-
-    <!-- 		<div  class="showDetailAdherent"> -->
-    <%-- 	        <span class="adherentLabel"><spring:message code="label.rcsRm"/></span> --%>
-    <%-- 			<span class="data">${adherent.rcsRm}</span> --%>
-    <!-- 		</div> -->
-
-                <div  class="showDetailAdherent">
-                    <span class="detailLabel"><spring:message code="label.rcsCommune"/></span>
-                    <span class="data"><spring:message code="message.commune" arguments="${adherent.rcsCommune.codePostal}, ${adherent.rcsCommune.libelle}"/></span>
-                </div>
-
-                <div  class="showDetailAdherent">
-                    <span class="detailLabel"><spring:message code="label.rmCommune"/></span>
-                    <span class="data"><spring:message code="message.commune" arguments="${adherent.rmCommune.codePostal}, ${adherent.rmCommune.libelle}"/></span>
-                </div>
+                            <span class="">
+                                    <spring:message code="label.dateEntree"/> :
+                                <fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateEntree}"/>
+                            </span>
+                <span class="">
+                                <spring:message code="label.nbSalarie"/> :
+                                ${adherent.nbSalaries}
+                            </span>
+                <span class="">
+                                <spring:message code="label.role"/> :
+                                ${adherent.role.libelle}
+                            </span>
+                <span class="">
+                                <spring:message code="label.adherentType"/> :
+                                ${adherent.adherentType.libelle}
+                            </span>
+                <span class="">
+                                <spring:message code="label.dateEntree"/> :
+                                <fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateEntree}"/>
+                            </span>
+                <span class="">
+                                <spring:message code="label.formeJuridique"/> :
+                                ${adherent.formeJuridique.libelle}
+                            </span>
 
             </div>
-            <div>
-                <div  class="showDetailAdherent">
-                    <span class="detailLabel"><spring:message code="label.reglement"/></span>
+
+
+            <div class="grid grid-cols-2 gap-2">
+                <div class="">
+                            <span class="">
+                                <spring:message code="label.siren"/> :
+                                ${adherent.siren}
+                            </span>
+                </div>
+                <div class="">
+                            <span class="">
+                                <spring:message code="label.siret"/> :
+                                ${adherent.siret}
+                            </span>
+                </div>
+                <div class="">
+                            <span class="">
+                                <spring:message code="label.ape"/> :
+                                ${adherent.ape.libelle}
+                            </span>
+                </div>
+
+                <div class="">
+                            <span class="">
+                                <spring:message code="label.numRepMetier"/> :
+                                ${adherent.numRepMetier}
+                            </span>
+                </div>
+
+                <div class="">
+                            <span class="">
+                                <spring:message code="label.rcsCommune"/> :
+                                <spring:message code="message.commune"
+                                                arguments="${adherent.rcsCommune.codePostal}, ${adherent.rcsCommune.libelle}"/>
+                            </span>
+                </div>
+
+                <div class="">
+                            <span class="">
+                                <spring:message code="label.rmCommune"/> :
+                                <spring:message code="message.commune"
+                                                arguments="${adherent.rmCommune.codePostal}, ${adherent.rmCommune.libelle}"/>
+                            </span>
+                </div>
+            </div>
+
+
+            <div class="grid grid-cols-2 gap-2">
+                <div class="">
+                    <span class="">
+                      <spring:message code="label.reglement"/> :
+                    </span>
                     <c:choose>
-                        <c:when test="${adherent.compteType.id == 1}"><span class="data"></c:when> 
-                            <c:otherwise><span class="dataRouge"></c:otherwise>
+                        <c:when test="${adherent.compteType.id == 1}">
+                            ${adherent.compteType.libelle}
+                        </c:when>
+                        <c:otherwise>
+                            ${adherent.compteType.libelle}
+                        </c:otherwise>
                     </c:choose>
-                    ${adherent.compteType.libelle}</span>
                 </div>
-
-                <div  class="showDetailAdherent">
-                    <span class="detailLabel"><spring:message code="label.dateClotureExe"/></span>
-                    <span class="data"><fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateClotureExe}" /></span>
+                <div class="">
+                    <span class="">
+                      <spring:message code="label.dateClotureExe"/> :
+                        <fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateClotureExe}"/>
+                    </span>
                 </div>
-
-                <div  class="showDetailAdherent">
-                    <span class="detailLabel"><spring:message code="label.etat"/></span>
-                    <span class="data">${adherent.etat.libelle}</span>
+                <div class="">
+                    <span class="">
+                      <spring:message code="label.etat"/> :
+                        ${adherent.etat.libelle}
+                    </span>
                 </div>
-
-                <c:choose >
-                    <c:when test = "${adherent.etat.id == 2}"> 
-                        <div  class="showDetailAdherent">
-                            <span class="detailLabel"><spring:message code="label.dateSortie"/></span>
-                            <span class="data"><fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateSortie}" /></span>
+                <c:choose>
+                    <c:when test="${adherent.etat.id == 2}">
+                        <div class="">
+                            <span class="">
+                              <spring:message code="label.dateSortie"/> :
+                                <fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateSortie}"/>
+                            </span>
                         </div>
                     </c:when>
                 </c:choose>
-
-                <div  class="showDetailAdherent">
-                    <span class="detailLabel"><spring:message code="label.cnxEolasAllow"/></span>
-                    <span class="data">
-                        <c:choose>
-                            <c:when test="${adherent.cnxEolasAllow}"><span class="data"><spring:message code="yes"/></span></c:when> 
-                            <c:otherwise><span class="dataRouge"><spring:message code="no"/></span></c:otherwise> 
-                        </c:choose>
+                <div class="">
+                    <span class="">
+                      <spring:message code="label.cnxEolasAllow"/> :
+                    </span>
+                    <c:choose>
+                        <c:when test="${adherent.cnxEolasAllow}">
+                            <spring:message code="yes"/>
+                        </c:when>
+                        <c:otherwise>
+                            <spring:message code="no"/>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+                <div class="">
+                    <span class="">
+                      <spring:message code="label.formationCommerce"/> :
+                        ${adherent.formationDirigeant}
                     </span>
                 </div>
-                    
-                <div  class="showDetailAdherent">
-                    <span class="detailLabel"><spring:message code="label.formationCommerce"/></span>
-                    <span class="data">${adherent.formationDirigeant}</span>
-                </div>
+            </div>
 
-            </div>
+        </div>
     </fieldset>
-    
-    <fieldset>
-    	<legend class="legend"><spring:message code="label.contactComptable"/></legend>
-            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADMIN_FINANCE_EDIT')">    	
-                <div class="editIcone">
-                    <c:url value="/edit/editContactComptableAdh" var="urlContact"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-                    <span><a href="${urlContact}"><svg><use xlink:href="resources/images/icones.svg#edit"></use></svg></a></span>
+
+    <fieldset class="flex justify-center">
+        <legend class="text-center underline mt-4 mb-2 flex gap-2">
+            <spring:message code="label.contactComptable"/>
+
+            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADMIN_FINANCE_EDIT')">
+                <div class="">
+                    <c:url value="/edit/editContactComptableAdh" var="urlContact">
+                        <c:param name="idAdh" value="${adherent.id}"/>
+                    </c:url>
+                    <span>
+                    <a href="${urlContact}">
+                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                           xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                      </svg>
+                    </a>
+                </span>
                 </div>
-            </sec:authorize>	
-            <div class="colonnesDouble" style ="padding:10px;">
-                 <div class="showDetailAdherent"> 
-                    <span class="detailLabel">Cabinet comptable</span>
-                    <span class="data">${contactComptable.cabinet}</span>
- 		</div> 
-                <div class="showDetailAdherent"> 
-                    <span class="detailLabel">Contact civilitée</span>
-                    <span class="data">${contactComptable.civilite}</span>
- 		</div> 
-                <div class="showDetailAdherent"> 
-                    <span class="detailLabel">Nom comptable</span>
-                    <span class="data">${contactComptable.nom}</span>
- 		</div> 
-                <div class="showDetailAdherent"> 
-                    <span class="detailLabel">Prenom comptable</span>
-                    <span class="data">${contactComptable.prenom}</span>
- 		</div> 
-                <div class="showDetailAdherent"> 
-                    <span class="detailLabel">email comptable</span>
-                    <span class="data">${contactComptable.mail}</span>
- 		</div> 
-                <div class="showDetailAdherent"> 
-                    <span class="detailLabel">Tel fixe comptable</span>
-                    <span class="data">${contactComptable.mail}</span>
- 		</div> 
-                <div class="showDetailAdherent"> 
-                    <span class="detailLabel">Tel mobile comptable</span>
-                    <span class="data">${contactComptable.mail}</span>
- 		</div> 
+            </sec:authorize>
+        </legend>
+        <div class="">
+            <div class="">
+                <span class="">Cabinet comptable :</span>
+                <span class="">${contactComptable.cabinet}</span>
             </div>
+            <div class="">
+                <span class="">Contact civilitÃ©e :</span>
+                <span class="">${contactComptable.civilite}</span>
+            </div>
+            <div class="">
+                <span class="">Nom comptable :</span>
+                <span class="">${contactComptable.nom}</span>
+            </div>
+            <div class="">
+                <span class="">Prenom comptable :</span>
+                <span class="">${contactComptable.prenom}</span>
+            </div>
+            <div class="">
+                <span class="">email comptable :</span>
+                <span class="">${contactComptable.mail}</span>
+            </div>
+            <div class="">
+                <div class="">Tel fixe comptable :</div>
+                <div class="">${contactComptable.mail}</div>
+            </div>
+
+            <div class="">
+                <div class="">Tel mobile comptable :</div>
+                <div class="">${contactComptable.mail}</div>
+            </div>
+        </div>
     </fieldset>
-                
-    <fieldset class="showCommentaire">
-    	<legend  class="legend"><spring:message code="label.commentaire"/></legend>
-    	<span class="data" >${commentaire}</span>
-    </fieldset>
+
+    <%--    <fieldset class="showCommentaire">--%>
+    <%--        <legend class="legend"><spring:message code="label.commentaire"/></legend>--%>
+    <%--        <span class="data">${commentaire}</span>--%>
+    <%--    </fieldset>--%>
 </div>

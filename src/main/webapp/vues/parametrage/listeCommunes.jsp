@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" isELIgnored="false"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
+    pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
@@ -19,7 +19,7 @@
 <!-- 		<input id="filterCP" type="text" placeholder="Code postale ou Nom"  /> -->
 <!-- 		<br> -->
 <!-- 		<select id="communeListe" class="communeListe" multiple > -->
-<!-- 			<option value="" >trop de résultat</option> -->
+<!-- 			<option value="" >trop de rÃ©sultat</option> -->
 <!-- 		</select> -->
 		<div>
                     <spring:message code="count.adherent" arguments="${communeListe.list.size()}"/>

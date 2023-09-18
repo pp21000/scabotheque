@@ -25,7 +25,7 @@
                                 <c:param name="idCourse" value="${course.id}"/>
                             </c:url>
                             <a href="${url}">
-                                <spring:message code="suppression.supprimer.libelle" />
+                                <spring:message code="label.supprimer" />
                             </a>
                         </td>
                     </tr>

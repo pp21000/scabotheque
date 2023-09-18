@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" isELIgnored="false"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
+    pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -22,7 +22,7 @@
   <ul class="navbar-nav ml-auto">
     <!--Messages Dropdown Menu--> 
     <li>
-      <a class="nav-link" href="logout">Déconnexion</a>
+      <a class="nav-link" href="logout">DÃ©connexion</a>
     </li> 
     <li class="nav-item">
       <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
@@ -87,7 +87,7 @@
         </div>
         <!-- /.card -->
 
-        <!-- Identité -->
+        <!-- IdentitÃ© -->
         <div class="card card-success">
           <div class="card-header">
             <h3 class="card-title"><spring:message code="label.identite"/></h3>
@@ -139,13 +139,13 @@
           <div class="card-body">
             <div class="tab-content">
               
-              <!--Activitées-->
+              <!--ActivitÃ©es-->
               <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ACTIVITE')">
                 <div class="active tab-pane" id="commerce">
                   <div class="card-body pt-0">
                     <div class="card">
                       <div class="card-header">
-                        <h3 class="card-title">Achat de marchandise à la Coop</h3>
+                        <h3 class="card-title">Achat de marchandise Ã  la Coop</h3>
                       </div>
                       <!-- /.card-header -->
                       <div class="card-body p-0">
@@ -351,9 +351,9 @@
                         <div class="col-sm-9 col-form-label">
                           <span id="cabComptable">${contactComptable.cabinet}</span>
                         </div> 
-                        <label for="civilitée" class="col-sm-3 col-form-label">Contact civilitée</label>
+                        <label for="civilitÃ©e" class="col-sm-3 col-form-label">Contact civilitÃ©e</label>
                         <div class="col-sm-9 col-form-label">
-                          <span id="civilitée">${contactComptable.civilite}</span>
+                          <span id="civilitÃ©e">${contactComptable.civilite}</span>
                         </div> 
                         <label for="Nom" class="col-sm-3 col-form-label">Nom comptable</label>
                         <div class="col-sm-9 col-form-label">
@@ -411,7 +411,7 @@
 <aside class="control-sidebar control-sidebar-dark">
   <div class="p-3 control-sidebar-content">
 
-    <h5> Options d'édition</h5>
+    <h5> Options d'Ã©dition</h5>
     <hr class="mb-2"/>
         
     <!-- Control sidebar content goes here -->
@@ -431,7 +431,7 @@
         <a href="${url}" class="nav-link">
           <p>
             <i class="fas fa-table"></i>
-            Données administratives
+            DonnÃ©es administratives
           </p>
         </a>
       </sec:authorize>
