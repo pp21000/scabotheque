@@ -109,7 +109,7 @@
             </div>
             <div>
                 <%--<form:checkbox id="showBart" name="showBart" path="showBart"/>--%> 
-                <label style="float:none;" for="showBart">Adherents BART</label>
+                <label style="float:none;" for="showBart">Adhérents BART</label>
             </div>-->
             <div>
                 <form:checkbox id="showArtipoleOnly" name="showArtipoleOnly" path="showArtipoleOnly"/> 

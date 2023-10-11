@@ -96,9 +96,8 @@ public class AddAdherentController {
       final EditAdherentForm editAdhForm = new EditAdherentForm();
 
       // Rend l'adherent éditable (avec des validations test)
-      EditAdherent editableAdh = new EditAdherent(); // adhToEdit(adh);
-      editAdhForm.setAdherent(editableAdh);
-
+      //EditAdherent editableAdh = new EditAdherent(); // adhToEdit(adh);
+      //editAdhForm.setAdherent();
       pModel.addAttribute("adhToAdd", editAdhForm);
     } else {
       pModel.addAttribute("adhToAdd", pModel.get("adhToAdd"));
@@ -155,7 +154,7 @@ public class AddAdherentController {
   public String modifier(@Valid @ModelAttribute(value = "adhToAdd") final EditAdherentForm editForm,
           final BindingResult pBindingResult, final ModelMap pModel) {
 
-    adhEditable = editForm.getAdherent();
+    adhEditable = editForm.getEditAdherent();
     Adherent adh = editToAdh(adhEditable);
 
     // test de la presence des objets

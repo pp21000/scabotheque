@@ -10,11 +10,11 @@
 <script src="resources/plugins/jquery/jquery.min.js"></script>
 
 
-<div class="underline text-2xl mb-5 font-medium text-gray-600 text-center">Tableau de bord</div>
+<div class="underline text-2xl mb-5 font-medium text-center">Tableau de bord</div>
 
 <div class="gap-5 flex justify-center">
     <a href="adherentListe?list=adh"
-       class="flex shadow-lg shadow-green-500/30 gap-4 justify-center pt-7 w-64 flex h-28 bg-green-100 border-t-4 border-green-500 cursor-pointer hover:bg-green-200">
+       class="flex shadow-lg shadow-green-500/30 gap-4 justify-center pt-7 w-64 flex h-28 bg-green-100 border-t-4 border-green-500 cursor-pointer hover:bg-green-200 rounded-lg">
         <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"
              xmlns="http://www.w3.org/2000/svg">
             <path class="stroke-emerald-700" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -31,7 +31,7 @@
     </a>
 
     <a href="adherentListe?list=admin"
-       class="w-64 shadow-lg shadow-blue-500/30 flex gap-4 justify-center pt-7 h-28 flex-col p-4 mb-4 bg-blue-100 border-t-4 border-blue-500 cursor-pointer hover:bg-blue-200"
+       class="w-64 shadow-lg shadow-blue-500/30 flex gap-4 justify-center pt-7 h-28 flex-col p-4 mb-4 bg-blue-100 border-t-4 border-blue-500 cursor-pointer hover:bg-blue-200 rounded-lg"
        role="alert">
         <div class="flex">
             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -40,18 +40,18 @@
                       d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
             </svg>
             <div class="row-span-2 ml-3 pt-3 text-xl font-medium text-blue-700">
-                A rechercher - <c:out value="${adhSansEOLAS}"/>
+                À rechercher - <c:out value="${adhSansEOLAS}"/>
             </div>
         </div>
 
         <div class="row-span-2 text-center text-sm font-medium text-blue-700">
-            Adherents Administrateurs
+            Adhérents Administrateurs
         </div>
     </a>
 
     <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_EXPLOITATION')">
         <a href="ordreTournee?list=adh"
-           class="flex gap-4 shadow-lg shadow-green-500/30 justify-center pt-7 w-64 flex h-28 bg-green-100 border-t-4 border-green-500 cursor-pointer hover:bg-green-200">
+           class="flex gap-4 shadow-lg shadow-green-500/30 justify-center pt-7 w-64 flex h-28 bg-green-100 border-t-4 border-green-500 cursor-pointer hover:bg-green-200 rounded-lg">
             <svg class="stroke-emerald-700 w-11 h-11" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                  xmlns="http://www.w3.org/2000/svg">
                 <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path>
@@ -67,7 +67,7 @@
     </sec:authorize>
 </div>
 
-<div class="underline flex justify-center text-2xl mb-5 mt-6 font-medium text-gray-600 text-center">Evolution du nombre d'adhérents :</div>
+<div class="underline flex justify-center text-2xl mb-5 mt-6 font-medium text-center">Évolution du nombre d'adhérents :</div>
 <div class="w-2/3 h-1/2 mx-auto">
     <canvas id="areaChart"></canvas>
 </div>

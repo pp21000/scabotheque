@@ -373,18 +373,37 @@
                         <h5 class="text-lg font-bold tracking-tight text-gray-900 text-center">
                           <c:out value="${contact.civilite} ${contact.nom} ${contact.prenom}"/></h5>
                         <p class="text-center font-semibold text-sm text-gray-500"><c:out
-                            value="${contact.fonction.libelle}"/></p>
+                            value="${contact.fonction.libelle}"/>
+                        </p>
                         <p>
                           <ul class="text-sm text-center">
                             <li class="small mt-1 text-green-500 hover:underline hover:drop-shadow">
-                              <a
-                                href="mailto:${contact.mail}">${contact.mail}</a></li>
+                              <a href="mailto:${contact.mail}">${contact.mail}</a>
+                            </li>
+
+                            
                             <li class="small text-green-500 hover:underline hover:drop-shadow">
-                              <a
-                                href="tel:${contact.fixe}">${contact.fixe}</a></li>
-                            <li class="small text-green-500 hover:underline hover:drop-shadow">
-                              <a
-                                href="tel:${contact.mobile}">${contact.mobile}</a></li>
+                              <a href="tel:${contact.fixe}">${contact.fixe}</a>
+                            </li>
+                            
+                            <c:choose>
+                              <c:when test="${contact.mobile != ''}">
+                                <li class="small text-green-500 hover:underline hover:drop-shadow">
+                                  <a href="tel:${contact.mobile}">${contact.mobile}</a>
+                                </li>                              
+                              </c:when>
+                              <c:otherwise>
+                                <li class="small text-green-500 hover:underline hover:drop-shadow">
+                                  <a href="tel:">&nbsp;</a>
+                                </li>
+                              </c:otherwise>
+                            </c:choose>                            
+                                
+<!--                            <li class="small text-green-500 hover:underline hover:drop-shadow">
+                              <a href="tel:${contact.mobile}">${contact.mobile}</a>
+                            </li>-->
+                            
+                            
                             <li class="text-xs"><fmt:formatDate
                                 pattern="dd/MM/yyyy"
                                 value="${contact.dateNaissance}"/>
@@ -622,7 +641,7 @@
                                  action="edit/addAdherentSuivi">
                         <form:input type="hidden" path="suiviVisiteAdh.adherentId"/>
                         <div class="post">
-                          <button class="mb-5 px-3 py-2 text-xs font-medium text-center text-white bg-neutral-700 rounded-lg hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+                          <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
                                   id="openFormButton" type="button">
                             Ajouter un suivi
                           </button>
@@ -647,7 +666,7 @@
                                   id="summernote"
                                   name="editordata"
                                   path="suiviVisiteAdh.commentaire"/>
-                                <button class="px-3 py-2 text-xs font-medium text-center text-white bg-neutral-700 rounded-lg hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+                                <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
                                         type="submit">Enregistrer le suivi
                                 </button>
                               </div>

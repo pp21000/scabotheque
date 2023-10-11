@@ -7,9 +7,12 @@ import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
 import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
 import fr.scabois.scabotheque.bean.adherent.AdherentInformatique;
 import fr.scabois.scabotheque.bean.adherent.AdherentLogistique;
+import fr.scabois.scabotheque.bean.adherent.AdherentMetier;
 import fr.scabois.scabotheque.bean.adherent.AdherentSuiviVisite;
 import fr.scabois.scabotheque.bean.adherent.AdherentType;
 import fr.scabois.scabotheque.bean.adherent.CompteType;
+import fr.scabois.scabotheque.bean.adherent.ContactClubFemme;
+import fr.scabois.scabotheque.bean.adherent.ContactRetraite;
 import fr.scabois.scabotheque.bean.adherent.FormeJuridique;
 import fr.scabois.scabotheque.bean.adherent.Pole;
 import fr.scabois.scabotheque.bean.adherent.Role;
@@ -44,365 +47,440 @@ public class ServiceAdherent implements IServiceAdherent {
 
   @Override
   public String chartDataActif() {
-    return dao.chartDataActif();
+    return this.dao.chartDataActif();
   }
 
   @Override
   public String chartDataNew() {
-    return dao.chartDataNew();
+    return this.dao.chartDataNew();
   }
 
   @Override
   public String chartDataAnnee() {
-    return dao.chartDataAnnee();
+    return this.dao.chartDataAnnee();
   }
 
   @Override
   public String chartDataInactif() {
-    return dao.chartDataInactif();
+    return this.dao.chartDataInactif();
   }
 
   @Override
   public Long countAdherents() {
-    return dao.countAdherents();
+    return this.dao.countAdherents();
   }
 
   @Override
   public Long countAdherentsInactif() {
-    return dao.countAdherentsInactif();
+    return this.dao.countAdherentsInactif();
   }
 
   @Override
   public Long countAdherentsSansEOLAS() {
-    return dao.countAdherentsSansEOLAS();
+    return this.dao.countAdherentsSansEOLAS();
   }
 
   @Override
-  public void createActivite(String libelle) {
-    dao.createActivite(libelle);
+  public void createActivite(final String libelle) {
+    this.dao.createActivite(libelle);
   }
 
   @Override
-  public int createAdherent(Adherent datatAdherent) {
-    return dao.createAdherent(datatAdherent);
+  public int createAdherent(final Adherent datatAdherent) {
+    return this.dao.createAdherent(datatAdherent);
   }
 
   @Override
-  public void createAgence(String libelle) {
-    dao.createAgence(libelle);
-
+  public void createAgence(final String libelle) {
+    this.dao.createAgence(libelle);
   }
 
   @Override
-  public void createContactAdherent(AdherentContactRole contact) {
-    dao.createContactAdherent(contact);
+  public void createContactAdherent(final AdherentContactRole contact) {
+    this.dao.createContactAdherent(contact);
   }
 
   @Override
-  public void createContactFonction(String libelle) {
-    dao.createContactFonction(libelle);
+  public void createContactClubFemme(final ContactClubFemme contact) {
+    this.dao.createContactClubFemme(contact);
   }
 
   @Override
-  public void createPole(String libelle) {
-    dao.createPole(libelle);
+  public void createContactRetraite(final ContactRetraite contact) {
+    this.dao.createContactRetraite(contact);
   }
 
   @Override
-  public void createRole(String libelle) {
-    dao.createRole(libelle);
+  public void createContactFonction(final String libelle) {
+    this.dao.createContactFonction(libelle);
   }
 
   @Override
-  public void createSecteur(String libelle) {
-    dao.createSecteur(libelle);
+  public void createPole(final String libelle) {
+    this.dao.createPole(libelle);
   }
 
   @Override
-  public void createSuiviAdherent(AdherentSuiviVisite suivi) {
-    dao.createSuiviAdherent(suivi);
+  public void createRole(final String libelle) {
+    this.dao.createRole(libelle);
   }
 
   @Override
-  public void createUtilisateur(String userName, String password) {
-    dao.createUtilisateur(userName, password);
+  public void createSecteur(final String libelle) {
+    this.dao.createSecteur(libelle);
   }
 
   @Override
-  public Activite loadActivite(int activiteId) {
-    return dao.loadActivite(activiteId);
+  public void createSuiviAdherent(final AdherentSuiviVisite suivi) {
+    this.dao.createSuiviAdherent(suivi);
+  }
+
+  @Override
+  public void createUtilisateur(final String userName, final String password) {
+    this.dao.createUtilisateur(userName, password);
+  }
+
+  @Override
+  public Activite loadActivite(final int activiteId) {
+    return this.dao.loadActivite(activiteId);
   }
 
   @Override
   public List<Activite> loadActivites() {
-    return dao.loadActivites();
+    return (List<Activite>) this.dao.loadActivites();
   }
 
   @Override
-  public List<AdherentActivite> loadActivitesAdherent(int idAdh) {
-    return dao.loadActivitesAdherent(idAdh);
+  public List<AdherentActivite> loadActivitesAdherent(final int idAdh) {
+    return (List<AdherentActivite>) this.dao.loadActivitesAdherent(idAdh);
   }
 
   @Override
-  public Adherent loadAdherent(int idAdh) {
-    return dao.loadAdherent(idAdh);
+  public Adherent loadAdherent(final int idAdh) {
+    return this.dao.loadAdherent(idAdh);
   }
 
   @Override
-  public String loadAdherentCommentaire(int idAdh, PageType pageType) {
-    return dao.loadAdherentCommentaire(idAdh, pageType);
+  public String loadAdherentCommentaire(final int idAdh, final PageType pageType) {
+    return this.dao.loadAdherentCommentaire(idAdh, pageType);
   }
 
   @Override
-  public List<AdherentContactRole> loadAdherentContact(int adhId) {
-    return dao.loadAdherentContact(adhId);
+  public List<AdherentContactRole> loadAdherentContact(final int adhId) {
+    return (List<AdherentContactRole>) this.dao.loadAdherentContact(adhId);
   }
 
   @Override
-  public AdherentContactComptable loadAdherentContactComptable(int idAdh) {
-    return dao.loadAdherentContactComptable(idAdh);
+  public AdherentContactComptable loadAdherentContactComptable(final int idAdh) {
+    return this.dao.loadAdherentContactComptable(idAdh);
   }
 
   @Override
-  public List<AdherentContactRole> loadAdherentContactFonction(int adhId, Boolean isDirigeant, Boolean isCommerce,
-          Boolean isAdmin, Boolean isCompta) {
-    return dao.loadAdherentContactFonction(adhId, isDirigeant, isCommerce, isAdmin, isCompta);
+  public List<AdherentContactRole> loadAdherentContactFonction(final int adhId, final Boolean isDirigeant, final Boolean isCommerce, final Boolean isAdmin, final Boolean isCompta) {
+    return (List<AdherentContactRole>) this.dao.loadAdherentContactFonction(adhId, isDirigeant, isCommerce, isAdmin, isCompta);
   }
 
   @Override
-  public List<AdherentContactRole> loadAdherentContact(CriteriaAdherent criteria) {
-    return dao.loadAdherentContact(criteria);
+  public List<AdherentContactRole> loadAdherentContact(final CriteriaAdherent criteria) {
+    return (List<AdherentContactRole>) this.dao.loadAdherentContact(criteria);
+  }
+
+  public List<AdherentMetier> loadAdherentMetiers(final int idAdh) {
+    return (List<AdherentMetier>) this.dao.loadAdherentMetiers(idAdh);
   }
 
   @Override
-  public AdherentLogistique loadAdherentLogistique(int idAdh) {
-    return dao.loadAdherentLogistique(idAdh);
+  public List<ContactRetraite> loadContactsRetraite() {
+    return (List<ContactRetraite>) this.dao.loadContactsRetraite();
   }
 
   @Override
-  public AdherentInformatique loadAdherentInformatique(int idAdh) {
-    return dao.loadAdherentInformatique(idAdh);
+  public ContactClubFemme loadContactClubFemme(final int idAdh) {
+    return this.dao.loadContactClubFemme(idAdh);
   }
 
   @Override
-  public AdherentSuiviVisite loadAdherentSuiviVisite(int suiviId) {
-    return dao.loadAdherentSuiviVisite(suiviId);
+  public List<ContactClubFemme> loadContactsClubFemme() {
+    return (List<ContactClubFemme>) this.dao.loadContactsClubFemme();
   }
 
   @Override
-  public List<AdherentSuiviVisite> loadAdherentSuivisVisites(int adhId) {
-    return dao.loadAdherentSuivisVisites(adhId);
+  public AdherentLogistique loadAdherentLogistique(final int idAdh) {
+    return this.dao.loadAdherentLogistique(idAdh);
+  }
+
+  /**
+   *
+   * @param idAdh
+   * @return
+   */
+  @Override
+  public AdherentInformatique loadAdherentInformatique(final int idAdh) {
+    return this.dao.loadAdherentInformatique(idAdh);
   }
 
   @Override
-  public List<AdherentSuiviVisite> loadAdherentSuivisVisites(Integer adhId, CriteriaCRM criteria) {
-    return loadAdherentSuivisVisites(adhId).stream().filter(sv -> sv.getCommentaireString().contains(criteria.getText())).collect(Collectors.toList());
+  public AdherentSuiviVisite loadAdherentSuiviVisite(final int suiviId) {
+    return this.dao.loadAdherentSuiviVisite(suiviId);
+  }
+
+  /**
+   *
+   * @param adhId
+   * @return
+   */
+  @Override
+  public List<AdherentSuiviVisite> loadAdherentSuivisVisites(final int adhId) {
+    return (List<AdherentSuiviVisite>) this.dao.loadAdherentSuivisVisites(adhId);
+  }
+
+  /**
+   *
+   * @param adhId
+   * @param criteria
+   * @return
+   */
+  @Override
+  public List<AdherentSuiviVisite> loadAdherentSuivisVisites(final Integer adhId, final CriteriaCRM criteria) {
+    return this.loadAdherentSuivisVisites(adhId).stream().filter(sv -> sv.getCommentaireString().contains(criteria.getText())).collect(Collectors.toList());
   }
 
   @Override
   public List<AdherentType> loadAdherentTypes() {
-    return dao.loadAdherentTypes();
+    return (List<AdherentType>) this.dao.loadAdherentTypes();
   }
 
   @Override
   public List<Adherent> loadAdherents() {
-    return dao.loadAdherents();
+    return (List<Adherent>) this.dao.loadAdherents();
   }
 
   @Override
   public List<AdherentContactRole> loadAdherentsContact() {
-    return dao.loadAdherentsContact();
+    return (List<AdherentContactRole>) this.dao.loadAdherentsContact();
   }
 
   @Override
-  public List<Adherent> loadAdherents(CriteriaAdherent criteria) {
-    return dao.loadAdherents(criteria);
+  public List<Adherent> loadAdherents(final CriteriaAdherent criteria) {
+    return (List<Adherent>) this.dao.loadAdherents(criteria);
   }
 
   @Override
   public List<Agence> loadAgences() {
-    return dao.loadAgences();
+    return (List<Agence>) this.dao.loadAgences();
   }
 
   @Override
   public List<Ape> loadCodeApes() {
-    return dao.loadApes();
+    return (List<Ape>) this.dao.loadApes();
   }
 
   @Override
   public List<Commune> loadCommunes() {
-    return dao.loadCommunes();
+    return (List<Commune>) this.dao.loadCommunes();
   }
 
   @Override
   public List<CompteType> loadCompteTypes() {
-    return dao.loadCompteTypes();
+    return (List<CompteType>) this.dao.loadCompteTypes();
   }
 
+  /**
+   *
+   * @return
+   */
   @Override
   public List<ContactFonction> loadContactFonctions() {
-    return dao.loadContactFonction();
+    return (List<ContactFonction>) this.dao.loadContactFonction();
   }
 
   @Override
   public List<AdherentEtat> loadEtats() {
-    return dao.loadEtats();
+    return (List<AdherentEtat>) this.dao.loadEtats();
   }
 
   @Override
   public List<FormeJuridique> loadFormesJuridiques() {
-    return dao.loadFormesJuridiques();
+    return (List<FormeJuridique>) this.dao.loadFormesJuridiques();
   }
 
   @Override
   public List<Pole> loadPoles() {
-    return dao.loadPoles();
+    return (List<Pole>) this.dao.loadPoles();
   }
 
   @Override
   public List<Role> loadRoles() {
-    return dao.loadRoles();
+    return (List<Role>) this.dao.loadRoles();
   }
 
   @Override
   public List<RoleSalarieEOLAS> loadRolesEOLAS() {
-    return dao.loadRolesEOLAS();
+    return (List<RoleSalarieEOLAS>) this.dao.loadRolesEOLAS();
   }
 
   @Override
   public List<Secteur> loadSecteurs() {
-    return dao.loadSecteurs();
+    return (List<Secteur>) this.dao.loadSecteurs();
   }
 
   @Override
   public List<Tournee> loadTournees() {
-    return dao.loadTournees();
+    return (List<Tournee>) this.dao.loadTournees();
   }
 
   @Override
-  public User loadUtilisateur(int userId) {
-    return dao.loadUtilisateur(userId);
+  public User loadUtilisateur(final int userId) {
+    return this.dao.loadUtilisateur(userId);
+  }
+
+  @Override
+  public AdherentContactRole loadContact(final Integer contactId) {
+    return this.dao.loadContact(contactId);
   }
 
   @Override
   public List<User> loadUtilisateurs() {
-    return dao.loadUtilisateurs();
+    return (List<User>) this.dao.loadUtilisateurs();
   }
 
   @Override
-  public void saveActivites(List<Activite> activites) {
-    dao.saveActivites(activites);
+  public void saveActivites(final List<Activite> activites) {
+    this.dao.saveActivites((List) activites);
   }
 
   @Override
-  public void saveActivitesAdherent(int adhId, List<AdherentActivite> activitesAdh) {
-    dao.saveActivitesAdherent(adhId, activitesAdh);
+  public void saveActivitesAdherent(final int adhId, final List<AdherentActivite> activitesAdh) {
+    this.dao.saveActivitesAdherent(adhId, (List) activitesAdh);
   }
 
   @Override
-  public void saveAdherent(Adherent pAdherent) {
-    dao.editAdherent(pAdherent);
+  public void saveAdherent(final Adherent pAdherent) {
+    this.dao.editAdherent(pAdherent);
+  }
+
+  /**
+   *
+   * @param adhId
+   * @param type
+   * @param commentaire
+   */
+  @Override
+  public void saveAdherentCommentaire(final int adhId, final PageType type, final String commentaire) {
+    this.dao.saveAdherentCommentaire(adhId, type, commentaire);
   }
 
   @Override
-  public void saveAdherentCommentaire(int adhId, PageType type, String commentaire) {
-    dao.saveAdherentCommentaire(adhId, type, commentaire);
+  public void saveAdherentContacts(final List<AdherentContactRole> contacts) {
+    this.dao.saveAdherentContacts((List) contacts);
   }
 
   @Override
-  public void saveAdherentContacts(List<AdherentContactRole> contacts) {
-    dao.saveAdherentContacts(contacts);
+  public void saveAdherentMetiers(final int adhId, final List<AdherentMetier> adherentMetiers) {
+    this.dao.saveAdherentMetiers(adhId, (List) adherentMetiers);
   }
 
   @Override
-  public void saveAdherentSuiviVisite(AdherentSuiviVisite suivi) {
-    dao.saveAdherentSuiviVisite(suivi);
+  public void saveAdherentLogistique(final AdherentLogistique logistiqueAdh) {
+    this.dao.saveAdherentLogistique(logistiqueAdh);
   }
 
   @Override
-  public void saveAgences(List<Agence> agences) {
-    dao.saveAgences(agences);
-
+  public void saveAdherentSuiviVisite(final AdherentSuiviVisite suivi) {
+    this.dao.saveAdherentSuiviVisite(suivi);
   }
 
   @Override
-  public void saveContactComptableAdherent(AdherentContactComptable contact) {
-    dao.saveContactComptableAdherent(contact);
+  public void saveAgences(final List<Agence> agences) {
+    this.dao.saveAgences((List) agences);
   }
 
   @Override
-  public void saveContactFonctions(List<ContactFonction> contactFonctions) {
-    dao.saveContactsFonctions(contactFonctions);
+  public void saveContactComptableAdherent(final AdherentContactComptable contact) {
+    this.dao.saveContactComptableAdherent(contact);
   }
 
   @Override
-  public void savePoles(List<Pole> poles) {
-    dao.savePoles(poles);
+  public void saveContactFonctions(final List<ContactFonction> contactFonctions) {
+    this.dao.saveContactsFonctions((List) contactFonctions);
   }
 
   @Override
-  public void saveRoles(List<Role> roles) {
-    dao.saveRoles(roles);
+  public void savePoles(final List<Pole> poles) {
+    this.dao.savePoles((List) poles);
   }
 
   @Override
-  public void saveSecteurs(List<Secteur> secteurs) {
-    dao.saveSecteurs(secteurs);
+  public void saveRoles(final List<Role> roles) {
+    this.dao.saveRoles((List) roles);
   }
 
   @Override
-  public void saveUtilisateur(List<User> users) {
-    dao.saveUtilisateur(users);
+  public void saveSecteurs(final List<Secteur> secteurs) {
+    this.dao.saveSecteurs((List) secteurs);
   }
 
   @Override
-  public void saveUtilisateurRoles(int usrId, List<UserRole> newUserRoles) {
-    dao.saveUtilisateurRoles(usrId, newUserRoles);
+  public void saveUtilisateur(final List<User> users) {
+    this.dao.saveUtilisateur((List) users);
   }
 
   @Override
-  public void setAdherentImage(int adhId, byte[] photo) {
-    dao.setAdherentImage(adhId, photo);
+  public void saveUtilisateurRoles(final int usrId, final List<UserRole> newUserRoles) {
+    this.dao.saveUtilisateurRoles(usrId, (List) newUserRoles);
   }
 
   @Override
-  public void setContactImage(int contactId, byte[] bytes) {
-    dao.setContactImage(contactId, bytes);
+  public void setAdherentImage(final int adhId, final byte[] photo) {
+    this.dao.setAdherentImage(adhId, photo);
   }
 
   @Override
-  public void supprimeActivite(Integer id) {
-    dao.supprimeActivite(id);
+  public void setAdherentLogo(final int adhId, final byte[] logo) {
+    this.dao.setAdherentLogo(adhId, logo);
   }
 
   @Override
-  public void supprimeAdherentContact(Integer id) {
-    dao.supprimeAdherentContact(id);
+  public void setContactImage(final int contactId, final byte[] bytes) {
+    this.dao.setContactImage(contactId, bytes);
   }
 
   @Override
-  public void supprimeAgence(Integer id) {
-    dao.supprimeAgence(id);
+  public void supprimeActivite(final Integer id) {
+    this.dao.supprimeActivite(id);
   }
 
   @Override
-  public void supprimeContactFonction(Integer id) {
-    dao.supprimeContactFonction(id);
+  public void supprimeAdherentContact(final Integer id) {
+    this.dao.supprimeAdherentContact(id);
   }
 
   @Override
-  public void supprimePole(Integer id) {
-    dao.supprimePole(id);
+  public void supprimeAgence(final Integer id) {
+    this.dao.supprimeAgence(id);
   }
 
   @Override
-  public void supprimeRole(Integer id) {
-    dao.supprimeRole(id);
+  public void supprimeContactFonction(final Integer id) {
+    this.dao.supprimeContactFonction(id);
   }
 
   @Override
-  public void supprimeSecteur(Integer id) {
-    dao.supprimeSecteur(id);
+  public void supprimePole(final Integer id) {
+    this.dao.supprimePole(id);
   }
 
+  @Override
+  public void supprimeRole(final Integer id) {
+    this.dao.supprimeRole(id);
+  }
+
+  /**
+   *
+   * @param id
+   */
+  @Override
+  public void supprimeSecteur(final Integer id) {
+    this.dao.supprimeSecteur(id);
+  }
 }

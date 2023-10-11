@@ -11,7 +11,7 @@
 	<form:form method="post" modelAttribute="roleListe" action="saveRoles">
             <div class="textAlignCenter">
             <div class="showDetail colonne-roleEOLAS">
-                <span> Libelle </span>    
+                <span > Libellé </span>    
                 <span> Nom dans le flux</span>    
                 <span> Commentaire </span>    
             </div>

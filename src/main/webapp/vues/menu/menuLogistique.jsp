@@ -7,21 +7,14 @@
 
 
 <aside class="w-60 fixed" aria-label="Sidebar">
-    <div class="overflow-y-auto flex flex-col justify-between py-4 px-3 bg-zinc-200 min-h-screen">
+    <div class="overflow-y-auto flex flex-col justify-between py-4 px-3 bg-zinc-200 min-h-screen bg-gray-50 dark:text-gray-50 dark:bg-gray-800">
         <ul class="space-y-2">
-            <li class="mt-20"></li>
 
-            <li class="flex justify-center">
-                <a href="<c:url value="/dashboard"/>"
-                   class="flex items-center text-xl font-normal text-gray-900 py-1 px-1 rounded-lg hover:bg-gray-100">
-                    <span class="text-gray-600 font-medium">Logistique</span>
-                </a>
-            </li>
+            <li class="flex justify-center text-xl px-1 py-5 mt-12 text-gray-600 font-medium w-full border-b border-gray-400">Logistique</li>
 
-            <li class="h-2 w-full border-b border-gray-300"></li>
             <li>
                 <a href="<c:url value="/dashboard"/>"
-                   class="<c:if test = "${pageType == 'DASHBOARD'}"> text-green-500 font-bold </c:if> flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
+                   class="<c:choose><c:when test = "${pageType == 'DASHBOARD'}"> bg-[#28a745] </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
                     <svg aria-hidden="true"
                          class="w-6 h-6 text-gray-500 transition duration-75  group-hover:text-gray-900"
                          fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -35,7 +28,7 @@
             <c:url value="/ordreTournee" var="urlOrdreTournee"/>
             <li>
               <a href="<c:url value="/ordreTournee"/>"
-                   class="<c:if test = "${pageType == 'LOGISTIQUE_TOURNEE'}"> text-green-500 font-bold </c:if> flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
+                   class="<c:choose><c:when test = "${pageType == 'LOGISTIQUE_TOURNEE'}"> bg-[#28a745] </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
                     <svg aria-hidden="true"
                          class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
                          fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -50,26 +43,26 @@
             <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_EXPLOITATION')">
                 <li>
                     <a href="../scabotheque/listeCamions"
-                       class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
+                       class="flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
                         <svg aria-hidden="true"
                              class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
                              fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
                         </svg>
-                        <span class="flex-1 ml-3 text-gray-600 whitespace-nowrap">Liste des camions</span>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Liste des camions</span>
                     </a>
                 </li>
             </sec:authorize>
             <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_EXPLOITATION')">
                 <li>
                   <a href="<c:url value="/listeConducteurs"/>"
-                       class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
+                       class="flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
                         <svg aria-hidden="true"
                              class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
                              fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
                         </svg>
-                        <span class="flex-1 ml-3 text-gray-600 whitespace-nowrap">Liste des conducteurs</span>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Liste des conducteurs</span>
                     </a>
                 </li>
             </sec:authorize>

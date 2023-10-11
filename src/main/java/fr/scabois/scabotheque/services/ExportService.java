@@ -103,6 +103,155 @@ public class ExportService {
     }
   }
 
+//  public void exportListRetraiteToFile(final HttpServletResponse response) {
+//    try {
+//      final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+//      final List<ContactRetraite> listContacts = (List<ContactRetraite>) this.service.loadContactRetraite();
+//      final String fileName = AppProperties.getPropertie("export.path") + "/" + AppProperties.getPropertie("export.exportContactRetraiteFileName") + LocalDate.now().format(DateTimeFormatter.ISO_DATE) + ".xlsx";
+//      final XSSFWorkbook workBook = this.openExcelWorkBook(ExportFileType.TYPE_LIST_CONTACT_RETRAITE);
+//      final XSSFSheet sheet = this.openSheet(workBook, "ListeContacts");
+//      final AtomicInteger cpt = new AtomicInteger(1);
+////      final XSSFSheet xssfSheet;
+//      final AtomicInteger atomicInteger;
+//      final XSSFRow row2;
+//      final XSSFRow row;
+//      final int n;
+//      final XSSFRow xssfRow;
+//      final int n2;
+//      final XSSFRow xssfRow2;
+//      final int n3;
+//      final XSSFRow xssfRow3;
+//      final int n4;
+//      final XSSFRow xssfRow4;
+//      final int n5;
+//      final XSSFRow xssfRow5;
+//      final int n6;
+//      final XSSFRow xssfRow6;
+//      final int n7;
+//      final XSSFRow xssfRow7;
+//      final int n8;
+//      final XSSFRow xssfRow8;
+//      final int n9;
+//      final XSSFRow xssfRow9;
+//      final int n10;
+//      final Object o;
+//      final int n11;
+////      final int i;
+//
+//      listContacts.stream().forEach(a -> {
+//        int i = 0;
+//        XSSFSheet xssfSheet;
+//
+//        row = (row2 = xssfSheet.createRow(atomicInteger.getAndIncrement()));
+//        i++;
+//        row2.createCell(n).setCellValue(a.getCivilite());
+//        i++;
+//        xssfRow.createCell(n2).setCellValue(a.getNom());
+//        i++;
+//        xssfRow2.createCell(n3).setCellValue(a.getPrenom());
+//        i++;
+//        xssfRow3.createCell(n4).setCellValue(a.getAdresse());
+//        i++;
+//        xssfRow4.createCell(n5).setCellValue(a.getAdresseComplement());
+//        i++;
+//        xssfRow5.createCell(n6).setCellValue((a.getCommune() == null) ? "" : a.getCommune().getCodePostal());
+//        i++;
+//        xssfRow6.createCell(n7).setCellValue((a.getCommune() == null) ? "" : a.getCommune().getLibelle());
+//        i++;
+//        xssfRow7.createCell(n8).setCellValue(a.getFixe());
+//        i++;
+//        xssfRow8.createCell(n9).setCellValue(a.getMobile());
+//        i++;
+//        xssfRow9.createCell(n10).setCellValue(a.getMail());
+//        i++;
+//        ((XSSFRow) o).createCell(n11).setCellValue("");
+//        return;
+//      });
+//      final String cellFinal = "K";
+//      final AreaReference tableArea = workBook.getCreationHelper().createAreaReference(new CellReference("A1"), new CellReference(cellFinal + cpt.get()));
+//      final XSSFTable table = workBook.getTable("ListeContacts");
+//      table.setArea(tableArea);
+//      final FileOutputStream fileOut = new FileOutputStream(fileName);
+//      workBook.write((OutputStream) fileOut);
+//      fileOut.close();
+//      this.downloadFile(fileName, response);
+//    } catch (Exception ex) {
+//      System.err.println("Erreur: " + ex.getMessage());
+//    }
+//  }
+//  public void exportListClubFemmeToFile(final HttpServletResponse response) {
+//    try {
+//      final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+//      final List<ContactClubFemme> listContacts = (List<ContactClubFemme>) this.service.loadContactsClubFemme();
+//      final String fileName = AppProperties.getPropertie("export.path") + "/" + AppProperties.getPropertie("export.exportContactClubFemmeFileName") + LocalDate.now().format(DateTimeFormatter.ISO_DATE) + ".xlsx";
+//      final XSSFWorkbook workBook = this.openExcelWorkBook(ExportFileType.TYPE_LIST_CONTACT_CLUB_FEMME);
+//      final XSSFSheet sheet = this.openSheet(workBook, "ListeContacts");
+//      final AtomicInteger cpt = new AtomicInteger(1);
+//      int i;
+//      final XSSFSheet xssfSheet;
+//      final AtomicInteger atomicInteger;
+//      final XSSFRow row2;
+//      final XSSFRow row;
+//      final int n;
+//      final XSSFRow xssfRow;
+//      final int n2;
+//      final XSSFRow xssfRow2;
+//      final int n3;
+//      final XSSFRow xssfRow3;
+//      final int n4;
+//      final XSSFRow xssfRow4;
+//      final int n5;
+//      final XSSFRow xssfRow5;
+//      final int n6;
+//      final XSSFRow xssfRow6;
+//      final int n7;
+//      final XSSFRow xssfRow7;
+//      final int n8;
+//      final XSSFRow xssfRow8;
+//      final int n9;
+//      final XSSFRow xssfRow9;
+//      final int n10;
+//      final Object o;
+//      final int n11;
+//      listContacts.stream().forEach(a -> {
+//        i = 0;
+//        row = (row2 = xssfSheet.createRow(atomicInteger.getAndIncrement()));
+//        i++;
+//        row2.createCell(n).setCellValue(a.getCivilite());
+//        i++;
+//        xssfRow.createCell(n2).setCellValue(a.getNom());
+//        i++;
+//        xssfRow2.createCell(n3).setCellValue(a.getPrenom());
+//        i++;
+//        xssfRow3.createCell(n4).setCellValue(a.getAdresse());
+//        i++;
+//        xssfRow4.createCell(n5).setCellValue(a.getAdresseComplement());
+//        i++;
+//        xssfRow5.createCell(n6).setCellValue((a.getCommune() == null) ? "" : a.getCommune().getCodePostal());
+//        i++;
+//        xssfRow6.createCell(n7).setCellValue((a.getCommune() == null) ? "" : a.getCommune().getLibelle());
+//        i++;
+//        xssfRow7.createCell(n8).setCellValue(a.getFixe());
+//        i++;
+//        xssfRow8.createCell(n9).setCellValue(a.getMobile());
+//        i++;
+//        xssfRow9.createCell(n10).setCellValue(a.getMail());
+//        i++;
+//        ((XSSFRow) o).createCell(n11).setCellValue("");
+//        return;
+//      });
+//      final String cellFinal = "K";
+//      final AreaReference tableArea = workBook.getCreationHelper().createAreaReference(new CellReference("A1"), new CellReference(cellFinal + cpt.get()));
+//      final XSSFTable table = workBook.getTable("ListeContacts");
+//      table.setArea(tableArea);
+//      final FileOutputStream fileOut = new FileOutputStream(fileName);
+//      workBook.write((OutputStream) fileOut);
+//      fileOut.close();
+//      this.downloadFile(fileName, response);
+//    } catch (Exception ex) {
+//      System.err.println("Erreur: " + ex.getMessage());
+//    }
+//  }
   public void exportListToFile(CriteriaAdherent criteria, HttpServletResponse response) {
     try {
 

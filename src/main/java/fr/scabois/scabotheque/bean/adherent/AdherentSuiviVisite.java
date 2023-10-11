@@ -13,54 +13,54 @@ import javax.persistence.Table;
 @Table(name = "adherent_suivi_visite")
 public class AdherentSuiviVisite implements HasId {
 
-    @Column(name = "adherent_id")
-    private Integer adherentId;
-    private byte[] commentaire;
-    @Column(name = "date_commentaire")
-    private Date dateCommentaire;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+  @Column(name = "adherent_id")
+  private Integer adherentId;
+  private byte[] commentaire;
+  @Column(name = "date_commentaire")
+  private Date dateCommentaire;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
-    public Integer getAdherentId() {
-        return adherentId;
-    }
+  public Integer getAdherentId() {
+    return adherentId;
+  }
 
-    public void setAdherentId(Integer adherentId) {
-        this.adherentId = adherentId;
-    }
+  public void setAdherentId(Integer adherentId) {
+    this.adherentId = adherentId;
+  }
 
-    public byte[] getCommentaire() {
-        return commentaire;
-    }
+  public byte[] getCommentaire() {
+    return commentaire;
+  }
 
-    public void setCommentaire(byte[] commentaire) {
-        this.commentaire = commentaire;
-    }
+  public void setCommentaire(byte[] commentaire) {
+    this.commentaire = commentaire;
+  }
 
-    public String getCommentaireString() {
-        return commentaire == null ? null : new String(commentaire);
-    }
+  public String getCommentaireString() {
+    return commentaire == null ? null : new String(commentaire);
+  }
 
-    public void setCommentaireString(String commentaire) {
-        this.commentaire = commentaire == null ? null : commentaire.getBytes();
-    }
+  public void setCommentaireString(String commentaire) {
+    this.commentaire = commentaire == null ? null : commentaire.getBytes();
+  }
 
-    public Date getDateCommentaire() {
-        return dateCommentaire;
-    }
+  public Date getDateCommentaire() {
+    return dateCommentaire;
+  }
 
-    public void setDateCommentaire(Date dateCommentaire) {
-        this.dateCommentaire = dateCommentaire;
-    }
+  public void setDateCommentaire(Date dateCommentaire) {
+    this.dateCommentaire = dateCommentaire;
+  }
 
-    @Override
-    public Integer getId() {
-        return id;
-    }
+  @Override
+  public Integer getId() {
+    return id;
+  }
 
-    @Override
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  @Override
+  public void setId(Integer id) {
+    this.id = id;
+  }
 }

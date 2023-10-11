@@ -32,6 +32,8 @@ public class ShowAdherentController {
   @Autowired
   private IServiceAdherent service;
 
+//  @Autowired
+//  private IServiceArtisanArtipole serviceArtisanArtipole;
   @RequestMapping(value = "/adherentProfil", method = RequestMethod.GET)
   public String profile(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel,
           HttpServletRequest request) {
@@ -60,7 +62,7 @@ public class ShowAdherentController {
     pModel.addAttribute("infoExploitation", (Object) infoExploitation);
     pModel.addAttribute("contactReception", (Object) contactReception);
     pModel.addAttribute("adherent", (Object) adherent);
-    pModel.addAttribute("metiers", (Object) this.serviceArtisantArtipole.loadMetiers());
+//    pModel.addAttribute("metiers", (Object) this.serviceArtisanArtipole.loadMetiers());
     pModel.addAttribute("metiersAdherentId", adherentMetiersId);
     pModel.addAttribute("navType", (Object) NavType.ADHERENT);
     pModel.addAttribute("pageType", (Object) pageType);
@@ -220,7 +222,8 @@ public class ShowAdherentController {
           HttpServletRequest request) {
 
     Adherent adherent = service.loadAdherent(idAdh);
-    AdherentLogistique infoExploitation = service.loadAdherentExploitation(idAdh);
+    AdherentLogistique infoExploitation;
+    infoExploitation = service.loadAdherentLogistique(idAdh);
     String commentaire = service.loadAdherentCommentaire(idAdh, PageType.ADHERENT_EXPLOITATION);
 
     pModel.addAttribute("adherent", adherent);

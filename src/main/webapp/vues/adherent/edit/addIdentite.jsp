@@ -26,7 +26,7 @@
             <div class="relative z-0 mb-6 w-full group">
               <form:label path="adherent.code" class="text-xs"><spring:message code="label.codeAdh"/></form:label>
               <form:input
-                class="form-control block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="form-control block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="adherent.code" path="adherent.code" autofocus="true"/>
               <form:errors class="text-red-600 animate-pulse" path="adherent.code"/>
             </div>
@@ -34,7 +34,7 @@
             <div class="relative z-0 mb-6 w-full group">
               <form:label path="adherent.codeERP" class="text-xs"><spring:message code="label.codeERP"/></form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="adherent.codeERP" path="adherent.codeERP"/>
               <form:errors class="text-red-600 animate-pulse" path="adherent.codeERP"/>
             </div>
@@ -42,7 +42,7 @@
             <div class="relative z-0 mb-6 w-full group">
               <form:label path="adherent.codeERPParent" class="text-xs"><spring:message code="label.codeERPParent"/></form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="adherent.codeERPParent" path="adherent.codeERPParent"/>
               <form:errors class="text-red-600 animate-pulse" path="adherent.codeERPParent"/>
             </div>
@@ -53,7 +53,7 @@
                 class="text-xs"
                 path="adherent.libelle"><spring:message code="label.nomRecherche"/></form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="adherent.libelle" path="adherent.libelle"/>
               <form:errors class="text-red-600 animate-pulse" path="adherent.libelle"/>
             </div>
@@ -64,7 +64,7 @@
                 path="adherent.denomination"><spring:message code="label.denomination"/>
               </form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="adherent.denomination" path="adherent.denomination"/>
               <form:errors class="text-red-600 animate-pulse" path="adherent.denomination"/>
             </div>
@@ -75,7 +75,7 @@
                 class="text-xs"
                 path="adherent.adresse"><spring:message code="label.adresse"/></form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="adherent.adresse" path="adherent.adresse"/>
               <form:errors class="text-red-600 animate-pulse" path="adherent.adresse"/>
             </div>
@@ -83,7 +83,7 @@
             <div class="relative z-0 mb-6 w-full group">
               <form:label class="text-xs" path="adherent.adresseComplement"><spring:message code="label.adresseComplement"/></form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="adherent.adresseComplement"
                 path="adherent.adresseComplement"/>
               <form:errors class="text-red-600 animate-pulse" path="adherent.adresseComplement"/>
@@ -141,7 +141,7 @@
                         <form:label class="sr-only" path="adherent.rcsCommune"><spring:message
                             code="label.commune"/></form:label>
                         <form:select id="communeAdhListe"
-                                     class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none   focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                                     class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                                      name="adherent.commune"
                                      path="adherent.commune.id">
                           <form:options items="${communeList}" itemValue="id"
@@ -152,7 +152,7 @@
                         <button type="button" id="valideAdhCommune"
                                 data-modal-toggle="commune-modal"
                                 class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">
-                          Selectionner
+                          Sélectionner
                         </button>
                         <button type="button" data-modal-toggle="commune-modal"
                                 class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">
@@ -169,7 +169,7 @@
       </div>
 
       <div class="card card-secondary">
-        <div class="mt-10">
+        <div class="mt-10 mb-6">
           <div class="text-2xl"><spring:message code="label.exploitation"/></div>
         </div>
         <div class="card-body">
@@ -178,9 +178,9 @@
               <form:label class="text-xs" path="adherent.agence"><spring:message
                   code="label.agenceRattachement"/></form:label>
               <form:select
-                class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none   focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 name="adherent.agence" path="adherent.agence.id">
-                <form:options items="${agenceList}" itemValue="id" itemLabel="libelle"/>
+                <form:options items="${agenceList}" itemValue="id" itemLabel="libelle" class="dark:bg-gray-600"/>
               </form:select>
               <form:errors class="text-red-600 animate-pulse" path="adherent.agence"/>
             </div>
@@ -189,10 +189,10 @@
               <form:label class="text-xs"
                           path="adherent.secteur"><spring:message code="label.secteur"/></form:label>
               <form:select
-                class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none   focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 name="adherent.secteur" path="adherent.secteur.id">
-                <form:option value=""></form:option>
-                <form:options items="${secteurList}" itemValue="id" itemLabel="libelle"/>
+                <form:option value="" class="dark:bg-gray-600"></form:option>
+                <form:options items="${secteurList}" itemValue="id" itemLabel="libelle" class="dark:bg-gray-600"/>
               </form:select>
               <form:errors class="text-red-600 animate-pulse" path="adherent.secteur"/>
             </div>
@@ -200,9 +200,9 @@
               <form:label class="text-xs"
                           path="adherent.tournee"><spring:message code="label.tournee"/></form:label>
               <form:select
-                class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none   focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 name="adherent.tournee" path="adherent.tournee.id">
-                <form:options items="${tourneeList}" itemValue="id" itemLabel="libelle"/>
+                <form:options items="${tourneeList}" itemValue="id" itemLabel="libelle" class="dark:bg-gray-600"/>
               </form:select>
             </div>
           </div>
@@ -225,7 +225,7 @@
 
     <div class="col-md-6">
       <div class="card card-secondary">
-        <div class="mt-10">
+        <div class="mt-10 mb-6">
           <div class="text-2xl"><spring:message code="label.administratif"/></div>
         </div>
         <div class="card-body">
@@ -233,7 +233,7 @@
             <div class="form-group">
               <form:label class="text-xs"
                           path="adherent.dateEntree"><spring:message code="label.dateEntree"/></form:label>
-              <form:input class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              <form:input class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                           type="date" name="adherent.dateEntree"
                           path="adherent.dateEntree"/>
               <form:errors class="text-red-600 animate-pulse" path="adherent.dateEntree"/>
@@ -242,9 +242,9 @@
             <div class="form-group">
               <form:label class="text-xs" path="adherent.role"><spring:message code="label.role"/></form:label>
               <form:select
-                class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none   focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 name="adherent.role" path="adherent.role.id">
-                <form:options items="${roleList}" itemValue="id" itemLabel="libelle"/>
+                <form:options items="${roleList}" itemValue="id" itemLabel="libelle" class="dark:bg-gray-600"/>
               </form:select>
               <form:errors class="text-red-600 animate-pulse" path="adherent.role"/>
             </div>
@@ -253,9 +253,9 @@
               <form:label class="text-xs"
                           path="adherent.pole"><spring:message code="label.pole"/></form:label>
               <form:select
-                class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none   focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 name="adherent.pole" path="adherent.pole.id">
-                <form:options items="${poleList}" itemValue="id" itemLabel="libelle"/>
+                <form:options items="${poleList}" itemValue="id" itemLabel="libelle" class="dark:bg-gray-600"/>
               </form:select>
               <form:errors class="text-red-600 animate-pulse" path="adherent.role"/>
             </div>
@@ -263,10 +263,10 @@
               <form:label class="text-xs" path="adherent.formeJuridique"><spring:message
                   code="label.formeJuridique"/></form:label>
               <form:select
-                class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none   focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 name="adherent.formeJuridique"
                 path="adherent.formeJuridique.id">
-                <form:options items="${formJuridList}" itemValue="id" itemLabel="libelle"/>
+                <form:options items="${formJuridList}" itemValue="id" itemLabel="libelle" class="dark:bg-gray-600"/>
               </form:select>
               <form:errors class="text-red-600 animate-pulse" path="adherent.formeJuridique"/>
             </div>
@@ -279,7 +279,7 @@
                 class="text-xs"
                 path="adherent.siren"><spring:message code="label.siren"/></form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="adherent.siren" path="adherent.siren"/>
               <form:errors class="text-red-600 animate-pulse" path="adherent.siren"/>
             </div>
@@ -289,7 +289,7 @@
                 class="text-xs"
                 path="adherent.siret"><spring:message code="label.siret"/></form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="adherent.siret" path="adherent.siret"/>
               <form:errors class="text-red-600 animate-pulse" path="adherent.siret"/>
             </div>
@@ -297,9 +297,9 @@
               <form:label class="text-xs"
                           path="adherent.ape"><spring:message code="label.ape"/></form:label>
               <form:select
-                class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none   focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 name="adherent.ape" path="adherent.ape.id">
-                <form:options items="${apeList}" itemValue="id" itemLabel="libelle"/>
+                <form:options items="${apeList}" itemValue="id" itemLabel="libelle" class="dark:bg-gray-600"/>
               </form:select>
             </div>
           </div>
@@ -311,7 +311,7 @@
                 path="adherent.numRepMetier"><spring:message
                   code="label.numRepMetier"/></form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="adherent.numRepMetier" path="adherent.numRepMetier"/>
               <form:errors class="text-red-600 animate-pulse" path="adherent.numRepMetier"/>
             </div>
@@ -322,11 +322,11 @@
                           path="adherent.rcsRm"><spring:message code="label.rcsRm"/></form:label>
 
               <form:select
-                class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none   focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 name="adherent.rcsRm" path="adherent.rcsRm">
-                <form:option value=""></form:option>
-                <form:option value="RCS">RCS</form:option>
-                <form:option value="RM">RM</form:option>
+                <form:option value="" class="dark:bg-gray-600"></form:option>
+                <form:option value="RCS" class="dark:bg-gray-600">RCS</form:option>
+                <form:option value="RM" class="dark:bg-gray-600">RM</form:option>
               </form:select>
               <form:errors class="text-red-600 animate-pulse" path="adherent.rcsRm"/>
             </div>
@@ -334,7 +334,7 @@
             <div class="form-group">
               <form:label class="text-xs" path="adherent.dateClotureExe"><spring:message code="label.dateClotureExe"/></form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 type="date" name="adherent.dateClotureExe"
                 path="adherent.dateClotureExe"/>
               <form:errors class="text-red-600 animate-pulse" path="adherent.dateClotureExe"/>
@@ -390,7 +390,7 @@
                         <form:label class="sr-only" path="adherent.rcsCommune"><spring:message
                             code="label.commune"/></form:label>
                         <form:select id="communeRCSListe"
-                                     class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none   focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                                     class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                                      name="adherent.rcsCommune" path="adherent.rcsCommune.id">
                           <form:options items="${communeList}" itemValue="id"
                                         itemLabel="libelle"/>
@@ -417,7 +417,7 @@
             <div class="relative z-0 mb-6 w-full group">
               <form:label class="text-xs" path="adherent.FormationDirigeant"><spring:message code="label.formationCommerce"/></form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="adherent.FormationDirigeant"
                 path="adherent.FormationDirigeant"/>
               <form:errors class="text-red-600 animate-pulse" path="adherent.FormationDirigeant"/>
@@ -427,9 +427,9 @@
               <form:label class="text-xs" path="adherent.etat"><spring:message
                   code="label.etat"/></form:label>
               <form:select
-                class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none   focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 name="adherent.etat" path="adherent.etat.id">
-                <form:options items="${etatList}" itemValue="id" itemLabel="libelle"/>
+                <form:options items="${etatList}" itemValue="id" itemLabel="libelle" class="dark:bg-gray-600"/>
               </form:select>
             </div>
 
@@ -437,9 +437,9 @@
               <form:label class="text-xs" path="adherent.adherentType"><spring:message
                   code="label.adherentType"/></form:label>
               <form:select
-                class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none   focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 name="adherent.adherentType" path="adherent.adherentType.id">
-                <form:options items="${adherentTypeList}" itemValue="id" itemLabel="libelle"/>
+                <form:options items="${adherentTypeList}" itemValue="id" itemLabel="libelle" class="dark:bg-gray-600"/>
               </form:select>
             </div>
 
@@ -447,9 +447,9 @@
               <form:label class="text-xs" path="adherent.compteType"><spring:message
                   code="label.compteStatut"/></form:label>
               <form:select
-                class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none   focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 name="adherent.compteType" path="adherent.compteType.id">
-                <form:options items="${compteTypeList}" itemValue="id" itemLabel="libelle"/>
+                <form:options items="${compteTypeList}" itemValue="id" itemLabel="libelle" class="dark:bg-gray-600"/>
               </form:select>
             </div>
           </div>

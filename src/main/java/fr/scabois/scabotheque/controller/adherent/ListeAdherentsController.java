@@ -3,6 +3,8 @@ package fr.scabois.scabotheque.controller.adherent;
 import fr.scabois.scabotheque.bean.adherent.Adherent;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
 import fr.scabois.scabotheque.bean.adherent.AdherentType;
+import fr.scabois.scabotheque.bean.adherent.ContactClubFemme;
+import fr.scabois.scabotheque.bean.adherent.ContactRetraite;
 import fr.scabois.scabotheque.bean.adherent.Pole;
 import fr.scabois.scabotheque.bean.adherent.Secteur;
 import fr.scabois.scabotheque.bean.commun.Activite;
@@ -80,6 +82,30 @@ public class ListeAdherentsController {
     }
 
     return chargementListeContact(criteria, pModel, page);
+  }
+
+  @RequestMapping(value = {"/listeRetraite"}, method = {RequestMethod.GET})
+  public String retraiteListe(@CookieValue(value = "criteria", defaultValue = "") final String cookie, final ModelMap pModel, final HttpServletRequest request) {
+    final String param = request.getParameter("page");
+    final Integer page = (param == null) ? 1 : Integer.parseInt(param);
+    final List<ContactRetraite> list = (List<ContactRetraite>) this.service.loadContactsRetraite();
+    pModel.addAttribute("listeContacts", (Object) list.stream().sorted(Comparator.comparing(ContactRetraite::getNom)).skip(25 * (page - 1)).limit(25L).collect(Collectors.toList()));
+    pModel.addAttribute("nbContact", (Object) list.size());
+    pModel.addAttribute("criteria", (Object) new CriteriaAdherent());
+    pModel.addAttribute("pageType", (Object) PageType.LIST_CONTACT_RETRAITE);
+    return "listeContactRetraite";
+  }
+
+  @RequestMapping(value = {"/listeClubFemmes"}, method = {RequestMethod.GET})
+  public String clubFemmeListe(@CookieValue(value = "criteria", defaultValue = "") final String cookie, final ModelMap pModel, final HttpServletRequest request) {
+    final String param = request.getParameter("page");
+    final Integer page = (param == null) ? 1 : Integer.parseInt(param);
+    final List<ContactClubFemme> list = (List<ContactClubFemme>) this.service.loadContactsClubFemme();
+    pModel.addAttribute("listeContacts", (Object) list.stream().sorted(Comparator.comparing(ContactClubFemme::getNom)).skip(25 * (page - 1)).limit(25L).collect(Collectors.toList()));
+    pModel.addAttribute("nbContact", (Object) list.size());
+    pModel.addAttribute("criteria", (Object) new CriteriaAdherent());
+    pModel.addAttribute("pageType", (Object) PageType.LIST_CONTACT_CLUB_FEMMES);
+    return "listeContactClubFemmes";
   }
 
   @RequestMapping(value = "/initListeAdherents", method = RequestMethod.GET)
@@ -231,10 +257,11 @@ public class ListeAdherentsController {
     }
     listeAdherents = service.loadAdherents(criteria).stream().sorted(Comparator.comparing(Adherent::getLibelle)).collect(Collectors.toList());
 
+    int pageSize = 25;
     pModel.addAttribute("nbAdherent", listeAdherents.size());
     pModel.addAttribute("page", page);
-    pModel.addAttribute("maxPage", (int) Math.ceil(listeAdherents.size() / 24.0));
-    pModel.addAttribute("listeAdherents", listeAdherents.stream().sorted(Comparator.comparing(Adherent::getLibelle)).skip(24 * (page - 1)).limit(24).collect(Collectors.toList()));
+    pModel.addAttribute("maxPage", (int) Math.ceil(listeAdherents.size() / pageSize));
+    pModel.addAttribute("listeAdherents", listeAdherents.stream().sorted(Comparator.comparing(Adherent::getLibelle)).skip(pageSize * (page - 1)).limit(pageSize).collect(Collectors.toList()));
     pModel.addAttribute("criteria", criteria);
     pModel.addAttribute("navType", NavType.ADHERENT);
     pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
@@ -266,9 +293,10 @@ public class ListeAdherentsController {
               .sorted(Comparator.comparing(AdherentContactRole::getNom)).collect(Collectors.toList());
     }
 
+    int pageSize = 25;
     pModel.addAttribute("page", page);
-    pModel.addAttribute("maxPage", (int) Math.ceil(listContact.size() / 24.0));
-    pModel.addAttribute("listeContacts", listContact.stream().sorted(Comparator.comparing(AdherentContactRole::getNom)).skip(24 * (page - 1)).limit(24).collect(Collectors.toList()));
+    pModel.addAttribute("maxPage", (int) Math.ceil(listContact.size() / pageSize));
+    pModel.addAttribute("listeContacts", listContact.stream().sorted(Comparator.comparing(AdherentContactRole::getNom)).skip(pageSize * (page - 1)).limit(pageSize).collect(Collectors.toList()));
     pModel.addAttribute("nbContact", listContact.size());
     pModel.addAttribute("criteria", criteria);
     pModel.addAttribute("navType", NavType.ADHERENT);

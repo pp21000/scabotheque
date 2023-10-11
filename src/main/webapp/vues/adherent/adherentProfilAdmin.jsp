@@ -139,7 +139,7 @@
           <div class="card-body">
             <div class="tab-content">
               
-              <!--Activitées-->
+              <!--Activités-->
               <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ACTIVITE')">
                 <div class="active tab-pane" id="commerce">
                   <div class="card-body pt-0">

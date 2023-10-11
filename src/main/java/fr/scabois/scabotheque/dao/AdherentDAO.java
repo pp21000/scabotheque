@@ -8,9 +8,12 @@ import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
 import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
 import fr.scabois.scabotheque.bean.adherent.AdherentInformatique;
 import fr.scabois.scabotheque.bean.adherent.AdherentLogistique;
+import fr.scabois.scabotheque.bean.adherent.AdherentMetier;
 import fr.scabois.scabotheque.bean.adherent.AdherentSuiviVisite;
 import fr.scabois.scabotheque.bean.adherent.AdherentType;
 import fr.scabois.scabotheque.bean.adherent.CompteType;
+import fr.scabois.scabotheque.bean.adherent.ContactClubFemme;
+import fr.scabois.scabotheque.bean.adherent.ContactRetraite;
 import fr.scabois.scabotheque.bean.adherent.FormeJuridique;
 import fr.scabois.scabotheque.bean.adherent.Pole;
 import fr.scabois.scabotheque.bean.adherent.Role;
@@ -146,6 +149,41 @@ public class AdherentDAO implements IAdherentDAO {
     return newAdh.getId();
   }
 
+  @Transactional
+  public void createContactClubFemme(final ContactClubFemme contact) {
+    final ContactClubFemme newContact = new ContactClubFemme();
+    newContact.setAdherent(contact.getAdherent());
+    newContact.setCivilite(contact.getCivilite());
+    newContact.setNom(contact.getNom());
+    newContact.setPrenom(contact.getPrenom());
+    newContact.setMail(contact.getMail());
+    newContact.setFixe(contact.getFixe());
+    newContact.setMobile(contact.getMobile());
+    newContact.setDateNaissance(contact.getDateNaissance());
+    newContact.setAdresse(contact.getAdresse());
+    newContact.setAdresseComplement(contact.getAdresseComplement());
+    newContact.setCommune(contact.getCommune());
+    this.entityManager.persist((Object) newContact);
+  }
+
+  @Transactional
+  @Override
+  public void createContactRetraite(final ContactRetraite contact) {
+    final ContactRetraite newContact = new ContactRetraite();
+    newContact.setAdherent(contact.getAdherent());
+    newContact.setCivilite(contact.getCivilite());
+    newContact.setNom(contact.getNom());
+    newContact.setPrenom(contact.getPrenom());
+    newContact.setMail(contact.getMail());
+    newContact.setFixe(contact.getFixe());
+    newContact.setMobile(contact.getMobile());
+    newContact.setDateNaissance(contact.getDateNaissance());
+    newContact.setAdresse(contact.getAdresse());
+    newContact.setAdresseComplement(contact.getAdresseComplement());
+    newContact.setCommune(contact.getCommune());
+    this.entityManager.persist(newContact);
+  }
+
   @Override
   @Transactional
   public void createAgence(String libelle) {
@@ -260,10 +298,10 @@ public class AdherentDAO implements IAdherentDAO {
     List<AdherentActivite> retour = new ArrayList<>();
     Adherent adherent = loadAdherent(idAdh);
 //        log.info("id:" + idAdh);
-    // recherche de toutes les activitées
+    // recherche de toutes les activités
     List<Activite> activites = loadActivites();
 
-    // recherche des activitées renseignées
+    // recherche des activités renseignées
     List<AdherentActivite> adhActivites = entityManager.createQuery("from AdherentActivite where adherent.id = :idAdh", AdherentActivite.class)
             .setParameter("idAdh", idAdh).getResultList();
 
@@ -329,11 +367,16 @@ public class AdherentDAO implements IAdherentDAO {
   }
 
   @Override
+  public List<AdherentMetier> loadAdherentMetiers(final int adhId) {
+    return (List<AdherentMetier>) this.entityManager.createQuery("from AdherentMetier where adherentId = :adhId", (Class) AdherentMetier.class).setParameter("adhId", (Object) adhId).getResultList();
+  }
+
+  @Override
   public List<AdherentContactRole> loadAdherentContact(CriteriaAdherent criteria) {
 
     List<AdherentContactRole> list = entityManager.createQuery("from AdherentContactRole adh", AdherentContactRole.class).getResultList();
 
-    // filtre la liste des adherents sur les libellés
+    // filtre la liste des adhérents sur les libellés
     return list.stream().filter(ctt -> {
       String nomCompare = Normalizer.normalize(ctt.getNom().toUpperCase(), Normalizer.Form.NFD)
               .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
@@ -384,6 +427,24 @@ public class AdherentDAO implements IAdherentDAO {
     }
   }
 
+  @Override
+  public List<ContactRetraite> loadContactsRetraite() {
+    return (List<ContactRetraite>) this.entityManager.createQuery("from ContactRetraite cr", (Class) ContactRetraite.class).getResultList();
+  }
+
+  @Override
+  public ContactClubFemme loadContactClubFemme(final int idAdh) {
+    try {
+      return (ContactClubFemme) this.entityManager.createQuery("from ContactClubFemme ccf where ccf.id = :id", (Class) ContactClubFemme.class).setParameter("id", (Object) idAdh).getSingleResult();
+    } catch (NoResultException e) {
+      return new ContactClubFemme();
+    }
+  }
+
+  public List<ContactClubFemme> loadContactsClubFemme() {
+    return (List<ContactClubFemme>) this.entityManager.createQuery("from ContactClubFemme ccf", (Class) ContactClubFemme.class).getResultList();
+  }
+
   /**
    * Création d'une liste avec tout les types de contacte
    */
@@ -415,11 +476,13 @@ public class AdherentDAO implements IAdherentDAO {
   }
 
   @Override
-  public AdherentLogistique loadAdherentLogistique(int idAdh) {
+  public AdherentLogistique loadAdherentLogistique(final int idAdh) {
     try {
-      return entityManager.createQuery("from AdherentExploitation", AdherentLogistique.class).getSingleResult();
+      return (AdherentLogistique) this.entityManager.createQuery("from AdherentLogistique where adherent_id = :id", (Class) AdherentLogistique.class).setParameter("id", (Object) idAdh).getSingleResult();
     } catch (NoResultException e) {
-      return new AdherentLogistique();
+      final AdherentLogistique retour = new AdherentLogistique();
+      retour.setAdherentId(Integer.valueOf(idAdh));
+      return retour;
     }
   }
 
@@ -478,9 +541,9 @@ public class AdherentDAO implements IAdherentDAO {
   }
 
   /**
-   * @param criteria Recherche de la liste des adhernets correspondant aux
+   * @param criteria Recherche de la liste des adherents correspondant aux
    * critéres
-   * @return Liste des adherents
+   * @return Liste des adhérents
    */
   @Override
   public List<Adherent> loadAdherents(CriteriaAdherent criteria) {
@@ -555,6 +618,17 @@ public class AdherentDAO implements IAdherentDAO {
   @Override
   public List<CompteType> loadCompteTypes() {
     return entityManager.createQuery("from CompteType order by position", CompteType.class).getResultList();
+  }
+
+  public AdherentContactRole loadContact(final Integer contactId) {
+    if (contactId == null) {
+      return null;
+    }
+    try {
+      return (AdherentContactRole) this.entityManager.find((Class) AdherentContactRole.class, (Object) contactId);
+    } catch (NoResultException e) {
+      return null;
+    }
   }
 
   @Override
@@ -669,6 +743,27 @@ public class AdherentDAO implements IAdherentDAO {
       updateAdherentContactData(adhContact, c);
       entityManager.persist(adhContact);
     });
+  }
+
+  @Transactional
+  public void saveAdherentLogistique(final AdherentLogistique logistiqueAdh) {
+    final AdherentLogistique update = this.loadAdherentLogistique(logistiqueAdh.getAdherentId());
+    update.setAccesSemi(logistiqueAdh.getIsAccesSemi());
+    update.setAdresseLivraison(logistiqueAdh.getAdresseLivraison());
+    update.setAdresseComplement(logistiqueAdh.getAdresseComplement());
+    update.setContactReceptionId(logistiqueAdh.getContactReceptionId());
+    update.setAuthorise(logistiqueAdh.getIsAuthorise());
+    update.setCommune(this.loadCommune(logistiqueAdh.getCommune().getId()));
+    update.setMaterielDechargement(logistiqueAdh.getIsMaterielDechargement());
+    update.setOutillageCommentaire(logistiqueAdh.getOutillageCommentaire());
+    update.setProtocolDechargement(logistiqueAdh.getProtocolDechargement());
+    this.entityManager.persist(update);
+  }
+
+  @Transactional
+  public void saveAdherentMetiers(final int adhId, final List list) {
+//    this.loadAdherentMetiers(adhId).stream().forEach(a -> this.entityManager.remove(a));
+//    adherentMetiers.stream().forEach(am -> this.entityManager.merge(am));
   }
 
   @Override
@@ -809,6 +904,13 @@ public class AdherentDAO implements IAdherentDAO {
 
   }
 
+  @Transactional
+  public void setAdherentLogo(final int adhId, final byte[] logo) {
+    final Adherent adh = this.loadAdherent(adhId);
+    adh.setLogo(logo);
+    this.entityManager.persist((Object) adh);
+  }
+
   @Override
   @Transactional
   public void setContactImage(int contactId, byte[] photo) {
@@ -834,7 +936,11 @@ public class AdherentDAO implements IAdherentDAO {
   @Transactional
   public void supprimeAdherentContact(Integer id) {
     AdherentContactRole del = entityManager.find(AdherentContactRole.class, id);
+//    entityManager.getTransaction().begin();
     entityManager.remove(del);
+//    entityManager.createNativeQuery("delete from adherent_contact where id = " + id);
+//    entityManager.getTransaction().commit();
+    entityManager.flush();
   }
 
   @Override

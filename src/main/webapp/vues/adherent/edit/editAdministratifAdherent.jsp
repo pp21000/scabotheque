@@ -9,8 +9,8 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
 
 <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${adhToEdit.editAdherent.id}"/></c:url>
-  <button class="px-3 py-2 text-xs font-medium text-center text-white bg-neutral-700 rounded-lg hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300"
-          id="cancel" type="reset" onClick="window.location = '${url}'">Retour
+  <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+          id="cancel" type="reset" onClick="window.location = '${url}'">< Retour
 </button>
 
 <div class="flex justify-center">
@@ -240,7 +240,7 @@
                   <form:label class="sr-only" path="editAdherent.rcsCommune"><spring:message
                       code="label.commune"/></form:label>
                   <form:select id="communeRCSListe"
-                               class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none   focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                               class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                                name="editAdherent.rcsCommune" path="editAdherent.rcsCommune">
                     <form:options items="${communeList}" itemValue="id"
                                   itemLabel="libelle"/>
@@ -310,7 +310,7 @@
                   <br>
                   <form:label class="sr-only" path="editAdherent.rmCommune"><spring:message code="label.rmCommune"/></form:label>
                   <form:select id="communeRMListe"
-                               class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none   focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                               class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                                name="editAdherent.rmCommune" path="editAdherent.rmCommune.id">
                     <form:options items="${communeList}" itemValue="id"
                                   itemLabel="libelle"/>
@@ -387,11 +387,11 @@
   </fieldset>
 
   <div class="flex justify-center gap-2 mt-2">
-    <button class="px-3 py-2 text-xs font-medium text-center text-white bg-neutral-700 rounded-lg hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+    <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
             id="save" type="submit">Enregistrer
     </button>
     <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${adhToEdit.editAdherent.id}"/></c:url>
-      <button class="px-3 py-2 text-xs font-medium text-center text-white bg-neutral-700 rounded-lg hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+      <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
               id="cancel" type="reset" onClick="window.location = '${url}'">Annuler
     </button>
   </div>

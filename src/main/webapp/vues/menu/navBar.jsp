@@ -7,7 +7,7 @@
 <%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 
-<nav class="bg-gray-300 border-b border-gray-100 fixed z-10 w-screen px-2 sm:px-4 py-2.5 rounded bg-gray-50 dark:text-gray-50 dark:bg-gray-800">
+<nav class="bg-gray-300 border-b border-gray-100 fixed z-10 w-screen px-2 sm:px-4 py-2.5 rounded dark:text-gray-50 dark:bg-gray-800 rounded-lg">
   <div class="flex flex-wrap justify-between items-center mx-auto">
     <a href="/scabotheque" class="flex items-center">
       <img src="<c:url value="/resources/dist/img/modus.png" />" class="mr-3 h-6 sm:h-9" alt="Scabothèques">
@@ -22,12 +22,13 @@
       </button>-->
       <div>
         <div class="py-3 px-4">
-          <span class="block text-sm text-gray-900 dark:text-gray-50 ">Utilisateur : <sec:authentication property="name"/></span>
+          <span class="text-sm text-gray-400 dark:text-gray-500">Utilisateur : </span>
+          <span class="text-sm text-gray-900 dark:text-gray-50"> <sec:authentication property="name"/></span>
         </div>
       </div>
 
       <a href="<c:url value="/logout" />" data-tooltip-target="tooltip-logout"
-         class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-50 dark:hover:bg-gray-600">
+         class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-50 dark:hover:bg-gray-600 rounded-xl">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
              xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -66,39 +67,39 @@
       </svg>
     </button>
     <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-      <ul class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-md md:font-medium md:border-0 md:bg-gray-300">
+      <ul class="flex flex-col py-2 px-4 mt-4 bg-gray-400 dark:bg-gray-300 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-md md:font-medium md:border-0">
         <li>
           <a href=<c:url value="/listeAdherents"/>
-             class="<c:if test = "${navType == 'ADHERENT'}"> text-green-600 font-medium animate-pulse </c:if> block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-700 md:p-0">Adherent</a>
-          </li>
+             class="<c:if test = "${navType == 'ADHERENT'}"> text-green-600 font-medium animate-pulse </c:if> block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-600 md:p-0">Adhérent</a>
+        </li>
         <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_EXPLOITATION')">
-          <li>
-            <a href=<c:url value="/ordreTournee"/>
-               class="<c:if test = "${navType == 'LOGISTIQUE'}"> text-green-600 font-medium animate-pulse </c:if> block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-700 md:p-0">Tournée</a>
-            </li>
+        <li>
+          <a href=<c:url value="/ordreTournee"/>
+              class="<c:if test = "${navType == 'LOGISTIQUE'}"> text-green-600 font-medium animate-pulse </c:if> block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-600 md:p-0">Tournée</a>
+        </li>
         </sec:authorize>
         <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_ARTIPOLE_EDIT')">
-          <li>
-            <a href=<c:url value="/AA-admin"/>
-               class="<c:if test = "${navType == 'AAADMIN'}"> text-green-600 font-medium animate-pulse </c:if>
-               block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-700 md:p-0">Artisan Artipole</a>
-          </li>
+        <li>
+          <a href=<c:url value="/AA-admin"/>
+             class="<c:if test = "${navType == 'AAADMIN'}"> text-green-600 font-medium animate-pulse </c:if>
+             block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-600 md:p-0">Artisan Artipole</a>
+        </li>
         </sec:authorize>
         <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
-          <li>
-            <a href=<c:url value="/parametrage/listeUtilisateurs"/>
-               class="<c:if test = "${navType == 'INFORMATIQUE'}"> text-green-600 font-medium animate-pulse </c:if>
-               block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-700 md:p-0">Administration</a>
-            </li>
+        <li>
+          <a href=<c:url value="/parametrage/listeUtilisateurs"/>
+             class="<c:if test = "${navType == 'INFORMATIQUE'}"> text-green-600 font-medium animate-pulse </c:if>
+             block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-600 md:p-0">Administration</a>
+        </li>
         </sec:authorize>
         <%--                <li>    --%>
         <%--                    <a href="listeFournisseur"--%>
-        <%--                       class="<c:if test = "${navType == 'FOURNISSEUR'}"> text-green-600 font-medium animate-pulse </c:if>block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-700 md:p-0">Fournisseur</a>--%>
+        <%--                       class="<c:if test = "${navType == 'FOURNISSEUR'}"> text-green-600 font-medium animate-pulse </c:if>block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-600 md:p-0">Fournisseur</a>--%>
         <%--                </li>--%>
         <%--                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_ARTIPOLE')">--%>
         <%--                    <li>--%>
         <%--                        <a href="listeAdherents"--%>
-        <%--                           class="<c:if test = "${navType == 'ARTIPOLE'}"> text-green-600 font-medium animate-pulse </c:if> block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-700 md:p-0">Artipôle</a>--%>
+        <%--                           class="<c:if test = "${navType == 'ARTIPOLE'}"> text-green-600 font-medium animate-pulse </c:if> block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-600 md:p-0">Artipôle</a>--%>
         <%--                    </li>--%>
         <%--                </sec:authorize>--%>
 
@@ -106,20 +107,20 @@
         <%--                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_INFORMATIQUE')">--%>
         <%--                    <li>--%>
         <%--                        <a href="listeAdherents"--%>
-        <%--                           class="<c:if test = "${navType == 'INFORMATIQUE'}"> text-green-600 font-medium animate-pulse </c:if> block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-700 md:p-0">Informatique</a>--%>
+        <%--                           class="<c:if test = "${navType == 'INFORMATIQUE'}"> text-green-600 font-medium animate-pulse </c:if> block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-600 md:p-0">Informatique</a>--%>
         <%--                    </li>--%>
         <%--                </sec:authorize>--%>
 
         <%--                <li>--%>
         <%--                    <a href="<c:url value="http://srvlinux/dokuwiki/doku.php?id=start"/>" target="_blank"--%>
-        <%--                       class="<c:if test = "${navType == 'FOURNISSEUR'}"> text-green-600 font-medium animate-pulse </c:if>block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-700 md:p-0"><spring:message--%>
+        <%--                       class="<c:if test = "${navType == 'FOURNISSEUR'}"> text-green-600 font-medium animate-pulse </c:if>block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-600 md:p-0"><spring:message--%>
         <%--                            code="menu.wiki"/></a>--%>
         <%--                </li>--%>
 
 
         <li>
           <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
-                  class="flex justify-between items-center py-2 pr-4 pl-3 w-full font-medium text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-700 md:p-0 md:w-auto dark:text-gray-50 ">
+                  class="flex justify-between items-center py-2 px-3 w-full font-medium text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-600 md:p-0 md:w-auto">
             Liens utiles
             <svg class="ml-1 w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                  xmlns="http://www.w3.org/2000/svg">

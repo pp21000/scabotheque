@@ -70,12 +70,12 @@
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
                     <th scope="col" class="py-3 px-6">Ordre</th>
-                    <th scope="col" class="py-3 px-6">Adherent</th>
+                    <th scope="col" class="py-3 px-6">Adhérent</th>
                     <th scope="col" class="py-3 px-6">dpt</th>
                     <th scope="col" class="py-3 px-6">Lieu de déchargement</th>
                     <th scope="col" class="py-3 px-6">Commandes</th>
                     <th scope="col" class="py-3 px-6">Commentaire</th>
-                    <!--<th>Adherent présent</th>-->
+                    <!--<th>Adhérent présent</th>-->
                 </tr>
                 </thead>
                 <tbody>

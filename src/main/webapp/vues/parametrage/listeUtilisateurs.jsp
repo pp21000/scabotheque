@@ -9,10 +9,10 @@
 
 <div class="flex justify-center">
     <form:form method="post" modelAttribute="creation" action="AjoutUtilisateur">
-        <span class="detailLabel">Nouvel utilisateur</span>
+        <span class="detailLabel mr-2">Nouvel utilisateur :</span>
         <form:input path="userName" placeholder="Nom de l'utilisateur" autofocus="true"/>
         <form:input path="password" placeholder="Mot de passe"/>
-        <button class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+        <button class="ml-2 px-3 py-3.5 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
                 type="submit"><spring:message code="label.ajout"/></button>
     </form:form>
 </div>
@@ -75,7 +75,7 @@
                         </div>
                         <div class="flex justify-center">
                             <button type="submit"
-                                    class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                    class="ml-2 px-3 py-3.5 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                                 Enregistrer
                             </button>
                         </div>

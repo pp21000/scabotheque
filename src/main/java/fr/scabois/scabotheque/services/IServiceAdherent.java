@@ -83,7 +83,7 @@ public interface IServiceAdherent {
 
   public List<AdherentContactRole> loadAdherentsContact();
 
-  public List<ContactRetraite> loadContactRetraite();
+  public List<ContactRetraite> loadContactsRetraite();
 
   public ContactClubFemme loadContactClubFemme(int var1);
 

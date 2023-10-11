@@ -17,6 +17,7 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 public class EditAdherent {
 
@@ -33,10 +34,7 @@ public class EditAdherent {
   private String codeERP;
   @Length(max = 6, message = "{modification.valueTooLong}")
   private String codeERPParent;
-  // la présence de la commune est testée dans le controleur
   private Commune commune;
-
-//    private AdherentContactComptable contactComptable;
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   private Date dateCreation;
   @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -58,19 +56,26 @@ public class EditAdherent {
   private String formationDirigeant;
   private boolean isOutilDechargement;
   private boolean isWebArtipole;
+  private String siteWeb;
+  private String facebook;
+  private String instagram;
+  private String linkedin;
+  private String youtube;
+  private String pinterest;
   private boolean cnxEolasAllow;
   @NotEmpty(message = "{modification.notempty}")
   private String libelle;
   @Length(max = 15, message = "{modification.valueTooLong}")
   private String numRepMetier;
   private String photo;
+  private String logo;
+  private MultipartFile filePhoto;
+  private MultipartFile fileLogo;
   private Pole pole;
-  // la présence de la commune RCS est testée dans le controleur
   private Commune rcsCommune;
   private String rcsRm;
   private Commune rmCommune;
   private Role role;
-  // la présence de la commune est testée dans le controleur
   private Secteur secteur;
   @NotNull(message = "{modification.notempty}")
   @Length(max = 9, message = "{modification.valueTooLong}")
@@ -84,339 +89,440 @@ public class EditAdherent {
   private CompteType compteType;
   private double longitude;
   private double latitude;
+  private String mail;
+  private String telephone;
+  private String description_activite;
+  private String description_entreprise;
 
   public AdherentType getAdherentType() {
-    return adherentType;
+    return this.adherentType;
   }
 
-  public void setAdherentType(AdherentType adherentType) {
+  public void setAdherentType(final AdherentType adherentType) {
     this.adherentType = adherentType;
   }
 
   public CompteType getCompteType() {
-    return compteType;
+    return this.compteType;
   }
 
-  public void setCompteType(CompteType compteType) {
+  public void setCompteType(final CompteType compteType) {
     this.compteType = compteType;
   }
 
   public String getAdresse() {
-    return adresse;
+    return this.adresse;
   }
 
   public String getAdresseComplement() {
-    return adresseComplement;
+    return this.adresseComplement;
   }
 
   public Agence getAgence() {
-    return agence;
+    return this.agence;
   }
 
   public Ape getApe() {
-    return ape;
+    return this.ape;
   }
 
   public String getCode() {
-    return code;
+    return this.code;
   }
 
   public String getCodeERP() {
-    return codeERP;
+    return this.codeERP;
   }
 
   public String getCodeERPParent() {
-    return codeERPParent;
+    return this.codeERPParent;
   }
 
   public Commune getCommune() {
-    return commune;
+    return this.commune;
   }
 
-//    public AdherentContactComptable getContactComptable() {
-//        return contactComptable;
-//    }
   public Date getDateClotureExe() {
-    return dateClotureExe;
+    return this.dateClotureExe;
   }
 
   public Date getDateCreation() {
-    return dateCreation;
+    return this.dateCreation;
   }
 
   public Date getDateEntree() {
-    return dateEntree;
+    return this.dateEntree;
   }
 
   public Date getDateSortie() {
-    return dateSortie;
+    return this.dateSortie;
   }
 
   public String getDenomination() {
-    return denomination;
+    return this.denomination;
+  }
+
+  public String getDescription_activite() {
+    return this.description_activite;
+  }
+
+  public void setDescription_activite(final String description_activite) {
+    this.description_activite = description_activite;
+  }
+
+  public String getDescription_entreprise() {
+    return this.description_entreprise;
+  }
+
+  public void setDescription_entreprise(final String description_entreprise) {
+    this.description_entreprise = description_entreprise;
   }
 
   public AdherentEtat getEtat() {
-    return etat;
+    return this.etat;
+  }
+
+  public String getFacebook() {
+    return this.facebook;
+  }
+
+  public MultipartFile getFilePhoto() {
+    return this.filePhoto;
+  }
+
+  public void setFilePhoto(final MultipartFile filePhoto) {
+    this.filePhoto = filePhoto;
+  }
+
+  public MultipartFile getFileLogo() {
+    return this.fileLogo;
+  }
+
+  public void setFileLogo(final MultipartFile fileLogo) {
+    this.fileLogo = fileLogo;
+  }
+
+  public void setFacebook(final String facebook) {
+    this.facebook = facebook;
   }
 
   public FormeJuridique getFormeJuridique() {
-    return formeJuridique;
+    return this.formeJuridique;
   }
 
   public Integer getId() {
-    return id;
+    return this.id;
   }
 
   public double getLatitude() {
-    return latitude;
+    return this.latitude;
   }
 
-  public void setLatitude(double latitude) {
+  public void setLatitude(final double latitude) {
     this.latitude = latitude;
   }
 
   public double getLongitude() {
-    return longitude;
+    return this.longitude;
   }
 
-  public void setLongitude(double logitude) {
+  public void setLongitude(final double longitude) {
     this.longitude = longitude;
   }
 
+  public String getMail() {
+    return this.mail;
+  }
+
+  public void setMail(final String mail) {
+    this.mail = mail;
+  }
+
   public Integer getNbSalarie() {
-    return nbSalaries;
+    return this.nbSalaries;
   }
 
   public boolean getIsArtipole() {
-    return isArtipole;
+    return this.isArtipole;
   }
 
   public boolean getIsCharteArtipole() {
-    return isCharteArtipole;
+    return this.isCharteArtipole;
   }
 
   public boolean getIsFacebookArtipole() {
-    return isFacebookArtipole;
+    return this.isFacebookArtipole;
   }
 
   public boolean getIsFlocageArtipole() {
-    return isFlocageArtipole;
+    return this.isFlocageArtipole;
   }
 
   public String getFormationDirigeant() {
-    return formationDirigeant;
+    return this.formationDirigeant;
   }
 
   public boolean getCnxEolasAllow() {
-    return cnxEolasAllow;
+    return this.cnxEolasAllow;
   }
 
   public boolean getIsOutilDechargement() {
-    return isOutilDechargement;
+    return this.isOutilDechargement;
   }
 
   public boolean getIsWebArtipole() {
-    return isWebArtipole;
+    return this.isWebArtipole;
   }
 
   public String getLibelle() {
-    return libelle;
+    return this.libelle;
   }
 
   public String getNumRepMetier() {
-    return numRepMetier;
+    return this.numRepMetier;
   }
 
   public String getPhoto() {
-    return photo == null ? "" : photo;
+    return (this.photo == null) ? "" : this.photo;
+  }
+
+  public String getLogo() {
+    return (this.logo == null) ? "" : this.logo;
   }
 
   public Pole getPole() {
-    return pole;
+    return this.pole;
   }
 
   public Commune getRcsCommune() {
-    return rcsCommune;
+    return this.rcsCommune;
   }
 
   public String getRcsRm() {
-    return rcsRm;
+    return this.rcsRm;
   }
 
   public Commune getRmCommune() {
-    return rmCommune;
+    return this.rmCommune;
   }
 
   public Role getRole() {
-    return role;
+    return this.role;
   }
 
   public Secteur getSecteur() {
-    return secteur;
+    return this.secteur;
   }
 
   public String getSiren() {
-    return siren;
+    return this.siren;
   }
 
   public String getSiret() {
-    return siret;
+    return this.siret;
+  }
+
+  public String getSiteWeb() {
+    return this.siteWeb;
+  }
+
+  public void setSiteWeb(final String siteWeb) {
+    this.siteWeb = siteWeb;
+  }
+
+  public String getTelephone() {
+    return this.telephone;
+  }
+
+  public void setTelephone(final String telephone) {
+    this.telephone = telephone;
   }
 
   public Tournee getTournee() {
-    return tournee;
+    return this.tournee;
   }
 
-  public void setAdresse(String adresse) {
+  public void setAdresse(final String adresse) {
     this.adresse = adresse;
   }
 
-  public void setAdresseComplement(String adresseComplement) {
+  public void setAdresseComplement(final String adresseComplement) {
     this.adresseComplement = adresseComplement;
   }
 
-  public void setAgence(Agence agence) {
+  public void setAgence(final Agence agence) {
     this.agence = agence;
   }
 
-  public void setApe(Ape ape) {
+  public void setApe(final Ape ape) {
     this.ape = ape;
   }
 
-  public void setCode(String code) {
+  public void setCode(final String code) {
     this.code = code;
   }
 
-  public void setCodeERP(String codeERP) {
+  public void setCodeERP(final String codeERP) {
     this.codeERP = codeERP;
   }
 
-  public void setCodeERPParent(String codeERPParent) {
+  public void setCodeERPParent(final String codeERPParent) {
     this.codeERPParent = codeERPParent;
   }
 
-  public void setCommune(Commune commune) {
+  public void setCommune(final Commune commune) {
     this.commune = commune;
   }
 
-//    public void setContactComptable(AdherentContactComptable contactComptable) {
-//        this.contactComptable = contactComptable;
-//    }
-  public void setDateClotureExe(Date dateClotureExe) {
+  public void setDateClotureExe(final Date dateClotureExe) {
     this.dateClotureExe = dateClotureExe;
   }
 
-  public void setDateCreation(Date dateCreation) {
+  public void setDateCreation(final Date dateCreation) {
     this.dateCreation = dateCreation;
   }
 
-  public void setDateEntree(Date dateEntree) {
+  public void setDateEntree(final Date dateEntree) {
     this.dateEntree = dateEntree;
   }
 
-  public void setDateSortie(Date dateSortie) {
+  public void setDateSortie(final Date dateSortie) {
     this.dateSortie = dateSortie;
   }
 
-  public void setDenomination(String denomination) {
+  public void setDenomination(final String denomination) {
     this.denomination = denomination;
   }
 
-  public void setEtat(AdherentEtat etat) {
+  public void setEtat(final AdherentEtat etat) {
     this.etat = etat;
   }
 
-  public void setFormeJuridique(FormeJuridique formeJuridique) {
+  public void setFormeJuridique(final FormeJuridique formeJuridique) {
     this.formeJuridique = formeJuridique;
   }
 
-  public void setId(Integer id) {
+  public void setId(final Integer id) {
     this.id = id;
   }
 
-  public void setNbSalaries(Integer nbSalaries) {
+  public void setNbSalaries(final Integer nbSalaries) {
     this.nbSalaries = nbSalaries;
   }
 
-  public void setIsArtipole(boolean isArtipole) {
+  public void setIsArtipole(final boolean isArtipole) {
     this.isArtipole = isArtipole;
   }
 
-  public void setIsCharteArtipole(boolean isCharteArtipole) {
+  public void setIsCharteArtipole(final boolean isCharteArtipole) {
     this.isCharteArtipole = isCharteArtipole;
   }
 
-  public void setIsFacebookArtipole(boolean isFacebookArtipole) {
+  public void setIsFacebookArtipole(final boolean isFacebookArtipole) {
     this.isFacebookArtipole = isFacebookArtipole;
   }
 
-  public void setIsFlocageArtipole(boolean isFlocageArtipole) {
+  public void setIsFlocageArtipole(final boolean isFlocageArtipole) {
     this.isFlocageArtipole = isFlocageArtipole;
   }
 
-  public void setFormationDirigeant(String formationDirigeant) {
+  public void setFormationDirigeant(final String formationDirigeant) {
     this.formationDirigeant = formationDirigeant;
   }
 
-  public void setCnxEolasAllow(boolean cnxEolasAllow) {
+  public void setCnxEolasAllow(final boolean cnxEolasAllow) {
     this.cnxEolasAllow = cnxEolasAllow;
   }
 
-  public void setIsOutilDechargement(boolean outilDechargement) {
+  public void setIsOutilDechargement(final boolean outilDechargement) {
     this.isOutilDechargement = outilDechargement;
   }
 
-  public void setIsWebArtipole(boolean isWebArtipole) {
+  public void setIsWebArtipole(final boolean isWebArtipole) {
     this.isWebArtipole = isWebArtipole;
   }
 
-  public void setLibelle(String libelle) {
+  public void setLibelle(final String libelle) {
     this.libelle = libelle;
   }
 
-  public void setNumRepMetier(String numRepMetier) {
+  public void setNumRepMetier(final String numRepMetier) {
     this.numRepMetier = numRepMetier;
   }
 
-  public void setPhoto(String photo) {
+  public void setPhoto(final String photo) {
     this.photo = photo;
   }
 
-  public void setPole(Pole pole) {
+  public void setLogo(final String logo) {
+    this.logo = logo;
+  }
+
+  public void setPole(final Pole pole) {
     this.pole = pole;
   }
 
-  public void setRcsCommune(Commune rcsCommune) {
+  public void setRcsCommune(final Commune rcsCommune) {
     this.rcsCommune = rcsCommune;
   }
 
-  public void setRcsRm(String rcsRm) {
+  public void setRcsRm(final String rcsRm) {
     this.rcsRm = rcsRm;
   }
 
-  public void setRmCommune(Commune rmCommune) {
+  public void setRmCommune(final Commune rmCommune) {
     this.rmCommune = rmCommune;
   }
 
-  public void setRole(Role role) {
+  public void setRole(final Role role) {
     this.role = role;
   }
 
-  public void setSecteur(Secteur secteur) {
+  public void setSecteur(final Secteur secteur) {
     this.secteur = secteur;
   }
 
-  public void setSiren(String siren) {
+  public void setSiren(final String siren) {
     this.siren = siren;
   }
 
-  public void setSiret(String siret) {
+  public void setSiret(final String siret) {
     this.siret = siret;
   }
 
-  public void setTournee(Tournee tournee) {
+  public void setTournee(final Tournee tournee) {
     this.tournee = tournee;
   }
 
+  public String getInstagram() {
+    return this.instagram;
+  }
+
+  public void setInstagram(final String instagram) {
+    this.instagram = instagram;
+  }
+
+  public String getLinkedin() {
+    return this.linkedin;
+  }
+
+  public void setLinkedin(final String linkedin) {
+    this.linkedin = linkedin;
+  }
+
+  public String getPinterest() {
+    return this.pinterest;
+  }
+
+  public void setPinterest(final String pinterest) {
+    this.pinterest = pinterest;
+  }
+
+  public String getYoutube() {
+    return this.youtube;
+  }
+
+  public void setYoutube(final String youtube) {
+    this.youtube = youtube;
+  }
 }

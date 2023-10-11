@@ -8,37 +8,43 @@
 
 <!-- Content Header (Page header) -->
 <div class="flex justify-left gap-10">
-  <div class="text-2xl mb-4">Base adhérents - Contacts</div>
+  <div class="text-2xl">Base adhérents - Contacts</div>
 </div>
 <!--<div>
   <div>-->
     <div class="flex justify-center">
-      <!-- ADH SEARCH FORM -->
-      <form:form class="form-inline ml-3" id="searchform" method="post" modelAttribute="criteria" action="listeContact">
-        <form:input type="hidden" name="contactFonctionIds" path="contactFonctionIds"/>
-        <spring:message code="label.texteRecherche" var="recherchePH"/>
-        <div class="input-group input-group-sm">
-          <form:input class="p-2 w-48 bg-white rounded-lg border border-gray-200" type="search"
-                      path="text" placeholder="${recherchePH}"
-                      aria-label="Search" autofocus="true"/>
+        <!-- ADH SEARCH FORM -->
+        <form:form id="searchform" class="form-inline ml-3" method="post" modelAttribute="criteria" action="listeContact">
+          
+            <form:input type="hidden" name="contactFonctionIds" path="contactFonctionIds"/>
+            
+            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">
+                <spring:message code="label.texteRecherche" var="recherchePH"/>
+            </label>
 
-          <button id="actionButton"
-                  class="text-white bg-neutral-700 hover:bg-neutral-800 focus:ring-4 focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"
-                  type="submit">Rechercher
-          </button>
+            <div class="flex gap-2">
 
-          <button class="btn btn-info btn-flat" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-          <c:url value="/initListeContact" var="urlInit"/>
-          <button class="btn btn-info btn-flat" type="reset"
-                  title="<spring:message code="label.initRecherche"/>"
-                  onclick="window.location.href = '${urlInit}'">
-            <i class="fas fa-redo-alt"></i>
-          </button>
+                <form:input class="p-2 w-48 bg-white rounded-lg border border-gray-200 text-black" type="search"
+                            path="text" placeholder="${recherchePH}"
+                            aria-label="Search" autofocus="true"/>
 
-        </div>
-      </form:form>
+                <c:url value="/initListeContact" var="urlInit"/>
+
+                <div class="flex gap-2">
+                    <button id="actionButton"
+                            class="p-3 text-white text-sm rounded-lg bg-neutral-800 hover:bg-neutral-900"
+                            type="submit">
+                    Rechercher
+                    </button>
+
+                    <button class="p-3 text-white text-sm rounded-lg bg-neutral-800 hover:bg-neutral-900" type="reset"
+                            title="<spring:message code="label.initRecherche"/>"
+                            onclick="window.location.href = '${urlInit}'">Effacer
+                    </button>
+                </div>
+                    
+            </div>
+        </form:form>
     </div>
 
     <div id="accordion-collapse" data-accordion="collapse">
@@ -71,7 +77,7 @@
 
                   <label>Pôle</label>
                   <form:select class="form-control select2" name="poleIds"
-                               data-placeholder="Tous les poles"
+                               data-placeholder="Tous les pôles"
                                path="poleIds" multiple="multiple">
                     <form:options items="${polesList}" itemValue="id" itemLabel="libelle"/>
                   </form:select>
@@ -90,9 +96,9 @@
                     <form:options items="${contactFonctionList}" itemValue="id" itemLabel="libelle"/>
                   </form:select>
 
-                  <label>Activitées</label>
+                  <label>Activités</label>
                   <form:select class="form-control select2" name="activiteIds"
-                               data-placeholder="Tous les activitées"
+                               data-placeholder="Toutes les activités"
                                path="activiteIds" multiple="multiple">
                     <form:options items="${activitesList}" itemValue="id" itemLabel="libelle"/>
                   </form:select>
@@ -147,11 +153,11 @@
                   </div>
                   <div class="flex gap-2 mt-2 pt-6">
                     <button id="actionButton"
-                            class="px-3 py-2 text-xs font-medium text-center text-white bg-neutral-700 rounded-lg hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+                            class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
                             type="submit">
                       Rechercher
                     </button>
-                    <button class="px-3 py-2 text-xs font-medium text-center text-white bg-neutral-700 rounded-lg hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+                    <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
                             type="reset" onclick="window.location.href = '${urlInit}'">
                       Effacer
                     </button>
@@ -172,13 +178,13 @@
     <!-- Default box -->
     <div class="card card-lightneutral">
       <div class="card-header">
-        <h3 class="card-title">Résultat : <spring:message code="count.contact" arguments="${nbContact}"/></h3>
+        <h3 class="card-title py-2">Résultat : <spring:message code="count.contact" arguments="${nbContact}"/></h3>
       </div>
 
       <div class="card-body">
         <div class="grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           <c:forEach items="${listeContacts}" var="contact">
-            <div class="w-full pt-2 max-w-s bg-white rounded-lg border border-gray-200 shadow-md hover:bg-neutral-100 cursor-pointer" id="${contact.id}">
+            <div class="w-full pt-2 max-w-s bg-white rounded-lg border-gray-200 shadow-md hover:bg-neutral-100 cursor-pointer" id="${contact.id}">
               <c:url value="/adherentProfil" var="urlShowAdh"><c:param name="idAdh" value="${contact.adherent.id}"/></c:url>
               <h5 class="mb-1 text-center bg-[#28a745] font-medium text-gray-900"><c:out value="${contact.prenom}"/> <c:out value="${contact.nom}"/></h5>
 
@@ -192,25 +198,35 @@
                       <img src="${contact.photoImg}" alt="" class="mt-6 w-24 h-24 object-cover rounded-full shadow-lg">
                     </c:otherwise>
                   </c:choose>
-
                 </div>
+                
                 <div class="col-span-2 ml-2">
-                  <div class="flex flex-col">
-                    <span class="text-sm text-green-600 hover:underline overflow-hidden text-ellipsis">
+                  <div class="flex flex-col text-sm">
+                    
+                    <span class="text-green-600 hover:underline overflow-hidden text-ellipsis">
                       <a href="mailto:<c:out value='${contact.mail}'/>"><c:out value="${contact.mail}"/></a>
                     </span>
-                    <span class=" flex text-sm">
-                      Fixe : <a class="text-green-600 hover:underline" href="tel:<c:out value='${contact.fixe}'/>">
-                        <c:out value="${contact.fixe}"/></a>
+                    
+                    <c:if test = '${not empty contact.fixe}'>
+                    <span class="text-gray-300">
+                      Fixe :&nbsp;<a href="tel:<c:out value='${contact.fixe}'/>" class="text-green-600 hover:underline"><c:out value="${contact.fixe}"/></a>
                     </span>
-                    <span class=" flex text-sm">
-                      Mobile : <a class="text-green-600 hover:underline" href="tel:<c:out value='${contact.mobile}'/>">
-                        <c:out value="${contact.mobile}"/></a>
+                    </c:if>
+                    
+                    <c:if test = '${not empty contact.mobile}'>
+                    <span class="text-gray-300">
+                      Mobile :&nbsp;<a href="tel:<c:out value='${contact.mobile}'/>" class="text-green-600 hover:underline"><c:out value="${contact.mobile}"/></a>
                     </span>
-
-                    <span class="text-sm text-gray-500"><spring:message code="label.nom"/> </b>
-                      <c:out value="${contact.adherent.libelle}"/></span>
-                    <span class="text-sm text-gray-500"><spring:message code="label.codeAdh"/> <c:out value="${contact.adherent.code}"/></span>
+                    </c:if>
+                    
+                    <span class="text-gray-300">
+                      <spring:message code="label.nom"/> :&nbsp;<span class="text-gray-500"><c:out value="${contact.adherent.libelle}"/></span>
+                    </span>
+                    
+                    <span class="text-gray-300">
+                      <spring:message code="label.codeAdh"/> : <span class="text-gray-500"><c:out value="${contact.adherent.code}"/></span>
+                    </span>
+                    
                   </div>
                 </div>
               </div>
@@ -232,7 +248,7 @@
             <c:if test="${maxPage > 0}">
               <li>
                 <a class="block py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700" href="listeContact?page=1">
-                  D&Eacute;but
+                  Début
                 </a>
               </li>
               <li>
@@ -245,7 +261,7 @@
 
               <c:forEach var="i" begin="${page == 1 ? 1 : page-1}" end="${page == maxPage ? maxPage : page+1 }">
                 <li>
-                  <a class="<c:if test="${page == i}"> text-neutral-600 bg-neutral-50 border-neutral-300 </c:if> py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+                  <a class="<c:if test="${page == i}"> text-neutral-600 bg-neutral-200 border-neutral-300 hover:bg-neutral-200</c:if> block py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
                      href="listeContact?page=${i}">${i}</a>
                 </li>
               </c:forEach>

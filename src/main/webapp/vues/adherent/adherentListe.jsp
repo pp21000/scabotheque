@@ -8,166 +8,170 @@
 
 
 <div class="flex justify-left gap-10">
-    <div class="text-2xl mb-4">Base adhérents</div>
+    <div class="text-2xl">Base adhérents</div>
 </div>
+
 <div>
-    <div>
-        <div class="flex justify-center">
-            <form:form id="searchform" method="post" modelAttribute="criteria"
-                       action="adherentListe">
-                <label for="default-search"
-                       class="mb-2 text-sm font-medium text-gray-900 sr-only"><spring:message
-                        code="label.texteRecherche" var="recherchePH"/></label>
-                <form:input type="hidden" name="contactFonctionIds" path="contactFonctionIds"/>
-                <div class="flex gap-2">
-                    <form:input
-                            class="p-2 w-96 bg-white rounded-lg border border-gray-200 focus:ring-neutral-400 focus:border-neutral-400"
+    <div class="flex justify-center">
+        <!-- CONTACT SEARCH FORM -->
+        <form:form id="searchform" method="post" modelAttribute="criteria" action="adherentListe">
+
+            <form:input type="hidden" name="contactFonctionIds" path="contactFonctionIds"/>
+
+            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">
+                <spring:message code="label.texteRecherche" var="recherchePH"/>
+            </label>
+
+            <div class="flex gap-2">
+
+                <form:input class="p-2 w-96 bg-white rounded-lg border border-gray-200 text-black"
                             type="search" path="text" placeholder="${recherchePH}"
                             aria-label="Search" autofocus="true"/>
-                    <c:url value="/initListeAdherents" var="urlInit"/>
-                    <div class="flex gap-2">
-                        <button type="submit"
-                                class="px-3 py-2 text-xs font-medium text-center text-white bg-neutral-700 rounded-lg hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300">
-                            Rechercher
-                        </button>
-                        <button class="px-3 py-2 text-xs font-medium text-center text-white bg-neutral-700 rounded-lg hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300"
-                                type="reset" onclick="window.location.href='${urlInit}'">
-                            Effacer
-                        </button>
-                    </div>
+
+                <c:url value="/initListeAdherents" var="urlInit"/>
+
+                <div class="flex gap-2">
+                    <button type="submit"
+                            class="p-3 text-white text-sm rounded-lg bg-neutral-800 hover:bg-neutral-900">
+                    Rechercher
+                    </button>
+
+                    <button class="p-3 text-white text-sm rounded-lg bg-neutral-800 hover:bg-neutral-900"
+                            type="reset" onclick="window.location.href='${urlInit}'">
+                        Effacer
+                    </button>
                 </div>
-            </form:form>
-        </div>
 
-        <div id="accordion-collapse" data-accordion="collapse">
-            <h2 id="accordion-collapse-head-1">
-                <button type="button"
-                        class="flex items-center justify-center w-full p-3 font-medium text-left text-gray-500 hover:bg-gray-100 bg-gray-100 "
-                        data-accordion-target="#accordion-collapse-body-1" aria-expanded="false"
-                        aria-controls="accordion-collapse-body-1">
-                    <span class="text-center"><spring:message code="label.rechercheAvance"/></span>
-                </button>
-            </h2>
-            
-            <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-head-1">
-                <div class="bg-gray-100">
-                    <form:form class="card card-outline card-info collapsed-card" id="advanceSerachForm" method="post" modelAttribute="criteria" action="adherentListe">
-                        <form:input type="hidden" name="text" path="text"/>
-                        <form:input type="hidden" name="contactFonctionIds" path="contactFonctionIds"/>
-                        <spring:message code="label.texteRecherche" var="recherchePH"/>
-                        <div class="card-body">
-                            <div class="flex justify-evenly pb-2">
-                                <div class="flex flex-col w-full px-6">
-                                    <label>Type</label>
-                                    <form:select class="form-control select2" name="typeAdhIds"
-                                                 data-placeholder="Type d'adhérent"
-                                                 path="typeAdhIds" multiple="multiple">
-                                        <form:options items="${adhTypesList}" itemValue="id" itemLabel="libelle"/>
-                                    </form:select>
+            </div>
+        </form:form>
+    </div>
 
-                                    <label>Pôle</label>
-                                    <form:select class=" form-control select2" name="poleIds"
-                                                 data-placeholder="Tous les poles"
-                                                 path="poleIds" multiple="multiple">
-                                        <form:options items="${polesList}" itemValue="id" itemLabel="libelle"/>
-                                    </form:select>
-                                    <label>Secteurs</label>
-                                    <form:select class="form-control select2" name="secteurIds"
-                                                 data-placeholder="Tous les secteurs"
-                                                 path="secteurIds" multiple="multiple">
-                                        <form:options items="${secteursList}" itemValue="id" itemLabel="libelle"/>
-                                    </form:select>
+    <div id="accordion-collapse" data-accordion="collapse">
+        <h2 id="accordion-collapse-head-1">
+            <button type="button"
+                    class="flex items-center justify-center w-full p-3 font-medium text-left text-gray-500 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-900 "
+                    data-accordion-target="#accordion-collapse-body-1" aria-expanded="false"
+                    aria-controls="accordion-collapse-body-1">
+                <span class="text-center"><spring:message code="label.rechercheAvance"/></span>
+            </button>
+        </h2>
+
+        <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-head-1">
+            <div class="bg-gray-100">
+                <form:form class="card card-outline card-info collapsed-card mb-0" id="advanceSerachForm" method="post" modelAttribute="criteria" action="adherentListe">
+                    <form:input type="hidden" name="text" path="text"/>
+                    <form:input type="hidden" name="contactFonctionIds" path="contactFonctionIds"/>
+                    <spring:message code="label.texteRecherche" var="recherchePH"/>
+                    <div class="card-body">
+                        <div class="flex justify-evenly pb-2">
+                            <div class="flex flex-col w-full px-6">
+                                <label>Type</label>
+                                <form:select class="form-control select2" name="typeAdhIds"
+                                             data-placeholder="Type d'adhérent"
+                                             path="typeAdhIds" multiple="multiple">
+                                    <form:options items="${adhTypesList}" itemValue="id" itemLabel="libelle"/>
+                                </form:select>
+
+                                <label>Pôle</label>
+                                <form:select class=" form-control select2" name="poleIds"
+                                             data-placeholder="Tous les pôles"
+                                             path="poleIds" multiple="multiple">
+                                    <form:options items="${polesList}" itemValue="id" itemLabel="libelle"/>
+                                </form:select>
+                                <label>Secteurs</label>
+                                <form:select class="form-control select2" name="secteurIds"
+                                             data-placeholder="Tous les secteurs"
+                                             path="secteurIds" multiple="multiple">
+                                    <form:options items="${secteursList}" itemValue="id" itemLabel="libelle"/>
+                                </form:select>
+                            </div>
+                            <div class="flex flex-col w-full px-6">
+                                <label>Activités</label>
+                                <form:select class="form-control select2" name="activiteIds"
+                                             data-placeholder="Toutes les activités"
+                                             path="activiteIds" multiple="multiple">
+                                    <form:options items="${activitesList}" itemValue="id" itemLabel="libelle"/>
+                                </form:select>
+                                <label>Agences</label>
+                                <form:select class="form-control select2" name="agenceIds"
+                                             data-placeholder="Toutes les agences"
+                                             path="agenceIds" multiple="multiple">
+                                    <form:options items="${agencesList}" itemValue="id" itemLabel="libelle"/>
+                                </form:select>
+                            </div>
+                            <div class="flex flex-col w-full px-6">
+                                <div class="w-100 col-md-3">
+                                    <div class="form-group clearfix">
+                                        <form:checkbox
+                                                class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
+                                                id="showAdminOnly" name="showAdminOnly" path="showAdminOnly"/>
+                                        <label style="float:none;" for="showAdminOnly"><spring:message
+                                                code="label.filtre.isAdministrateur"/></label>
+                                    </div>
                                 </div>
-                                <div class="flex flex-col w-full px-6">
-                                    <label>Activitées</label>
-                                    <form:select class="form-control select2" name="activiteIds"
-                                                 data-placeholder="Toutes les activitées"
-                                                 path="activiteIds" multiple="multiple">
-                                        <form:options items="${activitesList}" itemValue="id" itemLabel="libelle"/>
-                                    </form:select>
-                                    <label>Agences</label>
-                                    <form:select class="form-control select2" name="agenceIds"
-                                                 data-placeholder="Toutes les agences"
-                                                 path="agenceIds" multiple="multiple">
-                                        <form:options items="${agencesList}" itemValue="id" itemLabel="libelle"/>
-                                    </form:select>
+                                <!-- /.col -->
+                                <div class="w-100 col-md-3">
+                                    <!-- checkbox -->
+                                    <div class="form-group clearfix">
+                                        <form:checkbox
+                                                class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
+                                                id="showSousCompte" name="showSousCompte" path="showSousCompte"/>
+                                        <label style="float:none;" for="showSousCompte"><spring:message
+                                                code="label.filtre.sousCompte"/></label>
+                                    </div>
                                 </div>
-                                <div class="flex flex-col w-full px-6">
-                                    <div class="w-100 col-md-3">
-                                        <div class="form-group clearfix">
-                                            <form:checkbox
-                                                    class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
-                                                    id="showAdminOnly" name="showAdminOnly" path="showAdminOnly"/>
-                                            <label style="float:none;" for="showAdminOnly"><spring:message
-                                                    code="label.filtre.isAdministrateur"/></label>
-                                        </div>
+                                <!-- /.col -->
+                                <div class="w-100 col-md-3">
+                                    <div class="form-group clearfix">
+                                        <form:checkbox
+                                                class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
+                                                id="showArtipoleOnly" name="showArtipoleOnly"
+                                                path="showArtipoleOnly"/>
+                                        <label style="float:none;" for="showArtipoleOnly"><spring:message
+                                                code="label.filtre.isArtipole"/></label>
                                     </div>
-                                    <!-- /.col -->
-                                    <div class="w-100 col-md-3">
-                                        <!-- checkbox -->
-                                        <div class="form-group clearfix">
-                                            <form:checkbox
-                                                    class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
-                                                    id="showSousCompte" name="showSousCompte" path="showSousCompte"/>
-                                            <label style="float:none;" for="showSousCompte"><spring:message
-                                                    code="label.filtre.sousCompte"/></label>
-                                        </div>
-                                    </div>
-                                    <!-- /.col -->
-                                    <div class="w-100 col-md-3">
-                                        <div class="form-group clearfix">
-                                            <form:checkbox
-                                                    class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
-                                                    id="showArtipoleOnly" name="showArtipoleOnly"
-                                                    path="showArtipoleOnly"/>
-                                            <label style="float:none;" for="showArtipoleOnly"><spring:message
-                                                    code="label.filtre.isArtipole"/></label>
-                                        </div>
-                                    </div>
-                                    <!-- /.col -->
+                                </div>
+                                <!-- /.col -->
 <!--                                    <div class="w-100 col-md-3">
-                                        <div class="form-group clearfix">
-                                            <form:checkbox
-                                                    class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
-                                                    id="showAll" name="showAll" path="showAll"/>
-                                            <label style="float:none;" for="showAll"><spring:message
-                                                    code="label.filtre.inactif"/></label>
-                                        </div>
-                                    </div>-->
-                                    <div class="flex gap-2 mt-2 pt-6">
-                                        <button id="actionButton"
-                                                class="px-3 py-2 text-xs font-medium text-center text-white bg-neutral-700 rounded-lg hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300"
-                                                type="submit">
-                                            Rechercher
-                                        </button>
-                                        <button class="px-3 py-2 text-xs font-medium text-center text-white bg-neutral-700 rounded-lg hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300"
-                                                type="reset" onclick="window.location.href='${urlInit}'">
-                                            Effacer
-                                        </button>
+                                    <div class="form-group clearfix">
+                                        <form:checkbox
+                                                class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
+                                                id="showAll" name="showAll" path="showAll"/>
+                                        <label style="float:none;" for="showAll"><spring:message
+                                                code="label.filtre.inactif"/></label>
                                     </div>
+                                </div>-->
+                                <div class="flex gap-2 mt-2 pt-6">
+                                    <button id="actionButton"
+                                            class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+                                            type="submit">
+                                        Rechercher
+                                    </button>
+                                    <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+                                            type="reset" onclick="window.location.href='${urlInit}'">
+                                        Effacer
+                                    </button>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                    </form:form>
+                </form:form>
 
-                </div>
             </div>
         </div>
-
-
     </div>
 </div>
 <!-- Default box -->
 <div class="card card-lightneutral">
   <div class="card-header">
-    <h3 class="card-title">Résultat : <spring:message code="count.adherent" arguments="${nbAdherent}"/></h3>
+    <h3 class="card-title py-2">Résultat : <spring:message code="count.adherent" arguments="${nbAdherent}"/></h3>
   </div>
   
   <div class="card-body">
     <div class="grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
       <c:forEach items="${listeAdherents}" var="adherent">
-        <div class="w-full pt-2 max-w-s bg-white rounded-lg border border-gray-200 shadow-md hover:bg-neutral-100 cursor-pointer"  id="${adherent.id}">
+        <div class="w-full pt-2 max-w-s bg-white rounded-lg border-gray-200 shadow-md hover:bg-neutral-100 cursor-pointer"  id="${adherent.id}">
           <c:url value="/adherentProfil" var="urlShowAdh"><c:param name="idAdh" value="${adherent.id}"/></c:url>
           <h5 class=" mb-2 text-center bg-[#0F638C;] gray-100 font-medium text-gray-100"><c:out value="${contact.prenom}"/> <c:out value="${adherent.libelle}"/></h5>
          
@@ -203,7 +207,7 @@
                     </c:when>
                 </c:choose>
 
-                <small class="text-center bg-gray-100 text-green-800 text-xs font-semibold  px-1.5 py-0.5 rounded m-1">
+                <small class="text-center bg-gray-200 text-green-800 text-xs font-semibold  px-1.5 py-0.5 rounded m-1">
                   <c:out value="${adherent.code}"/>
                 </small>
                   <span><c:out value="${adherent.secteur.libelle}"/></span> 
@@ -248,7 +252,7 @@
 
                 <c:forEach var="i" begin="${page == 1 ? 1 : page-1}" end="${page == maxPage ? maxPage : page+1 }">
                     <li>
-                        <a class="<c:if test="${page == i}"> text-neutral-600 bg-neutral-50 border-neutral-300 </c:if> py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+                        <a class="<c:if test="${page == i}"> text-neutral-600 bg-neutral-200 border-neutral-300 hover:bg-neutral-200</c:if> block py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
                            href="adherentListe?page=${i}">${i}</a>
                     </li>
                 </c:forEach>

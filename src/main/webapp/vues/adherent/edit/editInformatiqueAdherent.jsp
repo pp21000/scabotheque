@@ -5,8 +5,8 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${adhToEdit.adherent.id}"/></c:url>
-<button class="px-3 py-2 text-xs font-medium text-center text-white bg-neutral-700 rounded-lg hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300"
-		id="cancel" type="reset" onClick="window.location='${url}'">Retour
+<button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+		id="cancel" type="reset" onClick="window.location='${url}'">< Retour
 </button>
 
 <div class="flex justify-center">
@@ -75,11 +75,11 @@
 	</fieldset>
 
 	<div class="flex justify-center gap-2 mt-2">
-		<button class="px-3 py-2 text-xs font-medium text-center text-white bg-neutral-700 rounded-lg hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+		<button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
 				id="save" type="submit">Enregistrer
 		</button>
 		<c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${adhToEdit.adherent.id}"/></c:url>
-		<button class="px-3 py-2 text-xs font-medium text-center text-white bg-neutral-700 rounded-lg hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+		<button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
 				id="cancel" type="reset" onClick="window.location='${url}'">Annuler
 		</button>
 	</div>

@@ -9,17 +9,14 @@
 <aside class="w-60 fixed flex flex-col justify-between" aria-label="Sidebar">
     <div class="overflow-y-auto flex flex-col justify-between py-4 px-3 bg-gray-200 min-h-screen dark:text-gray-50 dark:bg-gray-800">
         <ul class="space-y-2">
-            <li class="mt-20"></li>
 
-            <li class="flex justify-center flex items-center text-xl font-normal text-gray-900 py-1 px-1 rounded-lg hover:bg-gray-100 dark:text-gray-50 dark:bg-gray-800">
-                    <span class="text-gray-600 font-medium"><spring:message code="label.adherent"/></span>
+            <li class="flex justify-center text-xl px-1 py-5 mt-12 text-gray-600 font-medium w-full border-b border-gray-400">
+                <spring:message code="label.adherent"/>
             </li>
-
-            <li class="h-2 w-full border-b border-gray-300"></li>
 
             <li>
               <a href=<c:url value="/dashboard"/>
-                   class="<c:if test = "${pageType == 'DASHBOARD'}"> bg-[#28a745] font-bold </c:if> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
+                   class="<c:choose><c:when test = "${pageType == 'DASHBOARD'}"> bg-[#28a745] </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
                     <svg aria-hidden="true"
                          class="w-6 h-6 text-gray-500 transition duration-75  group-hover:text-gray-900"
                          fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -31,7 +28,7 @@
             </li>
             <li>
               <a href=<c:url value="/listeAdherents"/>
-                   class="<c:if test = "${pageType == 'LIST_ADHERENT' || pageType == 'CREATE_ADHERENT'}"> bg-[#28a745] font-bold </c:if> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
+                   class="<c:choose><c:when test = "${pageType == 'LIST_ADHERENT' || pageType == 'CREATE_ADHERENT'}"> bg-[#28a745] </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
                     <svg class="w-6 h-6 text-gray-500 fill-gray-500" fill="none" stroke="currentColor"
                          viewBox="0 0 24 24"
                          xmlns="http://www.w3.org/2000/svg">
@@ -43,7 +40,7 @@
             </li>
             <li>
               <a href=<c:url value="/listeContact"/>
-                   class="<c:if test = "${pageType == '' || pageType == 'LIST_CONTACT'}"> bg-[#28a745] font-bold </c:if> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
+                   class="<c:choose><c:when test = "${pageType == '' || pageType == 'LIST_CONTACT'}"> bg-[#28a745] </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
                     <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                          xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -54,7 +51,7 @@
             </li>
             <li>
                 <a href="listeRetraite"
-                   class="<c:if test = "${pageType == '' || pageType == 'LIST_CONTACT_RETRAITE'}"> bg-[#28a745] font-bold </c:if> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
+                   class="<c:choose><c:when test = "${pageType == '' || pageType == 'LIST_CONTACT_RETRAITE'}"> bg-[#28a745] </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
                     <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                          xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -64,7 +61,7 @@
                 </a>
             </li><li>
                 <a href="listeClubFemmes"
-                   class="<c:if test = "${pageType == '' || pageType == 'LIST_CONTACT_CLUB_FEMMES'}"> bg-[#28a745] font-bold</c:if> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
+                   class="<c:choose><c:when test = "${pageType == '' || pageType == 'LIST_CONTACT_CLUB_FEMMES'}"> bg-[#28a745] </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
                     <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                          xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -79,13 +76,13 @@
             <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')">
                 <li>
                   <a href=<c:url value="/addAdherent"/>
-                       class="<c:if test = "${pageType == '' || pageType == 'CREATE_ADHERENT'}"> text-green-500 font-bold </c:if> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
+                       class="<c:if test = "${pageType == '' || pageType == 'CREATE_ADHERENT'}"> text-green-500 </c:if> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
                         <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                              xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
                         </svg>
-                         <div class="ml-3 whitespace-nowrap text-sm "><spring:message code="menu.addadherent"/></div>
+                        <div class="ml-3 whitespace-nowrap text-sm"><spring:message code="menu.addAdherent"/></div>
                     </a>
                 </li>
             </sec:authorize>
@@ -103,12 +100,12 @@
                         <form:input type="hidden" name="showAdminOnly" path="showAdminOnly"/>
                         <form:input type="hidden" name="showArtipoleOnly" path="showArtipoleOnly"/>
                         <a href="javascript:;" onclick="parentNode.submit();"
-                           class="<c:if test = "${pageType == '' || pageType == 'CREATE_ADHERENT'}"> text-green-500 font-bold </c:if> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 ">
+                           class="<c:if test = "${pageType == '' || pageType == 'CREATE_ADHERENT'}"> text-green-500 </c:if> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 ">
                             <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                             </svg>
-                            <div class=" text-sm ml-3 whitespace-nowrap"><spring:message code="menu.exportExcel"/></div>
+                            <div class="text-sm ml-3 whitespace-nowrap"><spring:message code="menu.exportExcel"/></div>
                         </a>
                     </form:form>
                 </li>
@@ -128,7 +125,7 @@
                         <form:input type="hidden" name="showAdminOnly" path="showAdminOnly"/>
                         <form:input type="hidden" name="showArtipoleOnly" path="showArtipoleOnly"/>
                         <a href="javascript:;" onclick="parentNode.submit();"
-                           class="<c:if test = "${pageType == '' || pageType == 'CREATE_ADHERENT'}"> text-green-500 font-bold </c:if> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
+                           class="<c:if test = "${pageType == '' || pageType == 'CREATE_ADHERENT'}"> text-green-500 </c:if> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
                             <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -154,7 +151,7 @@
                         <form:input type="hidden" name="showAdminOnly" path="showAdminOnly"/>
                         <form:input type="hidden" name="showArtipoleOnly" path="showArtipoleOnly"/>
                         <a href="javascript:;" onclick="parentNode.submit();"
-                           class="<c:if test = "${pageType == '' || pageType == 'CREATE_ADHERENT'}"> text-green-500 font-bold </c:if> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
+                           class="<c:if test = "${pageType == '' || pageType == 'CREATE_ADHERENT'}"> text-green-500 </c:if> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
                             <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

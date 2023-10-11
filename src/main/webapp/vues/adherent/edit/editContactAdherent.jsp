@@ -6,7 +6,7 @@
 
 <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
   <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"
-          type="reset" onClick="window.location = '${url}'">Retour
+          type="reset" onClick="window.location = '${url}'">< Retour
 </button>
 
 <div class="flex flex-col items-center">
@@ -155,7 +155,7 @@
 
           </sec:authorize>
           <div class="textAlignRight">
-            <!--<button class="px-3 py-2 text-xs font-medium text-center text-white bg-neutral-700 rounded-lg hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer le contact</button>-->
+            <!--<button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer le contact</button>-->
             <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none" type="submit">Enregistrer le contact</button>
           </div>
         </div>
@@ -343,42 +343,18 @@
 <%--    <form:textarea id="summernote" name="editordata" path="commentaire"/>--%>
 
 <div class="flex justify-center gap-2 mt-6">
-  <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none" type="submit">Enregistrer
+  <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none" 
+          type="submit">Enregistrer
   </button>
   <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-    <button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
-            type="reset" onClick="window.location = '${url}'">Annuler </button>
+  <button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+          type="reset" onClick="window.location = '${url}'">Annuler 
+  </button>
 </div>
 </form:form>
 </div>
 
 <script>
-  $(function () {
-    $(document).ready(function () {
-      $('#summernote').summernote({
-        placeholder: '<spring:message code="label.commentaire"/>',
-        tabsize: 2,
-        height: 150
-
-      });
-
-    });
-
-// 	$('#copieAll').click(function(e){
-// 		console.log ("c'est bien, t'as cliqué ... ");
-// 		$("input[id*='\\.nom']").val($("#adherentContacts0\\.nom").val());
-// 		$("input[id*='\\.prenom']").val($("#adherentContacts0\\.prenom").val());
-// 		$("input[id*='\\.mail']").val($("#adherentContacts0\\.mail").val());
-// 		$("input[id*='\\.fixe']").val($("#adherentContacts0\\.fixe").val());
-// 		$("input[id*='\\.mobile']").val($("#adherentContacts0\\.mobile").val());
-// 	});
-
-    $("#addContact").click(function (e) {
-      alert("test");
-      $("#addContactForm").toggle('slow');
-    });
-  });
-
   function showNewContact() {
     $("#addContactForm").toggle('slow');
   }

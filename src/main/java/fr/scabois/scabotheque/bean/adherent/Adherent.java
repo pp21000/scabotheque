@@ -112,13 +112,19 @@ public class Adherent {
 
   @Column(name = "site_web_artipole")
   private boolean isWebArtipole;
-
+  @Column(name = "site_web")
+  private String siteWeb;
+  private String facebook;
+  private String instagram;
+  private String linkedin;
+  private String youtube;
+  private String pinterest;
   private String libelle;
 
   @Column(name = "num_rep_metier")
   private String numRepMetier;
   private byte[] photo;
-
+  private byte[] logo;
   @ManyToOne
   private Pole pole;
 
@@ -148,6 +154,10 @@ public class Adherent {
 
   @Column(name = "cnx_eolas_authorise")
   private boolean cnxEolasAllow;
+  private String telephone;
+  private String mail;
+  private String description_activite;
+  private String description_entreprise;
 
   public String getAdresse() {
     return adresse;
@@ -216,8 +226,32 @@ public class Adherent {
     return denomination;
   }
 
+  public String getDescription_activite() {
+    return description_activite;
+  }
+
+  public void setDescription_activite(String description_activite) {
+    this.description_activite = description_activite;
+  }
+
+  public String getDescription_entreprise() {
+    return description_entreprise;
+  }
+
+  public void setDescription_entreprise(String description_entreprise) {
+    this.description_entreprise = description_entreprise;
+  }
+
   public AdherentEtat getEtat() {
     return etat;
+  }
+
+  public String getFacebook() {
+    return facebook;
+  }
+
+  public void setFacebook(String facebook) {
+    this.facebook = facebook;
   }
 
   public FormeJuridique getFormeJuridique() {
@@ -228,6 +262,14 @@ public class Adherent {
     return id;
   }
 
+  public String getInstagram() {
+    return instagram;
+  }
+
+  public void setInstagram(String instagram) {
+    this.instagram = instagram;
+  }
+
   public double getLatitude() {
     return latitude == null ? 0 : latitude;
   }
@@ -236,12 +278,28 @@ public class Adherent {
     this.latitude = latitude;
   }
 
+  public String getLinkedin() {
+    return linkedin;
+  }
+
+  public void setLinkedin(String linkedin) {
+    this.linkedin = linkedin;
+  }
+
   public double getLongitude() {
     return longitude == null ? 0 : longitude;
   }
 
   public void setLongitude(double longitude) {
     this.longitude = longitude;
+  }
+
+  public String getMail() {
+    return mail;
+  }
+
+  public void setMail(String mail) {
+    this.mail = mail;
   }
 
   public Integer getNbSalaries() {
@@ -290,6 +348,46 @@ public class Adherent {
 
   public String getPhotoImg() {
     return photo == null ? "" : new String(photo);
+  }
+
+  public String getPinterest() {
+    return pinterest;
+  }
+
+  public void setPinterest(String pinterest) {
+    this.pinterest = pinterest;
+  }
+
+  public String getSiteWeb() {
+    return siteWeb;
+  }
+
+  public void setSiteWeb(String siteWeb) {
+    this.siteWeb = siteWeb;
+  }
+
+  public String getTelephone() {
+    return telephone;
+  }
+
+  public void setTelephone(String telephone) {
+    this.telephone = telephone;
+  }
+
+  public String getYoutube() {
+    return youtube;
+  }
+
+  public void setYoutube(String youtube) {
+    this.youtube = youtube;
+  }
+
+  public byte[] getlogo() {
+    return this.logo;
+  }
+
+  public String getLogoImg() {
+    return (this.logo == null) ? "" : new String(this.logo);
   }
 
   public Pole getPole() {
@@ -450,6 +548,10 @@ public class Adherent {
 
   public void setPhoto(byte[] photo) {
     this.photo = photo;
+  }
+
+  public void setLogo(final byte[] logo) {
+    this.logo = logo;
   }
 
   public void setPole(Pole pole) {

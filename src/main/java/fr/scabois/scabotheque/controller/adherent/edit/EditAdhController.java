@@ -11,21 +11,17 @@ import fr.scabois.scabotheque.bean.adherent.CompteType;
 import fr.scabois.scabotheque.bean.adherent.FormeJuridique;
 import fr.scabois.scabotheque.bean.adherent.Pole;
 import fr.scabois.scabotheque.bean.adherent.Role;
-import fr.scabois.scabotheque.bean.adherent.RoleSalarieEOLAS;
 import fr.scabois.scabotheque.bean.adherent.Secteur;
 import fr.scabois.scabotheque.bean.adherent.Tournee;
 import fr.scabois.scabotheque.bean.commun.Activite;
 import fr.scabois.scabotheque.bean.commun.Agence;
 import fr.scabois.scabotheque.bean.commun.Ape;
-import fr.scabois.scabotheque.bean.commun.ContactFonction;
 import fr.scabois.scabotheque.enums.PageType;
 import fr.scabois.scabotheque.services.IServiceAdherent;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -46,667 +42,668 @@ import org.springframework.web.multipart.MultipartFile;
 public class EditAdhController {
 
 //    private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
-    @Autowired
-    private MessageSource messages;
+  @Autowired
+  private MessageSource messages;
 
-    @Autowired
-    private IServiceAdherent service;
+  @Autowired
+  private IServiceAdherent service;
 
-    @RequestMapping(value = "/edit/addAdherentContact", method = RequestMethod.POST)
-    public String addContact(@Valid @ModelAttribute(value = "contactToAdd") final AddAdherentContactForm newContact,
-            final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
+  @Autowired
+  private ContactController cttControler;
 
-        if (!pBindingResult.hasErrors()) {
-            service.createContactAdherent(editToContact(newContact.getContact()));
-            return "redirect:/adherentDetail?idAdh=" + newContact.getContact().getAdherentId();
-        }
+//  @RequestMapping(value = "/edit/addAdherentContact", method = RequestMethod.POST)
+//  public String addContact(@Valid @ModelAttribute(value = "contactToAdd") final AddAdherentContactForm newContact,
+//          final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
+//
+//    if (!pBindingResult.hasErrors()) {
+//      service.createContactAdherent(editToContact(newContact.getContact()));
+//      return "redirect:/adherentProfil?idAdh=" + newContact.getContact().getAdherentId();
+//    }
+//
+//    return editContact(newContact.getContact().getAdherentId(), pModel, request);
+//  }
+  @RequestMapping(value = "/edit/addAdherentSuivi", method = RequestMethod.POST)
+  public String addSuivi(@Valid @ModelAttribute(value = "suiviToAdd") final EditAdherentSuiviVisiteForm newSuivi,
+          final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
 
-        return editContact(newContact.getContact().getAdherentId(), pModel, request);
+    if (!pBindingResult.hasErrors()) {
+      service.createSuiviAdherent(editToSuivi(newSuivi.getSuiviVisiteAdh()));
+      return "redirect:/adherentCRM?idAdh=" + newSuivi.getSuiviVisiteAdh().getAdherentId();
     }
 
-    @RequestMapping(value = "/edit/addAdherentSuivi", method = RequestMethod.POST)
-    public String addSuivi(@Valid @ModelAttribute(value = "suiviToAdd") final EditAdherentSuiviVisiteForm newSuivi,
-            final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
+    return editCRM(newSuivi.getSuiviVisiteAdh().getAdherentId(), pModel, request);
+  }
 
-        if (!pBindingResult.hasErrors()) {
-            service.createSuiviAdherent(editToSuivi(newSuivi.getSuiviVisiteAdh()));
-            return "redirect:/adherentCRM?idAdh=" + newSuivi.getSuiviVisiteAdh().getAdherentId();
-        }
+  private void addSelectLists(final ModelMap pModel) {
+    List<Agence> agences = service.loadAgences();
+    List<Ape> codeApes = service.loadCodeApes();
+    List<AdherentEtat> etats = service.loadEtats();
+    List<AdherentType> adhTypes = service.loadAdherentTypes();
+    List<CompteType> cptTypes = service.loadCompteTypes();
+    List<FormeJuridique> formesJuridiques = service.loadFormesJuridiques();
+    List<Pole> poles = service.loadPoles();
+    List<Role> roles = service.loadRoles();
+    List<Secteur> secteurs = service.loadSecteurs();
+    List<Tournee> tournees = service.loadTournees();
 
-        return editCRM(newSuivi.getSuiviVisiteAdh().getAdherentId(), pModel, request);
-    }
+    pModel.addAttribute("agenceList", agences);
+    pModel.addAttribute("apeList", codeApes);
+    pModel.addAttribute("etatList", etats);
+    pModel.addAttribute("adhTypesList", adhTypes);
+    pModel.addAttribute("compteTypeList", cptTypes);
+    pModel.addAttribute("formJuridList", formesJuridiques);
+    pModel.addAttribute("poleList", poles);
+    pModel.addAttribute("roleList", roles);
+    pModel.addAttribute("secteurList", secteurs);
+    pModel.addAttribute("tourneeList", tournees);
 
-    private void addSelectLists(final ModelMap pModel) {
-        List<Agence> agences = service.loadAgences();
-        List<Ape> codeApes = service.loadCodeApes();
-        List<AdherentEtat> etats = service.loadEtats();
-        List<AdherentType> adhTypes = service.loadAdherentTypes();
-        List<CompteType> cptTypes = service.loadCompteTypes();
-        List<FormeJuridique> formesJuridiques = service.loadFormesJuridiques();
-        List<Pole> poles = service.loadPoles();
-        List<Role> roles = service.loadRoles();
-        List<Secteur> secteurs = service.loadSecteurs();
-        List<Tournee> tournees = service.loadTournees();
+  }
 
-        pModel.addAttribute("agenceList", agences);
-        pModel.addAttribute("apeList", codeApes);
-        pModel.addAttribute("etatList", etats);
-        pModel.addAttribute("adhTypesList", adhTypes);
-        pModel.addAttribute("compteTypeList", cptTypes);
-        pModel.addAttribute("formJuridList", formesJuridiques);
-        pModel.addAttribute("poleList", poles);
-        pModel.addAttribute("roleList", roles);
-        pModel.addAttribute("secteurList", secteurs);
-        pModel.addAttribute("tourneeList", tournees);
+  public EditAdherent adhToEdit(Adherent adh) {
+    final EditAdherent editableAdh = new EditAdherent();
 
-    }
-
-    public EditAdherent adhToEdit(Adherent adh) {
-        final EditAdherent editableAdh = new EditAdherent();
-
-        editableAdh.setId(adh.getId());
-        editableAdh.setCode(adh.getCode());
-        editableAdh.setCodeERP(adh.getCodeERP());
-        editableAdh.setCodeERPParent(adh.getCodeERPParent());
-        editableAdh.setLibelle(adh.getLibelle());
-        editableAdh.setDenomination(adh.getDenomination());
-        editableAdh.setFormeJuridique(adh.getFormeJuridique());
-        editableAdh.setDateEntree(adh.getDateEntree());
-        editableAdh.setDateSortie(adh.getDateSortie());
-        editableAdh.setAdresse(adh.getAdresse());
-        editableAdh.setAdresseComplement(adh.getAdresseComplement());
-        editableAdh.setCommune(adh.getCommune());
-        editableAdh.setPhoto(adh.getPhotoImg());
-        editableAdh.setPole(adh.getPole());
-        editableAdh.setRole(adh.getRole());
-        editableAdh.setSecteur(adh.getSecteur());
-        editableAdh.setIsArtipole(adh.getIsArtipole());
-        editableAdh.setIsCharteArtipole(adh.getIsCharteArtipole());
-        editableAdh.setIsFlocageArtipole(adh.getIsFlocageArtipole());
-        editableAdh.setIsWebArtipole(adh.getIsWebArtipole());
-        editableAdh.setFormationDirigeant(adh.getFormationDirigeant());
-        editableAdh.setCnxEolasAllow(adh.getCnxEolasAllow());
-        editableAdh.setIsFacebookArtipole(adh.getIsFacebookArtipole());
-        editableAdh.setApe(adh.getApe());
-        editableAdh.setSiren(adh.getSiren());
-        editableAdh.setSiret(adh.getSiret());
-        editableAdh.setNumRepMetier(adh.getNumRepMetier());
-        editableAdh.setRcsRm(adh.getRcsRm());
-        editableAdh.setRcsCommune(adh.getRcsCommune());
-        editableAdh.setRmCommune(adh.getRmCommune());
-        editableAdh.setAgence(adh.getAgence());
-        editableAdh.setDateClotureExe(adh.getDateClotureExe());
-        editableAdh.setTournee(adh.getTournee());
-        editableAdh.setIsOutilDechargement(adh.getIsOutilDechargement());
-        editableAdh.setEtat(adh.getEtat());
-        editableAdh.setAdherentType(adh.getAdherentType());
-        editableAdh.setCompteType(adh.getCompteType());
-        editableAdh.setLatitude(adh.getLatitude());
-        editableAdh.setLongitude(adh.getLongitude());
+    editableAdh.setId(adh.getId());
+    editableAdh.setCode(adh.getCode());
+    editableAdh.setCodeERP(adh.getCodeERP());
+    editableAdh.setCodeERPParent(adh.getCodeERPParent());
+    editableAdh.setLibelle(adh.getLibelle());
+    editableAdh.setDenomination(adh.getDenomination());
+    editableAdh.setFormeJuridique(adh.getFormeJuridique());
+    editableAdh.setDateEntree(adh.getDateEntree());
+    editableAdh.setDateSortie(adh.getDateSortie());
+    editableAdh.setAdresse(adh.getAdresse());
+    editableAdh.setAdresseComplement(adh.getAdresseComplement());
+    editableAdh.setCommune(adh.getCommune());
+    editableAdh.setPhoto(adh.getPhotoImg());
+    editableAdh.setPole(adh.getPole());
+    editableAdh.setRole(adh.getRole());
+    editableAdh.setSecteur(adh.getSecteur());
+    editableAdh.setIsArtipole(adh.getIsArtipole());
+    editableAdh.setIsCharteArtipole(adh.getIsCharteArtipole());
+    editableAdh.setIsFlocageArtipole(adh.getIsFlocageArtipole());
+    editableAdh.setIsWebArtipole(adh.getIsWebArtipole());
+    editableAdh.setFormationDirigeant(adh.getFormationDirigeant());
+    editableAdh.setCnxEolasAllow(adh.getCnxEolasAllow());
+    editableAdh.setIsFacebookArtipole(adh.getIsFacebookArtipole());
+    editableAdh.setApe(adh.getApe());
+    editableAdh.setSiren(adh.getSiren());
+    editableAdh.setSiret(adh.getSiret());
+    editableAdh.setNumRepMetier(adh.getNumRepMetier());
+    editableAdh.setRcsRm(adh.getRcsRm());
+    editableAdh.setRcsCommune(adh.getRcsCommune());
+    editableAdh.setRmCommune(adh.getRmCommune());
+    editableAdh.setAgence(adh.getAgence());
+    editableAdh.setDateClotureExe(adh.getDateClotureExe());
+    editableAdh.setTournee(adh.getTournee());
+    editableAdh.setIsOutilDechargement(adh.getIsOutilDechargement());
+    editableAdh.setEtat(adh.getEtat());
+    editableAdh.setAdherentType(adh.getAdherentType());
+    editableAdh.setCompteType(adh.getCompteType());
+    editableAdh.setLatitude(adh.getLatitude());
+    editableAdh.setLongitude(adh.getLongitude());
 //        editableAdh.setContactComptable(adh.getContactComptable());
 
-        return editableAdh;
-    }
+    return editableAdh;
+  }
 
-    private EditContactComptableAdherent contactComptableAdhToEdit(AdherentContactComptable contactCpt) {
-        EditContactComptableAdherent editable = new EditContactComptableAdherent();
+  private EditContactComptableAdherent contactComptableAdhToEdit(AdherentContactComptable contactCpt) {
+    EditContactComptableAdherent editable = new EditContactComptableAdherent();
 
-        editable.setId(contactCpt.getId());
-        editable.setAdherentId(contactCpt.getAdherentId());
-        editable.setCabinet(contactCpt.getCabinet());
-        editable.setCivilite(contactCpt.getCivilite());
-        editable.setFixe(contactCpt.getFixe());
-        editable.setMail(contactCpt.getMail());
-        editable.setMobile(contactCpt.getMobile());
-        editable.setNom(contactCpt.getNom());
-        editable.setPrenom(contactCpt.getPrenom());
+    editable.setId(contactCpt.getId());
+    editable.setAdherentId(contactCpt.getAdherentId());
+    editable.setCabinet(contactCpt.getCabinet());
+    editable.setCivilite(contactCpt.getCivilite());
+    editable.setFixe(contactCpt.getFixe());
+    editable.setMail(contactCpt.getMail());
+    editable.setMobile(contactCpt.getMobile());
+    editable.setNom(contactCpt.getNom());
+    editable.setPrenom(contactCpt.getPrenom());
 
-        return editable;
-    }
+    return editable;
+  }
 
-    private List<EditAdherentContact> contactToEdit(List<AdherentContactRole> contacts) {
-        final List<EditAdherentContact> ret = new ArrayList<>();
+  private List<EditAdherentContact> contactToEdit(List<AdherentContactRole> contacts) {
+    final List<EditAdherentContact> ret = new ArrayList<>();
 
-        contacts.stream().forEach(c -> {
-            EditAdherentContact edit = new EditAdherentContact();
-            // si il exist, il faut le rendre editable
-            edit.setAdherentId(c.getAdherent().getId());
-            edit.setCivilite(c.getCivilite());
-            edit.setFixe(c.getFixe());
-            edit.setId(c.getId());
-            edit.setIsMailingAdministratif(c.getIsMailingAdministratif());
-            edit.setIsMailingCommercial(c.getIsMailingCommerce());
-            edit.setIsMailingComptabilite(c.getIsMailingCompta());
-            edit.setIsMailingDirigeant(c.getIsMailingDirigeant());
-            edit.setMail(c.getMail());
-            edit.setMobile(c.getMobile());
-            edit.setNom(c.getNom());
-            edit.setDateNaissance(c.getDateNaissance());
-            edit.setPhotoImg(c.getPhotoImg());
-            edit.setPrenom(c.getPrenom());
-            edit.setFonction(c.getFonction());
-            edit.setContactFonctionId(c.getFonction().getId());
-            edit.setIsAccessEOLAS(c.getIsAccessEOLAS());
-            edit.setLoginEOLAS(c.getLoginEOLAS());
-            edit.setPassEOLAS(c.getPassEOLAS());
+    contacts.stream().forEach(c -> {
+      EditAdherentContact edit = new EditAdherentContact();
+      // si il exist, il faut le rendre editable
+      edit.setAdherentId(c.getAdherent().getId());
+      edit.setCivilite(c.getCivilite());
+      edit.setFixe(c.getFixe());
+      edit.setId(c.getId());
+      edit.setIsMailingAdministratif(c.getIsMailingAdministratif());
+      edit.setIsMailingCommercial(c.getIsMailingCommerce());
+      edit.setIsMailingComptabilite(c.getIsMailingCompta());
+      edit.setIsMailingDirigeant(c.getIsMailingDirigeant());
+      edit.setMail(c.getMail());
+      edit.setMobile(c.getMobile());
+      edit.setNom(c.getNom());
+      edit.setDateNaissance(c.getDateNaissance());
+      edit.setPhotoImg(c.getPhotoImg());
+      edit.setPrenom(c.getPrenom());
+      edit.setFonction(c.getFonction());
+      edit.setContactFonctionId(c.getFonction().getId());
+      edit.setIsAccessEOLAS(c.getIsAccessEOLAS());
+      edit.setLoginEOLAS(c.getLoginEOLAS());
+      edit.setPassEOLAS(c.getPassEOLAS());
 //            edit.setRoleSalarieEOLAS(c.getRoleSalarieEOLAS());
-            edit.setRoleSalarieEOLASId(c.getRoleSalarieEOLASId());
-            edit.setDateNaissance(c.getDateNaissance());
+      edit.setRoleSalarieEOLASId(c.getRoleSalarieEOLASId());
+      edit.setDateNaissance(c.getDateNaissance());
 
-            ret.add(edit);
-        });
-        return ret;
+      ret.add(edit);
+    });
+    return ret;
 
+  }
+
+//  @RequestMapping(value = "/edit/editContactComptableAdh", method = RequestMethod.GET)
+//  public String editAdherentContactComptable(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel,
+//          HttpServletRequest request) {
+//
+//    if (pModel.get("adhContactComptable") == null) {
+//
+//      final AdherentContactComptable contactCpt = service.loadAdherentContactComptable(idAdh);
+//      final EditContactComptableAdherentForm editContactComptableAdhForm = new EditContactComptableAdherentForm();
+//
+//      // Rend l'adherent éditable (avec des validations test)
+//      EditContactComptableAdherent editableContact = contactComptableAdhToEdit(contactCpt);
+//      editContactComptableAdhForm.setContactComptableAdherent(editableContact);
+//
+//      pModel.addAttribute("adhContactComptable", editContactComptableAdhForm);
+//    } else {
+//      pModel.addAttribute("adhContactComptable", pModel.get("adhContactComptable"));
+//    }
+//
+//    Adherent adh = service.loadAdherent(idAdh);
+//    pModel.addAttribute("adherent", adh);
+//    pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
+//
+//    return "editContactComptableAdh";
+//  }
+  @RequestMapping(value = {"/edit/editArtipoleAdh", "/edit/editAdministratifAdh", "/edit/editExploitationAdh", "/edit/editInformatiqueAdh",
+    "/edit/editArtipoleAdh", "/edit/editIdentiteAdh"}, method = RequestMethod.GET)
+  public String editAdherent(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel,
+          HttpServletRequest request) {
+
+    addSelectLists(pModel);
+
+    if (pModel.get("adhToEdit") == null) {
+
+      final Adherent adh = service.loadAdherent(idAdh);
+      final EditAdherentForm editAdhForm = new EditAdherentForm(adh);
+      editAdhForm.setCommentaire(
+              service.loadAdherentCommentaire(idAdh, extractPageType(request.getServletPath().substring(6))));
+
+      // Rend l'adherent éditable (avec des validations test)
+      // EditAdherent editableAdh = adhToEdit(adh);
+      // editAdhForm.setAdherent(editableAdh);
+      pModel.addAttribute("adhToEdit", editAdhForm);
+    } else {
+      pModel.addAttribute("adhToEdit", pModel.get("adhToEdit"));
     }
 
-    @RequestMapping(value = "/edit/editContactComptableAdh", method = RequestMethod.GET)
-    public String editAdherentContactComptable(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel,
-            HttpServletRequest request) {
+    pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
 
-        if (pModel.get("adhContactComptable") == null) {
+    // Implique que le nom des Tiles soit correctement alimenté
+    return request.getServletPath().substring(6);
+  }
 
-            final AdherentContactComptable contactCpt = service.loadAdherentContactComptable(idAdh);
-            final EditContactComptableAdherentForm editContactComptableAdhForm = new EditContactComptableAdherentForm();
+  @RequestMapping(value = "/edit/editActiviteAdh", method = RequestMethod.GET)
+  public String editAdherentActivite(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel,
+          HttpServletRequest request) {
 
-            // Rend l'adherent éditable (avec des validations test)
-            EditContactComptableAdherent editableContact = contactComptableAdhToEdit(contactCpt);
-            editContactComptableAdhForm.setContactComptableAdherent(editableContact);
+    Adherent adh = service.loadAdherent(idAdh);
+    List<Activite> activitees = service.loadActivites();
+    List<AdherentActivite> activiteesAdh = service.loadActivitesAdherent(idAdh);
+    EditAdherentActivitesForm editForm = new EditAdherentActivitesForm();
+    List<EditAdherentActivite> editList = new ArrayList<>();
 
-            pModel.addAttribute("adhContactComptable", editContactComptableAdhForm);
-        } else {
-            pModel.addAttribute("adhContactComptable", pModel.get("adhContactComptable"));
+    editForm.setCommentaire(service.loadAdherentCommentaire(idAdh, PageType.ADHERENT_ACTIVITE));
+
+    // mise en forme des activitèes Adherent en ajoutant les activit�es non
+    // renseign�s
+    if (pModel.get("editForm") == null) {
+      activitees.stream().forEach(a -> {
+        EditAdherentActivite editActiviteAdh = new EditAdherentActivite();
+
+        editActiviteAdh.setActiviteId(a.getId());
+        editActiviteAdh.setActiviteLibelle(a.getLibelle());
+        editActiviteAdh.setAdherentId(adh.getId());
+        Optional<AdherentActivite> adhActivite = activiteesAdh.stream()
+                .filter(aa -> aa.getActivite().getId().equals(a.getId())).findFirst();
+
+        if (adhActivite.isPresent()) {
+          editActiviteAdh.setCommentaire(adhActivite.get().getCommentaire());
+          editActiviteAdh.setPourcentage(adhActivite.get().getPourcentage());
+          editActiviteAdh.setId(adhActivite.get().getId());
         }
-
-        Adherent adh = service.loadAdherent(idAdh);
-        pModel.addAttribute("adherent", adh);
-        pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
-
-        return "editContactComptableAdh";
+        editList.add(editActiviteAdh);
+      });
+      pModel.addAttribute("editForm", editForm);
+    } else {
+      pModel.addAttribute("editForm", pModel.get("editForm"));
     }
+    editForm.setActivitesAdh(editList);
 
-    @RequestMapping(value = {"/edit/editArtipoleAdh", "/edit/editAdministratifAdh", "/edit/editExploitationAdh", "/edit/editInformatiqueAdh",
-        "/edit/editArtipoleAdh", "/edit/editIdentiteAdh"}, method = RequestMethod.GET)
-    public String editAdherent(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel,
-            HttpServletRequest request) {
+    pModel.addAttribute("adherent", adh);
+    pModel.addAttribute("activitees", activitees);
+    pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
 
-        addSelectLists(pModel);
+    return "editActiviteAdh";
 
-        if (pModel.get("adhToEdit") == null) {
+  }
 
-            final Adherent adh = service.loadAdherent(idAdh);
-            final EditAdherentForm editAdhForm = new EditAdherentForm();
-            editAdhForm.setCommentaire(
-                    service.loadAdherentCommentaire(idAdh, extractPageType(request.getServletPath().substring(6))));
+  @RequestMapping(value = "/edit/editCRMAdh", method = RequestMethod.GET)
+  public String editCRM(@RequestParam(value = "idSuivi") final int idSuivi, final ModelMap pModel,
+          HttpServletRequest request) {
 
-            // Rend l'adherent éditable (avec des validations test)
-            EditAdherent editableAdh = adhToEdit(adh);
-            editAdhForm.setAdherent(editableAdh);
+    addSelectLists(pModel);
+    AdherentSuiviVisite suivi = service.loadAdherentSuiviVisite(idSuivi);
+    Adherent adh = service.loadAdherent(suivi.getAdherentId());
 
-            pModel.addAttribute("adhToEdit", editAdhForm);
-        } else {
-            pModel.addAttribute("adhToEdit", pModel.get("adhToEdit"));
-        }
+    EditAdherentSuiviVisiteForm editForm = new EditAdherentSuiviVisiteForm();
+    editForm.setSuiviVisiteAdh(suiviToEdit(suivi));
 
-        pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
+    pModel.addAttribute("adherent", adh);
+    pModel.addAttribute("editForm", editForm);
+    pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
 
-        // Implique que le nom des Tiles soit correctement alimenté
-        return request.getServletPath().substring(6);
-    }
+    return "editCRMAdh";
+  }
 
-    @RequestMapping(value = "/edit/editActiviteAdh", method = RequestMethod.GET)
-    public String editAdherentActivite(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel,
-            HttpServletRequest request) {
+//  @RequestMapping(value = "/edit/editAdherentContact", method = RequestMethod.GET)
+//  public String editContact(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel,
+//          HttpServletRequest request) {
+//
+//    addSelectLists(pModel);
+//
+////	Passage par une map pour la civilité selection auto de la valeur
+//    Map<String, String> civilite = new HashMap<>();
+//    civilite.put("Mme", "Mme");
+//    civilite.put("Mr", "Mr");
+//    pModel.addAttribute("civilite", civilite);
+//
+//    final Adherent adh = service.loadAdherent(idAdh);
+//    final List<ContactFonction> contactFonctions = service.loadContactFonctions();
+//    final List<RoleSalarieEOLAS> roleSalarieEOLAS = service.loadRolesEOLAS();
+//    pModel.addAttribute("adherent", adh);
+//    pModel.addAttribute("contactFonctions", contactFonctions);
+//    pModel.addAttribute("roleSalarieEOLAS", roleSalarieEOLAS);
+//
+//    if (pModel.get("contactToEdit") == null) {
+//
+//      final EditAdherentContactsForm editAdhContactsForm = new EditAdherentContactsForm();
+//
+//      editAdhContactsForm.setCommentaire(service.loadAdherentCommentaire(idAdh, PageType.ADHERENT_DETAIL));
+//      List<EditAdherentContact> editableAdhContacts = contactToEdit(adh.getContacts());
+//      editAdhContactsForm.setAdherentContacts(editableAdhContacts);
+//      pModel.addAttribute("contactToEdit", editAdhContactsForm);
+//    } else {
+//      pModel.addAttribute("contactToEdit", pModel.get("contactToEdit"));
+//    }
+//
+//    if (pModel.get("contactToAdd") == null) {
+//
+//      final AddAdherentContactForm addContactForm = new AddAdherentContactForm();
+//
+//      // Prépare la possibilité de créer un contact
+//      EditAdherentContact addContact = new EditAdherentContact(); // adhToEdit(adh);
+//      addContact.setAdherentId(idAdh);
+//      addContactForm.setContact(addContact);
+//      pModel.addAttribute("contactToAdd", addContactForm);
+//
+//    } else {
+//      pModel.addAttribute("contactToAdd", pModel.get("contactToAdd"));
+//    }
+//
+//    pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
+//
+//    return "editContactAdh";
+//  }
+  public Adherent editToAdh(EditAdherent editAdh) {
+    final Adherent adh = new Adherent();
 
-        Adherent adh = service.loadAdherent(idAdh);
-        List<Activite> activitees = service.loadActivites();
-        List<AdherentActivite> activiteesAdh = service.loadActivitesAdherent(idAdh);
-        EditAdherentActivitesForm editForm = new EditAdherentActivitesForm();
-        List<EditAdherentActivite> editList = new ArrayList<>();
-
-        editForm.setCommentaire(service.loadAdherentCommentaire(idAdh, PageType.ADHERENT_ACTIVITE));
-
-        // mise en forme des activitèes Adherent en ajoutant les activit�es non
-        // renseign�s
-        if (pModel.get("editForm") == null) {
-            activitees.stream().forEach(a -> {
-                EditAdherentActivite editActiviteAdh = new EditAdherentActivite();
-
-                editActiviteAdh.setActiviteId(a.getId());
-                editActiviteAdh.setActiviteLibelle(a.getLibelle());
-                editActiviteAdh.setAdherentId(adh.getId());
-                Optional<AdherentActivite> adhActivite = activiteesAdh.stream()
-                        .filter(aa -> aa.getActivite().getId().equals(a.getId())).findFirst();
-
-                if (adhActivite.isPresent()) {
-                    editActiviteAdh.setCommentaire(adhActivite.get().getCommentaire());
-                    editActiviteAdh.setPourcentage(adhActivite.get().getPourcentage());
-                    editActiviteAdh.setId(adhActivite.get().getId());
-                }
-                editList.add(editActiviteAdh);
-            });
-            pModel.addAttribute("editForm", editForm);
-        } else {
-            pModel.addAttribute("editForm", pModel.get("editForm"));
-        }
-        editForm.setActivitesAdh(editList);
-
-        pModel.addAttribute("adherent", adh);
-        pModel.addAttribute("activitees", activitees);
-        pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
-
-        return "editActiviteAdh";
-
-    }
-
-    @RequestMapping(value = "/edit/editCRMAdh", method = RequestMethod.GET)
-    public String editCRM(@RequestParam(value = "idSuivi") final int idSuivi, final ModelMap pModel,
-            HttpServletRequest request) {
-
-        addSelectLists(pModel);
-        AdherentSuiviVisite suivi = service.loadAdherentSuiviVisite(idSuivi);
-        Adherent adh = service.loadAdherent(suivi.getAdherentId());
-
-        EditAdherentSuiviVisiteForm editForm = new EditAdherentSuiviVisiteForm();
-        editForm.setSuiviVisiteAdh(suiviToEdit(suivi));
-
-        pModel.addAttribute("adherent", adh);
-        pModel.addAttribute("editForm", editForm);
-        pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
-
-        return "editCRMAdh";
-    }
-
-    @RequestMapping(value = "/edit/editAdherentContact", method = RequestMethod.GET)
-    public String editContact(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel,
-            HttpServletRequest request) {
-
-        addSelectLists(pModel);
-
-//	Passage par une map pour la civilité selection auto de la valeur
-        Map<String, String> civilite = new HashMap<>();
-        civilite.put("Mme", "Mme");
-        civilite.put("Mr", "Mr");
-        pModel.addAttribute("civilite", civilite);
-
-        final Adherent adh = service.loadAdherent(idAdh);
-        final List<ContactFonction> contactFonctions = service.loadContactFonctions();
-        final List<RoleSalarieEOLAS> roleSalarieEOLAS = service.loadRolesEOLAS();
-        pModel.addAttribute("adherent", adh);
-        pModel.addAttribute("contactFonctions", contactFonctions);
-        pModel.addAttribute("roleSalarieEOLAS", roleSalarieEOLAS);
-
-        if (pModel.get("contactToEdit") == null) {
-
-            final EditAdherentContactsForm editAdhContactsForm = new EditAdherentContactsForm();
-
-            editAdhContactsForm.setCommentaire(service.loadAdherentCommentaire(idAdh, PageType.ADHERENT_DETAIL));
-            List<EditAdherentContact> editableAdhContacts = contactToEdit(adh.getContacts());
-            editAdhContactsForm.setAdherentContacts(editableAdhContacts);
-            pModel.addAttribute("contactToEdit", editAdhContactsForm);
-        } else {
-            pModel.addAttribute("contactToEdit", pModel.get("contactToEdit"));
-        }
-
-        if (pModel.get("contactToAdd") == null) {
-
-            final AddAdherentContactForm addContactForm = new AddAdherentContactForm();
-
-            // Prépare la possibilité de créer un contact
-            EditAdherentContact addContact = new EditAdherentContact(); // adhToEdit(adh);
-            addContact.setAdherentId(idAdh);
-            addContactForm.setContact(addContact);
-            pModel.addAttribute("contactToAdd", addContactForm);
-
-        } else {
-            pModel.addAttribute("contactToAdd", pModel.get("contactToAdd"));
-        }
-
-        pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
-
-        return "editContactAdh";
-    }
-
-    public Adherent editToAdh(EditAdherent editAdh) {
-        final Adherent adh = new Adherent();
-
-        adh.setId(editAdh.getId());
-        adh.setCode(editAdh.getCode());
-        adh.setCodeERP(editAdh.getCodeERP());
-        adh.setCodeERPParent(editAdh.getCodeERPParent());
-        adh.setLibelle(editAdh.getLibelle());
-        adh.setDenomination(editAdh.getDenomination());
-        adh.setFormeJuridique(editAdh.getFormeJuridique());
-        adh.setDateEntree(editAdh.getDateEntree());
-        adh.setDateSortie(editAdh.getDateSortie());
-        adh.setAdresse(editAdh.getAdresse());
-        adh.setAdresseComplement(editAdh.getAdresseComplement());
-        adh.setCommune(editAdh.getCommune());
-        adh.setPhoto(editAdh.getPhoto().getBytes());
-        adh.setPole(editAdh.getPole());
-        adh.setRole(editAdh.getRole());
-        adh.setSecteur(editAdh.getSecteur());
-        adh.setIsArtipole(editAdh.getIsArtipole());
-        adh.setIsCharteArtipole(editAdh.getIsCharteArtipole());
-        adh.setIsFlocageArtipole(editAdh.getIsFlocageArtipole());
-        adh.setIsWebArtipole(editAdh.getIsWebArtipole());
-        adh.setFormationDirigeant(editAdh.getFormationDirigeant());
-        adh.setCnxEolasAllow(editAdh.getCnxEolasAllow());
-        adh.setIsFacebookArtipole(editAdh.getIsFacebookArtipole());
-        adh.setApe(editAdh.getApe());
-        adh.setSiren(editAdh.getSiren());
-        adh.setSiret(editAdh.getSiret());
-        adh.setNumRepMetier(editAdh.getNumRepMetier());
-        adh.setRcsRm(editAdh.getRcsRm());
-        adh.setRcsCommune(editAdh.getRcsCommune());
-        adh.setRmCommune(editAdh.getRmCommune());
-        adh.setAgence(editAdh.getAgence());
-        adh.setDateClotureExe(editAdh.getDateClotureExe());
-        adh.setTournee(editAdh.getTournee());
-        adh.setOutilDechargement(editAdh.getIsOutilDechargement());
-        adh.setEtat(editAdh.getEtat());
-        adh.setAdherentType(editAdh.getAdherentType());
-        adh.setCompteType(editAdh.getCompteType());
+    adh.setId(editAdh.getId());
+    adh.setCode(editAdh.getCode());
+    adh.setCodeERP(editAdh.getCodeERP());
+    adh.setCodeERPParent(editAdh.getCodeERPParent());
+    adh.setLibelle(editAdh.getLibelle());
+    adh.setDenomination(editAdh.getDenomination());
+    adh.setFormeJuridique(editAdh.getFormeJuridique());
+    adh.setDateEntree(editAdh.getDateEntree());
+    adh.setDateSortie(editAdh.getDateSortie());
+    adh.setAdresse(editAdh.getAdresse());
+    adh.setAdresseComplement(editAdh.getAdresseComplement());
+    adh.setCommune(editAdh.getCommune());
+    adh.setPhoto(editAdh.getPhoto().getBytes());
+    adh.setPole(editAdh.getPole());
+    adh.setRole(editAdh.getRole());
+    adh.setSecteur(editAdh.getSecteur());
+    adh.setIsArtipole(editAdh.getIsArtipole());
+    adh.setIsCharteArtipole(editAdh.getIsCharteArtipole());
+    adh.setIsFlocageArtipole(editAdh.getIsFlocageArtipole());
+    adh.setIsWebArtipole(editAdh.getIsWebArtipole());
+    adh.setFormationDirigeant(editAdh.getFormationDirigeant());
+    adh.setCnxEolasAllow(editAdh.getCnxEolasAllow());
+    adh.setIsFacebookArtipole(editAdh.getIsFacebookArtipole());
+    adh.setApe(editAdh.getApe());
+    adh.setSiren(editAdh.getSiren());
+    adh.setSiret(editAdh.getSiret());
+    adh.setNumRepMetier(editAdh.getNumRepMetier());
+    adh.setRcsRm(editAdh.getRcsRm());
+    adh.setRcsCommune(editAdh.getRcsCommune());
+    adh.setRmCommune(editAdh.getRmCommune());
+    adh.setAgence(editAdh.getAgence());
+    adh.setDateClotureExe(editAdh.getDateClotureExe());
+    adh.setTournee(editAdh.getTournee());
+    adh.setOutilDechargement(editAdh.getIsOutilDechargement());
+    adh.setEtat(editAdh.getEtat());
+    adh.setAdherentType(editAdh.getAdherentType());
+    adh.setCompteType(editAdh.getCompteType());
 //        adh.setContactComptable(editAdh.getContactComptable());
 
-        return adh;
-    }
+    return adh;
+  }
 
-    private AdherentContactRole editToContact(EditAdherentContact adhContactEditable) {
-        AdherentContactRole contact = new AdherentContactRole();
+  private AdherentContactRole editToContact(EditAdherentContact adhContactEditable) {
+    AdherentContactRole contact = new AdherentContactRole();
 
-        String fileName = adhContactEditable.getPhotoImg() == null ? "" : adhContactEditable.getPhotoImg();
+    String fileName = adhContactEditable.getPhotoImg() == null ? "" : adhContactEditable.getPhotoImg();
 
-        contact.setAdherent(service.loadAdherent(adhContactEditable.getAdherentId()));
-        contact.setCivilite(adhContactEditable.getCivilite());
-        contact.setFonction(adhContactEditable.getFonction());
-        contact.setFixe(adhContactEditable.getFixe());
-        contact.setId(adhContactEditable.getId());
-        contact.setIsMailingAdministratif(adhContactEditable.getIsMailingAdministratif());
-        contact.setIsMailingCommerce(adhContactEditable.getIsMailingCommercial());
-        contact.setIsMailingCompta(adhContactEditable.getIsMailingComptabilite());
-        contact.setIsMailingDirigeant(adhContactEditable.getIsMailingDirigeant());
-        contact.setMail(adhContactEditable.getMail());
-        contact.setMobile(adhContactEditable.getMobile());
-        contact.setNom(adhContactEditable.getNom());
+    contact.setAdherent(service.loadAdherent(adhContactEditable.getAdherentId()));
+    contact.setCivilite(adhContactEditable.getCivilite());
+    contact.setFonction(adhContactEditable.getFonction());
+    contact.setFixe(adhContactEditable.getFixe());
+    contact.setId(adhContactEditable.getId());
+    contact.setIsMailingAdministratif(adhContactEditable.getIsMailingAdministratif());
+    contact.setIsMailingCommerce(adhContactEditable.getIsMailingCommercial());
+    contact.setIsMailingCompta(adhContactEditable.getIsMailingComptabilite());
+    contact.setIsMailingDirigeant(adhContactEditable.getIsMailingDirigeant());
+    contact.setMail(adhContactEditable.getMail());
+    contact.setMobile(adhContactEditable.getMobile());
+    contact.setNom(adhContactEditable.getNom());
 //        contact.setRoleSalarieEOLASId(adhContactEditable.getRoleSalarieEOLASId());
-        contact.setDateNaissance(adhContactEditable.getDateNaissance());
-        try {
-            if (adhContactEditable.getFile() != null) {
-                if (adhContactEditable.getFile().getOriginalFilename() != "") {
-                    String extension = adhContactEditable.getFile().getOriginalFilename()
-                            .substring(adhContactEditable.getFile().getOriginalFilename().length() - 3);
-                    fileName = "data:image/" + extension + ";base64,"
-                            + Base64.encodeBase64String(adhContactEditable.getFile().getBytes());
-                }
-            }
-        } catch (IOException e) {
+    contact.setDateNaissance(adhContactEditable.getDateNaissance());
+    try {
+      if (adhContactEditable.getFile() != null) {
+        if (adhContactEditable.getFile().getOriginalFilename() != "") {
+          String extension = adhContactEditable.getFile().getOriginalFilename()
+                  .substring(adhContactEditable.getFile().getOriginalFilename().length() - 3);
+          fileName = "data:image/" + extension + ";base64,"
+                  + Base64.encodeBase64String(adhContactEditable.getFile().getBytes());
         }
-        contact.setPhoto(fileName.getBytes());
-        contact.setPrenom(adhContactEditable.getPrenom());
-        contact.setIsAccessEOLAS(adhContactEditable.getIsAccessEOLAS());
-        contact.setLoginEOLAS(adhContactEditable.getLoginEOLAS());
-        contact.setPassEOLAS(adhContactEditable.getPassEOLAS());
-        contact.setRoleSalarieEOLASId(adhContactEditable.getRoleSalarieEOLASId());
-        contact.setDateNaissance(adhContactEditable.getDateNaissance());
+      }
+    } catch (IOException e) {
+    }
+    contact.setPhoto(fileName.getBytes());
+    contact.setPrenom(adhContactEditable.getPrenom());
+    contact.setIsAccessEOLAS(adhContactEditable.getIsAccessEOLAS());
+    contact.setLoginEOLAS(adhContactEditable.getLoginEOLAS());
+    contact.setPassEOLAS(adhContactEditable.getPassEOLAS());
+    contact.setRoleSalarieEOLASId(adhContactEditable.getRoleSalarieEOLASId());
+    contact.setDateNaissance(adhContactEditable.getDateNaissance());
 
-        return contact;
+    return contact;
+  }
+
+  private AdherentContactComptable editToContactComptable(EditContactComptableAdherent contactEditable) {
+    AdherentContactComptable contact = new AdherentContactComptable();
+
+    contact.setId(contactEditable.getId());
+    contact.setAdherentId(contactEditable.getAdherentId());
+    contact.setCabinet(contactEditable.getCabinet());
+    contact.setCivilite(contactEditable.getCivilite());
+    contact.setFixe(contactEditable.getFixe());
+    contact.setMail(contactEditable.getMail());
+    contact.setMobile(contactEditable.getMobile());
+    contact.setNom(contactEditable.getNom());
+    contact.setPrenom(contactEditable.getPrenom());
+
+    return contact;
+  }
+
+  private List<AdherentContactRole> editToContactList(List<EditAdherentContact> adhContactEditable) {
+    List<AdherentContactRole> contacts = new ArrayList<>();
+
+    adhContactEditable.stream().forEach(e -> {
+      contacts.add(editToContact(e));
+    });
+
+    return contacts;
+  }
+
+  private AdherentSuiviVisite editToSuivi(EditAdherentSuiviVisite adhSuiviEditable) {
+    AdherentSuiviVisite suivi = new AdherentSuiviVisite();
+
+    suivi.setId(adhSuiviEditable.getId());
+    suivi.setAdherentId(adhSuiviEditable.getAdherentId());
+    suivi.setDateCommentaire(adhSuiviEditable.getDateCommentaire());
+    suivi.setCommentaireString(adhSuiviEditable.getCommentaire());
+
+    return suivi;
+  }
+
+  private PageType extractPageType(String servletPath) {
+
+    switch (servletPath) {
+      case "editActiviteAdh":
+        return PageType.ADHERENT_ACTIVITE;
+      case "editArtipoleAdh":
+        return PageType.ADHERENT_ARTIPOLE;
+      case "editAdministratifAdh":
+        return PageType.ADHERENT_ADMINISTRATIF;
+      case "editExploitationAdh":
+        return PageType.ADHERENT_EXPLOITATION;
+      case "editInformatiqueAdh":
+        return PageType.ADHERENT_INFORMATIQUE;
+      case "editDetailAdh":
+        return PageType.ADHERENT_DETAIL;
+      case "editCRM":
+        return PageType.ADHERENT_CRM;
+      default:
+        return PageType.LIST_ADHERENT;
+    }
+  }
+
+  @RequestMapping(value = "/edit/editActiviteAdh", method = RequestMethod.POST)
+  public String modifieActiviteAdh(
+          @Valid @ModelAttribute(value = "editForm") final EditAdherentActivitesForm editForm,
+          final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
+
+    int adhId = editForm.getActivitesAdh().get(0).getAdherentId();
+
+    // validation de la somme des %tage
+    if (editForm.getActivitesAdh().stream().mapToInt(a -> a.getPourcentage() == null ? 0 : a.getPourcentage()).sum() != 100) {
+      pBindingResult.addError(new FieldError("messageErreur", "messageErreur", "La somme des pourcentages doit être de 100% !"));
     }
 
-    private AdherentContactComptable editToContactComptable(EditContactComptableAdherent contactEditable) {
-        AdherentContactComptable contact = new AdherentContactComptable();
+    if (!pBindingResult.hasErrors()) {
+      service.saveAdherentCommentaire(adhId, PageType.ADHERENT_ACTIVITE, editForm.getCommentaire());
 
-        contact.setId(contactEditable.getId());
-        contact.setAdherentId(contactEditable.getAdherentId());
-        contact.setCabinet(contactEditable.getCabinet());
-        contact.setCivilite(contactEditable.getCivilite());
-        contact.setFixe(contactEditable.getFixe());
-        contact.setMail(contactEditable.getMail());
-        contact.setMobile(contactEditable.getMobile());
-        contact.setNom(contactEditable.getNom());
-        contact.setPrenom(contactEditable.getPrenom());
+      List<AdherentActivite> activitesAdh = new ArrayList<>();
+      editForm.getActivitesAdh().stream().forEach(a -> {
+        if (a.getPourcentage() != null) {
+          AdherentActivite aa = new AdherentActivite();
+          aa.setActivite(service.loadActivite(a.getActiviteId()));
+          aa.setAdherent(service.loadAdherent(a.getAdherentId()));
+          aa.setCommentaire(a.getCommentaire());
+          aa.setPourcentage(a.getPourcentage());
 
-        return contact;
+          activitesAdh.add(aa);
+        }
+      });
+
+      service.saveActivitesAdherent(adhId, activitesAdh);
+      return redirectOkPage(PageType.ADHERENT_ACTIVITE, adhId);
     }
 
-    private List<AdherentContactRole> editToContactList(List<EditAdherentContact> adhContactEditable) {
-        List<AdherentContactRole> contacts = new ArrayList<>();
+    return editAdherentActivite(adhId, pModel, request);
+  }
 
-        adhContactEditable.stream().forEach(e -> {
-            contacts.add(editToContact(e));
-        });
+  @RequestMapping(value = "/edit/editContactComptableAdh", method = RequestMethod.POST)
+  public String modifieContactCptAdh(@Valid @ModelAttribute(value = "adhContactComptable") final EditContactComptableAdherentForm editForm,
+          final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
 
-        return contacts;
+    EditContactComptableAdherent contactEditable = editForm.getContactComptableAdherent();
+    AdherentContactComptable contact = editToContactComptable(contactEditable);
+
+    if (!pBindingResult.hasErrors()) {
+      service.saveContactComptableAdherent(contact);
+      return redirectOkPage(PageType.ADHERENT_ADMINISTRATIF, contact.getAdherentId());
     }
 
-    private AdherentSuiviVisite editToSuivi(EditAdherentSuiviVisite adhSuiviEditable) {
-        AdherentSuiviVisite suivi = new AdherentSuiviVisite();
+    return editAdherent(editForm.getContactComptableAdherent().getAdherentId(), pModel, request);
+  }
 
-        suivi.setId(adhSuiviEditable.getId());
-        suivi.setAdherentId(adhSuiviEditable.getAdherentId());
-        suivi.setDateCommentaire(adhSuiviEditable.getDateCommentaire());
-        suivi.setCommentaireString(adhSuiviEditable.getCommentaire());
+  @RequestMapping(value = {"/edit/editAdministratifAdh", "/edit/editExploitationAdh",
+    "/edit/editArtipoleAdh", "/edit/editIdentiteAdh"}, method = RequestMethod.POST)
+  public String modifieAdh(@Valid @ModelAttribute(value = "adhToEdit") final EditAdherentForm editForm,
+          final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
 
-        return suivi;
+    EditAdherent adhEditable = editForm.getEditAdherent();
+    Adherent adh = editToAdh(adhEditable);
+
+    if (adh.getCommune().getId() == null) {
+      pBindingResult.addError(new FieldError("commune", "adherent.commune",
+              messages.getMessage("modification.notempty", null, Locale.FRANCE)));
+    }
+    if (adh.getEtat().getId() == 2 && adh.getDateSortie() == null) {
+      pBindingResult.addError(new FieldError("dateSortie", "adherent.dateSortie",
+              messages.getMessage("modification.notempty", null, Locale.FRANCE)));
     }
 
-    private PageType extractPageType(String servletPath) {
-
-        switch (servletPath) {
-            case "editActiviteAdh":
-                return PageType.ADHERENT_ACTIVITE;
-            case "editArtipoleAdh":
-                return PageType.ADHERENT_ARTIPOLE;
-            case "editAdministratifAdh":
-                return PageType.ADHERENT_ADMINISTRATIF;
-            case "editExploitationAdh":
-                return PageType.ADHERENT_EXPLOITATION;
-            case "editInformatiqueAdh":
-                return PageType.ADHERENT_INFORMATIQUE;
-            case "editDetailAdh":
-                return PageType.ADHERENT_DETAIL;
-            case "editCRM":
-                return PageType.ADHERENT_CRM;
-            default:
-                return PageType.LIST_ADHERENT;
-        }
+    if (!pBindingResult.hasErrors()) {
+      service.saveAdherentCommentaire(adh.getId(), extractPageType(request.getServletPath().substring(6)),
+              editForm.getCommentaire());
+      service.saveAdherent(adh);
+      return redirectOkPage(extractPageType(request.getServletPath().substring(6)), adh.getId());
     }
 
-    @RequestMapping(value = "/edit/editActiviteAdh", method = RequestMethod.POST)
-    public String modifieActiviteAdh(
-            @Valid @ModelAttribute(value = "editForm") final EditAdherentActivitesForm editForm,
-            final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
+    return editAdherent(editForm.getEditAdherent().getId(), pModel, request);
+  }
 
-        int adhId = editForm.getActivitesAdh().get(0).getAdherentId();
+//  @RequestMapping(value = "/edit/editAdherentContact", method = RequestMethod.POST)
+//  public String modifieContact(
+//          @Valid @ModelAttribute(value = "contactToEdit") final EditAdherentContactsForm editForm,
+//          final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
+//
+//    List<EditAdherentContact> adhContactEditable = editForm.getAdherentContacts();
+//    System.out.println("id ..: " + adhContactEditable.get(0).getAdherentId());
+//    int adhId = adhContactEditable.get(0).getAdherentId();
+//
+//    if (!pBindingResult.hasErrors()) {
+//      List<AdherentContactRole> contacts = editToContactList(adhContactEditable);
+//      service.saveAdherentContacts(contacts);
+//      service.saveAdherentCommentaire(adhId, PageType.ADHERENT_DETAIL, editForm.getCommentaire());
+//      return "redirect:/adherentProfil?idAdh=" + adhId;
+//    }
+//  return editContact(adhId, pModel, request);
+//}
+  @RequestMapping(value = "/edit/editInformatiqueAdh", method = RequestMethod.POST)
+  public String modifieInformatiqueAdh(@Valid
+          @ModelAttribute(value = "editForm")
+          final EditAdherentActivitesForm editForm,
+          final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
 
-        // validation de la somme des %tage
-        if (editForm.getActivitesAdh().stream().mapToInt(a -> a.getPourcentage() == null ? 0 : a.getPourcentage()).sum() != 100) {
-            pBindingResult.addError(new FieldError("messageErreur", "messageErreur", "La somme des pourcentages doit être de 100% !"));
-        }
+    int adhId = editForm.getActivitesAdh().get(0).getAdherentId();
 
-        if (!pBindingResult.hasErrors()) {
-            service.saveAdherentCommentaire(adhId, PageType.ADHERENT_ACTIVITE, editForm.getCommentaire());
-
-            List<AdherentActivite> activitesAdh = new ArrayList<>();
-            editForm.getActivitesAdh().stream().forEach(a -> {
-                if (a.getPourcentage() != null) {
-                    AdherentActivite aa = new AdherentActivite();
-                    aa.setActivite(service.loadActivite(a.getActiviteId()));
-                    aa.setAdherent(service.loadAdherent(a.getAdherentId()));
-                    aa.setCommentaire(a.getCommentaire());
-                    aa.setPourcentage(a.getPourcentage());
-
-                    activitesAdh.add(aa);
-                }
-            });
-
-            service.saveActivitesAdherent(adhId, activitesAdh);
-            return redirectOkPage(PageType.ADHERENT_ACTIVITE, adhId);
-        }
-
-        return editAdherentActivite(adhId, pModel, request);
-    }
-
-    @RequestMapping(value = "/edit/editContactComptableAdh", method = RequestMethod.POST)
-    public String modifieContactCptAdh(@Valid @ModelAttribute(value = "adhContactComptable") final EditContactComptableAdherentForm editForm,
-            final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
-
-        EditContactComptableAdherent contactEditable = editForm.getContactComptableAdherent();
-        AdherentContactComptable contact = editToContactComptable(contactEditable);
-
-        if (!pBindingResult.hasErrors()) {
-            service.saveContactComptableAdherent(contact);
-            return redirectOkPage(PageType.ADHERENT_ADMINISTRATIF, contact.getAdherentId());
-        }
-
-        return editAdherent(editForm.getContactComptableAdherent().getAdherentId(), pModel, request);
-    }
-
-    @RequestMapping(value = {"/edit/editAdministratifAdh", "/edit/editExploitationAdh",
-        "/edit/editArtipoleAdh", "/edit/editIdentiteAdh"}, method = RequestMethod.POST)
-    public String modifieAdh(@Valid @ModelAttribute(value = "adhToEdit") final EditAdherentForm editForm,
-            final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
-
-        EditAdherent adhEditable = editForm.getAdherent();
-        Adherent adh = editToAdh(adhEditable);
-
-        if (adh.getCommune().getId() == null) {
-            pBindingResult.addError(new FieldError("commune", "adherent.commune",
-                    messages.getMessage("modification.notempty", null, Locale.FRANCE)));
-        }
-        if (adh.getEtat().getId() == 2 && adh.getDateSortie() == null) {
-            pBindingResult.addError(new FieldError("dateSortie", "adherent.dateSortie",
-                    messages.getMessage("modification.notempty", null, Locale.FRANCE)));
-        }
-
-        if (!pBindingResult.hasErrors()) {
-            service.saveAdherentCommentaire(adh.getId(), extractPageType(request.getServletPath().substring(6)),
-                    editForm.getCommentaire());
-            service.saveAdherent(adh);
-            return redirectOkPage(extractPageType(request.getServletPath().substring(6)), adh.getId());
-        }
-
-        return editAdherent(editForm.getAdherent().getId(), pModel, request);
-    }
-
-    @RequestMapping(value = "/edit/editAdherentContact", method = RequestMethod.POST)
-    public String modifieContact(
-            @Valid @ModelAttribute(value = "contactToEdit") final EditAdherentContactsForm editForm,
-            final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
-
-        List<EditAdherentContact> adhContactEditable = editForm.getAdherentContacts();
-        System.out.println("id ..: " + adhContactEditable.get(0).getAdherentId());
-        int adhId = adhContactEditable.get(0).getAdherentId();
-
-        if (!pBindingResult.hasErrors()) {
-            List<AdherentContactRole> contacts = editToContactList(adhContactEditable);
-            service.saveAdherentContacts(contacts);
-            service.saveAdherentCommentaire(adhId, PageType.ADHERENT_DETAIL, editForm.getCommentaire());
-            return "redirect:/adherentDetail?idAdh=" + adhId;
-        }
-
-        return editContact(adhId, pModel, request);
-    }
-
-    @RequestMapping(value = "/edit/editInformatiqueAdh", method = RequestMethod.POST)
-    public String modifieInformatiqueAdh(@Valid @ModelAttribute(value = "editForm") final EditAdherentActivitesForm editForm,
-            final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
-
-        int adhId = editForm.getActivitesAdh().get(0).getAdherentId();
-
-        if (!pBindingResult.hasErrors()) {
-            service.saveAdherentCommentaire(adhId, PageType.ADHERENT_INFORMATIQUE, editForm.getCommentaire());
+    if (!pBindingResult.hasErrors()) {
+      service.saveAdherentCommentaire(adhId, PageType.ADHERENT_INFORMATIQUE, editForm.getCommentaire());
 
 //	    service.saveInformatiqueAdherent(adhId, );
-            return redirectOkPage(PageType.ADHERENT_INFORMATIQUE, adhId);
-        }
-
-        return editContact(adhId, pModel, request);
+      return redirectOkPage(PageType.ADHERENT_INFORMATIQUE, adhId);
     }
 
-    @RequestMapping(value = "/edit/editCRMAdh", method = RequestMethod.POST)
-    public String modifieCRM(@Valid @ModelAttribute(value = "editForm") final EditAdherentSuiviVisiteForm editForm,
-            final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
+    return cttControler.editContact(adhId, pModel, request);
+  }
 
-        int adhId = editForm.getSuiviVisiteAdh().getAdherentId();
+  @RequestMapping(value = "/edit/editCRMAdh", method = RequestMethod.POST)
+  public String modifieCRM(@Valid
+          @ModelAttribute(value = "editForm")
+          final EditAdherentSuiviVisiteForm editForm,
+          final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
 
-        if (!pBindingResult.hasErrors()) {
-            service.saveAdherentSuiviVisite(editToSuivi(editForm.getSuiviVisiteAdh()));
-            return redirectOkPage(PageType.ADHERENT_CRM, adhId);
-        }
+    int adhId = editForm.getSuiviVisiteAdh().getAdherentId();
 
-        return editCRM(editForm.getSuiviVisiteAdh().getId(), pModel, request);
+    if (!pBindingResult.hasErrors()) {
+      service.saveAdherentSuiviVisite(editToSuivi(editForm.getSuiviVisiteAdh()));
+      return redirectOkPage(PageType.ADHERENT_CRM, adhId);
     }
 
-    private String redirectOkPage(PageType pageType, Integer adhId) {
-        String page;
+    return editCRM(editForm.getSuiviVisiteAdh().getId(), pModel, request);
+  }
 
-        switch (pageType) {
-            case ADHERENT_ACTIVITE:
-                page = "adherentActivite";
-                break;
-            case ADHERENT_ADMINISTRATIF:
-                page = "adherentAdministratif";
-                break;
-            case ADHERENT_ARTIPOLE:
-                page = "adherentArtipole";
-                break;
-            case ADHERENT_DETAIL:
-                page = "adherentDetail";
-                break;
-            case ADHERENT_EXPLOITATION:
-                page = "adherentExploitation";
-                break;
-            case ADHERENT_INFORMATIQUE:
-                page = "adherentInformatique";
-                break;
-            case ADHERENT_CRM:
-                page = "adherentCRM";
-                break;
-            default:
-                page = "adherentDetail";
-                break;
-        }
+  private String redirectOkPage(PageType pageType, Integer adhId) {
+    String page;
 
-        return "redirect:/" + page + "?idAdh=" + adhId;
+    switch (pageType) {
+      case ADHERENT_ACTIVITE:
+        page = "adherentActivite";
+        break;
+      case ADHERENT_ADMINISTRATIF:
+        page = "adherentAdministratif";
+        break;
+      case ADHERENT_ARTIPOLE:
+        page = "adherentArtipole";
+        break;
+      case ADHERENT_DETAIL:
+        page = "adherentDetail";
+        break;
+      case ADHERENT_EXPLOITATION:
+        page = "adherentExploitation";
+        break;
+      case ADHERENT_INFORMATIQUE:
+        page = "adherentInformatique";
+        break;
+      case ADHERENT_CRM:
+        page = "adherentCRM";
+        break;
+      default:
+        page = "adherentDetail";
+        break;
     }
 
-    @RequestMapping(value = "/edit/uploadFile", method = RequestMethod.POST)
-    public String submitFile(@RequestParam(value = "adhId", defaultValue = "0") int adhId,
-            @RequestParam(value = "contactId", defaultValue = "0") int contactId,
-            @RequestParam("file") MultipartFile file, final ModelMap pModel, HttpServletRequest request)
-            throws Exception {
+    return "redirect:/" + page + "?idAdh=" + adhId;
+  }
 
-        String extension = file.getOriginalFilename().substring(file.getOriginalFilename().length() - 3);
-        String fileName = "data:image/" + extension + ";base64," + Base64.encodeBase64String(file.getBytes());
+  @RequestMapping(value = "/edit/uploadFile", method = RequestMethod.POST)
+  public String submitFile(@RequestParam(value = "adhId", defaultValue = "0") int adhId,
+          @RequestParam(value = "contactId", defaultValue = "0") int contactId,
+          @RequestParam("file") MultipartFile file, final ModelMap pModel, HttpServletRequest request)
+          throws Exception {
 
-        if (adhId != 0) {
-            service.setAdherentImage(adhId, fileName.getBytes());
-        } else {
+    String extension = file.getOriginalFilename().substring(file.getOriginalFilename().length() - 3);
+    String fileName = "data:image/" + extension + ";base64," + Base64.encodeBase64String(file.getBytes());
+
+    if (adhId != 0) {
+      service.setAdherentImage(adhId, fileName.getBytes());
+    } else {
 //	    service.setContactImage(contactId, fileName.getBytes());
-        }
-
-        return "redirect:/adherentDetail?idAdh=" + adhId;
     }
 
-    private EditAdherentSuiviVisite suiviToEdit(AdherentSuiviVisite adhSuivi) {
-        EditAdherentSuiviVisite suiviEditable = new EditAdherentSuiviVisite();
+    return "redirect:/adherentDetail?idAdh=" + adhId;
+  }
 
-        suiviEditable.setId(adhSuivi.getId());
-        suiviEditable.setAdherentId(adhSuivi.getAdherentId());
-        suiviEditable.setDateCommentaire(adhSuivi.getDateCommentaire());
-        suiviEditable.setCommentaire(adhSuivi.getCommentaireString());
+  private EditAdherentSuiviVisite suiviToEdit(AdherentSuiviVisite adhSuivi) {
+    EditAdherentSuiviVisite suiviEditable = new EditAdherentSuiviVisite();
 
-        return suiviEditable;
-    }
+    suiviEditable.setId(adhSuivi.getId());
+    suiviEditable.setAdherentId(adhSuivi.getAdherentId());
+    suiviEditable.setDateCommentaire(adhSuivi.getDateCommentaire());
+    suiviEditable.setCommentaire(adhSuivi.getCommentaireString());
 
-    @RequestMapping(value = "/edit/supprimeContact", method = RequestMethod.GET)
-    public String supprimeAdherentContact(@RequestParam(value = "adhId") final Integer adhId,
-            @RequestParam(value = "ctId") final Integer contactId, final ModelMap pModel, HttpServletRequest request) {
+    return suiviEditable;
+  }
 
-        if (contactId != null) {
-            service.supprimeAdherentContact(contactId);
-        }
-
-        return editContact(adhId, pModel, request);
-    }
+//  @RequestMapping(value = "/edit/supprimeContact", method = RequestMethod.GET)
+//  public String supprimeAdherentContact(@RequestParam(value = "adhId") final Integer adhId,
+//          @RequestParam(value = "ctId") final Integer contactId, final ModelMap pModel, HttpServletRequest request) {
+//
+//    if (contactId != null) {
+//      service.supprimeAdherentContact(contactId);
+//    }
+//
+//    return editContact(adhId, pModel, request);
+//  }
 }

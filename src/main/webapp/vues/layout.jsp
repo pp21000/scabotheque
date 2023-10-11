@@ -6,7 +6,7 @@
 
 
 
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" style="height: auto;">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="icon shortcut" href="<c:url value="/resources/images/favicon.png"/>"/>
@@ -20,7 +20,15 @@
 		<!-- include summernote css/js -->
 <!--		<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>        -->
-    	
+
+        <script src="https://kit.fontawesome.com/0d809d1677.js" crossorigin="anonymous"></script>
+        <link type="text/css" rel="stylesheet" href="<c:url value="/resources/plugins/select2/css/select2.min.css" />"/>
+        <link type="text/css" rel="stylesheet"
+              href="<c:url value="/resources/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css" />"/>
+        <link type="text/css" rel="stylesheet" href="<c:url value="/resources/style/scabotheque.css" />"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.css" rel="stylesheet" />
+        <script src="https://unpkg.com/flowbite@1.5.3/dist/datepicker.js"></script>
+    	<script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body>
         <!--<div class="header">-->

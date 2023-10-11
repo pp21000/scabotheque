@@ -11,19 +11,12 @@
 <aside class="w-60 fixed" aria-label="Sidebar">
     <div class="overflow-y-auto py-4 px-3 bg-gray-200 min-h-screen dark:bg-gray-800">
         <ul class="space-y-2">
-            <li class="mt-20"></li>
 
-            <li class="flex justify-center">
-                <a href="<c:url value="/dashboard" />"
-                   class="flex items-center text-xl font-normal text-gray-700 py-1 px-1 rounded-lg hover:bg-gray-100 dark:bg-gray-800">
-                    <span class="text-gray-200 font-medium">Accueil</span>
-                </a>
-            </li>
-
-            <li class="h-2 w-full border-b border-gray-300"></li>
+            <li class="flex justify-center text-xl px-1 py-5 mt-12 text-gray-600 font-medium w-full border-b border-gray-400">Accueil</li>
+           
             <li>
                 <a href="<c:url value="/dashboard" />"
-                   class="<c:if test = "${pageType == 'DASHBOARD'}"> bg-[#28a745] font-bold </c:if> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
+                   class="<c:choose><c:when test = "${pageType == 'DASHBOARD'}"> bg-[#28a745] </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-gray-50">
                     <svg aria-hidden="true"
                          class="w-6 h-6 text-gray-500 transition duration-75  group-hover:text-gray-900"
                          fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -31,12 +24,12 @@
                         <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
                     </svg>
                     <span class="ml-3">Dashboard</span>
-
                 </a>
             </li>
+                    
             <li>
                 <a href="<c:url value="/listeAdherents" />"
-                   class="<c:if test = "${pageType == 'LIST_ADHERENT' || pageType == 'CREATE_ADHERENT'}"> bg-[#28a745] font-bold </c:if> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg hover:bg-gray-100 dark:text-gray-50  dark:hover:bg-gray-600">
+                   class="<c:choose><c:when test = "${pageType == 'LIST_ADHERENT' || pageType == 'CREATE_ADHERENT'}"> bg-[#28a745] </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-gray-50">
                     <svg aria-hidden="true"
                          class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900  dark:hover:bg-gray-600"
                          fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -46,17 +39,17 @@
                 </a>
             </li>
             <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_EXPLOITATION')">
-                <li>
-                    <a href="<c:url value="/ordreTournee" />"
-                       class="<c:if test = "${navType == 'LOGISTIQUE'}"> bg-[#28a745] font-bold </c:if> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg hover:bg-gray-100 dark:text-gray-50 dark:hover:bg-gray-600">
-                        <svg aria-hidden="true"
-                             class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
-                             fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
-                        </svg>
-                        <span class="flex-1 ml-3 whitespace-nowrap">Base Logistique</span>
-                    </a>
-                </li>
+            <li>
+                <a href="<c:url value="/ordreTournee" />"
+                   class="<c:choose><c:when test = "${navType == 'LOGISTIQUE'}"> bg-[#28a745] </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-gray-50">
+                    <svg aria-hidden="true"
+                         class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                         fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                    </svg>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Base Logistique</span>
+                </a>
+            </li>
             </sec:authorize>
 
 
@@ -111,7 +104,7 @@
                 <c:url value="/analyse" var="urlAnalyse"/>
                 <li>
                     <a href="analyse"
-                       class="<c:if test = "${pageType == 'ANALYSE'}"> text-green-500 font-bold </c:if> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg hover:bg-gray-100 dark:text-gray-50 dark:hover:bg-gray-600">
+                       class="<c:choose><c:when test = "${pageType == 'ANALYSE'}"> bg-[#28a745] </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-gray-50">
                         <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                              xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -127,7 +120,7 @@
                 <c:url value="/ordreTournee" var="urlOrdreTournee"/>
                 <li>
                     <a href="ordreTournee"
-                       class="<c:if test = "${pageType == 'LOGISTIQUE_TOURNEE'}"> text-green-500 font-bold </c:if> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg hover:bg-gray-100 dark:text-gray-50 dark:hover:bg-gray-600">
+                       class="<c:choose><c:when test = "${pageType == 'LOGISTIQUE_TOURNEE'}"> bg-[#28a745] </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-gray-50">
                         <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                              xmlns="http://www.w3.org/2000/svg">
                             <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path>

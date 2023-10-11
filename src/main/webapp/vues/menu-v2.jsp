@@ -26,7 +26,7 @@
                     <div  class="menu-dropdown-container scroll-stop-drop">
                         <a class="sub-menu-item" href="${urlAdd}">
                             <svg class="menu-item-icon" ><use xlink:href="<c:url value="/resources/images/icones.svg#card-add"/>"></use></svg>
-                            <spring:message code="menu.addadherent"/>
+                            <spring:message code="menu.addAdherent"/>
                         </a>
                     </div>
                 </div> 

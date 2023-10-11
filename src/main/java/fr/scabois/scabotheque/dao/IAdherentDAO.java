@@ -7,9 +7,12 @@ import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
 import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
 import fr.scabois.scabotheque.bean.adherent.AdherentInformatique;
 import fr.scabois.scabotheque.bean.adherent.AdherentLogistique;
+import fr.scabois.scabotheque.bean.adherent.AdherentMetier;
 import fr.scabois.scabotheque.bean.adherent.AdherentSuiviVisite;
 import fr.scabois.scabotheque.bean.adherent.AdherentType;
 import fr.scabois.scabotheque.bean.adherent.CompteType;
+import fr.scabois.scabotheque.bean.adherent.ContactClubFemme;
+import fr.scabois.scabotheque.bean.adherent.ContactRetraite;
 import fr.scabois.scabotheque.bean.adherent.FormeJuridique;
 import fr.scabois.scabotheque.bean.adherent.Pole;
 import fr.scabois.scabotheque.bean.adherent.Role;
@@ -51,7 +54,11 @@ public interface IAdherentDAO {
 
   public void createContactAdherent(AdherentContactRole contact);
 
+  public void createContactClubFemme(ContactClubFemme contact);
+
   public void createContactFonction(String libelle);
+
+  public void createContactRetraite(ContactRetraite contact);
 
   public void createPole(String libelle);
 
@@ -78,6 +85,12 @@ public interface IAdherentDAO {
   public List<AdherentContactRole> loadAdherentContact(int adhId);
 
   public List<AdherentContactRole> loadAdherentContact(CriteriaAdherent criteria);
+
+  public List<AdherentMetier> loadAdherentMetiers(final int idAdh);
+
+  public List<ContactRetraite> loadContactsRetraite();
+
+  public List<ContactClubFemme> loadContactsClubFemme();
 
   public AdherentContactComptable loadAdherentContactComptable(int idAdh);
 
@@ -108,6 +121,10 @@ public interface IAdherentDAO {
 
   public List<CompteType> loadCompteTypes();
 
+  public AdherentContactRole loadContact(Integer contactId);
+
+  public ContactClubFemme loadContactClubFemme(int idAdh);
+
   public List<ContactFonction> loadContactFonction();
 
   public List<AdherentEtat> loadEtats();
@@ -136,6 +153,10 @@ public interface IAdherentDAO {
 
   public void saveAdherentContacts(List<AdherentContactRole> contacts);
 
+  public void saveAdherentLogistique(AdherentLogistique logistiqueAdh);
+
+  public void saveAdherentMetiers(int adhId, List list);
+
   public void saveAdherentSuiviVisite(AdherentSuiviVisite suivi);
 
   public void saveAgences(List<Agence> agences);
@@ -155,6 +176,8 @@ public interface IAdherentDAO {
   public void saveUtilisateurRoles(int usrId, List<UserRole> newUserRoles);
 
   public void setAdherentImage(int adhId, byte[] photo);
+
+  public void setAdherentLogo(int adhId, byte[] logo);
 
   public void setContactImage(int contactId, byte[] bytes);
 

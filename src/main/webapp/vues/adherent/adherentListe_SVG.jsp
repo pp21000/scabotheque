@@ -75,8 +75,8 @@
       <!-- /.col -->
       <div class="col-md-4">
         <div class="form-group">
-          <label>Activitées</label>
-          <form:select class="form-control select2" name="activiteIds" data-placeholder="Tous les activitées" path="activiteIds" multiple="multiple" >
+          <label>Activités</label>
+          <form:select class="form-control select2" name="activiteIds" data-placeholder="Tous les activités" path="activiteIds" multiple="multiple" >
             <form:options items="${activitesList}" itemValue="id" itemLabel="libelle" />
           </form:select>
         </div>
@@ -166,7 +166,7 @@
 <!-- Default box -->
 <div class="card card-secondary">
   <div class="card-header">
-    <h3 class="card-title">Résultat : <spring:message code="count.adherent" arguments="${nbAdherent}"/></h3>
+    <h3 class="card-title py-2">Résultat : <spring:message code="count.adherent" arguments="${nbAdherent}"/></h3>
     <div class="card-tools">
       <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
       <button type="button" class="btn btn-tool" data-card-widget=""></i></button>
