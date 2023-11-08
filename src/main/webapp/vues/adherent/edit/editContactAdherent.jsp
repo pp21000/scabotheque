@@ -5,20 +5,20 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-  <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"
+  <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
           type="reset" onClick="window.location = '${url}'">< Retour
 </button>
 
 <div class="flex flex-col items-center">
-  <div class="flex justify-center my-10">
+  <div class="flex justify-center">
     <div class="rounded bg-neutral-50 p-4 border border-neutral-200 flex flex-col items-center">
       <div>
         <c:choose>
           <c:when test="${adherent.photoImg == ''}">
-            <img class="rounded-full" src="<c:url value="/resources/images/noAdh.png"/>"/>
+            <img class="rounded-full h-32" src="<c:url value="/resources/images/noAdh.png"/>"/>
           </c:when>
           <c:otherwise>
-            <img class="rounded-full" src="${adherent.photoImg}">
+            <img class="rounded-full h-32" src="${adherent.photoImg}">
           </c:otherwise>
         </c:choose>
       </div>
@@ -33,7 +33,7 @@
     </div>
   </div>
 
-  <button class="px-3 py-2 my-5 text-xs font-medium text-center text-white bg-neutral-700 rounded-lg hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300" 
+  <button class="px-3 py-2 my-5 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" 
           id="addContact" type="button" onclick="showNewContact()">Ajouter un contact</button>
 
   <form:form class="editAdherent" method="post" modelAttribute="contactToAdd" action="addAdherentContact">
@@ -49,21 +49,21 @@
             <form:select class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="contact.civilite" path="contact.civilite">
               <form:options items="${civilite}"/>
             </form:select>
-            <form:errors class="error" path="contact.civilite"/>
+            <form:errors class="error-message" path="contact.civilite"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-32 mx-2">
               <form:label path="contact.nom"><spring:message code="label.nom"/></form:label>
               </div>
             <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="contact.nom" path="contact.nom"/>
-            <form:errors class="error" path="contact.nom"/>
+            <form:errors class="error-message" path="contact.nom"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-32 mx-2">
               <form:label path="contact.prenom"><spring:message code="label.prenom"/></form:label>
               </div>
             <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="contact.prenom" path="contact.prenom"/>
-            <form:errors class="error" path="contact.prenom"/>
+            <form:errors class="error-message" path="contact.prenom"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-32 mx-2">
@@ -78,28 +78,28 @@
               <form:label path="contact.mail"><spring:message code="label.mail"/></form:label>
               </div>
             <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="contact.mail" path="contact.mail"/>
-            <form:errors class="error" path="contact.mail"/>
+            <form:errors class="error-message" path="contact.mail"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-32 mx-2">
               <form:label path="contact.fixe"><spring:message code="label.fixe"/></form:label>
               </div>
             <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="contact.fixe" path="contact.fixe"/>
-            <form:errors class="error" path="contact.fixe"/>
+            <form:errors class="error-message" path="contact.fixe"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-32 mx-2">
               <form:label path="contact.mobile"><spring:message code="label.mobile"/></form:label>
               </div>
             <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="contact.mobile" path="contact.mobile"/>
-            <form:errors class="error" path="contact.mobile"/>
+            <form:errors class="error-message" path="contact.mobile"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-32 mx-2">
               <form:label path="contact.dateNaissance"><spring:message code="label.dateNaissance"/></form:label>
               </div>
             <form:input class="flex-grow w-10 py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" type="date" name="contact.dateNaissance" path="contact.dateNaissance"/>
-            <form:errors class="error" path="contact.dateNaissance"/>
+            <form:errors class="error-message" path="contact.dateNaissance"/>
           </div>
 
           <div class="mt-10"> inclure dans le mailing :
@@ -164,8 +164,15 @@
   </form:form>
 
   <form:form class="editAdherentContact" method="post" modelAttribute="contactToEdit" action="editAdherentContact?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
-    <fieldset>
-      <legend class="legend text-center mt-4"><spring:message code="label.contacts"/></legend>
+    <fieldset><c:choose>
+          <c:when test="${not empty contactToEdit.adherentContacts[0].id}">
+            <legend class="legend text-center mt-4"><spring:message code="label.contacts"/> :</legend>
+          </c:when>
+          <c:otherwise>
+            <legend class="legend text-center mt-4">Aucun contact</legend>
+          </c:otherwise></c:choose>
+      
+      
       <c:forEach items="${contactToEdit.adherentContacts}" var="adherentContact" varStatus="status">
         <form:input type="hidden" path="adherentContacts[${status.index}].Id"/>
         <form:input type="hidden" path="adherentContacts[${status.index}].adherentId"/>
@@ -190,13 +197,13 @@
           <div class="flex flex-col gap-2 ml-4">
             <div class="flex justify-center">
               <form:select
-                class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 w-20 text-sm font-medium text-center text-gray-900 bg-gray-50 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100"
+                class="flex-shrink-0 inline-flex items-center py-2.5 px-4 w-20 text-sm font-medium text-center text-gray-900 bg-gray-50 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100"
                 path="adherentContacts[${status.index}].civilite">
                 <form:options items="${civilite}"/>
               </form:select>
               <spring:message code="label.nom" var="message"/>
               <form:input
-                class="block p-2.5 z-20 text-sm border-l-0 border-r-0 text-gray-900 bg-gray-50 border-l-gray-50 border-l-2 border border-gray-300 "
+                class="block p-2.5 text-sm border-l-0 border-r-0 text-gray-900 bg-gray-50 border-l-gray-50 border-l-2 border border-gray-300 "
                 path="adherentContacts[${status.index}].nom"
                 placeholder="${message}"/>
 
@@ -313,12 +320,10 @@
             </span>
           </div>
         </div>
-        <div><b><i><form:errors class="error" path="adherentContacts[${status.index}].nom"
-                     escape="false"/></i></b></div>
-        <div><b><i><form:errors class="error" path="adherentContacts[${status.index}].prenom"/></i></b>
-        </div>
-        <div><b><i><form:errors class="error" path="adherentContacts[${status.index}].mail"/></i></b></div>
-        <div><b><i><form:errors class="error" path="adherentContacts[${status.index}].fixe"/></i></b></div>
+        <div><form:errors class="error-message" path="adherentContacts[${status.index}].nom" escape="false"/></i></b></div>
+        <div><form:errors class="error-message" path="adherentContacts[${status.index}].prenom"/></div>
+        <div><form:errors class="error-message" path="adherentContacts[${status.index}].mail"/></div>
+        <div><form:errors class="error-message" path="adherentContacts[${status.index}].fixe"/></div>
 
         <div class="flex justify-center">
           <c:url value="/edit/supprimeContact" var="url">
@@ -342,7 +347,7 @@
 <%--    <spring:message code="label.commentaire"/>--%>
 <%--    <form:textarea id="summernote" name="editordata" path="commentaire"/>--%>
 
-<div class="flex justify-center gap-2 mt-6">
+<div class="flex justify-center gap-2 mt-10">
   <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none" 
           type="submit">Enregistrer
   </button>
@@ -356,7 +361,7 @@
 
 <script>
   function showNewContact() {
-    $("#addContactForm").toggle('slow');
+    $("#addContactForm").toggle('quick');
   }
 
 </script>

@@ -13,6 +13,7 @@ import fr.scabois.scabotheque.bean.commun.Agence;
 import fr.scabois.scabotheque.bean.commun.Ape;
 import fr.scabois.scabotheque.controller.adherent.edit.EditAdherent;
 import fr.scabois.scabotheque.controller.adherent.edit.EditAdherentForm;
+import fr.scabois.scabotheque.enums.NavType;
 import fr.scabois.scabotheque.enums.PageType;
 import fr.scabois.scabotheque.services.IServiceAdherent;
 import java.util.List;
@@ -103,6 +104,7 @@ public class AddAdherentController {
       pModel.addAttribute("adhToAdd", pModel.get("adhToAdd"));
     }
 
+    pModel.addAttribute("navType", NavType.ADHERENT);
     pModel.addAttribute("pageType", PageType.CREATE_ADHERENT);
 
     return "addIdentite";
@@ -111,41 +113,53 @@ public class AddAdherentController {
   public Adherent editToAdh(EditAdherent editAdh) {
     final Adherent adh = new Adherent();
 
-    adh.setId(editAdh.getId());
-    adh.setCode(editAdh.getCode());
-    adh.setCodeERP(editAdh.getCodeERP());
-    adh.setLibelle(editAdh.getLibelle());
-    adh.setDenomination(editAdh.getDenomination());
-    adh.setFormeJuridique(editAdh.getFormeJuridique());
-    adh.setDateEntree(editAdh.getDateEntree());
     adh.setAdresse(editAdh.getAdresse());
     adh.setAdresseComplement(editAdh.getAdresseComplement());
+    adh.setAdherentType(editAdh.getAdherentType());
+    adh.setAgence(editAdh.getAgence());
+    adh.setApe(editAdh.getApe());
+    adh.setCnxEolasAllow(editAdh.getCnxEolasAllow());
+    adh.setCode(editAdh.getCode());
+    adh.setCodeERP(editAdh.getCodeERP());
+    adh.setCodeERPParent(editAdh.getCodeERPParent());
+    adh.setCompteType(editAdh.getCompteType());
     adh.setCommune(editAdh.getCommune());
-    adh.setPole(editAdh.getPole());
-    adh.setRole(editAdh.getRole());
-    adh.setSecteur(editAdh.getSecteur());
+//    adh.setContactComptable(editAdh.getContactComptable());
+    adh.setDateClotureExe(editAdh.getDateClotureExe());
+    adh.setDateEntree(editAdh.getDateEntree());
+    adh.setDateSortie(editAdh.getDateSortie());
+    adh.setDenomination(editAdh.getDenomination());
+    adh.setDescription_activite(editAdh.getDescription_activite());
+    adh.setDescription_entreprise(editAdh.getDescription_entreprise());
+    adh.setEtat(editAdh.getEtat());
+    adh.setFacebook(editAdh.getFacebook());
+    adh.setFormationDirigeant(editAdh.getFormationDirigeant());
+    adh.setFormeJuridique(editAdh.getFormeJuridique());
+    adh.setId(editAdh.getId());
+    adh.setInstagram(editAdh.getInstagram());
     adh.setIsArtipole(editAdh.getIsArtipole());
     adh.setIsCharteArtipole(editAdh.getIsCharteArtipole());
-    adh.setIsFlocageArtipole(editAdh.getIsFlocageArtipole());
-    adh.setIsWebArtipole(editAdh.getIsWebArtipole());
-    adh.setFormationDirigeant(editAdh.getFormationDirigeant());
-    adh.setCnxEolasAllow(editAdh.getCnxEolasAllow());
     adh.setIsFacebookArtipole(editAdh.getIsFacebookArtipole());
-    adh.setApe(editAdh.getApe());
+    adh.setIsFlocageArtipole(editAdh.getIsFlocageArtipole());
+    adh.setIsOutilDechargement(editAdh.getIsOutilDechargement());
+    adh.setIsWebArtipole(editAdh.getIsWebArtipole());
+    adh.setLibelle(editAdh.getLibelle());
+    adh.setLinkedin(editAdh.getLinkedin());
+    adh.setNumRepMetier(editAdh.getNumRepMetier());
+    adh.setPole(editAdh.getPole());
+    adh.setPhoto((editAdh.getPhoto() == null) ? "".getBytes() : editAdh.getPhoto().getBytes());
+    adh.setPinterest(editAdh.getPinterest());
+    adh.setRole(editAdh.getRole());
+    adh.setRcsCommune(editAdh.getRcsCommune());
+    adh.setRcsRm(editAdh.getRcsRm());
+    adh.setRmCommune(editAdh.getRmCommune());
+    adh.setSecteur(editAdh.getSecteur());
     adh.setSiren(editAdh.getSiren());
     adh.setSiret(editAdh.getSiret());
-    adh.setNumRepMetier(editAdh.getNumRepMetier());
-    adh.setRcsRm(editAdh.getRcsRm());
-    adh.setRcsCommune(editAdh.getRcsCommune());
-    adh.setAgence(editAdh.getAgence());
-    adh.setDateClotureExe(editAdh.getDateClotureExe());
+    adh.setSiteWeb(editAdh.getSiteWeb());
+    adh.setTelephone(editAdh.getTelephone());
     adh.setTournee(editAdh.getTournee());
-    adh.setOutilDechargement(editAdh.getIsOutilDechargement());
-//	adh.setContactComptable(editAdh.getContactComptable());
-    adh.setEtat(editAdh.getEtat());
-    adh.setAdherentType(editAdh.getAdherentType());
-    adh.setCompteType(editAdh.getCompteType());
-    adh.setPhoto(editAdh.getPhoto() == null ? "".getBytes() : editAdh.getPhoto().getBytes());
+    adh.setYoutube(editAdh.getYoutube());
 
     return adh;
   }
@@ -154,11 +168,11 @@ public class AddAdherentController {
   public String modifier(@Valid @ModelAttribute(value = "adhToAdd") final EditAdherentForm editForm,
           final BindingResult pBindingResult, final ModelMap pModel) {
 
-    adhEditable = editForm.getEditAdherent();
+    adhEditable = editForm.getAdherent();
     Adherent adh = editToAdh(adhEditable);
 
     // test de la presence des objets
-    // na pas encore trouvé a le faire dans EditAdherent.js
+    // na pas encore trouvé à le faire dans EditAdherent.js
     if (adh.getCommune() == null) {
       pBindingResult.addError(new FieldError("commune", "adherent.commune",
               messages.getMessage("modification.notempty", null, Locale.FRANCE)));

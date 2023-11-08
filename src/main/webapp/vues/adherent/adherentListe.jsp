@@ -47,119 +47,122 @@
     </div>
 
     <div id="accordion-collapse" data-accordion="collapse">
-        <h2 id="accordion-collapse-head-1">
-            <button type="button"
-                    class="flex items-center justify-center w-full p-3 font-medium text-left text-gray-500 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-900 "
-                    data-accordion-target="#accordion-collapse-body-1" aria-expanded="false"
-                    aria-controls="accordion-collapse-body-1">
-                <span class="text-center"><spring:message code="label.rechercheAvance"/></span>
-            </button>
-        </h2>
+      <h2 id="accordion-collapse-head-1">
+          <button type="button"
+                  class="focus:text-white bg-gray-800 hover:bg-gray-900 bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-900 w-full p-3 font-medium rounded-t-xl"
+                  data-accordion-target="#accordion-collapse-body-1" aria-expanded="false"
+                  aria-controls="accordion-collapse-body-1" onclick="toggleAdvancedSearchForm()">
+              <span class="text-center"><spring:message code="label.rechercheAvance"/></span>
+          </button>
 
-        <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-head-1">
-            <div class="bg-gray-100">
-                <form:form class="card card-outline card-info collapsed-card mb-0" id="advanceSerachForm" method="post" modelAttribute="criteria" action="adherentListe">
-                    <form:input type="hidden" name="text" path="text"/>
-                    <form:input type="hidden" name="contactFonctionIds" path="contactFonctionIds"/>
-                    <spring:message code="label.texteRecherche" var="recherchePH"/>
-                    <div class="card-body">
-                        <div class="flex justify-evenly pb-2">
-                            <div class="flex flex-col w-full px-6">
-                                <label>Type</label>
-                                <form:select class="form-control select2" name="typeAdhIds"
-                                             data-placeholder="Type d'adhérent"
-                                             path="typeAdhIds" multiple="multiple">
-                                    <form:options items="${adhTypesList}" itemValue="id" itemLabel="libelle"/>
-                                </form:select>
+      </h2>
 
-                                <label>Pôle</label>
-                                <form:select class=" form-control select2" name="poleIds"
-                                             data-placeholder="Tous les pôles"
-                                             path="poleIds" multiple="multiple">
-                                    <form:options items="${polesList}" itemValue="id" itemLabel="libelle"/>
-                                </form:select>
-                                <label>Secteurs</label>
-                                <form:select class="form-control select2" name="secteurIds"
-                                             data-placeholder="Tous les secteurs"
-                                             path="secteurIds" multiple="multiple">
-                                    <form:options items="${secteursList}" itemValue="id" itemLabel="libelle"/>
-                                </form:select>
-                            </div>
-                            <div class="flex flex-col w-full px-6">
-                                <label>Activités</label>
-                                <form:select class="form-control select2" name="activiteIds"
-                                             data-placeholder="Toutes les activités"
-                                             path="activiteIds" multiple="multiple">
-                                    <form:options items="${activitesList}" itemValue="id" itemLabel="libelle"/>
-                                </form:select>
-                                <label>Agences</label>
-                                <form:select class="form-control select2" name="agenceIds"
-                                             data-placeholder="Toutes les agences"
-                                             path="agenceIds" multiple="multiple">
-                                    <form:options items="${agencesList}" itemValue="id" itemLabel="libelle"/>
-                                </form:select>
-                            </div>
-                            <div class="flex flex-col w-full px-6">
-                                <div class="w-100 col-md-3">
-                                    <div class="form-group clearfix">
-                                        <form:checkbox
-                                                class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
-                                                id="showAdminOnly" name="showAdminOnly" path="showAdminOnly"/>
-                                        <label style="float:none;" for="showAdminOnly"><spring:message
-                                                code="label.filtre.isAdministrateur"/></label>
-                                    </div>
-                                </div>
-                                <!-- /.col -->
-                                <div class="w-100 col-md-3">
-                                    <!-- checkbox -->
-                                    <div class="form-group clearfix">
-                                        <form:checkbox
-                                                class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
-                                                id="showSousCompte" name="showSousCompte" path="showSousCompte"/>
-                                        <label style="float:none;" for="showSousCompte"><spring:message
-                                                code="label.filtre.sousCompte"/></label>
-                                    </div>
-                                </div>
-                                <!-- /.col -->
-                                <div class="w-100 col-md-3">
-                                    <div class="form-group clearfix">
-                                        <form:checkbox
-                                                class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
-                                                id="showArtipoleOnly" name="showArtipoleOnly"
-                                                path="showArtipoleOnly"/>
-                                        <label style="float:none;" for="showArtipoleOnly"><spring:message
-                                                code="label.filtre.isArtipole"/></label>
-                                    </div>
-                                </div>
-                                <!-- /.col -->
+      <!-- ADVANCE SEARCH -->
+      <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-head-1">
+          <div class="bg-gray-200 rounded-b-xl">
+
+              <form:form class="card card-outline card-info collapsed-card mb-0" id="advanceSerachForm" method="post" modelAttribute="criteria" action="adherentListe">
+                  <form:input type="hidden" name="text" path="text"/>
+                  <form:input type="hidden" name="contactFonctionIds" path="contactFonctionIds"/>
+                  <spring:message code="label.texteRecherche" var="recherchePH"/>
+                  <div class="card-body">
+                      <div class="flex justify-evenly py-3">
+                          <div class="flex flex-col w-full px-6">
+                              <label>Type</label>
+                              <form:select class="form-control select2" name="typeAdhIds"
+                                           data-placeholder="Type d'adhérent"
+                                           path="typeAdhIds" multiple="multiple">
+                                  <form:options items="${adhTypesList}" itemValue="id" itemLabel="libelle"/>
+                              </form:select>
+
+                              <label>Pôle</label>
+                              <form:select class=" form-control select2" name="poleIds"
+                                           data-placeholder="Tous les pôles"
+                                           path="poleIds" multiple="multiple">
+                                  <form:options items="${polesList}" itemValue="id" itemLabel="libelle"/>
+                              </form:select>
+                              <label>Secteurs</label>
+                              <form:select class="form-control select2" name="secteurIds"
+                                           data-placeholder="Tous les secteurs"
+                                           path="secteurIds" multiple="multiple">
+                                  <form:options items="${secteursList}" itemValue="id" itemLabel="libelle"/>
+                              </form:select>
+                          </div>
+                          <div class="flex flex-col w-full px-6">
+                              <label>Activités</label>
+                              <form:select class="form-control select2" name="activiteIds"
+                                           data-placeholder="Toutes les activités"
+                                           path="activiteIds" multiple="multiple">
+                                  <form:options items="${activitesList}" itemValue="id" itemLabel="libelle"/>
+                              </form:select>
+                              <label>Agences</label>
+                              <form:select class="form-control select2" name="agenceIds"
+                                           data-placeholder="Toutes les agences"
+                                           path="agenceIds" multiple="multiple">
+                                  <form:options items="${agencesList}" itemValue="id" itemLabel="libelle"/>
+                              </form:select>
+                          </div>
+                          <div class="flex flex-col w-full px-6">
+                              <div class="w-100 col-md-3">
+                                  <div class="form-group clearfix">
+                                      <form:checkbox
+                                              class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
+                                              id="showAdminOnly" name="showAdminOnly" path="showAdminOnly"/>
+                                      <label style="float:none;" for="showAdminOnly"><spring:message
+                                              code="label.filtre.isAdministrateur"/></label>
+                                  </div>
+                              </div>
+                              <!-- /.col -->
+                              <div class="w-100 col-md-3">
+                                  <!-- checkbox -->
+                                  <div class="form-group clearfix">
+                                      <form:checkbox
+                                              class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
+                                              id="showSousCompte" name="showSousCompte" path="showSousCompte"/>
+                                      <label style="float:none;" for="showSousCompte"><spring:message
+                                              code="label.filtre.sousCompte"/></label>
+                                  </div>
+                              </div>
+                              <!-- /.col -->
+                              <div class="w-100 col-md-3">
+                                  <div class="form-group clearfix">
+                                      <form:checkbox
+                                              class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
+                                              id="showArtipoleOnly" name="showArtipoleOnly"
+                                              path="showArtipoleOnly"/>
+                                      <label style="float:none;" for="showArtipoleOnly"><spring:message
+                                              code="label.filtre.isArtipole"/></label>
+                                  </div>
+                              </div>
+                              <!-- /.col -->
 <!--                                    <div class="w-100 col-md-3">
-                                    <div class="form-group clearfix">
-                                        <form:checkbox
-                                                class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
-                                                id="showAll" name="showAll" path="showAll"/>
-                                        <label style="float:none;" for="showAll"><spring:message
-                                                code="label.filtre.inactif"/></label>
-                                    </div>
-                                </div>-->
-                                <div class="flex gap-2 mt-2 pt-6">
-                                    <button id="actionButton"
-                                            class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
-                                            type="submit">
-                                        Rechercher
-                                    </button>
-                                    <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
-                                            type="reset" onclick="window.location.href='${urlInit}'">
-                                        Effacer
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                  <div class="form-group clearfix">
+                                      <form:checkbox
+                                              class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
+                                              id="showAll" name="showAll" path="showAll"/>
+                                      <label style="float:none;" for="showAll"><spring:message
+                                              code="label.filtre.inactif"/></label>
+                                  </div>
+                              </div>-->
+                              <div class="flex gap-2 mt-2 pt-6">
+                                  <button id="actionButton"
+                                          class="px-3 py-3 text-xs text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+                                          type="submit">
+                                      Rechercher
+                                  </button>
+                                  <button class="px-3 py-3 text-xs text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+                                          type="reset" onclick="window.location.href='${urlInit}'">
+                                      Effacer
+                                  </button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
 
-                </form:form>
+              </form:form>
 
-            </div>
-        </div>
+          </div>
+      </div>
     </div>
 </div>
 <!-- Default box -->
@@ -283,6 +286,12 @@
         margin-bottom: 5px;
     }
 </style>
+
+<script>
+  function toggleAdvancedSearchForm() {
+    $("#accordion-collapse-body-1").slideToggle(200);
+  }
+</script>
 
 
 

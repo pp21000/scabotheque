@@ -32,12 +32,12 @@
                     </td>
                     <td class="py-2 px-4">
                         <form:input class="text-center p-2 w-80 bg-white rounded-lg border border-gray-200 " type="text" path="camions[${status.index}].nom"/>
-                        <form:errors class="error" path="camions[${status.index}].nom"/>
+                        <form:errors class="error-message" path="camions[${status.index}].nom"/>
                     </td>
                     <td class="py-2 px-4">
                         <form:input class="p-2 w-48 bg-white rounded-lg border border-gray-200 " type="text"
                                     path="camions[${status.index}].immatriculation"/>
-                        <form:errors class="error" path="camions[${status.index}].immatriculation"/>
+                        <form:errors class="error-message" path="camions[${status.index}].immatriculation"/>
                     </td>
                 </tr>
             </c:forEach>
@@ -50,7 +50,7 @@
             <button class="mt-6 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2" type="submit">Enregistrer</button>
         </div>
         <div>
-            <form:errors class="error" path="messageErreur"/>
+            <form:errors class="error-message" path="messageErreur"/>
         </div>
     </div>
 </form:form>

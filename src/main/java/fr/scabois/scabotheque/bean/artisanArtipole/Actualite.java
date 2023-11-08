@@ -13,10 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
-/**
- *
- * @author paul.petit
- */
 @Entity
 @Table(name = "aa_actus")
 public class Actualite implements HasId {

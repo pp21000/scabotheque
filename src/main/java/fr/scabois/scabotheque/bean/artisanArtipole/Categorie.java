@@ -14,10 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-/**
- *
- * @author paul.petit
- */
 @Entity
 @Table(name = "aa_categorie")
 public class Categorie implements HasIdLibelle {
@@ -33,10 +29,6 @@ public class Categorie implements HasIdLibelle {
     this.specialites = new ArrayList<Specialite>();
   }
 
-  /**
-   *
-   * @return
-   */
   @Override
   public Integer getId() {
     return this.id;
@@ -52,10 +44,6 @@ public class Categorie implements HasIdLibelle {
     return this.libelle;
   }
 
-  /**
-   *
-   * @param libelle
-   */
   @Override
   public void setLibelle(final String libelle) {
     this.libelle = libelle;

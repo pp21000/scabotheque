@@ -31,7 +31,7 @@
       <tiles:insertAttribute name="navBar"/>
 
       <tiles:insertAttribute name="menu"/>
-      <div class="ml-64 mr-2 pt-24">
+      <div class="ml-64 mr-4 pt-20 pb-10">
         <tiles:insertAttribute name="body"/>
         <div class="mt-20">
           <tiles:insertAttribute name="footer"/>

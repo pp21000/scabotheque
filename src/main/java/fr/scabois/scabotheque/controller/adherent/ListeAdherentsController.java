@@ -89,9 +89,11 @@ public class ListeAdherentsController {
     final String param = request.getParameter("page");
     final Integer page = (param == null) ? 1 : Integer.parseInt(param);
     final List<ContactRetraite> list = (List<ContactRetraite>) this.service.loadContactsRetraite();
-    pModel.addAttribute("listeContacts", (Object) list.stream().sorted(Comparator.comparing(ContactRetraite::getNom)).skip(25 * (page - 1)).limit(25L).collect(Collectors.toList()));
+    final int pageSize = 1000;
+    pModel.addAttribute("listeContacts", (Object) list.stream().sorted(Comparator.comparing(ContactRetraite::getNom)).skip(pageSize * (page - 1)).limit(pageSize).collect(Collectors.toList()));
     pModel.addAttribute("nbContact", (Object) list.size());
     pModel.addAttribute("criteria", (Object) new CriteriaAdherent());
+    pModel.addAttribute("navType", NavType.ADHERENT);
     pModel.addAttribute("pageType", (Object) PageType.LIST_CONTACT_RETRAITE);
     return "listeContactRetraite";
   }
@@ -101,9 +103,11 @@ public class ListeAdherentsController {
     final String param = request.getParameter("page");
     final Integer page = (param == null) ? 1 : Integer.parseInt(param);
     final List<ContactClubFemme> list = (List<ContactClubFemme>) this.service.loadContactsClubFemme();
-    pModel.addAttribute("listeContacts", (Object) list.stream().sorted(Comparator.comparing(ContactClubFemme::getNom)).skip(25 * (page - 1)).limit(25L).collect(Collectors.toList()));
+    final int pageSize = 1000;
+    pModel.addAttribute("listeContacts", (Object) list.stream().sorted(Comparator.comparing(ContactClubFemme::getNom)).skip(pageSize * (page - 1)).limit(pageSize).collect(Collectors.toList()));
     pModel.addAttribute("nbContact", (Object) list.size());
     pModel.addAttribute("criteria", (Object) new CriteriaAdherent());
+    pModel.addAttribute("navType", NavType.ADHERENT);
     pModel.addAttribute("pageType", (Object) PageType.LIST_CONTACT_CLUB_FEMMES);
     return "listeContactClubFemmes";
   }
@@ -257,7 +261,7 @@ public class ListeAdherentsController {
     }
     listeAdherents = service.loadAdherents(criteria).stream().sorted(Comparator.comparing(Adherent::getLibelle)).collect(Collectors.toList());
 
-    int pageSize = 25;
+    final int pageSize = 25;
     pModel.addAttribute("nbAdherent", listeAdherents.size());
     pModel.addAttribute("page", page);
     pModel.addAttribute("maxPage", (int) Math.ceil(listeAdherents.size() / pageSize));

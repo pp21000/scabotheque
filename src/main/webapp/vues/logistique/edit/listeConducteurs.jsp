@@ -90,7 +90,7 @@
                 </button>
             </div>
             <div>
-                <form:errors class="error" path="messageErreur"/>
+                <form:errors class="error-message" path="messageErreur"/>
             </div>
         </div>
     </div>

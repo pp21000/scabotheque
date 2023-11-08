@@ -87,8 +87,8 @@ public class EditAdherent {
   private Tournee tournee;
   private AdherentType adherentType;
   private CompteType compteType;
-  private double longitude;
   private double latitude;
+  private double longitude;
   private String mail;
   private String telephone;
   private String description_activite;

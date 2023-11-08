@@ -17,7 +17,7 @@
 <div>
     <fieldset>
         <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_INFORMATIQUE_EDIT')">
-            <div class="editIcone">
+            <div class="flex justify-start mb-2">
                 <c:url value="/edit/editInformatiqueAdh" var="url">
                     <c:param name="idAdh" value="${adherent.id}"/>
                 </c:url>
@@ -57,9 +57,9 @@
 
 <%--    <fieldset class="text-center">--%>
 <%--        <legend class="legend"><spring:message code="label.accessEOLAS"/></legend>--%>
-<%--        <div class="flex justify-start">--%>
+<%--        <div class="flex justify-start mb-2">--%>
 <%--            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_INFORMATIQUE_EDIT')">--%>
-<%--                <div class="editIcone">--%>
+<%--                <div class="rounded hover:bg-gray-300 p-1">--%>
 <%--                    <c:url value="/edit/editAdherentContact" var="url"><c:param name="idAdh"--%>
 <%--                                                                                value="${adherent.id}"/></c:url>--%>
 <%--                    <span><a href="${url}"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"--%>
@@ -112,7 +112,7 @@
 <%--                                                                                  d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>--%>
 <%--                                </c:otherwise>--%>
 <%--                            </c:choose>--%>
-<%--                            <span class="error"><spring:message code="label.accessEOLAS"/></span>--%>
+<%--                            <span class="error-message"><spring:message code="label.accessEOLAS"/></span>--%>
 <%--                        </span>--%>
 
 <%--                        <span><spring:message code="label.login"/>${contact.loginEOLAS}</span>--%>

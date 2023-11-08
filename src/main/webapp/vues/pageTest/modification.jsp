@@ -28,7 +28,7 @@
                             </td>
                             <td>
                                 <input type="text" name="listeCourses[${status.index}].quantite" value="${course.quantite}"/><br/>
-                                <b><i><form:errors path="listeCourses[${status.index}].quantite" /></i></b>
+                                <form:errors class="error-message" path="listeCourses[${status.index}].quantite" />
                             </td>
                         </tr>
                     </c:forEach>

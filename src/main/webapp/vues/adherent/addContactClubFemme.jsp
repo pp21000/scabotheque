@@ -14,122 +14,135 @@
   <div class="mx-16">
     <div class="col-md-6">
       <div class="card card-secondary">
-        <div class="mb-6">
-          <div class="text-2xl">Adherent de référence</div>
+        <div class="mb-2">
+          <div class="text-2xl">Adhérent de référence</div>
         </div>
         <form:select class="form-control select2" name="editContactClubFemme.adherentId" data-placeholder="Adhérent de référence" path="editContactClubFemme.adherentId" >
           <form:option value="" label="-"  />
           <form:options items="${listAdherents}"  />
         </form:select>
-        <form:errors class="text-red-600 animate-pulse" path="editContactClubFemme.adherentId"/>
+        <form:errors class="error-message" path="editContactClubFemme.adherentId"/>
       </div>
-      <div class="card card-secondary">
-        <div class="mb-6">
+      
+      
+      <div class="card card-secondary mt-8">
+        <div class="mb-5">
           <div class="text-2xl"><spring:message code="label.identite"/></div>
         </div>
         <div class="card-body">
-          <div class="grid px-4 md:grid-cols-4 md:gap-6">
+          <div class="grid px-4 md:grid-cols-5 md:gap-6">
             <div class="relative z-0 mb-6 w-full group">
-              <form:label path="editContactClubFemme.civilite"><spring:message code="label.civilite"/></form:label>
-              <form:select class="valeur" name="contact.civilite" path="editContactClubFemme.civilite">
-                <form:options items="${civilite}"/>
+              <form:label path="editContactClubFemme.civilite" class="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"><spring:message code="label.civilite"/></form:label>
+              <form:select class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" name="contact.civilite" path="editContactClubFemme.civilite">
+                <form:options class="dark:bg-gray-600" items="${civilite}"/>
                 <%--<form:option selected="true" value="Mme" />--%>
               </form:select>
-              <form:errors class="error" path="editContactClubFemme.civilite"/>
-
+              <form:errors class="error-message" path="editContactClubFemme.civilite"/>
             </div>   
             <div class="relative z-0 mb-6 w-full group">
               <form:label path="editContactClubFemme.nom"
-                          class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"><spring:message
+                          class="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"><spring:message
                   code="label.nom"/></form:label>
               <form:input
-                class="form-control block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="form-control block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="editContactClubFemme.nom" path="editContactClubFemme.nom" autofocus="true"/>
-              <form:errors class="text-red-600 animate-pulse" path="editContactClubFemme.nom"/>
+              <form:errors class="error-message" path="editContactClubFemme.nom"/>
             </div>
 
             <div class="relative z-0 mb-6 w-full group">
               <form:label path="editContactClubFemme.prenom"
-                          class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"><spring:message
+                          class="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"><spring:message
                   code="label.prenom"/></form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="editContactClubFemme.prenom" path="editContactClubFemme.prenom"/>
-              <form:errors class="text-red-600 animate-pulse" path="editContactClubFemme.prenom"/>
+              <form:errors class="error-message" path="editContactClubFemme.prenom"/>
             </div>
 
             <div class="relative z-0 mb-6 w-full group">
               <form:label path="editContactClubFemme.fixe"
-                          class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"><spring:message
+                          class="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"><spring:message
                   code="label.fixe"/></form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="editContactClubFemme.fixe" path="editContactClubFemme.fixe"/>
-              <form:errors class="text-red-600 animate-pulse" path="editContactClubFemme.fixe"/>
+              <form:errors class="error-message" path="editContactClubFemme.fixe"/>
             </div>
-          </div>
-          <div class="grid px-4 md:grid-cols-2 md:gap-6">
+            
             <div class="relative z-0 mb-6 w-full group">
               <form:label
-                class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                path="editContactClubFemme.mobile"><spring:message code="label.mobile"/></form:label>
-              <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                name="editContactClubFemme.mobile" path="editContactClubFemme.mobile"/>
-              <form:errors class="text-red-600 animate-pulse" path="editContactClubFemme.mobile"/>
-            </div>
-
-            <div class="relative z-0 mb-6 w-full group">
-              <form:label
-                class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                path="editContactClubFemme.mail"><spring:message code="label.mail"/>
+                class="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                path="editContactClubFemme.mobile"><spring:message code="label.mobile"/>
               </form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                name="editContactClubFemme.mail" path="editContactClubFemme.mail"/>
-              <form:errors class="text-red-600 animate-pulse" path="editContactClubFemme.mail"/>
+                class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                name="editContactClubFemme.mobile" path="editContactClubFemme.mobile"/>
+              <form:errors class="error-message" path="editContactClubFemme.mobile"/>
             </div>
           </div>
             
-                      <div class="grid px-4 md:grid-cols-3 md:gap-6">
+          <div class="grid px-4 md:grid-cols-2 md:gap-6">
             <div class="relative z-0 mb-6 w-full group">
               <form:label
-                class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                class="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                path="editContactClubFemme.mail"><spring:message code="label.mail"/>
+              </form:label>
+              <form:input
+                class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                name="editContactClubFemme.mail" path="editContactClubFemme.mail"/>
+              <form:errors class="error-message" path="editContactClubFemme.mail"/>
+            </div>
+            
+              <div class="relative z-0 mb-6 w-full group">
+                <form:label
+                  class="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  path="editContactClubFemme.commentaire"><spring:message code="label.commentaire"/></form:label>
+                <form:input
+                  class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  name="editContactClubFemme.commentaire" path="editContactClubFemme.commentaire"/>
+                <form:errors class="error-message" path="editContactClubFemme.commentaire"/>
+              </div>
+          </div>
+            
+          <div class="grid px-4 md:grid-cols-3 md:gap-6">
+            <div class="relative z-0 mb-6 w-full group">
+              <form:label
+                class="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 path="editContactClubFemme.adresse"><spring:message code="label.adresse"/></form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="editContactClubFemme.adresse" path="editContactClubFemme.adresse"/>
-              <form:errors class="text-red-600 animate-pulse" path="editContactClubFemme.adresse"/>
+              <form:errors class="error-message" path="editContactClubFemme.adresse"/>
             </div>
+            
             <div class="relative z-0 mb-6 w-full group">
-              <form:label class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              <form:label class="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                           path="editContactClubFemme.adresseComplement"><spring:message code="label.adresseComplement"/></form:label>
-              <form:input class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              <form:input class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                           name="editContactClubFemme.adresseComplement" path="editContactClubFemme.adresseComplement"/>
-              <form:errors class="text-red-600 animate-pulse" path="editContactClubFemme.adresseComplement"/>
+              <form:errors class="error-message" path="editContactClubFemme.adresseComplement"/>
             </div>
-            <div class="relative z-0 mb-6 w-full group">
-              <form:label class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                          path="editContactClubFemme.commune">
-                <div class="flex">
-                  <div class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 rounded-l-md border border-r-0 border-gray-300   ">
-                    <a type="button" data-modal-toggle="commune-modal" class="input-group-text"
-                       href="#" id="editAdhCommune" data-toggle="modal"
-                       data-target="#modal-adherentCommune">
-                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                           xmlns="http://www.w3.org/2000/svg">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
-                      </svg>
-                    </a>
-                  </div>
-                  <input type="text" id="communeAdhLibelle" disabled class="rounded-none text-lg rounded-r-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-5"
+            
+            <div class="relative z-0 mb-6 w-full group flex items-end">
+              <form:label class="w-full peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                          path="editContactClubFemme.commune"><spring:message code="label.commune"/>
+                <div class="flex h-10">
+                  <a type="button" data-modal-toggle="commune-modal" class="input-group-text inline-flex items-center px-3 text-gray-900 bg-gray-200 hover:bg-gray-300 rounded-l border border-r-0 border-gray-300"
+                     href="#" id="editAdhCommune" data-toggle="modal"
+                     data-target="#modal-adherentCommune">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                    </svg>
+                  </a>
+                  
+                  <input type="text" id="communeAdhLibelle" disabled class="rounded-r bg-gray-50 border border-gray-300 text-gray-900 flex-1 min-w-0 border-gray-300"
                          placeholder="<spring:message code="label.commune"/>">
                 </div>
-                <form:errors class="text-red-600 animate-pulse" path="editContactClubFemme.commune"/>
+                <form:errors class="error-message" path="editContactClubFemme.commune"/>
               </form:label>
             </div>
           </div>
+            
           <!-- Main modal -->
           <div id="commune-modal" tabindex="-1" aria-hidden="true"
                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
@@ -166,28 +179,16 @@
                     <div class="grid grid-cols-2 gap-4">
                       <button type="button" id="valideAdhCommune" data-modal-toggle="commune-modal"
                               class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">
-                        Selectionner
+                        Sélectionner
                       </button>
                       <button type="button" data-modal-toggle="commune-modal"
-                              class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">
+                              class="w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">
                         Annuler
                       </button>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-            
-          <div class="grid px-4 md:grid-cols-3 md:gap-6">
-            <div class="relative z-0 mb-6 w-full group">
-              <form:label
-                class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                path="editContactClubFemme.commentaire"><spring:message code="label.commentaire"/></form:label>
-              <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                name="editContactClubFemme.commentaire" path="editContactClubFemme.commentaire"/>
-              <form:errors class="text-red-600 animate-pulse" path="editContactClubFemme.commentaire"/>
             </div>
           </div>
         </div>
@@ -197,13 +198,11 @@
       <!-- /.card-body -->
     </div>
     <!-- /.card -->
-    <div class="flex justify-center">
-      <div class="col-12">
+    <div class="flex justify-center mt-10">
         <a href="#"
            class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Annuler</a>
         <input type="submit" value="Création"
                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none">
-      </div>
     </div>
   </div>
 </form:form>        

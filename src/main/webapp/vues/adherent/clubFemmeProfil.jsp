@@ -98,7 +98,7 @@
                 </div>
             </div>
             <div class="rounded-xl mt-2 flex flex-col gap-2">
-                <div class="bg-neutral-50 rounded border border-neutral-100 p-4">
+                <div class="bg-neutral-50 rounded-xl border border-neutral-100 p-4">
                     <div class="flex justify-center gap-2">
                         <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
                              xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-8">
@@ -188,7 +188,7 @@
                               d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                     <h4 class="text-center text-lg font-semibold underline">
-                        Horaires d'ouvertures
+                        Horaires d'ouverture
                     </h4>
                 </div>
                 <div class="flex flex-col">
@@ -212,12 +212,12 @@
                 </div>
                 <div>
                     <div class="flex gap-16">
-                        <div>Longitude</div>
-                        <div>${adherent.longitude}</div>
+                        <div>Latitude</div>
+                        <div>${adherent.latitude}</div>
                     </div>
                     <div class="flex gap-16">
                         <div>Longitude</div>
-                        <div>${adherent.latitude}</div>
+                        <div>${adherent.longitude}</div>
                     </div>
                 </div>
             </div>-->
@@ -517,7 +517,7 @@
                                                                         type="submit">Enregistrer le suivi
                                                                 </button>
                                                             </div>
-                                                            <form:errors class="errors"
+                                                            <form:errors class="error-message"
                                                                          path="suiviVisiteAdh.dateCommentaire"/>
                                                         </div>
                                                     </fieldset>

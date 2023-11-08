@@ -11,16 +11,19 @@
 
 <%@page session="true"%>
     
-<footer class="fixed bottom-0 left-0 z-20 p-2 w-full bg-white border-t border-gray-100 shadow md:flex md:items-center md:justify-between md:p-3">
-    <span class="text-sm text-gray-500 sm:text-center">Copyright &copy; 2023 <a class="hover:underline" href="https://scabois.fr">SCABOIS.fr</a>.</strong> Tous droits réservés.
+<footer class="fixed bottom-0 text-sm bg-gray-300 text-gray-400 border-gray-400 dark:bg-gray-900 dark:text-gray-600 dark:border-gray-600 left-0 z-20 p-2 w-full border-t shadow md:flex md:items-center md:justify-between md:p-3">
+    
+    <span class="sm:text-center">Copyright &copy; 2023 <a class="hover:underline" href="https://scabois.fr">SCABOIS.fr</a>.</strong> Tous droits réservés.
     </span>
-    <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
+  
+    <ul class="flex flex-wrap items-center mt-3 sm:mt-0">
         <li>
             <a href="#" class="mr-4 hover:underline md:mr-6 ">SCABOIS : Société Coopérative des Artisans du BOIS</a>
         </li>
+        
         <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6">Version : 2.2.0.18</a>
+            <a href="#" class="mr-4 hover:underline md:mr-6">${project.version}</a>
         </li>
     </ul>
-    <!--2.2.0.18-->
+
 </footer>

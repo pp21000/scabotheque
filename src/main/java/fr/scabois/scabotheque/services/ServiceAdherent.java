@@ -35,10 +35,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author dslowensky
- */
 @Service
 public class ServiceAdherent implements IServiceAdherent {
 
@@ -359,12 +355,6 @@ public class ServiceAdherent implements IServiceAdherent {
     this.dao.editAdherent(pAdherent);
   }
 
-  /**
-   *
-   * @param adhId
-   * @param type
-   * @param commentaire
-   */
   @Override
   public void saveAdherentCommentaire(final int adhId, final PageType type, final String commentaire) {
     this.dao.saveAdherentCommentaire(adhId, type, commentaire);

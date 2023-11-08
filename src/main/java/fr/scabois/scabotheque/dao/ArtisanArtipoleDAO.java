@@ -14,6 +14,7 @@ import fr.scabois.scabotheque.bean.artisanArtipole.Metier;
 import fr.scabois.scabotheque.bean.artisanArtipole.Page;
 import fr.scabois.scabotheque.bean.artisanArtipole.Photo;
 import fr.scabois.scabotheque.bean.artisanArtipole.Specialite;
+import fr.scabois.scabotheque.bean.artisanArtipole.Travaux;
 import fr.scabois.scabotheque.utils.AppProperties;
 import java.io.IOException;
 import java.util.List;
@@ -22,20 +23,12 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- *
- * @author paul.petit
- */
 @Repository
 public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
 
   @PersistenceContext
   private EntityManager entityManager;
 
-  /**
-   *
-   * @param idActualite
-   */
   @Transactional
   @Override
   public void deleteActualite(final int idActualite) {
@@ -122,13 +115,13 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
   }
 
   @Override
-  public List<Emplacement> loadEmplacements() {
-    return (List<Emplacement>) this.entityManager.createQuery("from Emplacement", (Class) Emplacement.class).getResultList();
+  public Actualite loadActualite(final int idActualite) {
+    return (Actualite) this.entityManager.find((Class) Actualite.class, (Object) idActualite);
   }
 
   @Override
-  public List<Inspiration> loadInspirations() {
-    return (List<Inspiration>) this.entityManager.createQuery("from Inspiration", (Class) Inspiration.class).getResultList();
+  public List<Emplacement> loadEmplacements() {
+    return (List<Emplacement>) this.entityManager.createQuery("from Emplacement", (Class) Emplacement.class).getResultList();
   }
 
   @Override
@@ -138,8 +131,30 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
   }
 
   @Override
-  public Actualite loadActualite(final int idActualite) {
-    return (Actualite) this.entityManager.find((Class) Actualite.class, (Object) idActualite);
+  public Travaux loadTravaux(final int idTravaux) {
+    final Travaux travaux = (Travaux) this.entityManager.find((Class) Travaux.class, (Object) idTravaux);
+    return travaux;
+  }
+
+  @Override
+  public List<Travaux> loadTravauxList() {
+    return (List<Travaux>) this.entityManager.createQuery("from Travaux", (Class) Travaux.class).getResultList();
+  }
+
+  @Override
+  public Specialite loadSpecialite(final int idSpecialite) {
+    final Specialite specialite = (Specialite) this.entityManager.find((Class) Specialite.class, (Object) idSpecialite);
+    return specialite;
+  }
+
+  @Override
+  public List<Specialite> loadSpecialites() {
+    return (List<Specialite>) this.entityManager.createQuery("from Specialite", (Class) Specialite.class).getResultList();
+  }
+
+  @Override
+  public List<Inspiration> loadInspirations() {
+    return (List<Inspiration>) this.entityManager.createQuery("from Inspiration", (Class) Inspiration.class).getResultList();
   }
 
   @Override
@@ -186,7 +201,14 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
   @Override
   public void saveEmplacement(final Emplacement emplacement) {
     if (emplacement.getId() == null) {
-      this.createEmplacement(emplacement);
+      final Emplacement newEmpl = new Emplacement();
+      newEmpl.setLibelle(emplacement.getLibelle());
+      newEmpl.setContent(emplacement.getContent());
+      newEmpl.setType(emplacement.getType());
+      newEmpl.setData(emplacement.getData());
+      newEmpl.setAlt(emplacement.getAlt());
+      newEmpl.setPage(emplacement.getPage());
+      this.entityManager.persist((Object) newEmpl);
     } else {
       final Emplacement update = this.loadEmplacement(emplacement.getId());
       update.setLibelle(emplacement.getLibelle());
@@ -203,13 +225,29 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
 
   @Transactional
   @Override
+  public void saveTravaux(final Travaux travaux) {
+    if (travaux.getId() == null) {
+      final Travaux newTravaux = new Travaux();
+      newTravaux.setLibelle(travaux.getLibelle());
+      newTravaux.setSpecialites(travaux.getSpecialites());
+      this.entityManager.persist(newTravaux);
+    } else {
+      final Travaux update = this.loadTravaux(travaux.getId());
+      update.setLibelle(travaux.getLibelle());
+      update.setSpecialites(travaux.getSpecialites());
+      this.entityManager.persist(update);
+    }
+  }
+
+  @Transactional
+  @Override
   public void savePhoto(final Photo photo) {
     if (photo.getId() == null) {
-      final Photo newItem = new Photo();
-      newItem.setLibelle(photo.getLibelle());
-      newItem.setData(photo.getData());
-      newItem.setAlt(photo.getAlt());
-      this.entityManager.persist((Object) newItem);
+      final Photo newPhoto = new Photo();
+      newPhoto.setLibelle(photo.getLibelle());
+      newPhoto.setData(photo.getData());
+      newPhoto.setAlt(photo.getAlt());
+      this.entityManager.persist((Object) newPhoto);
     } else {
       final Photo update = this.loadPhoto(photo.getId());
       update.setLibelle(photo.getLibelle());
@@ -269,24 +307,5 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
   @Transactional
   public void saveMetiers(final List<Metier> metiers) {
     metiers.stream().forEach(m -> this.saveMetier(m));
-  }
-
-  @Transactional
-  public void createEmplacement(final Emplacement emplacement) {
-    final Emplacement newEmpl = new Emplacement();
-    newEmpl.setLibelle(emplacement.getLibelle());
-    newEmpl.setContent(emplacement.getContent());
-    newEmpl.setType(emplacement.getType());
-    newEmpl.setData(emplacement.getData());
-    newEmpl.setAlt(emplacement.getAlt());
-    newEmpl.setPage(emplacement.getPage());
-    this.entityManager.persist((Object) newEmpl);
-  }
-
-  @Transactional
-  public void createCategorie(final Categorie categorie) {
-    final Emplacement newEmpl = new Emplacement();
-    newEmpl.setLibelle(categorie.getLibelle());
-    this.entityManager.persist((Object) newEmpl);
   }
 }

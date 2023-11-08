@@ -17,14 +17,14 @@
 
     <fieldset class="mx-auto justify-center">
       <div class="md:flex md:items-center mb-6">
-        <div class="w-1/5" >
+        <div class="w-1/5">
           <label class="block text-gray-400 font-bold md:text-right mb-1 md:mb-0 pr-4" for="titre">
             Titre
           </label>
         </div>
-        <div class="w-3/5" >
-          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200" type="text" name="editAAActualite.titre" path="editAAActualite.titre" id="titre"/>
-          <form:errors path="editAAActualite.titre"/>
+        <div class="w-3/5">
+          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="text" name="editAAActualite.titre" path="editAAActualite.titre" id="titre"/>
+          <form:errors class="error-message" path="editAAActualite.titre"/>
         </div>
       </div>
       <div class="md:flex md:items-center mb-6 w-full">
@@ -34,8 +34,8 @@
           </label>
         </div >
         <div class="w-3/5">
-          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200" type="text" name="editAAActualite.contenu" path="editAAActualite.contenu" id="contenu"/>
-          <form:errors path="editAAActualite.contenu"/>
+          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="text" name="editAAActualite.contenu" path="editAAActualite.contenu" id="contenu"/>
+          <form:errors class="error-message" path="editAAActualite.contenu"/>
         </div>
       </div>
       <div class="md:flex md:items-center mb-6">
@@ -45,8 +45,8 @@
           </label>
         </div>
         <div class="w-3/5" >    
-          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200" type="text" name="editAAActualite.type" path="editAAActualite.type" id="type"/>
-          <form:errors path="editAAActualite.type"/>
+          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="text" name="editAAActualite.type" path="editAAActualite.type" id="type"/>
+          <form:errors class="error-message" path="editAAActualite.type"/>
         </div>
       </div>
       <div class="md:flex md:items-center mb-6">
@@ -56,8 +56,8 @@
           </label>
         </div>
         <div class="w-3/5" >    
-          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200" type="text" name="editAAActualite.sous_type" path="editAAActualite.sous_type" id="sous_type"/>
-          <form:errors path="editAAActualite.sous_type"/>
+          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="text" name="editAAActualite.sous_type" path="editAAActualite.sous_type" id="sous_type"/>
+          <form:errors class="error-message" path="editAAActualite.sous_type"/>
         </div>
       </div>
       <div class="md:flex md:items-center mb-6">
@@ -67,8 +67,8 @@
           </label>
         </div>
         <div class="w-3/5" >
-          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200" type="text" name="editAAActualite.position" path="editAAActualite.position" id="position"/>
-          <form:errors path="editAAActualite.position"/>
+          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="text" name="editAAActualite.position" path="editAAActualite.position" id="position"/>
+          <form:errors class="error-message" path="editAAActualite.position"/>
         </div>
       </div>
       <div class="md:flex md:items-center mb-6">
@@ -78,8 +78,8 @@
           </label>
         </div>
         <div class="w-3/5" >
-          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200" type="date" name="editAAActualite.date_ajout" path="editAAActualite.date_ajout" id="date_ajout"/>
-          <form:errors path="editAAActualite.date_ajout"/>
+          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="date" name="editAAActualite.date_ajout" path="editAAActualite.date_ajout" id="date_ajout"/>
+          <form:errors class="error-message" path="editAAActualite.date_ajout"/>
         </div>
       </div>
         
@@ -90,8 +90,8 @@
           </label>
         </div>
         <div class="w-3/5" >
-          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200" type="number" name="editAAActualite.id_adherent" path="editAAActualite.id_adherent" id="id_adherent"/>
-          <form:errors path="editAAActualite.id_adherent"/>
+          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="number" name="editAAActualite.id_adherent" path="editAAActualite.id_adherent" id="id_adherent"/>
+          <form:errors class="error-message" path="editAAActualite.id_adherent"/>
         </div>
       </div>
         

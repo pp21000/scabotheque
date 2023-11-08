@@ -77,8 +77,7 @@ form input.sansLabel {
 }
 
 .errors {
-    color: #f53;
-    
+    color: #f53; 
 }
 
 .succes {

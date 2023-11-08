@@ -8,6 +8,8 @@ import fr.scabois.scabotheque.bean.artisanArtipole.Inspiration;
 import fr.scabois.scabotheque.bean.artisanArtipole.Metier;
 import fr.scabois.scabotheque.bean.artisanArtipole.Page;
 import fr.scabois.scabotheque.bean.artisanArtipole.Photo;
+import fr.scabois.scabotheque.bean.artisanArtipole.Specialite;
+import fr.scabois.scabotheque.bean.artisanArtipole.Travaux;
 import fr.scabois.scabotheque.dao.IArtisanArtipoleDAO;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,13 +66,18 @@ public class ServiceArtipole implements IServiceArtipole {
   }
 
   @Override
-  public List<Emplacement> loadEmplacements() {
-    return (List<Emplacement>) this.dao.loadEmplacements();
+  public Actualite loadActualite(final int idActualite) {
+    return this.dao.loadActualite(idActualite);
   }
 
   @Override
   public List<Actualite> loadActualites() {
     return (List<Actualite>) this.dao.loadActualites();
+  }
+
+  @Override
+  public Inspiration loadInspiration(final int idInspiration) {
+    return this.dao.loadInspiration(idInspiration);
   }
 
   @Override
@@ -84,13 +91,28 @@ public class ServiceArtipole implements IServiceArtipole {
   }
 
   @Override
-  public Inspiration loadInspiration(final int idInspiration) {
-    return this.dao.loadInspiration(idInspiration);
+  public List<Emplacement> loadEmplacements() {
+    return (List<Emplacement>) this.dao.loadEmplacements();
   }
 
   @Override
-  public Actualite loadActualite(final int idActualite) {
-    return this.dao.loadActualite(idActualite);
+  public Travaux loadTravaux(final int idTravaux) {
+    return this.dao.loadTravaux(idTravaux);
+  }
+
+  @Override
+  public List<Travaux> loadTravauxList() {
+    return (List<Travaux>) this.dao.loadTravauxList();
+  }
+
+  @Override
+  public Specialite loadSpecialite(final int idSpecialite) {
+    return this.dao.loadSpecialite(idSpecialite);
+  }
+
+  @Override
+  public List<Specialite> loadSpecialites() {
+    return (List<Specialite>) this.dao.loadSpecialites();
   }
 
   @Override
@@ -138,18 +160,23 @@ public class ServiceArtipole implements IServiceArtipole {
   }
 
   @Override
+  public void saveTravaux(final Travaux travaux) {
+    this.dao.saveTravaux(travaux);
+  }
+
+  @Override
   public void saveCategorie(final Categorie categorie) {
     this.dao.saveCategorie(categorie);
   }
 
   @Override
-  public void saveMetier(final Metier metier) {
-    this.dao.saveMetier(metier);
+  public void saveCategories(final List<Categorie> categories) {
+    this.dao.saveCategories((List) categories);
   }
 
   @Override
-  public void saveCategories(final List<Categorie> categories) {
-    this.dao.saveCategories((List) categories);
+  public void saveMetier(final Metier metier) {
+    this.dao.saveMetier(metier);
   }
 
   @Override

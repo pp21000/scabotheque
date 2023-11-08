@@ -10,12 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/**
- *
- * @author paul.petit
- */
 @Entity
 @Table(name = "aa_specialite")
 public class Specialite implements HasIdLibelle, Serializable {
@@ -24,6 +21,8 @@ public class Specialite implements HasIdLibelle, Serializable {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
   private String libelle;
+  @ManyToOne
+  private Travaux travaux;
 
   @Override
   public Integer getId() {
@@ -43,5 +42,20 @@ public class Specialite implements HasIdLibelle, Serializable {
   @Override
   public void setLibelle(final String libelle) {
     this.libelle = libelle;
+  }
+
+//  public Travaux getTravaux() {
+//    return this.travaux;
+//  }
+//
+//  public void setTravaux(final Travaux travaux) {
+//    this.travaux = travaux;
+//  }
+  public Travaux getTravaux() {
+    return travaux;
+  }
+
+  public void setTravaux(Travaux travaux) {
+    this.travaux = travaux;
   }
 }

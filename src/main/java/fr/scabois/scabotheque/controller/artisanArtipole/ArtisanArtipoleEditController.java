@@ -8,6 +8,7 @@ import fr.scabois.scabotheque.controller.artisanArtipole.edit.AddMetierForm;
 import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditAAActualiteForm;
 import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditAAEmplacementForm;
 import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditAAPhotoForm;
+import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditAATravauxForm;
 import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditCategoriesForm;
 import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditMetiersForm;
 import fr.scabois.scabotheque.enums.PageType;
@@ -56,6 +57,7 @@ public class ArtisanArtipoleEditController {
     }
     pModel.addAttribute("emplacement", (Object) emplacement);
     pModel.addAttribute("editForm", (Object) editForm);
+    pModel.addAttribute("pageList", (Object) this.service.loadPages());
     pModel.addAttribute("pageType", (Object) PageType.AA_EMPLACEMENT);
     return "AA-edit-emplacement";
   }
@@ -114,13 +116,13 @@ public class ArtisanArtipoleEditController {
   @RequestMapping(value = {"/AA-delete-actualite"}, method = {RequestMethod.GET})
   public String deleteActualite(@RequestParam("idActualite") final int idActualite, final ModelMap pModel, final HttpServletRequest request) {
     this.service.deleteActualite(idActualite);
-    return "AA-page-actualite";
+    return "redirect:/AA-page-actualites";
   }
 
   @RequestMapping(value = {"/AA-delete-photo"}, method = {RequestMethod.GET})
   public String deletePhoto(@RequestParam("idPhoto") final int idPhoto, final ModelMap pModel, final HttpServletRequest request) {
     this.service.deletePhoto(idPhoto);
-    return "AA-page-photos";
+    return "redirect:/AA-page-photos";
   }
 
   @RequestMapping(value = {"/AA-delete-categorie"}, method = {RequestMethod.GET})
@@ -136,8 +138,9 @@ public class ArtisanArtipoleEditController {
   }
 
   @RequestMapping(value = {"/AA-delete-emplacement"}, method = {RequestMethod.GET})
-  public String deleteEmplacement(@RequestParam("idPhoto") final int idPhoto, final ModelMap pModel, final HttpServletRequest request) {
-    return "AA-page-emplacement";
+  public String deleteEmplacement(@RequestParam("idEmplacement") final int idEmplacement, final ModelMap pModel, final HttpServletRequest request) {
+    this.service.deleteEmplacement(idEmplacement);
+    return "redirect:/AA-page-emplacement";
   }
 
   @RequestMapping(value = {"/AA-edit-photo"}, method = {RequestMethod.POST})
@@ -176,6 +179,32 @@ public class ArtisanArtipoleEditController {
     return this.aaController.emplacement(pModel);
   }
 
+  @RequestMapping(value = {"/AA-add-travaux"}, method = {RequestMethod.POST})
+  public String AddTravaux(@Valid @ModelAttribute("addForm") final EditAATravauxForm addForm, final BindingResult pBindingResult, final ModelMap pModel, final HttpServletRequest request) {
+    if (!pBindingResult.hasErrors()) {
+      this.service.saveTravaux(addForm.getTravaux());
+//       List<String> nouvellesSpecialites = addForm.getNouvellesSpecialites();
+//
+//        if (nouvellesSpecialites != null && !nouvellesSpecialites.isEmpty()) {
+//            Travaux travail = addForm.getTravaux(); // Obtenez le travail existant
+//
+//            // Créez de nouvelles instances de Specialite pour les nouvelles spécialités
+//            for (String libelle : nouvellesSpecialites) {
+//                Specialite nouvelleSpecialite = new Specialite();
+//                nouvelleSpecialite.setLibelle(libelle);
+//
+//                // Associez la spécialité au travail
+//                nouvelleSpecialite.setTravaux(travail);
+//
+//                // Enregistrez la nouvelle spécialité en utilisant votre service ou repository
+//                specialiteService.save(nouvelleSpecialite);
+//            }
+//        }
+      return "redirect:/AA-page-travaux";
+    }
+    return this.aaController.travaux(pModel);
+  }
+
   @RequestMapping(value = {"/AA-add-actualite"}, method = {RequestMethod.POST})
   public String AddActualite(@Valid @ModelAttribute("addForm") final EditAAActualiteForm addForm, final BindingResult pBindingResult, final ModelMap pModel, final HttpServletRequest request) {
     if (!pBindingResult.hasErrors()) {
@@ -198,7 +227,7 @@ public class ArtisanArtipoleEditController {
   public String saveActualite(@Valid @ModelAttribute("editForm") final EditAAActualiteForm addForm, final BindingResult pBindingResult, final ModelMap pModel, final HttpServletRequest request) {
     if (!pBindingResult.hasErrors()) {
       this.service.saveActualite(addForm.getActualite());
-      return "redirect:/AA-page-actualite";
+      return "redirect:/AA-page-actualites";
     }
     return this.editActualite(addForm.getActualite().getId(), pModel, request);
   }
@@ -209,7 +238,7 @@ public class ArtisanArtipoleEditController {
       this.service.saveEmplacement(addForm.getEmplacement());
       return "redirect:/AA-page-emplacement";
     }
-    return this.aaController.emplacement(pModel);
+    return this.editEmplacement(addForm.getEmplacement().getId(), pModel, request);
   }
 
   @RequestMapping(value = {"/AA-add-categorie"}, method = {RequestMethod.POST})
@@ -225,7 +254,7 @@ public class ArtisanArtipoleEditController {
   public String AddPhoto(@Valid @ModelAttribute("addForm") final EditAAPhotoForm addForm, final BindingResult pBindingResult, final ModelMap pModel, final HttpServletRequest request) {
     if (!pBindingResult.hasErrors()) {
       this.service.savePhoto(addForm.getPhoto());
-      return "redirect:/AA-page-Photos";
+      return "redirect:/AA-page-photos";
     }
     return this.aaController.photo(pModel);
   }

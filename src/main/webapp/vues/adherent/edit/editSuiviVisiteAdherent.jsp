@@ -46,10 +46,10 @@
                     </form:label>
                     <form:input class="p-2 w-1/2 bg-white rounded-lg border border-gray-200" type="date" name="suiviVisiteAdh.dateCommentaire"
                                 path="suiviVisiteAdh.dateCommentaire"/>
-                    <form:errors path="suiviVisiteAdh.dateCommentaire"/>
+                    <form:errors class="error-message" path="suiviVisiteAdh.dateCommentaire"/>
                 </div>
                 <div class="text-center mt-2 underline">Contenu du suivi :</div>
-                <form:textarea class="w-96 h-32 block text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" id="summernote" name="editordata" path="suiviVisiteAdh.commentaire"/>
+                <form:textarea class="w-96 h-32 p-1 block text-sm text-gray-900 rounded border border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" id="summernote" name="editordata" path="suiviVisiteAdh.commentaire"/>
             </fieldset>
 
             <div class="mt-4 flex justify-center gap-2">

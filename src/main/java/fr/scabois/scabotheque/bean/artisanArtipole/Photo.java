@@ -12,10 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- *
- * @author paul.petit
- */
 @Entity
 @Table(name = "photos")
 public class Photo implements HasIdLibelle, Serializable {

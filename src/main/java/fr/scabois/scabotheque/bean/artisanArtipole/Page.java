@@ -8,10 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- *
- * @author paul.petit
- */
 @Entity
 @Table(name = "aa_pages")
 public class Page implements HasIdLibelle, Serializable {

@@ -28,21 +28,21 @@
               <form:label path="addMetier.libelle">Libellé</form:label>
               </div>
             <form:input class="py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="addMetier.libelle" path="addMetier.libelle"/>
-            <form:errors class="error" path="addMetier.libelle"/>
+            <form:errors class="error-message" path="addMetier.libelle"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="w-32 mx-2">
               <form:label path="addMetier.description">Description</form:label>
               </div>
             <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="addMetier.description" path="addMetier.description"/>
-            <form:errors class="error" path="addMetier.description"/>
+            <form:errors class="error-message" path="addMetier.description"/>
           </div>
         </div>
       </fieldset>
     </div>
 
     <div class="text-center my-10">
-      <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer le metier</button>
+      <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer le métier</button>
     </div>
 
   </form:form>        
@@ -62,8 +62,8 @@
             </label>
           </div>
           <div class="w-1/5" >
-            <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200" type="text" name="editMetiers[${status.index}].libelle" path="editMetiers[${status.index}].libelle" id="libelle"/>
-            <form:errors path="editMetiers[${status.index}].libelle"/>
+            <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="text" name="editMetiers[${status.index}].libelle" path="editMetiers[${status.index}].libelle" id="libelle"/>
+            <form:errors class="error-message" path="editMetiers[${status.index}].libelle"/>
           </div>
 <!--        </div>
         <div class="flex items-center mb-6">-->
@@ -73,8 +73,8 @@
             </label>
           </div>
           <div class="flex-1" >
-            <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200" type="text" name="editMetiers[${status.index}].description" path="editMetiers[${status.index}].description" id="description"/>
-            <form:errors path="editMetiers[${status.index}].description"/>
+            <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="text" name="editMetiers[${status.index}].description" path="editMetiers[${status.index}].description" id="description"/>
+            <form:errors class="error-message" path="editMetiers[${status.index}].description"/>
           </div>
         </div>
       </fieldset>

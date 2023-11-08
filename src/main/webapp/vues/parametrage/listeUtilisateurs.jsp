@@ -69,10 +69,8 @@
                                 </div>
                             </c:forEach>
                         </div>
-                        <div><b><i><form:errors class="error" path="list[${status.index}].username" escape="false"/></i></b>
-                        </div>
-                        <div><b><i><form:errors class="error" path="list[${status.index}].password" escape="false"/></i></b>
-                        </div>
+                        <div><form:errors class="error-message" path="list[${status.index}].username" escape="false"/></div>
+                        <div><form:errors class="error-message" path="list[${status.index}].password" escape="false"/></div>
                         <div class="flex justify-center">
                             <button type="submit"
                                     class="ml-2 px-3 py-3.5 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
@@ -85,6 +83,6 @@
                 </div>
             </c:forEach>
         </form:form>
-        <span class="errors"> ${erreur} </span>
+        <span class="error-message"> ${erreur} </span>
     </div>
 </div>

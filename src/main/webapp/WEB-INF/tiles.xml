@@ -73,6 +73,12 @@
     <put-attribute name="pageName" value="artisan-artipole"/>
   </definition>
 
+  <definition name="AA-page-travaux" extends="base.board.definition">
+    <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-travaux.jsp"/>
+    <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
+    <put-attribute name="pageName" value="page-travaux"/>
+  </definition>
+
   <definition name="AA-page-je-cherche-un-artisan" extends="base.board.definition">
     <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-je-cherche-un-artisan.jsp"/>
     <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
@@ -106,13 +112,13 @@
   <definition name="AA-page-actualites" extends="base.board.definition">
     <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-actualites.jsp"/>
     <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="page-actualite"/>
+    <put-attribute name="pageName" value="page-actualites"/>
   </definition>
   
   <definition name="AA-edit-actualite" extends="base.board.definition">
     <put-attribute name="body" value="/vues/artisanArtipole/admin/edit/AA-edit-actualite.jsp"/>
     <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="page-actualite"/>
+    <put-attribute name="pageName" value="page-actualites"/>
   </definition>
 
   <definition name="AA-page-photos" extends="base.board.definition">

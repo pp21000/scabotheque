@@ -8,21 +8,29 @@ import fr.scabois.scabotheque.bean.artisanArtipole.Inspiration;
 import fr.scabois.scabotheque.bean.artisanArtipole.Metier;
 import fr.scabois.scabotheque.bean.artisanArtipole.Page;
 import fr.scabois.scabotheque.bean.artisanArtipole.Photo;
+import fr.scabois.scabotheque.bean.artisanArtipole.Specialite;
+import fr.scabois.scabotheque.bean.artisanArtipole.Travaux;
 import java.util.List;
 
 public interface IServiceArtipole {
 
   List<Adherent> loadArtisanArtipole();
 
+  Emplacement loadEmplacement(final int p0);
+
   List<Emplacement> loadEmplacements();
 
-  Emplacement loadEmplacement(final int p0);
+  Travaux loadTravaux(final int p0);
+
+  List<Travaux> loadTravauxList();
+
+  Specialite loadSpecialite(final int p0);
+
+  List<Specialite> loadSpecialites();
 
   Inspiration loadInspiration(final int p0);
 
   Actualite loadActualite(final int p0);
-
-  void saveEmplacement(final Emplacement p0);
 
   void deleteActualite(final int p0);
 
@@ -53,6 +61,10 @@ public interface IServiceArtipole {
   List<Inspiration> loadInspirations();
 
   List<Photo> loadPhotos();
+
+  void saveEmplacement(final Emplacement p0);
+
+  void saveTravaux(final Travaux p0);
 
   void saveActualite(final Actualite p0);
 

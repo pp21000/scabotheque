@@ -13,10 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/**
- *
- * @author paul.petit
- */
 @Entity
 @Table(name = "aa_categories_specialites")
 public class CategorieSpecialite implements HasId, Serializable {

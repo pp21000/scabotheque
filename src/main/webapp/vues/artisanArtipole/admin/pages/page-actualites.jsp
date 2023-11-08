@@ -1,6 +1,3 @@
-<%--
-  User: ludovic.spina - Date: 21/02/2023 - Time: 11:51
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
          pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -12,12 +9,12 @@
 
   <div class="w-full">
     <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" 
-            id="addBtn" type="button" onclick="showNewEmplacement()">Ajouter une actualité</button>
+            id="addBtn" type="button" onclick="showAddForm()">Ajouter une actualité</button>
   </div>
 
 
   <form:form class="editAdherent" method="post" modelAttribute="addForm" action="AA-add-actualite">
-    <div class="hidden" id="addEmplacementForm" title="Ajouter une actualité">
+    <div class="hidden" id="addItemForm" title="Ajouter une actualité">
       <fieldset>
         <div>
           <div class="flex items-center mt-2 text-right">
@@ -25,46 +22,46 @@
               <form:label path="editAAActualite.titre">Titre de l'actu</form:label>
               </div>              
             <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAActualite.titre" path="editAAActualite.titre"/>
-            <form:errors class="error" path="editAAActualite.titre"/>
+            <form:errors class="error-message" path="editAAActualite.titre"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAActualite.contenu">Contenu</form:label>
               </div>
             <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAActualite.contenu" path="editAAActualite.contenu"/>
-            <form:errors class="error" path="editAAActualite.contenu"/>
+            <form:errors class="error-message" path="editAAActualite.contenu"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAActualite.type">Type</form:label>
               </div>
             <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAActualite.type" path="editAAActualite.type"/>
-            <form:errors class="error" path="editAAActualite.type"/>
+            <form:errors class="error-message" path="editAAActualite.type"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAActualite.sous_type">Sous type</form:label>
               </div>
             <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAActualite.sous_type" path="editAAActualite.sous_type"/>
-            <form:errors class="error" path="editAAActualite.sous_type"/>
+            <form:errors class="error-message" path="editAAActualite.sous_type"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">
-              <form:label path="editAAActualite.position">position</form:label>
+              <form:label path="editAAActualite.position">Position</form:label>
               </div>
             <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAActualite.position" path="editAAActualite.position"/>
-            <form:errors class="error" path="editAAActualite.position"/>
+            <form:errors class="error-message" path="editAAActualite.position"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAActualite.date_ajout">Date d'ajout</form:label>
               </div>
             <form:input type="date" class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAActualite.date_ajout" path="editAAActualite.date_ajout"/>
-            <form:errors class="error" path="editAAActualite.date_ajout"/>
+            <form:errors class="error-message" path="editAAActualite.date_ajout"/>
           </div>
         </div>
           <div class="text-center my-10">
-            <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer l'acttualité</button>
+            <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer l'actualité</button>
           </div>
       </fieldset>
     </div>
@@ -116,17 +113,18 @@
           <td class="px-6 py-4">
             <c:out value="${item.sous_type}"/>
           </td>
-          <td class="px-6 py-4">
+          <td class="px-6 py-4 text-center">
             <c:out value="${item.position}"/>
           </td>
           <td class="px-6 py-4">
             <c:out value="${item.date_ajout}"/>
           </td>
           <td class="px-2 py-4">
-           <a href="${urlAAEdit}"><svg class="w-6 h-6 dark:fill-gray-100"><use xlink:href="<c:url value="/resources/images/icones.svg#edit"/>"></use></svg></a>
-          </td>
+            
+           <a href="${urlAAEdit}" class="hover:font-medium"><svg class="w-10 h-10 p-2 fill-gray-400 hover:bg-gray-800 hover:fill-white rounded-lg"><use xlink:href="<c:url value="/resources/images/icones.svg#edit"/>"></use></svg></a>
+            
           <td class="px-2 py-4">
-            <a href="${urlAADelete}"><svg class="w-6 h-6 dark:fill-gray-100"><use xlink:href="<c:url value="/resources/images/icones.svg#trash"/>"></use></svg></a>
+            <a href="${urlAADelete}"><svg class="w-10 h-10 p-2 fill-gray-400 hover:bg-red-900 hover:fill-white rounded-lg"><use xlink:href="<c:url value="/resources/images/icones.svg#trash"/>"></use></svg></a>
           </td>
 
         </tr>     
@@ -144,16 +142,9 @@
 </div>
 
 <script>
-  $(function () {
 
-    $("#addEmplacementBtn").click(function (e) {
-      alert("test");
-      $("#addEmplacementForm").toggle('slow');
-    });
-  });
-
-  function showNewEmplacement() {
-    $("#addEmplacementForm").toggle('slow');
+  function showAddForm() {
+    $("#addItemForm").toggle('quick');
   }
 
 </script>

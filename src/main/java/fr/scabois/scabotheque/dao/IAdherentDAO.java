@@ -94,8 +94,7 @@ public interface IAdherentDAO {
 
   public AdherentContactComptable loadAdherentContactComptable(int idAdh);
 
-  public List<AdherentContactRole> loadAdherentContactFonction(int adhId, Boolean isDirigeant, Boolean isCommerce,
-          Boolean isAdmin, Boolean isCompta);
+  public List<AdherentContactRole> loadAdherentContactFonction(int adhId, Boolean isDirigeant, Boolean isCommerce, Boolean isAdmin, Boolean isCompta);
 
   public AdherentLogistique loadAdherentLogistique(int idAdh);
 

@@ -7,7 +7,7 @@
 <%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 
-<nav class="bg-gray-300 border-b border-gray-100 fixed z-10 w-screen px-2 sm:px-4 py-2.5 rounded dark:text-gray-50 dark:bg-gray-800 rounded-lg">
+<nav class="bg-gray-300 border-b border-gray-400 dark:border-none fixed z-10 w-screen px-2 sm:px-4 py-2.5 dark:text-gray-50 dark:bg-gray-900">
   <div class="flex flex-wrap justify-between items-center mx-auto">
     <a href="/scabotheque" class="flex items-center">
       <img src="<c:url value="/resources/dist/img/modus.png" />" class="mr-3 h-6 sm:h-9" alt="Scabothèques">
@@ -80,8 +80,8 @@
         </sec:authorize>
         <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_ARTIPOLE_EDIT')">
         <li>
-          <a href=<c:url value="/AA-admin"/>
-             class="<c:if test = "${navType == 'AAADMIN'}"> text-green-600 font-medium animate-pulse </c:if>
+          <a href=<c:url value="/AA-page-accueil"/>
+             class="<c:if test = "${navType == 'AA_ADMIN'}"> text-green-600 font-medium animate-pulse </c:if>
              block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-600 md:p-0">Artisan Artipole</a>
         </li>
         </sec:authorize>

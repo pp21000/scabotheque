@@ -95,11 +95,8 @@ public class EditAdherentForm {
     return adherent;
   }
    */
-  /**
-   *
-   * @param pAdherent
-   */
-  /*public void setAdherent(final EditAdherent pAdherent) {
+
+ /*public void setAdherent(final EditAdherent pAdherent) {
     adherent = pAdherent;
   }*/
 }

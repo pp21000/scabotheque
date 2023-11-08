@@ -15,6 +15,7 @@
   <form:form method="post" modelAttribute="editForm" action="AA-edit-emplacement?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">    
     <form:input type="hidden" path="editAAEmplacement.id"/>
     <form:input type="hidden" path="editAAEmplacement.data"/>
+    <form:input type="hidden" path="editAAEmplacement.type"/>
     <fieldset class="mx-auto justify-center">
       <div class="md:flex md:items-center mb-6">
         <div class="w-1/5" >
@@ -23,8 +24,9 @@
           </label>
         </div>
         <div class="w-3/5" >
-          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200" type="text" name="editAAEmplacement.type" path="editAAEmplacement.type" id="type"/>
-          <form:errors path="editAAEmplacement.type"/>
+          <%--<form:input class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="text" name="editAAEmplacement.type" path="editAAEmplacement.type" id="type"/>--%>
+          <div class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="text" name="editAAEmplacement.type" path="editAAEmplacement.type" id="type"><c:out value="${emplacement.type}"/></div>
+          <form:errors class="error-message" path="editAAEmplacement.type"/>
         </div>
       </div>
       <div class="md:flex md:items-center mb-6 w-full">
@@ -34,46 +36,51 @@
           </label>
         </div >
         <div class="w-3/5">
-          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200" type="text" name="editAAEmplacement.libelle" path="editAAEmplacement.libelle" id="libelle"/>
-          <form:errors path="editAAEmplacement.libelle"/>
+          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="text" name="editAAEmplacement.libelle" path="editAAEmplacement.libelle" id="libelle"/>
+          <form:errors class="error-message" path="editAAEmplacement.libelle"/>
         </div>
       </div>
+        
       <div class="md:flex md:items-center mb-6">
+        
         <div class="w-1/5" >
           <label class="block text-gray-400 font-bold md:text-right mb-1 md:mb-0 pr-4" for="content">
             Content
           </label>
         </div>
         <div class="w-3/5" >    
-          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200" type="text" name="editAAEmplacement.content" path="editAAEmplacement.content" id="content"/>
-          <form:errors path="editAAEmplacement.content"/>
+          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="text" name="editAAEmplacement.content" path="editAAEmplacement.content" id="content"/>
+          <form:errors class="error-message" path="editAAEmplacement.content"/>
         </div>
       </div>
+        
       <div class="md:flex md:items-center mb-6">
         <div class="w-1/5" >
           <label class="block text-gray-400 font-bold md:text-right mb-1 md:mb-0 pr-4" for="content">
-            Data
+            Image
           </label>
         </div>
+        
         <div class="w-3/5" >    
           <c:choose>
             <c:when test="${emplacement.type.equals('image')}">
-              <div class="flex">
-                <img class="max-h-24 mr-5 rounded" src="${emplacement.dataImg}" />     
-                <div class="my-auto flex justify-center ml-4">
+              <div class="flex">   
+                <img class="max-h-24 mr-5 rounded" src="${emplacement.dataImg}"/>
+                <div class="my-auto flex justify-center">
                   <div class="flex flex-col">
-                    <form:input type="file" path="editAAEmplacement.file" accept="image/x-png,image/gif,image/jpeg"/> <br/>
+                    <form:input type="file" path="editAAEmplacement.file" accept="image/x-png,image/gif,image/jpeg"/>
                   </div>
                 </div>
               </div>
             </c:when>
             <c:otherwise>
-              <form:input class="p-2  bg-white w-full rounded-lg border border-gray-200" type="text" name="editAAEmplacement.data" path="editAAEmplacement.data" id="data"/>
+              <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200" type="text" name="editAAEmplacement.data" path="editAAEmplacement.data" id="data"/>
             </c:otherwise>
           </c:choose>
-          <form:errors path="editAAEmplacement.data"/>
+          <form:errors class="error-message" path="editAAEmplacement.data"/>
         </div>
       </div>
+        
       <div class="md:flex md:items-center mb-6">
         <div class="w-1/5" >
           <label class="block text-gray-400 font-bold md:text-right mb-1 md:mb-0 pr-4" for="alt">
@@ -81,26 +88,29 @@
           </label>
         </div>
         <div class="w-3/5" >
-          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200" type="text" name="editAAEmplacement.alt" path="editAAEmplacement.alt" id="alt"/>
-          <form:errors path="editAAEmplacement.alt"/>
+          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="text" name="editAAEmplacement.alt" path="editAAEmplacement.alt" id="alt"/>
+          <form:errors class="error-message" path="editAAEmplacement.alt"/>
         </div>
       </div>
+        
       <div class="md:flex md:items-center mb-6">
+        
         <div class="w-1/5" >
           <label class="block text-gray-400 font-bold md:text-right mb-1 md:mb-0 pr-4" for="editAAEmplacement.page.id">
-            Id page
+            Page
           </label>
         </div>
+        
         <div class="w-3/5" >
-
           <form:select class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.page" path="editAAEmplacement.page.id">
             <form:options items="${pageList}" itemValue="id" itemLabel="libelle"/>
           </form:select>
-
           <%--<form:input class="p-2  bg-white rounded-lg border border-gray-200" type="number" name="editAAEmplacement.page.id" path="editAAEmplacement.page.id" id="editAAEmplacement.page.id"/>--%>
-          <form:errors path="editAAEmplacement.page.id"/>
+          <form:errors class="error-message" path="editAAEmplacement.page.id"/>
         </div>
+        
       </div>
+        
     </fieldset>
 
     <div class="mt-4 flex justify-center gap-2">
@@ -110,17 +120,4 @@
     </div>
   </form:form>
 </div>
-
-
-<script>
-  $(function () {
-    $(document).ready(function () {
-      $('#summernote').summernote({
-        placeholder: '<spring:message code="label.commentaire"/>',
-        tabsize: 2,
-        height: 150
-      });
-    });
-  });
-</script>
 

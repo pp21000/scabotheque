@@ -14,9 +14,9 @@
 <%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <div>
-    <div class="flex justify-start">
+    <div class="flex justify-start mb-2">
         <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ACTIVITE_EDIT')">
-            <div class="editIcone">
+            <div class="rounded hover:bg-gray-300 p-1">
                 <c:url value="/edit/editActiviteAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
                 <span>
                     <a href="${url}"><svg class="w-6 h-6" fill="none" stroke="currentColor"
@@ -30,7 +30,7 @@
             </div>
         </sec:authorize>
     </div>
-    <div class="showDetailCommerceTitre grid grid-cols-5 mb-4">
+    <div class="showDetailCommerceTitre grid grid-cols-5 bg-gray-300 dark:bg-gray-800 p-2 rounded-t-2xl">
         <span class="col-span-2"></span>
         <span class="flex justify-center">%tage</span>
         <div class="col-span-2 grid grid-cols-4">
@@ -40,10 +40,10 @@
             <span>N-3</span>
         </div>
     </div>
-    <div id="accordion-arrow-icon" data-accordion="open">
+    <div id="accordion-arrow-icon" data-accordion="open" class="bg-gray-300 dark:bg-gray-800">
         <h2>
             <button type="button"
-                    class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-200 border border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100"
+                    class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-200 border border-gray-200 hover:bg-gray-500 dark:hover:bg-gray-900"
                     data-accordion-target="#accordion-year" aria-expanded="false"
                     aria-controls="accordion-arrow-icon-body-3">
                 <span>Année</span>
@@ -132,10 +132,10 @@
         </div>
         <h2>
             <button type="button"
-                    class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100"
+                    class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-200 border border-gray-200 hover:bg-gray-500 dark:hover:bg-gray-900"
                     data-accordion-target="#accordion-today" aria-expanded="false"
-                    aria-controls="accordion-arrow-icon-body-3">
-                <span>à aujourd'hui</span>
+                    aria-controls="accordion-arrow-icon-body-3" onclick="toggleAtDateTable()">
+                <span>À aujourd'hui</span>
                 <svg class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20"
                      xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd"
@@ -220,19 +220,13 @@
             </div>
         </div>
     </div>
-
-
-    <script>
-        $(function () {
-            $('#yearTableRB').click(function (e) {
-                $("#yearTable").toggle();
-                $("#atDateTable").toggle();
-            });
-            $('#atDateTableRB').click(function (e) {
-                $("#yearTable").toggle();
-                $("#atDateTable").toggle();
-            });
-        });
-    </script>
-
 </div>
+
+<script>
+ 
+ // function toggleAtDateTable() {
+  //  $("#atDateTable").slideDown(500);
+ // }
+  
+</script>
+

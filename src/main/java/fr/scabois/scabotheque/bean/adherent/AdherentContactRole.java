@@ -224,4 +224,8 @@ public class AdherentContactRole implements HasId {
     this.roleSalarieEOLASId = roleSalarieEOLASId;
   }
 
+  public String getlibelle() {
+    return this.nom + " - " + this.prenom;
+  }
+
 }

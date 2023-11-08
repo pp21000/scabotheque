@@ -92,6 +92,8 @@ public class LogistiqueController {
       camions.stream().forEach(c -> camionsForm.getCamions().add(new EditCamion(c)));
     }
     pModel.addAttribute("camionsForm", camionsForm);
+    pModel.addAttribute("navType", NavType.LOGISTIQUE);
+    pModel.addAttribute("pageType", PageType.LISTE_CAMIONS);
     return "listeCamions";
   }
 
@@ -105,6 +107,8 @@ public class LogistiqueController {
 
     pModel.addAttribute("conducteursForm", conducteursForm);
     pModel.addAttribute("newConducteur", new LogistiqueConducteur());
+    pModel.addAttribute("navType", NavType.LOGISTIQUE);
+    pModel.addAttribute("pageType", PageType.LISTE_CONDUCTEURS);
     return "listeConducteurs";
   }
 

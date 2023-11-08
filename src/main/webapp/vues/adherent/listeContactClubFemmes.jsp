@@ -28,7 +28,7 @@
   <div class="card-body">
     <div class="grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
       <c:forEach items="${listeContacts}" var="contact">
-        <div class="w-full pt-2 max-w-s bg-white rounded-lg border border-gray-200 shadow-md" id="${contact.id}">
+        <div class="w-full pt-2 max-w-s bg-white rounded-lg shadow-md" id="${contact.id}">
           <h5 class="mb-1 text-center bg-pink-300 font-medium text-gray-900">
             <c:out value="${contact.prenom}"/> <c:out value="${contact.nom}"/>
           </h5>

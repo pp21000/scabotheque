@@ -37,7 +37,7 @@ public class LogistiqueDAO implements ILogistiqueDAO {
     } catch (IOException ex) {
       System.err.println("Access au fichier :" + ex.getMessage());
     } catch (InterruptedException ex) {
-      System.err.println("Arret inatentdu :" + ex.getMessage());
+      System.err.println("Arrêt inattendu :" + ex.getMessage());
     }
   }
 

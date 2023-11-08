@@ -16,22 +16,25 @@
 
 <div>
   <div class="grid grid-cols-2">
+    
     <div>
       <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')">
-        <div class="flex justify-start">
-          <c:url value="/edit/editArtipoleAdh" var="url">
-            <c:param name="idAdh" value="${adherent.id}"/>
-          </c:url>
-          <span>
-            <a href="${url}">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-              </svg>
-            </a>
-          </span>
+        <div class="flex justify-start mb-2">
+          <div class="rounded hover:bg-gray-300 p-1">
+            <c:url value="/edit/editArtipoleAdh" var="url">
+              <c:param name="idAdh" value="${adherent.id}"/>
+            </c:url>
+            <span>
+              <a href="${url}">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                </svg>
+              </a>
+            </span>
+          </div>
         </div>
       </sec:authorize>
-      <div class="bg-white m-2 overflow-hidden shadow rounded-lg border">
+      <div class="bg-white m-2 overflow-hidden shadow rounded-lg">
         <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
           <dl class="sm:divide-y sm:divide-gray-200">
             <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -152,23 +155,26 @@
         </div>
       </div>
     </div>
+              
     <div>
       <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')">
-        <div class="flex justify-start">
-          <c:url value="/edit/editMetiersAdherent" var="url">
-            <c:param name="idAdh" value="${adherent.id}"/>
-          </c:url>
-          <span>
-            <a href="${url}">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-              </svg>
-            </a>
-          </span>
+        <div class="flex justify-start mb-2">
+          <div class="rounded hover:bg-gray-300 p-1">
+            <c:url value="/edit/editMetiersAdherent" var="url">
+              <c:param name="idAdh" value="${adherent.id}"/>
+            </c:url>
+            <span>
+              <a href="${url}">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                </svg>
+              </a>
+            </span>
+          </div>
         </div>
       </sec:authorize>
 
-      <div class="bg-white m-2 overflow-hidden shadow rounded-lg border">
+      <div class="bg-white m-2 overflow-hidden shadow rounded-lg">
         <c:forEach items="${metiers}" var="metier">
           <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
             <dl class="sm:divide-y sm:divide-gray-200">
@@ -191,7 +197,7 @@
   </div>
 
   <div class="">
-    <div class="bg-white m-2 overflow-hidden shadow rounded-lg border">
+    <div class="bg-white m-2 overflow-hidden shadow rounded-lg">
       <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
         <dl class="sm:divide-y sm:divide-gray-200">
           <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -208,7 +214,7 @@
   </div>
 
   <div class="">
-    <div class="bg-white m-2 overflow-hidden shadow rounded-lg border">
+    <div class="bg-white m-2 overflow-hidden shadow rounded-lg">
       <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
         <dl class="sm:divide-y sm:divide-gray-200">
           <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

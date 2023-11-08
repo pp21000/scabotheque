@@ -8,11 +8,11 @@
         <form:form method="post" modelAttribute="creation" action="creerCreationListeCourses">
             <spring:message code="creation.elementcourses.libelle.libelle" />
             <form:input path="libelle"/>
-            <b><i><form:errors path="libelle" cssclass="error"/></i></b><br>
+            <form:errors class="error-message" path="libelle" cssclass="error-message"/><br>
             
             <spring:message code="creation.elementcourses.libelle.quantite"/>
             <form:input path="quantite"/>
-            <b><i><form:errors path="quantite" cssclass="error"/></i></b><br>
+            <form:errors class="error-message" path="quantite" cssclass="error-message"/><br>
             
             <input type="submit"/>
         

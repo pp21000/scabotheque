@@ -11,7 +11,7 @@
         <form:input path="libelle"/>
 		<button class="action-button" type="submit"><spring:message code="label.ajout" /></button>
 <!--         <input type="submit"> -->
-        <form:errors class="errors" path="libelle"/>
+        <form:errors class="error-message" path="libelle"/>
     </form:form>
 
     <form:form method="post" modelAttribute="editList" action="edit${pageLink}">
@@ -25,7 +25,7 @@
                     <form:input class="position" name="list[${status.index}].position" path="list[${status.index}].position"/> 
                     <c:url value="/supprime${pageLink}" var="url"><c:param name="id" value="${idLibelle.id}"/></c:url>
                     <a href="${url}"><svg class="delete"><use xlink:href="resources/images/icones.svg#delete"></use></svg></a>
-                    <form:errors class="errors" path="list[${status.index}].libelle" />
+                    <form:errors class="error-message" path="list[${status.index}].libelle" />
                 </div>
 
             </c:forEach>
@@ -35,6 +35,6 @@
         </div>
     </form:form>
 
-    <span class="errors" > ${erreur} </span>
+    <span class="error-message" > ${erreur} </span>
 	
 </div>

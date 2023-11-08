@@ -42,7 +42,7 @@
     	    	<c:if test = "${pageType == 'ADHERENT_DETAIL' || pageType == 'ADHERENT_ACTIVITE' || pageType == 'ADHERENT_ARTIPOLE' || 
     	    			pageType == 'ADHERENT_EXPLOITATION' || pageType == 'ADHERENT_ADMINISTRATIF' || pageType == 'ADHERENT_INFORMATIQUE' ||
                                 pageType == 'ADHERENT_CRM' || pageType == 'ADHERENT_CAPITAL_SOCIAL' }">
-					<tiles:insertAttribute name="adherentBottomNavBar" />	
+                    <tiles:insertAttribute name="adherentBottomNavBar" />	
 	    	</c:if>
     	    </div>    
     	</div>

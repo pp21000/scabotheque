@@ -12,12 +12,12 @@
 
   <div class="w-full">
     <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" 
-            id="addEmplacementBtn" type="button" onclick="showNewEmplacement()">Ajouter un Emplacement</button>
+            id="addEmplacementBtn" type="button" onclick="showAddForm()">Ajouter un Emplacement</button>
   </div>
 
 
-  <form:form class="editAdherent" method="post" modelAttribute="addForm" action="AA-add-emplacement">
-    <div class="hidden" id="addEmplacementForm" title="Ajouter un emplacement">
+  <form:form class="editAdherent" method="post" modelAttribute="addForm" action="AA-add-emplacement?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
+    <div class="hidden" id="addItemForm" title="Ajouter un emplacement">
       <fieldset>
         <!--<legend class="legend"><spring:message code="label.addContact"/></legend>-->
         <div>
@@ -25,41 +25,44 @@
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAEmplacement.type">Type emplacement</form:label>
               </div>              
-            <form:select class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.type" path="editAAEmplacement.type">
+            <form:select onChange="handleUploadFileDivVisibility()" id="typeEmplacementSelect" class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.type" path="editAAEmplacement.type">
               <form:option value="titre"/>
               <form:option value="image"/>
               <form:option value="contenu"/>
             </form:select>
-            <form:errors class="error" path="editAAEmplacement.type"/>
+            <form:errors class="error-message" path="editAAEmplacement.type"/>
           </div>
+          
+          <div id="uploadFileDiv" class="hidden ml-11 flex items-center mt-2 text-right">    
+            <div class="flex flex-col">
+              <form:input type="file" path="editAAEmplacement.file" accept="image/x-png,image/gif,image/jpeg"/>
+            </div>
+          </div>
+              
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAEmplacement.libelle">Libellé</form:label>
               </div>
             <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.libelle" path="editAAEmplacement.libelle"/>
-            <form:errors class="error" path="editAAEmplacement.libelle"/>
+            <form:errors class="error-message" path="editAAEmplacement.libelle"/>
           </div>
+          
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAEmplacement.content">Content</form:label>
               </div>
             <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.content" path="editAAEmplacement.content"/>
-            <form:errors class="error" path="editAAEmplacement.content"/>
+            <form:errors class="error-message" path="editAAEmplacement.content"/>
           </div>
-          <div class="flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mx-2">
-              <form:label path="editAAEmplacement.data">Data</form:label>
-              </div>
-            <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.data" path="editAAEmplacement.data"/>
-            <form:errors class="error" path="editAAEmplacement.data"/>
-          </div>
+          
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAEmplacement.alt">Alt</form:label>
               </div>
             <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.alt" path="editAAEmplacement.alt"/>
-            <form:errors class="error" path="editAAEmplacement.alt"/>
+            <form:errors class="error-message" path="editAAEmplacement.alt"/>
           </div>
+          
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAEmplacement.page">Page</form:label>
@@ -68,8 +71,9 @@
             <form:select class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.page" path="editAAEmplacement.page.id">
               <form:options items="${pageList}" itemValue="id" itemLabel="libelle"/>
             </form:select>
-            <form:errors class="error" path="editAAEmplacement.page.id"/>
+            <form:errors class="error-message" path="editAAEmplacement.page.id"/>
           </div>
+          
           <div class="text-center my-10">
             <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer l'emplacement</button>
           </div>
@@ -99,7 +103,7 @@
           alt
         </th>
         <th scope="col" class="px-6 py-3">
-          Id page
+          Page
         </th>
         <th scope="col" class="px-6 py-3">
         </th>
@@ -138,10 +142,10 @@
             <c:out value="${emplacement.page.libelle}"/>
           </td>
           <td class="px-2 py-4">
-            <a href="${urlAAEdit}"><svg class="w-6 h-6 dark:fill-gray-100"><use xlink:href="<c:url value="/resources/images/icones.svg#edit"/>"></use></svg></a>
+            <a href="${urlAAEdit}"><svg class="w-10 h-10 p-2 fill-gray-400 hover:bg-gray-800 hover:fill-white rounded-lg"><use xlink:href="<c:url value="/resources/images/icones.svg#edit"/>"></use></svg></a>
           </td>
           <td class="px-2 py-4">
-            <a href="${urlAADelete}"><svg class="w-6 h-6 dark:fill-gray-100"><use xlink:href="<c:url value="/resources/images/icones.svg#trash"/>"></use></svg></a>
+            <a href="${urlAADelete}"><svg class="w-10 h-10 p-2 fill-gray-400 hover:bg-red-900 hover:fill-white rounded-lg"><use xlink:href="<c:url value="/resources/images/icones.svg#trash"/>"></use></svg></a>
           </td>
 
         </tr>     
@@ -159,16 +163,18 @@
 </div>
 
 <script>
-  $(function () {
-
-    $("#addEmplacementBtn").click(function (e) {
-      alert("test");
-      $("#addEmplacementForm").toggle('slow');
-    });
-  });
-
-  function showNewEmplacement() {
-    $("#addEmplacementForm").toggle('slow');
+  
+  function handleUploadFileDivVisibility() {
+    if ($('#typeEmplacementSelect').val() === 'image') {
+         $('#uploadFileDiv').slideDown(300);
+     } else {
+         $('#uploadFileDiv').slideUp(300);
+         $('#editAAEmplacement\\.file').val(""); 
+     }
   }
 
+  function showAddForm() {
+    $("#addItemForm").toggle('quick');
+  }
+  
 </script>

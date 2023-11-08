@@ -13,5 +13,9 @@
     max-height: 10em;
     max-width: 10em;
     padding: 3px;
+}
 
+.error-message{
+    color: rgb(220, 38, 38); 
+    animation: pulse 1s infinite;
 }

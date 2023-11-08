@@ -124,7 +124,7 @@
                                                                                   d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                 </c:otherwise>
                             </c:choose>
-                            <span class="error"><spring:message code="label.accessEOLAS"/></span>
+                            <span class="error-message"><spring:message code="label.accessEOLAS"/></span>
                         </span>
 
                         <span><spring:message code="label.login"/>${contact.loginEOLAS}</span>

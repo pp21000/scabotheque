@@ -28,7 +28,7 @@
               <form:label path="addCategorie.libelle">Libellé</form:label>
               </div>
             <form:input class="py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="addCategorie.libelle" path="addCategorie.libelle"/>
-            <form:errors class="error" path="addCategorie.libelle"/>
+            <form:errors class="error-message" path="addCategorie.libelle"/>
           </div>
         </div>
       </fieldset>
@@ -55,8 +55,8 @@
             </label>
           </div>
           <div class="w-1/5" >
-            <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200" type="text" name="editCategories[${status.index}].libelle" path="editCategories[${status.index}].libelle" id="libelle"/>
-            <form:errors path="editCategories[${status.index}].libelle"/>
+            <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="text" name="editCategories[${status.index}].libelle" path="editCategories[${status.index}].libelle" id="libelle"/>
+            <form:errors class="error-message" path="editCategories[${status.index}].libelle"/>
           </div>
         </div>
       </fieldset>

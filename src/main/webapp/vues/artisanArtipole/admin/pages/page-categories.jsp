@@ -18,12 +18,12 @@
 
   <div class="w-full text-right">
     <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" 
-            id="addCategorieBtn" type="button" onclick="showNewEmplacement()">Ajouter un Emplacement</button>
+            id="addCategorieBtn" type="button" onclick="showAddForm()">Ajouter un Emplacement</button>
   </div>
 
 
   <form:form class="editAdherent" method="post" modelAttribute="addForm" action="AA-add-categorie">
-    <div class="hidden" id="addCategorieForm" title="Ajouter une categorie">
+    <div class="hidden" id="addItemForm" title="Ajouter une categorie">
       <fieldset>
         <!--<legend class="legend"><spring:message code="label.addContact"/></legend>-->
         <div>
@@ -32,7 +32,7 @@
               <form:label path="editAACategorie.libelle">Libellé</form:label>
               </div>
             <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAACategorie.libelle" path="editAACategorie.libelle"/>
-            <form:errors class="error" path="editAACategorie.libelle"/>
+            <form:errors class="error-message" path="editAACategorie.libelle"/>
           </div>
 
           <div class="text-center my-10">
@@ -68,16 +68,9 @@
 
 
 <script>
-  $(function () {
 
-    $("#addCategorieBtn").click(function (e) {
-      alert("test");
-      $("#addCategorieForm").toggle('slow');
-    });
-  });
-
-  function showNewEmplacement() {
-    $("#addCategorieForm").toggle('slow');
+  function showAddForm() {
+    $("#addItemForm").toggle('quick');
   }
 
 </script>

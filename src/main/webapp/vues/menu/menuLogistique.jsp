@@ -10,11 +10,11 @@
     <div class="overflow-y-auto flex flex-col justify-between py-4 px-3 bg-zinc-200 min-h-screen bg-gray-50 dark:text-gray-50 dark:bg-gray-800">
         <ul class="space-y-2">
 
-            <li class="flex justify-center text-xl px-1 py-5 mt-12 text-gray-600 font-medium w-full border-b border-gray-400">Logistique</li>
+            <li class="flex justify-center text-xl px-1 py-5 mt-12 text-gray-600 font-medium w-full border-b border-gray-500">Logistique</li>
 
             <li>
                 <a href="<c:url value="/dashboard"/>"
-                   class="<c:choose><c:when test = "${pageType == 'DASHBOARD'}"> bg-[#28a745] </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
+                   class="<c:choose><c:when test = "${pageType == 'DASHBOARD'}">bg-[#28a745] hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
                     <svg aria-hidden="true"
                          class="w-6 h-6 text-gray-500 transition duration-75  group-hover:text-gray-900"
                          fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -28,7 +28,7 @@
             <c:url value="/ordreTournee" var="urlOrdreTournee"/>
             <li>
               <a href="<c:url value="/ordreTournee"/>"
-                   class="<c:choose><c:when test = "${pageType == 'LOGISTIQUE_TOURNEE'}"> bg-[#28a745] </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
+                   class="<c:choose><c:when test = "${pageType == 'LOGISTIQUE_TOURNEE'}">bg-[#28a745] hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
                     <svg aria-hidden="true"
                          class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
                          fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -43,7 +43,7 @@
             <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_EXPLOITATION')">
                 <li>
                     <a href="../scabotheque/listeCamions"
-                       class="flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
+                       class="<c:choose><c:when test = "${pageType == 'LISTE_CAMIONS'}">bg-[#28a745] hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
                         <svg aria-hidden="true"
                              class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
                              fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -56,7 +56,7 @@
             <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_EXPLOITATION')">
                 <li>
                   <a href="<c:url value="/listeConducteurs"/>"
-                       class="flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600">
+                       class="<c:choose><c:when test = "${pageType == 'LISTE_CONDUCTEURS'}">bg-[#28a745] hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
                         <svg aria-hidden="true"
                              class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
                              fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

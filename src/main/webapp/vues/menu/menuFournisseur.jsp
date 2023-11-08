@@ -10,7 +10,7 @@
     <div class="overflow-y-auto py-4 px-3 bg-zinc-200 min-h-screen">
         <ul class="space-y-2">
 
-            <li class="flex justify-center text-xl px-1 py-5 mt-12 text-gray-600 font-medium w-full border-b border-gray-400">Fournisseur</li>
+            <li class="flex justify-center text-xl px-1 py-5 mt-12 text-gray-600 font-medium w-full border-b border-gray-500">Fournisseur</li>
 
             <li>
                 <a href="<c:url value="/dashboard"/>"

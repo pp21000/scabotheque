@@ -11,50 +11,61 @@
 <section class="mr-4 pb-32">
   <div class="grid grid-cols-4 gap-2 w-full">
     <div>
-      <div class="bg-neutral-50 rounded-xl p-4 border border-neutral-100">
-        <div class="flex">
+      <div class="bg-neutral-200 rounded-xl p-4">
+        
+        <div class="flex justify-start">
           <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')">
-            <div class="mb-4">
+            <div class="rounded hover:bg-gray-600">
               <c:url value="/edit/editIdentiteAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-              <span><a href="${url}"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></a></span>
+                <a href="${url}">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                  </svg>
+                </a>
             </div>
           </sec:authorize>
         </div>
+        
+        
         <div class="flex flex-col items-center justify-center">
+          
+          <!-- Denomination et Code adherent -->
+          <div class="mb-5">
+            <div class="flex justify-center text-xl font-semibold">${adherent.denomination}</div>
+            <div class="flex justify-center gap-2">
+              <div class="text-center"><spring:message code="label.codeAdh"/> :</div>
+              <div class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2 py-0.5 rounded">${adherent.code}</div>
+            </div>
+            <c:if test="${!adherent.codeERPParent.equals('')}">
+              <div class="flex justify-center gap-2">
+                <div class="text-center"><spring:message code="label.codeERPParent"/> :</div>
+                <div class="text-sm font-medium mr-2 px-2 py-0.5 rounded">${adherent.codeERPParent}</div>
+              </div>
+            </c:if> 
+          </div>
+          
           <!-- Logo et Image -->
-          <div class="flex justify-center py-2">
+          <div class="flex justify-center">
             <c:choose>
               <c:when test="${adherent.logoImg == ''}">
-                <img class="px-2 max-w-[14rem] object-contain drop-shadow-xl" src="<c:url value="/resources/images/noImage.png" />"/>
+                <img class="max-w-[14rem] object-contain drop-shadow-xl" src="<c:url value="/resources/images/noImage.png" />"/>
               </c:when>
               <c:otherwise>
-                <img class="px-2 max-w-[14rem] object-contain drop-shadow-xl" src="${adherent.logoImg}">
-                </c:otherwise>
-              </c:choose>
+                <img class="max-w-[14rem] object-contain drop-shadow-xl" src="${adherent.logoImg}">
+              </c:otherwise>
+            </c:choose>
           </div>
-          <div class="flex justify-center py-2">
+          
+          <div class="flex justify-center">
             <c:choose>
               <c:when test="${adherent.photoImg == ''}">
-                <img class="px-2 max-w-[14rem] object-contain drop-shadow-xl" src="<c:url value="/resources/images/noImage.png" />"/>
+                <img class="max-w-[14rem] object-contain drop-shadow-xl" src="<c:url value="/resources/images/noImage.png" />"/>
               </c:when>
               <c:otherwise>
-                <img class="px-2 max-w-[14rem] object-contain drop-shadow-xl" src="${adherent.photoImg}">
-                </c:otherwise>
-              </c:choose>
+                <img class="max-w-[14rem] object-contain drop-shadow-xl" src="${adherent.photoImg}">
+              </c:otherwise>
+            </c:choose>
           </div>
-
-          <!-- Denomination et Code adherent -->
-          <div class="flex justify-center text-xl font-semibold">${adherent.denomination}</div>
-          <div class="flex justify-center gap-2">
-            <div class="text-center"><spring:message code="label.codeAdh"/> :</div>
-            <div class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2 py-0.5 rounded">${adherent.code}</div>
-          </div>
-          <c:if test="${!adherent.codeERPParent.equals('')}">
-            <div class="flex justify-center gap-2">
-              <div class="text-center"><spring:message code="label.codeERPParent"/> :</div>
-              <div class="text-sm font-medium mr-2 px-2 py-0.5 rounded">${adherent.codeERPParent}</div>
-            </div>
-          </c:if>
 
           <!-- Adhesion Pole & Agence -->
           <div class="w-full">
@@ -92,19 +103,20 @@
             </div>
           </div>
         </div>
+            
         <!--      </div>
               <div class="rounded-xl mt-2 flex flex-col gap-2">-->
-        <div class="bg-neutral-50 rounded border border-neutral-100 p-4">
-          <div class="flex gap-2 my-3 ">
-            <div class="flex flex-1 justify-center">
-              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
-                   xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-8">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"></path>
-              </svg>
-              <h4 class="text-center text-lg font-semibold underline">
-                Informations
-              </h4>
-            </div>
+        
+        <!-- Informations -->
+        <div class="mt-10">
+          <div class="flex flex-1 justify-center items-center">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"></path>
+            </svg>
+            <h4 class="text-center text-lg font-semibold ml-1">
+              Informations
+            </h4>
           </div>
           <div>
             <div class="flex gap-16">
@@ -132,24 +144,24 @@
           </div>
         </div>
       </div>
-      <div class="rounded-xl mt-2 flex flex-col gap-2">
-        <div class="bg-neutral-50 rounded border border-neutral-100 p-4">
-          <div class="flex gap-2">
-            <div class="justify-start">
-              <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')">
-                <div class="mb-4">
-                  <c:url value="/edit/editLivraisonAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-                  <span><a href="${url}"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></a></span>
-                </div>
-              </sec:authorize>
-            </div>
-            <div class="flex flex-1 justify-center ">
+            
+      <div class="mt-2 flex flex-col gap-2">
+        <!-- Livraison -->
+        <div class="bg-neutral-200 rounded-xl p-4">
+          <div class="flex justify-start">
+            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')">
+              <div class="rounded hover:bg-gray-600 mb-1.5">
+                <c:url value="/edit/editLivraisonAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
+                <a href="${url}"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></a>
+              </div>
+            </sec:authorize>
+            <div class="flex flex-1 justify-center items-center">
               <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-8">
                 <path stroke-linecap="round" stroke-linejoin="round"
                       d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"></path>
               </svg>
-              <h4 class="text-center text-lg font-semibold underline">
+              <h4 class="text-center text-lg font-semibold ml-1">
                 Livraison
               </h4>
             </div>
@@ -169,24 +181,24 @@
                             arguments="${infoExploitation.commune.codePostal}, ${infoExploitation.commune.libelle}"/>
           </div>
         </div>
-        <div class="bg-neutral-50 rounded border border-neutral-100 p-4">
-          <div class="flex gap-2">
-            <div class="justify-start">
-              <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')">
-                <div class="mb-4">
-                  <c:url value="/edit/editExploitationAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-                  <span><a href="${url}"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></a></span>
-                </div>
-              </sec:authorize>
-            </div>
-            <div class="flex flex-1 justify-center ">
+          
+        <!-- Agence -->
+        <div class="bg-neutral-200 rounded-xl p-4">
+          <div class="flex justify-start">
+            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')">
+              <div class="rounded hover:bg-gray-600 mb-1.5">
+                <c:url value="/edit/editExploitationAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
+                <a href="${url}"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></a>
+              </div>
+            </sec:authorize>
+            <div class="flex flex-1 justify-center items-center">
 
               <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-8">
                 <path stroke-linecap="round" stroke-linejoin="round"
                       d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"></path>
               </svg>
-              <h4 class="text-center text-lg font-semibold underline">
+              <h4 class="text-center text-lg font-semibold ml-1">
                 Agence
               </h4>
             </div>
@@ -209,24 +221,24 @@
           </div>
         </div>
       </div>
-      <div class="bg-neutral-50 mt-2 rounded border border-neutral-100 p-4">
-        <div class="flex gap-2">
-          <div class="justify-start">
-            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')">
-              <div class="mb-4">
-                <c:url value="/edit/editIdentiteAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-                <span><a href="${url}"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></a></span>
-              </div>
-            </sec:authorize>
-          </div>
-          <div class="flex flex-1 justify-center ">
+      
+      <!-- Horaires d'ouverture -->
+      <div class="bg-neutral-200 mt-2 rounded-xl p-4">
+        <div class="flex justify-start">
+          <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')">
+            <div class="rounded hover:bg-gray-600 mb-1.5">
+              <c:url value="/edit/editIdentiteAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
+              <a href="${url}"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></a>
+            </div>
+          </sec:authorize>
+          <div class="flex flex-1 justify-center items-center">
             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
                  xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-8">
               <path stroke-linecap="round" stroke-linejoin="round"
                     d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
-            <h4 class="text-center text-lg font-semibold underline">
-              Horaires d'ouvertures
+            <h4 class="text-center text-lg font-semibold ml-1">
+              Horaires d'ouverture
             </h4>
           </div>
         </div>
@@ -238,35 +250,35 @@
           <label class="col-sm-2 col-form-label">Vendredi : </label>
         </div>
       </div>
-      <div class="bg-neutral-50 mt-2 rounded border border-neutral-100 p-4">
-        <div class="flex gap-2">
-          <div class="justify-start">
-            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')">
-              <div class="mb-4">
-                <c:url value="/edit/editIdentiteAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-                <span><a href="${url}"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></a></span>
-              </div>
-            </sec:authorize>
-          </div>
-          <div class="flex flex-1 justify-center ">
+      
+      <!--Informations complémentaires -->
+      <div class="bg-neutral-200 mt-2 rounded-xl p-4">
+        <div class="flex justify-start">
+          <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')">
+            <div class="rounded hover:bg-gray-600 mb-1.5">
+              <c:url value="/edit/editIdentiteAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
+              <a href="${url}"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></a>
+            </div>
+          </sec:authorize>
+          <div class="flex flex-1 justify-center items-center">
             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
                  xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-8">
               <path stroke-linecap="round" stroke-linejoin="round"
                     d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"></path>
             </svg>
-            <h4 class="text-center text-lg font-semibold underline">
-              Informations complementaires
+            <h4 class="text-center text-lg font-semibold ml-1">
+              Informations complémentaires
             </h4>
           </div>
         </div>
         <div>
           <div class="flex gap-16">
-            <div><spring:message code="label.longitude"/></div>
-            <div>${adherent.longitude}</div>
-          </div>
-          <div class="flex gap-16">
             <div><spring:message code="label.latitude"/></div>
             <div>${adherent.latitude}</div>
+          </div>
+          <div class="flex gap-16">
+            <div><spring:message code="label.longitude"/></div>
+            <div>${adherent.longitude}</div>
           </div>
         </div>
       </div>
@@ -274,52 +286,52 @@
 
     <div class="col-span-3 w-full">
       <div class="flex gap-2 w-full">
-        <div class=" flex justify-center rounded-xl p-4 w-full">
+        <div class=" flex justify-center rounded-xl px-4 w-full">
           <div class="flex flex-col w-full">
-            <div class="mb-4 w-full flex justify-center">
+            <div class="w-full flex justify-center">
               <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab"
                   data-tabs-toggle="#myTabContent" role="tablist">
                 <li class="mr-2" role="presentation">
-                  <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
+                  <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
                           id="profile-tab" data-tabs-target="#profile" type="button" role="tab"
                           aria-controls="profile" aria-selected="true">Contacts
                   </button>
                 </li>
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CRM')">
                   <li class="mr-2" role="presentation">
-                    <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
+                    <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
                             id="settings-tab" data-tabs-target="#settings" type="button" role="tab"
                             aria-controls="settings" aria-selected="false">CRM
                     </button>
                   </li>
                 </sec:authorize>
                 <li class="mr-2" role="presentation">
-                  <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
+                  <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
                           id="commerce-tab" data-tabs-target="#commerce" type="button" role="tab"
                           aria-controls="profile" aria-selected="false">Commerce
                   </button>
                 </li>
                 <li class="mr-2" role="presentation">
-                  <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
+                  <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
                           id="artipole-tab" data-tabs-target="#artipole" type="button" role="tab"
                           aria-controls="profile" aria-selected="false">Artipôle
                   </button>
                 </li>
                 <li class="mr-2" role="presentation">
-                  <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
+                  <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
                           id="logistique-tab" data-tabs-target="#logistique" type="button" role="tab"
                           aria-controls="profile" aria-selected="false">Logistique
                   </button>
                 </li>
                 <li class="mr-2" role="presentation">
-                  <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
+                  <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
                           id="administratif-tab" data-tabs-target="#administratif" type="button"
                           role="tab"
                           aria-controls="profile" aria-selected="false">Administratif
                   </button>
                 </li>
                 <li class="mr-2" role="presentation">
-                  <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
+                  <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
                           id="informatique-tab" data-tabs-target="#informatique" type="button"
                           role="tab"
                           aria-controls="profile" aria-selected="false">Informatique
@@ -338,10 +350,10 @@
             <div id="myTabContent" class="ml-4">
               <div id="profile" role="tabpanel"
                    aria-labelledby="profile-tab">
-                <div class="flex justify-start">
+                <div class="flex justify-start mb-2">
                   <sec:authorize
                     access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')">
-                    <div class="editIcone">
+                    <div class="rounded hover:bg-gray-300 p-1">
                       <c:url value="/edit/editAdherentContact" var="url"><c:param name="idAdh"
                                                                                   value="${adherent.id}"/></c:url>
                       <span><a href="${url}"><svg class="w-6 h-6" fill="none"
@@ -352,7 +364,6 @@
                               stroke-linejoin="round"
                               stroke-width="2"
                               d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></a></span>
-                      </a></span>
                     </div>
                   </sec:authorize>
                 </div>
@@ -670,7 +681,7 @@
                                         type="submit">Enregistrer le suivi
                                 </button>
                               </div>
-                              <form:errors class="errors"
+                              <form:errors class="error-message"
                                            path="suiviVisiteAdh.dateCommentaire"/>
                             </div>
                           </fieldset>

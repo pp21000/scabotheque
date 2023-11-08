@@ -7,7 +7,7 @@
 <%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <!-- Content Header (Page header) -->
-<div class="text-2xl mb-4">Planifications des tournées :</div>
+<div class="text-2xl">Planifications des tournées</div>
 
 
 <div class="flex justify-center">
@@ -16,20 +16,20 @@
             <form:input type="hidden" name="zone" path="zone"/>
             <!-- Date -->
             <div class="flex flex-col">
-                <label class="text-center">Date de livraison:</label>
+                <label class="text-center">Date de livraison</label>
                 <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                    <form:input class="p-2 bg-white rounded-lg border border-gray-200" type="date" path="dateLivraison" placeholder="Date de livraison"/>
+                    <form:input class="p-2 bg-white rounded-lg border border-gray-200 text-black" type="date" path="dateLivraison" placeholder="Date de livraison"/>
                 </div>
             </div>
             <div class="px-2 flex flex-col">
-                <label class="text-center">Dépot :</label>
-                <form:select class="p-2 w-20 bg-white rounded-lg border border-gray-200" name="codeAgence" path="codeAgence">
+                <label class="text-center">Dépot</label>
+                <form:select class="p-2 w-20 bg-white rounded-lg border border-gray-200 text-black" name="codeAgence" path="codeAgence">
                     <form:options items="${agenceList}" itemValue="code" itemLabel="code"/>
                 </form:select>
             </div>
             <div>
                 <button id="actionButton"
-                        class="focus:cursor-wait focus:bg-gray-600 focus:disabled mt-6 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+                        class="text-white bg-gray-800 hover:bg-gray-900 focus:cursor-wait focus:bg-gray-600 focus:disabled focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-3 mt-6 mr-2"
                         type="submit">
                     <span id="actionSpinner" role="status" aria-hidden="true"></span>
                       Interroger RUBIS
@@ -41,12 +41,12 @@
             <form:input type="hidden" name="dateLivraison" path="dateLivraison"/>
             <form:input type="hidden" name="codeAgence" path="codeAgence"/>
             <div class="flex flex-col">
-                <label class="text-center">Zone :</label>
-                <form:select class="p-2 w-20 bg-white rounded-lg border border-gray-200" autofocus="true"
+                <label class="text-center">Zone</label>
+                <form:select class="p-2 w-20 bg-white rounded-lg border border-gray-200 text-black" autofocus="true"
                              path="zone" items="${zonePrep}"/>
             </div>
             <div class="form-group px-2 d-flex align-items-end">
-                <button class="py-2.5 px-5 mt-6 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200"
+                <button class="text-white bg-gray-800 hover:bg-gray-900 focus:cursor-wait focus:bg-gray-600 focus:disabled focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-3 mt-6"
                         type="submit">
                     <span class="spinner-border text-light spinner-border-sm d-none" role="status"
                           aria-hidden="true"></span>
@@ -60,10 +60,9 @@
 
 
 <%--<form:form class="card card-lightblue" method="post" modelAttribute="criteriaLog" action="ordreTournee">--%>
-<form:form class="card card-lightblue" method="post" modelAttribute="tourneeForm" action="sendMissionConducteur">
+<form:form class="card card-lightblue mt-10" method="post" modelAttribute="tourneeForm" action="sendMissionConducteur">
 
     <div class="card-lightblue">
-        <div class="text-2xl mb-4 mt-6">Planifications des tournées :</div>
         <!-- /.content-header -->
         <div class="overflow-x-auto mx-20 relative">
             <table class="w-full text-sm text-left text-gray-500">
@@ -124,20 +123,20 @@
         <div class="mt-6 flex justify-center">
             <div class="flex gap-4">
                 <div class="flex flex-col">
-                    <label for="selectCamion" class="text-center">Camion :</label>
-                    <form:select class="p-2 w-96 bg-white rounded-lg border border-gray-200" id="selectCamion" path="camionId">
+                    <label for="selectCamion" class="text-center">Camion</label>
+                    <form:select class="p-2 w-96 bg-white rounded-lg border border-gray-200 text-black" id="selectCamion" path="camionId">
                         <form:options items="${camions}" itemValue="id" itemLabel="libelle"/>
                     </form:select>
                 </div>
                 <div class="flex flex-col">
-                    <label for="selectChauffeur" class="text-center">Chauffeur :</label>
-                    <form:select class="p-2 w-52 bg-white rounded-lg border border-gray-200" id="selectChauffeur" path="chauffeurId">
+                    <label for="selectChauffeur" class="text-center">Chauffeur</label>
+                    <form:select class="p-2 w-52 bg-white rounded-lg border border-gray-200 text-black" id="selectChauffeur" path="chauffeurId">
                         <form:options items="${chauffeurs}" itemValue="id" itemLabel="libelle"/>
                     </form:select>
                 </div>
                 <div class="flex flex-col">
-                    <label for="selectTour" class="text-center">Tour :</label>
-                    <form:select class="p-2 w-16 bg-white rounded-lg border border-gray-200" id="selectTour" path="tournee">
+                    <label for="selectTour" class="text-center">Tour</label>
+                    <form:select class="p-2 w-16 bg-white rounded-lg border border-gray-200 text-black" id="selectTour" path="tournee">
                         <form:option value="1"/>
                         <form:option value="2"/>
                         <form:option value="3"/>
@@ -146,15 +145,15 @@
                 </div>
                 <div class="col-2 align-bottom">
                     <!--<button class="btn btn-info float-right " type="submit">Envoyer l'ordre de mission</button>-->
-                    <button id="saveButton" class="mt-6 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2" type="submit">
-                                <span id="saveSpinner" class="spinner-border text-light spinner-border-sm d-none"
+                    <button id="saveButton" class="text-white bg-gray-800 hover:bg-gray-900 focus:cursor-wait focus:bg-gray-600 focus:disabled focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-3 mr-2 mb-2 mt-6" type="submit">
+                      <span id="saveSpinner" class="spinner-border text-light spinner-border-sm d-none"
                                       role="status" aria-hidden="true"></span>
                         Envoyer l'ordre de mission
                     </button>
                 </div>
             </div>
             <div>
-                <form:errors class="error" path="messageErreur"/>
+                <form:errors class="error-message" path="messageErreur"/>
             </div>
         </div>
         <!-- /.card footer-->

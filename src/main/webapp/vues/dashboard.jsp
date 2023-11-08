@@ -10,7 +10,7 @@
 <script src="resources/plugins/jquery/jquery.min.js"></script>
 
 
-<div class="underline text-2xl mb-5 font-medium text-center">Tableau de bord</div>
+<div class="text-2xl mb-3 font-medium text-center">Tableau de bord</div>
 
 <div class="gap-5 flex justify-center">
     <a href="adherentListe?list=adh"
@@ -67,7 +67,7 @@
     </sec:authorize>
 </div>
 
-<div class="underline flex justify-center text-2xl mb-5 mt-6 font-medium text-center">Évolution du nombre d'adhérents :</div>
+<div class="flex justify-center text-2xl mt-8 font-medium text-center">Évolution du nombre d'adhérents</div>
 <div class="w-2/3 h-1/2 mx-auto">
     <canvas id="areaChart"></canvas>
 </div>

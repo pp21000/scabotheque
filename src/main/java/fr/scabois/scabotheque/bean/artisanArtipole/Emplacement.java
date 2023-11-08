@@ -13,10 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/**
- *
- * @author paul.petit
- */
 @Entity
 @Table(name = "aa_emplacements")
 public class Emplacement implements HasIdLibelle, Serializable {

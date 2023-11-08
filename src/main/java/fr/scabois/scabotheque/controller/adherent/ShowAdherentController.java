@@ -11,6 +11,7 @@ import fr.scabois.scabotheque.controller.adherent.edit.EditAdherentSuiviVisiteFo
 import fr.scabois.scabotheque.enums.NavType;
 import fr.scabois.scabotheque.enums.PageType;
 import fr.scabois.scabotheque.services.IServiceAdherent;
+import fr.scabois.scabotheque.services.IServiceArtipole;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,8 +33,9 @@ public class ShowAdherentController {
   @Autowired
   private IServiceAdherent service;
 
-//  @Autowired
-//  private IServiceArtisanArtipole serviceArtisanArtipole;
+  @Autowired
+  private IServiceArtipole serviceArtipole;
+
   @RequestMapping(value = "/adherentProfil", method = RequestMethod.GET)
   public String profile(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel,
           HttpServletRequest request) {
@@ -62,7 +64,7 @@ public class ShowAdherentController {
     pModel.addAttribute("infoExploitation", (Object) infoExploitation);
     pModel.addAttribute("contactReception", (Object) contactReception);
     pModel.addAttribute("adherent", (Object) adherent);
-//    pModel.addAttribute("metiers", (Object) this.serviceArtisanArtipole.loadMetiers());
+    pModel.addAttribute("metiers", (Object) this.serviceArtipole.loadMetiers());
     pModel.addAttribute("metiersAdherentId", adherentMetiersId);
     pModel.addAttribute("navType", (Object) NavType.ADHERENT);
     pModel.addAttribute("pageType", (Object) pageType);

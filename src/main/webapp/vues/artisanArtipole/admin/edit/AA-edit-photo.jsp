@@ -23,8 +23,8 @@
           </label>
         </div >
         <div class="w-3/5">
-          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200" type="text" name="editAAPhoto.libelle" path="editAAPhoto.libelle" id="libelle"/>
-          <form:errors path="editAAPhoto.libelle"/>
+          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="text" name="editAAPhoto.libelle" path="editAAPhoto.libelle" id="libelle"/>
+          <form:errors class="error-message" path="editAAPhoto.libelle"/>
         </div>
       </div>
       <div class="md:flex md:items-center mb-6">
@@ -36,14 +36,14 @@
 
         <div class="w-3/5" >  
           <div class="flex">
-            <img class="max-h-24 mr-5 rounded" src="${photo.dataImg}" />     
-            <div class="my-auto flex justify-center ml-4">
+            <img class="max-h-24 mr-5 rounded" src="${photo.dataImg}"/>     
+            <div class="my-auto flex justify-center">
               <div class="flex flex-col">
-                <form:input type="file" path="editAAPhoto.file" accept="image/x-png,image/gif,image/jpeg"/> <br/>
+                <form:input type="file" path="editAAPhoto.file" accept="image/x-png,image/gif,image/jpeg"/>
               </div>
             </div>
           </div>
-          <form:errors path="editAAPhoto.data"/>
+          <form:errors class="error-message" path="editAAPhoto.data"/>
         </div>
       </div>
       <div class="md:flex md:items-center mb-6">
@@ -53,8 +53,8 @@
           </label>
         </div>
         <div class="w-3/5" >
-          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200" type="text" name="editAAPhoto.alt" path="editAAPhoto.alt" id="alt"/>
-          <form:errors path="editAAPhoto.alt"/>
+          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="text" name="editAAPhoto.alt" path="editAAPhoto.alt" id="alt"/>
+          <form:errors class="error-message" path="editAAPhoto.alt"/>
         </div>
       </div>
     </fieldset>

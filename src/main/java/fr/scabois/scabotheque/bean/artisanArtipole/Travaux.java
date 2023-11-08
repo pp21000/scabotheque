@@ -6,30 +6,29 @@ package fr.scabois.scabotheque.bean.artisanArtipole;
 
 import fr.scabois.scabotheque.bean.HasIdLibelle;
 import java.io.Serializable;
-import javax.persistence.Column;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "metiers")
-public class Metier implements HasIdLibelle, Serializable {
+@Table(name = "aa_travaux")
+public class Travaux implements HasIdLibelle, Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
   private String libelle;
-  @Column(name = "description_accueil")
-  private String description;
+  @OneToMany(mappedBy = "travaux", fetch = FetchType.EAGER)
+  private List<Specialite> specialites;
 
-  public String getDescription() {
-    return this.description;
-  }
-
-  public void setDescription(final String description) {
-    this.description = description;
+  public Travaux() {
+    this.specialites = new ArrayList<>();
   }
 
   @Override
@@ -51,4 +50,13 @@ public class Metier implements HasIdLibelle, Serializable {
   public void setLibelle(final String libelle) {
     this.libelle = libelle;
   }
+
+  public List<Specialite> getSpecialites() {
+    return specialites;
+  }
+
+  public void setSpecialites(List<Specialite> specialites) {
+    this.specialites = specialites;
+  }
+
 }

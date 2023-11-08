@@ -45,6 +45,6 @@
 	    </div>
 	</form:form>
 	
-	<span class="errors" > ${erreur} </span>
+	<span class="error-message" > ${erreur} </span>
 	
 </div>

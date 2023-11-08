@@ -26,25 +26,25 @@
             <div class="relative z-0 mb-6 w-full group">
               <form:label path="adherent.code" class="text-xs"><spring:message code="label.codeAdh"/></form:label>
               <form:input
-                class="form-control block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="form-control block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="adherent.code" path="adherent.code" autofocus="true"/>
-              <form:errors class="text-red-600 animate-pulse" path="adherent.code"/>
+              <form:errors class="error-message" path="adherent.code"/>
             </div>
 
             <div class="relative z-0 mb-6 w-full group">
               <form:label path="adherent.codeERP" class="text-xs"><spring:message code="label.codeERP"/></form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="adherent.codeERP" path="adherent.codeERP"/>
-              <form:errors class="text-red-600 animate-pulse" path="adherent.codeERP"/>
+              <form:errors class="error-message" path="adherent.codeERP"/>
             </div>
 
             <div class="relative z-0 mb-6 w-full group">
               <form:label path="adherent.codeERPParent" class="text-xs"><spring:message code="label.codeERPParent"/></form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="adherent.codeERPParent" path="adherent.codeERPParent"/>
-              <form:errors class="text-red-600 animate-pulse" path="adherent.codeERPParent"/>
+              <form:errors class="error-message" path="adherent.codeERPParent"/>
             </div>
           </div>
           <div class="grid px-4 md:grid-cols-2 md:gap-6">
@@ -53,9 +53,9 @@
                 class="text-xs"
                 path="adherent.libelle"><spring:message code="label.nomRecherche"/></form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="adherent.libelle" path="adherent.libelle"/>
-              <form:errors class="text-red-600 animate-pulse" path="adherent.libelle"/>
+              <form:errors class="error-message" path="adherent.libelle"/>
             </div>
 
             <div class="relative z-0 mb-6 w-full group">
@@ -64,54 +64,60 @@
                 path="adherent.denomination"><spring:message code="label.denomination"/>
               </form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="adherent.denomination" path="adherent.denomination"/>
-              <form:errors class="text-red-600 animate-pulse" path="adherent.denomination"/>
+              <form:errors class="error-message" path="adherent.denomination"/>
             </div>
           </div>
+            
           <div class="grid px-4 md:grid-cols-3 md:gap-6">
-            <div class="relative z-0 mb-6 w-full group">
+            <div class="relative z-0 w-full group">
               <form:label
                 class="text-xs"
                 path="adherent.adresse"><spring:message code="label.adresse"/></form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="adherent.adresse" path="adherent.adresse"/>
-              <form:errors class="text-red-600 animate-pulse" path="adherent.adresse"/>
+              <form:errors class="error-message" path="adherent.adresse"/>
             </div>
 
-            <div class="relative z-0 mb-6 w-full group">
+            <div class="relative z-0 w-full group">
               <form:label class="text-xs" path="adherent.adresseComplement"><spring:message code="label.adresseComplement"/></form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="adherent.adresseComplement"
                 path="adherent.adresseComplement"/>
-              <form:errors class="text-red-600 animate-pulse" path="adherent.adresseComplement"/>
+              <form:errors class="error-message" path="adherent.adresseComplement"/>
             </div>
 
+     
+            
+            
+
+            
+            
             <div class="relative z-0 mb-6 w-full group">
               <form:label
                 class="text-xs"
                 path="adherent.commune">
-                <div class="flex">
-                  <div class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 rounded-l-md border border-r-0 border-gray-300   ">
-                    <a type="button" data-modal-toggle="commune-modal" class="input-group-text"
-                       href="#" id="editAdhCommune" data-toggle="modal"
-                       data-target="#modal-adherentCommune">
-                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                           xmlns="http://www.w3.org/2000/svg">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
-                      </svg>
-                    </a>
-                  </div>
+                <div class="flex h-10">
+                  <a type="button" data-modal-toggle="commune-modal" class="input-group-text inline-flex items-center px-3 text-gray-900 bg-gray-200 hover:bg-gray-300 rounded-l border border-r-0 border-gray-300"
+                     href="#" id="editAdhCommune" data-toggle="modal"
+                     data-target="#modal-adherentCommune">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                    </svg>
+                  </a>
                   <input type="text" id="communeAdhLibelle" disabled
-                         class="rounded-none text-lg rounded-r-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-5"
+                         class="rounded-r bg-gray-50 border border-gray-300 text-gray-900 flex-1 min-w-0 border-gray-300"
                          placeholder="<spring:message code="label.commune"/>">
                 </div>
-                <form:errors class="text-red-600 animate-pulse" path="adherent.commune"/>
+                <form:errors class="error-message" path="adherent.commune"/>
               </form:label>
             </div>
+            
+            
+            
 
             <!-- Main modal -->
             <div id="commune-modal" tabindex="-1" aria-hidden="true"
@@ -141,7 +147,7 @@
                         <form:label class="sr-only" path="adherent.rcsCommune"><spring:message
                             code="label.commune"/></form:label>
                         <form:select id="communeAdhListe"
-                                     class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                                     class="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                                      name="adherent.commune"
                                      path="adherent.commune.id">
                           <form:options items="${communeList}" itemValue="id"
@@ -155,7 +161,7 @@
                           Sélectionner
                         </button>
                         <button type="button" data-modal-toggle="commune-modal"
-                                class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">
+                                class="w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">
                           Annuler
                         </button>
                       </div>
@@ -178,41 +184,41 @@
               <form:label class="text-xs" path="adherent.agence"><spring:message
                   code="label.agenceRattachement"/></form:label>
               <form:select
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 name="adherent.agence" path="adherent.agence.id">
                 <form:options items="${agenceList}" itemValue="id" itemLabel="libelle" class="dark:bg-gray-600"/>
               </form:select>
-              <form:errors class="text-red-600 animate-pulse" path="adherent.agence"/>
+              <form:errors class="error-message" path="adherent.agence"/>
             </div>
 
             <div class="form-group">
               <form:label class="text-xs"
                           path="adherent.secteur"><spring:message code="label.secteur"/></form:label>
               <form:select
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 name="adherent.secteur" path="adherent.secteur.id">
                 <form:option value="" class="dark:bg-gray-600"></form:option>
                 <form:options items="${secteurList}" itemValue="id" itemLabel="libelle" class="dark:bg-gray-600"/>
               </form:select>
-              <form:errors class="text-red-600 animate-pulse" path="adherent.secteur"/>
+              <form:errors class="error-message" path="adherent.secteur"/>
             </div>
             <div class="form-group">
               <form:label class="text-xs"
                           path="adherent.tournee"><spring:message code="label.tournee"/></form:label>
               <form:select
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 name="adherent.tournee" path="adherent.tournee.id">
                 <form:options items="${tourneeList}" itemValue="id" itemLabel="libelle" class="dark:bg-gray-600"/>
               </form:select>
             </div>
-          </div>
 
-          <div class="form-group">
-            <form:label class="text-xs"
-                        path="adherent.isOutilDechargement"><spring:message code="label.outilDechargement"/></form:label>
-            <form:checkbox
-              class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500   focus:ring-2  "
-              path="adherent.isOutilDechargement"/>
+            <div class="form-group">
+            
+              <form:checkbox
+                class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500   focus:ring-2  "
+                path="adherent.isOutilDechargement"/>  <form:label class="text-xs"
+                          path="adherent.isOutilDechargement"><spring:message code="label.outilDechargement"/></form:label>
+            </div>
           </div>
 
 
@@ -233,42 +239,42 @@
             <div class="form-group">
               <form:label class="text-xs"
                           path="adherent.dateEntree"><spring:message code="label.dateEntree"/></form:label>
-              <form:input class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              <form:input class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                           type="date" name="adherent.dateEntree"
                           path="adherent.dateEntree"/>
-              <form:errors class="text-red-600 animate-pulse" path="adherent.dateEntree"/>
+              <form:errors class="error-message" path="adherent.dateEntree"/>
             </div>
 
             <div class="form-group">
               <form:label class="text-xs" path="adherent.role"><spring:message code="label.role"/></form:label>
               <form:select
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 name="adherent.role" path="adherent.role.id">
                 <form:options items="${roleList}" itemValue="id" itemLabel="libelle" class="dark:bg-gray-600"/>
               </form:select>
-              <form:errors class="text-red-600 animate-pulse" path="adherent.role"/>
+              <form:errors class="error-message" path="adherent.role"/>
             </div>
 
             <div class="form-group">
               <form:label class="text-xs"
                           path="adherent.pole"><spring:message code="label.pole"/></form:label>
               <form:select
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 name="adherent.pole" path="adherent.pole.id">
                 <form:options items="${poleList}" itemValue="id" itemLabel="libelle" class="dark:bg-gray-600"/>
               </form:select>
-              <form:errors class="text-red-600 animate-pulse" path="adherent.role"/>
+              <form:errors class="error-message" path="adherent.role"/>
             </div>
             <div class="form-group">
               <form:label class="text-xs" path="adherent.formeJuridique"><spring:message
                   code="label.formeJuridique"/></form:label>
               <form:select
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 name="adherent.formeJuridique"
                 path="adherent.formeJuridique.id">
                 <form:options items="${formJuridList}" itemValue="id" itemLabel="libelle" class="dark:bg-gray-600"/>
               </form:select>
-              <form:errors class="text-red-600 animate-pulse" path="adherent.formeJuridique"/>
+              <form:errors class="error-message" path="adherent.formeJuridique"/>
             </div>
 
           </div>
@@ -279,9 +285,9 @@
                 class="text-xs"
                 path="adherent.siren"><spring:message code="label.siren"/></form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="adherent.siren" path="adherent.siren"/>
-              <form:errors class="text-red-600 animate-pulse" path="adherent.siren"/>
+              <form:errors class="error-message" path="adherent.siren"/>
             </div>
 
             <div class="relative z-0 mb-6 w-full group">
@@ -289,15 +295,15 @@
                 class="text-xs"
                 path="adherent.siret"><spring:message code="label.siret"/></form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="adherent.siret" path="adherent.siret"/>
-              <form:errors class="text-red-600 animate-pulse" path="adherent.siret"/>
+              <form:errors class="error-message" path="adherent.siret"/>
             </div>
             <div class="form-group">
               <form:label class="text-xs"
                           path="adherent.ape"><spring:message code="label.ape"/></form:label>
               <form:select
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 name="adherent.ape" path="adherent.ape.id">
                 <form:options items="${apeList}" itemValue="id" itemLabel="libelle" class="dark:bg-gray-600"/>
               </form:select>
@@ -311,9 +317,9 @@
                 path="adherent.numRepMetier"><spring:message
                   code="label.numRepMetier"/></form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="adherent.numRepMetier" path="adherent.numRepMetier"/>
-              <form:errors class="text-red-600 animate-pulse" path="adherent.numRepMetier"/>
+              <form:errors class="error-message" path="adherent.numRepMetier"/>
             </div>
 
 
@@ -322,45 +328,47 @@
                           path="adherent.rcsRm"><spring:message code="label.rcsRm"/></form:label>
 
               <form:select
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 name="adherent.rcsRm" path="adherent.rcsRm">
                 <form:option value="" class="dark:bg-gray-600"></form:option>
                 <form:option value="RCS" class="dark:bg-gray-600">RCS</form:option>
                 <form:option value="RM" class="dark:bg-gray-600">RM</form:option>
               </form:select>
-              <form:errors class="text-red-600 animate-pulse" path="adherent.rcsRm"/>
+              <form:errors class="error-message" path="adherent.rcsRm"/>
             </div>
 
             <div class="form-group">
               <form:label class="text-xs" path="adherent.dateClotureExe"><spring:message code="label.dateClotureExe"/></form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 type="date" name="adherent.dateClotureExe"
                 path="adherent.dateClotureExe"/>
-              <form:errors class="text-red-600 animate-pulse" path="adherent.dateClotureExe"/>
+              <form:errors class="error-message" path="adherent.dateClotureExe"/>
             </div>
 
-            <div class="relative z-0 mb-6 w-full group">
+
+            
+            
+            <div class="relative z-0 mb-6 w-full group items-end">
               <form:label code="label.rcsCommune" class="text-xs" path="adherent.rcsCommune">
-                <div class="flex">
-                  <div class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 rounded-l-md border border-r-0 border-gray-300   ">
-                    <a type="button" data-modal-toggle="rcscommune-modal" class="input-group-text"
-                       href="#" id="editRcsCommune" data-toggle="modal"
-                       data-target="#modal-rcsCommune">
-                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                           xmlns="http://www.w3.org/2000/svg">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
-                      </svg>
-                    </a>
-                  </div>
+                <div class="flex h-10">
+                  <a type="button" data-modal-toggle="rcscommune-modal" class="input-group-text inline-flex items-center px-3 text-gray-900 bg-gray-200 hover:bg-gray-300 rounded-l border border-r-0 border-gray-300"
+                     href="#" id="editRcsCommune" data-toggle="modal"
+                     data-target="#modal-rcsCommune">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                    </svg>
+                  </a>
                   <input type="text" id="communeRCSLibelle" disabled
-                         class="rounded-none text-lg rounded-r-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-5"
+                         class="rounded-r bg-gray-50 border border-gray-300 text-gray-900 flex-1 min-w-0 border-gray-300"
                          placeholder="<spring:message code="label.rcsCommune"/>">
                 </div>
-                <form:errors class="text-red-600 animate-pulse" path="adherent.rcsCommune"/>
+                <form:errors class="error-message" path="adherent.rcsCommune"/>
               </form:label>
             </div>
+            
+            
+            
 
             <!-- Main modal -->
             <div id="rcscommune-modal" tabindex="-1" aria-hidden="true"
@@ -390,7 +398,7 @@
                         <form:label class="sr-only" path="adherent.rcsCommune"><spring:message
                             code="label.commune"/></form:label>
                         <form:select id="communeRCSListe"
-                                     class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                                     class="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                                      name="adherent.rcsCommune" path="adherent.rcsCommune.id">
                           <form:options items="${communeList}" itemValue="id"
                                         itemLabel="libelle"/>
@@ -400,10 +408,10 @@
                         <button type="button" data-dismiss="modal" id="valideRcsCommune"
                                 data-modal-toggle="rcscommune-modal"
                                 class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">
-                          Selectionner
+                          Sélectionner
                         </button>
                         <button type="button" data-modal-toggle="rcscommune-modal"
-                                class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">
+                                class="w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">
                           Annuler
                         </button>
                       </div>
@@ -417,17 +425,17 @@
             <div class="relative z-0 mb-6 w-full group">
               <form:label class="text-xs" path="adherent.FormationDirigeant"><spring:message code="label.formationCommerce"/></form:label>
               <form:input
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="adherent.FormationDirigeant"
                 path="adherent.FormationDirigeant"/>
-              <form:errors class="text-red-600 animate-pulse" path="adherent.FormationDirigeant"/>
+              <form:errors class="error-message" path="adherent.FormationDirigeant"/>
             </div>
 
             <div class="form-group">
               <form:label class="text-xs" path="adherent.etat"><spring:message
                   code="label.etat"/></form:label>
               <form:select
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 name="adherent.etat" path="adherent.etat.id">
                 <form:options items="${etatList}" itemValue="id" itemLabel="libelle" class="dark:bg-gray-600"/>
               </form:select>
@@ -437,7 +445,7 @@
               <form:label class="text-xs" path="adherent.adherentType"><spring:message
                   code="label.adherentType"/></form:label>
               <form:select
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 name="adherent.adherentType" path="adherent.adherentType.id">
                 <form:options items="${adherentTypeList}" itemValue="id" itemLabel="libelle" class="dark:bg-gray-600"/>
               </form:select>
@@ -447,7 +455,7 @@
               <form:label class="text-xs" path="adherent.compteType"><spring:message
                   code="label.compteStatut"/></form:label>
               <form:select
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-50 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 name="adherent.compteType" path="adherent.compteType.id">
                 <form:options items="${compteTypeList}" itemValue="id" itemLabel="libelle" class="dark:bg-gray-600"/>
               </form:select>
@@ -459,13 +467,11 @@
       <!-- /.card -->
     </div>
 
-    <div class="flex justify-center">
-      <div class="col-12">
+    <div class="flex justify-center mt-10">
         <c:url value="/listeAdherents" var="url"/>
-        <input type="reset" value="Annuler" onClick="window.location = '${url}'" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+        <button type="reset" onClick="window.location = '${url}'" class="p-5 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mx-1">Annuler</button>
         <!--<a href="#" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Annuler</a>-->
-        <input type="submit" value="Création" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none">
-      </div>
+        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mx-1 focus:outline-none">Création</button>
     </div>
   </div>
 

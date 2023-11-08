@@ -12,49 +12,50 @@
 <c:url value="/AA-edit-categories" var="urlEditCategorie"/>
 
 
-<!-- Liste des métiers -->
-<div id="accordion-collapse" data-accordion="collapse" class="text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-t-xl dark:bg-gray-700 dark:border-gray-600 dark:text-white ">
-  <h2 id="accordion-collapse-heading-metiers" class="flex text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 bg-white dark:text-gray-400 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800">
-    <button type="button" class="flex flex-1 items-center rounded-t-xl justify-between p-5 font-medium text-left " data-accordion-target="#accordion-collapse-body-metier" aria-expanded="false" aria-controls="accordion-collapse-body-metier">
+
+<div id="accordion-collapse" data-accordion="collapse" class="text-sm font-medium text-gray-900 rounded-xl dark:border-gray-600 dark:text-white">
+  <!-- Liste des métiers -->
+  <h2 id="accordion-collapse-heading-metiers" class="group flex text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 bg-gray-300 dark:bg-gray-800">
+    <button onclick="toggleListeMetiers()" type="button" class="flex flex-1 text-xl items-center group-hover:bg-gray-400 dark:group-hover:bg-gray-900 rounded-tl-xl justify-between p-5 font-medium text-left" data-accordion-target="#accordion-collapse-body-metier" aria-expanded="false" aria-controls="accordion-collapse-body-metier">
       <span class="flex-1">Liste des métiers</span>
       <svg class="w-6 h-6 dark:fill-gray-100" ><use xlink:href="<c:url value="/resources/images/icones.svg#expand_more"/>"></use></svg>
     </button>
 
-    <span class="mx-2 rounded-lg text-center my-auto hover:bg-gray-300 dark:hover:bg-gray-600">
-      <a href="${urlEditMetier}" class="block w-full px-4 py-2 cursor-pointer ">
+    <span class="p-2 flex items-center text-center group-hover:bg-gray-400 dark:group-hover:bg-gray-900 rounded-tr-xl">
+      <a href="${urlEditMetier}" class="block w-full px-4 py-2 cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-600 hover:text-white rounded-lg">
         <spring:message code="label.editer"/>
       </a>          
     </span>
   </h2> 
+      
   <div id="accordion-collapse-body-metier" class="hidden" aria-labelledby="accordion-collapse-heading-metier">
     <c:forEach items="${listeMetiers}" var="item">  
       <c:url value="/AA-delete-metier" var="urlDeleteMetier"><c:param name="idMetier" value="${item.id}"/></c:url>
-        <span class="flex px-4 py-2 border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white ">
+        <span class="flex items-center px-4 py-2 border-b border-gray-300 dark:border-gray-600 bg-gray-200 dark:bg-gray-600">
           <span class="w-1/12">
           <c:out value="${item.libelle}"/>
+          </span>
+          <span class="flex-1 px-4">
+            <c:out value="${item.description}"/>
+          </span>
+          <span class="px-4 py-4">
+            <button type="button" onclick="confirmDelete('${urlDeleteMetier}', '${item.libelle}')"><svg class="w-10 h-10 p-2 fill-gray-400 hover:bg-red-900 hover:fill-white rounded-lg"><use xlink:href="<c:url value="/resources/images/icones.svg#trash"/>"></use></svg></button>
+            <!--<a href="${urlDeleteMetier}"><svg class="w-10 h-10 p-2 dark:stroke-gray-400 hover:bg-red-900 hover:stroke-white rounded-lg"><use xlink:href="<c:url value="/resources/images/icones.svg#trash"/>"></use></svg></a>-->
+          </span>
         </span>
-        <span class="flex-1 px-4">
-          <c:out value="${item.description}"/>
-        </span>
-        <span class="px-4 py-4">
-          <button type="button" onclick="confirmDelete('${urlDeleteMetier}', '${item.libelle}')"><svg class="w-6 h-6 dark:fill-gray-100"><use xlink:href="<c:url value="/resources/images/icones.svg#trash"/>"></use></svg></button>
-        <!--<a href="${urlDeleteMetier}"><svg class="w-6 h-6 dark:fill-gray-100"><use xlink:href="<c:url value="/resources/images/icones.svg#trash"/>"></use></svg></a>-->
-        </span>
-
-      </span>
     </c:forEach>
   </div>
   <!-- Liste des métiers -->
 
   <!-- Liste des catégories -->
-  <h2 id="accordion-collapse-heading-categories" class="flex text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 bg-white dark:text-gray-400 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800">
-    <button type="button" class="flex flex-1 items-center rounded-lg justify-between p-5 font-medium text-left " data-accordion-target="#accordion-collapse-body-categories" aria-expanded="false" aria-controls="accordion-collapse-body-categories">
+  <h2 id="accordion-collapse-heading-categories" class="group flex text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 bg-gray-300 dark:bg-gray-800">
+    <button type="button" onclick="toggleListeCategories()" class="flex flex-1 text-xl items-center group-hover:bg-gray-400 dark:group-hover:bg-gray-900 justify-between p-5 font-medium text-left" data-accordion-target="#accordion-collapse-body-categories" aria-expanded="false" aria-controls="accordion-collapse-body-categories">
       <span class="flex-1">Liste des catégories</span>
-      <svg class="w-6 h-6 dark:fill-gray-100" ><use xlink:href="<c:url value="/resources/images/icones.svg#expand_more"/>"></use></svg>
+      <svg class="w-6 h-6 dark:fill-gray-100"><use xlink:href="<c:url value="/resources/images/icones.svg#expand_more"/>"></use></svg>
     </button>
 
-    <span class="mx-2 rounded-lg text-center my-auto hover:bg-gray-300 dark:hover:bg-gray-600">
-      <a href="${urlEditCategorie}" class="block w-full px-4 py-2 cursor-pointer ">
+    <span class="p-2 flex items-center text-center group-hover:bg-gray-400 dark:group-hover:bg-gray-900">
+      <a href="${urlEditCategorie}" class="block w-full px-4 py-2 cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-600 hover:text-white rounded-lg">
         <spring:message code="label.editer"/>
       </a>          
     </span>
@@ -62,15 +63,15 @@
   <div id="accordion-collapse-body-categories" class="hidden" aria-labelledby="accordion-collapse-heading-categories">
     <c:forEach items="${listeCategories}" var="item">  
       <c:url value="/AA-delete-categorie" var="urlDeleteCategorie"><c:param name="idCategorie" value="${item.id}"/></c:url>
-        <span class="flex  px-4 py-2 border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white ">
-          <span class="flex-1 px-4">
+        <span class="flex items-center px-4 py-2 border-b bg-gray-200 dark:bg-gray-600 border-gray-300 dark:border-gray-600 last:rounded-b-xl">
+          <span class="flex-1">
           <c:out value="${item.libelle}"/>
         </span>
 
         <c:url value="/AA-edit-photo" var="urlDelete"><c:param name="idCategorie" value="${item.id}"/></c:url>
           <span class="px-4 py-4">
-            <button type="button" onclick="confirmDelete('${urlDeleteCategorie}', '${item.libelle}')"><svg class="w-6 h-6 dark:fill-gray-100"><use xlink:href="<c:url value="/resources/images/icones.svg#trash"/>"></use></svg></button>
-          <!--<a href="confirmDelete(${urlDeleteCategorie})"><svg class="w-6 h-6 dark:fill-gray-100"><use xlink:href="<c:url value="/resources/images/icones.svg#trash"/>"></use></svg></a>-->
+            <button type="button" onclick="confirmDelete('${urlDeleteCategorie}', '${item.libelle}')"><svg class="w-10 h-10 p-2 fill-gray-400 hover:bg-red-900 hover:fill-white rounded-lg"><use xlink:href="<c:url value="/resources/images/icones.svg#trash"/>"></use></svg></button>
+          <!--<a href="confirmDelete(${urlDeleteCategorie})"><svg class="w-10 h-10 p-2 dark:stroke-gray-400 hover:bg-red-900 hover:stroke-white rounded-lg"><use xlink:href="<c:url value="/resources/images/icones.svg#trash"/>"></use></svg></a>-->
         </span>
 
       </span>
@@ -83,9 +84,18 @@
 
 <script>
   function confirmDelete(url, nom) {
-    let text = "Voulez vous supprimer l'élèment : " + nom;
+    let text = "Voulez-vous vraiment supprimer l'élément : " + nom + " ?";
     if (confirm(text) == true) {
       window.location.href = url;
     }
   }
+  
+  function toggleListeMetiers() {
+    $("#accordion-collapse-body-metier").slideToggle(400);
+  }
+  
+  function toggleListeCategories() {
+    $("#accordion-collapse-body-categories").slideToggle(400);
+  }
+  
 </script>

@@ -26,37 +26,37 @@
     <div class="bg-red-200">
       <form:label path="adherent.code"><spring:message code="label.codeAdh"/></form:label>
       <form:input class="valeur" name="adherent.code" path="adherent.code" autofocus="true"/>
-      <form:errors class="error" path="adherent.code"/>
+      <form:errors class="error-message" path="adherent.code"/>
     </div>
 
     <div class="showDetailAdherent">
       <form:label path="adherent.codeERP"><spring:message code="label.codeERP"/></form:label>
       <form:input class="valeur" name="adherent.codeERP" path="adherent.codeERP" autofocus="true"/>
-      <form:errors class="error" path="adherent.codeERP"/>
+      <form:errors class="error-message" path="adherent.codeERP"/>
     </div>
 
     <div class="showDetailAdherent">
       <form:label path="adherent.libelle"><spring:message code="label.nomRecherche"/></form:label>
       <form:input class="valeur" name="adherent.libelle" path="adherent.libelle"/>
-      <form:errors class="error" path="adherent.libelle"/>
+      <form:errors class="error-message" path="adherent.libelle"/>
     </div>
 
     <div class="showDetailAdherent">
       <form:label path="adherent.denomination"><spring:message code="label.denomination"/> </form:label>
       <form:input class="valeur" name="adherent.denomination" path="adherent.denomination"/>
-      <form:errors class="error" path="adherent.denomination"/>
+      <form:errors class="error-message" path="adherent.denomination"/>
     </div>
 
     <div class="showDetailAdherent">
       <form:label path="adherent.adresse"><spring:message code="label.adresse"/></form:label>
       <form:input class="valeur" name="adherent.adresse" path="adherent.adresse"/>
-      <form:errors class="error" path="adherent.adresse"/>
+      <form:errors class="error-message" path="adherent.adresse"/>
     </div>
 
     <div class="showDetailAdherent">
       <form:label path="adherent.adresseComplement"><spring:message code="label.adresseComplement"/></form:label>
       <form:input class="valeur" name="adherent.adresseComplement" path="adherent.adresseComplement"/>
-      <form:errors class="error" path="adherent.adresseComplement"/>
+      <form:errors class="error-message" path="adherent.adresseComplement"/>
     </div>
 
     <div class="showDetailAdherent">
@@ -70,7 +70,7 @@
         <span class="editButton"><a href="#" id="editCommune"><svg><use
               xlink:href="resources/images/icones.svg#edit"></use></svg></a></span>
       </div>
-      <form:errors class="error" path="adherent.commune"/>
+      <form:errors class="error-message" path="adherent.commune"/>
     </div>
   </fieldset>
 
@@ -84,7 +84,7 @@
         <%--<form:options items="${zonePrep}"/>--%>
         <form:options items="${poleList}" itemValue="id" itemLabel="libelle"/>
       </form:select>
-      <form:errors class="error" path="adherent.pole"/>
+      <form:errors class="error-message" path="adherent.pole"/>
     </div>
 
     <div class="showDetailAdherent">
@@ -111,7 +111,6 @@
       <form:label path="adherent.isArtipole"><spring:message code="label.facebookArtipole"/></form:label>
       <form:checkbox path="adherent.isFacebookArtipole"/>
     </div>
-
   </fieldset>
 
   <fieldset>
@@ -122,7 +121,7 @@
       <form:select class="valeur" name="adherent.agence" path="adherent.agence.id">
         <form:options items="${agenceList}" itemValue="id" itemLabel="libelle"/>
       </form:select>
-      <%-- 			<form:errors class="error" path="adherent.pole" /> --%>
+      <%-- 			<form:errors class="error-message" path="adherent.pole" /> --%>
     </div>
 
     <div class="showDetailAdherent">
@@ -131,7 +130,7 @@
         <form:option value=""></form:option>
         <form:options items="${secteurList}" itemValue="id" itemLabel="libelle"/>
       </form:select>
-      <form:errors class="error" path="adherent.secteur"/>
+      <form:errors class="error-message" path="adherent.secteur"/>
       <%-- 			<form:label class="valeur" path="adherent.secteur.libelle" >${adhToEdit.adherent.secteur.libelle}</form:label> --%>
     </div>
 
@@ -156,7 +155,7 @@
       <form:label path="adherent.dateEntree"><spring:message code="label.dateEntree"/> toto</form:label>
         <div>
         <form:input class="valeur" type="date" name="adherent.dateEntree" path="adherent.dateEntree"/>
-        <form:errors class="errors" path="adherent.dateEntree"/>
+        <form:errors class="error-message" path="adherent.dateEntree"/>
       </div>
     </div>
 
@@ -165,7 +164,7 @@
       <form:select class="valeur" name="adherent.role" path="adherent.role.id">
         <form:options items="${roleList}" itemValue="id" itemLabel="libelle"/>
       </form:select>
-      <form:errors class="error" path="adherent.role"/>
+      <form:errors class="error-message" path="adherent.role"/>
     </div>
 
     <div class="showDetailAdherent">
@@ -173,19 +172,19 @@
       <form:select class="valeur" name="adherent.formeJuridique" path="adherent.formeJuridique.id">
         <form:options items="${formJuridList}" itemValue="id" itemLabel="libelle"/>
       </form:select>
-      <form:errors class="error" path="adherent.formeJuridique"/>
+      <form:errors class="error-message" path="adherent.formeJuridique"/>
     </div>
 
     <div class="showDetailAdherent">
       <form:label path="adherent.siren"><spring:message code="label.siren"/></form:label>
       <form:input class="valeur" name="adherent.siren" path="adherent.siren"/>
-      <form:errors class="error" path="adherent.siren"/>
+      <form:errors class="error-message" path="adherent.siren"/>
     </div>
 
     <div class="showDetailAdherent">
       <form:label path="adherent.siret"><spring:message code="label.siret"/></form:label>
       <form:input class="valeur" name="adherent.siret" path="adherent.siret"/>
-      <form:errors class="error" path="adherent.siret"/>
+      <form:errors class="error-message" path="adherent.siret"/>
     </div>
 
     <div class="showDetailAdherent">
@@ -198,7 +197,7 @@
     <div class="showDetailAdherent">
       <form:label path="adherent.numRepMetier"><spring:message code="label.numRepMetier"/></form:label>
       <form:input class="valeur" name="adherent.numRepMetier" path="adherent.numRepMetier"/>
-      <form:errors class="error" path="adherent.numRepMetier"/>
+      <form:errors class="error-message" path="adherent.numRepMetier"/>
     </div>
 
     <div class="showDetailAdherent">
@@ -211,7 +210,7 @@
         <%--<form:option value="RM">RM</form:option>--%>
       <%--</form:select>--%>
       <%-- 			<form:input class="valeur" name="adherent.rcsRm" path="adherent.rcsRm"/> --%>
-      <form:errors class="error" path="adherent.rcsRm"/>
+      <form:errors class="error-message" path="adherent.rcsRm"/>
     </div>
 
     <div class="showDetailAdherent">
@@ -224,20 +223,20 @@
         <form:input type="hidden" path="adherent.rcsCommune.codePostal"/>
         <span class="editButton"><a href="#" id="editRcsCommune"><svg><use
               xlink:href="resources/images/icones.svg#edit"></use></svg></a></span>
-      </div>
-      <form:errors class="error" path="adherent.rcsCommune"/>
+        </div>
+      <form:errors class="error-message" path="adherent.rcsCommune"/>
     </div>
 
     <div class="showDetailAdherent">
       <form:label path="adherent.dateClotureExe"><spring:message code="label.dateClotureExe"/></form:label>
       <form:input class="valeur" type="date" name="adherent.dateClotureExe" path="adherent.dateClotureExe"/>
-      <form:errors class="errors" path="adherent.dateClotureExe"/>
+      <form:errors class="error-message" path="adherent.dateClotureExe"/>
     </div>
 
     <div class="showDetailAdherent">
       <form:label path="adherent.FormationDirigeant"><spring:message code="label.formationCommerce"/></form:label>
       <form:input class="valeur" name="adherent.FormationDirigeant" path="adherent.FormationDirigeant"/>
-      <form:errors class="error" path="adherent.FormationDirigeant"/>
+      <form:errors class="error-message" path="adherent.FormationDirigeant"/>
     </div>
 
     <div class="showDetailAdherent">

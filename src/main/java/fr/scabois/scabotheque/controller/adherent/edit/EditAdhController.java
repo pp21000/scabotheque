@@ -5,6 +5,7 @@ import fr.scabois.scabotheque.bean.adherent.AdherentActivite;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactComptable;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
 import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
+import fr.scabois.scabotheque.bean.adherent.AdherentLogistique;
 import fr.scabois.scabotheque.bean.adherent.AdherentSuiviVisite;
 import fr.scabois.scabotheque.bean.adherent.AdherentType;
 import fr.scabois.scabotheque.bean.adherent.CompteType;
@@ -16,6 +17,8 @@ import fr.scabois.scabotheque.bean.adherent.Tournee;
 import fr.scabois.scabotheque.bean.commun.Activite;
 import fr.scabois.scabotheque.bean.commun.Agence;
 import fr.scabois.scabotheque.bean.commun.Ape;
+import fr.scabois.scabotheque.enums.ImageType;
+import fr.scabois.scabotheque.enums.NavType;
 import fr.scabois.scabotheque.enums.PageType;
 import fr.scabois.scabotheque.services.IServiceAdherent;
 import java.io.IOException;
@@ -102,47 +105,47 @@ public class EditAdhController {
   public EditAdherent adhToEdit(Adherent adh) {
     final EditAdherent editableAdh = new EditAdherent();
 
-    editableAdh.setId(adh.getId());
+    editableAdh.setAdresse(adh.getAdresse());
+    editableAdh.setAdresseComplement(adh.getAdresseComplement());
+    editableAdh.setAdherentType(adh.getAdherentType());
+    editableAdh.setAgence(adh.getAgence());
+    editableAdh.setApe(adh.getApe());
+    editableAdh.setCnxEolasAllow(adh.getCnxEolasAllow());
     editableAdh.setCode(adh.getCode());
     editableAdh.setCodeERP(adh.getCodeERP());
     editableAdh.setCodeERPParent(adh.getCodeERPParent());
-    editableAdh.setLibelle(adh.getLibelle());
-    editableAdh.setDenomination(adh.getDenomination());
-    editableAdh.setFormeJuridique(adh.getFormeJuridique());
+    editableAdh.setCompteType(adh.getCompteType());
+    editableAdh.setCommune(adh.getCommune());
+//    editableAdh.setContactComptable(adh.getContactComptable());
+    editableAdh.setDateClotureExe(adh.getDateClotureExe());
     editableAdh.setDateEntree(adh.getDateEntree());
     editableAdh.setDateSortie(adh.getDateSortie());
-    editableAdh.setAdresse(adh.getAdresse());
-    editableAdh.setAdresseComplement(adh.getAdresseComplement());
-    editableAdh.setCommune(adh.getCommune());
-    editableAdh.setPhoto(adh.getPhotoImg());
-    editableAdh.setPole(adh.getPole());
-    editableAdh.setRole(adh.getRole());
-    editableAdh.setSecteur(adh.getSecteur());
+    editableAdh.setDenomination(adh.getDenomination());
+    editableAdh.setEtat(adh.getEtat());
+    editableAdh.setFormationDirigeant(adh.getFormationDirigeant());
+    editableAdh.setFormeJuridique(adh.getFormeJuridique());
     editableAdh.setIsArtipole(adh.getIsArtipole());
     editableAdh.setIsCharteArtipole(adh.getIsCharteArtipole());
-    editableAdh.setIsFlocageArtipole(adh.getIsFlocageArtipole());
-    editableAdh.setIsWebArtipole(adh.getIsWebArtipole());
-    editableAdh.setFormationDirigeant(adh.getFormationDirigeant());
-    editableAdh.setCnxEolasAllow(adh.getCnxEolasAllow());
     editableAdh.setIsFacebookArtipole(adh.getIsFacebookArtipole());
-    editableAdh.setApe(adh.getApe());
-    editableAdh.setSiren(adh.getSiren());
-    editableAdh.setSiret(adh.getSiret());
-    editableAdh.setNumRepMetier(adh.getNumRepMetier());
-    editableAdh.setRcsRm(adh.getRcsRm());
-    editableAdh.setRcsCommune(adh.getRcsCommune());
-    editableAdh.setRmCommune(adh.getRmCommune());
-    editableAdh.setAgence(adh.getAgence());
-    editableAdh.setDateClotureExe(adh.getDateClotureExe());
-    editableAdh.setTournee(adh.getTournee());
+    editableAdh.setIsFlocageArtipole(adh.getIsFlocageArtipole());
     editableAdh.setIsOutilDechargement(adh.getIsOutilDechargement());
-    editableAdh.setEtat(adh.getEtat());
-    editableAdh.setAdherentType(adh.getAdherentType());
-    editableAdh.setCompteType(adh.getCompteType());
+    editableAdh.setIsWebArtipole(adh.getIsWebArtipole());
+    editableAdh.setLatitude(adh.getLatitude());
+    editableAdh.setLibelle(adh.getLibelle());
     editableAdh.setLatitude(adh.getLatitude());
     editableAdh.setLongitude(adh.getLongitude());
-//        editableAdh.setContactComptable(adh.getContactComptable());
-
+    editableAdh.setNumRepMetier(adh.getNumRepMetier());
+    editableAdh.setPole(adh.getPole());
+    editableAdh.setPhoto(adh.getPhotoImg());
+    editableAdh.setRcsCommune(adh.getRcsCommune());
+    editableAdh.setRcsRm(adh.getRcsRm());
+    editableAdh.setRmCommune(adh.getRmCommune());
+    editableAdh.setRole(adh.getRole());
+    editableAdh.setSecteur(adh.getSecteur());
+    editableAdh.setSiren(adh.getSiren());
+    editableAdh.setSiret(adh.getSiret());
+    editableAdh.setTournee(adh.getTournee());
+    editableAdh.setIsWebArtipole(adh.getIsWebArtipole());
     return editableAdh;
   }
 
@@ -221,28 +224,68 @@ public class EditAdhController {
 //
 //    return "editContactComptableAdh";
 //  }
-  @RequestMapping(value = {"/edit/editArtipoleAdh", "/edit/editAdministratifAdh", "/edit/editExploitationAdh", "/edit/editInformatiqueAdh",
-    "/edit/editArtipoleAdh", "/edit/editIdentiteAdh"}, method = RequestMethod.GET)
-  public String editAdherent(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel,
-          HttpServletRequest request) {
+  @RequestMapping(value = {"/edit/editExploitationAdh"}, method = {RequestMethod.GET})
+  public String editAdherentLogistique(@RequestParam("idAdh") final int idAdh, final ModelMap pModel, final HttpServletRequest request) {
+    final Adherent adh = this.service.loadAdherent(idAdh);
+    final AdherentLogistique logistiqueAdh = this.service.loadAdherentLogistique(idAdh);
+    final EditAdherentLogistiqueForm editForm = new EditAdherentLogistiqueForm(logistiqueAdh);
+    final List<AdherentContactRole> contacts = (List<AdherentContactRole>) this.service.loadAdherentContact(idAdh);
+    if (pModel.get("editForm") == null) {
+      pModel.addAttribute("editForm", editForm);
+    } else {
+      pModel.addAttribute("editForm", pModel.get("editForm"));
+    }
+    pModel.addAttribute("adherent", adh);
+    pModel.addAttribute("contacts", contacts);
+    pModel.addAttribute("logistiqueAdh", logistiqueAdh);
+    pModel.addAttribute("navType", NavType.ADHERENT);
+    pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
+    return "editExploitationAdh";
+  }
+
+  @RequestMapping(value = {"/edit/editExploitationAdh"}, method = {RequestMethod.POST})
+  public String saveAdherentLogistique(@Valid @ModelAttribute("editForm") final EditAdherentLogistiqueForm editForm, final BindingResult pBindingResult, final ModelMap pModel, final HttpServletRequest request) {
+    final AdherentLogistique adhLog = editForm.getLogistiqueAdh();
+    if (!pBindingResult.hasErrors()) {
+      this.service.saveAdherentLogistique(adhLog);
+      return "redirect:/adherentProfil?idAdh=" + adhLog.getAdherentId();
+    }
+    return this.editAdherentLogistique(adhLog.getAdherentId(), pModel, request);
+  }
+
+  private void submitFile(final int adhId, final MultipartFile file, final ImageType type) throws Exception {
+    if (file.getSize() == 0L) {
+      return;
+    }
+    final String extension = file.getOriginalFilename().substring(file.getOriginalFilename().length() - 3);
+    final String fileName = "data:image/" + extension + ";base64," + Base64.encodeBase64String(file.getBytes());
+    if (adhId != 0) {
+      if (type == ImageType.ADHERENT_PHOTO) {
+        this.service.setAdherentImage(adhId, fileName.getBytes());
+      } else {
+        this.service.setAdherentLogo(adhId, fileName.getBytes());
+      }
+    }
+  }
+
+  @RequestMapping(value = {"/edit/editArtipoleAdh", "/edit/editAdministratifAdh", "/edit/editInformatiqueAdh", "/edit/editIdentiteAdh"}, method = RequestMethod.GET)
+  public String editAdherent(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel, HttpServletRequest request) {
 
     addSelectLists(pModel);
 
     if (pModel.get("adhToEdit") == null) {
-
       final Adherent adh = service.loadAdherent(idAdh);
       final EditAdherentForm editAdhForm = new EditAdherentForm(adh);
-      editAdhForm.setCommentaire(
-              service.loadAdherentCommentaire(idAdh, extractPageType(request.getServletPath().substring(6))));
+      editAdhForm.setCommentaire(service.loadAdherentCommentaire(idAdh, extractPageType(request.getServletPath().substring(6))));
 
       // Rend l'adherent éditable (avec des validations test)
       // EditAdherent editableAdh = adhToEdit(adh);
       // editAdhForm.setAdherent(editableAdh);
-      pModel.addAttribute("adhToEdit", editAdhForm);
+      pModel.addAttribute("editForm", editAdhForm);
     } else {
-      pModel.addAttribute("adhToEdit", pModel.get("adhToEdit"));
+      pModel.addAttribute("editForm", pModel.get("adhToEdit"));
     }
-
+    pModel.addAttribute("navType", NavType.ADHERENT);
     pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
 
     // Implique que le nom des Tiles soit correctement alimenté
@@ -261,8 +304,8 @@ public class EditAdhController {
 
     editForm.setCommentaire(service.loadAdherentCommentaire(idAdh, PageType.ADHERENT_ACTIVITE));
 
-    // mise en forme des activitèes Adherent en ajoutant les activit�es non
-    // renseign�s
+    // mise en forme des activitèes Adherent en ajoutant les activitées non
+    // renseignés
     if (pModel.get("editForm") == null) {
       activitees.stream().forEach(a -> {
         EditAdherentActivite editActiviteAdh = new EditAdherentActivite();
@@ -288,6 +331,7 @@ public class EditAdhController {
 
     pModel.addAttribute("adherent", adh);
     pModel.addAttribute("activitees", activitees);
+    pModel.addAttribute("navType", NavType.ADHERENT);
     pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
 
     return "editActiviteAdh";
@@ -364,45 +408,57 @@ public class EditAdhController {
   public Adherent editToAdh(EditAdherent editAdh) {
     final Adherent adh = new Adherent();
 
-    adh.setId(editAdh.getId());
+    adh.setApe(editAdh.getApe());
+    adh.setAdresse(editAdh.getAdresse());
+    adh.setAdresseComplement(editAdh.getAdresseComplement());
+    adh.setAdherentType(editAdh.getAdherentType());
+    adh.setAgence(editAdh.getAgence());
+    adh.setCnxEolasAllow(editAdh.getCnxEolasAllow());
     adh.setCode(editAdh.getCode());
     adh.setCodeERP(editAdh.getCodeERP());
     adh.setCodeERPParent(editAdh.getCodeERPParent());
-    adh.setLibelle(editAdh.getLibelle());
-    adh.setDenomination(editAdh.getDenomination());
-    adh.setFormeJuridique(editAdh.getFormeJuridique());
+    adh.setCompteType(editAdh.getCompteType());
+    adh.setCommune(editAdh.getCommune());
+//    adh.setContactComptable(editAdh.getContactComptable());
+    adh.setDateClotureExe(editAdh.getDateClotureExe());
     adh.setDateEntree(editAdh.getDateEntree());
     adh.setDateSortie(editAdh.getDateSortie());
-    adh.setAdresse(editAdh.getAdresse());
-    adh.setAdresseComplement(editAdh.getAdresseComplement());
-    adh.setCommune(editAdh.getCommune());
-    adh.setPhoto(editAdh.getPhoto().getBytes());
-    adh.setPole(editAdh.getPole());
-    adh.setRole(editAdh.getRole());
-    adh.setSecteur(editAdh.getSecteur());
+    adh.setDenomination(editAdh.getDenomination());
+    adh.setDescription_activite(editAdh.getDescription_activite());
+    adh.setDescription_entreprise(editAdh.getDescription_entreprise());
+    adh.setEtat(editAdh.getEtat());
+    adh.setFacebook(editAdh.getFacebook());
+    adh.setFormationDirigeant(editAdh.getFormationDirigeant());
+    adh.setFormeJuridique(editAdh.getFormeJuridique());
+    adh.setId(editAdh.getId());
+    adh.setInstagram(editAdh.getInstagram());
     adh.setIsArtipole(editAdh.getIsArtipole());
     adh.setIsCharteArtipole(editAdh.getIsCharteArtipole());
-    adh.setIsFlocageArtipole(editAdh.getIsFlocageArtipole());
-    adh.setIsWebArtipole(editAdh.getIsWebArtipole());
-    adh.setFormationDirigeant(editAdh.getFormationDirigeant());
-    adh.setCnxEolasAllow(editAdh.getCnxEolasAllow());
     adh.setIsFacebookArtipole(editAdh.getIsFacebookArtipole());
-    adh.setApe(editAdh.getApe());
+    adh.setIsFlocageArtipole(editAdh.getIsFlocageArtipole());
+    adh.setIsOutilDechargement(editAdh.getIsOutilDechargement());
+    adh.setIsWebArtipole(editAdh.getIsWebArtipole());
+    adh.setLibelle(editAdh.getLibelle());
+    adh.setLinkedin(editAdh.getLinkedin());
+    adh.setLogo(editAdh.getLogo().getBytes());
+    adh.setLatitude(editAdh.getLatitude());
+    adh.setLongitude(editAdh.getLongitude());
+    adh.setMail(editAdh.getMail());
+    adh.setNumRepMetier(editAdh.getNumRepMetier());
+    adh.setPole(editAdh.getPole());
+    adh.setPhoto(editAdh.getPhoto().getBytes());
+    adh.setPinterest(editAdh.getPinterest());
+    adh.setRole(editAdh.getRole());
+    adh.setRcsCommune(editAdh.getRcsCommune());
+    adh.setRcsRm(editAdh.getRcsRm());
+    adh.setRmCommune(editAdh.getRmCommune());
+    adh.setSecteur(editAdh.getSecteur());
     adh.setSiren(editAdh.getSiren());
     adh.setSiret(editAdh.getSiret());
-    adh.setNumRepMetier(editAdh.getNumRepMetier());
-    adh.setRcsRm(editAdh.getRcsRm());
-    adh.setRcsCommune(editAdh.getRcsCommune());
-    adh.setRmCommune(editAdh.getRmCommune());
-    adh.setAgence(editAdh.getAgence());
-    adh.setDateClotureExe(editAdh.getDateClotureExe());
+    adh.setSiteWeb(editAdh.getSiteWeb());
+    adh.setTelephone(editAdh.getTelephone());
     adh.setTournee(editAdh.getTournee());
-    adh.setOutilDechargement(editAdh.getIsOutilDechargement());
-    adh.setEtat(editAdh.getEtat());
-    adh.setAdherentType(editAdh.getAdherentType());
-    adh.setCompteType(editAdh.getCompteType());
-//        adh.setContactComptable(editAdh.getContactComptable());
-
+    adh.setYoutube(editAdh.getYoutube());
     return adh;
   }
 
@@ -513,7 +569,7 @@ public class EditAdhController {
 
     int adhId = editForm.getActivitesAdh().get(0).getAdherentId();
 
-    // validation de la somme des %tage
+    // validation de la somme des pourcentage
     if (editForm.getActivitesAdh().stream().mapToInt(a -> a.getPourcentage() == null ? 0 : a.getPourcentage()).sum() != 100) {
       pBindingResult.addError(new FieldError("messageErreur", "messageErreur", "La somme des pourcentages doit être de 100% !"));
     }
@@ -550,34 +606,32 @@ public class EditAdhController {
 
     if (!pBindingResult.hasErrors()) {
       service.saveContactComptableAdherent(contact);
-      return redirectOkPage(PageType.ADHERENT_ADMINISTRATIF, contact.getAdherentId());
+      return redirectOkPage(PageType.ADHERENT_PROFIL, contact.getAdherentId());
     }
-
+    final Adherent adh = this.service.loadAdherent(editForm.getContactComptableAdherent().getAdherentId());
+    pModel.addAttribute("adherent", adh);
     return editAdherent(editForm.getContactComptableAdherent().getAdherentId(), pModel, request);
+
   }
 
-  @RequestMapping(value = {"/edit/editAdministratifAdh", "/edit/editExploitationAdh",
-    "/edit/editArtipoleAdh", "/edit/editIdentiteAdh"}, method = RequestMethod.POST)
-  public String modifieAdh(@Valid @ModelAttribute(value = "adhToEdit") final EditAdherentForm editForm,
-          final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
+  @RequestMapping(value = {"/edit/editAdministratifAdh", "/edit/editArtipoleAdh", "/edit/editIdentiteAdh"}, method = RequestMethod.POST)
+  public String modifieAdh(@Valid @ModelAttribute(value = "adhToEdit") final EditAdherentForm editForm, final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
 
     EditAdherent adhEditable = editForm.getEditAdherent();
     Adherent adh = editToAdh(adhEditable);
 
     if (adh.getCommune().getId() == null) {
-      pBindingResult.addError(new FieldError("commune", "adherent.commune",
-              messages.getMessage("modification.notempty", null, Locale.FRANCE)));
+      pBindingResult.addError(new FieldError("commune", "adherent.commune", messages.getMessage("modification.notempty", null, Locale.FRANCE)));
     }
     if (adh.getEtat().getId() == 2 && adh.getDateSortie() == null) {
-      pBindingResult.addError(new FieldError("dateSortie", "adherent.dateSortie",
-              messages.getMessage("modification.notempty", null, Locale.FRANCE)));
+      pBindingResult.addError(new FieldError("dateSortie", "adherent.dateSortie", messages.getMessage("modification.notempty", null, Locale.FRANCE)));
     }
 
     if (!pBindingResult.hasErrors()) {
-      service.saveAdherentCommentaire(adh.getId(), extractPageType(request.getServletPath().substring(6)),
-              editForm.getCommentaire());
+      service.saveAdherentCommentaire(adh.getId(), extractPageType(request.getServletPath().substring(6)), editForm.getCommentaire());
       service.saveAdherent(adh);
-      return redirectOkPage(extractPageType(request.getServletPath().substring(6)), adh.getId());
+      //return redirectOkPage(extractPageType(request.getServletPath().substring(6)), adh.getId());
+      return redirectOkPage(PageType.ADHERENT_PROFIL, adh.getId());
     }
 
     return editAdherent(editForm.getEditAdherent().getId(), pModel, request);
@@ -610,8 +664,7 @@ public class EditAdhController {
 
     if (!pBindingResult.hasErrors()) {
       service.saveAdherentCommentaire(adhId, PageType.ADHERENT_INFORMATIQUE, editForm.getCommentaire());
-
-//	    service.saveInformatiqueAdherent(adhId, );
+//      service.saveInformatiqueAdherent(adhId, );
       return redirectOkPage(PageType.ADHERENT_INFORMATIQUE, adhId);
     }
 
@@ -660,10 +713,9 @@ public class EditAdhController {
         page = "adherentCRM";
         break;
       default:
-        page = "adherentDetail";
+        page = "adherentProfil";
         break;
     }
-
     return "redirect:/" + page + "?idAdh=" + adhId;
   }
 
@@ -682,7 +734,7 @@ public class EditAdhController {
 //	    service.setContactImage(contactId, fileName.getBytes());
     }
 
-    return "redirect:/adherentDetail?idAdh=" + adhId;
+    return "redirect:/adherentProfil?idAdh=" + adhId;
   }
 
   private EditAdherentSuiviVisite suiviToEdit(AdherentSuiviVisite adhSuivi) {

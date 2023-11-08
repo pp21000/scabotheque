@@ -30,16 +30,16 @@ public class EditAAEmplacementForm {
     retour.setLibelle(this.editAAEmplacement.getLibelle());
     retour.setContent(this.editAAEmplacement.getContent());
     retour.setType(this.editAAEmplacement.getType());
+    retour.setAlt(this.editAAEmplacement.getAlt());
+    retour.setPage(this.editAAEmplacement.getPage());
     try {
       if (this.editAAEmplacement.getFile() != null && this.editAAEmplacement.getFile().getOriginalFilename() != "") {
         final String extension = this.editAAEmplacement.getFile().getOriginalFilename().substring(this.editAAEmplacement.getFile().getOriginalFilename().length() - 3);
         fileName = "data:image/" + extension + ";base64," + Base64.encodeBase64String(this.editAAEmplacement.getFile().getBytes());
-        retour.setData(fileName.getBytes());
       }
     } catch (IOException ex) {
     }
-    retour.setAlt(this.editAAEmplacement.getAlt());
-    retour.setPage(this.editAAEmplacement.getPage());
+    retour.setData(fileName.getBytes());
     return retour;
   }
 

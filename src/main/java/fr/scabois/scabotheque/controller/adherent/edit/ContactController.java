@@ -18,6 +18,7 @@ import fr.scabois.scabotheque.bean.commun.Agence;
 import fr.scabois.scabotheque.bean.commun.Ape;
 import fr.scabois.scabotheque.bean.commun.ContactFonction;
 import fr.scabois.scabotheque.controller.adherent.CriteriaAdherent;
+import fr.scabois.scabotheque.enums.NavType;
 import fr.scabois.scabotheque.enums.PageType;
 import fr.scabois.scabotheque.services.ExportService;
 import fr.scabois.scabotheque.services.IServiceAdherent;
@@ -55,7 +56,7 @@ public class ContactController {
   public String addContact(@Valid @ModelAttribute("contactToAdd") final AddAdherentContactForm newContact, final BindingResult pBindingResult, final ModelMap pModel, final HttpServletRequest request) {
     if (!pBindingResult.hasErrors()) {
       this.service.createContactAdherent(this.editToContact(newContact.getContact()));
-      return "redirect:/adherentDetail?idAdh=" + newContact.getContact().getAdherentId();
+      return "redirect:/adherentProfil?idAdh=" + newContact.getContact().getAdherentId();
     }
     return this.editContact(newContact.getContact().getAdherentId(), pModel, request);
   }
@@ -70,7 +71,7 @@ public class ContactController {
     } else {
       pModel.addAttribute("addContactForm", pModel.get((Object) "addContactForm"));
     }
-    pModel.addAttribute("pageType", (Object) PageType.CREATE_CONTACT_CLUB_FEMME);
+    ;
     final Map<Integer, String> listAdherents = (Map<Integer, String>) this.service.loadAdherents().stream().collect(Collectors.toMap(a -> a.getId(), a -> a.getLibelle()));
     final Map<String, String> civilite = new HashMap<String, String>();
     civilite.put("Mme", "Mme");
@@ -78,6 +79,7 @@ public class ContactController {
     pModel.addAttribute("civilite", (Object) civilite);
     pModel.addAttribute("listAdherents", (Object) listAdherents);
     pModel.addAttribute("criteria", (Object) new CriteriaAdherent());
+    pModel.addAttribute("pageType", (Object) PageType.LIST_CONTACT_CLUB_FEMMES);
     return "addContactClubFemme";
   }
 
@@ -91,6 +93,8 @@ public class ContactController {
       this.service.createContactClubFemme(newContactClub);
       return "redirect:/listeClubFemmes";
     }
+    pModel.addAttribute("navType", NavType.ADHERENT);
+    pModel.addAttribute("pageType", PageType.LIST_CONTACT_CLUB_FEMMES);
     return this.addContactClubFemme(pModel);
   }
 
@@ -104,7 +108,6 @@ public class ContactController {
     } else {
       pModel.addAttribute("addContactForm", pModel.get((Object) "addContactForm"));
     }
-    pModel.addAttribute("pageType", (Object) PageType.CREATE_CONTACT_RETRAITE);
     final Map<Integer, String> listAdherents = (Map<Integer, String>) this.service.loadAdherents().stream().collect(Collectors.toMap(a -> a.getId(), a -> a.getLibelle()));
     final Map<String, String> civilite = new HashMap<String, String>();
     civilite.put("Mr", "Mr");
@@ -112,6 +115,8 @@ public class ContactController {
     pModel.addAttribute("civilite", (Object) civilite);
     pModel.addAttribute("listAdherents", (Object) listAdherents);
     pModel.addAttribute("criteria", (Object) new CriteriaAdherent());
+    pModel.addAttribute("navType", NavType.ADHERENT);
+    pModel.addAttribute("pageType", PageType.LIST_CONTACT_RETRAITE);
     return "addContactRetraite";
   }
 
@@ -125,6 +130,8 @@ public class ContactController {
       this.service.createContactRetraite(newContactRetraite);
       return "redirect:/listeRetraite";
     }
+    pModel.addAttribute("navType", NavType.ADHERENT);
+    pModel.addAttribute("pageType", PageType.LIST_CONTACT_RETRAITE);
     return this.addContactRetraite(pModel);
   }
 
@@ -192,13 +199,13 @@ public class ContactController {
       final EditContactComptableAdherentForm editContactComptableAdhForm = new EditContactComptableAdherentForm();
       final EditContactComptableAdherent editableContact = this.contactComptableAdhToEdit(contactCpt);
       editContactComptableAdhForm.setContactComptableAdherent(editableContact);
-      pModel.addAttribute("adhContactComptable", (Object) editContactComptableAdhForm);
+      pModel.addAttribute("adhContactComptable", editContactComptableAdhForm);
     } else {
       pModel.addAttribute("adhContactComptable", pModel.get((Object) "adhContactComptable"));
     }
     final Adherent adh = this.service.loadAdherent(idAdh);
-    pModel.addAttribute("adherent", (Object) adh);
-    pModel.addAttribute("pageType", (Object) PageType.LIST_ADHERENT);
+    pModel.addAttribute("adherent", adh);
+    pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
     return "editContactComptableAdh";
   }
 
@@ -262,51 +269,51 @@ public class ContactController {
 
   public Adherent editToAdh(final EditAdherent editAdh) {
     final Adherent adh = new Adherent();
-    adh.setId(editAdh.getId());
+    adh.setApe(editAdh.getApe());
+    adh.setAdresse(editAdh.getAdresse());
+    adh.setAdresseComplement(editAdh.getAdresseComplement());
+    adh.setAdherentType(editAdh.getAdherentType());
+    adh.setAgence(editAdh.getAgence());
     adh.setCode(editAdh.getCode());
     adh.setCodeERP(editAdh.getCodeERP());
     adh.setCodeERPParent(editAdh.getCodeERPParent());
-    adh.setLibelle(editAdh.getLibelle());
-    adh.setDenomination(editAdh.getDenomination());
-    adh.setFormeJuridique(editAdh.getFormeJuridique());
+    adh.setCnxEolasAllow(editAdh.getCnxEolasAllow());
+    adh.setCompteType(editAdh.getCompteType());
+    adh.setCommune(editAdh.getCommune());
+    adh.setDateClotureExe(editAdh.getDateClotureExe());
     adh.setDateEntree(editAdh.getDateEntree());
     adh.setDateSortie(editAdh.getDateSortie());
-    adh.setAdresse(editAdh.getAdresse());
-    adh.setAdresseComplement(editAdh.getAdresseComplement());
-    adh.setCommune(editAdh.getCommune());
-    adh.setPhoto(editAdh.getPhoto().getBytes());
-    adh.setPole(editAdh.getPole());
-    adh.setRole(editAdh.getRole());
-    adh.setSecteur(editAdh.getSecteur());
-    adh.setIsArtipole(editAdh.getIsArtipole());
-    adh.setIsCharteArtipole(editAdh.getIsCharteArtipole());
-    adh.setIsFlocageArtipole(editAdh.getIsFlocageArtipole());
-    adh.setIsWebArtipole(editAdh.getIsWebArtipole());
-    adh.setSiteWeb(editAdh.getSiteWeb());
-    adh.setFacebook(editAdh.getFacebook());
-    adh.setInstagram(editAdh.getInstagram());
-    adh.setLinkedin(editAdh.getLinkedin());
-    adh.setYoutube(editAdh.getYoutube());
-    adh.setPinterest(editAdh.getPinterest());
-    adh.setFormationDirigeant(editAdh.getFormationDirigeant());
-    adh.setCnxEolasAllow(editAdh.getCnxEolasAllow());
-    adh.setIsFacebookArtipole(editAdh.getIsFacebookArtipole());
-    adh.setApe(editAdh.getApe());
-    adh.setSiren(editAdh.getSiren());
-    adh.setSiret(editAdh.getSiret());
-    adh.setNumRepMetier(editAdh.getNumRepMetier());
-    adh.setRcsRm(editAdh.getRcsRm());
-    adh.setRcsCommune(editAdh.getRcsCommune());
-    adh.setRmCommune(editAdh.getRmCommune());
-    adh.setAgence(editAdh.getAgence());
-    adh.setDateClotureExe(editAdh.getDateClotureExe());
-    adh.setTournee(editAdh.getTournee());
-    adh.setOutilDechargement(editAdh.getIsOutilDechargement());
-    adh.setEtat(editAdh.getEtat());
-    adh.setAdherentType(editAdh.getAdherentType());
-    adh.setCompteType(editAdh.getCompteType());
     adh.setDescription_activite(editAdh.getDescription_activite());
     adh.setDescription_entreprise(editAdh.getDescription_entreprise());
+    adh.setDenomination(editAdh.getDenomination());
+    adh.setEtat(editAdh.getEtat());
+    adh.setFacebook(editAdh.getFacebook());
+    adh.setFormationDirigeant(editAdh.getFormationDirigeant());
+    adh.setFormeJuridique(editAdh.getFormeJuridique());
+    adh.setId(editAdh.getId());
+    adh.setInstagram(editAdh.getInstagram());
+    adh.setIsArtipole(editAdh.getIsArtipole());
+    adh.setIsCharteArtipole(editAdh.getIsCharteArtipole());
+    adh.setIsFacebookArtipole(editAdh.getIsFacebookArtipole());
+    adh.setIsFlocageArtipole(editAdh.getIsFlocageArtipole());
+    adh.setIsOutilDechargement(editAdh.getIsOutilDechargement());
+    adh.setIsWebArtipole(editAdh.getIsWebArtipole());
+    adh.setLibelle(editAdh.getLibelle());
+    adh.setLinkedin(editAdh.getLinkedin());
+    adh.setNumRepMetier(editAdh.getNumRepMetier());
+    adh.setPole(editAdh.getPole());
+    adh.setPhoto(editAdh.getPhoto().getBytes());
+    adh.setPinterest(editAdh.getPinterest());
+    adh.setRcsCommune(editAdh.getRcsCommune());
+    adh.setRcsRm(editAdh.getRcsRm());
+    adh.setRmCommune(editAdh.getRmCommune());
+    adh.setRole(editAdh.getRole());
+    adh.setSecteur(editAdh.getSecteur());
+    adh.setSiren(editAdh.getSiren());
+    adh.setSiret(editAdh.getSiret());
+    adh.setSiteWeb(editAdh.getSiteWeb());
+    adh.setTournee(editAdh.getTournee());
+    adh.setYoutube(editAdh.getYoutube());
     return adh;
   }
 
@@ -400,7 +407,7 @@ public class ContactController {
       final List<AdherentContactRole> contacts = this.editToContactList(adhContactEditable);
       this.service.saveAdherentContacts((List) contacts);
       this.service.saveAdherentCommentaire(adhId, PageType.ADHERENT_DETAIL, editForm.getCommentaire());
-      return "redirect:/adherentDetail?idAdh=" + adhId;
+      return "redirect:/adherentProfil?idAdh=" + adhId;
     }
     return this.editContact(adhId, pModel, request);
   }
@@ -440,8 +447,16 @@ public class ContactController {
         page = "adherentProfil";
         break;
       }
+      case LISTE_CAMIONS: {
+        page = "listeCamions";
+        break;
+      }
+      case LISTE_CONDUCTEURS: {
+        page = "listeConducteurs";
+        break;
+      }
       default: {
-        page = "adherentDetail";
+        page = "adherentProfil";
         break;
       }
     }

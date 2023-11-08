@@ -49,27 +49,27 @@
 
     <div id="accordion-collapse" data-accordion="collapse">
       <h2 id="accordion-collapse-head-1">
-        <button type="button"
-                class="flex items-center justify-center w-full p-3 font-medium text-left text-gray-500 hover:bg-gray-100 bg-gray-100 "
-                data-accordion-target="#accordion-collapse-body-1" aria-expanded="false"
-                aria-controls="accordion-collapse-body-1">
-          <span class="text-center"><spring:message code="label.rechercheAvance"/></span>
-        </button>
+          <button type="button"
+                  class="focus:text-white bg-gray-800 hover:bg-gray-900 bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-900 w-full p-3 font-medium rounded-t-xl"
+                  data-accordion-target="#accordion-collapse-body-1" aria-expanded="false"
+                  aria-controls="accordion-collapse-body-1" onclick="toggleAdvancedSearchForm()">
+            <span class="text-center"><spring:message code="label.rechercheAvance"/></span>
+          </button>
       </h2>
 
       <!-- ADVANCE SEARCH -->
       <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-head-1">
-        <div class="bg-gray-100">
+        <div class="bg-gray-200 rounded-b-xl">
 
           <form:form class="card card-outline card-info collapsed-card" id="advanceSerachForm" method="post" modelAttribute="criteria" action="listeContact">
             <form:input type="hidden" name="text" path="text"/>
             <spring:message code="label.texteRecherche" var="recherchePH"/>
             <div class="card-body">
-              <div class="flex justify-evenly pb-2">
+              <div class="flex justify-evenly py-3">
                 <div class="flex flex-col w-full px-6">
 
                   <label>Type</label>
-                  <form:select class="form-control select2" name="typeAdhIds"
+                  <form:select class="form-control select2 text-black" name="typeAdhIds"
                                data-placeholder="Type d'adhérent"
                                path="typeAdhIds" multiple="multiple">
                     <form:options items="${adhTypesList}" itemValue="id" itemLabel="libelle"/>
@@ -153,11 +153,11 @@
                   </div>
                   <div class="flex gap-2 mt-2 pt-6">
                     <button id="actionButton"
-                            class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+                            class="px-3 py-3 text-xs text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
                             type="submit">
                       Rechercher
                     </button>
-                    <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+                    <button class="px-3 py-3 text-xs text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
                             type="reset" onclick="window.location.href = '${urlInit}'">
                       Effacer
                     </button>
@@ -286,4 +286,8 @@
 
     </div>
 
-
+<script>
+  function toggleAdvancedSearchForm() {
+    $("#accordion-collapse-body-1").slideToggle(200);
+  }
+</script>

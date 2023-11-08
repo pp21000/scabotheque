@@ -13,10 +13,10 @@
             <div>
                 <c:choose>
                     <c:when test="${adherent.photoImg == ''}">
-                        <img class="rounded-full" src="<c:url value="/resources/images/noAdh.png" />"/>
+                        <img class="rounded-full h-32" src="<c:url value="/resources/images/noAdh.png" />"/>
                     </c:when>
                     <c:otherwise>
-                        <img class="rounded-full" src="${adherent.photoImg}">
+                        <img class="rounded-full h-32" src="${adherent.photoImg}">
                     </c:otherwise>
                 </c:choose>
             </div>
@@ -216,7 +216,7 @@
                 <span class="">${contactComptable.cabinet}</span>
             </div>
             <div class="">
-                <span class="">Contact civilitée :</span>
+                <span class="">Contact civilité :</span>
                 <span class="">${contactComptable.civilite}</span>
             </div>
             <div class="">
@@ -224,11 +224,11 @@
                 <span class="">${contactComptable.nom}</span>
             </div>
             <div class="">
-                <span class="">Prenom comptable :</span>
+                <span class="">Prénom comptable :</span>
                 <span class="">${contactComptable.prenom}</span>
             </div>
             <div class="">
-                <span class="">email comptable :</span>
+                <span class="">E-mail comptable :</span>
                 <span class="">${contactComptable.mail}</span>
             </div>
             <div class="">

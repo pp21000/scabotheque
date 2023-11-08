@@ -49,10 +49,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public class AdherentDAO implements IAdherentDAO {
 
-  private int startYear = 2008;
+  private int startYear;
   @PersistenceContext
   private EntityManager entityManager;
-  private static final Logger log = LogManager.getLogger(LoginController.class);
+  private static final Logger log;
+
+  public AdherentDAO() {
+    this.startYear = 2008;
+  }
 
   @Override
   public String chartDataActif() {
@@ -269,7 +273,7 @@ public class AdherentDAO implements IAdherentDAO {
   @Transactional
   public void editAdherent(Adherent dataAdherent) {
 
-    // chargement de l'adherent a modifier
+    // chargement de l'adherent à modifier
     Adherent bddAdherent = loadAdherent(dataAdherent.getId());
 
     // mise à jour des données
@@ -358,12 +362,11 @@ public class AdherentDAO implements IAdherentDAO {
   }
 
   /**
-   * Création d'une liste avec tout les types de contacte
+   * Création d'une liste avec tout les types de contact
    */
   @Override
-  public List<AdherentContactRole> loadAdherentContact(int adhId) {
-    return entityManager.createQuery("from AdherentContactRole where adherent.id = :adhId", AdherentContactRole.class)
-            .setParameter("adhId", adhId).getResultList();
+  public List<AdherentContactRole> loadAdherentContact(final int adhId) {
+    return this.entityManager.createQuery("from AdherentContactRole where adherent.id = :adhId", AdherentContactRole.class).setParameter("adhId", adhId).getResultList();
   }
 
   @Override
@@ -372,48 +375,30 @@ public class AdherentDAO implements IAdherentDAO {
   }
 
   @Override
-  public List<AdherentContactRole> loadAdherentContact(CriteriaAdherent criteria) {
-
-    List<AdherentContactRole> list = entityManager.createQuery("from AdherentContactRole adh", AdherentContactRole.class).getResultList();
-
-    // filtre la liste des adhérents sur les libellés
+  public List<AdherentContactRole> loadAdherentContact(final CriteriaAdherent criteria) {
+    final List<AdherentContactRole> list = (List<AdherentContactRole>) this.entityManager.createQuery("from AdherentContactRole adh", (Class) AdherentContactRole.class).getResultList();
     return list.stream().filter(ctt -> {
-      String nomCompare = Normalizer.normalize(ctt.getNom().toUpperCase(), Normalizer.Form.NFD)
-              .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
-      String prenomCompare = Normalizer.normalize(ctt.getPrenom().toUpperCase(), Normalizer.Form.NFD)
-              .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
-      String mailCompare = Normalizer.normalize(ctt.getMail().toUpperCase(), Normalizer.Form.NFD)
-              .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
-      String libAdhCompare = Normalizer.normalize(ctt.getAdherent().getLibelle().toUpperCase(), Normalizer.Form.NFD)
-              .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
-      String toCompare = Normalizer.normalize((criteria.getText() == null ? "" : criteria.getText().toUpperCase()), Normalizer.Form.NFD)
-              .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
-
-      boolean isLib = nomCompare.contains(toCompare);
-      boolean isCode = prenomCompare.contains(toCompare);
-      boolean isMail = mailCompare.contains(toCompare);
-      boolean isNom = libAdhCompare.contains(toCompare);
-
-//            List<Integer> activitiesId = loadActivitesAdherent(adh.getId()).stream().map(m -> m.getActivite().getId())
-//                    .collect(Collectors.toList());
-      boolean isActivite = true; //criteria.getActiviteIds().stream().anyMatch(m -> activitiesId.contains(m) || m == 0);
-      boolean isAgence = criteria.getAgenceIds().get(0) == 0 ? true
-              : criteria.getAgenceIds().contains(ctt.getAdherent().getAgence().getId());
-      boolean isTypeAdh = criteria.getTypeAdhIds().get(0) == 0 ? true
-              : criteria.getTypeAdhIds().contains(ctt.getAdherent().getAdherentType().getId());
-      boolean isPole = criteria.getPoleIds().get(0) == 0 ? true
-              : criteria.getPoleIds().contains(ctt.getAdherent().getPole().getId());
-      boolean isSecteur = criteria.getSecteurIds().get(0) == 0 ? true
-              : criteria.getSecteurIds().contains(ctt.getAdherent().getSecteur().getId());
-      boolean isActif = criteria.getShowAll() ? true : ctt.getAdherent().getEtat().getId() == 1;
-      boolean isSousCompte = criteria.getShowSousCompte() ? true : ctt.getAdherent().getCodeERPParent().isEmpty();
-      boolean isArtipole = criteria.isShowArtipoleOnly() ? ctt.getAdherent().getIsArtipole() : true;
-      boolean isAdministrateur = criteria.isShowAdminOnly() ? (ctt.getAdherent().getRole().getId().equals(2) || ctt.getAdherent().getRole().getId().equals(3) || ctt.getAdherent().getRole().getId().equals(4)) : true;
-
-      return (isLib || isCode || isMail || isNom) && isPole && isSecteur && isActif && isSousCompte && isActivite && isAgence && isTypeAdh
-              && isArtipole && isAdministrateur;
+      final String nomCompare = Normalizer.normalize(ctt.getNom().toUpperCase(), Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+      final String prenomCompare = Normalizer.normalize(ctt.getPrenom().toUpperCase(), Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+      final String mailCompare = Normalizer.normalize(ctt.getMail().toUpperCase(), Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+      final String libAdhCompare = Normalizer.normalize(ctt.getAdherent().getLibelle().toUpperCase(), Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+      final String toCompare = Normalizer.normalize((criteria.getText() == null) ? "" : criteria.getText().toUpperCase(), Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+      final boolean isLib = nomCompare.contains(toCompare);
+      final boolean isCode = prenomCompare.contains(toCompare);
+      final boolean isMail = mailCompare.contains(toCompare);
+      final boolean isNom = libAdhCompare.contains(toCompare);
+      final boolean isActivite = true;
+      final boolean isAgence = (criteria.getAgenceIds().get(0) == 0 || criteria.getAgenceIds().contains(ctt.getAdherent().getAgence().getId()));
+      final boolean isTypeAdh = (criteria.getTypeAdhIds().get(0) == 0 || criteria.getTypeAdhIds().contains(ctt.getAdherent().getAdherentType().getId()));
+      final boolean isFonctionCtct = (criteria.getContactFonctionIds().get(0) == 0 || criteria.getContactFonctionIds().contains(ctt.getFonction().getId()));
+      final boolean isPole = (criteria.getPoleIds().get(0) == 0 || criteria.getPoleIds().contains(ctt.getAdherent().getPole().getId()));
+      final boolean isSecteur = (criteria.getSecteurIds().get(0) == 0 || criteria.getSecteurIds().contains(ctt.getAdherent().getSecteur().getId()));
+      final boolean isActif = true;
+      final boolean isSousCompte = (criteria.getShowSousCompte() || ctt.getAdherent().getCodeERPParent().isEmpty());
+      final boolean isArtipole = (!criteria.isShowArtipoleOnly() || ctt.getAdherent().getIsArtipole());
+      final boolean isAdministrateur = (!criteria.isShowAdminOnly() || (ctt.getAdherent().getRole().getId().equals(2) || ctt.getAdherent().getRole().getId().equals(3) || ctt.getAdherent().getRole().getId().equals(4)));
+      return (isLib || isCode || isMail || isNom) && isPole && isSecteur && isActif && isSousCompte && isActivite && isAgence && isTypeAdh && isFonctionCtct && isArtipole && isAdministrateur;
     }).collect(Collectors.toList());
-
   }
 
   @Override
@@ -1190,7 +1175,7 @@ public class AdherentDAO implements IAdherentDAO {
     bddAdherent.setDateSortie(adherent.getDateSortie());
     bddAdherent.setAdresse(adherent.getAdresse());
     bddAdherent.setAdresseComplement(adherent.getAdresseComplement());
-    if (adherent.getCommune().getId() != null) {
+    if (adherent.getCommune() != null) {
       bddAdherent.setCommune(loadCommune(adherent.getCommune().getId()));
     }
     bddAdherent.setPole(adherent.getPole());
@@ -1200,6 +1185,12 @@ public class AdherentDAO implements IAdherentDAO {
     bddAdherent.setIsCharteArtipole(adherent.getIsCharteArtipole());
     bddAdherent.setIsFlocageArtipole(adherent.getIsFlocageArtipole());
     bddAdherent.setIsWebArtipole(adherent.getIsWebArtipole());
+    bddAdherent.setSiteWeb(adherent.getSiteWeb());
+    bddAdherent.setFacebook(adherent.getFacebook());
+    bddAdherent.setInstagram(adherent.getInstagram());
+    bddAdherent.setLinkedin(adherent.getLinkedin());
+    bddAdherent.setYoutube(adherent.getYoutube());
+    bddAdherent.setPinterest(adherent.getPinterest());
     bddAdherent.setFormationDirigeant(adherent.getFormationDirigeant());
     bddAdherent.setCnxEolasAllow(adherent.getCnxEolasAllow());
     bddAdherent.setIsFacebookArtipole(adherent.getIsFacebookArtipole());
@@ -1208,24 +1199,32 @@ public class AdherentDAO implements IAdherentDAO {
     bddAdherent.setSiret(adherent.getSiret());
     bddAdherent.setNumRepMetier(adherent.getNumRepMetier());
     bddAdherent.setRcsRm(adherent.getRcsRm());
-    if (adherent.getRcsCommune().getId() != null) {
+    if (adherent.getRcsCommune() != null) {
       bddAdherent.setRcsCommune(loadCommune(adherent.getRcsCommune().getId()));
     }
-//	if (adherent.getRmCommune().getId() != null) {
-//	    bddAdherent.setRmCommune(loadCommune(adherent.getRmCommune().getId()));
-//	}
+    if (adherent.getRmCommune() != null) {
+      bddAdherent.setRmCommune(loadCommune(adherent.getRmCommune().getId()));
+    }
     bddAdherent.setAgence(adherent.getAgence());
     bddAdherent.setDateClotureExe(adherent.getDateClotureExe());
     bddAdherent.setTournee(adherent.getTournee());
-    bddAdherent.setOutilDechargement(adherent.getIsOutilDechargement());
+    bddAdherent.setIsOutilDechargement(adherent.getIsOutilDechargement());
     bddAdherent.setEtat(adherent.getEtat());
     bddAdherent.setAdherentType(adherent.getAdherentType());
     bddAdherent.setCompteType(adherent.getCompteType());
     bddAdherent.setLatitude(adherent.getLatitude());
     bddAdherent.setLongitude(adherent.getLongitude());
+    bddAdherent.setTelephone(adherent.getTelephone());
+    bddAdherent.setMail(adherent.getMail());
+    bddAdherent.setDescription_activite(adherent.getDescription_activite());
+    bddAdherent.setDescription_entreprise(adherent.getDescription_entreprise());
 //        if (adherent.getContactComptable() != null) {
 //            bddAdherent.setContactComptable(adherent.getContactComptable());
 //        }
     return bddAdherent;
+  }
+
+  static {
+    log = LogManager.getLogger(LoginController.class);
   }
 }

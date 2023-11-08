@@ -40,7 +40,7 @@
 
     <div class="flex h-screen">
 
-      <section class="m-auto bg-gray-900 rounded-xl px-16 py-16">
+      <section class="m-auto bg-gray-900 rounded-3xl px-16 py-16">
         <div class="flex flex-col items-center justify-center">
           <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
             <img class="h-12 mr-2" src="<c:url value="/resources/images/Scabotheques.png" />" class="col-sm-3 mb-3" style="opacity: .9">

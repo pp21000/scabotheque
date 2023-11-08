@@ -52,7 +52,7 @@
                 <div class="showDetail">
                     <form:label path="suiviVisiteAdh.dateCommentaire"><spring:message code="label.dateSuivi"/></form:label>
                     <form:input class="valeur" type="date" name="suiviVisiteAdh.dateCommentaire" path="suiviVisiteAdh.dateCommentaire"/>
-                    <form:errors class="errors" path="suiviVisiteAdh.dateCommentaire" />
+                    <form:errors class="error-message" path="suiviVisiteAdh.dateCommentaire" />
                     <form:textarea id="summernote" name="editordata" path="suiviVisiteAdh.commentaire" />
                 </div>
                 <div class="text-right">
