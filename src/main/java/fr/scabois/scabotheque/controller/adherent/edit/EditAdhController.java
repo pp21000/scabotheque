@@ -633,7 +633,6 @@ public class EditAdhController {
       //return redirectOkPage(extractPageType(request.getServletPath().substring(6)), adh.getId());
       return redirectOkPage(PageType.ADHERENT_PROFIL, adh.getId());
     }
-
     return editAdherent(editForm.getEditAdherent().getId(), pModel, request);
   }
 

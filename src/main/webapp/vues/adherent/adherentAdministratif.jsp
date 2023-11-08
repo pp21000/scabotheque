@@ -55,76 +55,74 @@
 
         <div class="grid grid-cols-2">
             <div class="grid grid-cols-2 gap-2">
-
-                            <span class="">
-                                    <spring:message code="label.dateEntree"/> :
-                                <fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateEntree}"/>
-                            </span>
-                <span class="">
-                                <spring:message code="label.nbSalarie"/> :
-                                ${adherent.nbSalaries}
-                            </span>
-                <span class="">
-                                <spring:message code="label.role"/> :
-                                ${adherent.role.libelle}
-                            </span>
-                <span class="">
-                                <spring:message code="label.adherentType"/> :
-                                ${adherent.adherentType.libelle}
-                            </span>
-                <span class="">
-                                <spring:message code="label.dateEntree"/> :
-                                <fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateEntree}"/>
-                            </span>
-                <span class="">
-                                <spring:message code="label.formeJuridique"/> :
-                                ${adherent.formeJuridique.libelle}
-                            </span>
-
+              <span class="">
+                      <spring:message code="label.dateEntree"/> :
+                  <fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateEntree}"/>
+              </span>
+              <span class="">
+                  <spring:message code="label.nbSalarie"/> :
+                  ${adherent.nbSalaries}
+              </span>
+              <span class="">
+                  <spring:message code="label.role"/> :
+                  ${adherent.role.libelle}
+              </span>
+              <span class="">
+                  <spring:message code="label.adherentType"/> :
+                  ${adherent.adherentType.libelle}
+              </span>
+              <span class="">
+                  <spring:message code="label.dateEntree"/> :
+                  <fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateEntree}"/>
+              </span>
+              <span class="">
+                  <spring:message code="label.formeJuridique"/> :
+                  ${adherent.formeJuridique.libelle}
+              </span>
             </div>
 
 
             <div class="grid grid-cols-2 gap-2">
                 <div class="">
-                            <span class="">
-                                <spring:message code="label.siren"/> :
-                                ${adherent.siren}
-                            </span>
+                  <span class="">
+                      <spring:message code="label.siren"/> :
+                      ${adherent.siren}
+                  </span>
                 </div>
                 <div class="">
-                            <span class="">
-                                <spring:message code="label.siret"/> :
-                                ${adherent.siret}
-                            </span>
+                  <span class="">
+                      <spring:message code="label.siret"/> :
+                      ${adherent.siret}
+                  </span>
                 </div>
                 <div class="">
-                            <span class="">
-                                <spring:message code="label.ape"/> :
-                                ${adherent.ape.libelle}
-                            </span>
-                </div>
-
-                <div class="">
-                            <span class="">
-                                <spring:message code="label.numRepMetier"/> :
-                                ${adherent.numRepMetier}
-                            </span>
+                  <span class="">
+                      <spring:message code="label.ape"/> :
+                      ${adherent.ape.libelle}
+                  </span>
                 </div>
 
                 <div class="">
-                            <span class="">
-                                <spring:message code="label.rcsCommune"/> :
-                                <spring:message code="message.commune"
-                                                arguments="${adherent.rcsCommune.codePostal}, ${adherent.rcsCommune.libelle}"/>
-                            </span>
+                  <span class="">
+                      <spring:message code="label.numRepMetier"/> :
+                      ${adherent.numRepMetier}
+                  </span>
                 </div>
 
                 <div class="">
-                            <span class="">
-                                <spring:message code="label.rmCommune"/> :
-                                <spring:message code="message.commune"
-                                                arguments="${adherent.rmCommune.codePostal}, ${adherent.rmCommune.libelle}"/>
-                            </span>
+                  <span class="">
+                      <spring:message code="label.rcsCommune"/> :
+                      <spring:message code="message.commune"
+                                      arguments="${adherent.rcsCommune.codePostal}, ${adherent.rcsCommune.libelle}"/>
+                  </span>
+                </div>
+
+                <div class="">
+                  <span class="">
+                      <spring:message code="label.rmCommune"/> :
+                      <spring:message code="message.commune"
+                                      arguments="${adherent.rmCommune.codePostal}, ${adherent.rmCommune.libelle}"/>
+                  </span>
                 </div>
             </div>
 
