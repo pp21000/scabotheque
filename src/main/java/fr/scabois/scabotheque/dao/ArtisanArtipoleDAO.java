@@ -86,8 +86,8 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
   @Override
   public void executeJob(final String user) {
     try {
-      System.err.println("debug fileName :" + AppProperties.getPropertie("artisanArtipole.transfert.tables.path") + " " + user);
-      final Process p = Runtime.getRuntime().exec(AppProperties.getPropertie("artisanArtipole.transfert.tables.path") + " " + user);
+      System.err.println("debug fileName :" + AppProperties.getPropertie("artisanArtipole.transfert.tables.path"));
+      final Process p = Runtime.getRuntime().exec(AppProperties.getPropertie("artisanArtipole.transfert.tables.path"));
       p.waitFor();
     } catch (IOException ex) {
       System.err.println("Access au fichier :" + ex.getMessage());
