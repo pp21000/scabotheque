@@ -33,22 +33,39 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
   @Override
   public void deleteActualite(final int idActualite) {
     try {
-      final Actualite del = (Actualite) this.entityManager.find((Class) Actualite.class, (Object) idActualite);
-      this.entityManager.remove((Object) del);
+      final Actualite del = (Actualite) this.entityManager.find(Actualite.class, idActualite);
+      this.entityManager.remove(del);
     } catch (Exception ex) {
     }
   }
 
-  /**
-   *
-   * @param idEmplacement
-   */
   @Transactional
   @Override
   public void deleteEmplacement(final int idEmplacement) {
     try {
-      final Emplacement del = (Emplacement) this.entityManager.find((Class) Emplacement.class, (Object) idEmplacement);
-      this.entityManager.remove((Object) del);
+      final Emplacement del = (Emplacement) this.entityManager.find(Emplacement.class, idEmplacement);
+      this.entityManager.remove(del);
+    } catch (Exception ex) {
+    }
+  }
+
+  @Transactional
+  @Override
+  public void deleteTravaux(final int idTravaux) {
+
+    final Travaux travauxToDelete = (Travaux) this.entityManager.find(Travaux.class, idTravaux);
+
+    travauxToDelete.getSpecialites().stream()
+            .forEach(spe -> {
+              try {
+                final Specialite speToDelete = (Specialite) this.entityManager.find(Specialite.class, spe.getId());
+                this.entityManager.remove(speToDelete);
+              } catch (Exception ex) {
+              }
+            });
+
+    try {
+      this.entityManager.remove(travauxToDelete);
     } catch (Exception ex) {
     }
   }
@@ -57,8 +74,8 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
   @Override
   public void deletePhoto(final int idPhoto) {
     try {
-      final Photo del = (Photo) this.entityManager.find((Class) Photo.class, (Object) idPhoto);
-      this.entityManager.remove((Object) del);
+      final Photo del = (Photo) this.entityManager.find(Photo.class, idPhoto);
+      this.entityManager.remove(del);
     } catch (Exception ex) {
     }
   }
@@ -67,8 +84,8 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
   @Override
   public void deleteCategorie(final int idCategorie) {
     try {
-      final Categorie del = (Categorie) this.entityManager.find((Class) Categorie.class, (Object) idCategorie);
-      this.entityManager.remove((Object) del);
+      final Categorie del = (Categorie) this.entityManager.find(Categorie.class, idCategorie);
+      this.entityManager.remove(del);
     } catch (Exception ex) {
     }
   }
@@ -77,7 +94,7 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
   @Override
   public void deleteMetier(final int idMetier) {
     try {
-      final Metier del = (Metier) this.entityManager.find((Class) Metier.class, (Object) idMetier);
+      final Metier del = (Metier) this.entityManager.find(Metier.class, idMetier);
       this.entityManager.remove((Object) del);
     } catch (Exception ex) {
     }
@@ -214,7 +231,7 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
       update.setLibelle(emplacement.getLibelle());
       update.setContent(emplacement.getContent());
       update.setType(emplacement.getType());
-      if (emplacement.getData() != null) {
+      if (emplacement.getData().length > 0) {
         update.setData(emplacement.getData());
       }
       update.setAlt(emplacement.getAlt());
@@ -229,8 +246,17 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
     if (travaux.getId() == null) {
       final Travaux newTravaux = new Travaux();
       newTravaux.setLibelle(travaux.getLibelle());
-      newTravaux.setSpecialites(travaux.getSpecialites());
       this.entityManager.persist(newTravaux);
+
+      travaux.getSpecialites().stream()
+              .filter(s -> s.getLibelle() != null && !s.getLibelle().isEmpty())
+              .forEach(s -> {
+                Specialite spe = new Specialite();
+                spe.setLibelle(s.getLibelle());
+                spe.setTravaux(newTravaux);
+                entityManager.persist(spe);
+              });
+
     } else {
       final Travaux update = this.loadTravaux(travaux.getId());
       update.setLibelle(travaux.getLibelle());

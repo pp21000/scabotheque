@@ -28,7 +28,7 @@
       </div>
 
       <a href="<c:url value="/logout" />" data-tooltip-target="tooltip-logout"
-         class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-50 dark:hover:bg-gray-600 rounded-xl">
+         class="block p-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-50 dark:hover:bg-gray-700 rounded-md">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
              xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

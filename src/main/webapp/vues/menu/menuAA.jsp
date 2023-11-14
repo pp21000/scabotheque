@@ -18,7 +18,7 @@
       </li>
 
       <li>
-        <a href=<c:url value="/AA-page-accueil"/>  class="<c:choose><c:when test = "${pageType == 'AA_ACCUEIL'}">bg-[#28a745] hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
+        <a href=<c:url value="/AA-page-accueil"/>  class="<c:choose><c:when test = "${pageType == 'AA_ACCUEIL'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
           <svg aria-hidden="true"
                class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
                fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +30,7 @@
         
       <li>
         <a href=<c:url value="/AA-page-actualites"/> 
-           class="<c:choose><c:when test = "${pageType == 'AA_ACTUALITES'}">bg-[#28a745] hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
+           class="<c:choose><c:when test = "${pageType == 'AA_ACTUALITES'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
           <svg aria-hidden="true"
                class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
                fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -42,7 +42,7 @@
       
       <li>
         <a href=<c:url value="/AA-page-emplacement"/>
-           class="<c:choose><c:when test = "${pageType == 'AA_EMPLACEMENT'}">bg-[#28a745] hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
+           class="<c:choose><c:when test = "${pageType == 'AA_EMPLACEMENT'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
           <svg aria-hidden="true"
                class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
                fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -54,7 +54,7 @@
 
       <li>
         <a href=<c:url value="/AA-page-photos"/>
-           class="<c:choose><c:when test = "${pageType == 'AA_PHOTO'}">bg-[#28a745] hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
+           class="<c:choose><c:when test = "${pageType == 'AA_PHOTO'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
           <svg aria-hidden="true"
                class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
                fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -66,7 +66,7 @@
 
       <li>
         <a href=<c:url value="/AA-page-listes"/>
-           class="<c:choose><c:when test = "${pageType == 'GESTION_METIER'}">bg-[#28a745] hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
+           class="<c:choose><c:when test = "${pageType == 'GESTION_METIER'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
           <svg aria-hidden="true"
                class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
                fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -78,7 +78,7 @@
 
       <li>
         <a href=<c:url value="/AA-page-travaux"/>
-           class="<c:choose><c:when test = "${pageType == 'AA_TRAVAUX'}">bg-[#28a745] hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
+           class="<c:choose><c:when test = "${pageType == 'AA_TRAVAUX'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
           <svg aria-hidden="true"
                class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
                fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -90,7 +90,7 @@
 
 <%--      <li>
         <a href=<c:url value="/AA-page-Certifs"/>
-           class="<c:choose><c:when test = "${pageType == 'AA_CERTIFS'}">bg-[#28a745] hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
+           class="<c:choose><c:when test = "${pageType == 'AA_CERTIFS'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
           <svg aria-hidden="true"
                class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
                fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -102,7 +102,7 @@
 
       <li>
         <a href=<c:url value="/AA-page-je-cherche-un-artisan"/>
-           class="<c:choose><c:when test = "${pageType == 'AA_JE_CHERCHE_UN_ARTISAN'}">bg-[#28a745] hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
+           class="<c:choose><c:when test = "${pageType == 'AA_JE_CHERCHE_UN_ARTISAN'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
           <svg aria-hidden="true"
                class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
                fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -114,7 +114,7 @@
 
       <li>
         <a href=<c:url value="/AA-page-inspirations"/>
-           class="<c:choose><c:when test = "${pageType == 'AA_INSPIRATIONS'}">bg-[#28a745] hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
+           class="<c:choose><c:when test = "${pageType == 'AA_INSPIRATIONS'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
           <svg aria-hidden="true"
                class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
                fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -126,7 +126,7 @@
 
       <li>
         <a href=<c:url value="/AA-page-salle-exposition"/>
-           class="<c:choose><c:when test = "${pageType == 'AA_SALLE_EXPOSITION'}">bg-[#28a745] hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
+           class="<c:choose><c:when test = "${pageType == 'AA_SALLE_EXPOSITION'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 dark:text-gray-50 rounded-lg">
           <svg aria-hidden="true"
                class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
                fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

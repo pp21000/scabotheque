@@ -203,6 +203,10 @@ public class ContactController {
     } else {
       pModel.addAttribute("adhContactComptable", pModel.get((Object) "adhContactComptable"));
     }
+    final Map<String, String> civilite = new HashMap<String, String>();
+    civilite.put("Mme", "Mme");
+    civilite.put("Mr", "Mr");
+    pModel.addAttribute("civilite", (Object) civilite);
     final Adherent adh = this.service.loadAdherent(idAdh);
     pModel.addAttribute("adherent", adh);
     pModel.addAttribute("pageType", PageType.LIST_ADHERENT);

@@ -36,6 +36,11 @@ public class ServiceArtipole implements IServiceArtipole {
   }
 
   @Override
+  public void deleteTravaux(final int idTravaux) {
+    this.dao.deleteTravaux(idTravaux);
+  }
+
+  @Override
   public void deletePhoto(final int idPhoto) {
     this.dao.deletePhoto(idPhoto);
   }

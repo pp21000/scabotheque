@@ -83,7 +83,7 @@
   });
 
   function showNewForm() {
-    $("#addForm").toggle('slow');
+    $("#addForm").toggle('quick');
   }
 
 </script>

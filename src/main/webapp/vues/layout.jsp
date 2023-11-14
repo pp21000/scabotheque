@@ -32,8 +32,8 @@
     </head>
     <body>
         <!--<div class="header">-->
-        	<tiles:insertAttribute name="header" />
-        	<tiles:insertAttribute name="menu-v2" />
+            <tiles:insertAttribute name="header" />
+            <tiles:insertAttribute name="menu-v2" />
         <!--</div>-->    
     	<div class="body">
     	    <div class="content">    
@@ -46,8 +46,10 @@
 	    	</c:if>
     	    </div>    
     	</div>
+                
     	<div class="footer">
-    	   	<tiles:insertAttribute name="footer" />
-	   	</div>
-	</body>    
+            <tiles:insertAttribute name="footer"/>
+        </div>
+        
+    </body>    
 </html>    

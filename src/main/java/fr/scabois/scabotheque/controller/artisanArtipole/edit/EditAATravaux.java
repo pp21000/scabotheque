@@ -5,6 +5,7 @@
 package fr.scabois.scabotheque.controller.artisanArtipole.edit;
 
 import fr.scabois.scabotheque.bean.artisanArtipole.Specialite;
+import java.util.ArrayList;
 import java.util.List;
 import javax.validation.constraints.NotNull;
 
@@ -13,7 +14,7 @@ class EditAATravaux {
   private Integer id;
   @NotNull(message = "{modification.notempty}")
   private String libelle;
-  private List<Specialite> specialites;
+  private List<Specialite> specialites = new ArrayList<>();
 
   public Integer getId() {
     return id;

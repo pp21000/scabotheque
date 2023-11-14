@@ -188,7 +188,7 @@
 
       <div class="relative z-0 w-full group">
         <!--<div class="grid grid-cols-2 gap-2 w-full w-1/2">-->
-        <form:label code="label.rcsCommune" path="editAdherent.rcsCommune" >
+        <form:label code="label.rcsCommune" path="editAdherent.rcsCommune">
           <spring:message code="label.rcsCommune"/>
           <div class="flex h-10 w-96">
             <a type="button" data-modal-toggle="rcscommune-modal" class="input-group-text inline-flex items-center px-3 text-gray-900 bg-gray-200 hover:bg-gray-300 rounded-l border border-r-0 border-gray-300" href="#" id="editRcsCommune" data-toggle="modal" data-target="#modal-rcsCommune">
@@ -197,7 +197,7 @@
               </svg>
             </a>
             <input type="text" id="communeRCSLibelle" disabled
-                   class="rounded-r bg-gray-50 border border-gray-300 text-gray-900 flex-1 min-w-0 border-gray-300"
+                   class="rounded-r bg-gray-50 text-sm border border-gray-300 text-gray-900 flex-1 min-w-0 border-gray-300"
                    placeholder="${editForm.editAdherent.rcsCommune.codePostal} - ${editForm.editAdherent.rcsCommune.libelle}">
           </div>
           <form:errors class="error-message" path="editAdherent.rcsCommune"/>
@@ -233,7 +233,7 @@
                       code="label.commune"/></form:label>
                   <form:select id="communeRCSListe"
                                class="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
-                               name="editAdherent.rcsCommune" path="editAdherent.rcsCommune">
+                               name="editAdherent.rcsCommune" path="editAdherent.rcsCommune.id">
                     <form:options items="${communeList}" itemValue="id"
                                   itemLabel="libelle"/>
                   </form:select>
@@ -266,7 +266,7 @@
               </svg>
             </a>
             <input type="text" id="communeRMLibelle" disabled
-                   class="rounded-r bg-gray-50 border border-gray-300 text-gray-900 flex-1 min-w-0 border-gray-300"
+                   class="rounded-r bg-gray-50 text-sm border border-gray-300 text-gray-900 flex-1 min-w-0 border-gray-300"
                    placeholder="${editForm.editAdherent.rmCommune.codePostal} - ${editForm.editAdherent.rmCommune.libelle}">
           </div>
           <form:errors class="error-message" path="editAdherent.rmCommune"/>

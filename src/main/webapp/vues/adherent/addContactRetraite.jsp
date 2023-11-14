@@ -137,8 +137,8 @@
                     </svg>
                   </a>
                   
-                  <input type="text" id="communeAdhLibelle" disabled class="rounded-r bg-gray-50 border border-gray-300 text-gray-900 flex-1 min-w-0 border-gray-300"
-                         placeholder="<spring:message code="label.commune"/>">
+                  <input type="text" id="communeAdhLibelle" disabled class="rounded-r bg-gray-50 text-sm border border-gray-300 text-gray-900 flex-1 min-w-0 border-gray-300"
+                         placeholder="">
                 </div>
                 <form:errors class="error-message" path="editContactRetraite.commune"/>
               </form:label>

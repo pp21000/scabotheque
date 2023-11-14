@@ -351,27 +351,27 @@
                         <div class="col-sm-9 col-form-label">
                           <span id="cabComptable">${contactComptable.cabinet}</span>
                         </div> 
-                        <label for="civilitée" class="col-sm-3 col-form-label">Contact civilitée</label>
+                        <label for="civilité" class="col-sm-3 col-form-label">Civilité comptable</label>
                         <div class="col-sm-9 col-form-label">
-                          <span id="civilitée">${contactComptable.civilite}</span>
+                          <span id="civilité">${contactComptable.civilite}</span>
                         </div> 
                         <label for="Nom" class="col-sm-3 col-form-label">Nom comptable</label>
                         <div class="col-sm-9 col-form-label">
                           <span id="Nom">${contactComptable.nom}</span>
                         </div> 
-                        <label for="Prenom" class="col-sm-3 col-form-label">Prenom comptable</label>
+                        <label for="Prenom" class="col-sm-3 col-form-label">Prénom comptable</label>
                         <div class="col-sm-9 col-form-label">
                           <span id="Prenom">${contactComptable.prenom}</span>
                         </div> 
-                        <label for="email" class="col-sm-3 col-form-label">email comptable</label>
+                        <label for="email" class="col-sm-3 col-form-label">E-mail comptable</label>
                         <div class="col-sm-9 col-form-label">
                           <span id="email">${contactComptable.mail}</span>
                         </div> 
-                        <label for="fixe" class="col-sm-3 col-form-label">Tel fixe comptable</label>
+                        <label for="fixe" class="col-sm-3 col-form-label">Tél fixe comptable</label>
                         <div class="col-sm-9 col-form-label">
                           <span id="fixe">${contactComptable.fixe}</span>
                         </div> 
-                        <label for="mobile" class="col-sm-3 col-form-label">Tel mobile comptable</label>
+                        <label for="mobile" class="col-sm-3 col-form-label">Tél mobile comptable</label>
                         <div class="col-sm-9 col-form-label">
                           <span id="mobile">${contactComptable.mobile}</span>
                         </div> 

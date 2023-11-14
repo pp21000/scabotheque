@@ -273,11 +273,11 @@
         </div>
         <div>
           <div class="flex gap-16">
-            <div><spring:message code="label.latitude"/></div>
+            <div><spring:message code="label.latitude"/> :</div>
             <div>${adherent.latitude}</div>
           </div>
           <div class="flex gap-16">
-            <div><spring:message code="label.longitude"/></div>
+            <div><spring:message code="label.longitude"/> :</div>
             <div>${adherent.longitude}</div>
           </div>
         </div>
@@ -621,6 +621,7 @@
                   </c:forEach>
                 </div>
               </div>
+              
               <div id="commerce" role="tabpanel"
                    aria-labelledby="commerce-tab">
                 <jsp:include page="../customViewsAdhProfil/commerce.jsp"/>

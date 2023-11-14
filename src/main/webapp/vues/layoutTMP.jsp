@@ -24,20 +24,17 @@
 
   </head>
 
-  <body  class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-700">
+  <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-700">
 
     <div class="wrapper">
-
       <tiles:insertAttribute name="navBar"/>
-
       <tiles:insertAttribute name="menu"/>
-      <div class="ml-64 mr-4 pt-20 pb-10">
+      
+      <div class="ml-64 mr-4 pt-20 pb-11">
         <tiles:insertAttribute name="body"/>
-        <div class="mt-20">
-          <tiles:insertAttribute name="footer"/>
-        </div>
+        <tiles:insertAttribute name="footer"/>
       </div>
-
+      
     </div>
     <!-- ./wrapper -->
 

@@ -268,7 +268,7 @@
 
           <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500 text-right">
-              Contact civilité :
+              Civilité :
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
               ${contactComptable.civilite}
@@ -277,7 +277,7 @@
 
           <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500 text-right">
-              Nom comptable :
+              Nom :
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
               ${contactComptable.nom}
@@ -286,7 +286,7 @@
 
           <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500 text-right">
-              Prénom comptable :
+              Prénom :
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
               ${contactComptable.prenom}
@@ -295,7 +295,7 @@
 
           <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500 text-right">
-              E-mail comptable :
+              E-mail :
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
               ${contactComptable.mail}
@@ -304,21 +304,22 @@
 
           <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500 text-right">
-              Tel fixe comptable :
+              Tél fixe :
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              ${contactComptable.mail}
+              ${contactComptable.fixe}
             </dd>
           </div>
 
           <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500 text-right">
-              Tel mobile comptable :
+              Tél mobile :
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              ${contactComptable.mail}
+              ${contactComptable.mobile}
             </dd>
           </div>
+            
         </dl>
       </div>
     </div>

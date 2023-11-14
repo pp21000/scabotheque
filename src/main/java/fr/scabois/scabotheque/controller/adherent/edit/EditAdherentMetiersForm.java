@@ -31,7 +31,6 @@ public class EditAdherentMetiersForm {
   }
 
   public List<AdherentMetier> getAdherentMetiers() {
-    final List<AdherentMetier> retour = new ArrayList<AdherentMetier>();
     final List<AdherentMetier> list = new ArrayList<AdherentMetier>();
     this.metiersAdh.stream().forEach(ma -> {
       if (ma.isCheck()) {
@@ -42,7 +41,7 @@ public class EditAdherentMetiersForm {
         list.add(editAM);
       }
     });
-    return retour;
+    return list;
   }
 
   public List<EditAdherentMetier> getMetiersAdh() {

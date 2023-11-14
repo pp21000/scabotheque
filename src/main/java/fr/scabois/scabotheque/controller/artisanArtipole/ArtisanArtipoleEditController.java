@@ -143,6 +143,12 @@ public class ArtisanArtipoleEditController {
     return "redirect:/AA-page-emplacement";
   }
 
+  @RequestMapping(value = {"/AA-delete-travaux"}, method = {RequestMethod.GET})
+  public String deleteTravaux(@RequestParam("idTravaux") final int idTravaux, final ModelMap pModel, final HttpServletRequest request) {
+    this.service.deleteTravaux(idTravaux);
+    return "redirect:/AA-page-travaux";
+  }
+
   @RequestMapping(value = {"/AA-edit-photo"}, method = {RequestMethod.POST})
   public String savePhoto(@Valid @ModelAttribute("editForm") final EditAAPhotoForm editForm, final BindingResult pBindingResult, final ModelMap pModel, final HttpServletRequest request) {
     if (!pBindingResult.hasErrors()) {

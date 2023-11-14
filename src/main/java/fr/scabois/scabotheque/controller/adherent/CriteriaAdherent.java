@@ -50,7 +50,7 @@ public class CriteriaAdherent implements Serializable {
   }
 
   public List<Integer> getContactFonctionIds() {
-    return contactFonctionIds;
+    return contactFonctionIds.isEmpty() ? Arrays.asList(0) : contactFonctionIds;
   }
 
   public List<Integer> getAgenceIds() {

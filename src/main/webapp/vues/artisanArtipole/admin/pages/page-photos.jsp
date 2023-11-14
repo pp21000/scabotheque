@@ -64,9 +64,9 @@
         <th scope="col" class="px-6 py-3">
           alt
         </th>
-        <th scope="col" class="px-6 py-3">
+        <th scope="col" class="px-6 py-3" width="1px">
         </th>
-        <th scope="col" class="px-6 py-3">
+        <th scope="col" class="px-6 py-3" width="1px">
         </th>
       </tr>
     </thead>
@@ -82,10 +82,10 @@
           <td class="px-6 py-4">
             <c:out value="${item.alt}"/>
           </td>
-          <td class="px-1 py-4">
+          <td class="px-2 py-4">
             <a href="${urlAAEdit}"><svg class="w-10 h-10 p-2 fill-gray-400 hover:bg-gray-800 hover:fill-white rounded-lg"><use xlink:href="<c:url value="/resources/images/icones.svg#edit"/>"></use></svg></a>
           </td>
-          <td class="px-1 py-4">
+          <td class="px-2 py-4">
             <a href="${urlAADelete}"><svg class="w-10 h-10 p-2 fill-gray-400 hover:bg-red-900 hover:fill-white rounded-lg"><use xlink:href="<c:url value="/resources/images/icones.svg#trash"/>"></use></svg></a>
           </td>
         </tr>     

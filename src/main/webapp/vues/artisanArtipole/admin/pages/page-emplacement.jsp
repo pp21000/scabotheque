@@ -22,9 +22,9 @@
         <!--<legend class="legend"><spring:message code="label.addContact"/></legend>-->
         <div>
           <div class="flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mx-2">
+            <div class="flex-grow w-44 mr-2">
               <form:label path="editAAEmplacement.type">Type emplacement</form:label>
-              </div>              
+            </div>              
             <form:select onChange="handleUploadFileDivVisibility()" id="typeEmplacementSelect" class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.type" path="editAAEmplacement.type">
               <form:option value="titre"/>
               <form:option value="image"/>
@@ -32,42 +32,42 @@
             </form:select>
             <form:errors class="error-message" path="editAAEmplacement.type"/>
           </div>
-          
-          <div id="uploadFileDiv" class="hidden ml-11 flex items-center mt-2 text-right">    
-            <div class="flex flex-col">
-              <form:input type="file" path="editAAEmplacement.file" accept="image/x-png,image/gif,image/jpeg"/>
+             
+          <div id="uploadFileDiv" class="hidden flex items-center mt-2 text-right">
+            <div class="flex-grow w-44 mx-2">
+              <form:label path="editAAEmplacement.libelle">Image</form:label>
             </div>
+            <form:input type="file" path="editAAEmplacement.file" accept="image/x-png,image/gif,image/jpeg"/>
           </div>
               
           <div class="flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mx-2">
+            <div class="flex-grow w-44 mr-2">
               <form:label path="editAAEmplacement.libelle">Libellé</form:label>
-              </div>
+            </div>
             <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.libelle" path="editAAEmplacement.libelle"/>
             <form:errors class="error-message" path="editAAEmplacement.libelle"/>
           </div>
           
           <div class="flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mx-2">
+            <div class="flex-grow w-44 mr-2">
               <form:label path="editAAEmplacement.content">Content</form:label>
-              </div>
+            </div>
             <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.content" path="editAAEmplacement.content"/>
             <form:errors class="error-message" path="editAAEmplacement.content"/>
           </div>
           
           <div class="flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mx-2">
+            <div class="flex-grow w-44 mr-2">
               <form:label path="editAAEmplacement.alt">Alt</form:label>
-              </div>
+            </div>
             <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.alt" path="editAAEmplacement.alt"/>
             <form:errors class="error-message" path="editAAEmplacement.alt"/>
           </div>
           
           <div class="flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mx-2">
+            <div class="flex-grow w-44 mr-2">
               <form:label path="editAAEmplacement.page">Page</form:label>
-              </div>
-
+            </div>
             <form:select class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.page" path="editAAEmplacement.page.id">
               <form:options items="${pageList}" itemValue="id" itemLabel="libelle"/>
             </form:select>
@@ -149,16 +149,10 @@
           </td>
 
         </tr>     
-<!--      <script>
-        document.getElementById("${emplacement.id}").addEventListener("click", function () {
-          window.location.href = "${urlAAEdit}";
-        })
-      </script>-->
+
     </c:forEach>
     </tbody>
   </table>
-
-
 
 </div>
 
@@ -166,7 +160,9 @@
   
   function handleUploadFileDivVisibility() {
     if ($('#typeEmplacementSelect').val() === 'image') {
-         $('#uploadFileDiv').slideDown(300);
+         $('#uploadFileDiv').slideDown({
+            start: function () {$(this).css({display: "flex"});},
+            duration: 400});
      } else {
          $('#uploadFileDiv').slideUp(300);
          $('#editAAEmplacement\\.file').val(""); 

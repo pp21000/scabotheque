@@ -6,6 +6,7 @@ import fr.scabois.scabotheque.bean.adherent.AdherentContactComptable;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
 import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
 import fr.scabois.scabotheque.bean.adherent.AdherentLogistique;
+import fr.scabois.scabotheque.bean.adherent.AdherentMetier;
 import fr.scabois.scabotheque.bean.adherent.AdherentSuiviVisite;
 import fr.scabois.scabotheque.bean.adherent.AdherentType;
 import fr.scabois.scabotheque.bean.adherent.CompteType;
@@ -14,6 +15,7 @@ import fr.scabois.scabotheque.bean.adherent.Pole;
 import fr.scabois.scabotheque.bean.adherent.Role;
 import fr.scabois.scabotheque.bean.adherent.Secteur;
 import fr.scabois.scabotheque.bean.adherent.Tournee;
+import fr.scabois.scabotheque.bean.artisanArtipole.Metier;
 import fr.scabois.scabotheque.bean.commun.Activite;
 import fr.scabois.scabotheque.bean.commun.Agence;
 import fr.scabois.scabotheque.bean.commun.Ape;
@@ -21,6 +23,7 @@ import fr.scabois.scabotheque.enums.ImageType;
 import fr.scabois.scabotheque.enums.NavType;
 import fr.scabois.scabotheque.enums.PageType;
 import fr.scabois.scabotheque.services.IServiceAdherent;
+import fr.scabois.scabotheque.services.IServiceArtipole;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +39,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,12 +51,12 @@ public class EditAdhController {
 //    private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
   @Autowired
   private MessageSource messages;
-
   @Autowired
   private IServiceAdherent service;
-
   @Autowired
   private ContactController cttControler;
+  @Autowired
+  private IServiceArtipole serviceArtipole;
 
 //  @RequestMapping(value = "/edit/addAdherentContact", method = RequestMethod.POST)
 //  public String addContact(@Valid @ModelAttribute(value = "contactToAdd") final AddAdherentContactForm newContact,
@@ -224,6 +228,34 @@ public class EditAdhController {
 //
 //    return "editContactComptableAdh";
 //  }
+  @RequestMapping(value = {"/edit/editMetiersAdherent"}, method = {RequestMethod.GET})
+  public String editAdherentMetiers(@RequestParam("idAdh") final int idAdh, final ModelMap pModel, final HttpServletRequest request) {
+    final Adherent adh = this.service.loadAdherent(idAdh);
+    final List<Metier> metiers = (List<Metier>) this.serviceArtipole.loadMetiers();
+    final List<AdherentMetier> metiersAdh = (List<AdherentMetier>) this.service.loadAdherentMetiers(idAdh);
+    if (pModel.get("editForm") == null) {
+      final EditAdherentMetiersForm editForm = new EditAdherentMetiersForm((List) metiersAdh, (List) metiers, idAdh);
+      pModel.addAttribute("editForm", editForm);
+    } else {
+      pModel.addAttribute("editForm", pModel.get("editForm"));
+    }
+    pModel.addAttribute("adherent", adh);
+    pModel.addAttribute("metiers", metiers);
+    pModel.addAttribute("adherentMetiers", metiersAdh);
+    pModel.addAttribute("navType", NavType.ADHERENT);
+    pModel.addAttribute("pageType", PageType.ADHERENT_METIERS);
+    return "editMetiersAdherent";
+  }
+
+  @RequestMapping(value = {"/edit/editMetiersAdherent/{idAdh}"}, method = {RequestMethod.POST})
+  public String modifieMetiersAdh(@Valid @ModelAttribute("editForm") final EditAdherentMetiersForm editForm, @PathVariable final int idAdh, final BindingResult pBindingResult, final ModelMap pModel, final HttpServletRequest request) {
+    if (!pBindingResult.hasErrors()) {
+      this.service.saveAdherentMetiers(idAdh, editForm.getAdherentMetiers());
+      return "redirect:/adherentProfil?idAdh=" + idAdh;
+    }
+    return this.editAdherentMetiers(idAdh, pModel, request);
+  }
+
   @RequestMapping(value = {"/edit/editExploitationAdh"}, method = {RequestMethod.GET})
   public String editAdherentLogistique(@RequestParam("idAdh") final int idAdh, final ModelMap pModel, final HttpServletRequest request) {
     final Adherent adh = this.service.loadAdherent(idAdh);

@@ -46,11 +46,11 @@
               <div class="flex-grow w-32 mx-2">
               <form:label path="contact.civilite"><spring:message code="label.civilite"/></form:label>
               </div>
-            <form:select class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="contact.civilite" path="contact.civilite">
-              <form:options items="${civilite}"/>
-            </form:select>
-            <form:errors class="error-message" path="contact.civilite"/>
-          </div>
+              <form:select class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="contact.civilite" path="contact.civilite">
+                <form:options items="${civilite}"/>
+              </form:select>
+              <form:errors class="error-message" path="contact.civilite"/>
+            </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-32 mx-2">
               <form:label path="contact.nom"><spring:message code="label.nom"/></form:label>

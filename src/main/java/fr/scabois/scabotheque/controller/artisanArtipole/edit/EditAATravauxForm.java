@@ -9,6 +9,7 @@ public class EditAATravauxForm {
   private EditAATravaux editAATravaux;
 
   public EditAATravauxForm() {
+    editAATravaux = new EditAATravaux();
   }
 
   public EditAATravauxForm(final Travaux travaux) {

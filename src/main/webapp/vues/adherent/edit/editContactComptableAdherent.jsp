@@ -46,7 +46,7 @@
                 <form:label path="contactComptableAdherent.cabinet" class="mr-2">
                     <spring:message code="label.cabinetComptable"/>
                 </form:label>
-                <form:input class="block p-2 text-gray-900 border border-gray-300 rounded bg-gray-50 text-sm focus:ring-neutral-500 focus:border-neutral-500" name="contactComptableAdherent.cabinet"
+                <form:input class="block w-80 p-2 text-gray-900 border border-gray-300 rounded bg-gray-50 text-sm focus:ring-neutral-500 focus:border-neutral-500" name="contactComptableAdherent.cabinet"
                             path="contactComptableAdherent.cabinet"/>
                 <form:errors class="error-message" path="contactComptableAdherent.cabinet"/>
             </div>
@@ -55,8 +55,11 @@
                 <form:label path="contactComptableAdherent.civilite" class="mr-2">
                     <spring:message code="label.civilite"/>
                 </form:label>
-                <form:input class="block p-2 text-gray-900 border border-gray-300 rounded bg-gray-50 text-sm focus:ring-neutral-500 focus:border-neutral-500" name="contactComptableAdherent.civilite"
-                            path="contactComptableAdherent.civilite"/>
+                <%--<form:input class="block w-80 p-2 text-gray-900 border border-gray-300 rounded bg-gray-50 text-sm focus:ring-neutral-500 focus:border-neutral-500" name="contactComptableAdherent.civilite"
+                            path="contactComptableAdherent.civilite"/>--%>
+                <form:select class="block p-2 w-80 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="contactComptableAdherent.civilite" path="contactComptableAdherent.civilite">
+                  <form:options items="${civilite}"/>
+                </form:select>
                 <form:errors class="error-message" path="contactComptableAdherent.civilite"/>
             </div>
 
@@ -64,7 +67,7 @@
                 <form:label path="contactComptableAdherent.nom" class="mr-2">
                     <spring:message code="label.nom"/>
                 </form:label>
-                <form:input class="block p-2 text-gray-900 border border-gray-300 rounded bg-gray-50 text-sm focus:ring-neutral-500 focus:border-neutral-500" name="contactComptableAdherent.nom"
+                <form:input class="block w-80 p-2 text-gray-900 border border-gray-300 rounded bg-gray-50 text-sm focus:ring-neutral-500 focus:border-neutral-500" name="contactComptableAdherent.nom"
                             path="contactComptableAdherent.nom"/>
                 <form:errors class="error-message" path="contactComptableAdherent.nom"/>
             </div>
@@ -73,7 +76,7 @@
                 <form:label path="contactComptableAdherent.prenom" class="mr-2">
                     <spring:message code="label.prenom"/>
                 </form:label>
-                <form:input class="block p-2 text-gray-900 border border-gray-300 rounded bg-gray-50 text-sm focus:ring-neutral-500 focus:border-neutral-500" name="contactComptableAdherent.prenom"
+                <form:input class="block w-80 p-2 text-gray-900 border border-gray-300 rounded bg-gray-50 text-sm focus:ring-neutral-500 focus:border-neutral-500" name="contactComptableAdherent.prenom"
                             path="contactComptableAdherent.prenom"/>
                 <form:errors class="error-message" path="contactComptableAdherent.prenom"/>
             </div>
@@ -82,7 +85,7 @@
                 <form:label path="contactComptableAdherent.mail" class="mr-2">
                    <spring:message code="label.mail"/>
                 </form:label>
-                <form:input class="block p-2 text-gray-900 border border-gray-300 rounded bg-gray-50 text-sm focus:ring-neutral-500 focus:border-neutral-500" name="contactComptableAdherent.mail"
+                <form:input class="block w-80 p-2 text-gray-900 border border-gray-300 rounded bg-gray-50 text-sm focus:ring-neutral-500 focus:border-neutral-500" name="contactComptableAdherent.mail"
                             path="contactComptableAdherent.mail"/>
                 <form:errors class="error-message" path="contactComptableAdherent.mail"/>
             </div>
@@ -90,7 +93,7 @@
             <div class="grid grid-cols-2 items-center text-right">
                 <form:label path="contactComptableAdherent.mobile" class="mr-2">
                   <spring:message code="label.mobile"/></form:label>
-                <form:input class="block p-2 text-gray-900 border border-gray-300 rounded bg-gray-50 text-sm focus:ring-neutral-500 focus:border-neutral-500" name="contactComptableAdherent.mobile"
+                <form:input class="block w-80 p-2 text-gray-900 border border-gray-300 rounded bg-gray-50 text-sm focus:ring-neutral-500 focus:border-neutral-500" name="contactComptableAdherent.mobile"
                             path="contactComptableAdherent.mobile"/>
                 <form:errors class="error-message" path="contactComptableAdherent.mobile"/>
             </div>
@@ -98,12 +101,11 @@
             <div class="grid grid-cols-2 items-center text-right">
                 <form:label path="contactComptableAdherent.fixe" class="mr-2">
                   <spring:message code="label.fixe"/></form:label>
-                <form:input class="block p-2 text-gray-900 border border-gray-300 rounded bg-gray-50 text-sm focus:ring-neutral-500 focus:border-neutral-500" name="contactComptableAdherent.fixe"
+                <form:input class="block w-80 p-2 text-gray-900 border border-gray-300 rounded bg-gray-50 text-sm focus:ring-neutral-500 focus:border-neutral-500" name="contactComptableAdherent.fixe"
                             path="contactComptableAdherent.fixe"/>
                 <form:errors class="error-message" path="contactComptableAdherent.fixe"/>
             </div>
         </div>
-
 
     </fieldset>
     <div class="flex justify-center gap-2 mt-10">

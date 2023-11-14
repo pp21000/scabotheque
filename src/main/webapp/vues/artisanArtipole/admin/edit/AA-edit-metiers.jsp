@@ -24,14 +24,14 @@
       <fieldset>
         <div>
           <div class="flex items-center mt-2 text-right">
-            <div class="w-32 mx-2">
+            <div class="w-32 mr-2">
               <form:label path="addMetier.libelle">Libellé</form:label>
               </div>
             <form:input class="py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="addMetier.libelle" path="addMetier.libelle"/>
             <form:errors class="error-message" path="addMetier.libelle"/>
           </div>
           <div class="flex items-center mt-2 text-right">
-            <div class="w-32 mx-2">
+            <div class="w-32 mr-2">
               <form:label path="addMetier.description">Description</form:label>
               </div>
             <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="addMetier.description" path="addMetier.description"/>
@@ -49,31 +49,31 @@
 
 
 
-  <form:form class="w-full p-5" method="post" modelAttribute="editForm" action="AA-edit-metiers">    
+  <form:form class="w-full mt-5" method="post" modelAttribute="editForm" action="AA-edit-metiers">    
 
     <c:forEach items="${editForm.metiers}" var="edit" varStatus="status">
       <form:input type="hidden" path="editMetiers[${status.index}].id"/>
 
       <fieldset class="mx-auto justify-center">
-        <div class="flex items-center mb-6">
+        <div class="flex items-center mb-4">
           <div class="w-32" >
-            <label class="block text-gray-400 font-bold md:text-right mb-1 md:mb-0 pr-4" for="libelle">
+            <label class="block text-right mr-2" for="libelle">
               Libellé
             </label>
           </div>
           <div class="w-1/5" >
-            <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="text" name="editMetiers[${status.index}].libelle" path="editMetiers[${status.index}].libelle" id="libelle"/>
+            <form:input class="flex-grow w-full py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" type="text" name="editMetiers[${status.index}].libelle" path="editMetiers[${status.index}].libelle" id="libelle"/>
             <form:errors class="error-message" path="editMetiers[${status.index}].libelle"/>
           </div>
 <!--        </div>
         <div class="flex items-center mb-6">-->
           <div class="w-32" >
-            <label class="block text-gray-400 font-bold md:text-right mb-1 md:mb-0 pr-4" for="libelle">
+            <label class="block text-right mr-2" for="libelle">
               Description
             </label>
           </div>
           <div class="flex-1" >
-            <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="text" name="editMetiers[${status.index}].description" path="editMetiers[${status.index}].description" id="description"/>
+            <form:input class="flex-grow w-full py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" type="text" name="editMetiers[${status.index}].description" path="editMetiers[${status.index}].description" id="description"/>
             <form:errors class="error-message" path="editMetiers[${status.index}].description"/>
           </div>
         </div>
@@ -92,16 +92,9 @@
 </form:form>
 
 <script>
-  $(function () {
-
-    $("#addBtn").click(function (e) {
-//      alert("test");
-      $("#addForm").toggle('slow');
-    });
-  });
 
   function showNewForm() {
-    $("#addForm").toggle('slow');
+    $("#addForm").toggle('quick');
   }
 
 </script>

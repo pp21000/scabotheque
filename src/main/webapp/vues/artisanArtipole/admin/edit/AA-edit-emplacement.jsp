@@ -53,7 +53,8 @@
           <form:errors class="error-message" path="editAAEmplacement.content"/>
         </div>
       </div>
-        
+       
+      <c:if test="${emplacement.type.equals('image')}">
       <div class="md:flex md:items-center mb-6">
         <div class="w-1/5" >
           <label class="block text-gray-400 font-bold md:text-right mb-1 md:mb-0 pr-4" for="content">
@@ -62,24 +63,18 @@
         </div>
         
         <div class="w-3/5" >    
-          <c:choose>
-            <c:when test="${emplacement.type.equals('image')}">
-              <div class="flex">   
-                <img class="max-h-24 mr-5 rounded" src="${emplacement.dataImg}"/>
-                <div class="my-auto flex justify-center">
-                  <div class="flex flex-col">
-                    <form:input type="file" path="editAAEmplacement.file" accept="image/x-png,image/gif,image/jpeg"/>
-                  </div>
-                </div>
+          <div class="flex">   
+            <img class="max-h-24 rounded mr-5" src="${emplacement.dataImg}"/>
+            <div class="my-auto flex justify-center">
+              <div class="flex flex-col">
+                <form:input type="file" path="editAAEmplacement.file" accept="image/x-png,image/gif,image/jpeg"/>
               </div>
-            </c:when>
-            <c:otherwise>
-              <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200" type="text" name="editAAEmplacement.data" path="editAAEmplacement.data" id="data"/>
-            </c:otherwise>
-          </c:choose>
+            </div>
+          </div>
           <form:errors class="error-message" path="editAAEmplacement.data"/>
         </div>
       </div>
+      </c:if>
         
       <div class="md:flex md:items-center mb-6">
         <div class="w-1/5" >
@@ -102,7 +97,7 @@
         </div>
         
         <div class="w-3/5" >
-          <form:select class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.page" path="editAAEmplacement.page.id">
+          <form:select name="editAAEmplacement.page" path="editAAEmplacement.page.id" class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500">
             <form:options items="${pageList}" itemValue="id" itemLabel="libelle"/>
           </form:select>
           <%--<form:input class="p-2  bg-white rounded-lg border border-gray-200" type="number" name="editAAEmplacement.page.id" path="editAAEmplacement.page.id" id="editAAEmplacement.page.id"/>--%>

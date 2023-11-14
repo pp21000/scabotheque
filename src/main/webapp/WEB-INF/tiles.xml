@@ -216,7 +216,6 @@
   </definition>
 
   <definition name="editMetiersAdherent" extends="base.board.definition">
-    <put-attribute name="menu" value="/vues/menu/menuEdit.jsp"/>
     <put-attribute name="body" value="/vues/adherent/edit/editMetiersAdherent.jsp"/>
     <put-attribute name="pageName" value="metiersAdh"/>
   </definition>
@@ -346,7 +345,6 @@
 
   <definition name="editLivraisonAdh" extends="base.board.definition">
     <put-attribute name="body" value="/vues/adherent/edit/editLivraisonAdherent.jsp"/>
-    <put-attribute name="menu" value="/vues/menu/menuEdit.jsp"/>
     <put-attribute name="pageName" value="listeAdh"/>
   </definition>
 

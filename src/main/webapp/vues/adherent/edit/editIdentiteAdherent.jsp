@@ -215,8 +215,8 @@
                     <form:input id="communeAdhId" type="hidden" path="editAdherent.commune.id"/>
                     <form:input type="hidden" path="editAdherent.commune.codePostal"/>
                     <form:input type="hidden" path="editAdherent.commune.libelle"/>
-                    <input type="text"  id="communeAdhLibelle" disabled class="rounded-r bg-gray-50 border border-gray-300 text-gray-900 flex-1 min-w-0 border-gray-300"
-                           placeholder="<spring:message code="label.commune" />" value="${editForm.editAdherent.commune.codePostal} - ${editForm.editAdherent.commune.libelle}">
+                    <input type="text" id="communeAdhLibelle" disabled class="rounded-r bg-gray-50 text-sm border border-gray-300 text-gray-900 flex-1 min-w-0 border-gray-300"
+                           placeholder="" value="${editForm.editAdherent.commune.codePostal} - ${editForm.editAdherent.commune.libelle}">
                   </div>
                 </form:label>
                 <form:errors class="error-message" path="editAdherent.commune"/>

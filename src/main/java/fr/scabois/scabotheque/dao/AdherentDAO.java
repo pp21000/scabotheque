@@ -746,9 +746,9 @@ public class AdherentDAO implements IAdherentDAO {
   }
 
   @Transactional
-  public void saveAdherentMetiers(final int adhId, final List list) {
-//    this.loadAdherentMetiers(adhId).stream().forEach(a -> this.entityManager.remove(a));
-//    adherentMetiers.stream().forEach(am -> this.entityManager.merge(am));
+  public void saveAdherentMetiers(final int adhId, final List<AdherentMetier> adherentMetiers) {
+    this.loadAdherentMetiers(adhId).stream().forEach(a -> this.entityManager.remove(a));
+    adherentMetiers.stream().forEach(am -> this.entityManager.merge(am));
   }
 
   @Override

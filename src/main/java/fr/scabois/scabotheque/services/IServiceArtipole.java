@@ -38,6 +38,8 @@ public interface IServiceArtipole {
 
   void deleteEmplacement(final int p0);
 
+  void deleteTravaux(final int p0);
+
   void deleteMetier(final int p0);
 
   void deletePhoto(final int p0);

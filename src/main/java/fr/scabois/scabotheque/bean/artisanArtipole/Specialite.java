@@ -44,18 +44,11 @@ public class Specialite implements HasIdLibelle, Serializable {
     this.libelle = libelle;
   }
 
-//  public Travaux getTravaux() {
-//    return this.travaux;
-//  }
-//
-//  public void setTravaux(final Travaux travaux) {
-//    this.travaux = travaux;
-//  }
   public Travaux getTravaux() {
-    return travaux;
+    return this.travaux;
   }
 
-  public void setTravaux(Travaux travaux) {
+  public void setTravaux(final Travaux travaux) {
     this.travaux = travaux;
   }
 }

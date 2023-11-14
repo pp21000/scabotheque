@@ -52,7 +52,7 @@ public class Travaux implements HasIdLibelle, Serializable {
   }
 
   public List<Specialite> getSpecialites() {
-    return specialites;
+    return this.specialites;
   }
 
   public void setSpecialites(List<Specialite> specialites) {

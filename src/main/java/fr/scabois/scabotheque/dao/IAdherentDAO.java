@@ -154,7 +154,7 @@ public interface IAdherentDAO {
 
   public void saveAdherentLogistique(AdherentLogistique logistiqueAdh);
 
-  public void saveAdherentMetiers(int adhId, List list);
+  public void saveAdherentMetiers(int adhId, List<AdherentMetier> adherentMetiers);
 
   public void saveAdherentSuiviVisite(AdherentSuiviVisite suivi);
 

@@ -181,6 +181,7 @@ public class ServiceAdherent implements IServiceAdherent {
     return (List<AdherentContactRole>) this.dao.loadAdherentContact(criteria);
   }
 
+  @Override
   public List<AdherentMetier> loadAdherentMetiers(final int idAdh) {
     return (List<AdherentMetier>) this.dao.loadAdherentMetiers(idAdh);
   }

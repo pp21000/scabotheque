@@ -16,7 +16,7 @@
            
             <li>
                 <a href="<c:url value="/dashboard" />"
-                   class="<c:choose><c:when test = "${pageType == 'DASHBOARD'}">bg-[#28a745] hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-gray-50">
+                   class="<c:choose><c:when test = "${pageType == 'DASHBOARD'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-gray-50">
                     <svg aria-hidden="true"
                          class="w-6 h-6 text-gray-500 transition duration-75  group-hover:text-gray-900"
                          fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -29,7 +29,7 @@
                     
             <li>
                 <a href="<c:url value="/listeAdherents" />"
-                   class="<c:choose><c:when test = "${pageType == 'LIST_ADHERENT' || pageType == 'CREATE_ADHERENT'}">bg-[#28a745] hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-gray-50">
+                   class="<c:choose><c:when test = "${pageType == 'LIST_ADHERENT' || pageType == 'CREATE_ADHERENT'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-gray-50">
                     <svg aria-hidden="true"
                          class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900  dark:hover:bg-gray-600"
                          fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -41,7 +41,7 @@
             <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_EXPLOITATION')">
             <li>
                 <a href="<c:url value="/ordreTournee" />"
-                   class="<c:choose><c:when test = "${navType == 'LOGISTIQUE'}">bg-[#28a745] hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-gray-50">
+                   class="<c:choose><c:when test = "${navType == 'LOGISTIQUE'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-gray-50">
                     <svg aria-hidden="true"
                          class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
                          fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -104,7 +104,7 @@
                 <c:url value="/analyse" var="urlAnalyse"/>
                 <li>
                     <a href="analyse"
-                       class="<c:choose><c:when test = "${pageType == 'ANALYSE'}">bg-[#28a745] hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-gray-50">
+                       class="<c:choose><c:when test = "${pageType == 'ANALYSE'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-gray-50">
                         <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                              xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -120,7 +120,7 @@
                 <c:url value="/ordreTournee" var="urlOrdreTournee"/>
                 <li>
                     <a href="ordreTournee"
-                       class="<c:choose><c:when test = "${pageType == 'LOGISTIQUE_TOURNEE'}">bg-[#28a745] hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-gray-50">
+                       class="<c:choose><c:when test = "${pageType == 'LOGISTIQUE_TOURNEE'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-gray-50">
                         <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                              xmlns="http://www.w3.org/2000/svg">
                             <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path>

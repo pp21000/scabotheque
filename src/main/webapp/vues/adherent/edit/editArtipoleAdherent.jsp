@@ -88,41 +88,40 @@
     <div>
       <%--<legend class="text-center mt-4"><spring:message code="label.artipole"/></legend>--%>
 
-      <div class="flex items-center mt-2">
+      <div class="flex items-center">
         <div class="w-56 mr-2">
           <form:label class="flex items-center mt-2 text-left" path="editAdherent.isArtipole"><spring:message code="label.adhArtipole"/></form:label>
           </div>
         <form:checkbox class="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500  focus:ring-2 " path="editAdherent.isArtipole"/>
       </div>
 
-      <div class="flex items-center mt-2">
+      <div class="flex items-center">
         <div class="w-56 mr-2">
           <form:label class="flex items-center mt-2 text-left" path="editAdherent.isArtipole"><spring:message code="label.charteArtipole"/></form:label>
           </div>
         <form:checkbox class="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500  focus:ring-2 " path="editAdherent.isCharteArtipole"/>
       </div>
 
-      <div class="flex items-center mt-2">
+      <div class="flex items-center">
         <div class="w-56 mr-2">
           <form:label class="flex items-center mt-2 text-left" path="editAdherent.isArtipole"><spring:message code="label.flocageArtipole"/></form:label>
           </div>
         <form:checkbox class="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500  focus:ring-2 " path="editAdherent.isFlocageArtipole"/>
       </div>
 
-      <div class="flex items-center mt-2">
+      <div class="flex items-center">
         <div class="w-56 mr-2">
           <form:label class="flex items-center mt-2 text-left" path="editAdherent.isArtipole"><spring:message code="label.siteArtipole"/></form:label>
           </div>
         <form:checkbox class="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500  focus:ring-2 " path="editAdherent.isWebArtipole"/>
       </div>
 
-      <div class="flex items-center mt-2">
+      <div class="flex items-center">
         <div class="w-56 mr-2">
           <form:label class="flex items-center mt-2 text-left" path="editAdherent.isArtipole"><spring:message code="label.facebookArtipole"/></form:label>
           </div>
         <form:checkbox class="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500  focus:ring-2 " path="editAdherent.isFacebookArtipole"/>
       </div>
-
 
       <div class="flex items-center mt-2">
         <div class="flex-grow w-56 mr-2">
