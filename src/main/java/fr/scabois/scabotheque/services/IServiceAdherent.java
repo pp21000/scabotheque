@@ -8,6 +8,7 @@ import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
 import fr.scabois.scabotheque.bean.adherent.AdherentInformatique;
 import fr.scabois.scabotheque.bean.adherent.AdherentLogistique;
 import fr.scabois.scabotheque.bean.adherent.AdherentMetier;
+import fr.scabois.scabotheque.bean.adherent.AdherentSpecialite;
 import fr.scabois.scabotheque.bean.adherent.AdherentSuiviVisite;
 import fr.scabois.scabotheque.bean.adherent.AdherentType;
 import fr.scabois.scabotheque.bean.adherent.CompteType;
@@ -191,9 +192,13 @@ public interface IServiceAdherent {
 
   public List<AdherentMetier> loadAdherentMetiers(int var1);
 
+  public List<AdherentSpecialite> loadAdherentSpecialites(int var1);
+
   public AdherentContactRole loadContact(Integer var1);
 
   public void saveAdherentLogistique(AdherentLogistique var1);
 
   public void saveAdherentMetiers(int var1, List<AdherentMetier> var2);
+
+  public void saveAdherentSpecialites(int var1, List<AdherentSpecialite> var2);
 }

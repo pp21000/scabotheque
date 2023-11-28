@@ -9,7 +9,7 @@
 <div class="flex flex-col items-center">
 
   <div class="w-full">
-    <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" 
+    <button class="btn btn-blue btn-small" 
             id="addItemBtn" type="button" onclick="showAddForm()"><spring:message code="label.addTravaux"/></button>
   </div>
 
@@ -17,9 +17,9 @@
     <div class="hidden" id="addItemForm">
       <fieldset>
       
-          <div class="flex items-center mt-2 text-right">
+          <div class="flex items-center mt-2">
             <form:label class="flex-grow mr-2" path="editAATravaux.libelle">Type de travaux</form:label>
-            <form:input id="travauxLibelle" name="editAATravaux.libelle" path="editAATravaux.libelle" class="mr-11 py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"/>
+            <form:input id="travauxLibelle" name="editAATravaux.libelle" path="editAATravaux.libelle" class="mr-11 w-96 input-text"/>
             <form:errors class="error-message" path="editAATravaux.libelle"/>
           </div>
       
@@ -33,7 +33,7 @@
           
           <div class="flex justify-center gap-2 my-10">
             <button type="submit" class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300">Enregistrer le travaux</button>
-            <button onclick="window.location.reload(false)" type="button" class="btn btn-red focus:ring-4 focus:outline-none focus:ring-neutral-300">Annuler</button>
+            <button type="button" onclick="window.location.reload(false)" class="btn btn-red focus:ring-4 focus:outline-none focus:ring-neutral-300">Annuler</button>
           </div>
             
       </fieldset>
@@ -81,7 +81,7 @@
             <a href="${urlAAEdit}"><svg class="w-10 h-10 p-2 fill-gray-400 hover:bg-gray-800 hover:fill-white rounded-lg"><use xlink:href="<c:url value="/resources/images/icones.svg#edit"/>"></use></svg></a>
           </td>
           <td class="px-2 py-2">
-            <button onclick="confirmDeletion()"><svg class="w-10 h-10 p-2 fill-gray-400 hover:bg-red-900 hover:fill-white rounded-lg"><use xlink:href="<c:url value="/resources/images/icones.svg#trash"/>"></use></svg></a>
+            <button onclick="deleteTravaux('${urlAADelete}')"><svg class="w-10 h-10 p-2 fill-gray-400 hover:bg-red-900 hover:fill-white rounded-lg"><use xlink:href="<c:url value="/resources/images/icones.svg#trash"/>"></use></svg></button>
           </td>
         </tr>     
     </c:forEach>
@@ -97,17 +97,26 @@
 
   function createNewSpecialiteInput() {
     numberOfInputs = $('#SpecialiteInputs input').length;
-    var newInput = $('<div class="hidden flex items-center mt-2 text-right justify-between">' +
+    id = 'specialiteInput' + numberOfInputs.toString();
+    var newInput = $('<div id="' + id + '" class="hidden flex items-center mt-2 text-right justify-between">' +
                      '   <label class="flex-grow mr-2" for="editAATravaux.libelle">Spécialité</label>' +
-                     '   <input name="editAATravaux.specialites[' + numberOfInputs + '].libelle" path="editAATravaux.specialites[' + numberOfInputs + '].libelle" class="py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"/>' +
-                     '   <button type="button" onclick="$(this).parent().remove();"><svg class="ml-1 w-10 h-10 p-2 fill-gray-400 hover:bg-red-900 hover:fill-white rounded-lg"><use xlink:href="/scabotheque/resources/images/icones.svg#trash"></use></svg></button>' +
+                     '   <input name="editAATravaux.specialites[' + numberOfInputs + '].libelle" path="editAATravaux.specialites[' + numberOfInputs + '].libelle" class="w-96 input-text"/>' +
+                     '   <button type="button" onclick="deleteSpecialite(\'' + id + '\')"><svg class="ml-1 w-10 h-10 p-2 fill-gray-400 hover:bg-red-900 hover:fill-white rounded-lg"><use xlink:href="/scabotheque/resources/images/icones.svg#trash"></use></svg></button>' +
                      '</div>');
     $('#SpecialiteInputs').append(newInput);
-    newInput.slideDown({start: function () {$(this).css({display: "flex"});}, duration: 200});}
+    newInput.slideDown({ start: function () { $(this).css({ display: "flex" }); }, duration: 200 });
+  }
+
+  function deleteSpecialite(id) {
+    $("#" + id).slideUp(200, function () {
+        $(this).remove();
+    });
+  }
+
   
-  function confirmDeletion() {
+  function deleteTravaux(url) {
     if (confirm("Êtes-vous certain.e de vouloir supprimer ce type de travaux ainsi que toutes les spécialités qui lui sont associées ?")) {
-      document.location.href="${urlAADelete}";
+      document.location.href = url;
     }
   }
 

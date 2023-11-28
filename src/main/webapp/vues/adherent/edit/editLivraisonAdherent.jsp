@@ -4,151 +4,240 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
-<c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${adhToEdit.adherent.id}"/></c:url>
-  <button class="px-3 py-2 text-xs font-medium text-center text-white bg-neutral-700 rounded-lg hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300"
-          id="cancel" type="reset" onClick="window.location = '${url}'">Retour
+<c:url value="/adherentProfil" var="retourUrl"><c:param name="idAdh" value="${adherent.id}"/></c:url>
+<button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" id="cancel" type="reset" onClick="window.location = '${retourUrl}'">
+  <spring:message code="label.retour"/>
 </button>
 
-<div class="flex flex-col items-center">
-  <div class="flex justify-center">
-    <div class="rounded bg-neutral-50 p-4 border border-neutral-200 flex flex-col items-center">
-      <div>
-        <c:choose>
-          <c:when test="${adhToEdit.adherent.photo == ''}">
-            <img class="rounded-full" src="<c:url value="/resources/images/noAdh.png" />"/>
-          </c:when>
-          <c:otherwise>
-            <img class="rounded-full" src="${adhToEdit.adherent.photo}">
-          </c:otherwise>
-        </c:choose>
+<div class="flex justify-center">
+  <div class="rounded bg-neutral-50 p-4 border border-neutral-200 flex flex-col items-center">
+    <div>
+      <c:choose>
+        <c:when test="${adherent.photoImg == ''}">
+          <img class="rounded-full h-32" src="<c:url value="/resources/images/noAdh.png" />"/>
+        </c:when>
+        <c:otherwise>
+          <img class="rounded-full h-32" src="${adherent.photoImg}">
+        </c:otherwise>
+      </c:choose>
+    </div>
+    <div class="flex flex-col">
+      <div class="text-center text-lg font-semibold">
+        ${adherent.denomination}
       </div>
-      <div class="flex flex-col">
-        <div class="text-center text-lg font-semibold">
-          ${adhToEdit.adherent.denomination}
-        </div>
-        <div class="text-center text-sm">
-          <spring:message code="label.codeAdh"/> :
-          ${adhToEdit.adherent.code}
-        </div>
+      <div class="text-center text-sm">
+        <spring:message code="label.codeAdh"/> 
+        ${adherent.code}
       </div>
     </div>
   </div>
-
-
-  <form:form class="editAdherent" method="post" modelAttribute="adhToEdit" action="editExploitationAdh">
-    <form:input type="hidden" path="adherent.id"/>
-
-    <!-- Permet de ne pas perdre les données autre que celles modifié -->
-    <form:input type="hidden" name="adherent.code" path="adherent.code"/>
-    <form:input type="hidden" name="adherent.code" path="adherent.codeERP"/>
-    <form:input type="hidden" name="adherent.codeParent" path="adherent.codeERPParent"/>
-    <form:input type="hidden" name="adherent.libelle" path="adherent.libelle"/>
-    <form:input type="hidden" name="adherent.denomination" path="adherent.denomination"/>
-    <form:input type="hidden" name="adherent.adresse" path="adherent.adresse"/>
-    <form:input type="hidden" name="adherent.adresseComplement" path="adherent.adresseComplement"/>
-    <form:input type="hidden" path="adherent.commune.id"/>
-    <form:input type="hidden" path="adherent.pole.id"/>
-    <form:input type="hidden" path="adherent.isArtipole"/>
-    <form:input type="hidden" path="adherent.isCharteArtipole"/>
-    <form:input type="hidden" path="adherent.isFlocageArtipole"/>
-    <form:input type="hidden" path="adherent.isWebArtipole"/>
-    <form:input type="hidden" path="adherent.isFacebookArtipole"/>
-
-    <form:input type="hidden" path="adherent.siteWeb"/>
-    <form:input type="hidden" path="adherent.facebook"/>
-    <form:input type="hidden" path="adherent.instagram"/>
-    <form:input type="hidden" path="adherent.linkedin"/>
-    <form:input type="hidden" path="adherent.youtube"/>
-    <form:input type="hidden" path="adherent.pinterest"/>
-
-    <%-- 	<form:input type="hidden" path="adherent.agence.id"/> --%>
-    <%-- 	<form:input type="hidden" path="adherent.secteur.id"/> --%>
-    <%-- 	<form:input type="hidden" path="adherent.tournee.id"/> --%>
-    <%-- 	<form:input type="hidden" path="adherent.isOutilDechargement"/> --%>
-    <form:input type="hidden" path="adherent.dateEntree"/>
-    <form:input type="hidden" path="adherent.dateCreation"/>
-    <form:input type="hidden" path="adherent.dateSortie"/>
-    <form:input type="hidden" path="adherent.role.id"/>
-    <form:input type="hidden" path="adherent.formeJuridique.id"/>
-    <form:input type="hidden" path="adherent.siren"/>
-    <form:input type="hidden" path="adherent.siret"/>
-    <form:input type="hidden" path="adherent.ape.id"/>
-    <form:input type="hidden" path="adherent.numRepMetier"/>
-    <form:input type="hidden" path="adherent.rcsRm"/>
-    <form:input type="hidden" path="adherent.rcsCommune.id"/>
-    <form:input type="hidden" path="adherent.rmCommune.id"/>
-    <form:input type="hidden" path="adherent.dateClotureExe"/>
-    <%--<form:input type="hidden" path="adherent.contactComptable"/>--%>
-    <form:input type="hidden" path="adherent.formationDirigeant"/>
-    <form:input type="hidden" path="adherent.cnxEolasAllow"/>
-    <form:input type="hidden" path="adherent.etat.id"/>
-    <form:input type="hidden" path="adherent.adherentType.id"/>
-    <form:input type="hidden" path="adherent.compteType.id"/>
-    <form:input type="hidden" path="adherent.description_entreprise"/>
-    <form:input type="hidden" path="adherent.description_activite"/>
-
-
-    <fieldset>
-      <%--            <legend class="legend"><spring:message code="label.exploitation"/></legend>--%>
-
-      <div class="flex items-center mt-2 text-center">
-        <div class="flex-grow w-32 mx-2">
-          <form:label path="adherent.agence"><spring:message code="label.agenceRattachement"/></form:label>
-          </div>
-        <form:select
-          class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
-          name="adherent.agence" path="adherent.agence.id">
-          <form:options items="${agenceList}" itemValue="id" itemLabel="libelle"/>
-        </form:select>
-      </div>
-
-      <div class="flex items-center mt-2 text-center">
-        <div class="flex-grow w-32  mx-2">
-          <form:label path="adherent.secteur"><spring:message code="label.secteur"/></form:label></div>
-          <form:select
-            class="flex-grow justify-center py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
-            name="adherent.secteur" path="adherent.secteur.id">
-            <form:options items="${secteurList}" itemValue="id" itemLabel="libelle"/>
-          </form:select>
-      </div>
-
-      <div class="flex items-center mt-2 text-center">
-        <div class="flex-grow w-32  mx-2">
-          <form:label path="adherent.tournee"><spring:message code="label.tournee"/></form:label></div>
-          <form:select
-            class="flex-grow flex py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
-            name="adherent.tournee" path="adherent.tournee.id">
-            <form:options items="${tourneeList}" itemValue="id" itemLabel="libelle"/>
-          </form:select>
-      </div>
-
-      <div class="flex items-center mx-2 mt-2 text-center">
-        <form:label path="adherent.isOutilDechargement"><spring:message
-            code="label.outilDechargement"/></form:label>
-        <form:checkbox
-          class="mx-2 w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
-          path="adherent.isOutilDechargement"/>
-      </div>
-    </fieldset>
-
-    <%--	<fieldset>--%>
-    <%--	   	<legend class="legend"><spring:message code="label.commentaire"/></legend>--%>
-    <%--		<form:textarea id="summernote" name="editordata" path="commentaire"/>--%>
-    <%--	</fieldset>--%>
-
-    <div class="flex justify-center gap-2 mt-2">
-      <button class="px-3 py-2 text-xs font-medium text-center text-white bg-neutral-700 rounded-lg hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300"
-              id="save" type="submit">Enregistrer
-      </button>
-      <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${adhToEdit.adherent.id}"/></c:url>
-        <button class="px-3 py-2 text-xs font-medium text-center text-white bg-neutral-700 rounded-lg hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300"
-                id="cancel" type="reset" onClick="window.location = '${url}'">Annuler
-      </button>
-    </div>
-
-  </form:form>
 </div>
+
+
+
+<form:form class="" method="post" modelAttribute="editForm" action="editLivraisonAdh">
+  <form:input type="hidden" path="editLogistiqueAdh.id"/>
+  <form:input type="hidden" name="editLogistiqueAdh.adherentId" path="editLogistiqueAdh.adherentId"/>
+  <%--<form:input type="hidden" name="editLogistiqueAdh.commune.id" path="editLogistiqueAdh.commune.id"/>--%>
+
+  <fieldset class="flex justify-center">
+    <div class="mt-5">
+<%--      <legend class="text-center mt-4"><spring:message code="label.agence"/></legend>--%>
+
+      <div class="flex items-center mt-2">
+        <div class="w-56 mr-2 text-right">
+          <span><spring:message code="label.agence"/> : </span>
+        </div>
+          <span class="text-black dark:text-white">${adherent.agence.libelle}</span>
+      </div>
+
+      <div class="flex items-center mt-2">
+        <div class="w-56 mr-2 text-right">
+          <span><spring:message code="label.secteur"/> : </span>
+        </div>
+          <span class="text-black dark:text-white">${adherent.secteur.libelle}</span>
+      </div>
+
+      <div class="flex items-center mt-2">
+        <div class="w-56 mr-2 text-right">
+          <span><spring:message code="label.tournee"/> : </span>
+        </div>
+          <span class="text-black dark:text-white">${adherent.tournee.libelle}</span>
+      </div>
+
+      <div class="flex items-center mt-2">
+        <div class="flex-grow w-56 mr-2 text-right">
+          <form:label class="mt-2" path="editLogistiqueAdh.adresseLivraison"><spring:message code="label.adresseLivraison"/></form:label>
+          </div>
+        <form:input class="flex-grow w-96 input-text"
+                    name="editLogistiqueAdh.adresseLivraison" path="editLogistiqueAdh.adresseLivraison"/>
+        <form:errors class="error-message" path="editLogistiqueAdh.adresseLivraison"/>
+      </div>
+
+
+
+      <div class="flex items-center mt-2">
+        <div class="flex-grow w-56 mr-2 text-right">
+          <form:label path="editLogistiqueAdh.adresseComplement"><spring:message code="label.adresseComplement"/></form:label>
+        </div>
+        <form:input class="flex-grow w-96 input-text"
+                    name="editLogistiqueAdh.adresseComplement" path="editLogistiqueAdh.adresseComplement"/>
+        <form:errors class="error-message" path="editLogistiqueAdh.adresseComplement"/>
+      </div>
+
+      <div class="flex items-center mt-2">
+        <div class="flex-grow w-56 mr-2 text-right">
+          <form:label path="editLogistiqueAdh.commune.libelle"><spring:message code="label.commune"/></form:label>
+        </div>
+        <form:label path="editLogistiqueAdh.commune">
+          <div class="flex w-96 h-10">
+            <a type="button" data-modal-toggle="commune-modal" class="input-group-text inline-flex items-center px-3 text-gray-900 bg-gray-200 hover:bg-gray-300 rounded-l border border-r-0 border-gray-300" href="#" id="editAdhCommune" data-toggle="modal" data-target="#modal-adherentCommune">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+              </svg>
+            </a>
+            <form:input id="communeAdhId" type="hidden" path="editLogistiqueAdh.commune.id"/>
+            <form:input type="hidden" path="editLogistiqueAdh.commune.codePostal"/>
+            <form:input type="hidden" path="editLogistiqueAdh.commune.libelle"/>
+
+            <%--<spring:message code="message.commune" arguments="${editLogistiqueAdh.commune.codePostal}, ${editLogistiqueAdh.commune.libelle}"/>--%>
+            <input type="text" id="communeAdhLibelle" disabled class="rounded-r bg-gray-50 text-sm border border-gray-300 text-gray-900 flex-1 min-w-0 border-gray-300"
+                   placeholder="" value="${logistiqueAdh.commune.codePostal} - ${logistiqueAdh.commune.libelle}">
+          </div>
+        </form:label>
+        <form:errors class="error-message" path="editLogistiqueAdh.commune"/>
+      </div>
+
+      <!-- Main modal -->
+      <div id="commune-modal" tabindex="-1" aria-hidden="true"
+           class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
+        <div class="relative p-4 w-full max-w-md h-full md:h-auto">
+          <div class="relative bg-white rounded-lg shadow ">
+            <button type="button"
+                    class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center  "
+                    data-modal-toggle="commune-modal">
+              <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                   xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"></path>
+              </svg>
+              <span class="sr-only">Close modal</span>
+            </button>
+            <div class="py-6 px-6 lg:px-8">
+              <h3 class="mb-4 text-xl font-medium text-gray-900 ">Commune</h3>
+              <div class="space-y-6">
+                <div class="modal-body">
+                  <label class="block mb-2 text-sm font-medium text-gray-900 ">Recherche</label>
+                  <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                         id="filterCPCommuneAdh" type="text"
+                         placeholder="Code postal ou Nom"/>
+                  <br>
+                  <form:label class="sr-only" path="editLogistiqueAdh.Commune"><spring:message
+                      code="label.commune"/></form:label>
+                  <form:select id="communeAdhListe"
+                               class="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                               name="editLogistiqueAdh.commune"
+                               path="editLogistiqueAdh.commune.id">
+                    <form:options items="${communeList}" itemValue="id" itemLabel="libelle" class="ml-1"/>
+                  </form:select>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                  <button type="button" id="valideAdhCommune"
+                          data-modal-toggle="commune-modal"
+                          class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">
+                    Sélectionner
+                  </button>
+                  <button type="button" data-modal-toggle="commune-modal"
+                          class="w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">
+                    Annuler
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="flex items-center mt-2">
+        <div class="flex-grow w-56 mr-2 text-right">
+          <form:label path="editLogistiqueAdh.contactReceptionId"><spring:message code="label.chargeReception"/></form:label>
+        </div>
+        <form:select
+          class="flex-grow w-96 input-select"
+          name="editLogistiqueAdh.contactReceptionId" path="editLogistiqueAdh.contactReceptionId">
+          <form:option value=""></form:option>
+          <form:options items="${contacts}" itemValue="id" itemLabel="libelle"/>
+        </form:select>
+        <form:errors class="error-message" path="editLogistiqueAdh.contactReceptionId"/>
+      </div>
+      
+      <div class="flex items-center mt-2">
+        <div class="w-56 mr-2 text-right">
+          <form:label path="editLogistiqueAdh.isAccesSemi"><spring:message code="label.accesSemi"/></form:label>
+          </div>
+        <form:checkbox class="input-checkbox" path="editLogistiqueAdh.isAccesSemi"/>
+      </div>
+
+      <div class="flex items-center mt-2">
+        <div class="w-56 mr-2 text-right">
+          <form:label path="editLogistiqueAdh.isAccesSemi"><spring:message code="label.outilDechargement"/></form:label>
+          </div>
+        <form:checkbox class="input-checkbox"
+                       path="editLogistiqueAdh.isAccesSemi"/>
+      </div>
+
+      <div class="flex items-center mt-2">
+        <div class=" w-56 mr-2 text-right">
+          <form:label path="editLogistiqueAdh.isAccesSemi"><spring:message code="label.authorisationOutils"/></form:label>
+          </div>
+        <form:checkbox class="input-checkbox"
+                       path="editLogistiqueAdh.isAccesSemi"/>
+      </div>
+
+      <div class="flex items-center mt-2">
+        <div class="w-56 mr-2 text-right">
+          <form:label path="editLogistiqueAdh.outillageCommentaire"><spring:message code="label.commentaireMateriel"/></form:label>
+          </div>
+        <form:textarea class="w-96 h-32 block input-textarea" id="outillageCommentaire" name="editordata" path="editLogistiqueAdh.outillageCommentaire"/>
+        <%--<form:input class="flex-grow w-72 input-text"--%>
+        <!--name="editLogistiqueAdh.outillageCommentaire" path="editLogistiqueAdh.outillageCommentaire"/>-->
+        <form:errors class="error-message" path="editLogistiqueAdh.outillageCommentaire"/>
+      </div>
+
+      <div class="flex items-center mt-2">
+        <div class="w-56 mr-2 text-right">
+          <form:label path="editLogistiqueAdh.protocolDechargement"><spring:message code="label.protocolDechargement"/></form:label>
+          </div>
+        <form:textarea class="w-96 h-32 block input-textarea" id="protocolDechargement" name="editordata" path="editLogistiqueAdh.protocolDechargement"/>
+        <%--<form:input class="flex-grow w-72 input-text"--%>
+        <!--name="editLogistiqueAdh.adresseLivraison" path="editLogistiqueAdh.adresseLivraison"/>-->
+        <form:errors class="error-message" path="editLogistiqueAdh.protocolDechargement"/>
+      </div>
+    </div>
+  </fieldset>
+
+<%--  <fieldset class="flex justify-center">
+    <legend class="text-center mt-4"><spring:message code="label.commentaire"/></legend>
+    <form:textarea class="w-96 h-32 block input-textarea" id="summernote" name="editordata" path="commentaire"/>
+  </fieldset>--%>
+
+  <div class="flex justify-center gap-2 mt-10">
+    <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300"
+            id="save" type="submit">Enregistrer
+    </button>
+    <button class="btn btn-red focus:ring-4 focus:outline-none focus:ring-neutral-300"
+            id="cancel" type="reset" onClick="window.location = '${retourUrl}'">Annuler
+    </button>
+  </div>
+
+</form:form>
+
+      
 <script>
+  
   $(function () {
     $(document).ready(function () {
       $('#summernote').summernote({
@@ -158,4 +247,5 @@
       });
     });
   });
+  
 </script>

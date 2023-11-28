@@ -6,8 +6,8 @@
 
 <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${editForm.editAdherent.id}"/></c:url>
 
-<button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
-          type="reset" onClick="window.location = '${url}'">< Retour
+<button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location = '${url}'">
+  <spring:message code="label.retour"/>
 </button>
 
 <div class="flex justify-center">
@@ -88,125 +88,136 @@
     <div>
       <%--<legend class="text-center mt-4"><spring:message code="label.artipole"/></legend>--%>
 
-      <div class="flex items-center">
-        <div class="w-56 mr-2">
-          <form:label class="flex items-center mt-2 text-left" path="editAdherent.isArtipole"><spring:message code="label.adhArtipole"/></form:label>
-          </div>
-        <form:checkbox class="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500  focus:ring-2 " path="editAdherent.isArtipole"/>
-      </div>
-
-      <div class="flex items-center">
-        <div class="w-56 mr-2">
-          <form:label class="flex items-center mt-2 text-left" path="editAdherent.isArtipole"><spring:message code="label.charteArtipole"/></form:label>
-          </div>
-        <form:checkbox class="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500  focus:ring-2 " path="editAdherent.isCharteArtipole"/>
-      </div>
-
-      <div class="flex items-center">
-        <div class="w-56 mr-2">
-          <form:label class="flex items-center mt-2 text-left" path="editAdherent.isArtipole"><spring:message code="label.flocageArtipole"/></form:label>
-          </div>
-        <form:checkbox class="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500  focus:ring-2 " path="editAdherent.isFlocageArtipole"/>
-      </div>
-
-      <div class="flex items-center">
-        <div class="w-56 mr-2">
-          <form:label class="flex items-center mt-2 text-left" path="editAdherent.isArtipole"><spring:message code="label.siteArtipole"/></form:label>
-          </div>
-        <form:checkbox class="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500  focus:ring-2 " path="editAdherent.isWebArtipole"/>
-      </div>
-
-      <div class="flex items-center">
-        <div class="w-56 mr-2">
-          <form:label class="flex items-center mt-2 text-left" path="editAdherent.isArtipole"><spring:message code="label.facebookArtipole"/></form:label>
-          </div>
-        <form:checkbox class="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500  focus:ring-2 " path="editAdherent.isFacebookArtipole"/>
+      <div class="flex items-center mt-2">
+        <div class="w-56 mr-2 text-right">
+          <form:label path="editAdherent.isArtipole"><spring:message code="label.adhArtipole"/></form:label>
+        </div>
+        <form:checkbox class="input-checkbox" path="editAdherent.isArtipole"/>
       </div>
 
       <div class="flex items-center mt-2">
-        <div class="flex-grow w-56 mr-2">
-          <form:label class="flex items-center mt-2 text-left" path="editAdherent.siteWeb"><spring:message code="label.siteWeb"/></form:label>
-          </div>
-        <form:input class="flex-grow py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+        <div class="w-56 mr-2 text-right">
+          <form:label path="editAdherent.isArtipole"><spring:message code="label.charteArtipole"/></form:label>
+        </div>
+        <form:checkbox class="input-checkbox" path="editAdherent.isCharteArtipole"/>
+      </div>
+
+      <div class="flex items-center mt-2">
+        <div class="w-56 mr-2 text-right">
+          <form:label path="editAdherent.isArtipole"><spring:message code="label.flocageArtipole"/></form:label>
+        </div>
+        <form:checkbox class="input-checkbox" path="editAdherent.isFlocageArtipole"/>
+      </div>
+
+      <div class="flex items-center mt-2">
+        <div class="w-56 mr-2 text-right">
+          <form:label path="editAdherent.isArtipole"><spring:message code="label.siteArtipole"/></form:label>
+        </div>
+        <form:checkbox class="input-checkbox" path="editAdherent.isWebArtipole"/>
+      </div>
+
+      <div class="flex items-center mt-2">
+        <div class="w-56 mr-2 text-right">
+          <form:label path="editAdherent.isArtipole"><spring:message code="label.facebookArtipole"/></form:label>
+        </div>
+        <form:checkbox class="input-checkbox" path="editAdherent.isFacebookArtipole"/>
+      </div>
+
+      <div class="flex items-center mt-4">
+        <div class="flex-grow w-56 mr-2 text-right">
+          <form:label path="editAdherent.siteWeb"><spring:message code="label.siteWeb"/></form:label>
+        </div>
+        <form:input class="flex-grow w-96 input-text"
                     name="editAdherent.siteWeb" path="editAdherent.siteWeb"/>
         <form:errors class="error-message" path="editAdherent.siteWeb"/>
       </div>
 
       <div class="flex items-center mt-2">
-        <div class="flex-grow w-56 mr-2">
-          <form:label class="flex items-center mt-2 text-left" path="editAdherent.facebook"><spring:message code="label.facebook"/></form:label>
-          </div>
-        <form:input class="flex-grow py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+        <div class="flex-grow w-56 mr-2 text-right">
+          <form:label path="editAdherent.facebook"><spring:message code="label.facebook"/></form:label>
+        </div>
+        <form:input class="flex-grow w-96 input-text"
                     name="editAdherent.facebook" path="editAdherent.facebook"/>
         <form:errors class="error-message" path="editAdherent.facebook"/>
       </div>
 
       <div class="flex items-center mt-2">
-        <div class="flex-grow w-56 mr-2">
-          <form:label class="flex items-center mt-2 text-left" path="editAdherent.instagram"><spring:message code="label.instagram"/></form:label>
-          </div>
-        <form:input class="flex-grow py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+        <div class="flex-grow w-56 mr-2 text-right">
+          <form:label path="editAdherent.instagram"><spring:message code="label.instagram"/></form:label>
+        </div>
+        <form:input class="flex-grow w-96 input-text"
                     name="editAdherent.instagram" path="editAdherent.instagram"/>
         <form:errors class="error-message" path="editAdherent.instagram"/>
       </div>
 
       <div class="flex items-center mt-2">
-        <div class="flex-grow w-56 mr-2">
-          <form:label class="flex items-center mt-2 text-left" path="editAdherent.linkedin"><spring:message code="label.linkedin"/></form:label>
-          </div>
-        <form:input class="flex-grow py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+        <div class="flex-grow w-56 mr-2 text-right">
+          <form:label path="editAdherent.linkedin"><spring:message code="label.linkedin"/></form:label>
+        </div>
+        <form:input class="flex-grow w-96 input-text"
                     name="editAdherent.linkedin" path="editAdherent.linkedin"/>
         <form:errors class="error-message" path="editAdherent.linkedin"/>
       </div>
 
       <div class="flex items-center mt-2">
-        <div class="flex-grow w-56 mr-2">
-          <form:label class="flex items-center mt-2 text-left" path="editAdherent.youtube"><spring:message code="label.youtube"/></form:label>
-          </div>
-        <form:input class="flex-grow py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+        <div class="flex-grow w-56 mr-2 text-right">
+          <form:label path="editAdherent.youtube"><spring:message code="label.youtube"/></form:label>
+        </div>
+        <form:input class="flex-grow w-96 input-text"
                     name="editAdherent.youtube" path="editAdherent.youtube"/>
         <form:errors class="error-message" path="editAdherent.youtube"/>
       </div>
 
       <div class="flex items-center mt-2">
-        <div class="flex-grow w-56 mr-2">
-          <form:label class="flex items-center mt-2 text-left" path="editAdherent.pinterest"><spring:message code="label.pinterest"/></form:label>
-          </div>
-        <form:input class="flex-grow py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+        <div class="flex-grow w-56 mr-2 text-right">
+          <form:label path="editAdherent.pinterest"><spring:message code="label.pinterest"/></form:label>
+        </div>
+        <form:input class="flex-grow w-96 input-text"
                     name="editAdherent.pinterest" path="editAdherent.pinterest"/>
         <form:errors class="error-message" path="editAdherent.pinterest"/>
       </div>
 
-    </div>
+
+      <div class="flex items-center mt-4">
+        <div class="flex-grow w-56 mr-2 text-right">
+          <form:label path="editAdherent.description_entreprise"><spring:message code="label.description_entreprise"/></form:label>
+        </div>
+        <form:textarea class="flex-grow w-96 h-32 input-textarea" name="editordata" path="editAdherent.description_entreprise"/>
+      </div>
+
+      <div class="flex items-center mt-4">
+        <div class="flex-grow w-56 mr-2 text-right">
+        <form:label path="editAdherent.description_entreprise"><spring:message code="label.description_activite"/></form:label>
+          </div> 
+        <form:textarea class="w-96 h-32 block input-textarea" name="editordata" path="editAdherent.description_activite"/>
+      </div>
+
+      <div class="flex items-center mt-4">
+        <div class="flex-grow w-56 mr-2 text-right">
+          <form:label path="editAdherent.description_entreprise"><spring:message code="label.commentaire"/></form:label>
+        </div>
+        <form:textarea class="w-96 h-32 block input-textarea" id="summernote" name="editordata" path="commentaire"/>
+      </div>
+
+      <div class="flex justify-center gap-2 mt-10">
+        <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300"
+                type="submit">Enregistrer
+        </button>
+        
+        <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${editForm.editAdherent.id}"/></c:url>
+        <button class="btn btn-red focus:ring-4 focus:outline-none focus:ring-neutral-300"
+                type="reset" onClick="window.location = '${url}'">Annuler 
+        </button>
+      </div>
+        
+    </div> 
   </fieldset>
-
-  <fieldset class="flex justify-center my-5">
-    <legend class="text-center mt-4"><spring:message code="label.description_entreprise"/></legend>
-    <form:textarea class="w-96 h-32 p-1 block text-sm text-gray-900 rounded border border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editordata" path="editAdherent.description_entreprise"/>
-  </fieldset>
-
-  <fieldset class="flex justify-center my-5">
-    <legend class="text-center mt-4"><spring:message code="label.description_activite"/></legend>
-    <form:textarea class="w-96 h-32 p-1 block text-sm text-gray-900 rounded border border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"  name="editordata" path="editAdherent.description_activite"/>
-  </fieldset>
-
-  <fieldset class="flex justify-center my-5">
-    <legend class="text-center mt-4"><spring:message code="label.commentaire"/></legend>
-    <form:textarea class="w-96 h-32 p-1 block text-sm text-gray-900 rounded border border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" id="summernote" name="editordata" path="commentaire"/>
-  </fieldset>
-
-  <div class="flex justify-center gap-2 mt-10">
-    <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
-            type="submit">Enregistrer
-    </button>
-    <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${editForm.editAdherent.id}"/></c:url>
-      <button class="px-3 py-3 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
-              type="reset" onClick="window.location = '${url}'">Annuler </button>
-  </div>
-
 </form:form>
 
+  
+  
 <script>
+  
   $(function () {
     $(document).ready(function () {
       $('#summernote').summernote({
@@ -216,4 +227,5 @@
       });
     });
   });
+  
 </script>

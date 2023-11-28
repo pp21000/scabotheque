@@ -8,7 +8,7 @@
 <div class="flex flex-col items-center">
 
   <div class="w-full">
-    <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" 
+    <button class="btn btn-blue btn-small" 
             id="addBtn" type="button" onclick="showAddForm()">Ajouter une actualité</button>
   </div>
 
@@ -21,47 +21,47 @@
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAActualite.titre">Titre de l'actu</form:label>
               </div>              
-            <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAActualite.titre" path="editAAActualite.titre"/>
+            <form:input class="flex-grow w-72 input-text" name="editAAActualite.titre" path="editAAActualite.titre"/>
             <form:errors class="error-message" path="editAAActualite.titre"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAActualite.contenu">Contenu</form:label>
               </div>
-            <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAActualite.contenu" path="editAAActualite.contenu"/>
+            <form:input class="flex-grow w-72 input-text" name="editAAActualite.contenu" path="editAAActualite.contenu"/>
             <form:errors class="error-message" path="editAAActualite.contenu"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAActualite.type">Type</form:label>
               </div>
-            <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAActualite.type" path="editAAActualite.type"/>
+            <form:input class="flex-grow w-72 input-text" name="editAAActualite.type" path="editAAActualite.type"/>
             <form:errors class="error-message" path="editAAActualite.type"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAActualite.sous_type">Sous type</form:label>
               </div>
-            <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAActualite.sous_type" path="editAAActualite.sous_type"/>
+            <form:input class="flex-grow w-72 input-text" name="editAAActualite.sous_type" path="editAAActualite.sous_type"/>
             <form:errors class="error-message" path="editAAActualite.sous_type"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAActualite.position">Position</form:label>
               </div>
-            <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAActualite.position" path="editAAActualite.position"/>
+            <form:input class="flex-grow w-72 input-text" name="editAAActualite.position" path="editAAActualite.position"/>
             <form:errors class="error-message" path="editAAActualite.position"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAActualite.date_ajout">Date d'ajout</form:label>
               </div>
-            <form:input type="date" class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAActualite.date_ajout" path="editAAActualite.date_ajout"/>
+            <form:input type="date" class="flex-grow w-72 input-text" name="editAAActualite.date_ajout" path="editAAActualite.date_ajout"/>
             <form:errors class="error-message" path="editAAActualite.date_ajout"/>
           </div>
         </div>
           <div class="text-center my-10">
-            <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer l'actualité</button>
+            <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer l'actualité</button>
           </div>
       </fieldset>
     </div>

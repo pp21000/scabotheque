@@ -9,6 +9,7 @@ import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
 import fr.scabois.scabotheque.bean.adherent.AdherentInformatique;
 import fr.scabois.scabotheque.bean.adherent.AdherentLogistique;
 import fr.scabois.scabotheque.bean.adherent.AdherentMetier;
+import fr.scabois.scabotheque.bean.adherent.AdherentSpecialite;
 import fr.scabois.scabotheque.bean.adherent.AdherentSuiviVisite;
 import fr.scabois.scabotheque.bean.adherent.AdherentType;
 import fr.scabois.scabotheque.bean.adherent.CompteType;
@@ -372,6 +373,11 @@ public class AdherentDAO implements IAdherentDAO {
   @Override
   public List<AdherentMetier> loadAdherentMetiers(final int adhId) {
     return (List<AdherentMetier>) this.entityManager.createQuery("from AdherentMetier where adherentId = :adhId", (Class) AdherentMetier.class).setParameter("adhId", (Object) adhId).getResultList();
+  }
+
+  @Override
+  public List<AdherentSpecialite> loadAdherentSpecialites(final int adhId) {
+    return (List<AdherentSpecialite>) this.entityManager.createQuery("from AdherentSpecialite where adherentId = :adhId", (Class) AdherentSpecialite.class).setParameter("adhId", (Object) adhId).getResultList();
   }
 
   @Override
@@ -751,6 +757,12 @@ public class AdherentDAO implements IAdherentDAO {
     adherentMetiers.stream().forEach(am -> this.entityManager.merge(am));
   }
 
+  @Transactional
+  public void saveAdherentSpecialites(final int adhId, final List<AdherentSpecialite> adherentSpecialites) {
+    this.loadAdherentSpecialites(adhId).stream().forEach(a -> this.entityManager.remove(a));
+    adherentSpecialites.stream().forEach(am -> this.entityManager.merge(am));
+  }
+
   @Override
   @Transactional
   public void saveAdherentSuiviVisite(AdherentSuiviVisite suivi) {
@@ -1070,9 +1082,9 @@ public class AdherentDAO implements IAdherentDAO {
     }
   }
 
-  private Commune loadCommune(int communeId) {
+  private Commune loadCommune(final int communeId) {
     try {
-      return entityManager.find(Commune.class, communeId);
+      return this.entityManager.find(Commune.class, communeId);
     } catch (NoResultException e) {
       return null;
     }
@@ -1163,7 +1175,6 @@ public class AdherentDAO implements IAdherentDAO {
   }
 
   private Adherent updateAdherentData(Adherent bddAdherent, Adherent adherent) {
-
     bddAdherent.setId(adherent.getId());
     bddAdherent.setCode(adherent.getCode());
     bddAdherent.setCodeERP(adherent.getCodeERP());
@@ -1175,7 +1186,7 @@ public class AdherentDAO implements IAdherentDAO {
     bddAdherent.setDateSortie(adherent.getDateSortie());
     bddAdherent.setAdresse(adherent.getAdresse());
     bddAdherent.setAdresseComplement(adherent.getAdresseComplement());
-    if (adherent.getCommune() != null) {
+    if (adherent.getCommune() != null && adherent.getCommune().getId() != null) {
       bddAdherent.setCommune(loadCommune(adherent.getCommune().getId()));
     }
     bddAdherent.setPole(adherent.getPole());
@@ -1199,10 +1210,10 @@ public class AdherentDAO implements IAdherentDAO {
     bddAdherent.setSiret(adherent.getSiret());
     bddAdherent.setNumRepMetier(adherent.getNumRepMetier());
     bddAdherent.setRcsRm(adherent.getRcsRm());
-    if (adherent.getRcsCommune() != null) {
+    if (adherent.getRcsCommune() != null && adherent.getRcsCommune().getId() != null) {
       bddAdherent.setRcsCommune(loadCommune(adherent.getRcsCommune().getId()));
     }
-    if (adherent.getRmCommune() != null) {
+    if (adherent.getRmCommune() != null && adherent.getRmCommune().getId() != null) {
       bddAdherent.setRmCommune(loadCommune(adherent.getRmCommune().getId()));
     }
     bddAdherent.setAgence(adherent.getAgence());

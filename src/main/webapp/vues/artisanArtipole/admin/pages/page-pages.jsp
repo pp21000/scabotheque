@@ -11,7 +11,7 @@
 <div class="flex flex-col items-center">
 
 <!--  <div class="w-full text-right">
-    <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" 
+    <button class="btn btn-blue" 
             id="addEmplacementBtn" type="button" onclick="showAddForm()">Ajouter une Pages</button>
   </div>-->
 
@@ -25,7 +25,7 @@
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAEmplacement.type">Type emplacement</form:label>
               </div>              
-            <form:select class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.type" path="editAAEmplacement.type">
+            <form:select class="flex-grow w-72 input-select" name="editAAEmplacement.type" path="editAAEmplacement.type">
               <form:option value="titre"/>
               <form:option value="image"/>
               <form:option value="contenu"/>
@@ -36,28 +36,28 @@
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAEmplacement.libelle">Libellé</form:label>
               </div>
-            <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.libelle" path="editAAEmplacement.libelle"/>
+            <form:input class="flex-grow w-72 input-text" name="editAAEmplacement.libelle" path="editAAEmplacement.libelle"/>
             <form:errors class="error-message" path="editAAEmplacement.libelle"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAEmplacement.content">Content</form:label>
               </div>
-            <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.content" path="editAAEmplacement.content"/>
+            <form:input class="flex-grow w-72 input-text" name="editAAEmplacement.content" path="editAAEmplacement.content"/>
             <form:errors class="error-message" path="editAAEmplacement.content"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAEmplacement.data">Data</form:label>
               </div>
-            <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.data" path="editAAEmplacement.data"/>
+            <form:input class="flex-grow w-72 input-text" name="editAAEmplacement.data" path="editAAEmplacement.data"/>
             <form:errors class="error-message" path="editAAEmplacement.data"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAEmplacement.alt">Alt</form:label>
               </div>
-            <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.alt" path="editAAEmplacement.alt"/>
+            <form:input class="flex-grow w-72 input-text" name="editAAEmplacement.alt" path="editAAEmplacement.alt"/>
             <form:errors class="error-message" path="editAAEmplacement.alt"/>
           </div>
           <div class="flex items-center mt-2 text-right">
@@ -65,13 +65,13 @@
               <form:label path="editAAEmplacement.page">Page</form:label>
               </div>
 
-            <form:select class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.page" path="editAAEmplacement.page.id">
+            <form:select class="flex-grow w-72 input-select" name="editAAEmplacement.page" path="editAAEmplacement.page.id">
               <form:options items="${pageList}" itemValue="id" itemLabel="libelle"/>
             </form:select>
             <form:errors class="error-message" path="editAAEmplacement.page.id"/>
           </div>
           <div class="text-center my-10">
-            <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer le contact</button>
+            <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer le contact</button>
           </div>
         </div>
       </fieldset>

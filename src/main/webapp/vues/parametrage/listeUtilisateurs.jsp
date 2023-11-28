@@ -10,9 +10,9 @@
 <div class="flex justify-center">
     <form:form method="post" modelAttribute="creation" action="AjoutUtilisateur">
         <span class="detailLabel mr-2">Nouvel utilisateur :</span>
-        <form:input path="userName" placeholder="Nom de l'utilisateur" autofocus="true"/>
-        <form:input path="password" placeholder="Mot de passe"/>
-        <button class="ml-2 px-3 py-3.5 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+        <form:input class="input-text" path="userName" placeholder="Nom de l'utilisateur" autofocus="true"/>
+        <form:input class="input-text" path="password" placeholder="Mot de passe"/>
+        <button class="btn btn-blue focus:ring-4 focus:outline-none focus:ring-blue-300"
                 type="submit"><spring:message code="label.ajout"/></button>
     </form:form>
 </div>
@@ -37,26 +37,20 @@
                 <div id="accordion-arrow-icon-body-${status.index}" class="hidden">
                     <div class="p-5 font-light border border-t-0 border-gray-200">
                         <form:input type="hidden" name="list[${status.index}].id" path="list[${status.index}].id"/>
-                        <form:input type="hidden" name="list[${status.index}].password"
-                                    path="list[${status.index}].password"/>
-
+                        <form:input type="hidden" name="list[${status.index}].password" path="list[${status.index}].password"/>
                         <div>
-                            <div class="flex justify-center gap-5 mb-2">
-                                <form:input class="valeur" name="list[${status.index}].username"
-                                            path="list[${status.index}].username"/>
-                                <form:input class="" name="list[${status.index}].newPassword"
-                                            path="list[${status.index}].newPassword"
-                                            placeholder="Nouveau mot de passe"/>
-                            </div>
-                            <div class="flex justify-center">
-                                <form:checkbox path="list[${status.index}].enabled"
-                                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2" value="actif"/> Actif
-                            </div>
+                          <div class="flex justify-center gap-5 mb-2">
+                              <form:input class="w-64 input-text" name="list[${status.index}].username" path="list[${status.index}].username"/>
+                              <form:input class="w-64 input-text" name="list[${status.index}].newPassword" path="list[${status.index}].newPassword" placeholder="Nouveau mot de passe"/>
+                          </div>
+                          <div class="flex justify-center items-center gap-1">
+                              <form:checkbox path="list[${status.index}].enabled" class="input-checkbox" value="actif"/> Actif
+                          </div>
                         </div>
 
-                        <div class="grid grid-cols-3">
+                        <div class="grid grid-cols-3 gap-1">
                             <c:forEach items="${editUser.userRoles}" var="userRole" varStatus="roleStatus">
-                                <div>
+                                <div class="flex items-center gap-1.5">
                                     <form:input type="hidden"
                                                 name="list[${status.index}].userRoles[${roleStatus.index}].id"
                                                 path="list[${status.index}].userRoles[${roleStatus.index}].id"/>
@@ -65,7 +59,7 @@
                                                 path="list[${status.index}].userRoles[${roleStatus.index}].role"/>
                                     <form:checkbox path="list[${status.index}].userRoles[${roleStatus.index}].actif"
                                                    value="role"
-                                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"/>${userRole.libelle}
+                                                   class="input-checkbox"/>${userRole.libelle}
                                 </div>
                             </c:forEach>
                         </div>
@@ -73,7 +67,7 @@
                         <div><form:errors class="error-message" path="list[${status.index}].password" escape="false"/></div>
                         <div class="flex justify-center">
                             <button type="submit"
-                                    class="ml-2 px-3 py-3.5 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                    class="btn btn-green focus:ring-4 focus:outline-none focus:ring-blue-300">
                                 Enregistrer
                             </button>
                         </div>

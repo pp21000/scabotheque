@@ -67,9 +67,9 @@
 
                   <!-- /.col -->
                   <div class="col-6 mx-auto">
-                    <button type="submit" class="w-full text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium
-                            rounded-lg py-3 dark:focus:ring-primary-800">Se connecter</button>
-                    <!--<button type="submit" class="btn btn-primary btn-block">Se connecter</button>-->
+                    <button type="submit" class="w-full text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-md py-3 dark:focus:ring-primary-800">
+                      Se connecter
+                    </button>
                   </div>
                   <!-- /.col -->
                 </div>

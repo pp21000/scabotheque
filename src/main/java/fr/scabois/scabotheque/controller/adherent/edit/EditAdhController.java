@@ -7,6 +7,7 @@ import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
 import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
 import fr.scabois.scabotheque.bean.adherent.AdherentLogistique;
 import fr.scabois.scabotheque.bean.adherent.AdherentMetier;
+import fr.scabois.scabotheque.bean.adherent.AdherentSpecialite;
 import fr.scabois.scabotheque.bean.adherent.AdherentSuiviVisite;
 import fr.scabois.scabotheque.bean.adherent.AdherentType;
 import fr.scabois.scabotheque.bean.adherent.CompteType;
@@ -16,6 +17,8 @@ import fr.scabois.scabotheque.bean.adherent.Role;
 import fr.scabois.scabotheque.bean.adherent.Secteur;
 import fr.scabois.scabotheque.bean.adherent.Tournee;
 import fr.scabois.scabotheque.bean.artisanArtipole.Metier;
+import fr.scabois.scabotheque.bean.artisanArtipole.Specialite;
+import fr.scabois.scabotheque.bean.artisanArtipole.Travaux;
 import fr.scabois.scabotheque.bean.commun.Activite;
 import fr.scabois.scabotheque.bean.commun.Agence;
 import fr.scabois.scabotheque.bean.commun.Ape;
@@ -38,6 +41,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -204,30 +208,6 @@ public class EditAdhController {
 
   }
 
-//  @RequestMapping(value = "/edit/editContactComptableAdh", method = RequestMethod.GET)
-//  public String editAdherentContactComptable(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel,
-//          HttpServletRequest request) {
-//
-//    if (pModel.get("adhContactComptable") == null) {
-//
-//      final AdherentContactComptable contactCpt = service.loadAdherentContactComptable(idAdh);
-//      final EditContactComptableAdherentForm editContactComptableAdhForm = new EditContactComptableAdherentForm();
-//
-//      // Rend l'adherent éditable (avec des validations test)
-//      EditContactComptableAdherent editableContact = contactComptableAdhToEdit(contactCpt);
-//      editContactComptableAdhForm.setContactComptableAdherent(editableContact);
-//
-//      pModel.addAttribute("adhContactComptable", editContactComptableAdhForm);
-//    } else {
-//      pModel.addAttribute("adhContactComptable", pModel.get("adhContactComptable"));
-//    }
-//
-//    Adherent adh = service.loadAdherent(idAdh);
-//    pModel.addAttribute("adherent", adh);
-//    pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
-//
-//    return "editContactComptableAdh";
-//  }
   @RequestMapping(value = {"/edit/editMetiersAdherent"}, method = {RequestMethod.GET})
   public String editAdherentMetiers(@RequestParam("idAdh") final int idAdh, final ModelMap pModel, final HttpServletRequest request) {
     final Adherent adh = this.service.loadAdherent(idAdh);
@@ -256,7 +236,37 @@ public class EditAdhController {
     return this.editAdherentMetiers(idAdh, pModel, request);
   }
 
-  @RequestMapping(value = {"/edit/editExploitationAdh"}, method = {RequestMethod.GET})
+  @RequestMapping(value = {"/edit/editSpecialitesAdherent"}, method = {RequestMethod.GET})
+  public String editAdherentSpecialites(@RequestParam("idAdh") final int idAdh, final ModelMap pModel, final HttpServletRequest request) {
+    final Adherent adh = this.service.loadAdherent(idAdh);
+    final List<Travaux> travauxList = this.serviceArtipole.loadTravauxList();
+    final List<Specialite> specialites = this.serviceArtipole.loadSpecialites();
+    final List<AdherentSpecialite> specialitesAdh = this.service.loadAdherentSpecialites(idAdh);
+    if (pModel.get("editForm") == null) {
+      final EditAdherentSpecialitesForm editForm = new EditAdherentSpecialitesForm(specialitesAdh, specialites, idAdh);
+      pModel.addAttribute("editForm", editForm);
+    } else {
+      pModel.addAttribute("editForm", pModel.get("editForm"));
+    }
+    pModel.addAttribute("adherent", adh);
+    pModel.addAttribute("travaux", travauxList);
+    pModel.addAttribute("specialites", specialites);
+    pModel.addAttribute("adherentSpecialites", specialitesAdh);
+    pModel.addAttribute("navType", NavType.ADHERENT);
+    pModel.addAttribute("pageType", PageType.ADHERENT_METIERS);
+    return "editSpecialitesAdherent";
+  }
+
+  @RequestMapping(value = {"/edit/editSpecialitesAdherent/{idAdh}"}, method = {RequestMethod.POST})
+  public String modifieSpecialitesAdh(@Valid @ModelAttribute("editForm") final EditAdherentSpecialitesForm editForm, @PathVariable final int idAdh, final BindingResult pBindingResult, final ModelMap pModel, final HttpServletRequest request) {
+    if (!pBindingResult.hasErrors()) {
+      this.service.saveAdherentSpecialites(idAdh, editForm.getAdherentSpecialites());
+      return "redirect:/adherentProfil?idAdh=" + idAdh;
+    }
+    return this.editAdherentSpecialites(idAdh, pModel, request);
+  }
+
+  @RequestMapping(value = {"/edit/editLivraisonAdh"}, method = {RequestMethod.GET})
   public String editAdherentLogistique(@RequestParam("idAdh") final int idAdh, final ModelMap pModel, final HttpServletRequest request) {
     final Adherent adh = this.service.loadAdherent(idAdh);
     final AdherentLogistique logistiqueAdh = this.service.loadAdherentLogistique(idAdh);
@@ -272,10 +282,10 @@ public class EditAdhController {
     pModel.addAttribute("logistiqueAdh", logistiqueAdh);
     pModel.addAttribute("navType", NavType.ADHERENT);
     pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
-    return "editExploitationAdh";
+    return "editLivraisonAdh";
   }
 
-  @RequestMapping(value = {"/edit/editExploitationAdh"}, method = {RequestMethod.POST})
+  @RequestMapping(value = {"/edit/editLivraisonAdh"}, method = {RequestMethod.POST})
   public String saveAdherentLogistique(@Valid @ModelAttribute("editForm") final EditAdherentLogistiqueForm editForm, final BindingResult pBindingResult, final ModelMap pModel, final HttpServletRequest request) {
     final AdherentLogistique adhLog = editForm.getLogistiqueAdh();
     if (!pBindingResult.hasErrors()) {
@@ -300,7 +310,7 @@ public class EditAdhController {
     }
   }
 
-  @RequestMapping(value = {"/edit/editArtipoleAdh", "/edit/editAdministratifAdh", "/edit/editInformatiqueAdh", "/edit/editIdentiteAdh"}, method = RequestMethod.GET)
+  @RequestMapping(value = {"/edit/editIdentiteAdh", "/edit/editArtipoleAdh", "/edit/editAdministratifAdh", "/edit/editExploitationAdh", "/edit/editInformatiqueAdh"}, method = RequestMethod.GET)
   public String editAdherent(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel, HttpServletRequest request) {
 
     addSelectLists(pModel);
@@ -309,10 +319,6 @@ public class EditAdhController {
       final Adherent adh = service.loadAdherent(idAdh);
       final EditAdherentForm editAdhForm = new EditAdherentForm(adh);
       editAdhForm.setCommentaire(service.loadAdherentCommentaire(idAdh, extractPageType(request.getServletPath().substring(6))));
-
-      // Rend l'adherent éditable (avec des validations test)
-      // EditAdherent editableAdh = adhToEdit(adh);
-      // editAdhForm.setAdherent(editableAdh);
       pModel.addAttribute("editForm", editAdhForm);
     } else {
       pModel.addAttribute("editForm", pModel.get("adhToEdit"));
@@ -388,55 +394,6 @@ public class EditAdhController {
     return "editCRMAdh";
   }
 
-//  @RequestMapping(value = "/edit/editAdherentContact", method = RequestMethod.GET)
-//  public String editContact(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel,
-//          HttpServletRequest request) {
-//
-//    addSelectLists(pModel);
-//
-////	Passage par une map pour la civilité selection auto de la valeur
-//    Map<String, String> civilite = new HashMap<>();
-//    civilite.put("Mme", "Mme");
-//    civilite.put("Mr", "Mr");
-//    pModel.addAttribute("civilite", civilite);
-//
-//    final Adherent adh = service.loadAdherent(idAdh);
-//    final List<ContactFonction> contactFonctions = service.loadContactFonctions();
-//    final List<RoleSalarieEOLAS> roleSalarieEOLAS = service.loadRolesEOLAS();
-//    pModel.addAttribute("adherent", adh);
-//    pModel.addAttribute("contactFonctions", contactFonctions);
-//    pModel.addAttribute("roleSalarieEOLAS", roleSalarieEOLAS);
-//
-//    if (pModel.get("contactToEdit") == null) {
-//
-//      final EditAdherentContactsForm editAdhContactsForm = new EditAdherentContactsForm();
-//
-//      editAdhContactsForm.setCommentaire(service.loadAdherentCommentaire(idAdh, PageType.ADHERENT_DETAIL));
-//      List<EditAdherentContact> editableAdhContacts = contactToEdit(adh.getContacts());
-//      editAdhContactsForm.setAdherentContacts(editableAdhContacts);
-//      pModel.addAttribute("contactToEdit", editAdhContactsForm);
-//    } else {
-//      pModel.addAttribute("contactToEdit", pModel.get("contactToEdit"));
-//    }
-//
-//    if (pModel.get("contactToAdd") == null) {
-//
-//      final AddAdherentContactForm addContactForm = new AddAdherentContactForm();
-//
-//      // Prépare la possibilité de créer un contact
-//      EditAdherentContact addContact = new EditAdherentContact(); // adhToEdit(adh);
-//      addContact.setAdherentId(idAdh);
-//      addContactForm.setContact(addContact);
-//      pModel.addAttribute("contactToAdd", addContactForm);
-//
-//    } else {
-//      pModel.addAttribute("contactToAdd", pModel.get("contactToAdd"));
-//    }
-//
-//    pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
-//
-//    return "editContactAdh";
-//  }
   public Adherent editToAdh(EditAdherent editAdh) {
     final Adherent adh = new Adherent();
 
@@ -557,7 +514,6 @@ public class EditAdhController {
     adhContactEditable.stream().forEach(e -> {
       contacts.add(editToContact(e));
     });
-
     return contacts;
   }
 
@@ -646,7 +602,7 @@ public class EditAdhController {
 
   }
 
-  @RequestMapping(value = {"/edit/editAdministratifAdh", "/edit/editArtipoleAdh", "/edit/editIdentiteAdh"}, method = RequestMethod.POST)
+  @RequestMapping(value = {"/edit/editArtipoleAdh", "/edit/editAdministratifAdh", "/edit/editExploitationAdh"}, method = RequestMethod.POST)
   public String modifieAdh(@Valid @ModelAttribute(value = "adhToEdit") final EditAdherentForm editForm, final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
 
     EditAdherent adhEditable = editForm.getEditAdherent();
@@ -668,23 +624,26 @@ public class EditAdhController {
     return editAdherent(editForm.getEditAdherent().getId(), pModel, request);
   }
 
-//  @RequestMapping(value = "/edit/editAdherentContact", method = RequestMethod.POST)
-//  public String modifieContact(
-//          @Valid @ModelAttribute(value = "contactToEdit") final EditAdherentContactsForm editForm,
-//          final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
-//
-//    List<EditAdherentContact> adhContactEditable = editForm.getAdherentContacts();
-//    System.out.println("id ..: " + adhContactEditable.get(0).getAdherentId());
-//    int adhId = adhContactEditable.get(0).getAdherentId();
-//
-//    if (!pBindingResult.hasErrors()) {
-//      List<AdherentContactRole> contacts = editToContactList(adhContactEditable);
-//      service.saveAdherentContacts(contacts);
-//      service.saveAdherentCommentaire(adhId, PageType.ADHERENT_DETAIL, editForm.getCommentaire());
-//      return "redirect:/adherentProfil?idAdh=" + adhId;
-//    }
-//  return editContact(adhId, pModel, request);
-//}
+  @RequestMapping(value = {"/edit/editIdentiteAdh"}, method = {RequestMethod.POST})
+  public String modifieIdentiteAdh(@Valid @ModelAttribute("adhToEdit") final EditAdherentForm editForm, final BindingResult pBindingResult, final ModelMap pModel, final HttpServletRequest request) throws Exception {
+    final EditAdherent adhEditable = editForm.getEditAdherent();
+    final Adherent adh = this.editToAdh(adhEditable);
+    this.submitFile(adh.getId(), adhEditable.getFilePhoto(), ImageType.ADHERENT_PHOTO);
+    this.submitFile(adh.getId(), adhEditable.getFileLogo(), ImageType.ADHERENT_LOGO);
+    if (adh.getCommune().getId() == null) {
+      pBindingResult.addError((ObjectError) new FieldError("commune", "adherent.commune", this.messages.getMessage("modification.notempty", (Object[]) null, Locale.FRANCE)));
+    }
+    if (adh.getEtat().getId() == 2 && adh.getDateSortie() == null) {
+      pBindingResult.addError((ObjectError) new FieldError("dateSortie", "adherent.dateSortie", this.messages.getMessage("modification.notempty", (Object[]) null, Locale.FRANCE)));
+    }
+    if (!pBindingResult.hasErrors()) {
+      this.service.saveAdherentCommentaire((int) adh.getId(), this.extractPageType(request.getServletPath().substring(6)), editForm.getCommentaire());
+      this.service.saveAdherent(adh);
+      return "redirect:/adherentProfil?idAdh=" + adh.getId();
+    }
+    return this.editAdherent(editForm.getEditAdherent().getId(), pModel, request);
+  }
+
   @RequestMapping(value = "/edit/editInformatiqueAdh", method = RequestMethod.POST)
   public String modifieInformatiqueAdh(@Valid
           @ModelAttribute(value = "editForm")
@@ -748,24 +707,6 @@ public class EditAdhController {
         break;
     }
     return "redirect:/" + page + "?idAdh=" + adhId;
-  }
-
-  @RequestMapping(value = "/edit/uploadFile", method = RequestMethod.POST)
-  public String submitFile(@RequestParam(value = "adhId", defaultValue = "0") int adhId,
-          @RequestParam(value = "contactId", defaultValue = "0") int contactId,
-          @RequestParam("file") MultipartFile file, final ModelMap pModel, HttpServletRequest request)
-          throws Exception {
-
-    String extension = file.getOriginalFilename().substring(file.getOriginalFilename().length() - 3);
-    String fileName = "data:image/" + extension + ";base64," + Base64.encodeBase64String(file.getBytes());
-
-    if (adhId != 0) {
-      service.setAdherentImage(adhId, fileName.getBytes());
-    } else {
-//	    service.setContactImage(contactId, fileName.getBytes());
-    }
-
-    return "redirect:/adherentProfil?idAdh=" + adhId;
   }
 
   private EditAdherentSuiviVisite suiviToEdit(AdherentSuiviVisite adhSuivi) {

@@ -8,6 +8,7 @@ import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
 import fr.scabois.scabotheque.bean.adherent.AdherentInformatique;
 import fr.scabois.scabotheque.bean.adherent.AdherentLogistique;
 import fr.scabois.scabotheque.bean.adherent.AdherentMetier;
+import fr.scabois.scabotheque.bean.adherent.AdherentSpecialite;
 import fr.scabois.scabotheque.bean.adherent.AdherentSuiviVisite;
 import fr.scabois.scabotheque.bean.adherent.AdherentType;
 import fr.scabois.scabotheque.bean.adherent.CompteType;
@@ -184,6 +185,11 @@ public class ServiceAdherent implements IServiceAdherent {
   @Override
   public List<AdherentMetier> loadAdherentMetiers(final int idAdh) {
     return (List<AdherentMetier>) this.dao.loadAdherentMetiers(idAdh);
+  }
+
+  @Override
+  public List<AdherentSpecialite> loadAdherentSpecialites(final int idAdh) {
+    return (List<AdherentSpecialite>) this.dao.loadAdherentSpecialites(idAdh);
   }
 
   @Override
@@ -369,6 +375,11 @@ public class ServiceAdherent implements IServiceAdherent {
   @Override
   public void saveAdherentMetiers(final int adhId, final List<AdherentMetier> adherentMetiers) {
     this.dao.saveAdherentMetiers(adhId, (List) adherentMetiers);
+  }
+
+  @Override
+  public void saveAdherentSpecialites(final int adhId, final List<AdherentSpecialite> adherentSpecialites) {
+    this.dao.saveAdherentSpecialites(adhId, (List) adherentSpecialites);
   }
 
   @Override

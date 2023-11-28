@@ -17,8 +17,8 @@
 <div class="flex flex-col items-center">
 
   <div class="w-full text-right">
-    <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" 
-            id="addCategorieBtn" type="button" onclick="showAddForm()">Ajouter un Emplacement</button>
+    <button class="btn btn-blue btn-small" 
+            id="addCategorieBtn" type="button" onclick="showAddForm()">Ajouter une catégorie</button>
   </div>
 
 
@@ -31,12 +31,12 @@
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAACategorie.libelle">Libellé</form:label>
               </div>
-            <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAACategorie.libelle" path="editAACategorie.libelle"/>
+            <form:input class="flex-grow w-72 input-text" name="editAACategorie.libelle" path="editAACategorie.libelle"/>
             <form:errors class="error-message" path="editAACategorie.libelle"/>
           </div>
 
           <div class="text-center my-10">
-            <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer le contact</button>
+            <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer le contact</button>
           </div>
         </div>
       </fieldset>

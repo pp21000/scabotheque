@@ -6,6 +6,7 @@ import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
 import fr.scabois.scabotheque.bean.adherent.AdherentInformatique;
 import fr.scabois.scabotheque.bean.adherent.AdherentLogistique;
 import fr.scabois.scabotheque.bean.adherent.AdherentSuiviVisite;
+import fr.scabois.scabotheque.bean.artisanArtipole.Specialite;
 import fr.scabois.scabotheque.controller.adherent.edit.EditAdherentSuiviVisite;
 import fr.scabois.scabotheque.controller.adherent.edit.EditAdherentSuiviVisiteForm;
 import fr.scabois.scabotheque.enums.NavType;
@@ -55,23 +56,33 @@ public class ShowAdherentController {
     AdherentLogistique infoExploitation = this.service.loadAdherentLogistique(idAdh);
     AdherentContactRole contactReception = this.service.loadContact(infoExploitation.getContactReceptionId());
     List adherentMetiersId = this.service.loadAdherentMetiers(idAdh).stream().map(am -> am.getMetierId()).collect(Collectors.toList());
-    pModel.addAttribute("contacts", (Object) contacts);
-    pModel.addAttribute("infoSuiviVisite", (Object) infoSuiviVisite);
-    pModel.addAttribute("criteria", (Object) new CriteriaAdherent());
-    pModel.addAttribute("commentaire", (Object) commentaire);
-    pModel.addAttribute("contactComptable", (Object) this.service.loadAdherentContactComptable(idAdh));
-    pModel.addAttribute("adhActivites", (Object) adhActivites);
-    pModel.addAttribute("infoExploitation", (Object) infoExploitation);
-    pModel.addAttribute("contactReception", (Object) contactReception);
-    pModel.addAttribute("adherent", (Object) adherent);
-    pModel.addAttribute("metiers", (Object) this.serviceArtipole.loadMetiers());
+
+    List<Specialite> specialites = this.serviceArtipole.loadSpecialites();
+    List<Specialite> specialitesOfAdherent = this.service.loadAdherentSpecialites(idAdh)
+            .stream()
+            .map(as -> specialites.stream()
+            .filter(s -> s.getId() == as.getSpecialiteId())
+            .findFirst().get()).collect(Collectors.toList());
+
+    pModel.addAttribute("contacts", contacts);
+    pModel.addAttribute("infoSuiviVisite", infoSuiviVisite);
+    pModel.addAttribute("criteria", new CriteriaAdherent());
+    pModel.addAttribute("commentaire", commentaire);
+    pModel.addAttribute("contactComptable", this.service.loadAdherentContactComptable(idAdh));
+    pModel.addAttribute("adhActivites", adhActivites);
+    pModel.addAttribute("infoExploitation", infoExploitation);
+    pModel.addAttribute("contactReception", contactReception);
+    pModel.addAttribute("adherent", adherent);
+    pModel.addAttribute("metiers", this.serviceArtipole.loadMetiers());
     pModel.addAttribute("metiersAdherentId", adherentMetiersId);
-    pModel.addAttribute("navType", (Object) NavType.ADHERENT);
-    pModel.addAttribute("pageType", (Object) pageType);
+    pModel.addAttribute("specialitesOfAdherent", specialitesOfAdherent);
+    pModel.addAttribute("navType", NavType.ADHERENT);
+    pModel.addAttribute("pageType", pageType);
     return "adherentProfil";
   }
 
   @RequestMapping(value = "/adherentProfilArtipole", method = RequestMethod.GET)
+
   public String profileArtipole(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel,
           HttpServletRequest request) {
 

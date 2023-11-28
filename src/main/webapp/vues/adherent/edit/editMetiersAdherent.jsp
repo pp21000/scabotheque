@@ -5,8 +5,8 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-<button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location = '${url}'">
-  < Retour
+<button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location = '${url}'">
+  <spring:message code="label.retour"/>
 </button>
 
 <div class="flex justify-center">
@@ -46,7 +46,7 @@
         <form:input type="hidden" path="metiersAdh[${status.index}].metierId"/>
         <div class="flex items-center mt-2">
           
-          <form:checkbox class="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500 focus:ring-2" path="metiersAdh[${status.index}].check"/>
+          <form:checkbox class="input-checkbox" path="metiersAdh[${status.index}].check"/>
           
           <div class="w-56 mx-2">
             <c:forEach items="${metiers}" var="metier">
@@ -62,24 +62,12 @@
   </fieldset>
 
   <div class="flex justify-center gap-2 mt-10">
-    <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none"
+    <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300"
             id="save" type="submit">Enregistrer
     </button>
     <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-      <button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5"
+      <button class="btn btn-red focus:ring-4 focus:outline-none focus:ring-neutral-300"
               id="cancel" type="reset" onClick="window.location = '${url}'">Annuler </button>
   </div>
 
 </form:form>
-
-<script>
-  $(function () {
-    $(document).ready(function () {
-      $('#summernote').summernote({
-        placeholder: '<spring:message code="label.commentaire"/>',
-        tabsize: 3,
-        height: 100
-      });
-    });
-  });
-</script>

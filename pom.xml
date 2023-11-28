@@ -5,7 +5,7 @@
 <groupId>fr.scabois</groupId>
 <artifactId>scabotheque</artifactId>
 <packaging>war</packaging>
-<version>2.2.1.4</version>
+<version>2.2.1.8</version>
 <name>scabotheque</name>
   
 <properties>

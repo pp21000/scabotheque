@@ -198,11 +198,10 @@
       <!-- /.card-body -->
     </div>
     <!-- /.card -->
-    <div class="flex justify-center mt-10">
-        <a href="#"
-           class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Annuler</a>
-        <input type="submit" value="Création"
-               class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none">
+    <div class="flex justify-center mt-10 gap-2">
+      <c:url value="/listeClubFemmes" var="url"/>
+      <button type="submit" class="btn btn-green focus:ring-4 focus:ring-blue-300 focus:outline-none">Enregistrer</button>
+      <button type="reset" onClick="window.location = '${url}'" class="btn btn-red focus:outline-none focus:ring-4 focus:ring-red-300">Annuler</button>
     </div>
   </div>
 </form:form>        

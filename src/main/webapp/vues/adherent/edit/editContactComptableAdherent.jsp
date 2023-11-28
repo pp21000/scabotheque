@@ -5,8 +5,8 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-<button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
-        id="cancel" type="reset" onClick="window.location='${url}'">< Retour
+<button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" id="cancel" type="reset" onClick="window.location='${url}'">
+  <spring:message code="label.retour"/>
 </button>
 
 <div class="flex justify-center">
@@ -57,7 +57,7 @@
                 </form:label>
                 <%--<form:input class="block w-80 p-2 text-gray-900 border border-gray-300 rounded bg-gray-50 text-sm focus:ring-neutral-500 focus:border-neutral-500" name="contactComptableAdherent.civilite"
                             path="contactComptableAdherent.civilite"/>--%>
-                <form:select class="block p-2 w-80 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="contactComptableAdherent.civilite" path="contactComptableAdherent.civilite">
+                <form:select class="block p-2 w-80 input-select" name="contactComptableAdherent.civilite" path="contactComptableAdherent.civilite">
                   <form:options items="${civilite}"/>
                 </form:select>
                 <form:errors class="error-message" path="contactComptableAdherent.civilite"/>
@@ -109,11 +109,11 @@
 
     </fieldset>
     <div class="flex justify-center gap-2 mt-10">
-        <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+        <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300"
                 id="save" type="submit">Enregistrer
         </button>
         <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-        <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+        <button class="btn btn-red focus:ring-4 focus:outline-none focus:ring-neutral-300"
                 id="cancel" type="reset" onClick="window.location='${url}'">Annuler
         </button>
     </div>

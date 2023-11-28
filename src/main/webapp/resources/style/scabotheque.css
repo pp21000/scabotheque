@@ -7,7 +7,7 @@
     --CouleurRouge: #CC0D36;
 }
 
-.profil-user-img{
+.profil-user-img {
     border: 3px solid #adb5bd;
     margin: 0 auto;
     max-height: 10em;
@@ -15,58 +15,94 @@
     padding: 3px;
 }
 
-.error-message{
+.error-message {
     color: rgb(220, 38, 38); 
     animation: pulse 1s infinite;
 }
 
+input.input-text, .input-select, .input-textarea {
+    color: black; 
+    padding: 0.5rem 1rem;
+    background-color: white;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    border-color: rgb(209, 213, 219);
+    border-width: 1px;
+    border-radius: 0.25rem;
+}
 
+.input-textarea {
+    padding: 0.125rem 0.25rem ;
+}
 
-button.btn{
-    padding: 0.75rem 1.5rem;
+input.input-checkbox {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: rgb(115, 115, 115);
+    border-radius: 0.25rem;
+    border-style: none;
+}
+
+input.input-text:focus {
+    border-color: rgb(30, 64, 175);
+    /*border-width: 3px;*/
+    /*focus:ring focus:ring-neutral-500 focus:border-neutral-500*/
+}
+
+.label{
+
+}
+
+button.btn {
+    padding: 0.625rem 2rem;
     color: white;
     border-radius: 0.5rem;
     font-size: 0.875rem;
     font-weight: 500;
-
-
-
 }
 
-button.btn-small{
+button.btn-small {
     padding: 0.5rem 1rem;
     font-size: 0.75rem;
     font-weight: 400;
 }
 
-button.btn-black{
-    background-color: rgb(38, 38, 38); 
+button.btn-prev {
+    padding: 0.625rem 1rem;
+    position: fixed;
+    background-color: rgb(38, 38, 38);
+    font-weight: 400;
+}
+button.btn-prev:hover  {
+    background-color: rgb(23, 23, 23);
 }
 
+button.btn-black {
+    background-color: rgb(38, 38, 38); 
+}
 button.btn-black:hover {
     background-color: rgb(23, 23, 23);
 }
 
-button.btn-red{
+button.btn-red  {
     background-color: rgb(153 27 27); 
 }
-
 button.btn-red:hover {
     background-color: rgb(127 29 29);
 }
 
-button.btn-green{
+
+button.btn-green {
     background-color: rgb(22 163 74); 
 }
-
 button.btn-green:hover {
     background-color: rgb(21 128 61);
 }
 
-button.btn-blue{
+
+button.btn-blue {
     background-color: rgb(30 64 175); 
 }
-
 button.btn-blue:hover {
     background-color: rgb(30 58 138);
 }

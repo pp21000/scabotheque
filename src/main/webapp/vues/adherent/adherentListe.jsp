@@ -102,55 +102,40 @@
                                   <form:options items="${agencesList}" itemValue="id" itemLabel="libelle"/>
                               </form:select>
                           </div>
-                          <div class="flex flex-col w-full px-6">
+                          <div class="flex flex-col w-full px-6 gap-1 mt-5">
                               <div class="w-100 col-md-3">
-                                  <div class="form-group clearfix">
-                                      <form:checkbox
-                                              class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
-                                              id="showAdminOnly" name="showAdminOnly" path="showAdminOnly"/>
-                                      <label style="float:none;" for="showAdminOnly"><spring:message
-                                              code="label.filtre.isAdministrateur"/></label>
+                                  <div class="form-group clearfix flex items-center gap-1.5">
+                                      <form:checkbox class="input-checkbox" id="showAdminOnly" name="showAdminOnly" path="showAdminOnly"/>
+                                      <label class="text-gray-500" style="float:none;" for="showAdminOnly"><spring:message code="label.filtre.isAdministrateur"/></label>
                                   </div>
                               </div>
                               <!-- /.col -->
                               <div class="w-100 col-md-3">
                                   <!-- checkbox -->
-                                  <div class="form-group clearfix">
-                                      <form:checkbox
-                                              class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
-                                              id="showSousCompte" name="showSousCompte" path="showSousCompte"/>
-                                      <label style="float:none;" for="showSousCompte"><spring:message
-                                              code="label.filtre.sousCompte"/></label>
+                                  <div class="form-group clearfix flex items-center gap-1.5">
+                                      <form:checkbox class="input-checkbox" id="showSousCompte" name="showSousCompte" path="showSousCompte"/>
+                                      <label class="text-gray-500" style="float:none;" for="showSousCompte"><spring:message code="label.filtre.sousCompte"/></label>
                                   </div>
                               </div>
                               <!-- /.col -->
                               <div class="w-100 col-md-3">
-                                  <div class="form-group clearfix">
-                                      <form:checkbox
-                                              class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
-                                              id="showArtipoleOnly" name="showArtipoleOnly"
-                                              path="showArtipoleOnly"/>
-                                      <label style="float:none;" for="showArtipoleOnly"><spring:message
-                                              code="label.filtre.isArtipole"/></label>
+                                  <div class="form-group clearfix flex items-center gap-1.5">
+                                      <form:checkbox class="input-checkbox" id="showArtipoleOnly" name="showArtipoleOnly" path="showArtipoleOnly"/>
+                                      <label class="text-gray-500" style="float:none;" for="showArtipoleOnly"><spring:message code="label.filtre.isArtipole"/></label>
                                   </div>
                               </div>
                               <!-- /.col -->
 <!--                                    <div class="w-100 col-md-3">
                                   <div class="form-group clearfix">
-                                      <form:checkbox
-                                              class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
-                                              id="showAll" name="showAll" path="showAll"/>
-                                      <label style="float:none;" for="showAll"><spring:message
-                                              code="label.filtre.inactif"/></label>
+                                      <form:checkbox class="input-text" id="showAll" name="showAll" path="showAll"/>
+                                      <label style="float:none;" for="showAll"><spring:message code="label.filtre.inactif"/></label>
                                   </div>
                               </div>-->
-                              <div class="flex gap-2 mt-2 pt-6">
-                                  <button id="actionButton"
-                                          class="px-3 py-3 text-xs text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
-                                          type="submit">
+                              <div class="flex gap-2 justify-center mt-8">
+                                  <button id="actionButton" class="btn btn-green btn-small focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">
                                       Rechercher
                                   </button>
-                                  <button class="px-3 py-3 text-xs text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+                                  <button class="btn btn-black btn-small focus:ring-4 focus:outline-none focus:ring-neutral-300"
                                           type="reset" onclick="window.location.href='${urlInit}'">
                                       Effacer
                                   </button>
@@ -224,7 +209,7 @@
           <script>
             document.getElementById("${adherent.id}").addEventListener("click", function () {
                 window.location.href = "${urlShowAdh}";
-            })
+            });
           </script>
         </div>      
       </c:forEach>

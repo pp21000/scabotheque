@@ -171,7 +171,7 @@
           <div class="text-2xl"><spring:message code="label.exploitation"/></div>
         </div>
         <div class="card-body">
-          <div class="grid px-4 grid-cols-3 gap-6">
+          <div class="grid px-4 grid-cols-4 gap-6">
             <div class="form-group">
               <form:label class="text-xs" path="adherent.agence"><spring:message
                   code="label.agenceRattachement"/></form:label>
@@ -194,6 +194,7 @@
               </form:select>
               <form:errors class="error-message" path="adherent.secteur"/>
             </div>
+            
             <div class="form-group">
               <form:label class="text-xs"
                           path="adherent.tournee"><spring:message code="label.tournee"/></form:label>
@@ -204,12 +205,9 @@
               </form:select>
             </div>
 
-            <div class="form-group">
-            
-              <form:checkbox
-                class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500   focus:ring-2  "
-                path="adherent.isOutilDechargement"/>  <form:label class="text-xs"
-                          path="adherent.isOutilDechargement"><spring:message code="label.outilDechargement"/></form:label>
+            <div class="form-group flex items-end justify-center gap-1.5 mb-2">
+              <form:checkbox class="input-checkbox" path="adherent.isOutilDechargement"/>  
+              <form:label class="text-sm" path="adherent.isOutilDechargement"><spring:message code="label.outilDechargement"/></form:label>
             </div>
           </div>
 
@@ -460,11 +458,10 @@
       <!-- /.card -->
     </div>
 
-    <div class="flex justify-center mt-10">
+    <div class="flex justify-center mt-10 gap-2">
         <c:url value="/listeAdherents" var="url"/>
-        <button type="reset" onClick="window.location = '${url}'" class="p-5 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mx-1">Annuler</button>
-        <!--<a href="#" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Annuler</a>-->
-        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mx-1 focus:outline-none">Création</button>
+        <button type="submit" class="btn btn-green focus:ring-4 focus:ring-blue-300 focus:outline-none">Enregistrer</button>
+        <button type="reset" onClick="window.location = '${url}'" class="btn btn-red focus:outline-none focus:ring-4 focus:ring-red-300">Annuler</button>
     </div>
   </div>
 

@@ -8,16 +8,12 @@
 
 
   <c:url value="/AA-page-listes" var="url"/>
-  <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
-          type="reset" onClick="window.location = '${url}'">< Retour
+  <button class="btn btn-black focus:ring-4 focus:outline-none focus:ring-neutral-300"
+          type="reset" onClick="window.location = '${url}'"><spring:message code="label.retour"/>
   </button>
-
+  <button class="btn btn-blue" id="addBtn" type="button" onclick="showNewForm()">Ajouter un Métier</button>
+  
 <div class="flex flex-col items-center">
-
-  <div class="w-full text-right">
-    <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" 
-            id="addBtn" type="button" onclick="showNewForm()">Ajouter un Métier</button>
-  </div>
 
   <form:form class="hidden w-2/3" method="post" modelAttribute="addForm" action="AA-add-metier">
     <div class="" id="addForm" title="Ajouter un Metier">
@@ -27,14 +23,14 @@
             <div class="w-32 mr-2">
               <form:label path="addMetier.libelle">Libellé</form:label>
               </div>
-            <form:input class="py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="addMetier.libelle" path="addMetier.libelle"/>
+            <form:input class="w-72 input-text" name="addMetier.libelle" path="addMetier.libelle"/>
             <form:errors class="error-message" path="addMetier.libelle"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="w-32 mr-2">
               <form:label path="addMetier.description">Description</form:label>
               </div>
-            <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="addMetier.description" path="addMetier.description"/>
+            <form:input class="flex-grow w-72 input-text" name="addMetier.description" path="addMetier.description"/>
             <form:errors class="error-message" path="addMetier.description"/>
           </div>
         </div>
@@ -42,7 +38,7 @@
     </div>
 
     <div class="text-center my-10">
-      <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer le métier</button>
+      <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer le métier</button>
     </div>
 
   </form:form>        
@@ -56,24 +52,21 @@
 
       <fieldset class="mx-auto justify-center">
         <div class="flex items-center mb-4">
-          <div class="w-32" >
-            <label class="block text-right mr-2" for="libelle">
-              Libellé
-            </label>
-          </div>
-          <div class="w-1/5" >
-            <form:input class="flex-grow w-full py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" type="text" name="editMetiers[${status.index}].libelle" path="editMetiers[${status.index}].libelle" id="libelle"/>
+          <label class="block text-right mr-2" for="libelle">
+            Libellé
+          </label>
+          
+          <div class="w-1/6 mr-7">
+            <form:input class="flex-grow w-full input-text" type="text" name="editMetiers[${status.index}].libelle" path="editMetiers[${status.index}].libelle" id="libelle"/>
             <form:errors class="error-message" path="editMetiers[${status.index}].libelle"/>
           </div>
-<!--        </div>
-        <div class="flex items-center mb-6">-->
-          <div class="w-32" >
-            <label class="block text-right mr-2" for="libelle">
-              Description
-            </label>
-          </div>
-          <div class="flex-1" >
-            <form:input class="flex-grow w-full py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" type="text" name="editMetiers[${status.index}].description" path="editMetiers[${status.index}].description" id="description"/>
+
+          <label class="block text-right mr-2" for="libelle">
+            Description
+          </label>
+          
+          <div class="flex-1">
+            <form:input class="flex-grow w-full input-text" type="text" name="editMetiers[${status.index}].description" path="editMetiers[${status.index}].description" id="description"/>
             <form:errors class="error-message" path="editMetiers[${status.index}].description"/>
           </div>
         </div>
@@ -82,9 +75,8 @@
 
     </c:forEach>
     <div class="mt-4 flex justify-center gap-2">
-      <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer les modifications</button>
-      <%--<c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>--%>
-      <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location = '${url}'">Annuler</button>
+      <button type="submit" class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300">Enregistrer les modifications</button>
+      <button type="reset" onClick="window.location = '${url}'" class="btn btn-red focus:ring-4 focus:outline-none focus:ring-neutral-300">Annuler</button>
     </div>
   </div>
 

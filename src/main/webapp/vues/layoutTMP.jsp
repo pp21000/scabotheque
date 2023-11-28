@@ -21,7 +21,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.css" rel="stylesheet" />
     <script src="https://unpkg.com/flowbite@1.5.3/dist/datepicker.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-
   </head>
 
   <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-700">

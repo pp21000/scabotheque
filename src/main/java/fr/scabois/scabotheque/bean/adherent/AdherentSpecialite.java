@@ -13,13 +13,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "metiers_adherents")
-public class AdherentMetier implements HasId {
+@Table(name = "aa_specialites_adherents")
+public class AdherentSpecialite implements HasId {
 
-  @Column(name = "metiers_id")
-  private int metierId;
-  @Column(name = "adherents_id")
+  @Column(name = "specialite_id")
+  private Integer specialiteId;
+  @Column(name = "adherent_id")
   private int adherentId;
+  @Column(name = "niveau")
+  private int niveau;
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
@@ -42,11 +44,19 @@ public class AdherentMetier implements HasId {
     this.id = id;
   }
 
-  public Integer getMetierId() {
-    return this.metierId;
+  public Integer getSpecialiteId() {
+    return this.specialiteId;
   }
 
-  public void setMetierId(final Integer metierId) {
-    this.metierId = metierId;
+  public void setSpecialiteId(final Integer specialiteId) {
+    this.specialiteId = specialiteId;
+  }
+
+  public Integer getNiveau() {
+    return this.niveau;
+  }
+
+  public void setNiveau(final Integer niveau) {
+    this.niveau = niveau;
   }
 }

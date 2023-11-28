@@ -181,7 +181,7 @@
 
             <!-- Create the editor container -->
             <spring:message code="label.mail.message" var="messagePH"/>
-            <form:textarea id="summernote" name="editordata" path="messageMail"  placeholder="${messagePH }"/>
+            <form:textarea id="summernote" name="editordata" path="messageMail" placeholder="${messagePH }"/>
 
             <div>
                     <button class="action-button"  type="submit">Envoyer</button>

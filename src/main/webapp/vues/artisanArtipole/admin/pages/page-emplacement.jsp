@@ -11,8 +11,8 @@
 <div class="flex flex-col items-center">
 
   <div class="w-full">
-    <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" 
-            id="addEmplacementBtn" type="button" onclick="showAddForm()">Ajouter un Emplacement</button>
+    <button class="btn btn-blue btn-small" 
+            id="addEmplacementBtn" type="button" onclick="showAddForm()">Ajouter un emplacement</button>
   </div>
 
 
@@ -25,7 +25,7 @@
             <div class="flex-grow w-44 mr-2">
               <form:label path="editAAEmplacement.type">Type emplacement</form:label>
             </div>              
-            <form:select onChange="handleUploadFileDivVisibility()" id="typeEmplacementSelect" class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.type" path="editAAEmplacement.type">
+            <form:select onChange="handleUploadFileDivVisibility()" id="typeEmplacementSelect" class="flex-grow w-72 input-select" name="editAAEmplacement.type" path="editAAEmplacement.type">
               <form:option value="titre"/>
               <form:option value="image"/>
               <form:option value="contenu"/>
@@ -44,7 +44,7 @@
             <div class="flex-grow w-44 mr-2">
               <form:label path="editAAEmplacement.libelle">Libellé</form:label>
             </div>
-            <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.libelle" path="editAAEmplacement.libelle"/>
+            <form:input class="flex-grow w-72 input-text" name="editAAEmplacement.libelle" path="editAAEmplacement.libelle"/>
             <form:errors class="error-message" path="editAAEmplacement.libelle"/>
           </div>
           
@@ -52,7 +52,7 @@
             <div class="flex-grow w-44 mr-2">
               <form:label path="editAAEmplacement.content">Content</form:label>
             </div>
-            <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.content" path="editAAEmplacement.content"/>
+            <form:input class="flex-grow w-72 input-text" name="editAAEmplacement.content" path="editAAEmplacement.content"/>
             <form:errors class="error-message" path="editAAEmplacement.content"/>
           </div>
           
@@ -60,7 +60,7 @@
             <div class="flex-grow w-44 mr-2">
               <form:label path="editAAEmplacement.alt">Alt</form:label>
             </div>
-            <form:input class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.alt" path="editAAEmplacement.alt"/>
+            <form:input class="flex-grow w-72 input-text" name="editAAEmplacement.alt" path="editAAEmplacement.alt"/>
             <form:errors class="error-message" path="editAAEmplacement.alt"/>
           </div>
           
@@ -68,14 +68,14 @@
             <div class="flex-grow w-44 mr-2">
               <form:label path="editAAEmplacement.page">Page</form:label>
             </div>
-            <form:select class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" name="editAAEmplacement.page" path="editAAEmplacement.page.id">
+            <form:select class="flex-grow w-72 input-select" name="editAAEmplacement.page" path="editAAEmplacement.page.id">
               <form:options items="${pageList}" itemValue="id" itemLabel="libelle"/>
             </form:select>
             <form:errors class="error-message" path="editAAEmplacement.page.id"/>
           </div>
           
           <div class="text-center my-10">
-            <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer l'emplacement</button>
+            <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer l'emplacement</button>
           </div>
         </div>
       </fieldset>
@@ -97,7 +97,7 @@
           Content
         </th>
         <th scope="col" class="px-6 py-3">
-          Data
+          Image
         </th>
         <th scope="col" class="px-6 py-3">
           alt
@@ -113,8 +113,6 @@
     </thead>
     <tbody>
       <c:forEach items="${listeEmplacements}" var="emplacement">
-        <c:url value="/AA-edit-emplacement" var="urlAAEdit"><c:param name="idEmplacement" value="${emplacement.id}"/></c:url>
-        <c:url value="/AA-delete-emplacement" var="urlAADelete"><c:param name="idEmplacement" value="${emplacement.id}"/></c:url>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600" id="${emplacement.id}">
           <td class="px-6 py-4">
             <c:out value="${emplacement.type}"/>
@@ -142,14 +140,14 @@
             <c:out value="${emplacement.page.libelle}"/>
           </td>
           <td class="px-2 py-4">
+            <c:url value="/AA-edit-emplacement" var="urlAAEdit"><c:param name="idEmplacement" value="${emplacement.id}"/></c:url>
             <a href="${urlAAEdit}"><svg class="w-10 h-10 p-2 fill-gray-400 hover:bg-gray-800 hover:fill-white rounded-lg"><use xlink:href="<c:url value="/resources/images/icones.svg#edit"/>"></use></svg></a>
           </td>
           <td class="px-2 py-4">
+            <c:url value="/AA-delete-emplacement" var="urlAADelete"><c:param name="idEmplacement" value="${emplacement.id}"/></c:url>
             <a href="${urlAADelete}"><svg class="w-10 h-10 p-2 fill-gray-400 hover:bg-red-900 hover:fill-white rounded-lg"><use xlink:href="<c:url value="/resources/images/icones.svg#trash"/>"></use></svg></a>
           </td>
-
         </tr>     
-
     </c:forEach>
     </tbody>
   </table>

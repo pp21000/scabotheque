@@ -52,8 +52,8 @@
                 <div class="showDetail">
                     <form:label path="suiviVisiteAdh.dateCommentaire"><spring:message code="label.dateSuivi"/></form:label>
                     <form:input class="valeur" type="date" name="suiviVisiteAdh.dateCommentaire" path="suiviVisiteAdh.dateCommentaire"/>
-                    <form:errors class="error-message" path="suiviVisiteAdh.dateCommentaire" />
-                    <form:textarea id="summernote" name="editordata" path="suiviVisiteAdh.commentaire" />
+                    <form:errors class="error-message" path="suiviVisiteAdh.dateCommentaire"/>
+                    <form:textarea class="input-textarea" class="error-message" id="summernote" name="editordata" path="suiviVisiteAdh.commentaire"/>
                 </div>
                 <div class="text-right">
                     <button class="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600">Enregistrer</button>

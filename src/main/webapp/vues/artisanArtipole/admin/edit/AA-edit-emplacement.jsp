@@ -6,8 +6,8 @@
 
 
 <c:url value="/AA-page-emplacement" var="url"/>
-<button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
-        type="reset" onClick="window.location = '${url}'">< Retour
+<button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location = '${url}'">
+  <spring:message code="label.retour"/>
 </button>
 
 <div>
@@ -19,24 +19,24 @@
     <fieldset class="mx-auto justify-center">
       <div class="md:flex md:items-center mb-6">
         <div class="w-1/5" >
-          <label class="block text-gray-400 font-bold md:text-right mb-1 md:mb-0 pr-4" for="type">
+          <label class="block text-right mr-2" for="type">
             Type
           </label>
         </div>
         <div class="w-3/5" >
           <%--<form:input class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="text" name="editAAEmplacement.type" path="editAAEmplacement.type" id="type"/>--%>
-          <div class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="text" name="editAAEmplacement.type" path="editAAEmplacement.type" id="type"><c:out value="${emplacement.type}"/></div>
+          <div class="w-full p-2 text-black border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" type="text" name="editAAEmplacement.type" path="editAAEmplacement.type" id="type"><c:out value="${emplacement.type}"/></div>
           <form:errors class="error-message" path="editAAEmplacement.type"/>
         </div>
       </div>
       <div class="md:flex md:items-center mb-6 w-full">
         <div class="w-1/5">
-          <label class="block text-gray-400 font-bold md:text-right mb-1 md:mb-0 pr-4" for="libelle">
+          <label class="block text-right mr-2" for="libelle">
             Libellé
           </label>
         </div >
         <div class="w-3/5">
-          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="text" name="editAAEmplacement.libelle" path="editAAEmplacement.libelle" id="libelle"/>
+          <form:input class="w-full p-2 text-black border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" type="text" name="editAAEmplacement.libelle" path="editAAEmplacement.libelle" id="libelle"/>
           <form:errors class="error-message" path="editAAEmplacement.libelle"/>
         </div>
       </div>
@@ -44,12 +44,12 @@
       <div class="md:flex md:items-center mb-6">
         
         <div class="w-1/5" >
-          <label class="block text-gray-400 font-bold md:text-right mb-1 md:mb-0 pr-4" for="content">
+          <label class="block text-right mr-2" for="content">
             Content
           </label>
         </div>
         <div class="w-3/5" >    
-          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="text" name="editAAEmplacement.content" path="editAAEmplacement.content" id="content"/>
+          <form:input class="w-full p-2 text-black border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" type="text" name="editAAEmplacement.content" path="editAAEmplacement.content" id="content"/>
           <form:errors class="error-message" path="editAAEmplacement.content"/>
         </div>
       </div>
@@ -57,7 +57,7 @@
       <c:if test="${emplacement.type.equals('image')}">
       <div class="md:flex md:items-center mb-6">
         <div class="w-1/5" >
-          <label class="block text-gray-400 font-bold md:text-right mb-1 md:mb-0 pr-4" for="content">
+          <label class="block text-right mr-2" for="content">
             Image
           </label>
         </div>
@@ -78,12 +78,12 @@
         
       <div class="md:flex md:items-center mb-6">
         <div class="w-1/5" >
-          <label class="block text-gray-400 font-bold md:text-right mb-1 md:mb-0 pr-4" for="alt">
+          <label class="block text-right mr-2" for="alt">
             alt
           </label>
         </div>
         <div class="w-3/5" >
-          <form:input class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="text" name="editAAEmplacement.alt" path="editAAEmplacement.alt" id="alt"/>
+          <form:input class="w-full p-2 text-black border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" type="text" name="editAAEmplacement.alt" path="editAAEmplacement.alt" id="alt"/>
           <form:errors class="error-message" path="editAAEmplacement.alt"/>
         </div>
       </div>
@@ -91,16 +91,15 @@
       <div class="md:flex md:items-center mb-6">
         
         <div class="w-1/5" >
-          <label class="block text-gray-400 font-bold md:text-right mb-1 md:mb-0 pr-4" for="editAAEmplacement.page.id">
+          <label class="block text-right mr-2" for="editAAEmplacement.page.id">
             Page
           </label>
         </div>
         
-        <div class="w-3/5" >
-          <form:select name="editAAEmplacement.page" path="editAAEmplacement.page.id" class="flex-grow py-2 px-4 w-72 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500">
+        <div class="w-3/5">
+          <form:select name="editAAEmplacement.page" path="editAAEmplacement.page.id" class="flex-grow p-2 w-72 text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500">
             <form:options items="${pageList}" itemValue="id" itemLabel="libelle"/>
           </form:select>
-          <%--<form:input class="p-2  bg-white rounded-lg border border-gray-200" type="number" name="editAAEmplacement.page.id" path="editAAEmplacement.page.id" id="editAAEmplacement.page.id"/>--%>
           <form:errors class="error-message" path="editAAEmplacement.page.id"/>
         </div>
         
@@ -109,9 +108,8 @@
     </fieldset>
 
     <div class="mt-4 flex justify-center gap-2">
-      <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer</button>
-      <%--<c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>--%>
-      <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location = '${url}'">Annuler</button>
+      <button type="submit" class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300">Enregistrer</button>
+      <button type="reset" onClick="window.location = '${url}'" class="btn btn-red focus:ring-4 focus:outline-none focus:ring-neutral-300">Annuler</button>
     </div>
   </form:form>
 </div>

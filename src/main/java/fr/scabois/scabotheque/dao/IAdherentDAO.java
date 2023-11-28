@@ -8,6 +8,7 @@ import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
 import fr.scabois.scabotheque.bean.adherent.AdherentInformatique;
 import fr.scabois.scabotheque.bean.adherent.AdherentLogistique;
 import fr.scabois.scabotheque.bean.adherent.AdherentMetier;
+import fr.scabois.scabotheque.bean.adherent.AdherentSpecialite;
 import fr.scabois.scabotheque.bean.adherent.AdherentSuiviVisite;
 import fr.scabois.scabotheque.bean.adherent.AdherentType;
 import fr.scabois.scabotheque.bean.adherent.CompteType;
@@ -88,6 +89,8 @@ public interface IAdherentDAO {
 
   public List<AdherentMetier> loadAdherentMetiers(final int idAdh);
 
+  public List<AdherentSpecialite> loadAdherentSpecialites(final int idAdh);
+
   public List<ContactRetraite> loadContactsRetraite();
 
   public List<ContactClubFemme> loadContactsClubFemme();
@@ -155,6 +158,8 @@ public interface IAdherentDAO {
   public void saveAdherentLogistique(AdherentLogistique logistiqueAdh);
 
   public void saveAdherentMetiers(int adhId, List<AdherentMetier> adherentMetiers);
+
+  public void saveAdherentSpecialites(int adhId, List<AdherentSpecialite> adherentSpecialites);
 
   public void saveAdherentSuiviVisite(AdherentSuiviVisite suivi);
 

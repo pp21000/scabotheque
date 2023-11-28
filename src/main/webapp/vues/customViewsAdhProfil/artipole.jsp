@@ -15,139 +15,146 @@
 <%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <div>
-  <div class="grid grid-cols-2">
+  <div class="grid grid-cols-2 gap-4">
     
     <div>
       <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')">
-        <div class="flex justify-start mb-2">
-          <div class="rounded hover:bg-gray-300 p-1">
-            <c:url value="/edit/editArtipoleAdh" var="url">
-              <c:param name="idAdh" value="${adherent.id}"/>
-            </c:url>
-            <span>
-              <a href="${url}">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                </svg>
-              </a>
-            </span>
-          </div>
+        <div class="flex items-center mb-1">
+          <c:url value="/edit/editArtipoleAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
+          <a href="${url}" class="rounded-md hover:bg-gray-300 p-0.5 mr-1">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+            </svg>
+          </a>
+          <spring:message code="label.modifGeneral"/>
         </div>
       </sec:authorize>
-      <div class="bg-white m-2 overflow-hidden shadow rounded-lg">
+      
+      
+      <div class="bg-neutral-200 overflow-hidden shadow rounded-lg">
         <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
-          <dl class="sm:divide-y sm:divide-gray-200">
-            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dl class="sm:divide-y sm:divide-gray-300">
+            <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2 items-center">
               <dt class="text-sm font-medium text-gray-500 text-right">
-                <spring:message code="label.adhArtipole"/>
+                <spring:message code="label.adhArtipole"/> :
               </dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">            
-                <c:choose>
-                  <c:when test="${adherent.isArtipole}"><spring:message code="yes"/></c:when>
-                  <c:otherwise><spring:message code="no"/></c:otherwise>
-                </c:choose>
-              </dd>
+              <c:choose>
+                <c:when test="${adherent.isArtipole}">
+                  <dd class="text-sm text-sky-600 font-bold"><spring:message code="yes"/></dd>
+                </c:when>
+                <c:otherwise>
+                  <dd class="text-sm text-gray-400"><spring:message code="no"/></dd>
+                </c:otherwise>
+              </c:choose>
+            </div>              
+              
+            <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2 items-center">
+              <dt class="text-sm font-medium text-gray-500 text-right">
+                <spring:message code="label.charteArtipole"/> :
+              </dt>
+              <c:choose>
+                <c:when test="${adherent.isCharteArtipole}">
+                  <dd class="text-sm text-sky-600 font-bold"><spring:message code="yes"/></dd>
+                </c:when>
+                <c:otherwise>
+                  <dd class="text-sm text-gray-400"><spring:message code="no"/></dd>
+                </c:otherwise>
+              </c:choose>
             </div>
 
-            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2 items-center">
               <dt class="text-sm font-medium text-gray-500 text-right">
-                <spring:message code="label.charteArtipole"/>
+                <spring:message code="label.flocageArtipole"/> :
               </dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <c:choose>
-                  <c:when test="${adherent.isCharteArtipole}"><spring:message code="yes"/></c:when>
-                  <c:otherwise><spring:message code="no"/></c:otherwise>
-                </c:choose>
-              </dd>
+              <c:choose>
+                <c:when test="${adherent.isFlocageArtipole}">
+                  <dd class="text-sm text-sky-600 font-bold"><spring:message code="yes"/></dd>
+                </c:when>
+                <c:otherwise>
+                  <dd class="text-sm text-gray-400"><spring:message code="no"/></dd>
+                </c:otherwise>
+              </c:choose>
             </div>
 
-            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2 items-center">
               <dt class="text-sm font-medium text-gray-500 text-right">
-                <spring:message code="label.flocageArtipole"/>
+                <spring:message code="label.siteArtipole"/> :
               </dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <c:choose>
-                  <c:when test="${adherent.isFlocageArtipole}"><spring:message code="yes"/></c:when>
-                  <c:otherwise><spring:message code="no"/></c:otherwise>
-                </c:choose>
-              </dd>
+              <c:choose>
+                <c:when test="${adherent.isWebArtipole}">
+                  <dd class="text-sm text-sky-600 font-bold"><spring:message code="yes"/></dd>
+                </c:when>
+                <c:otherwise>
+                  <dd class="text-sm text-gray-400"><spring:message code="no"/></dd>
+                </c:otherwise>
+              </c:choose>
             </div>
 
-            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2 items-center">
               <dt class="text-sm font-medium text-gray-500 text-right">
-                <spring:message code="label.siteArtipole"/>
+                <spring:message code="label.facebookArtipole"/> :
               </dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <c:choose>
-                  <c:when test="${adherent.isWebArtipole}"><spring:message code="yes"/></c:when>
-                  <c:otherwise><spring:message code="no"/></c:otherwise>
-                </c:choose>
-              </dd>
-            </div>
-
-            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt class="text-sm font-medium text-gray-500 text-right">
-                <spring:message code="label.facebookArtipole"/>
-              </dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <c:choose>
-                  <c:when test="${adherent.isFacebookArtipole}"><spring:message code="yes"/></c:when>
-                  <c:otherwise><spring:message code="no"/></c:otherwise>
-                </c:choose>
-              </dd>
+              <c:choose>
+                <c:when test="${adherent.isFacebookArtipole}">
+                  <dd class="text-sm text-sky-600 font-bold"><spring:message code="yes"/></dd>
+                </c:when>
+                <c:otherwise>
+                  <dd class="text-sm text-gray-400"><spring:message code="no"/></dd>
+                </c:otherwise>
+              </c:choose>
             </div>
 
 
-            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2 items-center">
               <dt class="text-sm font-medium text-gray-500 text-right">
-                <spring:message code="label.siteWeb"/>
+                <spring:message code="label.siteWeb"/> :
               </dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              <dd class="text-sm text-gray-400">
                 ${adherent.siteWeb}
               </dd>
             </div>
 
-            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2 items-center">
               <dt class="text-sm font-medium text-gray-500 text-right">
-                <spring:message code="label.facebook"/>
+                <spring:message code="label.facebook"/> :
               </dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              <dd class="text-sm text-gray-400">
                 ${adherent.facebook}
               </dd>
             </div>
 
-            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2 items-center">
               <dt class="text-sm font-medium text-gray-500 text-right">
-                <spring:message code="label.instagram"/>
+                <spring:message code="label.instagram"/> :
               </dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              <dd class="text-sm text-gray-400">
                 ${adherent.instagram}
               </dd>
             </div>
 
-            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2 items-center">
               <dt class="text-sm font-medium text-gray-500 text-right">
-                <spring:message code="label.linkedin"/>
+                <spring:message code="label.linkedin"/> :
               </dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              <dd class="text-sm text-gray-400">
                 ${adherent.linkedin}
               </dd>
             </div>
 
-            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2 items-center">
               <dt class="text-sm font-medium text-gray-500 text-right">
-                <spring:message code="label.youtube"/>
+                <spring:message code="label.youtube"/> :
               </dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              <dd class="text-sm text-gray-400">
                 ${adherent.youtube}
               </dd>
             </div>
 
-            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2 items-center">
               <dt class="text-sm font-medium text-gray-500 text-right">
-                <spring:message code="label.pinterest"/>
+                <spring:message code="label.pinterest"/> :
               </dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              <dd class="text-sm text-gray-400">
                 ${adherent.pinterest}
               </dd>
             </div>
@@ -158,34 +165,29 @@
               
     <div>
       <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')">
-        <div class="flex justify-start mb-2">
-          <div class="rounded hover:bg-gray-300 p-1">
-            <c:url value="/edit/editMetiersAdherent" var="url">
-              <c:param name="idAdh" value="${adherent.id}"/>
-            </c:url>
-            <span>
-              <a href="${url}">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                </svg>
-              </a>
-            </span>
-          </div>
+        <div class="flex items-center mb-1">
+          <c:url value="/edit/editMetiersAdherent" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
+          <a href="${url}" class="rounded-md hover:bg-gray-300 p-0.5 mr-1">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+            </svg>
+          </a>
+          <spring:message code="label.metiers"/>
         </div>
       </sec:authorize>
 
-      <div class="bg-white m-2 overflow-hidden shadow rounded-lg">
+      <div class="bg-neutral-200 overflow-hidden shadow rounded-lg sm:divide-y sm:divide-gray-300">
         <c:forEach items="${metiers}" var="metier">
           <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
-            <dl class="sm:divide-y sm:divide-gray-200">
-              <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="text-sm font-medium text-gray-500 text-right">${metier.libelle}</dt>
+            <dl>
+              <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
+                <dt class="text-sm font-medium text-gray-500 text-right">${metier.libelle} :</dt>
                 <c:choose>
                   <c:when test="${metiersAdherentId.contains(metier.id)}">
-                    <dd class="mt-1 text-sm sm:mt-0 sm:col-span-2 text-sky-600 font-bold"><spring:message code="yes"/></dd>
+                    <dd class="text-sm text-sky-600 font-bold"><spring:message code="yes"/></dd>
                   </c:when>
                   <c:otherwise>
-                    <dd class="mt-1 text-sm sm:mt-0 sm:col-span-2 text-gray-400"><spring:message code="no"/></dd>
+                    <dd class="text-sm text-gray-400"><spring:message code="no"/></dd>
                   </c:otherwise>
                 </c:choose>
               </div>
@@ -194,40 +196,63 @@
         </c:forEach>
       </div>
     </div>
-  </div>
+  </div>             
 
-  <div class="">
-    <div class="bg-white m-2 overflow-hidden shadow rounded-lg">
-      <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
-        <dl class="sm:divide-y sm:divide-gray-200">
-          <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-sm font-medium text-gray-500 text-right">
-              <spring:message code="label.description_entreprise"/>
-            </dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              ${adherent.description_entreprise}
-            </dd>
-          </div>
-        </dl>
-      </div>
+  <div class="bg-neutral-200 overflow-hidden shadow rounded-lg sm:divide-y sm:divide-gray-300 mt-4">
+    <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+      <dl>
+        <div class="py-3 sm:grid sm:grid-cols-5 sm:gap-4 sm:px-2 items-center">
+          <dt class="text-sm font-medium text-gray-500 text-right">
+            <spring:message code="label.description_entreprise"/> :
+          </dt>
+          <dd class="text-sm text-gray-400 sm:mt-0 sm:col-span-4">
+            ${adherent.description_entreprise}
+          </dd>
+        </div>
+      </dl>
+    </div> 
+    <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+      <dl>
+        <div class="py-3 sm:grid sm:grid-cols-5 sm:gap-4 sm:px-2 items-center">
+          <dt class="text-sm font-medium text-gray-500 text-right">
+            <spring:message code="label.description_activite"/> :
+          </dt>
+          <dd class="text-sm text-gray-400 sm:mt-0 sm:col-span-4">
+            ${adherent.description_activite}
+          </dd>
+        </div>
+      </dl>
     </div>
   </div>
 
-  <div class="">
-    <div class="bg-white m-2 overflow-hidden shadow rounded-lg">
-      <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
-        <dl class="sm:divide-y sm:divide-gray-200">
-          <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-sm font-medium text-gray-500 text-right">
-              <spring:message code="label.description_activite"/>
-            </dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              ${adherent.description_activite}
-            </dd>
-          </div>
-        </dl>
+  <div class="mt-5">
+    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')">
+      <div class="flex items-center mb-1">
+        <c:url value="/edit/editSpecialitesAdherent" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
+        <a href="${url}" class="rounded-md hover:bg-gray-300 p-0.5 mr-1">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+          </svg>
+        </a>
+        <spring:message code="label.tags"/>
       </div>
+    </sec:authorize>     
+    
+    
+    <div class="bg-neutral-200 overflow-hidden shadow rounded-lg sm:divide-y sm:divide-gray-300">
+      <c:forEach items="${specialitesOfAdherent}" var="speOfAdh" varStatus="status">
+        <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+          <dl>
+            <div class="text-sm sm:grid sm:grid-cols-12 sm:gap-4 items-center py-3 sm:py-3 sm:px-1">
+              <dt class="font-medium text-gray-500 text-right">${status.index+1} :</dt>
+              <dd class="sm:mt-0 sm:col-span-11 text-gray-400">
+                ${speOfAdh.libelle}  (${speOfAdh.travaux.libelle})
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </c:forEach>
     </div>
-  </div>
-
+  </div> 
+            
 </div>

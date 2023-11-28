@@ -1,11 +1,13 @@
 package fr.scabois.scabotheque.controller.artisanArtipole;
 
 import fr.scabois.scabotheque.bean.artisanArtipole.Actualite;
+import fr.scabois.scabotheque.bean.artisanArtipole.Certification;
 import fr.scabois.scabotheque.bean.artisanArtipole.Emplacement;
 import fr.scabois.scabotheque.bean.artisanArtipole.Photo;
 import fr.scabois.scabotheque.controller.artisanArtipole.edit.AddCategorieForm;
 import fr.scabois.scabotheque.controller.artisanArtipole.edit.AddMetierForm;
 import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditAAActualiteForm;
+import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditAACertificationForm;
 import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditAAEmplacementForm;
 import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditAAPhotoForm;
 import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditAATravauxForm;
@@ -58,7 +60,7 @@ public class ArtisanArtipoleEditController {
     pModel.addAttribute("emplacement", (Object) emplacement);
     pModel.addAttribute("editForm", (Object) editForm);
     pModel.addAttribute("pageList", (Object) this.service.loadPages());
-    pModel.addAttribute("pageType", (Object) PageType.AA_EMPLACEMENT);
+    pModel.addAttribute("pageType", (Object) PageType.AA_EMPLACEMENTS);
     return "AA-edit-emplacement";
   }
 
@@ -76,7 +78,7 @@ public class ArtisanArtipoleEditController {
     } else {
       pModel.addAttribute("addForm", pModel.get((Object) "addForm"));
     }
-    pModel.addAttribute("pageType", (Object) PageType.AA_METIER);
+    pModel.addAttribute("pageType", (Object) PageType.AA_METIERS);
     return "AA-edit-metiers";
   }
 
@@ -94,7 +96,7 @@ public class ArtisanArtipoleEditController {
     } else {
       pModel.addAttribute("addForm", pModel.get((Object) "addForm"));
     }
-    pModel.addAttribute("pageType", (Object) PageType.AA_METIER);
+    pModel.addAttribute("pageType", (Object) PageType.AA_METIERS);
     return "AA-edit-categories";
   }
 
@@ -109,8 +111,23 @@ public class ArtisanArtipoleEditController {
     }
     pModel.addAttribute("photo", (Object) photo);
     pModel.addAttribute("editForm", (Object) editForm);
-    pModel.addAttribute("pageType", (Object) PageType.AA_PHOTO);
+    pModel.addAttribute("pageType", (Object) PageType.AA_PHOTOS);
     return "AA-edit-photo";
+  }
+
+  @RequestMapping(value = {"/AA-edit-certification"}, method = {RequestMethod.GET})
+  public String editCertification(@RequestParam("idCertification") final int idCertification, final ModelMap pModel, final HttpServletRequest request) {
+    final Certification certification = this.service.loadCertification(Integer.valueOf(idCertification));
+    EditAACertificationForm editForm;
+    if (pModel.get((Object) "editForm") == null) {
+      editForm = new EditAACertificationForm(certification);
+    } else {
+      editForm = (EditAACertificationForm) pModel.get((Object) "editForm");
+    }
+    pModel.addAttribute("certification", (Object) certification);
+    pModel.addAttribute("editForm", (Object) editForm);
+    pModel.addAttribute("pageType", (Object) PageType.AA_CERTIFICATIONS);
+    return "AA-edit-certification";
   }
 
   @RequestMapping(value = {"/AA-delete-actualite"}, method = {RequestMethod.GET})
@@ -123,6 +140,12 @@ public class ArtisanArtipoleEditController {
   public String deletePhoto(@RequestParam("idPhoto") final int idPhoto, final ModelMap pModel, final HttpServletRequest request) {
     this.service.deletePhoto(idPhoto);
     return "redirect:/AA-page-photos";
+  }
+
+  @RequestMapping(value = {"/AA-delete-certification"}, method = {RequestMethod.GET})
+  public String deleteCertification(@RequestParam("idCertification") final int idCertification, final ModelMap pModel, final HttpServletRequest request) {
+    this.service.deleteCertification(idCertification);
+    return "redirect:/AA-page-certifications";
   }
 
   @RequestMapping(value = {"/AA-delete-categorie"}, method = {RequestMethod.GET})
@@ -156,6 +179,15 @@ public class ArtisanArtipoleEditController {
       return "redirect:/AA-page-photos";
     }
     return this.editPhoto(editForm.getEditAAPhoto().getId(), pModel, request);
+  }
+
+  @RequestMapping(value = {"/AA-edit-certification"}, method = {RequestMethod.POST})
+  public String saveCertification(@Valid @ModelAttribute("editForm") final EditAACertificationForm editForm, final BindingResult pBindingResult, final ModelMap pModel, final HttpServletRequest request) {
+    if (!pBindingResult.hasErrors()) {
+      this.service.saveCertification(editForm.getCertification());
+      return "redirect:/AA-page-certifications";
+    }
+    return this.editPhoto(editForm.getEditAACertification().getId(), pModel, request);
   }
 
   @RequestMapping(value = {"/AA-edit-categories"}, method = {RequestMethod.POST})
@@ -263,5 +295,14 @@ public class ArtisanArtipoleEditController {
       return "redirect:/AA-page-photos";
     }
     return this.aaController.photo(pModel);
+  }
+
+  @RequestMapping(value = {"/AA-add-certification"}, method = {RequestMethod.POST})
+  public String AddCertification(@Valid @ModelAttribute("addForm") final EditAACertificationForm addForm, final BindingResult pBindingResult, final ModelMap pModel, final HttpServletRequest request) {
+    if (!pBindingResult.hasErrors()) {
+      this.service.saveCertification(addForm.getCertification());
+      return "redirect:/AA-page-certifications";
+    }
+    return this.aaController.certification(pModel);
   }
 }

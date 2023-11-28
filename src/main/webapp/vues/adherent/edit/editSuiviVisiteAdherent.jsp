@@ -6,8 +6,8 @@
 
 
 <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-<button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
-        type="reset" onClick="window.location='${url}'">< Retour
+<button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location='${url}'">
+  <spring:message code="label.retour"/>
 </button>
 
 <div class="flex flex-col">
@@ -49,13 +49,13 @@
                     <form:errors class="error-message" path="suiviVisiteAdh.dateCommentaire"/>
                 </div>
                 <div class="text-center mt-2 underline">Contenu du suivi :</div>
-                <form:textarea class="w-96 h-32 p-1 block text-sm text-gray-900 rounded border border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" id="summernote" name="editordata" path="suiviVisiteAdh.commentaire"/>
+                <form:textarea class="w-96 h-32 block input-textarea" id="summernote" name="editordata" path="suiviVisiteAdh.commentaire"/>
             </fieldset>
 
-            <div class="mt-4 flex justify-center gap-2">
-                <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer</button>
+            <div class="flex justify-center gap-2 mt-4">
+                <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer</button>
                 <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-                <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location='${url}'">Annuler</button>
+                <button class="btn btn-red focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location='${url}'">Annuler</button>
             </div>
         </form:form>
     </div>

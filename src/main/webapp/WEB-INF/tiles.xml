@@ -124,13 +124,25 @@
   <definition name="AA-page-photos" extends="base.board.definition">
     <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-photos.jsp"/>
     <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="page-photo"/>
+    <put-attribute name="pageName" value="page-photos"/>
   </definition>
   
   <definition name="AA-edit-photo" extends="base.board.definition">
     <put-attribute name="body" value="/vues/artisanArtipole/admin/edit/AA-edit-photo.jsp"/>
     <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="page-photo"/>
+    <put-attribute name="pageName" value="page-photos"/>
+  </definition>
+
+  <definition name="AA-page-certifications" extends="base.board.definition">
+    <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-certifications.jsp"/>
+    <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
+    <put-attribute name="pageName" value="page-certifications"/>
+  </definition>
+  
+  <definition name="AA-edit-certification" extends="base.board.definition">
+    <put-attribute name="body" value="/vues/artisanArtipole/admin/edit/AA-edit-certification.jsp"/>
+    <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
+    <put-attribute name="pageName" value="page-certifications"/>
   </definition>
 
   <!-- END -> AA : Artisan Artipole Admin -->
@@ -218,6 +230,11 @@
   <definition name="editMetiersAdherent" extends="base.board.definition">
     <put-attribute name="body" value="/vues/adherent/edit/editMetiersAdherent.jsp"/>
     <put-attribute name="pageName" value="metiersAdh"/>
+  </definition>
+
+  <definition name="editSpecialitesAdherent" extends="base.board.definition">
+    <put-attribute name="body" value="/vues/adherent/edit/editSpecialitesAdherent.jsp"/>
+    <put-attribute name="pageName" value="specialitesAdh"/>
   </definition>
 
   <!--<definition name="base.definition" template="/vues/StartV2.jsp">-->

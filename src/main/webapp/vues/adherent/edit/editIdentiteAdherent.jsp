@@ -13,8 +13,8 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${editForm.editAdherent.id}"/></c:url>
-  <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
-          type="reset" onClick="window.location = '${url}'">< Retour
+<button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location = '${url}'">
+  <spring:message code="label.retour"/>
 </button>
 
 <form:form class="" method="post" modelAttribute="editForm" action="editIdentiteAdh?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
@@ -68,23 +68,23 @@
       <form:input type="hidden" path="editAdherent.description_activite"/>
       
       
-      <div class="">
+      <div>
         <div class="flex">
           <div class="w-1/2 px-10">
             <div class="rounded-xl bg-neutral-50 p-4 border border-neutral-200 flex flex-col items-center">
               <div class="text-sm font-semibold text-center">
                 
-              <div class="flex flex-col my-5">
-                <div class="text-center text-lg font-semibold">
+              <div class="flex flex-col">
+                <div class="text-center text-xl font-semibold">
                   ${editForm.editAdherent.denomination}
                 </div>
-                <div class="text-center text-sm">
+                <div class="flex justify-center items-center font-normal gap-2">
                   <spring:message code="label.codeAdh"/> : 
-                  ${editForm.editAdherent.code}
+                  <div class="bg-green-200 text-green-800 text-sm font-medium mr-2 px-2 py-0.5 rounded">${editForm.editAdherent.code}</div>
                 </div>
               </div>                
               
-              <div class="mb-10">
+              <div class="mt-5">
                   <span>Logo</span>
                   <c:choose>
                     <c:when test="${editForm.editAdherent.logo == ''}">
@@ -94,10 +94,10 @@
                       <img class="max-w-[14rem] mx-auto rounded" src="${editForm.editAdherent.logo}" alt="Photo de l'entreprise">
                     </c:otherwise>
                   </c:choose>
-                  <form:input path="editAdherent.fileLogo" class=" my-2 text-xs " type="file" name="file" accept="image/x-png,image/gif,image/jpeg"/>
+                  <form:input path="editAdherent.fileLogo" class=" mt-2 text-xs" type="file" name="file" accept="image/x-png,image/gif,image/jpeg"/>
                 </div>
                 
-                <div class="mb-5">
+                <div class="mt-5">
                   <span>Photo</span>
                   <c:choose>
                     <c:when test="${editForm.editAdherent.photo == ''}">
@@ -107,13 +107,10 @@
                       <img class="max-w-[14rem] mx-auto rounded" src="${editForm.editAdherent.photo}" alt="Logo de l'entreprise"/>
                     </c:otherwise>
                   </c:choose>
-                  <form:input path="editAdherent.filePhoto" class="my-2 text-xs " type="file" name="file" accept="image/x-png,image/gif,image/jpeg"/>
+                  <form:input path="editAdherent.filePhoto" class="mt-2 text-xs" type="file" name="file" accept="image/x-png,image/gif,image/jpeg"/>
                 </div>
               </div>
-                
-              <button class="px-3 py-3 mt-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit"/>
-                Enregistrer les images
-            </button >
+  
           </div>
           </div>
 
@@ -127,8 +124,8 @@
               <div class="flex items-center mt-2">
                 <div class="flex-grow w-56 mr-2 text-right">
                   <form:label class="mt-2" path="editAdherent.codeERP"><spring:message code="label.codeERP"/></form:label>
-                  </div>
-                <form:input class="flex-grow py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+                </div>
+                <form:input class="flex-grow w-96 input-text"
                             name="editAdherent.codeERP" path="editAdherent.codeERP"/>
                 <form:errors class="error-message" path="editAdherent.codeERP"/>
               </div>
@@ -138,7 +135,7 @@
                 <div class="flex-grow w-56 mr-2 text-right">
                   <form:label class="mt-2" path="editAdherent.codeERPParent"><spring:message code="label.codeERPParent"/></form:label>
                   </div>
-                <form:input class="flex-grow py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+                <form:input class="flex-grow w-96 input-text"
                             name="editAdherent.codeERPParent" path="editAdherent.codeERPParent"/>
                 <form:errors class="error-message" path="editAdherent.codeERPParent"/>
               </div>
@@ -147,7 +144,7 @@
                 <div class="flex-grow w-56 mr-2 text-right">
                   <form:label class="mt-2" path="editAdherent.libelle"><spring:message code="label.libelle"/></form:label>
                   </div>
-                <form:input class="flex-grow py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+                <form:input class="flex-grow w-96 input-text"
                             name="editAdherent.libelle" path="editAdherent.libelle"/>
                 <form:errors class="error-message" path="editAdherent.libelle"/>
               </div>
@@ -157,7 +154,7 @@
                 <div class="flex-grow w-56 mr-2 text-right">
                   <form:label class="mt-2" path="editAdherent.denomination"><spring:message code="label.denomination"/></form:label>
                   </div>
-                <form:input class="flex-grow py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+                <form:input class="flex-grow w-96 input-text"
                             name="editAdherent.denomination" path="editAdherent.denomination"/>
                 <form:errors class="error-message" path="editAdherent.denomination"/>
               </div>
@@ -166,7 +163,7 @@
                 <div class="flex-grow w-56 mr-2 text-right">
                   <form:label class="mt-2" path="editAdherent.telephone"><spring:message code="label.telephone"/></form:label>
                 </div>
-                <form:input class="flex-grow py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+                <form:input class="flex-grow w-96 input-text"
                             name="editAdherent.telephone" path="editAdherent.telephone"/>
                 <form:errors class="error-message" path="editAdherent.telephone"/>
               </div>
@@ -176,7 +173,7 @@
                 <div class="flex-grow w-56 mr-2 text-right">
                   <form:label class="mt-2" path="editAdherent.mail"><spring:message code="label.mail"/></form:label>
                   </div>
-                <form:input class="flex-grow py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+                <form:input class="flex-grow w-96 input-text"
                             name="editAdherent.mail" path="editAdherent.mail"/>
                 <form:errors class="error-message" path="editAdherent.mail"/>
               </div>
@@ -185,7 +182,7 @@
                 <div class="flex-grow w-56 mr-2 text-right">
                   <form:label class="mt-2" path="editAdherent.adresse"><spring:message code="label.adresse"/></form:label>
                   </div>
-                <form:input class="flex-grow py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+                <form:input class="flex-grow w-96 input-text"
                             name="editAdherent.adresse" path="editAdherent.adresse"/>
                 <form:errors class="error-message" path="editAdherent.adresse"/>
               </div>
@@ -195,7 +192,7 @@
                 <div class="flex-grow w-56 mr-2 text-right">
                   <form:label class="mt-2" path="editAdherent.adresseComplement"><spring:message code="label.adresseComplement"/></form:label>
                   </div>
-                <form:input class="flex-grow py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+                <form:input class="flex-grow w-96 input-text"
                             name="editAdherent.adresseComplement" path="editAdherent.adresseComplement"/>
                 <form:errors class="error-message" path="editAdherent.adresseComplement"/>
               </div>
@@ -277,9 +274,9 @@
               <div class="flex items-center mt-2">
                 <div class="flex-grow w-56 mr-2 text-right">
                   <form:label class="mt-2" path="editAdherent.pole.id"><spring:message code="label.pole"/></form:label>
-                  </div>
+                </div>
                 <form:select
-                  class="flex-grow py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+                  class="flex-grow w-96 input-select"
                   name="editAdherent.pole" path="editAdherent.pole.id">
                   <form:option value=""></form:option>
                   <form:options items="${poleList}" itemValue="id" itemLabel="libelle"/>
@@ -290,15 +287,15 @@
               <div class="flex items-center mt-2">
                 <div class="w-56 mr-2 text-right">
                   <form:label class="mt-2" path="editAdherent.isArtipole"><spring:message code="label.adhArtipole"/></form:label>
-                  </div>
-                <form:checkbox class="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500  focus:ring-2 " path="editAdherent.isArtipole"/>
+                </div>
+                <form:checkbox class="input-checkbox" path="editAdherent.isArtipole"/>
               </div>
 
               <div class="flex items-center mt-2">
                 <div class="flex-grow w-56 mr-2 text-right">
                   <form:label class="mt-2" path="editAdherent.latitude"><spring:message code="label.latitude"/></form:label>
-                  </div>
-                <form:input class="flex-grow py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+                </div>
+                <form:input class="flex-grow w-96 input-text"
                             name="editAdherent.latitude" path="editAdherent.latitude"/>
                 <form:errors class="error-message" path="editAdherent.latitude"/>
               </div>
@@ -306,8 +303,8 @@
               <div class="flex items-center mt-2">
                 <div class="flex-grow w-56 mr-2 text-right">
                   <form:label class="mt-2" path="editAdherent.longitude"><spring:message code="label.longitude"/></form:label>
-                  </div>
-                <form:input class="flex-grow py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+                </div>
+                <form:input class="flex-grow w-96 input-text"
                             name="editAdherent.longitude" path="editAdherent.longitude"/>
                 <form:errors class="error-message" path="editAdherent.longitude"/>
               </div>
@@ -315,12 +312,12 @@
           </div>    
         </div>
 
-        <div class="mt-10 flex justify-center">
-          <button class="mx-1 px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+        <div class="mt-10 flex gap-2 justify-center">
+          <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300"
                   id="save" type="submit">Enregistrer
           </button>
           <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${editForm.editAdherent.id}"/></c:url>
-          <button class="mx-1 px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+          <button class="btn btn-red focus:ring-4 focus:outline-none focus:ring-neutral-300"
                     type="reset" onClick="window.location = '${url}'">Annuler
           </button>
         </div>

@@ -509,7 +509,7 @@
                                                                         path="suiviVisiteAdh.dateCommentaire"
                                                                         placeholder="Date de livraison"/>
                                                                 <form:textarea
-                                                                        class="w-2/3 block text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+                                                                        class="w-2/3 block input-textarea"
                                                                         id="summernote"
                                                                         name="editordata"
                                                                         path="suiviVisiteAdh.commentaire"/>

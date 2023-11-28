@@ -3,12 +3,14 @@ package fr.scabois.scabotheque.controller.artisanArtipole;
 import fr.scabois.scabotheque.bean.adherent.Adherent;
 import fr.scabois.scabotheque.bean.artisanArtipole.Actualite;
 import fr.scabois.scabotheque.bean.artisanArtipole.Categorie;
+import fr.scabois.scabotheque.bean.artisanArtipole.Certification;
 import fr.scabois.scabotheque.bean.artisanArtipole.Emplacement;
 import fr.scabois.scabotheque.bean.artisanArtipole.Inspiration;
 import fr.scabois.scabotheque.bean.artisanArtipole.Metier;
 import fr.scabois.scabotheque.bean.artisanArtipole.Photo;
 import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditAAActualiteForm;
 import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditAACategorieForm;
+import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditAACertificationForm;
 import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditAAEmplacementForm;
 import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditAAPhotoForm;
 import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditAATravauxForm;
@@ -112,8 +114,25 @@ public class ArtisanArtipoleController {
     pModel.addAttribute("listeItems", (Object) list);
     pModel.addAttribute("addForm", (Object) addPhotoForm);
     pModel.addAttribute("navType", NavType.AA_ADMIN);
-    pModel.addAttribute("pageType", (Object) PageType.AA_PHOTO);
+    pModel.addAttribute("pageType", (Object) PageType.AA_PHOTOS);
     return "AA-page-photos";
+  }
+
+  @RequestMapping(value = {"/AA-page-certifications"}, method = {RequestMethod.GET})
+  public String certification(final ModelMap pModel) {
+    final List<Certification> list = (List<Certification>) this.service.loadCertifications();
+    EditAACertificationForm addCertificationForm;
+    if (pModel.get((Object) "addForm") == null) {
+      addCertificationForm = new EditAACertificationForm();
+    } else {
+      addCertificationForm = (EditAACertificationForm) pModel.get((Object) "addForm");
+    }
+    pModel.addAttribute("nbAdherent", (Object) list.size());
+    pModel.addAttribute("listeItems", (Object) list);
+    pModel.addAttribute("addForm", (Object) addCertificationForm);
+    pModel.addAttribute("navType", NavType.AA_ADMIN);
+    pModel.addAttribute("pageType", (Object) PageType.AA_CERTIFICATIONS);
+    return "AA-page-certifications";
   }
 
   @RequestMapping(value = {"/AA-page-emplacement"}, method = {RequestMethod.GET})
@@ -129,7 +148,7 @@ public class ArtisanArtipoleController {
     pModel.addAttribute("addForm", (Object) addEmplacementForm);
     pModel.addAttribute("listeEmplacements", (Object) list);
     pModel.addAttribute("navType", NavType.AA_ADMIN);
-    pModel.addAttribute("pageType", (Object) PageType.AA_EMPLACEMENT);
+    pModel.addAttribute("pageType", (Object) PageType.AA_EMPLACEMENTS);
     return "AA-page-emplacement";
   }
 
@@ -145,9 +164,6 @@ public class ArtisanArtipoleController {
     pModel.addAttribute("listeItems", this.service.loadTravauxList());
     pModel.addAttribute("navType", NavType.AA_ADMIN);
     pModel.addAttribute("pageType", PageType.AA_TRAVAUX);
-
-    //List<String> specialites = addTravauxForm.getEditAATravaux().getSpecialites();
-    //pModel.addAttribute("specialites", specialites);
     return "AA-page-travaux";
   }
 
@@ -170,7 +186,7 @@ public class ArtisanArtipoleController {
   @RequestMapping(value = {"/AA-page-listes"}, method = {RequestMethod.GET})
   public String lesListes(final ModelMap pModel) {
     final List<Metier> listMetiers = (List<Metier>) this.service.loadMetiers();
-    final List<Categorie> listCategories = (List<Categorie>) this.service.loadCategories();
+    //final List<Categorie> listCategories = (List<Categorie>) this.service.loadCategories();
     EditMetierForm addForm;
     if (pModel.get((Object) "addForm") == null) {
       addForm = new EditMetierForm();
@@ -179,7 +195,7 @@ public class ArtisanArtipoleController {
     }
     pModel.addAttribute("addForm", (Object) addForm);
     pModel.addAttribute("listeMetiers", (Object) listMetiers);
-    pModel.addAttribute("listeCategories", (Object) listCategories);
+    //pModel.addAttribute("listeCategories", (Object) listCategories);
     pModel.addAttribute("navType", NavType.AA_ADMIN);
     pModel.addAttribute("pageType", (Object) PageType.GESTION_METIER);
     return "AA-page-listes";

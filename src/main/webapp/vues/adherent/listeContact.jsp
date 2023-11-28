@@ -109,12 +109,10 @@
                     <form:options items="${agencesList}" itemValue="id" itemLabel="libelle"/>
                   </form:select>
                 </div>
-                <div class="flex flex-col w-full px-6">
+                <div class="flex flex-col w-full px-6 gap-1 mt-3">
                   <div class="w-100 col-md-3">
-                    <div class="form-group clearfix">
-                      <form:checkbox
-                        class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
-                        id="showAdminOnly" name="showAdminOnly" path="showAdminOnly"/>
+                    <div class="form-group clearfix flex items-center gap-1.5">
+                      <form:checkbox class="input-checkbox" id="showAdminOnly" name="showAdminOnly" path="showAdminOnly"/>
                       <label style="float:none;" for="showAdminOnly"><spring:message
                           code="label.filtre.isAdministrateur"/></label>
                     </div>
@@ -122,42 +120,35 @@
                   <!-- /.col -->
                   <div class="w-100 col-md-3">
                     <!-- checkbox -->
-                    <div class="form-group clearfix">
-                      <form:checkbox
-                        class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
-                        id="showSousCompte" name="showSousCompte" path="showSousCompte"/>
+                    <div class="form-group clearfix flex items-center gap-1.5">
+                      <form:checkbox class="input-checkbox" id="showSousCompte" name="showSousCompte" path="showSousCompte"/>
                       <label style="float:none;" for="showSousCompte"><spring:message
                           code="label.filtre.sousCompte"/></label>
                     </div>
                   </div>
                   <!-- /.col -->
                   <div class="w-100 col-md-3">
-                    <div class="form-group clearfix">
-                      <form:checkbox
-                        class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
-                        id="showArtipoleOnly" name="showArtipoleOnly"
-                        path="showArtipoleOnly"/>
+                    <div class="form-group clearfix flex items-center gap-1.5">
+                      <form:checkbox class="input-checkbox" id="showArtipoleOnly" name="showArtipoleOnly" path="showArtipoleOnly"/>
                       <label style="float:none;" for="showArtipoleOnly"><spring:message
                           code="label.filtre.isArtipole"/></label>
                     </div>
                   </div>
                   <!-- /.col -->
                   <div class="w-100 col-md-3">
-                    <div class="form-group clearfix">
-                      <form:checkbox
-                        class="w-4 h-4 text-neutral-600 bg-white rounded border-gray-300 focus:ring-neutral-500 focus:ring-2"
-                        id="showAll" name="showAll" path="showAll"/>
+                    <div class="form-group clearfix flex items-center gap-1.5">
+                      <form:checkbox class="input-checkbox" id="showAll" name="showAll" path="showAll"/>
                       <label style="float:none;" for="showAll"><spring:message
                           code="label.filtre.inactif"/></label>
                     </div>
                   </div>
-                  <div class="flex gap-2 mt-2 pt-6">
+                  <div class="flex gap-2 justify-center mt-2">
                     <button id="actionButton"
-                            class="px-3 py-3 text-xs text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+                            class="btn btn-green btn-small focus:ring-4 focus:outline-none focus:ring-neutral-300"
                             type="submit">
                       Rechercher
                     </button>
-                    <button class="px-3 py-3 text-xs text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+                    <button class="btn btn-red btn-small focus:ring-4 focus:outline-none focus:ring-neutral-300"
                             type="reset" onclick="window.location.href = '${urlInit}'">
                       Effacer
                     </button>
@@ -165,7 +156,6 @@
                 </div>
               </div>
             </div>
-
           </form:form>
 
         </div>
@@ -173,7 +163,6 @@
     </div>
 
     <!-- ADVANCE SEARCH -->
-
 
     <!-- Default box -->
     <div class="card card-lightneutral">

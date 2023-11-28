@@ -24,7 +24,7 @@
             <div class="text-4xl font-medium text-green-700">
                 <c:out value="${nbAdherents}"/>
             </div>
-            <div class="pt-4 ml-3 text-md font-medium text-green-700">
+            <div class="pt-4 ml-2 text-md font-medium text-green-700">
                 adhérents.
             </div>
         </div>
@@ -51,7 +51,7 @@
 
     <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_EXPLOITATION')">
         <a href="ordreTournee?list=adh"
-           class="flex gap-4 shadow-lg shadow-green-500/30 justify-center pt-7 w-64 flex h-28 bg-green-100 border-t-4 border-green-500 cursor-pointer hover:bg-green-200 rounded-lg">
+           class="flex gap-3 shadow-lg shadow-green-500/30 justify-center items-center w-64 flex h-28 bg-green-100 border-t-4 border-green-500 cursor-pointer hover:bg-green-200 rounded-lg">
             <svg class="stroke-emerald-700 w-11 h-11" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                  xmlns="http://www.w3.org/2000/svg">
                 <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path>
@@ -59,7 +59,7 @@
                       d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path>
             </svg>
             <div class="flex justify-center">
-                <div class="pt-4 text-md font-medium text-green-700">
+                <div class="text-md font-medium text-green-700">
                     Base Logistique
                 </div>
             </div>

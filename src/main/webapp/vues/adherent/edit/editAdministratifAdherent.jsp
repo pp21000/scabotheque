@@ -9,8 +9,8 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
 
 <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${editForm.editAdherent.id}"/></c:url>
-  <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
-          id="cancel" type="reset" onClick="window.location = '${url}'">< Retour
+<button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" id="cancel" type="reset" onClick="window.location = '${url}'">
+  <spring:message code="label.retour"/>
 </button>
 
 <div class="flex justify-center">
@@ -107,7 +107,7 @@
       <div class="showDetail">
         <form:label path="editAdherent.role"><spring:message code="label.role"/></form:label>
         <form:select
-          class="flex justify-center py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+          class="flex justify-center py-2 px-4 w-96 input-select"
           name="editAdherent.role" path="editAdherent.role.id">
           <form:options items="${roleList}" itemValue="id" itemLabel="libelle"/>
         </form:select>
@@ -117,7 +117,7 @@
       <div class="showDetail">
         <form:label path="editAdherent.adherentType"><spring:message code="label.adherentType"/></form:label>
         <form:select
-          class="flex justify-center py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+          class="flex justify-center py-2 px-4 w-96 input-select"
           name="editAdherent.adherentType" path="editAdherent.adherentType.id">
           <form:options items="${adhTypesList}" itemValue="id" itemLabel="libelle"/>
         </form:select>
@@ -126,7 +126,7 @@
       <div class="showDetail">
         <form:label path="editAdherent.compteType"><spring:message code="label.reglement"/></form:label>
         <form:select
-          class="flex justify-center py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+          class="flex justify-center py-2 px-4 w-96 input-select"
           name="editAdherent.compteType" path="editAdherent.compteType.id">
           <form:options items="${compteTypeList}" itemValue="id" itemLabel="libelle"/>
         </form:select>
@@ -136,7 +136,7 @@
         <form:label path="editAdherent.formeJuridique"><spring:message
             code="label.formeJuridique"/></form:label>
         <form:select
-          class="flex justify-center py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+          class="flex justify-center py-2 px-4 w-96 input-select"
           name="editAdherent.formeJuridique" path="editAdherent.formeJuridique.id">
           <form:options items="${formJuridList}" itemValue="id" itemLabel="libelle"/>
         </form:select>
@@ -145,7 +145,7 @@
       <div class="showDetail">
         <form:label path="editAdherent.siren"><spring:message code="label.siren"/></form:label>
         <form:input
-          class="flex justify-center py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+          class="flex justify-center py-2 px-4 w-96 input-text"
           name="editAdherent.siren" path="editAdherent.siren"/>
         <form:errors class="error-message" path="editAdherent.siren"/>
       </div>
@@ -153,7 +153,7 @@
       <div class="showDetail">
         <form:label path="editAdherent.siret"><spring:message code="label.siret"/></form:label>
         <form:input
-          class="flex justify-center py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+          class="flex justify-center py-2 px-4 w-96 input-text"
           name="editAdherent.siret" path="editAdherent.siret"/>
         <form:errors class="error-message" path="editAdherent.siret"/>
       </div>
@@ -161,7 +161,7 @@
       <div class="showDetail">
         <form:label path="editAdherent.ape"><spring:message code="label.ape"/></form:label>
         <form:select
-          class="flex justify-center py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+          class="flex justify-center py-2 px-4 w-96 input-select"
           name="editAdherent.ape" path="editAdherent.ape.id">
           <form:options items="${apeList}" itemValue="id" itemLabel="libelle"/>
         </form:select>
@@ -169,14 +169,14 @@
 
       <div class="showDetail">
         <form:label path="editAdherent.numRepMetier"><spring:message code="label.numRepMetier"/></form:label>
-        <form:input class="flex justify-center py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+        <form:input class="flex justify-center py-2 px-4 w-96 input-text"
                     name="editAdherent.numRepMetier" path="editAdherent.numRepMetier"/>
         <form:errors class="error-message" path="editAdherent.numRepMetier"/>
       </div>
 
       <div class="showDetail"> 
         <form:label path="editAdherent.rcsRm" ><spring:message code="label.rcsRm"/></form:label> 
-        <form:select class="flex justify-center py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+        <form:select class="flex justify-center py-2 px-4 w-96 input-select"
                      name="editAdherent.rcsRm" path="editAdherent.rcsRm">
           <form:option value=""></form:option>
           <form:option value="RCS">RCS</form:option>
@@ -321,7 +321,7 @@
                   
       <div class="showDetail">
         <form:label path="editAdherent.formationDirigeant"><spring:message code="label.formationCommerce"/></form:label>
-        <form:input class="flex justify-center py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
+        <form:input class="flex justify-center py-2 px-4 w-96 input-text"
                     name="editAdherent.formationDirigeant" path="editAdherent.formationDirigeant"/>
       </div>
       
@@ -337,9 +337,7 @@
       </div>
         
       <div class="showDetail flex items-center">
-        <form:checkbox
-          class="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500 focus:ring-2 mr-2"
-          path="editAdherent.cnxEolasAllow"/>
+        <form:checkbox class="mr-2 input-checkbox" path="editAdherent.cnxEolasAllow"/>
         <form:label path="editAdherent.cnxEolasAllow"><spring:message code="label.cnxEolasAllow"/></form:label>
       </div>
 
@@ -356,7 +354,7 @@
       <!--<div class="grid grid-cols-2 gap-2">-->
         <%--<form:label path="editAdherent.etat"><spring:message code="label.etat"/> :</form:label>--%>
         <%--<form:select--%>
-          <!--class="flex py-2 px-4 w-96 text-sm text-gray-900 bg-gray-50 border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"-->
+          <!--class="flex py-2 px-4 w-96 input-select"-->
           <!--name="editAdherent.etat" path="editAdherent.etat.id">-->
           <%--<form:options items="${etatList}" itemValue="id" itemLabel="libelle"/>--%>
         <%--</form:select>--%>
@@ -366,18 +364,16 @@
 
   <fieldset class="flex justify-center mt-4">
     <legend class="text-center mt-4"><spring:message code="label.commentaire"/></legend>
-    <form:textarea
-      class="w-96 h-32 p-1 block text-sm text-gray-900 rounded border border-gray-300 focus:ring-neutral-500 focus:border-neutral-500"
-      id="summernote" name="editordata" path="commentaire"/>
+    <form:textarea class="w-96 h-32 block input-textarea" id="summernote" name="editordata" path="commentaire"/>
   </fieldset>
 
   <div class="flex justify-center gap-2 mt-10">
-    <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
+    <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300"
             id="save" type="submit">Enregistrer
     </button>
     <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${editForm.editAdherent.id}"/></c:url>
-      <button class="px-3 py-3 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300"
-              id="cancel" type="reset" onClick="window.location = '${url}'">Annuler
+    <button class="btn btn-red focus:ring-4 focus:outline-none focus:ring-neutral-300"
+            id="cancel" type="reset" onClick="window.location = '${url}'">Annuler
     </button>
   </div>
 

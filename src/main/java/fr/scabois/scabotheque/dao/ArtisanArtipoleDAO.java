@@ -8,6 +8,7 @@ import fr.scabois.scabotheque.bean.adherent.Adherent;
 import fr.scabois.scabotheque.bean.artisanArtipole.Actualite;
 import fr.scabois.scabotheque.bean.artisanArtipole.Categorie;
 import fr.scabois.scabotheque.bean.artisanArtipole.CategorieSpecialite;
+import fr.scabois.scabotheque.bean.artisanArtipole.Certification;
 import fr.scabois.scabotheque.bean.artisanArtipole.Emplacement;
 import fr.scabois.scabotheque.bean.artisanArtipole.Inspiration;
 import fr.scabois.scabotheque.bean.artisanArtipole.Metier;
@@ -75,6 +76,16 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
   public void deletePhoto(final int idPhoto) {
     try {
       final Photo del = (Photo) this.entityManager.find(Photo.class, idPhoto);
+      this.entityManager.remove(del);
+    } catch (Exception ex) {
+    }
+  }
+
+  @Transactional
+  @Override
+  public void deleteCertification(final int idCertification) {
+    try {
+      final Certification del = (Certification) this.entityManager.find(Certification.class, idCertification);
       this.entityManager.remove(del);
     } catch (Exception ex) {
     }
@@ -210,6 +221,16 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
   }
 
   @Override
+  public Certification loadCertification(final int idCertification) {
+    return (Certification) this.entityManager.find((Class) Certification.class, (Object) idCertification);
+  }
+
+  @Override
+  public List<Certification> loadCertifications() {
+    return (List<Certification>) this.entityManager.createQuery("from Certification", (Class) Certification.class).getResultList();
+  }
+
+  @Override
   public Categorie loadCategorie(final int idCategorie) {
     return (Categorie) this.entityManager.find((Class) Categorie.class, (Object) idCategorie);
   }
@@ -279,6 +300,24 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
       update.setLibelle(photo.getLibelle());
       update.setData(photo.getData());
       update.setAlt(photo.getAlt());
+      this.entityManager.persist((Object) update);
+    }
+  }
+
+  @Transactional
+  @Override
+  public void saveCertification(final Certification certification) {
+    if (certification.getId() == null) {
+      final Certification newCertification = new Certification();
+      newCertification.setLibelle(certification.getLibelle());
+      newCertification.setData(certification.getData());
+      newCertification.setAlt(certification.getAlt());
+      this.entityManager.persist((Object) newCertification);
+    } else {
+      final Certification update = this.loadCertification(certification.getId());
+      update.setLibelle(certification.getLibelle());
+      update.setData(certification.getData());
+      update.setAlt(certification.getAlt());
       this.entityManager.persist((Object) update);
     }
   }

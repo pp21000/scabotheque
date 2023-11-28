@@ -16,7 +16,7 @@
 <div id="accordion-collapse" data-accordion="collapse" class="text-sm font-medium text-gray-900 rounded-xl dark:border-gray-600 dark:text-white">
   <!-- Liste des métiers -->
   <h2 id="accordion-collapse-heading-metiers" class="group flex text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 bg-gray-300 dark:bg-gray-800">
-    <button onclick="toggleListeMetiers()" type="button" class="flex flex-1 text-xl items-center group-hover:bg-gray-400 dark:group-hover:bg-gray-900 rounded-tl-xl justify-between p-5 font-medium text-left" data-accordion-target="#accordion-collapse-body-metier" aria-expanded="false" aria-controls="accordion-collapse-body-metier">
+    <button onclick="toggleListeMetiers()" type="button" data-accordion-target="#accordion-collapse-body-metier" aria-expanded="true" aria-controls="accordion-collapse-body-metier" class="flex flex-1 text-xl items-center group-hover:bg-gray-400 dark:group-hover:bg-gray-900 rounded-tl-xl justify-between p-5 font-medium text-left">
       <span class="flex-1">Liste des métiers</span>
       <svg class="w-6 h-6 dark:fill-gray-100" ><use xlink:href="<c:url value="/resources/images/icones.svg#expand_more"/>"></use></svg>
     </button>
@@ -48,7 +48,7 @@
   <!-- Liste des métiers -->
 
   <!-- Liste des catégories -->
-  <h2 id="accordion-collapse-heading-categories" class="group flex text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 bg-gray-300 dark:bg-gray-800">
+  <%--<h2 id="accordion-collapse-heading-categories" class="group flex text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 bg-gray-300 dark:bg-gray-800">
     <button type="button" onclick="toggleListeCategories()" class="flex flex-1 text-xl items-center group-hover:bg-gray-400 dark:group-hover:bg-gray-900 justify-between p-5 font-medium text-left" data-accordion-target="#accordion-collapse-body-categories" aria-expanded="false" aria-controls="accordion-collapse-body-categories">
       <span class="flex-1">Liste des catégories</span>
       <svg class="w-6 h-6 dark:fill-gray-100"><use xlink:href="<c:url value="/resources/images/icones.svg#expand_more"/>"></use></svg>
@@ -76,11 +76,11 @@
 
       </span>
     </c:forEach>
-  </div>
-
-
+  </div>--%>
+  <!-- Liste des catégories --> 
+  
 </div>
-<!-- Liste des catégories -->
+
 
 <script>
   function confirmDelete(url, nom) {

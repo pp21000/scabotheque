@@ -3,6 +3,7 @@ package fr.scabois.scabotheque.services;
 import fr.scabois.scabotheque.bean.adherent.Adherent;
 import fr.scabois.scabotheque.bean.artisanArtipole.Actualite;
 import fr.scabois.scabotheque.bean.artisanArtipole.Categorie;
+import fr.scabois.scabotheque.bean.artisanArtipole.Certification;
 import fr.scabois.scabotheque.bean.artisanArtipole.Emplacement;
 import fr.scabois.scabotheque.bean.artisanArtipole.Inspiration;
 import fr.scabois.scabotheque.bean.artisanArtipole.Metier;
@@ -15,10 +16,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author dslowensky
- */
 @Service
 public class ServiceArtipole implements IServiceArtipole {
 
@@ -43,6 +40,11 @@ public class ServiceArtipole implements IServiceArtipole {
   @Override
   public void deletePhoto(final int idPhoto) {
     this.dao.deletePhoto(idPhoto);
+  }
+
+  @Override
+  public void deleteCertification(final int idCertification) {
+    this.dao.deleteCertification(idCertification);
   }
 
   @Override
@@ -130,13 +132,19 @@ public class ServiceArtipole implements IServiceArtipole {
     return this.dao.loadPhoto((int) idPhoto);
   }
 
-  /**
-   *
-   * @return
-   */
   @Override
   public List<Photo> loadPhotos() {
     return (List<Photo>) this.dao.loadPhotos();
+  }
+
+  @Override
+  public Certification loadCertification(final Integer idCertification) {
+    return this.dao.loadCertification((int) idCertification);
+  }
+
+  @Override
+  public List<Certification> loadCertifications() {
+    return (List<Certification>) this.dao.loadCertifications();
   }
 
   @Override
@@ -192,5 +200,10 @@ public class ServiceArtipole implements IServiceArtipole {
   @Override
   public void savePhoto(final Photo photo) {
     this.dao.savePhoto(photo);
+  }
+
+  @Override
+  public void saveCertification(final Certification certification) {
+    this.dao.saveCertification(certification);
   }
 }
