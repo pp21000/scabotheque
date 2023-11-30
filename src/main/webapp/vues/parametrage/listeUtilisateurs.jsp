@@ -12,8 +12,7 @@
         <span class="detailLabel mr-2">Nouvel utilisateur :</span>
         <form:input class="input-text" path="userName" placeholder="Nom de l'utilisateur" autofocus="true"/>
         <form:input class="input-text" path="password" placeholder="Mot de passe"/>
-        <button class="btn btn-blue focus:ring-4 focus:outline-none focus:ring-blue-300"
-                type="submit"><spring:message code="label.ajout"/></button>
+        <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-blue-300" type="submit">Ajouter un utilisateur</button>
     </form:form>
 </div>
 
@@ -23,7 +22,7 @@
             <c:forEach items="${utilisateurListe.list}" var="editUser" varStatus="status">
                 <h2 id="accordion-arrow-icon-heading-3">
                     <button type="button"
-                            class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100"
+                            class="mt-2 flex items-center justify-between w-full rounded-t-xl p-5 font-medium text-left text-gray-400 border dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-950"
                             data-accordion-target="#accordion-arrow-icon-body-${status.index}" aria-expanded="false">
                         <span id="user-1${editUser.username}">${editUser.username}</span>
                         <svg class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20"
@@ -35,7 +34,7 @@
                     </button>
                 </h2>
                 <div id="accordion-arrow-icon-body-${status.index}" class="hidden">
-                    <div class="p-5 font-light border border-t-0 border-gray-200">
+                    <div class="rounded-b-xl p-5 font-light border border-t-0 border-gray-200 bg-gray-800">
                         <form:input type="hidden" name="list[${status.index}].id" path="list[${status.index}].id"/>
                         <form:input type="hidden" name="list[${status.index}].password" path="list[${status.index}].password"/>
                         <div>
@@ -43,7 +42,7 @@
                               <form:input class="w-64 input-text" name="list[${status.index}].username" path="list[${status.index}].username"/>
                               <form:input class="w-64 input-text" name="list[${status.index}].newPassword" path="list[${status.index}].newPassword" placeholder="Nouveau mot de passe"/>
                           </div>
-                          <div class="flex justify-center items-center gap-1">
+                          <div class="flex justify-center items-center gap-1 font-medium">
                               <form:checkbox path="list[${status.index}].enabled" class="input-checkbox" value="actif"/> Actif
                           </div>
                         </div>

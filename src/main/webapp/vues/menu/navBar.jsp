@@ -69,27 +69,33 @@
     <div class="hidden w-full md:block md:w-auto" id="navbar-default">
       <ul class="flex flex-col py-2 px-4 mt-4 bg-gray-400 dark:bg-gray-300 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-md md:font-medium md:border-0">
         <li>
-          <a href=<c:url value="/listeAdherents"/>
-             class="<c:if test = "${navType == 'ADHERENT'}"> text-green-600 font-medium animate-pulse </c:if> block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-600 md:p-0">Adhérent</a>
+          <a href="<c:url value="/listeAdherents"/>"
+             class="<c:if test = "${navType == 'ADHERENT'}"> text-green-600 font-medium animate-pulse </c:if> block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-600 md:p-0">
+             Adhérent
+          </a>
         </li>
         <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_EXPLOITATION')">
         <li>
-          <a href=<c:url value="/ordreTournee"/>
-              class="<c:if test = "${navType == 'LOGISTIQUE'}"> text-green-600 font-medium animate-pulse </c:if> block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-600 md:p-0">Tournée</a>
+          <a href="<c:url value="/ordreTournee"/>"
+             class="<c:if test = "${navType == 'LOGISTIQUE'}"> text-green-600 font-medium animate-pulse </c:if> block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-600 md:p-0">
+             Tournée
+          </a>
         </li>
         </sec:authorize>
         <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_ARTIPOLE_EDIT')">
         <li>
-          <a href=<c:url value="/AA-page-accueil"/>
-             class="<c:if test = "${navType == 'AA_ADMIN'}"> text-green-600 font-medium animate-pulse </c:if>
-             block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-600 md:p-0">Artisan Artipole</a>
+          <a href="<c:url value="/AA-page-accueil"/>"
+             class="<c:if test = "${navType == 'ARTISAN_ARTIPOLE'}"> text-green-600 font-medium animate-pulse </c:if> block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-600 md:p-0">
+             Artisan Artipole
+          </a>
         </li>
         </sec:authorize>
         <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
         <li>
-          <a href=<c:url value="/parametrage/listeUtilisateurs"/>
-             class="<c:if test = "${navType == 'INFORMATIQUE'}"> text-green-600 font-medium animate-pulse </c:if>
-             block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-600 md:p-0">Administration</a>
+          <a href="<c:url value="/parametrage/listeUtilisateurs"/>"
+             class="<c:if test = "${navType == 'ADMINISTRATION'}"> text-green-600 font-medium animate-pulse </c:if> block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-600 md:p-0">
+             Administration
+          </a>
         </li>
         </sec:authorize>
         <%--                <li>    --%>
@@ -99,7 +105,7 @@
         <%--                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_ARTIPOLE')">--%>
         <%--                    <li>--%>
         <%--                        <a href="listeAdherents"--%>
-        <%--                           class="<c:if test = "${navType == 'ARTIPOLE'}"> text-green-600 font-medium animate-pulse </c:if> block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-600 md:p-0">Artipôle</a>--%>
+        <%--                           class="<c:if test = "${navType == 'ARTISAN_ARTIPOLE'}"> text-green-600 font-medium animate-pulse </c:if> block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-600 md:p-0">Artipôle</a>--%>
         <%--                    </li>--%>
         <%--                </sec:authorize>--%>
 
@@ -107,7 +113,7 @@
         <%--                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_INFORMATIQUE')">--%>
         <%--                    <li>--%>
         <%--                        <a href="listeAdherents"--%>
-        <%--                           class="<c:if test = "${navType == 'INFORMATIQUE'}"> text-green-600 font-medium animate-pulse </c:if> block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-600 md:p-0">Informatique</a>--%>
+        <%--                           class="<c:if test = "${navType == 'ADMINISTRATION'}"> text-green-600 font-medium animate-pulse </c:if> block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-600 md:p-0">Informatique</a>--%>
         <%--                    </li>--%>
         <%--                </sec:authorize>--%>
 

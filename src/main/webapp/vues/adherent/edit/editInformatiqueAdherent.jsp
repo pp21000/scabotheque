@@ -4,8 +4,8 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${editForm.adherent.id}"/></c:url>
-<button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" id="cancel" type="reset" onClick="window.location='${url}'">
+<c:url value="/adherentProfil" var="urlPrev"><c:param name="tab" value="informatique"/><c:param name="idAdh" value="${editForm.editAdherent.id}"/></c:url>
+<button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" id="cancel" type="reset" onClick="window.location='${urlPrev}'">
   <spring:message code="label.retour"/>
 </button>
 
@@ -13,34 +13,34 @@
   <div class="rounded bg-neutral-50 p-4 border border-neutral-200 flex flex-col items-center">
     <div>
       <c:choose>
-        <c:when test="${editForm.adherent.photo == ''}">
-                <img class="rounded-full" src="<c:url value="/resources/images/noAdh.png" />"/>
+        <c:when test="${editForm.editAdherent.photo == ''}">
+                <img class="rounded-full h-32" src="<c:url value="/resources/images/noAdh.png" />"/>
         </c:when>
         <c:otherwise>
-                <img class="rounded-full" src="${editForm.adherent.photo}">
+                <img class="rounded-full h-32" src="${editForm.editAdherent.photo}">
         </c:otherwise>
       </c:choose>
     </div>
     <div class="flex flex-col">
       <div class="text-center text-lg font-semibold">
-              ${editForm.adherent.denomination}
+              ${editForm.editAdherent.denomination}
       </div>
       <div class="text-center text-sm">
               <spring:message code="label.codeAdh"/> :
-              ${editForm.adherent.code}
+              ${editForm.editAdherent.code}
       </div>
     </div>
   </div>
 </div>
 
 <form:form class="editAdherent" method="post" modelAttribute="editForm" action="editInformatiqueAdh">
- 	<fieldset> 
- 	   	<legend class="text-center underline mt-4 mb-2"><spring:message code="label.informatique"/></legend>
+ 	<fieldset class="mt-10"> 
+ 	   	<%--<legend class="text-center underline mt-4 mb-2"><spring:message code="label.informatique"/></legend>--%>
 
  		<div class="text-center">
                     
                     <!--<div  class="showDetailAdherent">-->
-                        La super page de mofidication de l'informatique ...
+                        La super page de modification de l'informatique ...
                     <!--</div>-->
         
 <%-- 			<form:label path="adherent.agence"><spring:message code="label.agenceRattachement"/></form:label> --%>
@@ -75,12 +75,11 @@
 	</fieldset>
 
 	<div class="flex justify-center gap-2 mt-10">
-          <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300"
-                          id="save" type="submit">Enregistrer
+          <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300" id="save" type="submit">
+            Enregistrer
           </button>
-          <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${editForm.adherent.id}"/></c:url>
-          <button class="btn btn-red focus:ring-4 focus:outline-none focus:ring-neutral-300"
-                          id="cancel" type="reset" onClick="window.location='${url}'">Annuler
+          <button class="btn btn-red focus:ring-4 focus:outline-none focus:ring-neutral-300" id="cancel" type="reset" onClick="window.location='${urlPrev}'">
+            Annuler
           </button>
 	</div>
 

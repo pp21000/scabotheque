@@ -4,8 +4,8 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
-<c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-<button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location = '${url}'">
+<c:url value="/adherentProfil" var="urlPrev"><c:param name="tab" value="contacts"/><c:param name="idAdh" value="${adherent.id}"/></c:url>
+<button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location = '${urlPrev}'">
   <spring:message code="label.retour"/>
 </button>
 
@@ -333,12 +333,11 @@
 <%--    <form:textarea id="summernote" name="editordata" path="commentaire"/>--%>
 
 <div class="flex justify-center gap-2 mt-10">
-  <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300" 
-          type="submit">Enregistrer
+  <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">
+    Enregistrer
   </button>
-  <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-  <button class="btn btn-red focus:ring-4 focus:outline-none focus:ring-neutral-300"
-          type="reset" onClick="window.location = '${url}'">Annuler 
+  <button class="btn btn-red focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location = '${urlPrev}'">
+    Annuler 
   </button>
 </div>
 </form:form>

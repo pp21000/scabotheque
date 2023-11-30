@@ -7,9 +7,9 @@ import fr.scabois.scabotheque.enums.PageType;
 import fr.scabois.scabotheque.enums.RoleEnum;
 import fr.scabois.scabotheque.services.IServiceAdherent;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,10 +27,9 @@ public class EditUtilisateurController {
 
   @RequestMapping(value = "/parametrage/listeUtilisateurs", method = RequestMethod.GET)
   public String afficher(final ModelMap pModel) {
-
     List<User> utilisateurList = service.loadUtilisateurs();
-
     List<EditUtilisateur> editUsersList = utilisateurToEdit(utilisateurList);
+    editUsersList.sort(Comparator.comparing(EditUtilisateur::getUsername));
 
     if (pModel.get("utilisateurListe") == null) {
       EditUtilisateursForm utilisateurForm = new EditUtilisateursForm(editUsersList);
@@ -45,20 +44,19 @@ public class EditUtilisateurController {
       pModel.addAttribute("creation", new CreationUtilisateurForm());
     }
 
-    pModel.addAttribute("navType", NavType.INFORMATIQUE);
+    pModel.addAttribute("navType", NavType.ADMINISTRATION);
 
     return "listeUtilisateurs";
   }
 
   @RequestMapping(value = {"/parametrage/AjoutUtilisateur"}, method = RequestMethod.POST)
-  public String ajoutUtilisateur(@Valid @ModelAttribute(value = "creation") final CreationUtilisateurForm creation,
-          final BindingResult pBindingResult, final ModelMap pModel) {
+  public String ajoutUtilisateur(@Valid @ModelAttribute(value = "creation") final CreationUtilisateurForm creation, final BindingResult pBindingResult, final ModelMap pModel) {
 
     if (!pBindingResult.hasErrors()) {
-      service.createUtilisateur(creation.getUserName(), "{noop}" + creation.getPassword());
+      this.service.createUtilisateur(creation.getUserName(), "{noop}" + creation.getPassword());
     }
 
-    return afficher(pModel);
+    return this.afficher(pModel);
   }
 
   private List<User> editToUtilisateur(EditUtilisateursForm utlList) {
@@ -90,27 +88,23 @@ public class EditUtilisateurController {
     return list;
   }
 
-  @RequestMapping(value = {"/parametrage/listeUtilisateurs"}, method = RequestMethod.POST)
-  public String editUtl(@Valid @ModelAttribute(value = "utilisateurListe") final EditUtilisateursForm utlList,
-          final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
+  @RequestMapping(value = "/parametrage/listeUtilisateurs", method = RequestMethod.POST)
+  public String saveUtl(@Valid @ModelAttribute(value = "utilisateurListe") final EditUtilisateursForm utlList,
+          final BindingResult pBindingResult, final ModelMap pModel) {
 
     if (!pBindingResult.hasErrors()) {
-      List<User> users = editToUtilisateur(utlList);
-
-      service.saveUtilisateur(users);
+      List<User> users = this.editToUtilisateur(utlList);
+      this.service.saveUtilisateur(users);
       users.stream().forEach(u -> {
-        service.saveUtilisateurRoles(u.getId(), u.getRoles());
+        this.service.saveUtilisateurRoles(u.getId(), u.getRoles());
       });
       return "redirect:/parametrage/listeUtilisateurs";
     }
-
-    return afficher(pModel);
+    return this.afficher(pModel);
   }
 
   private List<EditUtilisateur> utilisateurToEdit(List<User> utilisateurList) {
-
     List<EditUtilisateur> retour = new ArrayList<>();
-
     utilisateurList.stream().forEach(c -> {
       EditUtilisateur edit = new EditUtilisateur();
       edit.setId(c.getId());

@@ -9,10 +9,9 @@
 <%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 
-<div class="grid grid-cols-4 gap-2 w-full">
+<div class="grid grid-cols-4 gap-2 w-full"> 
   <div>
     <div class="bg-neutral-200 rounded-xl p-2">
-      
       <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')">
         <div class="flex items-center">
           <c:url value="/edit/editIdentiteAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
@@ -315,55 +314,53 @@
 
   <div class="col-span-3 w-full">
     <div class="flex gap-2 w-full">
-      <div class=" flex justify-center rounded-xl px-4 w-full">
+      <div class="flex justify-center w-full">
         <div class="flex flex-col w-full">
           <div class="w-full flex justify-center mb-1">
             <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab"
                 data-tabs-toggle="#myTabContent" role="tablist">
               <li class="mr-2" role="presentation">
                 <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
-                        id="profile-tab" data-tabs-target="#profile" type="button" role="tab"
-                        aria-controls="profile" aria-selected="true">Contacts
+                        id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" 
+                        aria-selected="<c:if test = "${param.tab == 'contacts'}">true</c:if>">Contacts
                 </button>
               </li>
               <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CRM')">
                 <li class="mr-2" role="presentation">
                   <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
-                          id="settings-tab" data-tabs-target="#settings" type="button" role="tab"
-                          aria-controls="settings" aria-selected="false">CRM
+                          id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings" 
+                          aria-selected="<c:if test = "${param.tab == 'crm'}">true</c:if>">CRM
                   </button>
                 </li>
               </sec:authorize>
               <li class="mr-2" role="presentation">
                 <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
-                        id="commerce-tab" data-tabs-target="#commerce" type="button" role="tab"
-                        aria-controls="profile" aria-selected="false">Commerce
+                        id="commerce-tab" data-tabs-target="#commerce" type="button" role="tab" aria-controls="profile" 
+                        aria-selected="<c:if test = "${param.tab == 'commerce'}">true</c:if>">Commerce
                 </button>
               </li>
               <li class="mr-2" role="presentation">
                 <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
-                        id="artipole-tab" data-tabs-target="#artipole" type="button" role="tab"
-                        aria-controls="profile" aria-selected="false">Artipôle
+                        id="artipole-tab" data-tabs-target="#artipole" type="button" role="tab" aria-controls="profile" 
+                        aria-selected="<c:if test = "${param.tab == 'artipole'}">true</c:if>">Artipôle
                 </button>
               </li>
               <li class="mr-2" role="presentation">
                 <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
-                        id="logistique-tab" data-tabs-target="#logistique" type="button" role="tab"
-                        aria-controls="profile" aria-selected="false">Logistique
+                        id="logistique-tab" data-tabs-target="#logistique" type="button" role="tab" aria-controls="profile" 
+                        aria-selected="<c:if test = "${param.tab == 'logistique'}">true</c:if>">Logistique
                 </button>
               </li>
               <li class="mr-2" role="presentation">
                 <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
-                        id="administratif-tab" data-tabs-target="#administratif" type="button"
-                        role="tab"
-                        aria-controls="profile" aria-selected="false">Administratif
+                        id="administratif-tab" data-tabs-target="#administratif" type="button" role="tab" aria-controls="profile" 
+                        aria-selected="<c:if test = "${param.tab == 'administratif'}">true</c:if>">Administratif
                 </button>
               </li>
               <li class="mr-2" role="presentation">
                 <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
-                        id="informatique-tab" data-tabs-target="#informatique" type="button"
-                        role="tab"
-                        aria-controls="profile" aria-selected="false">Informatique
+                        id="informatique-tab" data-tabs-target="#informatique" type="button" role="tab" aria-controls="profile" 
+                        aria-selected="<c:if test = "${param.tab == 'informatique'}">true</c:if>">Informatique
                 </button>
               </li>
               <%--                                <sec:authorize access="hasAnyRole('ROLE_ADMIN')">--%>
@@ -646,28 +643,22 @@
               </div>
             </div>
 
-            <div id="commerce" role="tabpanel"
-                 aria-labelledby="commerce-tab">
+            <div id="commerce" role="tabpanel" aria-labelledby="commerce-tab">
               <jsp:include page="../customViewsAdhProfil/commerce.jsp"/>
             </div>
-            <div id="artipole" role="tabpanel"
-                 aria-labelledby="artipole-tab">
+            <div id="artipole" role="tabpanel" aria-labelledby="artipole-tab">
               <jsp:include page="../customViewsAdhProfil/artipole.jsp"/>
             </div>
-            <div id="logistique" role="tabpanel"
-                 aria-labelledby="logistique-tab">
+            <div id="logistique" role="tabpanel" aria-labelledby="logistique-tab">
               <jsp:include page="../customViewsAdhProfil/logistique.jsp"/>
             </div>
-            <div id="administratif" role="tabpanel"
-                 aria-labelledby="administratif-tab">
+            <div id="administratif" role="tabpanel" aria-labelledby="administratif-tab">
               <jsp:include page="../customViewsAdhProfil/administratif.jsp"/>
             </div>
-            <div id="informatique" role="tabpanel"
-                 aria-labelledby="informatique-tab">
+            <div id="informatique" role="tabpanel" aria-labelledby="informatique-tab">
               <jsp:include page="../customViewsAdhProfil/informatique.jsp"/>
             </div>
-            <div class="hidden p-4 rounded-lg" id="settings" role="tabpanel"
-                 aria-labelledby="settings-tab">
+            <div class="hidden p-4 rounded-lg" id="settings" role="tabpanel" aria-labelledby="settings-tab">
               
               <!--CRM-->
               <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CRM')">
@@ -704,8 +695,7 @@
                                 Enregistrer le suivi
                               </button>
                             </div>
-                            <form:errors class="error-message"
-                                         path="suiviVisiteAdh.dateCommentaire"/>
+                            <form:errors class="error-message" path="suiviVisiteAdh.dateCommentaire"/>
                           </div>
                         </fieldset>
 
@@ -720,15 +710,13 @@
                             <span class="username">
                               <span class="text-sm">
                                 <spring:message code="label.dateSuivi"/>:
-                                <fmt:formatDate pattern="dd/MM/yyyy"
-                                                value="${visite.dateCommentaire}"/>
+                                <fmt:formatDate pattern="dd/MM/yyyy" value="${visite.dateCommentaire}"/>
                               </span>
                               <c:url value="/edit/editCRMAdh" var="url">
                                 <c:param name="idAdh" value="${adherent.id}"/>
                                 <c:param name="idSuivi" value="${visite.id}"/>
                               </c:url>
-                              <a href="${url}" class="float-right btn-default"><i
-                                  class="fa fa-pencil"></i></a>
+                              <a href="${url}" class="float-right btn-default"><i class="fa fa-pencil"></i></a>
                             </span>
                           </div>
                           <p>${visite.commentaireString}</p>
@@ -739,8 +727,7 @@
                 </div>
               </sec:authorize>
             </div>
-            <div class="hidden p-4 rounded-lg" id="contacts" role="tabpanel"
-                 aria-labelledby="contacts-tab">
+            <div class="hidden p-4 rounded-lg" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
               <div>
                 <div class="flex flex-col gap-6">
                   <div class="flex justify-evenly">
@@ -777,8 +764,7 @@
                     <%--                                                </a>--%>
                     <%--                                            </sec:authorize>--%>
                     <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_EXPLOITATION_EDIT')">
-                      <c:url value="/edit/editExploitationAdh" var="url"><c:param name="idAdh"
-                                                                                  value="${adherent.id}"/></c:url>
+                      <c:url value="/edit/editExploitationAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
                       <a href="${url}" class="nav-link flex gap-1">
 
                         <svg class="w-6 h-6" fill="none" stroke="currentColor"

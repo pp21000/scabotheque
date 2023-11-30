@@ -56,7 +56,8 @@ public class ContactController {
   public String addContact(@Valid @ModelAttribute("contactToAdd") final AddAdherentContactForm newContact, final BindingResult pBindingResult, final ModelMap pModel, final HttpServletRequest request) {
     if (!pBindingResult.hasErrors()) {
       this.service.createContactAdherent(this.editToContact(newContact.getContact()));
-      return "redirect:/adherentProfil?idAdh=" + newContact.getContact().getAdherentId();
+      return redirectOkPage(PageType.ADHERENT_PROFIL, newContact.getContact().getAdherentId());
+
     }
     return this.editContact(newContact.getContact().getAdherentId(), pModel, request);
   }
@@ -267,7 +268,7 @@ public class ContactController {
     } else {
       pModel.addAttribute("contactToAdd", pModel.get((Object) "contactToAdd"));
     }
-    pModel.addAttribute("pageType", (Object) PageType.LIST_ADHERENT);
+    pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
     return "editContactAdh";
   }
 
@@ -411,7 +412,16 @@ public class ContactController {
       final List<AdherentContactRole> contacts = this.editToContactList(adhContactEditable);
       this.service.saveAdherentContacts((List) contacts);
       this.service.saveAdherentCommentaire(adhId, PageType.ADHERENT_DETAIL, editForm.getCommentaire());
-      return "redirect:/adherentProfil?idAdh=" + adhId;
+      return redirectOkPage(PageType.ADHERENT_PROFIL, adhId);
+    }
+    return this.editContact(adhId, pModel, request);
+  }
+
+  @RequestMapping(value = {"/edit/supprimeContact"}, method = {RequestMethod.GET})
+  public String supprimeAdherentContact(@RequestParam("adhId") final Integer adhId, @RequestParam("ctId") final Integer contactId, final ModelMap pModel, final HttpServletRequest request) {
+    if (contactId != null) {
+      this.service.supprimeAdherentContact(contactId);
+      return redirectOkPage(PageType.ADHERENT_PROFIL, adhId);
     }
     return this.editContact(adhId, pModel, request);
   }
@@ -467,12 +477,4 @@ public class ContactController {
     return "redirect:/" + page + "?idAdh=" + adhId;
   }
 
-  @RequestMapping(value = {"/edit/supprimeContact"}, method = {RequestMethod.GET})
-  public String supprimeAdherentContact(@RequestParam("adhId") final Integer adhId, @RequestParam("ctId") final Integer contactId, final ModelMap pModel, final HttpServletRequest request) {
-    if (contactId != null) {
-      this.service.supprimeAdherentContact(contactId);
-      return "redirect:/adherentProfil?idAdh=" + adhId;
-    }
-    return this.editContact(adhId, pModel, request);
-  }
 }

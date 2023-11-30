@@ -17,10 +17,6 @@ import fr.scabois.scabotheque.bean.artisanArtipole.Specialite;
 import fr.scabois.scabotheque.bean.artisanArtipole.Travaux;
 import java.util.List;
 
-/**
- *
- * @author paul.petit
- */
 public interface IArtisanArtipoleDAO {
 
   void deleteActualite(final int p0);

@@ -8,10 +8,10 @@
 
 
   <c:url value="/AA-page-listes" var="url"/>
-  <button class="btn btn-black focus:ring-4 focus:outline-none focus:ring-neutral-300"
-          type="reset" onClick="window.location = '${url}'"><spring:message code="label.retour"/>
+  <button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location = '${url}'">
+    <spring:message code="label.retour"/>
   </button>
-  <button class="btn btn-blue" id="addBtn" type="button" onclick="showNewForm()">Ajouter un Métier</button>
+  <button class="btn btn-green" id="addBtn" type="button" onclick="showNewForm()">Ajouter un Métier</button>
   
 <div class="flex flex-col items-center">
 

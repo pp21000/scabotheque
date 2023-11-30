@@ -2,6 +2,7 @@ package fr.scabois.scabotheque.services;
 
 import fr.scabois.scabotheque.bean.adherent.Adherent;
 import fr.scabois.scabotheque.bean.adherent.AdherentActivite;
+import fr.scabois.scabotheque.bean.adherent.AdherentCertification;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactComptable;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
 import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
@@ -192,6 +193,8 @@ public interface IServiceAdherent {
 
   public List<AdherentMetier> loadAdherentMetiers(int var1);
 
+  public List<AdherentCertification> loadAdherentCertifications(int var1);
+
   public List<AdherentSpecialite> loadAdherentSpecialites(int var1);
 
   public AdherentContactRole loadContact(Integer var1);
@@ -199,6 +202,8 @@ public interface IServiceAdherent {
   public void saveAdherentLogistique(AdherentLogistique var1);
 
   public void saveAdherentMetiers(int var1, List<AdherentMetier> var2);
+
+  public void saveAdherentCertifications(int var1, List<AdherentCertification> var2);
 
   public void saveAdherentSpecialites(int var1, List<AdherentSpecialite> var2);
 }

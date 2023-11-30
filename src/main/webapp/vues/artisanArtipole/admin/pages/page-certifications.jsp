@@ -12,13 +12,12 @@
 <div class="flex flex-col items-center">
 
   <div class="w-full">
-    <button class="btn btn-blue btn-small" 
-            id="addItemBtn" type="button" onclick="showAddForm()"><spring:message code="label.addCertification"/></button>
+    <button class="btn btn-green btn-small" id="addItemBtn" type="button" onclick="showAddForm()">Ajouter une certification</button>
   </div>
 
 
   <form:form class="editAdherent" method="post" modelAttribute="addForm" action="AA-add-certification?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
-    <div class="hidden" id="addItemForm" title="<spring:message code="label.addCertification"/>">
+    <div class="hidden" id="addItemForm" title="Ajouter une certification">
       <fieldset>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">

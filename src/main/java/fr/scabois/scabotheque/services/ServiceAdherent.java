@@ -2,6 +2,7 @@ package fr.scabois.scabotheque.services;
 
 import fr.scabois.scabotheque.bean.adherent.Adherent;
 import fr.scabois.scabotheque.bean.adherent.AdherentActivite;
+import fr.scabois.scabotheque.bean.adherent.AdherentCertification;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactComptable;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
 import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
@@ -144,12 +145,12 @@ public class ServiceAdherent implements IServiceAdherent {
 
   @Override
   public List<Activite> loadActivites() {
-    return (List<Activite>) this.dao.loadActivites();
+    return this.dao.loadActivites();
   }
 
   @Override
   public List<AdherentActivite> loadActivitesAdherent(final int idAdh) {
-    return (List<AdherentActivite>) this.dao.loadActivitesAdherent(idAdh);
+    return this.dao.loadActivitesAdherent(idAdh);
   }
 
   @Override
@@ -164,7 +165,7 @@ public class ServiceAdherent implements IServiceAdherent {
 
   @Override
   public List<AdherentContactRole> loadAdherentContact(final int adhId) {
-    return (List<AdherentContactRole>) this.dao.loadAdherentContact(adhId);
+    return this.dao.loadAdherentContact(adhId);
   }
 
   @Override
@@ -174,27 +175,32 @@ public class ServiceAdherent implements IServiceAdherent {
 
   @Override
   public List<AdherentContactRole> loadAdherentContactFonction(final int adhId, final Boolean isDirigeant, final Boolean isCommerce, final Boolean isAdmin, final Boolean isCompta) {
-    return (List<AdherentContactRole>) this.dao.loadAdherentContactFonction(adhId, isDirigeant, isCommerce, isAdmin, isCompta);
+    return this.dao.loadAdherentContactFonction(adhId, isDirigeant, isCommerce, isAdmin, isCompta);
   }
 
   @Override
   public List<AdherentContactRole> loadAdherentContact(final CriteriaAdherent criteria) {
-    return (List<AdherentContactRole>) this.dao.loadAdherentContact(criteria);
+    return this.dao.loadAdherentContact(criteria);
   }
 
   @Override
   public List<AdherentMetier> loadAdherentMetiers(final int idAdh) {
-    return (List<AdherentMetier>) this.dao.loadAdherentMetiers(idAdh);
+    return this.dao.loadAdherentMetiers(idAdh);
+  }
+
+  @Override
+  public List<AdherentCertification> loadAdherentCertifications(final int idAdh) {
+    return this.dao.loadAdherentCertifications(idAdh);
   }
 
   @Override
   public List<AdherentSpecialite> loadAdherentSpecialites(final int idAdh) {
-    return (List<AdherentSpecialite>) this.dao.loadAdherentSpecialites(idAdh);
+    return this.dao.loadAdherentSpecialites(idAdh);
   }
 
   @Override
   public List<ContactRetraite> loadContactsRetraite() {
-    return (List<ContactRetraite>) this.dao.loadContactsRetraite();
+    return this.dao.loadContactsRetraite();
   }
 
   @Override
@@ -204,7 +210,7 @@ public class ServiceAdherent implements IServiceAdherent {
 
   @Override
   public List<ContactClubFemme> loadContactsClubFemme() {
-    return (List<ContactClubFemme>) this.dao.loadContactsClubFemme();
+    return this.dao.loadContactsClubFemme();
   }
 
   @Override
@@ -212,11 +218,6 @@ public class ServiceAdherent implements IServiceAdherent {
     return this.dao.loadAdherentLogistique(idAdh);
   }
 
-  /**
-   *
-   * @param idAdh
-   * @return
-   */
   @Override
   public AdherentInformatique loadAdherentInformatique(final int idAdh) {
     return this.dao.loadAdherentInformatique(idAdh);
@@ -227,22 +228,11 @@ public class ServiceAdherent implements IServiceAdherent {
     return this.dao.loadAdherentSuiviVisite(suiviId);
   }
 
-  /**
-   *
-   * @param adhId
-   * @return
-   */
   @Override
   public List<AdherentSuiviVisite> loadAdherentSuivisVisites(final int adhId) {
-    return (List<AdherentSuiviVisite>) this.dao.loadAdherentSuivisVisites(adhId);
+    return this.dao.loadAdherentSuivisVisites(adhId);
   }
 
-  /**
-   *
-   * @param adhId
-   * @param criteria
-   * @return
-   */
   @Override
   public List<AdherentSuiviVisite> loadAdherentSuivisVisites(final Integer adhId, final CriteriaCRM criteria) {
     return this.loadAdherentSuivisVisites(adhId).stream().filter(sv -> sv.getCommentaireString().contains(criteria.getText())).collect(Collectors.toList());
@@ -250,86 +240,82 @@ public class ServiceAdherent implements IServiceAdherent {
 
   @Override
   public List<AdherentType> loadAdherentTypes() {
-    return (List<AdherentType>) this.dao.loadAdherentTypes();
+    return this.dao.loadAdherentTypes();
   }
 
   @Override
   public List<Adherent> loadAdherents() {
-    return (List<Adherent>) this.dao.loadAdherents();
+    return this.dao.loadAdherents();
   }
 
   @Override
   public List<AdherentContactRole> loadAdherentsContact() {
-    return (List<AdherentContactRole>) this.dao.loadAdherentsContact();
+    return this.dao.loadAdherentsContact();
   }
 
   @Override
   public List<Adherent> loadAdherents(final CriteriaAdherent criteria) {
-    return (List<Adherent>) this.dao.loadAdherents(criteria);
+    return this.dao.loadAdherents(criteria);
   }
 
   @Override
   public List<Agence> loadAgences() {
-    return (List<Agence>) this.dao.loadAgences();
+    return this.dao.loadAgences();
   }
 
   @Override
   public List<Ape> loadCodeApes() {
-    return (List<Ape>) this.dao.loadApes();
+    return this.dao.loadApes();
   }
 
   @Override
   public List<Commune> loadCommunes() {
-    return (List<Commune>) this.dao.loadCommunes();
+    return this.dao.loadCommunes();
   }
 
   @Override
   public List<CompteType> loadCompteTypes() {
-    return (List<CompteType>) this.dao.loadCompteTypes();
+    return this.dao.loadCompteTypes();
   }
 
-  /**
-   *
-   * @return
-   */
   @Override
   public List<ContactFonction> loadContactFonctions() {
-    return (List<ContactFonction>) this.dao.loadContactFonction();
+    return this.dao.loadContactFonction();
   }
 
   @Override
   public List<AdherentEtat> loadEtats() {
-    return (List<AdherentEtat>) this.dao.loadEtats();
+    return this.dao.loadEtats();
   }
 
   @Override
   public List<FormeJuridique> loadFormesJuridiques() {
-    return (List<FormeJuridique>) this.dao.loadFormesJuridiques();
+    return this.dao.loadFormesJuridiques();
   }
 
   @Override
   public List<Pole> loadPoles() {
-    return (List<Pole>) this.dao.loadPoles();
+    return this.dao.loadPoles();
   }
 
   @Override
   public List<Role> loadRoles() {
-    return (List<Role>) this.dao.loadRoles();
+    return this.dao.loadRoles();
   }
 
   @Override
   public List<RoleSalarieEOLAS> loadRolesEOLAS() {
-    return (List<RoleSalarieEOLAS>) this.dao.loadRolesEOLAS();
+    return this.dao.loadRolesEOLAS();
   }
 
   @Override
   public List<Secteur> loadSecteurs() {
-    return (List<Secteur>) this.dao.loadSecteurs();
+    return this.dao.loadSecteurs();
   }
 
   @Override
   public List<Tournee> loadTournees() {
-    return (List<Tournee>) this.dao.loadTournees();
+    return this.dao.loadTournees();
   }
 
   @Override
@@ -344,7 +330,7 @@ public class ServiceAdherent implements IServiceAdherent {
 
   @Override
   public List<User> loadUtilisateurs() {
-    return (List<User>) this.dao.loadUtilisateurs();
+    return this.dao.loadUtilisateurs();
   }
 
   @Override
@@ -375,6 +361,11 @@ public class ServiceAdherent implements IServiceAdherent {
   @Override
   public void saveAdherentMetiers(final int adhId, final List<AdherentMetier> adherentMetiers) {
     this.dao.saveAdherentMetiers(adhId, (List) adherentMetiers);
+  }
+
+  @Override
+  public void saveAdherentCertifications(final int adhId, final List<AdherentCertification> adherentCertifications) {
+    this.dao.saveAdherentCertifications(adhId, (List) adherentCertifications);
   }
 
   @Override
@@ -477,10 +468,6 @@ public class ServiceAdherent implements IServiceAdherent {
     this.dao.supprimeRole(id);
   }
 
-  /**
-   *
-   * @param id
-   */
   @Override
   public void supprimeSecteur(final Integer id) {
     this.dao.supprimeSecteur(id);

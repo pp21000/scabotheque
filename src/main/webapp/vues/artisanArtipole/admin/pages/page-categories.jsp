@@ -17,8 +17,7 @@
 <div class="flex flex-col items-center">
 
   <div class="w-full text-right">
-    <button class="btn btn-blue btn-small" 
-            id="addCategorieBtn" type="button" onclick="showAddForm()">Ajouter une catégorie</button>
+    <button class="btn btn-green btn-small" id="addCategorieBtn" type="button" onclick="showAddForm()">Ajouter une catégorie</button>
   </div>
 
 

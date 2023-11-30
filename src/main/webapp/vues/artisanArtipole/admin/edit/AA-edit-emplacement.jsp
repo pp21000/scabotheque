@@ -23,9 +23,9 @@
             Type
           </label>
         </div>
-        <div class="w-3/5" >
-          <%--<form:input class="p-2 bg-white w-full rounded-lg border border-gray-200 text-black" type="text" name="editAAEmplacement.type" path="editAAEmplacement.type" id="type"/>--%>
-          <div class="w-full p-2 text-black border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" type="text" name="editAAEmplacement.type" path="editAAEmplacement.type" id="type"><c:out value="${emplacement.type}"/></div>
+        <div class="w-3/5">
+          <%--<form:input class="w-full input-text" type="text" name="editAAEmplacement.type" path="editAAEmplacement.type" id="type"/>--%>
+          <div class="w-full text-white" name="editAAEmplacement.type" path="editAAEmplacement.type">&nbsp;<c:out value="${emplacement.type}"/></div>
           <form:errors class="error-message" path="editAAEmplacement.type"/>
         </div>
       </div>
@@ -36,7 +36,7 @@
           </label>
         </div >
         <div class="w-3/5">
-          <form:input class="w-full p-2 text-black border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" type="text" name="editAAEmplacement.libelle" path="editAAEmplacement.libelle" id="libelle"/>
+          <form:input class="w-72 input-text" type="text" name="editAAEmplacement.libelle" path="editAAEmplacement.libelle" id="libelle"/>
           <form:errors class="error-message" path="editAAEmplacement.libelle"/>
         </div>
       </div>
@@ -49,7 +49,7 @@
           </label>
         </div>
         <div class="w-3/5" >    
-          <form:input class="w-full p-2 text-black border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" type="text" name="editAAEmplacement.content" path="editAAEmplacement.content" id="content"/>
+          <form:input class="w-full input-text" type="text" name="editAAEmplacement.content" path="editAAEmplacement.content" id="content"/>
           <form:errors class="error-message" path="editAAEmplacement.content"/>
         </div>
       </div>
@@ -83,7 +83,7 @@
           </label>
         </div>
         <div class="w-3/5" >
-          <form:input class="w-full p-2 text-black border rounded border-gray-300 focus:ring-neutral-500 focus:border-neutral-500" type="text" name="editAAEmplacement.alt" path="editAAEmplacement.alt" id="alt"/>
+          <form:input class="w-full input-text" type="text" name="editAAEmplacement.alt" path="editAAEmplacement.alt" id="alt"/>
           <form:errors class="error-message" path="editAAEmplacement.alt"/>
         </div>
       </div>

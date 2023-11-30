@@ -13,10 +13,10 @@
             <div>
                 <c:choose>
                     <c:when test="${adherent.photoImg == ''}">
-                        <img class="rounded-full" src="<c:url value="/resources/images/noAdh.png" />"/>
+                        <img class="rounded-full h-32" src="<c:url value="/resources/images/noAdh.png" />"/>
                     </c:when>
                     <c:otherwise>
-                        <img class="rounded-full" src="${adherent.photoImg}">
+                        <img class="rounded-full h-32" src="${adherent.photoImg}">
                     </c:otherwise>
                 </c:choose>
             </div>

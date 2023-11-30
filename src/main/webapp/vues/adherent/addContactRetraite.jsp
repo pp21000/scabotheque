@@ -31,7 +31,7 @@
         <div class="card-body">
           <div class="grid px-4 md:grid-cols-5 md:gap-6">
             <div class="relative z-0 mb-6 w-full group">
-              <form:label path="editContactRetraite.civilite" class="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"><spring:message code="label.civilite"/></form:label>
+              <form:label path="editContactRetraite.civilite" class="text-xs"><spring:message code="label.civilite"/></form:label>
               <form:select class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" name="contact.civilite" path="editContactRetraite.civilite">
                 <form:options class="dark:bg-gray-600" items="${civilite}"/>
                 <%--<form:option selected="true" value="Mr" />--%>
@@ -39,44 +39,30 @@
               <form:errors class="error-message" path="editContactRetraite.civilite"/>
             </div>  
             <div class="relative z-0 mb-6 w-full group">
-              <form:label path="editContactRetraite.nom"
-                          class="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"><spring:message
-                  code="label.nom"/></form:label>
-              <form:input
-                class="form-control block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                name="editContactRetraite.nom" path="editContactRetraite.nom" autofocus="true"/>
+              <form:label path="editContactRetraite.nom" class="text-xs"><spring:message code="label.nom"/></form:label>
+              <form:input class="form-control block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                          name="editContactRetraite.nom" path="editContactRetraite.nom" autofocus="true"/>
               <form:errors class="error-message" path="editContactRetraite.nom"/>
             </div>
 
             <div class="relative z-0 mb-6 w-full group">
-              <form:label path="editContactRetraite.prenom"
-                          class="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"><spring:message
-                  code="label.prenom"/></form:label>
-              <form:input
-                class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                name="editContactRetraite.prenom" path="editContactRetraite.prenom"/>
+              <form:label path="editContactRetraite.prenom" class="text-xs"><spring:message code="label.prenom"/></form:label>
+              <form:input class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                          name="editContactRetraite.prenom" path="editContactRetraite.prenom"/>
               <form:errors class="error-message" path="editContactRetraite.prenom"/>
             </div>
 
             <div class="relative z-0 mb-6 w-full group">
-              <form:label path="editContactRetraite.fixe"
-                          class="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"><spring:message
-                  code="label.fixe"/>
-              </form:label>
-              <form:input
-                class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                name="editContactRetraite.fixe" path="editContactRetraite.fixe"/>
+              <form:label path="editContactRetraite.fixe" class="text-xs"><spring:message code="label.fixe"/></form:label>
+              <form:input class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                          name="editContactRetraite.fixe" path="editContactRetraite.fixe"/>
               <form:errors class="error-message" path="editContactRetraite.fixe"/>
             </div> 
             
             <div class="relative z-0 mb-6 w-full group">
-              <form:label
-                class="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                path="editContactRetraite.mobile"><spring:message code="label.mobile"/>
-              </form:label>
-              <form:input
-                class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                name="editContactRetraite.mobile" path="editContactRetraite.mobile"/>
+              <form:label class="text-xs" path="editContactRetraite.mobile"><spring:message code="label.mobile"/></form:label>
+              <form:input class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                          name="editContactRetraite.mobile" path="editContactRetraite.mobile"/>
               <form:errors class="error-message" path="editContactRetraite.mobile"/>
             </div>
           </div>
@@ -84,20 +70,15 @@
             
           <div class="grid px-4 md:grid-cols-2 md:gap-6">
             <div class="relative z-0 mb-6 w-full group">
-              <form:label
-                class="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                path="editContactRetraite.mail"><spring:message code="label.mail"/>
+              <form:label class="text-xs" path="editContactRetraite.mail"><spring:message code="label.mail"/>
               </form:label>
-              <form:input
-                class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              <form:input class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="editContactRetraite.mail" path="editContactRetraite.mail"/>
               <form:errors class="error-message" path="editContactRetraite.mail"/>
             </div>
             
             <div class="relative z-0 mb-6 w-full group">
-              <form:label
-                class="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                path="editContactRetraite.commentaire"><spring:message code="label.commentaire"/></form:label>
+              <form:label class="text-xs" path="editContactRetraite.commentaire"><spring:message code="label.commentaire"/></form:label>
               <form:input
                 class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="editContactRetraite.commentaire" path="editContactRetraite.commentaire"/>
@@ -108,9 +89,7 @@
 
           <div class="grid px-4 md:grid-cols-3 md:gap-6">
             <div class="relative z-0 mb-6 w-full group">
-              <form:label
-                class="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                path="editContactRetraite.adresse"><spring:message code="label.adresse"/></form:label>
+              <form:label class="text-xs" path="editContactRetraite.adresse"><spring:message code="label.adresse"/></form:label>
               <form:input
                 class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="editContactRetraite.adresse" path="editContactRetraite.adresse"/>
@@ -118,17 +97,15 @@
             </div>
             
             <div class="relative z-0 mb-6 w-full group">
-              <form:label class="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                          path="editContactRetraite.adresseComplement"><spring:message code="label.adresseComplement"/></form:label>
+              <form:label class="text-xs" path="editContactRetraite.adresseComplement"><spring:message code="label.adresseComplement"/></form:label>
               <form:input class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                           name="editContactRetraite.adresseComplement" path="editContactRetraite.adresseComplement"/>
               <form:errors class="error-message" path="editContactRetraite.adresseComplement"/>
             </div>
             
             <div class="relative z-0 mb-6 w-full group flex items-end">
-              <form:label class="w-full peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                          path="editContactRetraite.commune"><spring:message code="label.commune"/>
-                <div class="flex h-10">
+              <form:label class="w-full text-xs" path="editContactRetraite.commune"><spring:message code="label.commune"/>
+                <div class="flex h-10 mt-0.5">
                   <a type="button" data-modal-toggle="commune-modal" class="input-group-text inline-flex items-center px-3 text-gray-900 bg-gray-200 hover:bg-gray-300 rounded-l border border-r-0 border-gray-300"
                      href="#" id="editAdhCommune" data-toggle="modal"
                      data-target="#modal-adherentCommune">
@@ -180,7 +157,7 @@
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                       <button type="button" id="valideAdhCommune" data-modal-toggle="commune-modal"
-                              class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">
+                              class="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                         Sélectionner
                       </button>
                       <button type="button" data-modal-toggle="commune-modal"

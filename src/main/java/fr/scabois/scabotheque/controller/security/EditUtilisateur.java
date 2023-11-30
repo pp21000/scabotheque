@@ -1,68 +1,68 @@
 package fr.scabois.scabotheque.controller.security;
 
 import java.util.List;
-
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class EditUtilisateur {
-    private boolean enabled;
-    private int id;
-    private String newPassword;
-    @NotEmpty(message = "{modification.notempty}")
-    private String password;
 
-    @NotEmpty(message = "{modification.notempty}")
-    private String username;
+  private boolean enabled;
+  private int id;
+  private String newPassword;
+  @NotEmpty(message = "{modification.notempty}")
+  private String password;
 
-    private List<EditUtilisateurRole> userRoles;
+  @NotEmpty(message = "{modification.notempty}")
+  private String username;
 
-    public boolean getEnabled() {
-	return enabled;
-    }
+  private List<EditUtilisateurRole> userRoles;
 
-    public int getId() {
-	return id;
-    }
+  public boolean getEnabled() {
+    return enabled;
+  }
 
-    public String getNewPassword() {
-	return newPassword;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public String getPassword() {
-	return password;
-    }
+  public String getNewPassword() {
+    return newPassword;
+  }
 
-    public String getUsername() {
-	return username;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public List<EditUtilisateurRole> getUserRoles() {
-	return userRoles;
-    }
+  public String getUsername() {
+    return username;
+  }
 
-    public void setEnabled(boolean enabled) {
-	this.enabled = enabled;
-    }
+  public List<EditUtilisateurRole> getUserRoles() {
+    return userRoles;
+  }
 
-    public void setId(int id) {
-	this.id = id;
-    }
+  public void setEnabled(boolean enabled) {
+    this.enabled = enabled;
+  }
 
-    public void setNewPassword(String newPassword) {
-	this.newPassword = newPassword.isEmpty() ? "" : new BCryptPasswordEncoder(10).encode(newPassword);
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setPassword(String password) {
-	this.password = password;
-    }
+  public void setNewPassword(String newPassword) {
+    this.newPassword = newPassword.isEmpty() ? "" : new BCryptPasswordEncoder(10).encode(newPassword);
+  }
 
-    public void setUsername(String username) {
-	this.username = username;
-    }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public void setUserRoles(List<EditUtilisateurRole> userRoles) {
-	this.userRoles = userRoles;
-    }
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public void setUserRoles(List<EditUtilisateurRole> userRoles) {
+    this.userRoles = userRoles;
+  }
 
 }

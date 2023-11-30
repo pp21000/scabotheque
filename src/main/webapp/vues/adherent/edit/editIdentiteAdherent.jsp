@@ -12,8 +12,8 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${editForm.editAdherent.id}"/></c:url>
-<button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location = '${url}'">
+<c:url value="/adherentProfil" var="urlPrev"><c:param name="tab" value="contacts"/><c:param name="idAdh" value="${editForm.editAdherent.id}"/></c:url>
+<button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location = '${urlPrev}'">
   <spring:message code="label.retour"/>
 </button>
 
@@ -257,7 +257,7 @@
                         <div class="grid grid-cols-2 gap-4">
                           <button type="button" id="valideAdhCommune"
                                   data-modal-toggle="commune-modal"
-                                  class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">
+                                  class="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                             Sélectionner
                           </button>
                           <button type="button" data-modal-toggle="commune-modal"
@@ -313,12 +313,11 @@
         </div>
 
         <div class="mt-10 flex gap-2 justify-center">
-          <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300"
-                  id="save" type="submit">Enregistrer
+          <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300" id="save" type="submit">
+            Enregistrer
           </button>
-          <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${editForm.editAdherent.id}"/></c:url>
-          <button class="btn btn-red focus:ring-4 focus:outline-none focus:ring-neutral-300"
-                    type="reset" onClick="window.location = '${url}'">Annuler
+          <button class="btn btn-red focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location = '${urlPrev}'">
+            Annuler
           </button>
         </div>
       </div>

@@ -26,13 +26,16 @@ public class EditAdherentSpecialitesForm {
         editAS.setId(adherentSpecialite.getId());
         editAS.setSpecialiteId(adherentSpecialite.getSpecialiteId());
         editAS.setNiveau(adherentSpecialite.getNiveau());
-        editAS.setTravauxId(specialites.stream().filter(s -> s.getId() == adherentSpecialite.getSpecialiteId()).findFirst().get().getTravaux().getId());
+        editAS.setTravauxId(specialites.stream()
+                .filter(s -> s.getId().equals(adherentSpecialite.getSpecialiteId()))
+                .findFirst().get().getTravaux().getId());
       } else {
         editAS.setId(null);
         editAS.setSpecialiteId(null);
         editAS.setNiveau(null);
         editAS.setTravauxId(null);
       }
+
       this.specialitesAdh.add(editAS);
     }
   }

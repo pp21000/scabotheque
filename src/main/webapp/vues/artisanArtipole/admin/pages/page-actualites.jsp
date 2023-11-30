@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
-         pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
@@ -8,10 +7,8 @@
 <div class="flex flex-col items-center">
 
   <div class="w-full">
-    <button class="btn btn-blue btn-small" 
-            id="addBtn" type="button" onclick="showAddForm()">Ajouter une actualité</button>
+    <button class="btn btn-green btn-small" id="addBtn" type="button" onclick="showAddForm()">Ajouter une actualité</button>
   </div>
-
 
   <form:form class="editAdherent" method="post" modelAttribute="addForm" action="AA-add-actualite">
     <div class="hidden" id="addItemForm" title="Ajouter une actualité">
@@ -20,42 +17,42 @@
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAActualite.titre">Titre de l'actu</form:label>
-              </div>              
+            </div>              
             <form:input class="flex-grow w-72 input-text" name="editAAActualite.titre" path="editAAActualite.titre"/>
             <form:errors class="error-message" path="editAAActualite.titre"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAActualite.contenu">Contenu</form:label>
-              </div>
+            </div>
             <form:input class="flex-grow w-72 input-text" name="editAAActualite.contenu" path="editAAActualite.contenu"/>
             <form:errors class="error-message" path="editAAActualite.contenu"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAActualite.type">Type</form:label>
-              </div>
+            </div>
             <form:input class="flex-grow w-72 input-text" name="editAAActualite.type" path="editAAActualite.type"/>
             <form:errors class="error-message" path="editAAActualite.type"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAActualite.sous_type">Sous type</form:label>
-              </div>
+            </div>
             <form:input class="flex-grow w-72 input-text" name="editAAActualite.sous_type" path="editAAActualite.sous_type"/>
             <form:errors class="error-message" path="editAAActualite.sous_type"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAActualite.position">Position</form:label>
-              </div>
+            </div>
             <form:input class="flex-grow w-72 input-text" name="editAAActualite.position" path="editAAActualite.position"/>
             <form:errors class="error-message" path="editAAActualite.position"/>
           </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mx-2">
               <form:label path="editAAActualite.date_ajout">Date d'ajout</form:label>
-              </div>
+            </div>
             <form:input type="date" class="flex-grow w-72 input-text" name="editAAActualite.date_ajout" path="editAAActualite.date_ajout"/>
             <form:errors class="error-message" path="editAAActualite.date_ajout"/>
           </div>

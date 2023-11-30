@@ -8,8 +8,8 @@
 
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
 
-<c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${editForm.editAdherent.id}"/></c:url>
-<button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" id="cancel" type="reset" onClick="window.location = '${url}'">
+<c:url value="/adherentProfil" var="urlPrev"><c:param name="tab" value="administratif"/><c:param name="idAdh" value="${editForm.editAdherent.id}"/></c:url>
+<button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" id="cancel" type="reset" onClick="window.location = '${urlPrev}'">
   <spring:message code="label.retour"/>
 </button>
 
@@ -241,7 +241,7 @@
                 <div class="grid px-4 grid-cols-2 gap-4">
                   <button type="button" data-dismiss="modal" id="valideRcsCommune"
                           data-modal-toggle="rcscommune-modal"
-                          class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">
+                          class="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                     Sélectionner
                   </button>
                   <button type="button" data-modal-toggle="rcscommune-modal"
@@ -305,7 +305,7 @@
                 <div class="grid px-4 grid-cols-2 gap-4">
                   <button type="button" data-dismiss="modal" id="valideRmCommune"
                           data-modal-toggle="rmcommune-modal"
-                          class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">
+                          class="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                     Sélectionner
                   </button>
                   <button type="button" data-modal-toggle="rmcommune-modal"
@@ -368,12 +368,11 @@
   </fieldset>
 
   <div class="flex justify-center gap-2 mt-10">
-    <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300"
-            id="save" type="submit">Enregistrer
+    <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300" id="save" type="submit">
+      Enregistrer
     </button>
-    <c:url value="/adherentProfil" var="url"><c:param name="idAdh" value="${editForm.editAdherent.id}"/></c:url>
-    <button class="btn btn-red focus:ring-4 focus:outline-none focus:ring-neutral-300"
-            id="cancel" type="reset" onClick="window.location = '${url}'">Annuler
+    <button class="btn btn-red focus:ring-4 focus:outline-none focus:ring-neutral-300" id="cancel" type="reset" onClick="window.location = '${urlPrev}'">
+      Annuler
     </button>
   </div>
 

@@ -50,19 +50,28 @@ public class ShowAdherentController {
     EditAdherentSuiviVisite newSuivi = new EditAdherentSuiviVisite(idAdh);
     EditAdherentSuiviVisiteForm newSuiviForm = new EditAdherentSuiviVisiteForm();
     newSuiviForm.setSuiviVisiteAdh(newSuivi);
-    pModel.addAttribute("suiviToAdd", (Object) newSuiviForm);
+    pModel.addAttribute("suiviToAdd", newSuiviForm);
     List adhActivites = this.service.loadActivitesAdherent(idAdh);
 
     AdherentLogistique infoExploitation = this.service.loadAdherentLogistique(idAdh);
     AdherentContactRole contactReception = this.service.loadContact(infoExploitation.getContactReceptionId());
     List adherentMetiersId = this.service.loadAdherentMetiers(idAdh).stream().map(am -> am.getMetierId()).collect(Collectors.toList());
+    List adherentCertificationsId = this.service.loadAdherentCertifications(idAdh).stream().map(am -> am.getCertificationId()).collect(Collectors.toList());
 
-    List<Specialite> specialites = this.serviceArtipole.loadSpecialites();
+    /*    List<Specialite> specialites = this.serviceArtipole.loadSpecialites();
     List<Specialite> specialitesOfAdherent = this.service.loadAdherentSpecialites(idAdh)
             .stream()
             .map(as -> specialites.stream()
-            .filter(s -> s.getId() == as.getSpecialiteId())
-            .findFirst().get()).collect(Collectors.toList());
+                    .filter(s -> s.getId() == as.getSpecialiteId())
+                    .findFirst()
+                    .orElse(null))
+            .collect(Collectors.toList());*/
+    List<Integer> AdherentSpecialitesIds = this.service.loadAdherentSpecialites(idAdh).stream()
+            .map(adhSpe -> adhSpe.getSpecialiteId()).collect(Collectors.toList());
+
+    List<Specialite> specialitesOfAdherent = this.serviceArtipole.loadSpecialites().stream()
+            .filter(spe -> AdherentSpecialitesIds.contains(spe.getId()))
+            .collect(Collectors.toList());
 
     pModel.addAttribute("contacts", contacts);
     pModel.addAttribute("infoSuiviVisite", infoSuiviVisite);
@@ -74,7 +83,9 @@ public class ShowAdherentController {
     pModel.addAttribute("contactReception", contactReception);
     pModel.addAttribute("adherent", adherent);
     pModel.addAttribute("metiers", this.serviceArtipole.loadMetiers());
+    pModel.addAttribute("certifications", this.serviceArtipole.loadCertifications());
     pModel.addAttribute("metiersAdherentId", adherentMetiersId);
+    pModel.addAttribute("certificationsAdherentId", adherentCertificationsId);
     pModel.addAttribute("specialitesOfAdherent", specialitesOfAdherent);
     pModel.addAttribute("navType", NavType.ADHERENT);
     pModel.addAttribute("pageType", pageType);
@@ -122,8 +133,7 @@ public class ShowAdherentController {
   }
 
   @RequestMapping(value = {"/adherentArtipole", "/adherentAdministratif", "/adherentDetail", "/adherentCapitalSocial"}, method = RequestMethod.GET)
-  public String afficher(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel,
-          HttpServletRequest request) {
+  public String afficher(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel, HttpServletRequest request) {
 
     String commentaire = "";
     final Adherent adherent = service.loadAdherent(idAdh);

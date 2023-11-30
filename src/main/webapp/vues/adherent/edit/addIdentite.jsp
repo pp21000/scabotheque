@@ -93,7 +93,7 @@
             <div class="relative z-0 w-full group">
               <form:label class="text-xs" path="adherent.commune">
                 <spring:message code="label.commune"/>
-                <div class="flex h-10 pt-0.5">
+                <div class="flex h-10 mt-0.5">
                   <a type="button" data-modal-toggle="commune-modal" class="input-group-text inline-flex items-center px-3 text-gray-900 bg-gray-200 hover:bg-gray-300 rounded-l border border-r-0 border-gray-300"
                      href="#" id="editAdhCommune" data-toggle="modal"
                      data-target="#modal-adherentCommune">
@@ -149,7 +149,7 @@
                       <div class="grid grid-cols-2 gap-4">
                         <button type="button" id="valideAdhCommune"
                                 data-modal-toggle="commune-modal"
-                                class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">
+                                class="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                           Sélectionner
                         </button>
                         <button type="button" data-modal-toggle="commune-modal"
@@ -342,7 +342,7 @@
             <div class="relative z-0 mb-6 w-full group items-end">
               <form:label code="label.rcsCommune" class="text-xs" path="adherent.rcsCommune">
                 <spring:message code="label.rcsCommune"/>
-                <div class="flex h-10 pt-0.5">
+                <div class="flex h-10 mt-0.5">
                   <a type="button" data-modal-toggle="rcscommune-modal" class="input-group-text inline-flex items-center px-3 text-gray-900 bg-gray-200 hover:bg-gray-300 rounded-l border border-r-0 border-gray-300"
                      href="#" id="editRcsCommune" data-toggle="modal"
                      data-target="#modal-rcsCommune">
@@ -398,7 +398,7 @@
                       <div class="grid px-4 grid-cols-2 gap-4">
                         <button type="button" data-dismiss="modal" id="valideRcsCommune"
                                 data-modal-toggle="rcscommune-modal"
-                                class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">
+                                class="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                           Sélectionner
                         </button>
                         <button type="button" data-modal-toggle="rcscommune-modal"
@@ -460,8 +460,12 @@
 
     <div class="flex justify-center mt-10 gap-2">
         <c:url value="/listeAdherents" var="url"/>
-        <button type="submit" class="btn btn-green focus:ring-4 focus:ring-blue-300 focus:outline-none">Enregistrer</button>
-        <button type="reset" onClick="window.location = '${url}'" class="btn btn-red focus:outline-none focus:ring-4 focus:ring-red-300">Annuler</button>
+        <button type="submit" class="btn btn-green focus:ring-4 focus:ring-blue-300 focus:outline-none">
+          Enregistrer
+        </button>
+        <button type="reset" onClick="window.location = '${url}'" class="btn btn-red focus:outline-none focus:ring-4 focus:ring-red-300">
+          Annuler
+        </button>
     </div>
   </div>
 

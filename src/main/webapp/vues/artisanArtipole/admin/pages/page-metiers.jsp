@@ -11,8 +11,7 @@
 <div class="flex flex-col items-center">
 
   <div class="w-full text-right">
-    <button class="btn btn-blue btn-small" 
-            id="addEmplacementBtn" type="button" onclick="showAddForm()">Ajouter un Emplacement</button>
+    <button class="btn btn-green btn-small" id="addEmplacementBtn" type="button" onclick="showAddForm()">Ajouter un Emplacement</button>
   </div>
 
 

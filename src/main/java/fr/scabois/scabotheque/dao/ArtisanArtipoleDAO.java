@@ -351,6 +351,7 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
     update.setTitre(actualite.getTitre());
     update.setContenu(actualite.getContenu());
     update.setType(actualite.getType());
+    update.setSous_type(actualite.getSous_type());
     update.setPosition(actualite.getPosition());
     update.setDate_ajout(actualite.getDate_ajout());
     this.entityManager.persist((Object) update);

@@ -33,28 +33,30 @@
   </div>
 </div>
 
-<form:form method="post" modelAttribute="editForm" action="editMetiersAdherent/${adherent.id}">
+<form:form method="post" modelAttribute="editForm" action="editCertificationsAdherent/${adherent.id}">
 
   <fieldset class="flex justify-center mt-10">
     <div>
       <%--<legend class="text-center mt-4 mb-2 underline"><spring:message code="label.artipole"/></legend>--%>
 
 
-      <c:forEach items="${editForm.metiersAdh}" var="metierAdh" varStatus="status">
-        <form:input type="hidden" path="metiersAdh[${status.index}].id"/>
-        <form:input type="hidden" path="metiersAdh[${status.index}].adherentId"/>
-        <form:input type="hidden" path="metiersAdh[${status.index}].metierId"/>
+      <c:forEach items="${editForm.certificationsAdh}" var="certificationAdh" varStatus="status">
+        <form:input type="hidden" path="certificationsAdh[${status.index}].id"/>
+        <form:input type="hidden" path="certificationsAdh[${status.index}].adherentId"/>
+        <form:input type="hidden" path="certificationsAdh[${status.index}].certificationId"/>
         <div class="flex items-center mt-2">
           
-          <form:checkbox class="input-checkbox" path="metiersAdh[${status.index}].check"/>
+          <form:checkbox class="input-checkbox" path="certificationsAdh[${status.index}].check"/>
           
           <div class="w-56 mx-2">
-            <c:forEach items="${metiers}" var="metier">
-              <c:if test="${metier.id == metierAdh.metierId}">
-                <form:label class="flex items-center text-left" path="metiersAdh[${status.index}].check">${metier.libelle}</form:label>
+            <c:forEach items="${certifications}" var="certification">
+              <c:if test="${certification.id == certificationAdh.certificationId}">
+                <form:label class="flex items-center text-left" path="certificationsAdh[${status.index}].check">${certification.libelle}</form:label>
               </c:if>
             </c:forEach>
           </div>
+          
+          <img class="max-h-24 rounded" src="${certification.data}"/>
 
         </div>
       </c:forEach>
@@ -62,11 +64,11 @@
   </fieldset>
 
   <div class="flex justify-center gap-2 mt-10">
-    <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300" id="save" type="submit">
+    <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300"id="save" type="submit">
       Enregistrer
     </button>
     <button class="btn btn-red focus:ring-4 focus:outline-none focus:ring-neutral-300" id="cancel" type="reset" onClick="window.location = '${urlPrev}'">
-      Annuler
+      Annuler 
     </button>
   </div>
 

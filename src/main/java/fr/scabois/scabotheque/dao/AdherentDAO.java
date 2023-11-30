@@ -2,6 +2,7 @@ package fr.scabois.scabotheque.dao;
 
 import fr.scabois.scabotheque.bean.adherent.Adherent;
 import fr.scabois.scabotheque.bean.adherent.AdherentActivite;
+import fr.scabois.scabotheque.bean.adherent.AdherentCertification;
 import fr.scabois.scabotheque.bean.adherent.AdherentCommentaire;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactComptable;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
@@ -372,17 +373,22 @@ public class AdherentDAO implements IAdherentDAO {
 
   @Override
   public List<AdherentMetier> loadAdherentMetiers(final int adhId) {
-    return (List<AdherentMetier>) this.entityManager.createQuery("from AdherentMetier where adherentId = :adhId", (Class) AdherentMetier.class).setParameter("adhId", (Object) adhId).getResultList();
+    return this.entityManager.createQuery("from AdherentMetier where adherentId = :adhId", AdherentMetier.class).setParameter("adhId", adhId).getResultList();
+  }
+
+  @Override
+  public List<AdherentCertification> loadAdherentCertifications(final int adhId) {
+    return this.entityManager.createQuery("from AdherentCertification where adherentId = :adhId", AdherentCertification.class).setParameter("adhId", adhId).getResultList();
   }
 
   @Override
   public List<AdherentSpecialite> loadAdherentSpecialites(final int adhId) {
-    return (List<AdherentSpecialite>) this.entityManager.createQuery("from AdherentSpecialite where adherentId = :adhId", (Class) AdherentSpecialite.class).setParameter("adhId", (Object) adhId).getResultList();
+    return this.entityManager.createQuery("from AdherentSpecialite where adherentId = :adhId", AdherentSpecialite.class).setParameter("adhId", adhId).getResultList();
   }
 
   @Override
   public List<AdherentContactRole> loadAdherentContact(final CriteriaAdherent criteria) {
-    final List<AdherentContactRole> list = (List<AdherentContactRole>) this.entityManager.createQuery("from AdherentContactRole adh", (Class) AdherentContactRole.class).getResultList();
+    final List<AdherentContactRole> list = (List<AdherentContactRole>) this.entityManager.createQuery("from AdherentContactRole adh", AdherentContactRole.class).getResultList();
     return list.stream().filter(ctt -> {
       final String nomCompare = Normalizer.normalize(ctt.getNom().toUpperCase(), Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
       final String prenomCompare = Normalizer.normalize(ctt.getPrenom().toUpperCase(), Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
@@ -753,14 +759,20 @@ public class AdherentDAO implements IAdherentDAO {
 
   @Transactional
   public void saveAdherentMetiers(final int adhId, final List<AdherentMetier> adherentMetiers) {
-    this.loadAdherentMetiers(adhId).stream().forEach(a -> this.entityManager.remove(a));
-    adherentMetiers.stream().forEach(am -> this.entityManager.merge(am));
+    this.loadAdherentMetiers(adhId).stream().forEach(elmt -> this.entityManager.remove(elmt));
+    adherentMetiers.stream().forEach(elmt -> this.entityManager.merge(elmt));
+  }
+
+  @Transactional
+  public void saveAdherentCertifications(final int adhId, final List<AdherentCertification> adherentCertifications) {
+    this.loadAdherentCertifications(adhId).stream().forEach(elmt -> this.entityManager.remove(elmt));
+    adherentCertifications.stream().forEach(elmt -> this.entityManager.merge(elmt));
   }
 
   @Transactional
   public void saveAdherentSpecialites(final int adhId, final List<AdherentSpecialite> adherentSpecialites) {
-    this.loadAdherentSpecialites(adhId).stream().forEach(a -> this.entityManager.remove(a));
-    adherentSpecialites.stream().forEach(am -> this.entityManager.merge(am));
+    this.loadAdherentSpecialites(adhId).stream().forEach(elmt -> this.entityManager.remove(elmt));
+    adherentSpecialites.stream().forEach(elmt -> this.entityManager.merge(elmt));
   }
 
   @Override

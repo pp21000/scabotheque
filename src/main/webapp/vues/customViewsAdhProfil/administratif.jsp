@@ -24,119 +24,119 @@
     <div class="bg-neutral-200 overflow-hidden shadow rounded-lg">
       <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
         <dl class="sm:divide-y sm:divide-gray-300">
-          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+            <dt class="label">
               <spring:message code="label.dateEntree"/> :
             </dt>
-            <dd class="text-sm text-gray-400">
+            <dd class="value">
               <fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateEntree}"/>
             </dd>
           </div>
 
-          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+            <dt class="label">
               <spring:message code="label.nbSalarie"/> :
             </dt>
-            <dd class="text-sm text-gray-400">
+            <dd class="value">
               ${adherent.nbSalaries}
             </dd>
           </div>
 
-          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+            <dt class="label">
               <spring:message code="label.role"/> :
             </dt>
-            <dd class="text-sm text-gray-400">
+            <dd class="value">
               ${adherent.role.libelle}
             </dd>
           </div>
 
-          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+            <dt class="label">
               <spring:message code="label.adherentType"/> :
             </dt>
-            <dd class="text-sm text-gray-400">
+            <dd class="value">
               ${adherent.adherentType.libelle}
             </dd>
           </div>
 
-          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+            <dt class="label">
               <spring:message code="label.dateEntree"/> :
             </dt>
-            <dd class="text-sm text-gray-400">
+            <dd class="value">
               <fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateEntree}"/>
             </dd>
           </div>
 
-          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+            <dt class="label">
               <spring:message code="label.formeJuridique"/> :
             </dt>
-            <dd class="text-sm text-gray-400">
+            <dd class="value">
               ${adherent.formeJuridique.libelle}
             </dd>
           </div>
 
-          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+            <dt class="label">
               <spring:message code="label.siren"/> :
             </dt>
-            <dd class="text-sm text-gray-400">
+            <dd class="value">
               ${adherent.siren}
             </dd>
           </div>
 
-          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+            <dt class="label">
               <spring:message code="label.siret"/> :
             </dt>
-            <dd class="text-sm text-gray-400">
+            <dd class="value">
               ${adherent.siret}
             </dd>
           </div>
 
-          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+            <dt class="label">
               <spring:message code="label.ape"/> :
             </dt>
-            <dd class="text-sm text-gray-400">
+            <dd class="value">
               ${adherent.ape.libelle}
             </dd>
           </div>
 
-          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+            <dt class="label">
               <spring:message code="label.numRepMetier"/> :
             </dt>
-            <dd class="text-sm text-gray-400">
+            <dd class="value">
               ${adherent.numRepMetier}
             </dd>
           </div>
 
-          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+            <dt class="label">
               <spring:message code="label.rcsCommune"/> :
             </dt>
-            <dd class="text-sm text-gray-400">
+            <dd class="value">
               <spring:message code="message.commune" arguments="${adherent.rcsCommune.codePostal}, ${adherent.rcsCommune.libelle}"/>
             </dd>
           </div>
 
-          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+            <dt class="label">
               <spring:message code="label.rmCommune"/> :
             </dt>
-            <dd class="text-sm text-gray-400">
+            <dd class="value">
               <spring:message code="message.commune" arguments="${adherent.rmCommune.codePostal}, ${adherent.rmCommune.libelle}"/>
             </dd>
           </div>            
 
-          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+            <dt class="label">
               <spring:message code="label.reglement"/> :
             </dt>
-            <dd class="text-sm text-gray-400">
+            <dd class="value">
               <c:choose>
                 <c:when test="${adherent.compteType.id == 1}">
                   ${adherent.compteType.libelle}
@@ -148,55 +148,59 @@
             </dd>
           </div>
 
-          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+            <dt class="label">
               <spring:message code="label.dateClotureExe"/> :
             </dt>
-            <dd class="text-sm text-gray-400">
+            <dd class="value">
               <fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateClotureExe}"/>
             </dd>
           </div>
 
-          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+            <dt class="label">
               <spring:message code="label.etat"/> :
             </dt>
-            <dd class="text-sm text-gray-400">
+            <dd class="value">
               ${adherent.etat.libelle}
             </dd>
           </div>
 
           <c:choose>
             <c:when test="${adherent.etat.id == 2}">
-              <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-                <dt class="text-sm font-medium text-gray-500 text-right">
+              <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+                <dt class="label">
                   <spring:message code="label.dateSortie"/> :
                 </dt>
-                <dd class="text-sm text-gray-400">
+                <dd class="value">
                   <fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateSortie}"/>
                 </dd>
               </div>
             </c:when>
           </c:choose>
-          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+            <dt class="label">
               <spring:message code="label.cnxEolasAllow"/> :
             </dt>
             <c:choose>
               <c:when test="${adherent.cnxEolasAllow}">
-                <dd class="text-sm text-sky-600 font-bold"><spring:message code="yes"/></dd>
+                <dd class="value text-sky-600 font-bold">
+                  <spring:message code="yes"/>
+                </dd>
               </c:when>
               <c:otherwise>
-                <dd class="text-sm text-gray-400"><spring:message code="no"/></dd>
+                <dd class="value">
+                  <spring:message code="no"/>
+                </dd>
               </c:otherwise>
             </c:choose>
           </div>
 
           <div class="py-3 sm:py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+            <dt class="label">
               <spring:message code="label.formationCommerce"/> :
             </dt>
-            <dd class="text-sm text-gray-400">
+            <dd class="value">
               ${adherent.formationDirigeant}
               </span>
           </div>
@@ -222,65 +226,65 @@
     <div class="bg-neutral-200 overflow-hidden shadow rounded-lg">
       <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
         <dl class="sm:divide-y sm:divide-gray-300">
-          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+            <dt class="label">
               Cabinet comptable :              
             </dt>
-            <dd class="text-sm text-gray-400">
+            <dd class="value">
               ${contactComptable.cabinet}
             </dd>
           </div>
 
-          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+            <dt class="label">
               Civilité :
             </dt>
-            <dd class="text-sm text-gray-400">
+            <dd class="value">
               ${contactComptable.civilite}
             </dd>
           </div>
 
-          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+            <dt class="label">
               Nom :
             </dt>
-            <dd class="text-sm text-gray-400">
+            <dd class="value">
               ${contactComptable.nom}
             </dd>
           </div>
 
-          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+            <dt class="label">
               Prénom :
             </dt>
-            <dd class="text-sm text-gray-400">
+            <dd class="value">
               ${contactComptable.prenom}
             </dd>
           </div>
 
-          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+            <dt class="label">
               E-mail :
             </dt>
-            <dd class="text-sm text-gray-400">
+            <dd class="value">
               ${contactComptable.mail}
             </dd>
           </div>
 
-          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+            <dt class="label">
               Tél fixe :
             </dt>
-            <dd class="text-sm text-gray-400">
+            <dd class="value">
               ${contactComptable.fixe}
             </dd>
           </div>
 
-          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-2">
-            <dt class="text-sm font-medium text-gray-500 text-right">
+          <div class="py-3 sm:grid sm:grid-cols-2 sm:gap-4">
+            <dt class="label">
               Tél mobile :
             </dt>
-            <dd class="text-sm text-gray-400">
+            <dd class="value">
               ${contactComptable.mobile}
             </dd>
           </div>

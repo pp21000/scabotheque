@@ -390,8 +390,7 @@
                       <dt class="col-sm-4"><spring:message code="label.adresseComplement"/></dt>
                       <dd class="col-sm-8">${infoExploitation.adresseComplement}</dd>
                       <dt class="col-sm-4"><spring:message code="label.commune"/></dt>
-                      <dd class="col-sm-8"><spring:message code="message.commune"
-                                      arguments="${infoExploitation.commune.codePostal}, ${infoExploitation.commune.libelle}"/></dd>
+                      <dd class="col-sm-8"><spring:message code="message.commune" arguments="${infoExploitation.commune.codePostal}, ${infoExploitation.commune.libelle}"/></dd>
                       <dt class="col-sm-4"><spring:message code="label.contactLogistique"/></dt>
                       <dd class="col-sm-8">${contactReception.getLibelle}</dd>
                       <dt class="col-sm-4"></dt>

@@ -232,6 +232,11 @@
     <put-attribute name="pageName" value="metiersAdh"/>
   </definition>
 
+  <definition name="editCertificationsAdherent" extends="base.board.definition">
+    <put-attribute name="body" value="/vues/adherent/edit/editCertificationsAdherent.jsp"/>
+    <put-attribute name="pageName" value="certificationsAdh"/>
+  </definition>
+
   <definition name="editSpecialitesAdherent" extends="base.board.definition">
     <put-attribute name="body" value="/vues/adherent/edit/editSpecialitesAdherent.jsp"/>
     <put-attribute name="pageName" value="specialitesAdh"/>

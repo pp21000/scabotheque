@@ -13,6 +13,7 @@ import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditAAPhotoForm;
 import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditAATravauxForm;
 import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditCategoriesForm;
 import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditMetiersForm;
+import fr.scabois.scabotheque.enums.NavType;
 import fr.scabois.scabotheque.enums.PageType;
 import fr.scabois.scabotheque.services.IServiceArtipole;
 import javax.servlet.http.HttpServletRequest;
@@ -38,13 +39,14 @@ public class ArtisanArtipoleEditController {
   public String editActualite(@RequestParam("idActualite") final int idActualite, final ModelMap pModel, final HttpServletRequest request) {
     final Actualite actualite = this.service.loadActualite(idActualite);
     EditAAActualiteForm editForm;
-    if (pModel.get((Object) "editForm") == null) {
+    if (pModel.get("editForm") == null) {
       editForm = new EditAAActualiteForm(actualite);
     } else {
-      editForm = (EditAAActualiteForm) pModel.get((Object) "editForm");
+      editForm = (EditAAActualiteForm) pModel.get("editForm");
     }
-    pModel.addAttribute("editForm", (Object) editForm);
-    pModel.addAttribute("pageType", (Object) PageType.AA_ACTUALITES);
+    pModel.addAttribute("editForm", editForm);
+    pModel.addAttribute("navType", NavType.ARTISAN_ARTIPOLE);
+    pModel.addAttribute("pageType", PageType.AA_ACTUALITES);
     return "AA-edit-actualite";
   }
 
@@ -52,51 +54,54 @@ public class ArtisanArtipoleEditController {
   public String editEmplacement(@RequestParam("idEmplacement") final int idEmplacement, final ModelMap pModel, final HttpServletRequest request) {
     final Emplacement emplacement = this.service.loadEmplacement(idEmplacement);
     EditAAEmplacementForm editForm;
-    if (pModel.get((Object) "editForm") == null) {
+    if (pModel.get("editForm") == null) {
       editForm = new EditAAEmplacementForm(emplacement);
     } else {
-      editForm = (EditAAEmplacementForm) pModel.get((Object) "editForm");
+      editForm = (EditAAEmplacementForm) pModel.get("editForm");
     }
-    pModel.addAttribute("emplacement", (Object) emplacement);
-    pModel.addAttribute("editForm", (Object) editForm);
-    pModel.addAttribute("pageList", (Object) this.service.loadPages());
-    pModel.addAttribute("pageType", (Object) PageType.AA_EMPLACEMENTS);
+    pModel.addAttribute("emplacement", emplacement);
+    pModel.addAttribute("editForm", editForm);
+    pModel.addAttribute("pageList", this.service.loadPages());
+    pModel.addAttribute("navType", NavType.ARTISAN_ARTIPOLE);
+    pModel.addAttribute("pageType", PageType.AA_EMPLACEMENTS);
     return "AA-edit-emplacement";
   }
 
   @RequestMapping(value = {"/AA-edit-metiers"}, method = {RequestMethod.GET})
   public String editMetiers(final ModelMap pModel, final HttpServletRequest request) {
-    if (pModel.get((Object) "editForm") == null) {
+    if (pModel.get("editForm") == null) {
       final EditMetiersForm editForm = new EditMetiersForm(this.service.loadMetiers());
-      pModel.addAttribute("editForm", (Object) editForm);
+      pModel.addAttribute("editForm", editForm);
     } else {
-      pModel.addAttribute("editForm", pModel.get((Object) "editForm"));
+      pModel.addAttribute("editForm", pModel.get("editForm"));
     }
-    if (pModel.get((Object) "addForm") == null) {
+    if (pModel.get("addForm") == null) {
       final AddMetierForm addForm = new AddMetierForm();
-      pModel.addAttribute("addForm", (Object) addForm);
+      pModel.addAttribute("addForm", addForm);
     } else {
-      pModel.addAttribute("addForm", pModel.get((Object) "addForm"));
+      pModel.addAttribute("addForm", pModel.get("addForm"));
     }
-    pModel.addAttribute("pageType", (Object) PageType.AA_METIERS);
+    pModel.addAttribute("navType", NavType.ARTISAN_ARTIPOLE);
+    pModel.addAttribute("pageType", PageType.AA_METIERS);
     return "AA-edit-metiers";
   }
 
   @RequestMapping(value = {"/AA-edit-categories"}, method = {RequestMethod.GET})
   public String editCategories(final ModelMap pModel, final HttpServletRequest request) {
-    if (pModel.get((Object) "editForm") == null) {
+    if (pModel.get("editForm") == null) {
       final EditCategoriesForm editForm = new EditCategoriesForm(this.service.loadCategories());
-      pModel.addAttribute("editForm", (Object) editForm);
+      pModel.addAttribute("editForm", editForm);
     } else {
-      pModel.addAttribute("editForm", pModel.get((Object) "editForm"));
+      pModel.addAttribute("editForm", pModel.get("editForm"));
     }
-    if (pModel.get((Object) "addForm") == null) {
+    if (pModel.get("addForm") == null) {
       final AddCategorieForm addForm = new AddCategorieForm();
-      pModel.addAttribute("addForm", (Object) addForm);
+      pModel.addAttribute("addForm", addForm);
     } else {
-      pModel.addAttribute("addForm", pModel.get((Object) "addForm"));
+      pModel.addAttribute("addForm", pModel.get("addForm"));
     }
-    pModel.addAttribute("pageType", (Object) PageType.AA_METIERS);
+    pModel.addAttribute("navType", NavType.ARTISAN_ARTIPOLE);
+    pModel.addAttribute("pageType", PageType.AA_CATEGORIES);
     return "AA-edit-categories";
   }
 
@@ -104,14 +109,15 @@ public class ArtisanArtipoleEditController {
   public String editPhoto(@RequestParam("idPhoto") final int idPhoto, final ModelMap pModel, final HttpServletRequest request) {
     final Photo photo = this.service.loadPhoto(Integer.valueOf(idPhoto));
     EditAAPhotoForm editForm;
-    if (pModel.get((Object) "editForm") == null) {
+    if (pModel.get("editForm") == null) {
       editForm = new EditAAPhotoForm(photo);
     } else {
-      editForm = (EditAAPhotoForm) pModel.get((Object) "editForm");
+      editForm = (EditAAPhotoForm) pModel.get("editForm");
     }
-    pModel.addAttribute("photo", (Object) photo);
-    pModel.addAttribute("editForm", (Object) editForm);
-    pModel.addAttribute("pageType", (Object) PageType.AA_PHOTOS);
+    pModel.addAttribute("photo", photo);
+    pModel.addAttribute("editForm", editForm);
+    pModel.addAttribute("navType", NavType.ARTISAN_ARTIPOLE);
+    pModel.addAttribute("pageType", PageType.AA_PHOTOS);
     return "AA-edit-photo";
   }
 
@@ -119,14 +125,15 @@ public class ArtisanArtipoleEditController {
   public String editCertification(@RequestParam("idCertification") final int idCertification, final ModelMap pModel, final HttpServletRequest request) {
     final Certification certification = this.service.loadCertification(Integer.valueOf(idCertification));
     EditAACertificationForm editForm;
-    if (pModel.get((Object) "editForm") == null) {
+    if (pModel.get("editForm") == null) {
       editForm = new EditAACertificationForm(certification);
     } else {
-      editForm = (EditAACertificationForm) pModel.get((Object) "editForm");
+      editForm = (EditAACertificationForm) pModel.get("editForm");
     }
-    pModel.addAttribute("certification", (Object) certification);
-    pModel.addAttribute("editForm", (Object) editForm);
-    pModel.addAttribute("pageType", (Object) PageType.AA_CERTIFICATIONS);
+    pModel.addAttribute("certification", certification);
+    pModel.addAttribute("editForm", editForm);
+    pModel.addAttribute("navType", NavType.ARTISAN_ARTIPOLE);
+    pModel.addAttribute("pageType", PageType.AA_CERTIFICATIONS);
     return "AA-edit-certification";
   }
 
@@ -221,23 +228,6 @@ public class ArtisanArtipoleEditController {
   public String AddTravaux(@Valid @ModelAttribute("addForm") final EditAATravauxForm addForm, final BindingResult pBindingResult, final ModelMap pModel, final HttpServletRequest request) {
     if (!pBindingResult.hasErrors()) {
       this.service.saveTravaux(addForm.getTravaux());
-//       List<String> nouvellesSpecialites = addForm.getNouvellesSpecialites();
-//
-//        if (nouvellesSpecialites != null && !nouvellesSpecialites.isEmpty()) {
-//            Travaux travail = addForm.getTravaux(); // Obtenez le travail existant
-//
-//            // Créez de nouvelles instances de Specialite pour les nouvelles spécialités
-//            for (String libelle : nouvellesSpecialites) {
-//                Specialite nouvelleSpecialite = new Specialite();
-//                nouvelleSpecialite.setLibelle(libelle);
-//
-//                // Associez la spécialité au travail
-//                nouvelleSpecialite.setTravaux(travail);
-//
-//                // Enregistrez la nouvelle spécialité en utilisant votre service ou repository
-//                specialiteService.save(nouvelleSpecialite);
-//            }
-//        }
       return "redirect:/AA-page-travaux";
     }
     return this.aaController.travaux(pModel);

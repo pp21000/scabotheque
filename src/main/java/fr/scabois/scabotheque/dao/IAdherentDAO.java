@@ -2,6 +2,7 @@ package fr.scabois.scabotheque.dao;
 
 import fr.scabois.scabotheque.bean.adherent.Adherent;
 import fr.scabois.scabotheque.bean.adherent.AdherentActivite;
+import fr.scabois.scabotheque.bean.adherent.AdherentCertification;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactComptable;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
 import fr.scabois.scabotheque.bean.adherent.AdherentEtat;
@@ -89,6 +90,8 @@ public interface IAdherentDAO {
 
   public List<AdherentMetier> loadAdherentMetiers(final int idAdh);
 
+  public List<AdherentCertification> loadAdherentCertifications(final int idAdh);
+
   public List<AdherentSpecialite> loadAdherentSpecialites(final int idAdh);
 
   public List<ContactRetraite> loadContactsRetraite();
@@ -158,6 +161,8 @@ public interface IAdherentDAO {
   public void saveAdherentLogistique(AdherentLogistique logistiqueAdh);
 
   public void saveAdherentMetiers(int adhId, List<AdherentMetier> adherentMetiers);
+
+  public void saveAdherentCertifications(int adhId, List<AdherentCertification> adherentCertifications);
 
   public void saveAdherentSpecialites(int adhId, List<AdherentSpecialite> adherentSpecialites);
 

@@ -9,8 +9,7 @@
 <div class="flex flex-col items-center">
 
   <div class="w-full">
-    <button class="btn btn-blue btn-small" 
-            id="addItemBtn" type="button" onclick="showAddForm()"><spring:message code="label.addTravaux"/></button>
+    <button class="btn btn-green btn-small" id="addItemBtn" type="button" onclick="showAddForm()">Ajouter un type de travaux</button>
   </div>
 
   <form:form class="editAdherent" method="post" modelAttribute="addForm" action="AA-add-travaux">
@@ -24,7 +23,7 @@
           </div>
       
           <div class="text-center mt-5">
-            <button type="button" onclick="createNewSpecialiteInput()" class="btn btn-small btn-black ml-20">Ajouter une spécialité associée</button>
+            <button type="button" onclick="createNewSpecialiteInput()" class="btn btn-small btn-blue ml-20">Ajouter une spécialité associée</button>
 
             <ul id="SpecialiteInputs">
             </ul>
