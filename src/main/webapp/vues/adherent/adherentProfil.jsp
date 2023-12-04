@@ -13,7 +13,7 @@
   <div>
     <div class="bg-neutral-200 rounded-xl p-2">
       <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')">
-        <div class="flex items-center">
+        <div class="flex items-start">
           <c:url value="/edit/editIdentiteAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
           <a href="${url}" class="rounded-md hover:bg-gray-600 p-0.5 mr-1">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -45,10 +45,10 @@
         <div class="flex justify-center">
           <c:choose>
             <c:when test="${adherent.logoImg == ''}">
-              <img class="max-w-[14rem] object-contain drop-shadow-xl" src="<c:url value="/resources/images/noImage.png" />"/>
+              <img class="max-w-[14rem] object-contain rounded-xl" src="<c:url value="/resources/images/noImage.png" />"/>
             </c:when>
             <c:otherwise>
-              <img class="max-w-[14rem] object-contain drop-shadow-xl" src="${adherent.logoImg}"/>
+              <img class="max-w-[14rem] object-contain" src="${adherent.logoImg}"/>
             </c:otherwise>
           </c:choose>
         </div>
@@ -56,10 +56,10 @@
         <div class="flex justify-center">
           <c:choose>
             <c:when test="${adherent.photoImg == ''}">
-              <img class="max-w-[14rem] object-contain drop-shadow-xl" src="<c:url value="/resources/images/noImage.png" />"/>
+              <img class="max-w-[14rem] object-contain rounded-xl" src="<c:url value="/resources/images/noImage.png" />"/>
             </c:when>
             <c:otherwise>
-              <img class="max-w-[14rem] object-contain drop-shadow-xl" src="${adherent.photoImg}"/>
+              <img class="max-w-[14rem] object-contain" src="${adherent.photoImg}"/>
             </c:otherwise>
           </c:choose>
         </div>
@@ -149,7 +149,7 @@
         <div class="flex justify-start">
 
           <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')">
-            <div class="flex items-center">
+            <div class="flex items-start">
               <c:url value="/edit/editLivraisonAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
               <a href="${url}" class="rounded-md hover:bg-gray-600 p-0.5 mr-1">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -192,7 +192,7 @@
         <div class="flex justify-start">
           
           <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')">
-            <div class="flex items-center">
+            <div class="flex items-start">
               <c:url value="/edit/editExploitationAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
               <a href="${url}" class="rounded-md hover:bg-gray-600 p-0.5 mr-1">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -239,7 +239,7 @@
       <div class="flex justify-start">
 
         <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')">
-          <div class="flex items-center">
+          <div class="flex items-start">
             <c:url value="/edit/editIdentiteAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
             <a href="${url}" class="rounded-md hover:bg-gray-600 p-0.5 mr-1">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -274,7 +274,7 @@
     <div class="bg-neutral-200 mt-2 rounded-xl p-2">
       <div class="flex justify-start">
         <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')">
-          <div class="flex items-center">
+          <div class="flex items-start">
             <c:url value="/edit/editIdentiteAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
             <a href="${url}" class="rounded-md hover:bg-gray-600 p-0.5 mr-1">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -321,45 +321,45 @@
                 data-tabs-toggle="#myTabContent" role="tablist">
               <li class="mr-2" role="presentation">
                 <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
-                        id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" 
+                        id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" onclick="changeUrlParameterTabValue('contacts')"
                         aria-selected="<c:if test = "${param.tab == 'contacts'}">true</c:if>">Contacts
                 </button>
               </li>
               <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CRM')">
-                <li class="mr-2" role="presentation">
-                  <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
-                          id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings" 
-                          aria-selected="<c:if test = "${param.tab == 'crm'}">true</c:if>">CRM
-                  </button>
-                </li>
+              <li class="mr-2" role="presentation">
+                <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
+                        id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings" onclick="changeUrlParameterTabValue('crm')"
+                        aria-selected="<c:if test = "${param.tab == 'crm'}">true</c:if>">CRM
+                </button>
+              </li>
               </sec:authorize>
               <li class="mr-2" role="presentation">
                 <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
-                        id="commerce-tab" data-tabs-target="#commerce" type="button" role="tab" aria-controls="profile" 
+                        id="commerce-tab" data-tabs-target="#commerce" type="button" role="tab" aria-controls="profile" onclick="changeUrlParameterTabValue('commerce')"
                         aria-selected="<c:if test = "${param.tab == 'commerce'}">true</c:if>">Commerce
                 </button>
               </li>
               <li class="mr-2" role="presentation">
                 <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
-                        id="artipole-tab" data-tabs-target="#artipole" type="button" role="tab" aria-controls="profile" 
+                        id="artipole-tab" data-tabs-target="#artipole" type="button" role="tab" aria-controls="profile" onclick="changeUrlParameterTabValue('artipole')"
                         aria-selected="<c:if test = "${param.tab == 'artipole'}">true</c:if>">Artipôle
                 </button>
               </li>
               <li class="mr-2" role="presentation">
                 <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
-                        id="logistique-tab" data-tabs-target="#logistique" type="button" role="tab" aria-controls="profile" 
+                        id="logistique-tab" data-tabs-target="#logistique" type="button" role="tab" aria-controls="profile" onclick="changeUrlParameterTabValue('logistique')"
                         aria-selected="<c:if test = "${param.tab == 'logistique'}">true</c:if>">Logistique
                 </button>
               </li>
               <li class="mr-2" role="presentation">
                 <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
-                        id="administratif-tab" data-tabs-target="#administratif" type="button" role="tab" aria-controls="profile" 
+                        id="administratif-tab" data-tabs-target="#administratif" type="button" role="tab" aria-controls="profile" onclick="changeUrlParameterTabValue('administratif')"
                         aria-selected="<c:if test = "${param.tab == 'administratif'}">true</c:if>">Administratif
                 </button>
               </li>
               <li class="mr-2" role="presentation">
                 <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
-                        id="informatique-tab" data-tabs-target="#informatique" type="button" role="tab" aria-controls="profile" 
+                        id="informatique-tab" data-tabs-target="#informatique" type="button" role="tab" aria-controls="profile" onclick="changeUrlParameterTabValue('informatique')"
                         aria-selected="<c:if test = "${param.tab == 'informatique'}">true</c:if>">Informatique
                 </button>
               </li>
@@ -376,7 +376,6 @@
             
           <div id="myTabContent" class="ml-4">
             <div id="profile" role="tabpanel" aria-labelledby="profile-tab">
-     
               <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')">
                 <div class="flex items-center mb-1">
                   <c:url value="/edit/editAdherentContact" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
@@ -389,260 +388,177 @@
               </sec:authorize>    
               
               <div class="grid grid-cols-5 gap-2">
+                
                 <c:forEach items="${contacts}" var="contact">
-                  <c:url value="/adherentProfil" var="urlShowAdh"><c:param name="idAdh"
-                                                                           value="${contact.adherent.id}"/></c:url>
-                    <div class="flex bg-neutral-200 flex-col items-center rounded-lg border max-w-16">
-                    <c:choose>
-                      <c:when test="${contact.photoImg == ''}">
-                        <img class="object-contain w-full h-24 rounded-t-lg" src="<c:url value="/resources/images/noAdh.png" />"/>
-                      </c:when>
-                      <c:otherwise>
-                        <img class="object-contain w-full h-24 rounded-t-lg" src="${contact.photoImg}"/>
-                      </c:otherwise>
-                    </c:choose>
-                    <div class="flex flex-col justify-between p-3 leading-normal">
-                      <h5 class="text-lg font-bold tracking-tight text-gray-900 text-center">
-                        <c:out value="${contact.civilite} ${contact.nom} ${contact.prenom}"/></h5>
-                      <p class="text-center font-semibold text-sm text-gray-500"><c:out
-                          value="${contact.fonction.libelle}"/>
-                      </p>
-                      <p>
-                        <ul class="text-sm text-center">
-                          <li class="small mt-1 text-green-500 hover:underline hover:drop-shadow">
-                            <a href="mailto:${contact.mail}">${contact.mail}</a>
-                          </li>
+                  <div class="flex flex-col w-full justify-between items-center gap-1 bg-neutral-200 rounded-lg p-1">
+                    <ul class="w-full">  
+                      <li class="flex justify-center">
+                        <c:choose>
+                          <c:when test="${contact.photoImg == ''}">
+                            <img class="h-24 w-24 rounded-full" src="<c:url value="/resources/images/noAdh.png" />"/>
+                          </c:when>
+                          <c:otherwise>
+                            <img class="h-24 w-24 rounded-full" src="${contact.photoImg}"/>
+                          </c:otherwise>
+                        </c:choose>
+                      </li>
+                      
+                      <li>
+                        <h5 class="text-lg font-bold tracking-tight text-gray-900 text-center truncate">
+                          <span class="text-sm"><c:out value="${contact.civilite}"/></span>
+                          <c:out value="${contact.nom} ${contact.prenom}"/>
+                        </h5>
 
+                        <p class="text-center font-semibold text-sm text-gray-500">
+                          <c:out value="${contact.fonction.libelle}"/>
+                        </p>
+                      </li>
+                    </ul>
 
-                          <li class="small text-green-500 hover:underline hover:drop-shadow">
-                            <a href="tel:${contact.fixe}">${contact.fixe}</a>
-                          </li>
+                    <ul class="text-sm text-center text-green-500 w-full">
+                      <li class="hover:underline hover:drop-shadow truncate">
+                        <a href="mailto:${contact.mail}">${contact.mail}</a>
+                      </li>
 
-                          <c:choose>
-                            <c:when test="${contact.mobile != ''}">
-                              <li class="small text-green-500 hover:underline hover:drop-shadow">
-                                <a href="tel:${contact.mobile}">${contact.mobile}</a>
-                              </li>                              
-                            </c:when>
-                            <c:otherwise>
-                              <li class="small text-green-500 hover:underline hover:drop-shadow">
-                                <a href="tel:">&nbsp;</a>
-                              </li>
-                            </c:otherwise>
-                          </c:choose>                            
+                      <li class="hover:underline hover:drop-shadow truncate">
+                        <a href="tel:${contact.fixe}">${contact.fixe}</a>
+                      </li>
 
-<!--                            <li class="small text-green-500 hover:underline hover:drop-shadow">
-                            <a href="tel:${contact.mobile}">${contact.mobile}</a>
-                          </li>-->
+                      <c:if test="${contact.mobile != ''}">
+                        <li class="hover:underline hover:drop-shadow truncate">
+                          <a href="tel:${contact.mobile}">${contact.mobile}</a>
+                        </li>                              
+                      </c:if>
+                    </ul>
 
+                    <ul class="w-full text-sm text-center">
+                      <li class="text-xs truncate">
+                        <fmt:formatDate pattern="dd/MM/yyyy" value="${contact.dateNaissance}"/>
+                        <spring:message code="Age" arguments="${contact.age}"/>
+                      </li>
 
-                          <li class="text-xs"><fmt:formatDate
-                              pattern="dd/MM/yyyy"
-                              value="${contact.dateNaissance}"/>
-                            <spring:message code="Age"
-                                            arguments="${contact.age}"/></li>
-                          <li class="flex flex-col">
-                            <button id="dropdownDefaultButton-${contact.id}"
-                                    data-dropdown-toggle="dropdown-${contact.id}"
-                                    class="flex justify-center text-white bg-neutral-700 hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium mt-2 rounded-lg text-sm px-2 py-1 text-center inline-flex items-center"
-                                    type="button">Rôles
-                              <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none"
-                                   stroke="currentColor" viewBox="0 0 24 24"
-                                   xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                              </svg>
-                            </button>
-                            <sec:authorize
-                              access="hasAnyRole('ROLE_ADMIN')">
-                              <button id="dropdownDefaultId-${contact.id}"
-                                      data-dropdown-toggle="dropdownId-${contact.id}"
-                                      class="flex justify-center text-white bg-neutral-700 hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium mt-2 rounded-lg text-sm px-2 py-1 text-center inline-flex items-center"
-                                      type="button">Identifiants
-                                <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none"
-                                     stroke="currentColor" viewBox="0 0 24 24"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                  <path stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                </svg>
-                              </button>
-                            </sec:authorize>
-                            <!-- Dropdown menu -->
-                            <div id="dropdown-${contact.id}"
-                                 class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
-                              <ul class="py-2 text-sm text-gray-700"
-                                  aria-labelledby="dropdownDefaultButton-${contact.id}">
-                                <li>
-                                  <div href="#"
-                                       class="flex gap-1 text-gray-600 py-2 px-3 block hover:bg-gray-100 transition duration-150">
-                                    <c:choose>
-                                      <c:when test="${contact.isMailingDirigeant}">
-                                        <svg class="w-6 h-6 text-green-600"
-                                             fill="none"
-                                             stroke="currentColor"
-                                             viewBox="0 0 24 24"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                          <path stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                        </svg>
-                                      </c:when>
-                                      <c:otherwise>
-                                        <svg class="text-red-600 w-6 h-6"
-                                             fill="none"
-                                             stroke="currentColor"
-                                             viewBox="0 0 24 24"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                          <path stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                        </svg>
-                                      </c:otherwise>
-                                    </c:choose>
-                                    Dirigeant
+                      <li class="flex flex-col gap-2 p-2">
+                        <button id="dropdownDefaultButton-${contact.id}"
+                                data-dropdown-toggle="dropdown-${contact.id}"
+                                class="flex justify-center text-white bg-neutral-700 hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-400 font-medium rounded-lg text-sm px-2 py-1 text-center inline-flex items-center"
+                                type="button">Rôles
+                          <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                          </svg>
+                        </button>
+                        <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+                          <button id="dropdownDefaultId-${contact.id}"
+                                  data-dropdown-toggle="dropdownId-${contact.id}"
+                                  class="flex justify-center text-white bg-neutral-700 hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-neutral-400 font-medium rounded-lg text-sm px-2 py-1 text-center inline-flex items-center"
+                                  type="button">Identifiants
+                            <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                          </button>
+                        </sec:authorize>
+
+                        <!-- Dropdown menu -->
+                        <div id="dropdown-${contact.id}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                          <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownDefaultButton-${contact.id}">
+                            <li>
+                              <div href="#" class="flex gap-1 text-gray-600 py-2 px-3 block hover:bg-gray-100 transition duration-150">
+                                <c:choose>
+                                  <c:when test="${contact.isMailingDirigeant}">
+                                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                  </c:when>
+                                  <c:otherwise>
+                                    <svg class="text-red-600 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                  </c:otherwise>
+                                </c:choose>
+                                Dirigeant
+                              </div>
+                            </li>
+                            <li>
+                              <div href="#" class="flex gap-1 border-t border-gray-100 text-gray-600 py-2 px-3 block hover:bg-gray-100 transition duration-150">
+                                <c:choose>
+                                  <c:when test="${contact.isMailingCommerce}">
+                                    <svg class="text-green-600 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                  </c:when>
+                                  <c:otherwise>
+                                    <svg class="text-red-600 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                  </c:otherwise>
+                                </c:choose>
+                                Commerce
+                              </div>
+                            </li>
+                            <li>
+                              <div href="#" class="flex gap-1 border-t border-gray-100 text-gray-600 py-2 px-3 block hover:bg-gray-100 transition duration-150">
+                                <c:choose>
+                                  <c:when test="${contact.isMailingAdministratif}">
+                                    <svg class="text-green-600 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                  </c:when>
+                                  <c:otherwise>
+                                    <svg class="text-red-600 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                  </c:otherwise>
+                                </c:choose>
+                                Administratif
+                              </div>
+                            </li>
+                            <li>
+                              <div href="#" class="flex gap-1 border-t border-gray-100 text-gray-600 py-2 px-3 block hover:bg-gray-100 transition duration-150">
+                                <c:choose>
+                                  <c:when test="${contact.isMailingCompta}">
+                                    <svg class="text-green-600 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                  </c:when>
+                                  <c:otherwise>
+                                    <svg class="text-red-600 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                  </c:otherwise>
+                                </c:choose>
+                                Comptabilité
+                              </div>
+                            </li>
+                            <li><c:choose>
+                                <c:when test="${contact.isAccessEOLAS}">
+                                  <div href="#" class="flex gap-1 border-t border-gray-100 text-gray-600 py-2 px-3 block hover:bg-gray-100 transition duration-150">
+                                    <svg class="w-6 h-6 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                                    </svg>
+                                    Accès Spe Eolas
                                   </div>
-                                </li>
-                                <li>
-                                  <div href="#"
-                                       class="flex gap-1 border-t border-gray-100 text-gray-600 py-2 px-3 block hover:bg-gray-100 transition duration-150">
-                                    <c:choose>
-                                      <c:when test="${contact.isMailingCommerce}">
-                                        <svg class="text-green-600 w-6 h-6"
-                                             fill="none"
-                                             stroke="currentColor"
-                                             viewBox="0 0 24 24"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                          <path stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                        </svg>
-                                      </c:when>
-                                      <c:otherwise>
-                                        <svg class="text-red-600 w-6 h-6"
-                                             fill="none"
-                                             stroke="currentColor"
-                                             viewBox="0 0 24 24"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                          <path stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                        </svg>
-                                      </c:otherwise>
-                                    </c:choose>
-                                    Commerce
-                                  </div>
-                                </li>
-                                <li>
-                                  <div href="#"
-                                       class="flex gap-1 border-t border-gray-100 text-gray-600 py-2 px-3 block hover:bg-gray-100 transition duration-150">
-                                    <c:choose>
-                                      <c:when test="${contact.isMailingAdministratif}">
-                                        <svg class="text-green-600 w-6 h-6"
-                                             fill="none"
-                                             stroke="currentColor"
-                                             viewBox="0 0 24 24"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                          <path stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                        </svg>
-                                      </c:when>
-                                      <c:otherwise>
-                                        <svg class="text-red-600 w-6 h-6"
-                                             fill="none"
-                                             stroke="currentColor"
-                                             viewBox="0 0 24 24"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                          <path stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                        </svg>
-                                      </c:otherwise>
-                                    </c:choose>
-                                    Administratif
-                                  </div>
-                                </li>
-                                <li>
-                                  <div href="#"
-                                       class="flex gap-1 border-t border-gray-100 text-gray-600 py-2 px-3 block hover:bg-gray-100 transition duration-150">
-                                    <c:choose>
-                                      <c:when test="${contact.isMailingCompta}">
-                                        <svg class="text-green-600 w-6 h-6"
-                                             fill="none"
-                                             stroke="currentColor"
-                                             viewBox="0 0 24 24"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                          <path stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                        </svg>
-                                      </c:when>
-                                      <c:otherwise>
-                                        <svg class="text-red-600 w-6 h-6"
-                                             fill="none"
-                                             stroke="currentColor"
-                                             viewBox="0 0 24 24"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                          <path stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                        </svg>
-                                      </c:otherwise>
-                                    </c:choose>
-                                    Comptabilité
-                                  </div>
-                                </li>
-                                <li><c:choose>
-                                    <c:when test="${contact.isAccessEOLAS}">
-                                      <div href="#"
-                                           class="flex gap-1 border-t border-gray-100 text-gray-600 py-2 px-3 block hover:bg-gray-100 transition duration-150">
+                                </c:when>
+                              </c:choose></li>
+                          </ul>
+                        </div>
 
-                                        <svg class="w-6 h-6 text-neutral-600"
-                                             fill="none"
-                                             stroke="currentColor"
-                                             viewBox="0 0 24 24"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                          <path stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
-                                        </svg>
-                                        Accès Spe Eolas
-                                      </div>
-                                    </c:when>
-                                  </c:choose></li>
-                              </ul>
-                            </div>
-                            <div id="dropdownId-${contact.id}"
-                                 class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56">
-                              <ul class="py-2 text-xs text-gray-700 flex flex-col"
-                                  aria-labelledby="dropdownDefaultId-${contact.id}">
-                                <li class="flex flex-col items-center justify-center gap-1">
-                                  <span><spring:message
-                                      code="label.login"/> : ${contact.loginEOLAS}</span>
-                                </li>
-                                <li class="flex flex-col items-center justify-center gap-1">
-                                  <span><spring:message
-                                      code="label.pass"/> : ${contact.passEOLAS}</span>
-                                </li>
-                              </ul>
-                            </div>
-                          </li>
-                        </ul>
-                    </div>
+                        <div id="dropdownId-${contact.id}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56">
+                          <ul class="py-2 text-xs text-gray-700 flex flex-col" aria-labelledby="dropdownDefaultId-${contact.id}">
+                            <li class="flex flex-col items-center justify-center gap-1">
+                              <span><spring:message code="label.login"/> : ${contact.loginEOLAS}</span>
+                            </li>
+                            <li class="flex flex-col items-center justify-center gap-1">
+                              <span><spring:message code="label.pass"/> : ${contact.passEOLAS}</span>
+                            </li>
+                          </ul>
+                        </div>
+
+                      </li>
+                    </ul>
+                   
                   </div>
                 </c:forEach>
               </div>
             </div>
-
             <div id="commerce" role="tabpanel" aria-labelledby="commerce-tab">
               <jsp:include page="../customViewsAdhProfil/commerce.jsp"/>
             </div>
@@ -658,75 +574,62 @@
             <div id="informatique" role="tabpanel" aria-labelledby="informatique-tab">
               <jsp:include page="../customViewsAdhProfil/informatique.jsp"/>
             </div>
-            <div class="hidden p-4 rounded-lg" id="settings" role="tabpanel" aria-labelledby="settings-tab">
-              
+            <div id="settings" role="tabpanel" aria-labelledby="settings-tab">
               <!--CRM-->
               <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CRM')">
-                <div class="tab-pane" id="CRM">
-                  <div class="card-body pt-0 ">
-                    <form:form class="addAdherentSuivi" method="post"
-                               modelAttribute="suiviToAdd"
-                               action="edit/addAdherentSuivi">
-                      <form:input type="hidden" path="suiviVisiteAdh.adherentId"/>
-                      <div class="post">
-                        <button class="btn btn-blue focus:ring-4 focus:outline-none focus:ring-neutral-300" id="openFormButton" type="button">
-                          Ajouter un suivi
-                        </button>
-                      </div>
-                      <div id="openForm" class="post" style="display:none" title="Ajouter un contact">
-                        <fieldset>
-                          <%--                                                    <legend><spring:message code="label.addSuivi"/></legend>--%>
-                          <div class="user-block">
-                            <%--                                                        <form:label--%>
-                            <%--                                                                path="suiviVisiteAdh.dateCommentaire"><spring:message--%>
-                            <%--                                                                code="label.dateSuivi"/></form:label>--%>
-                            <div class="col-2 flex gap-4 mt-2" id="reservationdate" data-target-input="nearest">
-                              <form:input
-                                class="input-text"
-                                type="date"
-                                path="suiviVisiteAdh.dateCommentaire"
-                                placeholder="Date de livraison"/>
-                              <form:textarea
-                                class="w-2/3 block input-textarea"
-                                id="summernote"
-                                name="editordata"
-                                path="suiviVisiteAdh.commentaire"/>
-                              <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">
-                                Enregistrer le suivi
-                              </button>
-                            </div>
-                            <form:errors class="error-message" path="suiviVisiteAdh.dateCommentaire"/>
-                          </div>
-                        </fieldset>
-
-                      </div>
-                    </form:form>
-
-
-                    <div class="grid grid-cols-1 gap-4">
-                      <c:forEach items="${infoSuiviVisite}" var="visite">
-                        <div class="post bg-white border bg-neutral-50 border-neutral-200 rounded-lg p-2">
-                          <div class="user-block">
-                            <span class="username">
-                              <span class="text-sm">
-                                <spring:message code="label.dateSuivi"/>:
-                                <fmt:formatDate pattern="dd/MM/yyyy" value="${visite.dateCommentaire}"/>
-                              </span>
-                              <c:url value="/edit/editCRMAdh" var="url">
-                                <c:param name="idAdh" value="${adherent.id}"/>
-                                <c:param name="idSuivi" value="${visite.id}"/>
-                              </c:url>
-                              <a href="${url}" class="float-right btn-default"><i class="fa fa-pencil"></i></a>
-                            </span>
-                          </div>
-                          <p>${visite.commentaireString}</p>
-                        </div>
-                      </c:forEach>
+                <div class="card-body">
+                  <form:form class="addAdherentSuivi" method="post" modelAttribute="suiviToAdd" action="edit/addAdherentSuivi">
+                    <form:input type="hidden" path="suiviVisiteAdh.adherentId"/>
+                    <div class="post">
+                      <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300" id="openFormButton" type="button">
+                        Ajouter un suivi
+                      </button>
                     </div>
+                    <div id="openForm" class="post" style="display:none" title="Ajouter un contact">
+                      <fieldset>
+                        <%--                                                    <legend><spring:message code="label.addSuivi"/></legend>--%>
+                        <div class="user-block">
+                          <%--                                                        <form:label--%>
+                          <%--                                                                path="suiviVisiteAdh.dateCommentaire"><spring:message--%>
+                          <%--                                                                code="label.dateSuivi"/></form:label>--%>
+                          <div class="col-2 flex gap-4 mt-2" id="reservationdate" data-target-input="nearest">
+                            <form:input class="input-text" type="date" path="suiviVisiteAdh.dateCommentaire" placeholder="Date de livraison"/>
+                            <form:textarea class="w-2/3 block input-textarea" id="summernote" name="editordata" path="suiviVisiteAdh.commentaire"/>
+                            <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">
+                              Enregistrer le suivi
+                            </button>
+                          </div>
+                          <form:errors class="error-message" path="suiviVisiteAdh.dateCommentaire"/>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </form:form>
+
+
+                  <div class="grid grid-cols-1 gap-4">
+                    <c:forEach items="${infoSuiviVisite}" var="visite">
+                      <div class="post bg-white border bg-neutral-50 border-neutral-200 rounded-lg p-2">
+                        <div class="user-block">
+                          <span class="username">
+                            <span class="text-sm">
+                              <spring:message code="label.dateSuivi"/>:
+                              <fmt:formatDate pattern="dd/MM/yyyy" value="${visite.dateCommentaire}"/>
+                            </span>
+                            <c:url value="/edit/editCRMAdh" var="url">
+                              <c:param name="idAdh" value="${adherent.id}"/>
+                              <c:param name="idSuivi" value="${visite.id}"/>
+                            </c:url>
+                            <a href="${url}" class="float-right btn-default"><i class="fa fa-pencil"></i></a>
+                          </span>
+                        </div>
+                        <p>${visite.commentaireString}</p>
+                      </div>
+                    </c:forEach>
                   </div>
                 </div>
               </sec:authorize>
             </div>
+            
             <div class="hidden p-4 rounded-lg" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
               <div>
                 <div class="flex flex-col gap-6">
@@ -767,18 +670,13 @@
                       <c:url value="/edit/editExploitationAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
                       <a href="${url}" class="nav-link flex gap-1">
 
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor"
-                             viewBox="0 0 24 24"
-                             xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                          <path stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path>
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path>
                         </svg>
                         <div>
                           Logistique
                         </div>
-                        </p>
                       </a>
                     </sec:authorize>
                   </div>
@@ -788,8 +686,7 @@
                   <c:url value="/adherentLogistique" var="urlExploit"><c:param name="idAdh" value="${adherent.id}"/></c:url>
                   <c:url value="/adherentAdministratif" var="urlAdmin"><c:param name="idAdh" value="${adherent.id}"/></c:url>
                   <c:url value="/adherentInformatique" var="urlInfo"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-                  <%--                                        <c:url value="/adherentCRM" var="urlCRM"><c:param name="idAdh"--%>
-                  <%--                                                                                          value="${adherent.id}"/></c:url>--%>
+                  <%--<c:url value="/adherentCRM" var="urlCRM"><c:param name="idAdh" value="${adherent.id}"/></c:url>--%>
 
                   <div class="flex justify-center">
                     <%--                                            <c:url value="/enCours" var="url"/>--%>
@@ -800,24 +697,21 @@
                     <%--                                            </a>--%>
                     <%--                                            ---%>
                     <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ACTIVITE')">
-                      <a class="bottom-menu-item <c:if test = "${pageType == 'ADHERENT_ACTIVITE'}"> bottomNavBar-active</c:if>"
-                         href="${urlActivite}">
+                      <a href="${urlActivite}" class="bottom-menu-item <c:if test = "${pageType == 'ADHERENT_ACTIVITE'}"> bottomNavBar-active</c:if>">
                         <!--<svg class="menu-item-icon" ><use xlink:href="resources/images/icones.svg#supply"></use></svg>-->
                         <spring:message code="label.activite"/>
                       </a>
                     </sec:authorize>
                     -
                     <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE')">
-                      <a class="bottom-menu-item <c:if test = "${pageType == 'ADHERENT_ARTIPOLE'}"> bottomNavBar-active</c:if>"
-                         href="${urlArtipole}">
+                      <a href="${urlArtipole}" class="bottom-menu-item <c:if test = "${pageType == 'ADHERENT_ARTIPOLE'}"> bottomNavBar-active</c:if>">
                         <!--<svg class="menu-item-icon" ><use xlink:href="resources/images/icones.svg#supply"></use></svg>-->
                         <spring:message code="label.artipole"/>
                       </a>
                     </sec:authorize>
                     -
                     <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_EXPLOITATION')">
-                      <a class="bottom-menu-item <c:if test = "${pageType == 'ADHERENT_EXPLOITATION'}"> bottomNavBar-active</c:if>"
-                         href="${urlExploit}">
+                      <a href="${urlExploit}" class="bottom-menu-item <c:if test = "${pageType == 'ADHERENT_EXPLOITATION'}"> bottomNavBar-active</c:if>">
                         <!--<svg class="menu-item-icon" ><use xlink:href="resources/images/icones.svg#supply"></use></svg>-->
                         <spring:message code="label.exploitation"/>
                       </a>
@@ -832,16 +726,14 @@
                     <%--                                            </sec:authorize>--%>
                     -
                     <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADMIN_FINANCE')">
-                      <a class="bottom-menu-item <c:if test = "${pageType == 'ADHERENT_ADMINISTRATIF'}"> bottomNavBar-active</c:if>"
-                         href="${urlAdmin}">
+                      <a href="${urlAdmin}" class="bottom-menu-item <c:if test = "${pageType == 'ADHERENT_ADMINISTRATIF'}"> bottomNavBar-active</c:if>">
                         <!--<svg class="menu-item-icon" ><use xlink:href="resources/images/icones.svg#supply"></use></svg>-->
                         <spring:message code="label.administratif"/>
                       </a>
                     </sec:authorize>
                     -
                     <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_INFORMATIQUE')">
-                      <a class="bottom-menu-item <c:if test = "${pageType == 'ADHERENT_INFORMATIQUE'}"> bottomNavBar-active</c:if>"
-                         href="${urlInfo}">
+                      <a href="${urlInfo}" class="bottom-menu-item <c:if test = "${pageType == 'ADHERENT_INFORMATIQUE'}"> bottomNavBar-active</c:if>">
                         <!--<svg class="menu-item-icon" ><use xlink:href="resources/images/icones.svg#supply"></use></svg>-->
                         <spring:message code="label.informatique"/>
                       </a>
@@ -859,3 +751,15 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
+
+
+<script>
+  
+function changeUrlParameterTabValue(newValue) {
+    var url = new URL(window.location.href);
+    url.searchParams.set('tab', newValue);
+    window.history.replaceState({}, '', url.href);
+}
+
+
+</script>

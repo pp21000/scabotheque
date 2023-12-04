@@ -35,37 +35,25 @@
 </div>
 
 <form:form method="post" modelAttribute="editForm" action="editArtipoleAdh">
-  <form:input type="hidden" path="editAdherent.id"/>
 
   <!-- Permet de ne pas perdre les données autre que celles modifié -->
+  <form:input type="hidden" path="editAdherent.id"/>
   <form:input type="hidden" name="editAdherent.code" path="editAdherent.code"/>
-  <form:input type="hidden" name="editAdherent.code" path="editAdherent.codeERP"/>
-  <form:input type="hidden" name="editAdherent.codeParent" path="editAdherent.codeERPParent"/>
+  <form:input type="hidden" name="editAdherent.codeERP" path="editAdherent.codeERP"/>
+  <form:input type="hidden" name="editAdherent.codeERPParent" path="editAdherent.codeERPParent"/>
   <form:input type="hidden" name="editAdherent.libelle" path="editAdherent.libelle"/>
   <form:input type="hidden" name="editAdherent.denomination" path="editAdherent.denomination"/>
   <form:input type="hidden" name="editAdherent.adresse" path="editAdherent.adresse"/>
   <form:input type="hidden" name="editAdherent.adresseComplement" path="editAdherent.adresseComplement"/>
   <form:input type="hidden" path="editAdherent.commune.id"/>
   <form:input type="hidden" path="editAdherent.pole.id"/>
-  <%-- 	<form:input type="hidden" path="adherent.isArtipole"/> --%>
-  <%-- 	<form:input type="hidden" path="adherent.isCharteArtipole"/> --%>
-  <%-- 	<form:input type="hidden" path="adherent.isFlocageArtipole"/> --%>
-  <%-- 	<form:input type="hidden" path="adherent.isWebArtipole"/> --%>
-  <%-- 	<form:input type="hidden" path="adherent.isFacebookArtipole"/> --%>
-
-  <%--<form:input type="hidden" path="adherent.siteWeb"/>--%>
-  <%--<form:input type="hidden" path="adherent.Facebook"/>--%>
-  <%--<form:input type="hidden" path="adherent.Instagram"/>--%>
-  <%--<form:input type="hidden" path="adherent.Linkedin"/>--%>
-  <%--<form:input type="hidden" path="adherent.Youtube"/>--%>
-  <%--<form:input type="hidden" path="adherent.Pinterest"/>--%>
-
   <form:input type="hidden" path="editAdherent.agence.id"/>
   <form:input type="hidden" path="editAdherent.secteur.id"/>
   <form:input type="hidden" path="editAdherent.tournee.id"/>
   <form:input type="hidden" path="editAdherent.isOutilDechargement"/>
-  <form:input type="hidden" path="editAdherent.dateEntree"/>
+  <form:input type="hidden" path="editAdherent.etat.id"/>
   <form:input type="hidden" path="editAdherent.dateCreation"/>
+  <form:input type="hidden" path="editAdherent.dateEntree"/>
   <form:input type="hidden" path="editAdherent.dateSortie"/>
   <form:input type="hidden" path="editAdherent.role.id"/>
   <form:input type="hidden" path="editAdherent.formeJuridique.id"/>
@@ -77,12 +65,29 @@
   <form:input type="hidden" path="editAdherent.rcsCommune.id"/>
   <form:input type="hidden" path="editAdherent.rmCommune.id"/>
   <form:input type="hidden" path="editAdherent.dateClotureExe"/>
-  <%--<form:input type="hidden" path="adherent.contactComptable"/>--%>
   <form:input type="hidden" path="editAdherent.formationDirigeant"/>
   <form:input type="hidden" path="editAdherent.cnxEolasAllow"/>
-  <form:input type="hidden" path="editAdherent.etat.id"/>
   <form:input type="hidden" path="editAdherent.adherentType.id"/>
   <form:input type="hidden" path="editAdherent.compteType.id"/>
+  <form:input type="hidden" path="editAdherent.latitude"/>
+  <form:input type="hidden" path="editAdherent.longitude"/>
+  <form:input type="hidden" path="editAdherent.mail"/>
+  <form:input type="hidden" path="editAdherent.telephone"/>
+  <form:input type="hidden" path="editAdherent.description_activite"/>
+  <form:input type="hidden" path="editAdherent.description_entreprise"/>
+  <!-- données que je modifie plus bas dans cette page -->
+  <%--<form:input type="hidden" path="editAdherent.isArtipole"/>--%>
+  <%--<form:input type="hidden" path="editAdherent.isCharteArtipole"/>--%>
+  <%--<form:input type="hidden" path="editAdherent.isFlocageArtipole"/>--%>
+  <%--<form:input type="hidden" path="editAdherent.isWebArtipole"/>--%>
+  <%--<form:input type="hidden" path="editAdherent.isFacebookArtipole"/>--%>
+  <%--<form:input type="hidden" path="editAdherent.siteWeb"/>--%>
+  <%--<form:input type="hidden" path="editAdherent.facebook"/>--%>
+  <%--<form:input type="hidden" path="editAdherent.instagram"/>--%>
+  <%--<form:input type="hidden" path="editAdherent.linkedin"/>--%>
+  <%--<form:input type="hidden" path="editAdherent.youtube"/>--%>
+  <%--<form:input type="hidden" path="editAdherent.pinterest"/>--%>
+  
 
   <fieldset class="flex justify-center mt-10">
     <div>

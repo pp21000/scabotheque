@@ -160,7 +160,7 @@
     <div class="grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
       <c:forEach items="${listeAdherents}" var="adherent">
         <div class="w-full pt-2 max-w-s bg-white rounded-lg border-gray-200 shadow-md hover:bg-neutral-100 cursor-pointer"  id="${adherent.id}">
-          <c:url value="/adherentProfil" var="urlShowAdh"><c:param name="idAdh" value="${adherent.id}"/></c:url>
+          <c:url value="/adherentProfil" var="urlShowAdh"><c:param name="tab" value="contacts"/><c:param name="idAdh" value="${adherent.id}"/></c:url>
           <h5 class=" mb-2 text-center bg-[#0F638C;] gray-100 font-medium text-gray-100"><c:out value="${contact.prenom}"/> <c:out value="${adherent.libelle}"/></h5>
          
           <div class="grid grid-cols-3 items-center pb-5 px-2">

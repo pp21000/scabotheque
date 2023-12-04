@@ -250,7 +250,7 @@
                                 </div>
                                 <div class="grid grid-cols-5 gap-2">
                                     <%--<c:forEach items="${contacts}" var="contact">--%>
-                                        <%--<c:url value="/adherentProfil" var="urlShowAdh"><c:param name="idAdh" value="${contact.adherent.id}"/></c:url>--%>
+                                        <%--<c:url value="/adherentProfil" var="urlShowAdh"><c:param name="tab" value="contacts"/><c:param name="idAdh" value="${contact.adherent.id}"/></c:url>--%>
                                         <div class="flex bg-neutral-50 flex-col items-center bg-white rounded-lg border hover:bg-gray-100 max-w-16">
                                             <c:choose>
                                                 <c:when test="${contact.photoImg == ''}">

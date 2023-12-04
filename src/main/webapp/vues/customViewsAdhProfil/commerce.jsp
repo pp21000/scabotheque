@@ -25,203 +25,207 @@
       </div>
     </sec:authorize>        
  
-    <div class="showDetailCommerceTitre grid grid-cols-5 bg-gray-300 dark:bg-gray-800 p-2 rounded-t-2xl">
+    <div class="showDetailCommerceTitre grid grid-cols-5 bg-gray-200 dark:bg-gray-800 px-9 py-2 rounded-t-2xl">
         <span class="col-span-2"></span>
         <span class="flex justify-center">%tage</span>
-        <div class="col-span-2 grid grid-cols-4">
+        <div class="col-span-2 grid grid-cols-4 text-center">
             <span>Achat N</span>
             <span>N-1</span>
             <span>N-2</span>
             <span>N-3</span>
         </div>
     </div>
-    <div id="accordion-arrow-icon" data-accordion="open" class="bg-gray-300 dark:bg-gray-800">
-        <h2>
-            <button type="button"
-                    class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-200 border border-gray-200 hover:bg-gray-500 dark:hover:bg-gray-900"
-                    data-accordion-target="#accordion-year" aria-expanded="false"
-                    aria-controls="accordion-arrow-icon-body-3">
-                <span>Année</span>
-                <svg class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                          clip-rule="evenodd"></path>
-                </svg>
-            </button>
-        </h2>
-        <div id="accordion-year" class="hidden" aria-labelledby="accordion-arrow-icon-heading-3">
-            <div class="p-5 font-light border border-t-0 border-gray-200">
-                <div id="yearTable" class="border border-neutral-300 p-4 mb-4">
-                    <c:forEach items="${adhActivites}" var="adhActivites">
-                    <span class="grid grid-cols-5">
-                        <div class="col-span-2">
-                            <c:choose>
-                                <c:when test="${adhActivites.achatDateN != null}">
-                                    <span class="dataLabel">${adhActivites.activite.libelle}</span>
-                                </c:when>
-                                <c:otherwise>
-                                    <span class="dataLabel">Total</span>
-                                </c:otherwise>
-                            </c:choose>
-                        </div>
-                        <div class="flex justify-center">
-                            <c:choose>
-                                <c:when test="${adhActivites.achatDateN != null}">
-                                    <span class="dataTableNumeric">${adhActivites.pourcentage} %</span>
-                                </c:when>
-                                <c:otherwise>
-                                    <span class="dataTableNumeric  dataTable"></span>
-                                </c:otherwise>
-                            </c:choose>
-                        </div>
-                        <div class="col-span-2 grid grid-cols-4">
-                            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ACTIVITE_EDIT')">
-                                <span class="dataTableNumeric dataTable">
-                                    <c:choose>
-                                        <c:when test="${adhActivites.achatN != null}">
-                                            <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.achatN}"/>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.totalN}"/>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </span>
-                                <span class="dataTableNumeric">
-                                    <c:choose>
-                                        <c:when test="${adhActivites.achatN1 != null}">
-                                            <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.achatN1}"/>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.totalN1}"/>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </span>
-                                <span class="dataTableNumeric">
-                                    <c:choose>
-                                        <c:when test="${adhActivites.achatN2 != null}">
-                                            <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.achatN2}"/>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.totalN2}"/>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </span>
-                                <span class="dataTableNumeric">
-                                    <c:choose>
-                                        <c:when test="${adhActivites.achatN3 != null}">
-                                            <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.achatN3}"/>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.totalN3}"/>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </span>
-                            </sec:authorize>
-                        </div>
+  
+    <div id="accordion-arrow-icon" data-accordion="open" class="bg-gray-200 dark:bg-gray-800 rounded-b-2xl">
+      <h1>
+          <button class="flex items-center justify-between w-full p-5 font-medium text-gray-200 bg-gray-400 dark:bg-gray-900 hover:bg-gray-500 dark:hover:bg-gray-950"
+                  data-accordion-target="#accordion-year" aria-expanded="false"
+                  aria-controls="accordion-arrow-icon-body-3" 
+                  onclick="toggleTab(this, '#accordion-year')">
+              <span>Année</span>
+              <svg class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20"
+                   xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        clip-rule="evenodd"></path>
+              </svg>
+          </button>
+      </h1>
+      <div id="accordion-year" class="hidden" aria-labelledby="accordion-arrow-icon-heading-3">
+          <div class="p-5 font-light">
+              <div id="yearTable" class="border border-neutral-300 p-4 mb-4">
+                  <c:forEach items="${adhActivites}" var="adhActivites">
+                  <span class="grid grid-cols-5">
+                      <div class="col-span-2">
+                          <c:choose>
+                              <c:when test="${adhActivites.achatDateN != null}">
+                                  <span class="dataLabel">${adhActivites.activite.libelle}</span>
+                              </c:when>
+                              <c:otherwise>
+                                  <span class="dataLabel">Total</span>
+                              </c:otherwise>
+                          </c:choose>
+                      </div>
+                      <div class="flex justify-center">
+                          <c:choose>
+                              <c:when test="${adhActivites.achatDateN != null}">
+                                  <span class="dataTableNumeric">${adhActivites.pourcentage} %</span>
+                              </c:when>
+                              <c:otherwise>
+                                  <span class="dataTableNumeric  dataTable"></span>
+                              </c:otherwise>
+                          </c:choose>
+                      </div>
+                      <div class="col-span-2 grid grid-cols-4 text-center">
+                          <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ACTIVITE_EDIT')">
+                              <span class="dataTableNumeric dataTable">
+                                  <c:choose>
+                                      <c:when test="${adhActivites.achatN != null}">
+                                          <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.achatN}"/>
+                                      </c:when>
+                                      <c:otherwise>
+                                          <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.totalN}"/>
+                                      </c:otherwise>
+                                  </c:choose>
+                              </span>
+                              <span class="dataTableNumeric">
+                                  <c:choose>
+                                      <c:when test="${adhActivites.achatN1 != null}">
+                                          <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.achatN1}"/>
+                                      </c:when>
+                                      <c:otherwise>
+                                          <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.totalN1}"/>
+                                      </c:otherwise>
+                                  </c:choose>
+                              </span>
+                              <span class="dataTableNumeric">
+                                  <c:choose>
+                                      <c:when test="${adhActivites.achatN2 != null}">
+                                          <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.achatN2}"/>
+                                      </c:when>
+                                      <c:otherwise>
+                                          <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.totalN2}"/>
+                                      </c:otherwise>
+                                  </c:choose>
+                              </span>
+                              <span class="dataTableNumeric">
+                                  <c:choose>
+                                      <c:when test="${adhActivites.achatN3 != null}">
+                                          <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.achatN3}"/>
+                                      </c:when>
+                                      <c:otherwise>
+                                          <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.totalN3}"/>
+                                      </c:otherwise>
+                                  </c:choose>
+                              </span>
+                          </sec:authorize>
+                      </div>
 <%--                        <span class="data">${adhActivites.commentaire}</span>--%>
-                    </span>
-                    </c:forEach>
-                </div>
-            </div>
-        </div>
-        <h2>
-            <button type="button"
-                    class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-200 border border-gray-200 hover:bg-gray-500 dark:hover:bg-gray-900"
-                    data-accordion-target="#accordion-today" aria-expanded="false"
-                    aria-controls="accordion-arrow-icon-body-3" onclick="toggleAtDateTable()">
-                <span>À aujourd'hui</span>
-                <svg class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                          clip-rule="evenodd"></path>
-                </svg>
-            </button>
-        </h2>
-        <div id="accordion-today" class="hidden" aria-labelledby="accordion-arrow-icon-heading-3">
-            <div class="p-5 font-light border border-t-0 border-gray-200">
-                <div id="atDateTable" class="border border-neutral-300 p-4">
-                    <c:forEach items="${adhActivites}" var="adhActivites">
-                    <span class="grid grid-cols-5">
-                        <div class="col-span-2">
-                        <c:choose>
-                            <c:when test="${adhActivites.achatDateN != null}">
-                                <span class="dataLabel">${adhActivites.activite.libelle}</span>
-                            </c:when>
-                            <c:otherwise>
-                                <span class="dataLabel">Total</span>
-                            </c:otherwise>
-                        </c:choose>
-                        </div>
-                        <div class="flex justify-center">
-                        <c:choose>
-                            <c:when test="${adhActivites.achatDateN != null}">
-                                <span class="dataTableNumeric">${adhActivites.pourcentage} %</span>
-                            </c:when>
-                            <c:otherwise>
-                                <span class="dataTableNumeric"></span>
-                            </c:otherwise>
-                        </c:choose>
-                        </div>
-                        <div class="col-span-2 grid grid-cols-4">
-                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ACTIVITE_EDIT')">
-                            <span class="dataTableNumeric">
-                                <c:choose>
-                                    <c:when test="${adhActivites.achatDateN != null}">
-                                        <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.achatDateN}"/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.totalDateN}"/>
-                                    </c:otherwise>
-                                </c:choose>
-                            </span>
-                            <span class="dataTableNumeric">
-                                <c:choose>
-                                    <c:when test="${adhActivites.achatDateN1 != null}">
-                                        <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.achatDateN1}"/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.totalDateN1}"/>
-                                    </c:otherwise>
-                                </c:choose>
-                            </span>
-                            <span class="dataTableNumeric">
-                                <c:choose>
-                                    <c:when test="${adhActivites.achatDateN2 != null}">
-                                        <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.achatDateN2}"/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.totalDateN2}"/>
-                                    </c:otherwise>
-                                </c:choose>
-                            </span>
-                            <span class="dataTableNumeric">
-                                <c:choose>
-                                    <c:when test="${adhActivites.achatDateN3 != null}">
-                                        <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.achatDateN3}"/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.totalDateN3}"/>
-                                    </c:otherwise>
-                                </c:choose>
-                            </span>
-                        </sec:authorize>
-                        </div>
-                        <span class="data">${adhActivites.commentaire}</span>
-                    </span>
-                    </c:forEach>
-                </div>
-            </div>
-        </div>
+                  </span>
+                  </c:forEach>
+              </div>
+          </div>
+      </div>
+      <h1>
+          <button class="flex items-center justify-between w-full p-5 font-medium text-gray-200 bg-gray-400 dark:bg-gray-900 hover:bg-gray-500 dark:hover:bg-gray-950 border-t border-gray-100 dark:border-gray-700"
+                  data-accordion-target="#accordion-today" aria-expanded="false"
+                  aria-controls="accordion-arrow-icon-body-3" 
+                  onclick="toggleTab(this, '#accordion-today')">
+              <span>À aujourd'hui</span>
+              <svg class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20"
+                   xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        clip-rule="evenodd"></path>
+              </svg>
+          </button>
+      </h1>
+      <div id="accordion-today" class="hidden" aria-labelledby="accordion-arrow-icon-heading-3">
+          <div class="p-5 font-light">
+              <div id="atDateTable" class="border border-neutral-300 p-4">
+                  <c:forEach items="${adhActivites}" var="adhActivites">
+                  <span class="grid grid-cols-5">
+                      <div class="col-span-2">
+                      <c:choose>
+                          <c:when test="${adhActivites.achatDateN != null}">
+                              <span class="dataLabel">${adhActivites.activite.libelle}</span>
+                          </c:when>
+                          <c:otherwise>
+                              <span class="dataLabel">Total</span>
+                          </c:otherwise>
+                      </c:choose>
+                      </div>
+                      <div class="flex justify-center">
+                      <c:choose>
+                          <c:when test="${adhActivites.achatDateN != null}">
+                              <span class="dataTableNumeric">${adhActivites.pourcentage} %</span>
+                          </c:when>
+                          <c:otherwise>
+                              <span class="dataTableNumeric"></span>
+                          </c:otherwise>
+                      </c:choose>
+                      </div>
+                      <div class="col-span-2 grid grid-cols-4 text-center">
+                      <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ACTIVITE_EDIT')">
+                          <span class="dataTableNumeric">
+                              <c:choose>
+                                  <c:when test="${adhActivites.achatDateN != null}">
+                                      <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.achatDateN}"/>
+                                  </c:when>
+                                  <c:otherwise>
+                                      <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.totalDateN}"/>
+                                  </c:otherwise>
+                              </c:choose>
+                          </span>
+                          <span class="dataTableNumeric">
+                              <c:choose>
+                                  <c:when test="${adhActivites.achatDateN1 != null}">
+                                      <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.achatDateN1}"/>
+                                  </c:when>
+                                  <c:otherwise>
+                                      <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.totalDateN1}"/>
+                                  </c:otherwise>
+                              </c:choose>
+                          </span>
+                          <span class="dataTableNumeric">
+                              <c:choose>
+                                  <c:when test="${adhActivites.achatDateN2 != null}">
+                                      <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.achatDateN2}"/>
+                                  </c:when>
+                                  <c:otherwise>
+                                      <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.totalDateN2}"/>
+                                  </c:otherwise>
+                              </c:choose>
+                          </span>
+                          <span class="dataTableNumeric">
+                              <c:choose>
+                                  <c:when test="${adhActivites.achatDateN3 != null}">
+                                      <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.achatDateN3}"/>
+                                  </c:when>
+                                  <c:otherwise>
+                                      <fmt:formatNumber pattern="#,##0.00" value="${adhActivites.totalDateN3}"/>
+                                  </c:otherwise>
+                              </c:choose>
+                          </span>
+                      </sec:authorize>
+                      </div>
+                      <span class="data">${adhActivites.commentaire}</span>
+                  </span>
+                  </c:forEach>
+              </div>
+          </div>
+      </div>
     </div>
 </div>
 
 <script>
  
- // function toggleAtDateTable() {
-  //  $("#atDateTable").slideDown(500);
- // }
+function toggleTab(tabHeading, tabBody) {
+  $(tabBody).slideToggle(300, function() {
+    $(tabHeading).removeClass('bg-gray-100');
+  });
+}
+
   
 </script>
 

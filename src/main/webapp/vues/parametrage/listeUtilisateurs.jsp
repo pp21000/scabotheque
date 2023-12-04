@@ -21,8 +21,8 @@
         <form:form method="post" modelAttribute="utilisateurListe" action="listeUtilisateurs">
             <c:forEach items="${utilisateurListe.list}" var="editUser" varStatus="status">
                 <h2 id="accordion-arrow-icon-heading-3">
-                    <button type="button"
-                            class="mt-2 flex items-center justify-between w-full rounded-t-xl p-5 font-medium text-left text-gray-400 border dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-950"
+                    <button type="button" onclick="toggleUserTab('${status.index}')"
+                            class="mt-2 flex items-center justify-between w-full rounded-t-xl p-5 font-medium text-left text-gray-800 dark:text-gray-400 border bg-gray-300 dark:bg-gray-900 hover:bg-gray-400 dark:hover:bg-gray-950"
                             data-accordion-target="#accordion-arrow-icon-body-${status.index}" aria-expanded="false">
                         <span id="user-1${editUser.username}">${editUser.username}</span>
                         <svg class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20"
@@ -34,7 +34,7 @@
                     </button>
                 </h2>
                 <div id="accordion-arrow-icon-body-${status.index}" class="hidden">
-                    <div class="rounded-b-xl p-5 font-light border border-t-0 border-gray-200 bg-gray-800">
+                    <div class="rounded-b-xl p-5 font-light border border-t-0 border-gray-200 bg-gray-200 dark:bg-gray-800">
                         <form:input type="hidden" name="list[${status.index}].id" path="list[${status.index}].id"/>
                         <form:input type="hidden" name="list[${status.index}].password" path="list[${status.index}].password"/>
                         <div>
@@ -76,6 +76,12 @@
                 </div>
             </c:forEach>
         </form:form>
-        <span class="error-message"> ${erreur} </span>
+        <span class="error-message"> ${erreur}</span>
     </div>
 </div>
+    
+<script>
+  function toggleUserTab(userIndex) {
+    $("#accordion-arrow-icon-body-" + userIndex).slideToggle(300);
+  }
+</script>

@@ -137,42 +137,28 @@
           <!--Liste des onglets-->
           <div class="card-header p-0 pt-1">
             <ul class="nav nav-tabs">
-              <li class="nav-item"><a class="nav-link active" href="#contact"
-                                      data-toggle="tab"><spring:message code="label.contacts"/></a></li>
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ACTIVITE')">
-                <li class="nav-item"><a class="nav-link" href="#commerce"
-                                        data-toggle="tab"><spring:message code="label.activite"/></a>
-                </li>
+              <li class="nav-item"><a class="nav-link active" href="#contact" data-toggle="tab"><spring:message code="label.contacts"/></a></li>
+              <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ACTIVITE')">
+                <li class="nav-item"><a class="nav-link" href="#commerce" data-toggle="tab"><spring:message code="label.activite"/></a></li>
               </sec:authorize>
               <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE')">
-                <li class="nav-item"><a class="nav-link" href="#artipole"
-                                        data-toggle="tab"><spring:message code="label.artipole"/></a>
-                </li>
+                <li class="nav-item"><a class="nav-link" href="#artipole" data-toggle="tab"><spring:message code="label.artipole"/></a></li>
               </sec:authorize>
               <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_EXPLOITATION')">
-                <li class="nav-item"><a class="nav-link" href="#logistique"
-                                        data-toggle="tab"><spring:message
-                      code="label.exploitation"/></a></li>
-                  </sec:authorize>
-                  <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CRM')">
-                <li class="nav-item"><a class="nav-link" href="#CRM" data-toggle="tab"><spring:message
-                      code="label.crm"/></a></li>
-                  </sec:authorize>
-                  <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADMIN_FINANCE')">
-                <li class="nav-item"><a class="nav-link" href="#administratif"
-                                        data-toggle="tab"><spring:message
-                      code="label.administratif"/></a></li>
-                  </sec:authorize>
-                  <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CAPITAL_SOCIAL')">
-                <li class="nav-item"><a class="nav-link" href="#capitalSocial"
-                                        data-toggle="tab"><spring:message
-                      code="label.capitalSocial"/></a></li>
-                  </sec:authorize>
-                  <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_INFORMATIQUE')">
-                <li class="nav-item"><a class="nav-link" href="#informatique"
-                                        data-toggle="tab"><spring:message
-                      code="label.informatique"/></a></li>
-                  </sec:authorize>
+                <li class="nav-item"><a class="nav-link" href="#logistique" data-toggle="tab"><spring:message code="label.exploitation"/></a></li>
+              </sec:authorize>
+              <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CRM')">
+                <li class="nav-item"><a class="nav-link" href="#CRM" data-toggle="tab"><spring:message code="label.crm"/></a></li>
+              </sec:authorize>
+              <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADMIN_FINANCE')">
+                <li class="nav-item"><a class="nav-link" href="#administratif" data-toggle="tab"><spring:message code="label.administratif"/></a></li>
+              </sec:authorize>
+              <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CAPITAL_SOCIAL')">
+                <li class="nav-item"><a class="nav-link" href="#capitalSocial" data-toggle="tab"><spring:message code="label.capitalSocial"/></a></li>
+              </sec:authorize>
+              <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_INFORMATIQUE')">
+                <li class="nav-item"><a class="nav-link" href="#informatique" data-toggle="tab"><spring:message code="label.informatique"/></a></li>
+              </sec:authorize>
             </ul>
           </div><!-- /.card-header -->
 

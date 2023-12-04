@@ -38,37 +38,36 @@
 <form:form class="" method="post" modelAttribute="editForm" action="editLivraisonAdh">
   <form:input type="hidden" path="editLogistiqueAdh.id"/>
   <form:input type="hidden" name="editLogistiqueAdh.adherentId" path="editLogistiqueAdh.adherentId"/>
-  <%--<form:input type="hidden" name="editLogistiqueAdh.commune.id" path="editLogistiqueAdh.commune.id"/>--%>
 
   <fieldset class="flex justify-center">
     <div class="mt-5">
 <%--      <legend class="text-center mt-4"><spring:message code="label.agence"/></legend>--%>
 
       <div class="flex items-center mt-2">
-        <div class="w-56 mr-2 text-right">
+        <div class="w-80 mr-2 text-right">
           <span><spring:message code="label.agence"/> : </span>
         </div>
-          <span class="text-black dark:text-white">${adherent.agence.libelle}</span>
+        <span class="text-black dark:text-white">${adherent.agence.libelle}</span>
       </div>
 
       <div class="flex items-center mt-2">
-        <div class="w-56 mr-2 text-right">
+        <div class="w-80 mr-2 text-right">
           <span><spring:message code="label.secteur"/> : </span>
         </div>
-          <span class="text-black dark:text-white">${adherent.secteur.libelle}</span>
+        <span class="text-black dark:text-white">${adherent.secteur.libelle}</span>
       </div>
 
       <div class="flex items-center mt-2">
-        <div class="w-56 mr-2 text-right">
+        <div class="w-80 mr-2 text-right">
           <span><spring:message code="label.tournee"/> : </span>
         </div>
-          <span class="text-black dark:text-white">${adherent.tournee.libelle}</span>
+        <span class="text-black dark:text-white">${adherent.tournee.libelle}</span>
       </div>
 
       <div class="flex items-center mt-2">
-        <div class="flex-grow w-56 mr-2 text-right">
+        <div class="flex-grow w-80 mr-2 text-right">
           <form:label class="mt-2" path="editLogistiqueAdh.adresseLivraison"><spring:message code="label.adresseLivraison"/></form:label>
-          </div>
+        </div>
         <form:input class="flex-grow w-96 input-text"
                     name="editLogistiqueAdh.adresseLivraison" path="editLogistiqueAdh.adresseLivraison"/>
         <form:errors class="error-message" path="editLogistiqueAdh.adresseLivraison"/>
@@ -77,16 +76,15 @@
 
 
       <div class="flex items-center mt-2">
-        <div class="flex-grow w-56 mr-2 text-right">
+        <div class="flex-grow w-80 mr-2 text-right">
           <form:label path="editLogistiqueAdh.adresseComplement"><spring:message code="label.adresseComplement"/></form:label>
         </div>
-        <form:input class="flex-grow w-96 input-text"
-                    name="editLogistiqueAdh.adresseComplement" path="editLogistiqueAdh.adresseComplement"/>
+        <form:input class="flex-grow w-96 input-text" name="editLogistiqueAdh.adresseComplement" path="editLogistiqueAdh.adresseComplement"/>
         <form:errors class="error-message" path="editLogistiqueAdh.adresseComplement"/>
       </div>
 
       <div class="flex items-center mt-2">
-        <div class="flex-grow w-56 mr-2 text-right">
+        <div class="flex-grow w-80 mr-2 text-right">
           <form:label path="editLogistiqueAdh.commune.libelle"><spring:message code="label.commune"/></form:label>
         </div>
         <form:label path="editLogistiqueAdh.commune">
@@ -116,8 +114,7 @@
             <button type="button"
                     class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center  "
                     data-modal-toggle="commune-modal">
-              <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                   xmlns="http://www.w3.org/2000/svg">
+              <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd"
                     d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                     clip-rule="evenodd"></path>
@@ -133,8 +130,7 @@
                          id="filterCPCommuneAdh" type="text"
                          placeholder="Code postal ou Nom"/>
                   <br>
-                  <form:label class="sr-only" path="editLogistiqueAdh.Commune"><spring:message
-                      code="label.commune"/></form:label>
+                  <form:label class="sr-only" path="editLogistiqueAdh.Commune"><spring:message code="label.commune"/></form:label>
                   <form:select id="communeAdhListe"
                                class="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                                name="editLogistiqueAdh.commune"
@@ -162,12 +158,10 @@
 
 
       <div class="flex items-center mt-2">
-        <div class="flex-grow w-56 mr-2 text-right">
+        <div class="flex-grow w-80 mr-2 text-right">
           <form:label path="editLogistiqueAdh.contactReceptionId"><spring:message code="label.chargeReception"/></form:label>
         </div>
-        <form:select
-          class="flex-grow w-96 input-select"
-          name="editLogistiqueAdh.contactReceptionId" path="editLogistiqueAdh.contactReceptionId">
+        <form:select class="flex-grow w-96 input-select" name="editLogistiqueAdh.contactReceptionId" path="editLogistiqueAdh.contactReceptionId">
           <form:option value=""></form:option>
           <form:options items="${contacts}" itemValue="id" itemLabel="libelle"/>
         </form:select>
@@ -175,42 +169,39 @@
       </div>
       
       <div class="flex items-center mt-2">
-        <div class="w-56 mr-2 text-right">
+        <div class="w-80 mr-2 text-right">
           <form:label path="editLogistiqueAdh.isAccesSemi"><spring:message code="label.accesSemi"/></form:label>
-          </div>
+        </div>
         <form:checkbox class="input-checkbox" path="editLogistiqueAdh.isAccesSemi"/>
       </div>
 
       <div class="flex items-center mt-2">
-        <div class="w-56 mr-2 text-right">
-          <form:label path="editLogistiqueAdh.isAccesSemi"><spring:message code="label.outilDechargement"/></form:label>
-          </div>
-        <form:checkbox class="input-checkbox"
-                       path="editLogistiqueAdh.isAccesSemi"/>
+        <div class="w-80 mr-2 text-right">
+          <form:label path="editLogistiqueAdh.isMaterielDechargement"><spring:message code="label.materielDechargement"/></form:label>
+        </div>
+        <form:checkbox class="input-checkbox" path="editLogistiqueAdh.isMaterielDechargement"/>
       </div>
 
       <div class="flex items-center mt-2">
-        <div class=" w-56 mr-2 text-right">
-          <form:label path="editLogistiqueAdh.isAccesSemi"><spring:message code="label.authorisationOutils"/></form:label>
-          </div>
-        <form:checkbox class="input-checkbox"
-                       path="editLogistiqueAdh.isAccesSemi"/>
+        <div class=" w-80 mr-2 text-right">
+          <form:label path="editLogistiqueAdh.isAuthorise"><spring:message code="label.authorisationOutils"/></form:label>
+        </div>
+        <form:checkbox class="input-checkbox" path="editLogistiqueAdh.isAuthorise"/>
       </div>
 
       <div class="flex items-center mt-2">
-        <div class="w-56 mr-2 text-right">
+        <div class="w-80 mr-2 text-right">
           <form:label path="editLogistiqueAdh.outillageCommentaire"><spring:message code="label.commentaireMateriel"/></form:label>
-          </div>
+        </div>
         <form:textarea class="w-96 h-32 block input-textarea" id="outillageCommentaire" name="editordata" path="editLogistiqueAdh.outillageCommentaire"/>
-        <%--<form:input class="flex-grow w-72 input-text"--%>
-        <!--name="editLogistiqueAdh.outillageCommentaire" path="editLogistiqueAdh.outillageCommentaire"/>-->
+        <%--<form:input class="flex-grow w-72 input-text" name="editLogistiqueAdh.outillageCommentaire" path="editLogistiqueAdh.outillageCommentaire"/>--%>
         <form:errors class="error-message" path="editLogistiqueAdh.outillageCommentaire"/>
       </div>
 
       <div class="flex items-center mt-2">
-        <div class="w-56 mr-2 text-right">
+        <div class="w-80 mr-2 text-right">
           <form:label path="editLogistiqueAdh.protocolDechargement"><spring:message code="label.protocolDechargement"/></form:label>
-          </div>
+        </div>
         <form:textarea class="w-96 h-32 block input-textarea" id="protocolDechargement" name="editordata" path="editLogistiqueAdh.protocolDechargement"/>
         <%--<form:input class="flex-grow w-72 input-text"--%>
         <!--name="editLogistiqueAdh.adresseLivraison" path="editLogistiqueAdh.adresseLivraison"/>-->

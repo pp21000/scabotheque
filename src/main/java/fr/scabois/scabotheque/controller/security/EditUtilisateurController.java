@@ -51,11 +51,10 @@ public class EditUtilisateurController {
 
   @RequestMapping(value = {"/parametrage/AjoutUtilisateur"}, method = RequestMethod.POST)
   public String ajoutUtilisateur(@Valid @ModelAttribute(value = "creation") final CreationUtilisateurForm creation, final BindingResult pBindingResult, final ModelMap pModel) {
-
     if (!pBindingResult.hasErrors()) {
       this.service.createUtilisateur(creation.getUserName(), "{noop}" + creation.getPassword());
+      return "redirect:/parametrage/listeUtilisateurs";
     }
-
     return this.afficher(pModel);
   }
 
