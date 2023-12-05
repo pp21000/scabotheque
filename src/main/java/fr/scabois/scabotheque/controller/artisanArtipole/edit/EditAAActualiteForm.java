@@ -19,6 +19,9 @@ public class EditAAActualiteForm {
     this.editAAActualite.setSous_type(actu.getSous_type());
     this.editAAActualite.setPosition(actu.getPosition());
     this.editAAActualite.setDate_ajout(actu.getDate_ajout());
+    this.editAAActualite.setDetail_contenu(actu.getDetail_contenu());
+    this.editAAActualite.setLien_url(actu.getLien_url());
+    this.editAAActualite.setAdherentId(actu.getAdherentId());
   }
 
   public Actualite getActualite() {
@@ -30,6 +33,9 @@ public class EditAAActualiteForm {
     retour.setSous_type(this.editAAActualite.getSous_type());
     retour.setPosition(this.editAAActualite.getPosition());
     retour.setDate_ajout(this.editAAActualite.getDate_ajout());
+    retour.setDetail_contenu(this.editAAActualite.getDetail_contenu());
+    retour.setLien_url(this.editAAActualite.getLien_url());
+    retour.setAdherentId(this.editAAActualite.getAdherentId());
     return retour;
   }
 

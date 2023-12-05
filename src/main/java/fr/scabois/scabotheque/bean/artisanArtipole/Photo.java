@@ -22,6 +22,7 @@ public class Photo implements HasIdLibelle, Serializable {
   private String libelle;
   private byte[] data;
   private String alt;
+  private String type;
 
   public String getAlt() {
     return this.alt;
@@ -61,5 +62,13 @@ public class Photo implements HasIdLibelle, Serializable {
   @Override
   public void setLibelle(final String libelle) {
     this.libelle = libelle;
+  }
+
+  public String getType() {
+    return this.type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
   }
 }

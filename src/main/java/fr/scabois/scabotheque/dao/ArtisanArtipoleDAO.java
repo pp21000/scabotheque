@@ -5,6 +5,7 @@
 package fr.scabois.scabotheque.dao;
 
 import fr.scabois.scabotheque.bean.adherent.Adherent;
+import fr.scabois.scabotheque.bean.adherent.Type;
 import fr.scabois.scabotheque.bean.artisanArtipole.Actualite;
 import fr.scabois.scabotheque.bean.artisanArtipole.Categorie;
 import fr.scabois.scabotheque.bean.artisanArtipole.CategorieSpecialite;
@@ -18,6 +19,8 @@ import fr.scabois.scabotheque.bean.artisanArtipole.Specialite;
 import fr.scabois.scabotheque.bean.artisanArtipole.Travaux;
 import fr.scabois.scabotheque.utils.AppProperties;
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -106,7 +109,7 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
   public void deleteMetier(final int idMetier) {
     try {
       final Metier del = (Metier) this.entityManager.find(Metier.class, idMetier);
-      this.entityManager.remove((Object) del);
+      this.entityManager.remove(del);
     } catch (Exception ex) {
     }
   }
@@ -144,7 +147,7 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
 
   @Override
   public Actualite loadActualite(final int idActualite) {
-    return (Actualite) this.entityManager.find((Class) Actualite.class, (Object) idActualite);
+    return (Actualite) this.entityManager.find((Class) Actualite.class, idActualite);
   }
 
   @Override
@@ -154,13 +157,13 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
 
   @Override
   public Emplacement loadEmplacement(final int idEmplacement) {
-    final Emplacement empl = (Emplacement) this.entityManager.find((Class) Emplacement.class, (Object) idEmplacement);
+    final Emplacement empl = (Emplacement) this.entityManager.find((Class) Emplacement.class, idEmplacement);
     return empl;
   }
 
   @Override
   public Travaux loadTravaux(final int idTravaux) {
-    final Travaux travaux = (Travaux) this.entityManager.find((Class) Travaux.class, (Object) idTravaux);
+    final Travaux travaux = (Travaux) this.entityManager.find((Class) Travaux.class, idTravaux);
     return travaux;
   }
 
@@ -171,7 +174,7 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
 
   @Override
   public Specialite loadSpecialite(final int idSpecialite) {
-    final Specialite specialite = (Specialite) this.entityManager.find((Class) Specialite.class, (Object) idSpecialite);
+    final Specialite specialite = (Specialite) this.entityManager.find((Class) Specialite.class, idSpecialite);
     return specialite;
   }
 
@@ -187,12 +190,12 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
 
   @Override
   public Inspiration loadInspiration(final int idInspiration) {
-    return (Inspiration) this.entityManager.find((Class) Inspiration.class, (Object) idInspiration);
+    return (Inspiration) this.entityManager.find((Class) Inspiration.class, idInspiration);
   }
 
   @Override
   public Metier loadMetier(final int idMetier) {
-    return (Metier) this.entityManager.find((Class) Metier.class, (Object) idMetier);
+    return (Metier) this.entityManager.find((Class) Metier.class, idMetier);
   }
 
   @Override
@@ -202,7 +205,7 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
 
   @Override
   public Page loadPage(final int idPage) {
-    return (Page) this.entityManager.find((Class) Page.class, (Object) idPage);
+    return (Page) this.entityManager.find((Class) Page.class, idPage);
   }
 
   @Override
@@ -212,7 +215,7 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
 
   @Override
   public Photo loadPhoto(final int idPhoto) {
-    return (Photo) this.entityManager.find((Class) Photo.class, (Object) idPhoto);
+    return (Photo) this.entityManager.find((Class) Photo.class, idPhoto);
   }
 
   @Override
@@ -222,7 +225,7 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
 
   @Override
   public Certification loadCertification(final int idCertification) {
-    return (Certification) this.entityManager.find((Class) Certification.class, (Object) idCertification);
+    return (Certification) this.entityManager.find((Class) Certification.class, idCertification);
   }
 
   @Override
@@ -232,7 +235,12 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
 
   @Override
   public Categorie loadCategorie(final int idCategorie) {
-    return (Categorie) this.entityManager.find((Class) Categorie.class, (Object) idCategorie);
+    return (Categorie) this.entityManager.find((Class) Categorie.class, idCategorie);
+  }
+
+  @Override
+  public List<Type> loadTypes() {
+    return entityManager.createQuery("from Type order by position", Type.class).getResultList();
   }
 
   @Transactional
@@ -246,7 +254,7 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
       newEmpl.setData(emplacement.getData());
       newEmpl.setAlt(emplacement.getAlt());
       newEmpl.setPage(emplacement.getPage());
-      this.entityManager.persist((Object) newEmpl);
+      this.entityManager.persist(newEmpl);
     } else {
       final Emplacement update = this.loadEmplacement(emplacement.getId());
       update.setLibelle(emplacement.getLibelle());
@@ -257,7 +265,7 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
       }
       update.setAlt(emplacement.getAlt());
       update.setPage(emplacement.getPage());
-      this.entityManager.persist((Object) update);
+      this.entityManager.persist(update);
     }
   }
 
@@ -294,13 +302,15 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
       newPhoto.setLibelle(photo.getLibelle());
       newPhoto.setData(photo.getData());
       newPhoto.setAlt(photo.getAlt());
-      this.entityManager.persist((Object) newPhoto);
+      newPhoto.setType(photo.getType());
+      this.entityManager.persist(newPhoto);
     } else {
       final Photo update = this.loadPhoto(photo.getId());
       update.setLibelle(photo.getLibelle());
       update.setData(photo.getData());
       update.setAlt(photo.getAlt());
-      this.entityManager.persist((Object) update);
+      update.setType(photo.getType());
+      this.entityManager.persist(update);
     }
   }
 
@@ -312,13 +322,13 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
       newCertification.setLibelle(certification.getLibelle());
       newCertification.setData(certification.getData());
       newCertification.setAlt(certification.getAlt());
-      this.entityManager.persist((Object) newCertification);
+      this.entityManager.persist(newCertification);
     } else {
       final Certification update = this.loadCertification(certification.getId());
       update.setLibelle(certification.getLibelle());
       update.setData(certification.getData());
       update.setAlt(certification.getAlt());
-      this.entityManager.persist((Object) update);
+      this.entityManager.persist(update);
     }
   }
 
@@ -330,7 +340,7 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
       update = this.loadCategorie(categorie.getId());
     }
     update.setLibelle(categorie.getLibelle());
-    this.entityManager.persist((Object) update);
+    this.entityManager.persist(update);
   }
 
   @Transactional
@@ -347,14 +357,17 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
       update = this.loadActualite(actualite.getId());
     } else {
       update = new Actualite();
+      update.setDate_ajout(Date.valueOf(LocalDate.now()));
     }
     update.setTitre(actualite.getTitre());
     update.setContenu(actualite.getContenu());
     update.setType(actualite.getType());
     update.setSous_type(actualite.getSous_type());
     update.setPosition(actualite.getPosition());
-    update.setDate_ajout(actualite.getDate_ajout());
-    this.entityManager.persist((Object) update);
+    update.setDetail_contenu(actualite.getDetail_contenu());
+    update.setLien_url(actualite.getLien_url());
+    update.setAdherentId(actualite.getAdherentId());
+    this.entityManager.persist(update);
   }
 
   @Transactional
@@ -367,7 +380,7 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
     }
     update.setLibelle(metier.getLibelle());
     update.setDescription(metier.getDescription());
-    this.entityManager.persist((Object) update);
+    this.entityManager.persist(update);
   }
 
   @Transactional

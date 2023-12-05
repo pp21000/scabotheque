@@ -1,6 +1,7 @@
 package fr.scabois.scabotheque.services;
 
 import fr.scabois.scabotheque.bean.adherent.Adherent;
+import fr.scabois.scabotheque.bean.adherent.Type;
 import fr.scabois.scabotheque.bean.artisanArtipole.Actualite;
 import fr.scabois.scabotheque.bean.artisanArtipole.Categorie;
 import fr.scabois.scabotheque.bean.artisanArtipole.Certification;
@@ -64,12 +65,12 @@ public class ServiceArtipole implements IServiceArtipole {
 
   @Override
   public List<Adherent> loadArtisanArtipole() {
-    return (List<Adherent>) this.dao.loadArtisanArtipole();
+    return this.dao.loadArtisanArtipole();
   }
 
   @Override
   public List<Categorie> loadCategories() {
-    return (List<Categorie>) this.dao.loadCategories();
+    return this.dao.loadCategories();
   }
 
   @Override
@@ -79,7 +80,7 @@ public class ServiceArtipole implements IServiceArtipole {
 
   @Override
   public List<Actualite> loadActualites() {
-    return (List<Actualite>) this.dao.loadActualites();
+    return this.dao.loadActualites();
   }
 
   @Override
@@ -89,7 +90,7 @@ public class ServiceArtipole implements IServiceArtipole {
 
   @Override
   public List<Inspiration> loadInspirations() {
-    return (List<Inspiration>) this.dao.loadInspirations();
+    return this.dao.loadInspirations();
   }
 
   @Override
@@ -99,7 +100,7 @@ public class ServiceArtipole implements IServiceArtipole {
 
   @Override
   public List<Emplacement> loadEmplacements() {
-    return (List<Emplacement>) this.dao.loadEmplacements();
+    return this.dao.loadEmplacements();
   }
 
   @Override
@@ -109,7 +110,7 @@ public class ServiceArtipole implements IServiceArtipole {
 
   @Override
   public List<Travaux> loadTravauxList() {
-    return (List<Travaux>) this.dao.loadTravauxList();
+    return this.dao.loadTravauxList();
   }
 
   @Override
@@ -119,12 +120,12 @@ public class ServiceArtipole implements IServiceArtipole {
 
   @Override
   public List<Specialite> loadSpecialites() {
-    return (List<Specialite>) this.dao.loadSpecialites();
+    return this.dao.loadSpecialites();
   }
 
   @Override
   public List<Page> loadPages() {
-    return (List<Page>) this.dao.loadPages();
+    return this.dao.loadPages();
   }
 
   @Override
@@ -134,7 +135,7 @@ public class ServiceArtipole implements IServiceArtipole {
 
   @Override
   public List<Photo> loadPhotos() {
-    return (List<Photo>) this.dao.loadPhotos();
+    return this.dao.loadPhotos();
   }
 
   @Override
@@ -144,7 +145,7 @@ public class ServiceArtipole implements IServiceArtipole {
 
   @Override
   public List<Certification> loadCertifications() {
-    return (List<Certification>) this.dao.loadCertifications();
+    return this.dao.loadCertifications();
   }
 
   @Override
@@ -154,12 +155,17 @@ public class ServiceArtipole implements IServiceArtipole {
 
   @Override
   public List<Metier> loadMetiers() {
-    return (List<Metier>) this.dao.loadMetiers();
+    return this.dao.loadMetiers();
   }
 
   @Override
   public Page loadPage(final Integer idPage) {
     return this.dao.loadPage((int) idPage);
+  }
+
+  @Override
+  public List<Type> loadTypes() {
+    return this.dao.loadTypes();
   }
 
   @Override

@@ -38,6 +38,17 @@
             <form:input class="flex-grow w-72 input-text" name="editAAPhoto.alt" path="editAAPhoto.alt"/>
             <form:errors class="error-message" path="editAAPhoto.alt"/>
           </div>
+          
+          <div class="flex items-center mt-2 text-right">
+            <div class="flex-grow w-44 mx-2">
+              <form:label path="editAAPhoto.type">Type</form:label>
+            </div>
+            <form:select class="flex-grow w-72 input-select" name="editAAPhoto.type" path="editAAPhoto.type">
+              <form:options items="${types}" itemValue="libelle" itemLabel="libelle"/>
+            </form:select>
+            <form:errors class="error-message" path="editAAPhoto.type"/>
+          </div>
+          
           <div class="text-center my-10">
             <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer la photo</button>
           </div>
@@ -59,6 +70,9 @@
         <th scope="col" class="px-6 py-3">
           alt
         </th>
+        <th scope="col" class="px-6 py-3">
+          Type
+        </th>
         <th scope="col" class="px-6 py-3" width="1px">
         </th>
         <th scope="col" class="px-6 py-3" width="1px">
@@ -76,6 +90,9 @@
           </td>
           <td class="px-6 py-4">
             <c:out value="${item.alt}"/>
+          </td>
+          <td class="px-6 py-4">
+            <c:out value="${item.type}"/>
           </td>
           <td class="px-2 py-4">
             <c:url value="/AA-edit-photo" var="urlAAEdit"><c:param name="idPhoto" value="${item.id}"/></c:url>

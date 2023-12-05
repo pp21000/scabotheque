@@ -26,6 +26,7 @@ public class EditAdherentCertificationsForm {
       editAM.setAdherentId(adhId);
       editAM.setCertificationId((int) c.getId());
       editAM.setCheck(test.isPresent());
+      editAM.setCheck(test.isPresent());
       this.certificationsAdh.add(editAM);
     });
   }

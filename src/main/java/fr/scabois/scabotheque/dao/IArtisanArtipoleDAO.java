@@ -5,6 +5,7 @@
 package fr.scabois.scabotheque.dao;
 
 import fr.scabois.scabotheque.bean.adherent.Adherent;
+import fr.scabois.scabotheque.bean.adherent.Type;
 import fr.scabois.scabotheque.bean.artisanArtipole.Actualite;
 import fr.scabois.scabotheque.bean.artisanArtipole.Categorie;
 import fr.scabois.scabotheque.bean.artisanArtipole.Certification;
@@ -76,6 +77,8 @@ public interface IArtisanArtipoleDAO {
   List<Photo> loadPhotos();
 
   List<Certification> loadCertifications();
+
+  List<Type> loadTypes();
 
   void saveActualite(final Actualite p0);
 

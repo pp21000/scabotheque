@@ -18,7 +18,7 @@
     <form:input type="hidden" path="editAAEmplacement.type"/>
     <fieldset class="mx-auto justify-center">
       <div class="md:flex md:items-center mb-6">
-        <div class="w-1/5" >
+        <div class="w-1/5">
           <label class="block text-right mr-2" for="type">
             Type
           </label>
@@ -54,7 +54,7 @@
         </div>
       </div>
        
-      <c:if test="${emplacement.type.equals('image')}">
+      <c:if test="${emplacement.type.equals('Image')}">
       <div class="md:flex md:items-center mb-6">
         <div class="w-1/5" >
           <label class="block text-right mr-2" for="content">

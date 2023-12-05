@@ -1,6 +1,7 @@
 package fr.scabois.scabotheque.controller.artisanArtipole;
 
 import fr.scabois.scabotheque.bean.adherent.Adherent;
+import fr.scabois.scabotheque.bean.adherent.Type;
 import fr.scabois.scabotheque.bean.artisanArtipole.Actualite;
 import fr.scabois.scabotheque.bean.artisanArtipole.Categorie;
 import fr.scabois.scabotheque.bean.artisanArtipole.Certification;
@@ -17,6 +18,7 @@ import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditAATravauxForm;
 import fr.scabois.scabotheque.controller.tablesDeBases.EditMetierForm;
 import fr.scabois.scabotheque.enums.NavType;
 import fr.scabois.scabotheque.enums.PageType;
+import fr.scabois.scabotheque.services.IServiceAdherent;
 import fr.scabois.scabotheque.services.IServiceArtipole;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +33,8 @@ public class ArtisanArtipoleController {
 
   @Autowired
   private IServiceArtipole service;
+  @Autowired
+  private IServiceAdherent serviceAdherent;
 
   @RequestMapping(value = {"/AA-page-accueil"}, method = {RequestMethod.GET})
   public String accueil(final ModelMap pModel) {
@@ -56,7 +60,6 @@ public class ArtisanArtipoleController {
   @RequestMapping(value = {"/AA-page-artisan-artipole"}, method = {RequestMethod.GET})
   public String artisanArtipole(final ModelMap pModel) {
     final List<Adherent> list = this.service.loadArtisanArtipole();
-    pModel.addAttribute("nbAdherent", list.size());
     pModel.addAttribute("listeAdherents", list);
     pModel.addAttribute("navType", NavType.ARTISAN_ARTIPOLE);
     pModel.addAttribute("pageType", PageType.AA_ACCUEIL);
@@ -72,7 +75,6 @@ public class ArtisanArtipoleController {
     } else {
       addCategorieForm = (EditAACategorieForm) pModel.get("addForm");
     }
-    pModel.addAttribute("nbAdherent", list.size());
     pModel.addAttribute("listeCategories", list);
     pModel.addAttribute("addForm", addCategorieForm);
     pModel.addAttribute("navType", NavType.ARTISAN_ARTIPOLE);
@@ -89,7 +91,7 @@ public class ArtisanArtipoleController {
     } else {
       addActuForm = (EditAAActualiteForm) pModel.get("addForm");
     }
-    pModel.addAttribute("nbAdherent", list.size());
+    pModel.addAttribute("adherentsList", this.serviceAdherent.loadAdherents());
     pModel.addAttribute("listeItems", list);
     pModel.addAttribute("addForm", addActuForm);
     pModel.addAttribute("navType", NavType.ARTISAN_ARTIPOLE);
@@ -100,14 +102,16 @@ public class ArtisanArtipoleController {
   @RequestMapping(value = {"/AA-page-photos"}, method = {RequestMethod.GET})
   public String photo(final ModelMap pModel) {
     final List<Photo> list = this.service.loadPhotos();
+    final List<Type> types = this.service.loadTypes();
+
     EditAAPhotoForm addPhotoForm;
     if (pModel.get("addForm") == null) {
       addPhotoForm = new EditAAPhotoForm();
     } else {
       addPhotoForm = (EditAAPhotoForm) pModel.get("addForm");
     }
-    pModel.addAttribute("nbAdherent", list.size());
     pModel.addAttribute("listeItems", list);
+    pModel.addAttribute("types", types);
     pModel.addAttribute("addForm", addPhotoForm);
     pModel.addAttribute("navType", NavType.ARTISAN_ARTIPOLE);
     pModel.addAttribute("pageType", PageType.AA_PHOTOS);
@@ -123,7 +127,6 @@ public class ArtisanArtipoleController {
     } else {
       addCertificationForm = (EditAACertificationForm) pModel.get("addForm");
     }
-    pModel.addAttribute("nbAdherent", list.size());
     pModel.addAttribute("listeItems", list);
     pModel.addAttribute("addForm", addCertificationForm);
     pModel.addAttribute("navType", NavType.ARTISAN_ARTIPOLE);

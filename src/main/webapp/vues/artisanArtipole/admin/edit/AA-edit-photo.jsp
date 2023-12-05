@@ -27,13 +27,13 @@
           <form:errors class="error-message" path="editAAPhoto.libelle"/>
         </div>
       </div>
+        
       <div class="md:flex md:items-center mb-6">
         <div class="w-1/5" >
           <label class="block text-right mr-2" for="data">
             Image
           </label>
         </div>
-
         <div class="w-3/5" >  
           <div class="flex">
             <img class="max-h-24 mr-5 rounded" src="${photo.dataImg}"/>     
@@ -46,6 +46,7 @@
           <form:errors class="error-message" path="editAAPhoto.data"/>
         </div>
       </div>
+        
       <div class="md:flex md:items-center mb-6">
         <div class="w-1/5" >
           <label class="block text-right mr-2" for="alt">
@@ -54,6 +55,20 @@
         </div>
         <div class="w-3/5" >
           <form:input class="w-full input-text" type="text" name="editAAPhoto.alt" path="editAAPhoto.alt" id="alt"/>
+          <form:errors class="error-message" path="editAAPhoto.alt"/>
+        </div>
+      </div>
+        
+      <div class="md:flex md:items-center mb-6">
+        <div class="w-1/5" >
+          <label class="block text-right mr-2" for="alt">
+            Type
+          </label>
+        </div>
+        <div class="w-3/5" >
+          <form:select class="flex-grow w-72 input-select" name="editAAPhoto.type" path="editAAPhoto.type">
+            <form:options items="${types}" itemValue="libelle" itemLabel="libelle"/>
+          </form:select>
           <form:errors class="error-message" path="editAAPhoto.alt"/>
         </div>
       </div>

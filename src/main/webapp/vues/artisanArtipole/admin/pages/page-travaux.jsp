@@ -38,8 +38,6 @@
       </fieldset>
     </div>
   </form:form> 
-
-       
 </div>
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -69,9 +67,9 @@
           <td class="px-6 py-2">
             <ul>
             <c:forEach items="${travaux.specialites}" var="specialite">
-                <li class="">
-                  • <c:out value="${specialite.libelle}"/>
-                </li>
+              <li>
+                • <c:out value="${specialite.libelle}"/>
+              </li>
             </c:forEach>
             </ul>
           </td>

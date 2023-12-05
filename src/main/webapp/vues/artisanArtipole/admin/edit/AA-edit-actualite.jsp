@@ -14,6 +14,7 @@
 
   <form:form method="post" modelAttribute="editForm" action="AA-edit-actualite">    
     <form:input type="hidden" path="editAAActualite.id"/>
+    <form:input type="hidden" path="editAAActualite.date_ajout"/>
 
     <fieldset class="mx-auto justify-center">
       <div class="md:flex md:items-center mb-6">
@@ -37,6 +38,18 @@
         <div class="w-3/5">
           <form:input class="input-text w-full" type="text" name="editAAActualite.contenu" path="editAAActualite.contenu" id="contenu"/>
           <form:errors class="error-message" path="editAAActualite.contenu"/>
+        </div>
+      </div>
+        
+      <div class="md:flex md:items-center mb-6 w-full">
+        <div class="w-1/5">
+          <label class="block text-right mr-2" for="detail_contenu">
+            Détail contenu
+          </label>
+        </div >
+        <div class="w-3/5">
+          <form:input class="input-text w-full" type="text" name="editAAActualite.detail_contenu" path="editAAActualite.detail_contenu" id="detail_contenu"/>
+          <form:errors class="error-message" path="editAAActualite.detail_contenu"/>
         </div>
       </div>
         
@@ -66,6 +79,18 @@
         
       <div class="md:flex md:items-center mb-6">
         <div class="w-1/5">
+          <label class="block text-right mr-2" for="lien_url">
+            Lien url
+          </label>
+        </div>
+        <div class="w-3/5">    
+          <form:input class="input-text w-96" type="text" name="editAAActualite.lien_url" path="editAAActualite.lien_url" id="lien_url"/>
+          <form:errors class="error-message" path="editAAActualite.lien_url"/>
+        </div>
+      </div>
+        
+      <div class="md:flex md:items-center mb-6">
+        <div class="w-1/5">
           <label class="block text-right mr-2" for="position">
             Position
           </label>
@@ -78,28 +103,18 @@
         
       <div class="md:flex md:items-center mb-6">
         <div class="w-1/5">
-          <label class="block text-right mr-2" for="date_ajout">
-            Date d'ajout
+          <label class="block text-right mr-2" for="adherentId">
+            Adhérent
           </label>
         </div>
         <div class="w-3/5">
-          <form:input class="input-text w-36" type="date" name="editAAActualite.date_ajout" path="editAAActualite.date_ajout" id="date_ajout"/>
-          <form:errors class="error-message" path="editAAActualite.date_ajout"/>
+          <form:select class="select2" data-placeholder="Toutes les agences" name="editAAActualite.adherentId" path="editAAActualite.adherentId">
+            <form:option value="" label="Aucun (actualité générale)"></form:option>            
+            <form:options items="${adherentsList}" itemValue="id" itemLabel="libelle"/>
+          </form:select>   
+          <form:errors class="error-message" path="editAAActualite.adherentId"/>
         </div>
       </div>
-        
-<%--      <div class="md:flex md:items-center mb-6">
-        <div class="w-1/5">
-          <label class="block text-right mr-2" for="date_ajout">
-            Associer l'actu à un adherent
-          </label>
-        </div>
-        <div class="w-3/5">
-          <form:input class="input-text" type="number" name="editAAActualite.id_adherent" path="editAAActualite.id_adherent" id="id_adherent"/>
-          <form:errors class="error-message" path="editAAActualite.id_adherent"/>
-        </div>
-      </div>--%>
-        
     </fieldset>
 
     <div class="mt-4 flex justify-center gap-2">

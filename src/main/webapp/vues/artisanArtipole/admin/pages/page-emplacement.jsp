@@ -18,16 +18,15 @@
   <form:form class="editAdherent" method="post" modelAttribute="addForm" action="AA-add-emplacement?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
     <div class="hidden" id="addItemForm" title="Ajouter un emplacement">
       <fieldset>
-        <!--<legend class="legend"><spring:message code="label.addContact"/></legend>-->
         <div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-44 mr-2">
               <form:label path="editAAEmplacement.type">Type emplacement</form:label>
             </div>              
             <form:select onChange="handleUploadFileDivVisibility()" id="typeEmplacementSelect" class="flex-grow w-72 input-select" name="editAAEmplacement.type" path="editAAEmplacement.type">
-              <form:option value="titre"/>
-              <form:option value="image"/>
-              <form:option value="contenu"/>
+              <form:option value="Titre"/>
+              <form:option value="Image"/>
+              <form:option value="Contenu"/>
             </form:select>
             <form:errors class="error-message" path="editAAEmplacement.type"/>
           </div>
@@ -104,10 +103,8 @@
         <th scope="col" class="px-6 py-3">
           Page
         </th>
-        <th scope="col" class="px-6 py-3">
-        </th>
-        <th scope="col" class="px-6 py-3">
-        </th>
+        <th scope="col" class="px-6 py-3"></th>
+        <th scope="col" class="px-6 py-3"></th>
       </tr>
     </thead>
     <tbody>
@@ -124,7 +121,7 @@
           </td>
           <td class="px-6 py-4">
             <c:choose>
-              <c:when test="${emplacement.type.equals('image')}">
+              <c:when test="${emplacement.type.equals('Image')}">
                 <img class="max-h-24 rounded" src="${emplacement.dataImg}" />
               </c:when>
               <c:otherwise>
@@ -156,7 +153,7 @@
 <script>
   
   function handleUploadFileDivVisibility() {
-    if ($('#typeEmplacementSelect').val() === 'image') {
+    if ($('#typeEmplacementSelect').val() === 'Image') {
          $('#uploadFileDiv').slideDown({
             start: function () {$(this).css({display: "flex"});},
             duration: 400});

@@ -1,5 +1,6 @@
 package fr.scabois.scabotheque.controller.artisanArtipole;
 
+import fr.scabois.scabotheque.bean.adherent.Type;
 import fr.scabois.scabotheque.bean.artisanArtipole.Actualite;
 import fr.scabois.scabotheque.bean.artisanArtipole.Certification;
 import fr.scabois.scabotheque.bean.artisanArtipole.Emplacement;
@@ -15,7 +16,9 @@ import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditCategoriesForm
 import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditMetiersForm;
 import fr.scabois.scabotheque.enums.NavType;
 import fr.scabois.scabotheque.enums.PageType;
+import fr.scabois.scabotheque.services.IServiceAdherent;
 import fr.scabois.scabotheque.services.IServiceArtipole;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +36,8 @@ public class ArtisanArtipoleEditController {
   @Autowired
   private IServiceArtipole service;
   @Autowired
+  private IServiceAdherent serviceAdherent;
+  @Autowired
   private ArtisanArtipoleController aaController;
 
   @RequestMapping(value = {"/AA-edit-actualite"}, method = {RequestMethod.GET})
@@ -44,6 +49,7 @@ public class ArtisanArtipoleEditController {
     } else {
       editForm = (EditAAActualiteForm) pModel.get("editForm");
     }
+    pModel.addAttribute("adherentsList", this.serviceAdherent.loadAdherents());
     pModel.addAttribute("editForm", editForm);
     pModel.addAttribute("navType", NavType.ARTISAN_ARTIPOLE);
     pModel.addAttribute("pageType", PageType.AA_ACTUALITES);
@@ -108,6 +114,7 @@ public class ArtisanArtipoleEditController {
   @RequestMapping(value = {"/AA-edit-photo"}, method = {RequestMethod.GET})
   public String editPhoto(@RequestParam("idPhoto") final int idPhoto, final ModelMap pModel, final HttpServletRequest request) {
     final Photo photo = this.service.loadPhoto(Integer.valueOf(idPhoto));
+    final List<Type> types = this.service.loadTypes();
     EditAAPhotoForm editForm;
     if (pModel.get("editForm") == null) {
       editForm = new EditAAPhotoForm(photo);
@@ -115,6 +122,7 @@ public class ArtisanArtipoleEditController {
       editForm = (EditAAPhotoForm) pModel.get("editForm");
     }
     pModel.addAttribute("photo", photo);
+    pModel.addAttribute("types", types);
     pModel.addAttribute("editForm", editForm);
     pModel.addAttribute("navType", NavType.ARTISAN_ARTIPOLE);
     pModel.addAttribute("pageType", PageType.AA_PHOTOS);

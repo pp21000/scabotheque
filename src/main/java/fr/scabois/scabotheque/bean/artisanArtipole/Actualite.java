@@ -1,15 +1,12 @@
 package fr.scabois.scabotheque.bean.artisanArtipole;
 
 import fr.scabois.scabotheque.bean.HasId;
-import fr.scabois.scabotheque.bean.adherent.Adherent;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -27,20 +24,23 @@ public class Actualite implements HasId {
   private Integer position;
   @Temporal(javax.persistence.TemporalType.DATE)
   private Date date_ajout;
-  @ManyToOne
-  @JoinTable(name = "actus_adherents", joinColumns = {
-    @JoinColumn(name = "adherent_id")}, inverseJoinColumns = {
-    @JoinColumn(name = "actus_id", referencedColumnName = "id")})
-  private Adherent adherent;
+  private String detail_contenu;
+  private String lien_url;
+  @Column(name = "adherent_id")
+  private Integer adherentId;
+//  @ManyToOne
+//  @JoinTable(name = "actus_adherents", joinColumns = {
+//    @JoinColumn(name = "adherent_id")}, inverseJoinColumns = {
+//    @JoinColumn(name = "actus_id", referencedColumnName = "id")})
+//  private Adherent adherent;
 
-  public Adherent getAdherent() {
-    return this.adherent;
-  }
-
-  public void setAdherent(final Adherent adherent) {
-    this.adherent = adherent;
-  }
-
+//  public Adherent getAdherent() {
+//    return this.adherent;
+//  }
+//
+//  public void setAdherent(final Adherent adherent) {
+//    this.adherent = adherent;
+//  }
   public String getContenu() {
     return this.contenu;
   }
@@ -57,18 +57,30 @@ public class Actualite implements HasId {
     this.date_ajout = date_ajout;
   }
 
+  public String getDetail_contenu() {
+    return this.detail_contenu;
+  }
+
+  public void setDetail_contenu(String detail_contenu) {
+    this.detail_contenu = detail_contenu;
+  }
+
   @Override
   public Integer getId() {
     return this.id;
   }
 
-  /**
-   *
-   * @param id
-   */
   @Override
   public void setId(final Integer id) {
     this.id = id;
+  }
+
+  public String getLien_url() {
+    return this.lien_url;
+  }
+
+  public void setLien_url(String lien_url) {
+    this.lien_url = lien_url;
   }
 
   public Integer getPosition() {
@@ -101,5 +113,13 @@ public class Actualite implements HasId {
 
   public void setType(final String type) {
     this.type = type;
+  }
+
+  public Integer getAdherentId() {
+    return this.adherentId;
+  }
+
+  public void setAdherentId(Integer adherentId) {
+    this.adherentId = adherentId;
   }
 }

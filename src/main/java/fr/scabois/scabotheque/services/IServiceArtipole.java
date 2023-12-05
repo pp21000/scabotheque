@@ -1,6 +1,7 @@
 package fr.scabois.scabotheque.services;
 
 import fr.scabois.scabotheque.bean.adherent.Adherent;
+import fr.scabois.scabotheque.bean.adherent.Type;
 import fr.scabois.scabotheque.bean.artisanArtipole.Actualite;
 import fr.scabois.scabotheque.bean.artisanArtipole.Categorie;
 import fr.scabois.scabotheque.bean.artisanArtipole.Certification;
@@ -70,6 +71,8 @@ public interface IServiceArtipole {
   List<Photo> loadPhotos();
 
   List<Certification> loadCertifications();
+
+  List<Type> loadTypes();
 
   void saveEmplacement(final Emplacement p0);
 

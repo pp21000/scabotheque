@@ -18,6 +18,7 @@ public class EditAAPhotoForm {
     this.editAAPhoto.setLibelle(photo.getLibelle());
     this.editAAPhoto.setData(photo.getDataImg());
     this.editAAPhoto.setAlt(photo.getAlt());
+    this.editAAPhoto.setType(photo.getType());
   }
 
   public Photo getPhoto() {
@@ -26,6 +27,7 @@ public class EditAAPhotoForm {
     retour.setId(this.editAAPhoto.getId());
     retour.setLibelle(this.editAAPhoto.getLibelle());
     retour.setAlt(this.editAAPhoto.getAlt());
+    retour.setType(this.editAAPhoto.getType());
     try {
       if (this.editAAPhoto.getFile() != null && this.editAAPhoto.getFile().getOriginalFilename() != "") {
         final String extension = this.editAAPhoto.getFile().getOriginalFilename().substring(this.editAAPhoto.getFile().getOriginalFilename().length() - 3);

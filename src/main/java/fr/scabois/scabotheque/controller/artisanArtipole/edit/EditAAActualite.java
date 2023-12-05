@@ -13,6 +13,9 @@ public class EditAAActualite {
   private Integer position;
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   private Date date_ajout;
+  private String detail_contenu;
+  private String lien_url;
+  private Integer adherentId;
 
   public String getContenu() {
     return this.contenu;
@@ -30,12 +33,28 @@ public class EditAAActualite {
     this.date_ajout = date_ajout;
   }
 
+  public String getDetail_contenu() {
+    return this.detail_contenu;
+  }
+
+  public void setDetail_contenu(String detail_contenu) {
+    this.detail_contenu = detail_contenu;
+  }
+
   public Integer getId() {
     return this.id;
   }
 
   public void setId(final Integer id) {
     this.id = id;
+  }
+
+  public String getLien_url() {
+    return this.lien_url;
+  }
+
+  public void setLien_url(String lien_url) {
+    this.lien_url = lien_url;
   }
 
   public Integer getPosition() {
@@ -68,5 +87,13 @@ public class EditAAActualite {
 
   public void setType(final String type) {
     this.type = type;
+  }
+
+  public Integer getAdherentId() {
+    return adherentId;
+  }
+
+  public void setAdherentId(Integer adherentId) {
+    this.adherentId = adherentId;
   }
 }
