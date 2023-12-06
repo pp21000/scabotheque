@@ -30,7 +30,7 @@
             <div class="w-32 mr-2">
               <form:label path="addMetier.description">Description</form:label>
               </div>
-            <form:input class="flex-grow w-72 input-text" name="addMetier.description" path="addMetier.description"/>
+            <form:textarea class="flex-grow w-72 input-textarea h-20" name="addMetier.description" path="addMetier.description"/>
             <form:errors class="error-message" path="addMetier.description"/>
           </div>
         </div>
@@ -45,44 +45,41 @@
 
 
 
-  <form:form class="w-full mt-5" method="post" modelAttribute="editForm" action="AA-edit-metiers">    
+  <form:form class="w-11/12 mt-5" method="post" modelAttribute="editForm" action="AA-edit-metiers">    
 
     <c:forEach items="${editForm.metiers}" var="edit" varStatus="status">
       <form:input type="hidden" path="editMetiers[${status.index}].id"/>
-
-      <fieldset class="mx-auto justify-center">
-        <div class="flex items-center mb-4">
-          <label class="block text-right mr-2" for="libelle">
+      <div class="flex items-center gap-2 mb-6">
+          <label class="block text-right" for="libelle">
             Libellé
           </label>
-          
+
           <div class="w-1/6 mr-7">
             <form:input class="flex-grow w-full input-text" type="text" name="editMetiers[${status.index}].libelle" path="editMetiers[${status.index}].libelle" id="libelle"/>
             <form:errors class="error-message" path="editMetiers[${status.index}].libelle"/>
           </div>
 
-          <label class="block text-right mr-2" for="libelle">
+          <label class="block text-right" for="libelle">
             Description
           </label>
-          
+
           <div class="flex-1">
-            <form:input class="flex-grow w-full input-text" type="text" name="editMetiers[${status.index}].description" path="editMetiers[${status.index}].description" id="description"/>
+            <form:textarea class="flex-grow w-full input-textarea h-18" name="editMetiers[${status.index}].description" path="editMetiers[${status.index}].description" id="description"/>
             <form:errors class="error-message" path="editMetiers[${status.index}].description"/>
           </div>
-        </div>
-      </fieldset>
-
-
+      </div>
     </c:forEach>
+    
     <div class="mt-4 flex justify-center gap-2">
       <button type="submit" class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300">Enregistrer les modifications</button>
       <button type="reset" onClick="window.location = '${url}'" class="btn btn-red focus:ring-4 focus:outline-none focus:ring-neutral-300">Annuler</button>
     </div>
   </div>
 
-
 </form:form>
 
+  
+  
 <script>
 
   function showNewForm() {

@@ -11,70 +11,99 @@
     <button class="btn btn-green btn-small" id="addBtn" type="button" onclick="showAddForm()">Ajouter une actualité</button>
   </div>
 
-  <form:form class="editAdherent" method="post" modelAttribute="addForm" action="AA-add-actualite">
+  <form:form class="editAdherent w-full" method="post" modelAttribute="addForm" action="AA-add-actualite">
     <form:input type="hidden" path="editAAActualite.date_ajout"/>
     <div class="hidden" id="addItemForm" title="Ajouter une actualité">
       <fieldset>
         <div>
-          <div class="flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mx-2">
-              <form:label path="editAAActualite.titre">Titre</form:label>
-            </div>              
-            <form:input class="flex-grow w-72 input-text" name="editAAActualite.titre" path="editAAActualite.titre"/>
-            <form:errors class="error-message" path="editAAActualite.titre"/>
+          
+          <div class="flex items-center gap-2 mt-3">
+              <div class="w-1/6 text-right">
+                  <form:label path="editAAActualite.titre">Titre</form:label>
+              </div>
+              <div class="w-4/6">
+                  <form:input class="w-96 input-text" type="text" name="editAAActualite.titre" path="editAAActualite.titre"/>
+                  <form:errors class="error-message" path="editAAActualite.titre"/>
+              </div>
           </div>
-          <div class="flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mx-2">
-              <form:label path="editAAActualite.contenu">Contenu</form:label>
-            </div>
-            <form:input class="flex-grow w-72 input-text" name="editAAActualite.contenu" path="editAAActualite.contenu"/>
-            <form:errors class="error-message" path="editAAActualite.contenu"/>
+
+          <div class="flex items-center gap-2 mt-3">
+              <div class="w-1/6 text-right">
+                  <form:label path="editAAActualite.contenu">Contenu</form:label>
+              </div>
+              <div class="w-4/6">
+                  <form:textarea class="w-full h-32 input-textarea" name="editAAActualite.contenu" path="editAAActualite.contenu"/>
+                  <form:errors class="error-message" path="editAAActualite.contenu"/>
+              </div>
           </div>
-          <div class="flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mx-2">
-              <form:label path="editAAActualite.detail_contenu">Détail contenu</form:label>
-            </div>
-            <form:input class="flex-grow w-72 input-text" name="editAAActualite.detail_contenu" path="editAAActualite.detail_contenu"/>
-            <form:errors class="error-message" path="editAAActualite.detail_contenu"/>
+
+          <div class="flex items-center gap-2 mt-3">
+              <div class="w-1/6 text-right">
+                  <form:label path="editAAActualite.detail_contenu">Détail contenu</form:label>
+              </div>
+              <div class="w-4/6">
+                  <form:textarea class="w-full h-32 input-textarea" name="editAAActualite.detail_contenu" path="editAAActualite.detail_contenu"/>
+                  <form:errors class="error-message" path="editAAActualite.detail_contenu"/>
+              </div>
           </div>
-          <div class="flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mx-2">
-              <form:label path="editAAActualite.type">Type</form:label>
-            </div>
-            <form:input class="flex-grow w-72 input-text" name="editAAActualite.type" path="editAAActualite.type"/>
-            <form:errors class="error-message" path="editAAActualite.type"/>
+
+          <div class="flex items-center gap-2 mt-3">
+              <div class="w-1/6 text-right">
+                  <form:label path="editAAActualite.type">Type</form:label>
+              </div>
+              <div class="w-4/6">
+                  <form:input class="w-72 input-text" type="text" name="editAAActualite.type" path="editAAActualite.type"/>
+                  <form:errors class="error-message" path="editAAActualite.type"/>
+              </div>
           </div>
-          <div class="flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mx-2">
-              <form:label path="editAAActualite.sous_type">Sous-type</form:label>
-            </div>
-            <form:input class="flex-grow w-72 input-text" name="editAAActualite.sous_type" path="editAAActualite.sous_type"/>
-            <form:errors class="error-message" path="editAAActualite.sous_type"/>
+
+          <div class="flex items-center gap-2 mt-3">
+              <div class="w-1/6 text-right">
+                  <form:label path="editAAActualite.sous_type">Sous-type</form:label>
+              </div>
+              <div class="w-4/6">
+                  <form:input class="w-72 input-text" type="text" name="editAAActualite.sous_type" path="editAAActualite.sous_type"/>
+                  <form:errors class="error-message" path="editAAActualite.sous_type"/>
+              </div>
           </div>
-          <div class="flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mx-2">
-              <form:label path="editAAActualite.lien_url">Lien url</form:label>
-            </div>
-            <form:input class="flex-grow w-72 input-text" name="editAAActualite.lien_url" path="editAAActualite.lien_url"/>
-            <form:errors class="error-message" path="editAAActualite.lien_url"/>
+
+          <div class="flex items-center gap-2 mt-3">
+              <div class="w-1/6 text-right">
+                  <form:label path="editAAActualite.lien_url">Lien url</form:label>
+              </div>
+              <div class="w-4/6">
+                  <form:input class="w-96 input-text" type="text" name="editAAActualite.lien_url" path="editAAActualite.lien_url"/>
+                  <form:errors class="error-message" path="editAAActualite.lien_url"/>
+              </div>
           </div>
-          <div class="flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mx-2">
-              <form:label path="editAAActualite.position">Position</form:label>
-            </div>
-            <form:input class="flex-grow w-72 input-text" name="editAAActualite.position" path="editAAActualite.position"/>
-            <form:errors class="error-message" path="editAAActualite.position"/>
+
+          <div class="flex items-center gap-2 mt-3">
+              <div class="w-1/6 text-right">
+                  <form:label path="editAAActualite.position">Position</form:label>
+              </div>
+              <div class="w-4/6">
+                  <form:select class="w-18 input-select" name="editAAActualite.position" path="editAAActualite.position">
+                      <c:forEach begin="1" end="9" var="position">
+                          <form:option value="${position}">${position}</form:option>
+                      </c:forEach>
+                  </form:select>
+                  <form:errors class="error-message" path="editAAActualite.position"/>
+              </div>
           </div>
-          <div class="flex items-center mt-2">
-            <div class="flex-grow w-44 mx-2 text-right">
-              <form:label path="editAAActualite.adherentId">Adhérent</form:label>
-            </div>
-            <form:select class="flex-grow text-left h-16 w-72 select2" name="editAAActualite.adherentId" path="editAAActualite.adherentId">
-              <form:option value="" label="Aucun (actualité générale)"></form:option>                                                                                                      
-              <form:options items="${adherentsList}" itemValue="id" itemLabel="libelle"/>
-            </form:select>            
-            <form:errors class="error-message" path="editAAActualite.adherentId"/>
+
+          <div class="flex items-center gap-2 mt-3">
+              <div class="w-1/6 text-right">
+                  <form:label path="editAAActualite.adherentId">Adhérent</form:label>
+              </div>
+              <div class="w-4/6">
+                  <form:select class="w-96 select2" name="editAAActualite.adherentId" path="editAAActualite.adherentId">
+                      <form:option value="" label="Aucun (actualité générale)"></form:option>
+                      <form:options items="${adherentsList}" itemValue="id" itemLabel="libelle"/>
+                  </form:select>
+                  <form:errors class="error-message" path="editAAActualite.adherentId"/>
+              </div>
           </div>
+
         </div>
         <div class="text-center my-10">
           <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer l'actualité</button>

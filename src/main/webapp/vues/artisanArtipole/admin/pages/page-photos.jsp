@@ -14,39 +14,48 @@
   </div>
 
 
-  <form:form class="editAdherent" method="post" modelAttribute="addForm" action="AA-add-photo?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
+  <form:form class="editAdherent w-1/2" method="post" modelAttribute="addForm" action="AA-add-photo?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
     <div class="hidden" id="addItemForm" title="Ajouter une photo">
       <fieldset>
-          <div class="flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mx-2">
+          <div class="flex items-center gap-2 mt-2">
+            <div class="w-1/4 text-right">
               <form:label path="editAAPhoto.libelle">Libellé</form:label>
             </div>
-            <form:input class="flex-grow w-72 input-text" name="editAAPhoto.libelle" path="editAAPhoto.libelle"/>
-            <form:errors class="error-message" path="editAAPhoto.libelle"/>
-          </div>
-
-          <div class="flex ml-11 items-center mt-2 text-right">    
-            <div class="flex flex-col">
-              <form:input type="file" path="editAAPhoto.file" accept="image/x-png,image/gif,image/jpeg"/>
+            <div class="w-3/4">
+              <form:input class="w-96 input-text" name="editAAPhoto.libelle" path="editAAPhoto.libelle"/>
+              <form:errors class="error-message" path="editAAPhoto.libelle"/>
             </div>
           </div>
 
-          <div class="flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mx-2">
+          <div class="flex items-center gap-2 mt-2">
+            <div class="w-1/4 text-right">
+              <form:label path="editAAPhoto.file">Photo</form:label>
+            </div>
+            <div class="w-3/4">
+              <form:input class="w-96" type="file" path="editAAPhoto.file" accept="image/x-png,image/gif,image/jpeg"/>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 mt-2">
+            <div class="w-1/4 text-right">
               <form:label path="editAAPhoto.alt">Alt</form:label>
             </div>
-            <form:input class="flex-grow w-72 input-text" name="editAAPhoto.alt" path="editAAPhoto.alt"/>
-            <form:errors class="error-message" path="editAAPhoto.alt"/>
+            <div class="w-3/4">            
+              <form:input class="w-96 input-text" name="editAAPhoto.alt" path="editAAPhoto.alt"/>
+              <form:errors class="error-message" path="editAAPhoto.alt"/>
+            </div>
           </div>
           
-          <div class="flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mx-2">
+          <div class="flex items-center gap-2 mt-2">
+            <div class="w-1/4 text-right">
               <form:label path="editAAPhoto.type">Type</form:label>
             </div>
-            <form:select class="flex-grow w-72 input-select" name="editAAPhoto.type" path="editAAPhoto.type">
-              <form:options items="${types}" itemValue="libelle" itemLabel="libelle"/>
-            </form:select>
-            <form:errors class="error-message" path="editAAPhoto.type"/>
+            <div class="w-3/4">            
+              <form:select class="input-select" name="editAAPhoto.type" path="editAAPhoto.type">
+                <form:options items="${types}" itemValue="libelle" itemLabel="libelle"/>
+              </form:select>
+              <form:errors class="error-message" path="editAAPhoto.type"/>
+            </div>
           </div>
           
           <div class="text-center my-10">

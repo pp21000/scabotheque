@@ -20,28 +20,28 @@
   <form:form method="post" modelAttribute="editForm" action="AA-edit-certification?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">    
     <form:input type="hidden" path="editAACertification.id"/>
     <form:input type="hidden" path="editAACertification.data"/>
-    <fieldset class="mx-auto justify-center">
-      <div class="md:flex md:items-center mb-6 w-full">
-        <div class="w-1/5">
-          <label class="block text-right mr-2" for="libelle">
+    <fieldset class="w-1/2 mx-auto">
+      <div class="flex items-center gap-2 mb-6">
+        <div class="w-1/4">
+          <label class="block text-right" for="libelle">
             Libellé
           </label>
         </div >
-        <div class="w-3/5">
-          <form:input class="w-full input-text" type="text" name="editAACertification.libelle" path="editAACertification.libelle" id="libelle"/>
+        <div class="w-3/4">
+          <form:input class="w-96 input-text" type="text" name="editAACertification.libelle" path="editAACertification.libelle"/>
           <form:errors class="error-message" path="editAACertification.libelle"/>
         </div>
       </div>
-      <div class="md:flex md:items-center mb-6">
-        <div class="w-1/5" >
-          <label class="block text-right mr-2" for="data">
+        
+      <div class="flex items-center gap-2 mb-6">
+        <div class="w-1/4">
+          <label class="block text-right" for="data">
             Image
           </label>
         </div>
-
-        <div class="w-3/5" >  
-          <div class="flex">
-            <img class="max-h-24 mr-5 rounded" src="${certification.dataImg}"/>     
+        <div class="w-3/4">  
+          <div class="flex gap-5">
+            <img class="max-h-24 rounded" src="${certification.dataImg}"/>     
             <div class="my-auto flex justify-center">
               <div class="flex flex-col">
                 <form:input type="file" path="editAACertification.file" accept="image/x-png,image/gif,image/jpeg"/>
@@ -51,14 +51,15 @@
           <form:errors class="error-message" path="editAACertification.data"/>
         </div>
       </div>
-      <div class="md:flex md:items-center mb-6">
-        <div class="w-1/5" >
-          <label class="block text-right mr-2" for="alt">
+        
+      <div class="flex items-center gap-2 mb-6">
+        <div class="w-1/4">
+          <label class="block text-right" for="alt">
             alt
           </label>
         </div>
-        <div class="w-3/5" >
-          <form:input class="w-full input-text" type="text" name="editAACertification.alt" path="editAACertification.alt" id="alt"/>
+        <div class="w-3/4">
+          <form:input class="w-96 input-text" type="text" name="editAACertification.alt" path="editAACertification.alt"/>
           <form:errors class="error-message" path="editAACertification.alt"/>
         </div>
       </div>

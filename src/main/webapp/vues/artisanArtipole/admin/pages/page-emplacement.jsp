@@ -15,62 +15,72 @@
   </div>
 
 
-  <form:form class="editAdherent" method="post" modelAttribute="addForm" action="AA-add-emplacement?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
+  <form:form class="editAdherent w-full" method="post" modelAttribute="addForm" action="AA-add-emplacement?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
     <div class="hidden" id="addItemForm" title="Ajouter un emplacement">
       <fieldset>
         <div>
-          <div class="flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mr-2">
-              <form:label path="editAAEmplacement.type">Type emplacement</form:label>
-            </div>              
-            <form:select onChange="handleUploadFileDivVisibility()" id="typeEmplacementSelect" class="flex-grow w-72 input-select" name="editAAEmplacement.type" path="editAAEmplacement.type">
-              <form:option value="Titre"/>
-              <form:option value="Image"/>
-              <form:option value="Contenu"/>
-            </form:select>
-            <form:errors class="error-message" path="editAAEmplacement.type"/>
-          </div>
-             
-          <div id="uploadFileDiv" class="hidden flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mx-2">
-              <form:label path="editAAEmplacement.libelle">Image</form:label>
-            </div>
-            <form:input type="file" path="editAAEmplacement.file" accept="image/x-png,image/gif,image/jpeg"/>
+          <div class="flex items-center gap-2 mt-3">
+              <div class="w-1/6 text-right">
+                  <form:label path="editAAEmplacement.libelle">Libellé</form:label>
+              </div>
+              <div class="w-4/6">
+                  <form:input class="w-96 input-text" type="text" name="editAAEmplacement.libelle" path="editAAEmplacement.libelle"/>
+                  <form:errors class="error-message" path="editAAEmplacement.libelle"/>
+              </div>
           </div>
               
-          <div class="flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mr-2">
-              <form:label path="editAAEmplacement.libelle">Libellé</form:label>
-            </div>
-            <form:input class="flex-grow w-72 input-text" name="editAAEmplacement.libelle" path="editAAEmplacement.libelle"/>
-            <form:errors class="error-message" path="editAAEmplacement.libelle"/>
+          <div class="flex items-center gap-2 mt-3">
+              <div class="w-1/6 text-right">
+                  <form:label path="editAAEmplacement.type">Type</form:label>
+              </div>
+              <div class="w-4/6">
+                  <form:select onChange="handleUploadFileDivVisibility()" id="typeEmplacementSelect" class="input-select" name="editAAEmplacement.type" path="editAAEmplacement.type">
+                      <form:option value="Titre"/>
+                      <form:option value="Image"/>
+                      <form:option value="Contenu"/>
+                  </form:select>
+                  <form:errors class="error-message" path="editAAEmplacement.type"/>
+              </div>
           </div>
-          
-          <div class="flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mr-2">
-              <form:label path="editAAEmplacement.content">Content</form:label>
+              
+          <div id="fileDiv" class="hidden flex items-center gap-2 mt-3">
+            <div class="w-1/6 text-right">
+              <form:label path="editAAEmplacement.libelle">Image</form:label>
             </div>
-            <form:input class="flex-grow w-72 input-text" name="editAAEmplacement.content" path="editAAEmplacement.content"/>
-            <form:errors class="error-message" path="editAAEmplacement.content"/>
+            <form:input id="fileInput" type="file" path="editAAEmplacement.file" accept="image/x-png,image/gif,image/jpeg"/>
+          </div>              
+
+          <div id="altDiv" class="hidden flex items-center gap-2 mt-3">
+              <div class="w-1/6 text-right">
+                  <form:label path="editAAEmplacement.alt">alt</form:label>
+              </div>
+              <div class="w-4/6">
+                  <form:input id="altInput" class="w-96 input-text" type="text" name="editAAEmplacement.alt" path="editAAEmplacement.alt"/>
+                  <form:errors class="error-message" path="editAAEmplacement.alt"/>
+              </div>
           </div>
-          
-          <div class="flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mr-2">
-              <form:label path="editAAEmplacement.alt">Alt</form:label>
-            </div>
-            <form:input class="flex-grow w-72 input-text" name="editAAEmplacement.alt" path="editAAEmplacement.alt"/>
-            <form:errors class="error-message" path="editAAEmplacement.alt"/>
+
+          <div id="contentDiv" class="flex items-center gap-2 mt-3">
+              <div class="w-1/6 text-right">
+                  <form:label path="editAAEmplacement.content">Content</form:label>
+              </div>
+              <div class="w-4/6">
+                  <form:textarea id="contentInput" class="w-full input-textarea h-48" name="editAAEmplacement.content" path="editAAEmplacement.content"/>
+                  <form:errors class="error-message" path="editAAEmplacement.content"/>
+              </div>
           </div>
-          
-          <div class="flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mr-2">
-              <form:label path="editAAEmplacement.page">Page</form:label>
-            </div>
-            <form:select class="flex-grow w-72 input-select" name="editAAEmplacement.page" path="editAAEmplacement.page.id">
-              <form:options items="${pageList}" itemValue="id" itemLabel="libelle"/>
-            </form:select>
-            <form:errors class="error-message" path="editAAEmplacement.page.id"/>
-          </div>
+
+          <div class="flex items-center gap-2 mt-3">
+              <div class="w-1/6 text-right">
+                  <form:label path="editAAEmplacement.page.id">Page</form:label>
+              </div>
+              <div class="w-4/6">
+                  <form:select class="input-select" name="editAAEmplacement.page" path="editAAEmplacement.page.id">
+                      <form:options items="${pageList}" itemValue="id" itemLabel="libelle"/>
+                  </form:select>
+                  <form:errors class="error-message" path="editAAEmplacement.page.id"/>
+              </div>
+          </div>          
           
           <div class="text-center my-10">
             <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer l'emplacement</button>
@@ -153,13 +163,25 @@
 <script>
   
   function handleUploadFileDivVisibility() {
+    var duration = 500;
     if ($('#typeEmplacementSelect').val() === 'Image') {
-         $('#uploadFileDiv').slideDown({
-            start: function () {$(this).css({display: "flex"});},
-            duration: 400});
+        $('#contentDiv').slideUp(duration);
+        $('#contentInput').val("");
+        $('#fileDiv').slideDown({
+           start: function () {$(this).css({display: "flex"});},
+           duration: duration});
+        $('#altDiv').slideDown({
+           start: function () {$(this).css({display: "flex"});},
+           duration: duration});
      } else {
-         $('#uploadFileDiv').slideUp(300);
-         $('#editAAEmplacement\\.file').val(""); 
+        $('#fileDiv').slideUp(duration);
+        $('#fileInput').val(""); 
+        //$('#editAAEmplacement\\.file').val(""); 
+        $('#altDiv').slideUp(duration);
+        $('#altInput').val(""); 
+        $('#contentDiv').slideDown({
+           start: function () {$(this).css({display: "flex"});},
+           duration: duration});
      }
   }
 

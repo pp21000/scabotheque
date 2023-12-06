@@ -16,29 +16,36 @@
   </div>
 
 
-  <form:form class="editAdherent" method="post" modelAttribute="addForm" action="AA-add-certification?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
+  <form:form class="editAdherent w-1/2" method="post" modelAttribute="addForm" action="AA-add-certification?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
     <div class="hidden" id="addItemForm" title="Ajouter une certification">
       <fieldset>
-          <div class="flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mx-2">
+          <div class="flex items-center gap-2 mt-2">
+            <div class="w-1/4 text-right">
               <form:label path="editAACertification.libelle">Libellé</form:label>
             </div>
-            <form:input class="w-72 input-text" name="editAACertification.libelle" path="editAACertification.libelle"/>
-            <form:errors class="error-message" path="editAACertification.libelle"/>
+            <div class="w-3/4">
+              <form:input class="w-96 input-text" name="editAACertification.libelle" path="editAACertification.libelle"/>
+              <form:errors class="error-message" path="editAACertification.libelle"/>
+            </div>
           </div>
 
-          <div class="flex ml-11 items-center mt-2 text-right">    
-            <div class="flex flex-col">
+          <div class="flex items-center gap-2 mt-2">  
+            <div class="w-1/4 text-right">
+              <form:label path="editAACertification.file">Photo</form:label>
+            </div>
+            <div class="w-3/4">
               <form:input type="file" path="editAACertification.file" accept="image/x-png,image/gif,image/jpeg"/>
             </div>
           </div>
 
-          <div class="flex items-center mt-2 text-right">
-            <div class="flex-grow w-44 mx-2">
+          <div class="flex items-center gap-2 mt-2">
+            <div class="w-1/4 text-right">
               <form:label path="editAACertification.alt">Alt</form:label>
             </div>
-            <form:input class="flex-grow w-72 input-text" name="editAACertification.alt" path="editAACertification.alt"/>
-            <form:errors class="error-message" path="editAACertification.alt"/>
+            <div class="w-3/4">
+              <form:input class="w-96 input-text" name="editAACertification.alt" path="editAACertification.alt"/>
+              <form:errors class="error-message" path="editAACertification.alt"/>
+            </div>
           </div>
           <div class="text-center my-10">
             <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer la certification</button>
