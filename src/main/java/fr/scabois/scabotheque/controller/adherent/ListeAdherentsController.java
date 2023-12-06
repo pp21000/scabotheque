@@ -278,12 +278,14 @@ public class ListeAdherentsController {
     List<Agence> agences = service.loadAgences();
     List<Secteur> secteurs = service.loadSecteurs();
     List<Activite> activites = service.loadActivites();
+    List<AdherentType> types = service.loadAdherentTypes();
     List<ContactFonction> contactFonctions = service.loadContactFonctions();
 
     pModel.addAttribute("polesList", poles);
     pModel.addAttribute("agencesList", agences);
     pModel.addAttribute("secteursList", secteurs);
     pModel.addAttribute("activitesList", activites);
+    pModel.addAttribute("adhTypesList", types);
     pModel.addAttribute("contactFonctionList", contactFonctions);
 
     List<AdherentContactRole> listContact;
