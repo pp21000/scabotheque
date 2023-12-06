@@ -55,13 +55,13 @@ public class ExportService {
       listAdh.stream().forEach(a -> {
         // recherche des
         System.out.println(a.getLibelle());
-        //AdherentContactRole contact = a.getContacts().stream().filter(c -> c.getFonction().getId().equals(1))
-        //       .findFirst().orElse(null);
+
         a.getContacts().stream().forEach(contact -> {
-          if ((criteria.isMailingAdministratif() && contact.getIsMailingAdministratif())
-                  || (criteria.isMailingCommerce() && contact.getIsMailingCommerce())
-                  || (criteria.isMailingCompta() && contact.getIsMailingCompta())
-                  || (criteria.isMailingDirigeant() && contact.getIsMailingDirigeant())) {
+          if (criteria.getContactFonctionIds().contains(contact.getFonction().getId())) {
+//          if ((criteria.isMailingAdministratif() && contact.getIsMailingAdministratif())
+//                  || (criteria.isMailingCommerce() && contact.getIsMailingCommerce())
+//                  || (criteria.isMailingCompta() && contact.getIsMailingCompta())
+//                  || (criteria.isMailingDirigeant() && contact.getIsMailingDirigeant())) {
             int i = 0;
             XSSFRow row = sheet.createRow(cpt.getAndIncrement());
             row.createCell(i++).setCellValue(a.getCodeERP());
@@ -77,6 +77,7 @@ public class ExportService {
             row.createCell(i++).setCellValue(contact == null ? "" : contact.getMobile());
             row.createCell(i++).setCellValue(contact == null ? "" : contact.getMail());
             row.createCell(i++).setCellValue("");
+//          }
           }
         });
       });
