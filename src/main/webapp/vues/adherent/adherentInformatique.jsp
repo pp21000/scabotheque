@@ -12,7 +12,7 @@
             <div>
                 <c:choose>
                     <c:when test="${adherent.photoImg == ''}">
-                        <img class="rounded-full" src="<c:url value="/resources/images/noAdh.png" />"/>
+                        <img class="rounded-full" src="<c:url value="/resources/images/noAdh.png"/>"/>
                     </c:when>
                     <c:otherwise>
                         <img class="rounded-full" src="${adherent.photoImg}">
@@ -90,7 +90,7 @@
                     <c:choose>
                         <c:when test="${contact.photoImg == ''}">
                             <img style="max-width: 8em; max-height: 8em; margin: auto;"
-                                 src="<c:url value="/resources/images/noAdh.png" />"/>
+                                 src="<c:url value="/resources/images/noAdh.png"/>"/>
                         </c:when>
                         <c:otherwise>
                             <img style="max-width: 8em; max-height: 8em; margin: auto;" src="${contact.photoImg}" class="max-w-xl">

@@ -1,17 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 
-
-  <c:url value="/AA-page-listes" var="url"/>
-  <button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location = '${url}'">
-    <spring:message code="label.retour"/>
-  </button>
-  <button class="btn btn-green" id="addBtn" type="button" onclick="showNewForm()">Ajouter un Métier</button>
+<c:url value="/AA-page-metiers" var="url"/>
+<button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location = '${url}'">
+  <spring:message code="label.retour"/>
+</button>
+<button class="btn btn-green" id="addBtn" type="button" onclick="showNewForm()">Ajouter un Métier</button>
   
 <div class="flex flex-col items-center">
 

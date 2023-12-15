@@ -267,7 +267,6 @@ public class AdherentDAO implements IAdherentDAO {
     User usr = new User();
     usr.setUsername(userName);
     usr.setPassword(password);
-
     entityManager.persist(usr);
   }
 
@@ -873,7 +872,6 @@ public class AdherentDAO implements IAdherentDAO {
       utl.setEnabled(u.getEnabled());
       utl.setPassword(u.getPassword());
       utl.setUsername(u.getUsername());
-
       entityManager.persist(utl);
     });
   }
@@ -881,8 +879,7 @@ public class AdherentDAO implements IAdherentDAO {
   @Override
   @Transactional
   public void saveUtilisateurRoles(int usrId, List<UserRole> newUserRoles) {
-    List<UserRole> usrRoles = entityManager.createQuery("from UserRole where user.id = :usrId", UserRole.class)
-            .setParameter("usrId", usrId).getResultList();
+    List<UserRole> usrRoles = entityManager.createQuery("from UserRole where user.id = :usrId", UserRole.class).setParameter("usrId", usrId).getResultList();
     // suppression des anciens Roles
     usrRoles.stream().forEach(r -> {
       Optional<UserRole> role = newUserRoles.stream().filter(ur -> ur.getId() == r.getId()).findFirst();

@@ -79,8 +79,7 @@
             
             <div class="relative z-0 mb-6 w-full group">
               <form:label class="text-xs" path="editContactRetraite.commentaire"><spring:message code="label.commentaire"/></form:label>
-              <form:input
-                class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              <form:input class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="editContactRetraite.commentaire" path="editContactRetraite.commentaire"/>
               <form:errors class="error-message" path="editContactRetraite.commentaire"/>
             </div>
@@ -90,8 +89,7 @@
           <div class="grid px-4 md:grid-cols-3 md:gap-6">
             <div class="relative z-0 mb-6 w-full group">
               <form:label class="text-xs" path="editContactRetraite.adresse"><spring:message code="label.adresse"/></form:label>
-              <form:input
-                class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              <form:input class="block py-2.5 px-0 w-full text-sm text-black dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 name="editContactRetraite.adresse" path="editContactRetraite.adresse"/>
               <form:errors class="error-message" path="editContactRetraite.adresse"/>
             </div>
@@ -114,8 +112,7 @@
                     </svg>
                   </a>
                   
-                  <input type="text" id="communeAdhLibelle" disabled class="rounded-r bg-gray-50 text-sm border border-gray-300 text-gray-900 flex-1 min-w-0 border-gray-300"
-                         placeholder="">
+                  <input type="text" id="communeAdhLibelle" disabled class="rounded-r bg-gray-50 text-sm border border-gray-300 text-gray-900 flex-1 min-w-0 border-gray-300" placeholder="">
                 </div>
                 <form:errors class="error-message" path="editContactRetraite.commune"/>
               </form:label>
@@ -123,45 +120,32 @@
           </div>
             
           <!-- Main modal -->
-          <div id="commune-modal" tabindex="-1" aria-hidden="true"
-               class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
+          <div id="commune-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
             <div class="relative p-4 w-full max-w-md h-full md:h-auto">
-              <div class="relative bg-white rounded-lg shadow ">
-                <button type="button"
-                        class="absolute top-3 right-2.5 text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center  "
-                        data-modal-toggle="commune-modal">
-                  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                       xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                        clip-rule="evenodd"></path>
+              <div class="relative bg-white rounded-lg shadow">
+                <button type="button" class="absolute top-3 right-2.5 text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-toggle="commune-modal">
+                  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                   </svg>
                   <span class="sr-only">Close modal</span>
                 </button>
                 <div class="py-6 px-6 lg:px-8">
-                  <h3 class="mb-4 text-xl font-medium text-gray-900 ">Commune</h3>
+                  <h3 class="mb-4 text-xl font-medium text-gray-900">Commune</h3>
                   <div class="space-y-6">
                     <div class="modal-body">
                       <label class="block mb-2 text-sm font-medium text-gray-900 ">Recherche</label>
-                      <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                             id="filterCPCommuneAdh" type="text"
-                             placeholder="Code postal ou Nom"/>
+                      <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="filterCPCommuneAdh" type="text" placeholder="Code postal ou Nom"/>
                       <br>
                       <form:label class="sr-only" path="editContactRetraite.commune"><spring:message code="label.commune"/></form:label>
-                      <form:select id="communeAdhListe"
-                                   class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none   focus:outline-none focus:ring-0 focus:border-gray-200 peer"
-                                   name="editContactRetraite.commune"
-                                   path="editContactRetraite.commune.id">
+                      <form:select id="communeAdhListe" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer" name="editContactRetraite.commune" path="editContactRetraite.commune.id">
                         <form:options items="${communeList}" itemValue="id" itemLabel="libelle"/>
                       </form:select>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
-                      <button type="button" id="valideAdhCommune" data-modal-toggle="commune-modal"
-                              class="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                      <button type="button" id="valideAdhCommune" data-modal-toggle="commune-modal" class="w-full btn btn-green focus:ring-4 focus:outline-none focus:ring-blue-300">
                         Sélectionner
                       </button>
-                      <button type="button" data-modal-toggle="commune-modal"
-                              class="w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">
+                      <button type="button" data-modal-toggle="commune-modal" class="w-full btn btn-red focus:ring-4 focus:outline-none focus:ring-blue-300">
                         Annuler
                       </button>
                     </div>

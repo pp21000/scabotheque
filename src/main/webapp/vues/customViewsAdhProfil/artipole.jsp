@@ -5,8 +5,7 @@
   Time: 09:39
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
-         pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -17,19 +16,19 @@
 
 <div class="grid grid-cols-3 gap-4">
   <div>
-    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')">
-      <div class="flex items-center mb-1">
+    
+    <!-- GÉNÉRAL -->
+    <div class="flex items-center mb-1 <sec:authorize access="not hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')">px-2 h-[28px]</sec:authorize>">
+      <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')">
         <c:url value="/edit/editArtipoleAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
         <a href="${url}" class="rounded-md hover:bg-gray-300 p-0.5 mr-1">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
           </svg>
         </a>
-        <spring:message code="label.modifGeneral"/>
-      </div>
-    </sec:authorize>
-
-
+      </sec:authorize>
+      <spring:message code="label.modifGeneral"/>
+    </div>
     <div class="bg-neutral-200 overflow-hidden shadow rounded-lg">
       <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
         <dl class="sm:divide-y sm:divide-gray-300">
@@ -162,18 +161,19 @@
     </div>
   </div>
 
+  <!-- MÉTIERS -->          
   <div>
-    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')">
-      <div class="flex items-center mb-1">
+    <div class="flex items-center mb-1 <sec:authorize access="not hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')">px-2 h-[28px]</sec:authorize>">
+      <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')">
         <c:url value="/edit/editMetiersAdherent" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
         <a href="${url}" class="rounded-md hover:bg-gray-300 p-0.5 mr-1">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
           </svg>
         </a>
-        <spring:message code="label.metiers"/>
-      </div>
-    </sec:authorize>
+      </sec:authorize>
+      <spring:message code="label.metiers"/>
+    </div>
     <div class="bg-neutral-200 overflow-hidden shadow rounded-lg sm:divide-y sm:divide-gray-300">
       <c:forEach items="${metiers}" var="metier">
         <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
@@ -197,19 +197,19 @@
     </div>
   </div>
 
-
+  <!-- CERTIFICATIONS -->
   <div>
-    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')">
-      <div class="flex items-center mb-1">
+    <div class="flex items-center mb-1 <sec:authorize access="not hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')">px-2 h-[28px]</sec:authorize>">
+      <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')">
         <c:url value="/edit/editCertificationsAdherent" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
         <a href="${url}" class="rounded-md hover:bg-gray-300 p-0.5 mr-1">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
           </svg>
         </a>
-        <spring:message code="label.certifications"/>
-      </div>
-    </sec:authorize>
+      </sec:authorize>
+      <spring:message code="label.certifications"/>
+    </div>
     <div class="bg-neutral-200 overflow-hidden shadow rounded-lg sm:divide-y sm:divide-gray-300">
       <c:forEach items="${certifications}" var="certification">
         <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
@@ -232,8 +232,9 @@
       </c:forEach>
     </div>
   </div>
-</div>             
-
+</div>
+    
+<!-- DESCRIPTION ENTREPRISE & ACTIVITÉ -->
 <div class="bg-neutral-200 overflow-hidden shadow rounded-lg sm:divide-y sm:divide-gray-300 mt-4">
   <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
     <dl>
@@ -265,32 +266,71 @@
   </div>
 </div>
 
+<!-- TAGS -->
 <div class="mt-5">
-  <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')">
-    <div class="flex items-center mb-1">
+  <div class="flex items-center mb-1 <sec:authorize access="not hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')">px-2 h-[28px]</sec:authorize>">
+    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')">
       <c:url value="/edit/editSpecialitesAdherent" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
       <a href="${url}" class="rounded-md hover:bg-gray-300 p-0.5 mr-1">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
         </svg>
       </a>
-      <spring:message code="label.tags"/>
-    </div>
-  </sec:authorize>     
+    </sec:authorize>     
+    <spring:message code="label.tags"/>
+  </div>
   <div class="bg-neutral-200 overflow-hidden shadow rounded-lg sm:divide-y sm:divide-gray-300">
     <c:choose>
-      <c:when test="${specialitesOfAdherent.isEmpty()}">
+      <c:when test="${empty specialitesOfAdherent}">
         <dt class="text-gray-400 px-5 py-3">Aucun tag défini.</dt>
       </c:when>
       <c:otherwise>
         <c:forEach items="${specialitesOfAdherent}" var="speOfAdh" varStatus="status">
           <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
             <dl>
-              <div class="text-sm sm:grid sm:grid-cols-12 sm:gap-4 items-center py-3 sm:py-3 sm:px-1">
+              <div class="text-sm grid grid-cols-12 gap-4 items-center py-3 px-1">
                 <dt class="font-medium text-gray-500 text-right">${status.index+1} :</dt>
-                <dd class="sm:mt-0 sm:col-span-11 text-gray-400">
+                <dd class="col-span-11 text-gray-400">
                   <span class="font-medium mr-3">${speOfAdh.libelle}</span>(${speOfAdh.travaux.libelle})
                 </dd>
+              </div>
+            </dl>
+          </div>
+        </c:forEach>
+      </c:otherwise>
+    </c:choose>
+  </div>
+</div> 
+
+<!-- ACTUALITÉS -->
+<div class="mt-5">
+  <div class="flex items-center mb-1 <sec:authorize access="not hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')">px-2 h-[28px]</sec:authorize>">
+    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')">
+      <c:url value="/edit/editSpecialitesAdherent" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
+      <a href="${url}" class="rounded-md hover:bg-gray-300 p-0.5 mr-1">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+        </svg>
+      </a>
+    </sec:authorize>     
+    <spring:message code="label.tags"/>
+  </div>
+  <div class="bg-neutral-200 overflow-hidden shadow rounded-lg sm:divide-y sm:divide-gray-300">
+    <c:choose>
+      <c:when test="${empty actualites}">
+        <dt class="text-gray-400 px-5 py-3">Aucune actualité définie.</dt>
+      </c:when>
+      <c:otherwise>
+        <c:forEach items="${actualites}" var="actualite" varStatus="status">
+          <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+            <dl>
+              <div class="text-sm grid grid-cols-12 gap-4 items-center py-3 px-1">
+                <dd class="value col-span-4">${actualite.titre}</dd>
+                <dd class="value col-span-3">${actualite.type}</dd>
+                <dd class="value col-span-3">${actualite.sous_type}</dd>
+                <dd class="value text-center">${actualite.position}</dd>
+                <dd class="value text-center">${actualite.date_ajout}</dd>
+
               </div>
             </dl>
           </div>

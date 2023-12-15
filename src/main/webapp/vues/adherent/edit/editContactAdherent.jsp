@@ -180,7 +180,7 @@
             <div class="flex flex-col">
               <c:choose>
                 <c:when test="${adherentContact.photoImg == ''}">
-                  <img class="w-32" src="<c:url value="/resources/images/noAdh.png" />"/>
+                  <img class="w-32" src="<c:url value="/resources/images/noAdh.png"/>"/>
                 </c:when>
                 <c:otherwise>
                   <img style="max-width:15em; max-height:15em;" src="${adherentContact.photoImg}">

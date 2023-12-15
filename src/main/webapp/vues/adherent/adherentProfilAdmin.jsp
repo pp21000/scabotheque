@@ -54,7 +54,7 @@
             <div class="text-center">
               <c:choose >
                 <c:when test = "${adherent.photoImg == ''}"> 
-                  <img class="profil-user-img img-fluid" src="<c:url value="/resources/images/noAdh.png" />" />
+                  <img class="profil-user-img img-fluid" src="<c:url value="/resources/images/noAdh.png"/>" />
                 </c:when>
                 <c:otherwise> 						
                   <img class="profil-user-img img-fluid" src="${adherent.photoImg}">

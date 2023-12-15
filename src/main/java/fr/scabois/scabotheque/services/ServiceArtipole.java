@@ -3,7 +3,6 @@ package fr.scabois.scabotheque.services;
 import fr.scabois.scabotheque.bean.adherent.Adherent;
 import fr.scabois.scabotheque.bean.adherent.Type;
 import fr.scabois.scabotheque.bean.artisanArtipole.Actualite;
-import fr.scabois.scabotheque.bean.artisanArtipole.Categorie;
 import fr.scabois.scabotheque.bean.artisanArtipole.Certification;
 import fr.scabois.scabotheque.bean.artisanArtipole.Emplacement;
 import fr.scabois.scabotheque.bean.artisanArtipole.Inspiration;
@@ -49,11 +48,6 @@ public class ServiceArtipole implements IServiceArtipole {
   }
 
   @Override
-  public void deleteCategorie(final int idCategorie) {
-    this.dao.deleteCategorie(idCategorie);
-  }
-
-  @Override
   public void deleteMetier(final int idMetier) {
     this.dao.deleteMetier(idMetier);
   }
@@ -66,11 +60,6 @@ public class ServiceArtipole implements IServiceArtipole {
   @Override
   public List<Adherent> loadArtisanArtipole() {
     return this.dao.loadArtisanArtipole();
-  }
-
-  @Override
-  public List<Categorie> loadCategories() {
-    return this.dao.loadCategories();
   }
 
   @Override
@@ -181,16 +170,6 @@ public class ServiceArtipole implements IServiceArtipole {
   @Override
   public void saveTravaux(final Travaux travaux) {
     this.dao.saveTravaux(travaux);
-  }
-
-  @Override
-  public void saveCategorie(final Categorie categorie) {
-    this.dao.saveCategorie(categorie);
-  }
-
-  @Override
-  public void saveCategories(final List<Categorie> categories) {
-    this.dao.saveCategories((List) categories);
   }
 
   @Override

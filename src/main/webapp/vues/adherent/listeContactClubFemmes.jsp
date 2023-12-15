@@ -37,7 +37,7 @@
             <div>
               <c:choose>
                 <c:when test="${contact.photoImg == ''}">
-                  <img src="<c:url value="/resources/images/noAdh.png" />" alt="" class="mt-6 w-24 h-24 rounded-full object-cover shadow-lg">
+                  <img src="<c:url value="/resources/images/noAdh.png"/>" alt="" class="mt-6 w-24 h-24 rounded-full object-cover shadow-lg">
                 </c:when>
                 <c:otherwise>
                   <img src="${contact.photoImg}" alt="" class="mt-6 w-24 h-24 object-cover rounded-full shadow-lg">

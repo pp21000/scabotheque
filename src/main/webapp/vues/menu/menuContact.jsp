@@ -15,8 +15,7 @@
       </li>
 
       <li>
-        <a href=<c:url value="/dashboard"/>
-           class="<c:choose><c:when test = "${pageType == 'DASHBOARD'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-gray-50">
+        <a href=<c:url value="/dashboard"/> class="<c:choose><c:when test = "${pageType == 'DASHBOARD'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-gray-50">
              <svg aria-hidden="true"
                   class="w-6 h-6 text-gray-500 transition duration-75  group-hover:text-gray-900"
                   fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -27,8 +26,7 @@
         </a>
       </li>
       <li>
-        <a href=<c:url value="/listeAdherents"/>
-           class="<c:choose><c:when test = "${pageType == 'LIST_ADHERENT' || pageType == 'CREATE_ADHERENT'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-gray-50">
+        <a href=<c:url value="/listeAdherents"/> class="<c:choose><c:when test = "${pageType == 'LIST_ADHERENT' || pageType == 'CREATE_ADHERENT' || pageType == 'ADHERENT_PROFIL'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-gray-50">
              <svg class="w-6 h-6 text-gray-500 fill-gray-500" fill="none" stroke="currentColor"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg">
@@ -39,8 +37,7 @@
         </a>
       </li>
       <li>
-        <a href=<c:url value="/listeContact"/>
-           class="<c:choose><c:when test = "${pageType == '' || pageType == 'LIST_CONTACT'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-gray-50">
+        <a href=<c:url value="/listeContact"/> class="<c:choose><c:when test = "${pageType == '' || pageType == 'LIST_CONTACT'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-gray-50">
              <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg">
                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -50,8 +47,7 @@
         </a>
       </li>
       <li>
-        <a href="listeRetraite"
-           class="<c:choose><c:when test = "${pageType == '' || pageType == 'LIST_CONTACT_RETRAITE'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-gray-50">
+        <a href="listeRetraite" class="<c:choose><c:when test = "${pageType == '' || pageType == 'LIST_CONTACT_RETRAITE'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-gray-50">
              <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg">
                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -60,8 +56,7 @@
              <span class="ml-3 whitespace-nowrap"><spring:message code="menu.contactRetraite"/></span>
         </a>
       </li><li>
-        <a href="listeClubFemmes"
-           class="<c:choose><c:when test = "${pageType == '' || pageType == 'LIST_CONTACT_CLUB_FEMMES'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-gray-50">
+        <a href="listeClubFemmes" class="<c:choose><c:when test = "${pageType == '' || pageType == 'LIST_CONTACT_CLUB_FEMMES'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-gray-50">
              <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg">
                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

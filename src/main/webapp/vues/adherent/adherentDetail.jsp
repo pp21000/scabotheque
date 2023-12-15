@@ -20,7 +20,7 @@
             <c:choose>
                 <c:when test="${adherent.photoImg == ''}">
                     <img class="max-w-[14rem] drop-shadow-xl"
-                         src="<c:url value="/resources/images/noAdh.png" />"/>
+                         src="<c:url value="/resources/images/noAdh.png"/>"/>
                 </c:when>
                 <c:otherwise>
                     <img class="max-w-[14rem] drop-shadow-xl" src="${adherent.photoImg}">
@@ -136,7 +136,7 @@
                                 <c:choose>
                                     <c:when test="${contact.photoImg == ''}">
                                         <img class="rounded-full mx-auto absolute -top-20 w-32 h-32 shadow-md border-4 border-white transition duration-200 transform hover:scale-110"
-                                             src="<c:url value="/resources/images/noAdh.png" />"/>
+                                             src="<c:url value="/resources/images/noAdh.png"/>"/>
                                     </c:when>
                                     <c:otherwise>
                                         <img class="rounded-full mx-auto absolute -top-20 w-32 h-32 shadow-md border-4 border-white transition duration-200 transform hover:scale-110"

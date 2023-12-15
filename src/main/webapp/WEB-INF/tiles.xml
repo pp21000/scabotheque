@@ -13,56 +13,27 @@
   </definition>
 
   <!-- AA : Artisan Artipole Admin -->
-  <definition name="AA-admin" extends="base.board.definition">
-    <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-accueil.jsp"/>
-    <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="admin"/>
-  </definition>
-
   <definition name="AA-page-accueil" extends="base.board.definition">
     <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-accueil.jsp"/>
     <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="page-accueil"/>
+    <put-attribute name="pageName" value="artisan-artipole"/>
+  </definition>
+
+  <definition name="AA-page-emplacements" extends="base.board.definition">
+    <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-emplacements.jsp"/>
+    <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
+    <put-attribute name="pageName" value="artisan-artipole"/>
+  </definition>
+
+
+  <definition name="AA-edit-emplacement" extends="base.board.definition">
+    <put-attribute name="body" value="/vues/artisanArtipole/admin/edit/AA-edit-emplacement.jsp"/>
+    <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
+    <put-attribute name="pageName" value="artisan-artipole"/>
   </definition>
 
   <definition name="AA-page-actualites" extends="base.board.definition">
     <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-actualites.jsp"/>
-    <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="page-accueil"/>
-  </definition>
-
-  <definition name="AA-page-artisan-artipole" extends="base.board.definition">
-    <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-artisan-artipole.jsp"/>
-    <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="artisan-artipole"/>
-  </definition>
-
-  <definition name="AA-page-categories" extends="base.board.definition">
-    <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-categories.jsp"/>
-    <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="Categories"/>
-  </definition>
-
-  <definition name="AA-page-emplacement" extends="base.board.definition">
-    <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-emplacement.jsp"/>
-    <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="artisan-artipole"/>
-  </definition>
-
-  <definition name="AA-edit-metiers" extends="base.board.definition">
-    <put-attribute name="body" value="/vues/artisanArtipole/admin/edit/AA-edit-metiers.jsp"/>
-    <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="artisan-artipole"/>
-  </definition>
-
-  <definition name="AA-edit-categories" extends="base.board.definition">
-    <put-attribute name="body" value="/vues/artisanArtipole/admin/edit/AA-edit-categories.jsp"/>
-    <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="artisan-artipole"/>
-  </definition>
-
-  <definition name="AA-edit-emplacement" extends="base.board.definition">
-    <put-attribute name="body" value="/vues/artisanArtipole/admin/edit/AA-edit-emplacement.jsp"/>
     <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
     <put-attribute name="pageName" value="artisan-artipole"/>
   </definition>
@@ -76,75 +47,81 @@
   <definition name="AA-page-travaux" extends="base.board.definition">
     <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-travaux.jsp"/>
     <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="page-travaux"/>
+    <put-attribute name="pageName" value="artisan-artipole"/>
   </definition>
 
-  <definition name="AA-page-je-cherche-un-artisan" extends="base.board.definition">
-    <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-je-cherche-un-artisan.jsp"/>
+  <definition name="AA-edit-travaux" extends="base.board.definition">
+    <put-attribute name="body" value="/vues/artisanArtipole/admin/edit/AA-edit-travaux.jsp"/>
     <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="page-je-cherche-un-artisan"/>
+    <put-attribute name="pageName" value="artisan-artipole"/>
   </definition>
 
-  <definition name="AA-page-inspirations" extends="base.board.definition">
-    <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-inspirations.jsp"/>
+  <definition name="AA-page-metiers" extends="base.board.definition">
+    <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-metiers.jsp"/>
     <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="page-inspirations"/>
+    <put-attribute name="pageName" value="artisan-artipole"/>
   </definition>
 
-  <!--  <definition name="AA-page-nos-metiers" extends="base.board.definition">
-    <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-nos-metiers.jsp"/>
+  <definition name="AA-edit-metiers" extends="base.board.definition">
+    <put-attribute name="body" value="/vues/artisanArtipole/admin/edit/AA-edit-metiers.jsp"/>
     <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="page-nos-metiers"/>
-  </definition>-->
-
-  <definition name="AA-page-listes" extends="base.board.definition">
-    <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-listes.jsp"/>
-    <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="page-listes"/>
+    <put-attribute name="pageName" value="artisan-artipole"/>
   </definition>
-
-  <definition name="AA-page-salle-exposition" extends="base.board.definition">
-    <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-salle-exposition.jsp"/>
-    <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="page-salle-exposition"/>
-  </definition>
+  
 
   <definition name="AA-page-actualites" extends="base.board.definition">
     <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-actualites.jsp"/>
     <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="page-actualites"/>
+    <put-attribute name="pageName" value="artisan-artipole"/>
   </definition>
   
   <definition name="AA-edit-actualite" extends="base.board.definition">
     <put-attribute name="body" value="/vues/artisanArtipole/admin/edit/AA-edit-actualite.jsp"/>
     <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="page-actualites"/>
+    <put-attribute name="pageName" value="artisan-artipole"/>
   </definition>
 
   <definition name="AA-page-photos" extends="base.board.definition">
     <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-photos.jsp"/>
     <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="page-photos"/>
+    <put-attribute name="pageName" value="artisan-artipole"/>
   </definition>
   
   <definition name="AA-edit-photo" extends="base.board.definition">
     <put-attribute name="body" value="/vues/artisanArtipole/admin/edit/AA-edit-photo.jsp"/>
     <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="page-photos"/>
+    <put-attribute name="pageName" value="artisan-artipole"/>
   </definition>
 
   <definition name="AA-page-certifications" extends="base.board.definition">
     <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-certifications.jsp"/>
     <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="page-certifications"/>
+    <put-attribute name="pageName" value="artisan-artipole"/>
   </definition>
   
   <definition name="AA-edit-certification" extends="base.board.definition">
     <put-attribute name="body" value="/vues/artisanArtipole/admin/edit/AA-edit-certification.jsp"/>
     <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
-    <put-attribute name="pageName" value="page-certifications"/>
+    <put-attribute name="pageName" value="artisan-artipole"/>
+  </definition>
+  
+  <definition name="AA-page-inspirations" extends="base.board.definition">
+    <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-inspirations.jsp"/>
+    <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
+    <put-attribute name="pageName" value="artisan-artipole"/>
   </definition>
 
+  <definition name="AA-page-je-cherche-un-artisan" extends="base.board.definition">
+    <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-je-cherche-un-artisan.jsp"/>
+    <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
+    <put-attribute name="pageName" value="artisan-artipole"/>
+  </definition>
+  
+  <definition name="AA-page-salle-exposition" extends="base.board.definition">
+    <put-attribute name="body" value="/vues/artisanArtipole/admin/pages/page-salle-exposition.jsp"/>
+    <put-attribute name="menu" value="/vues/menu/menuAA.jsp"/>
+    <put-attribute name="pageName" value="artisan-artipole"/>
+  </definition>
   <!-- END -> AA : Artisan Artipole Admin -->
 
 

@@ -1,5 +1,6 @@
 package fr.scabois.scabotheque.controller.artisanArtipole.edit;
 
+import fr.scabois.scabotheque.bean.adherent.Adherent;
 import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -15,7 +16,7 @@ public class EditAAActualite {
   private Date date_ajout;
   private String detail_contenu;
   private String lien_url;
-  private Integer adherentId;
+  private Adherent adherent;
 
   public String getContenu() {
     return this.contenu;
@@ -89,11 +90,11 @@ public class EditAAActualite {
     this.type = type;
   }
 
-  public Integer getAdherentId() {
-    return adherentId;
+  public Adherent getAdherent() {
+    return adherent;
   }
 
-  public void setAdherentId(Integer adherentId) {
-    this.adherentId = adherentId;
+  public void setAdherent(Adherent adherent) {
+    this.adherent = adherent;
   }
 }

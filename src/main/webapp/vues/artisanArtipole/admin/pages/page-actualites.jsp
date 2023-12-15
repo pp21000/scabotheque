@@ -93,100 +93,125 @@
 
           <div class="flex items-center gap-2 mt-3">
               <div class="w-1/6 text-right">
-                  <form:label path="editAAActualite.adherentId">Adhérent</form:label>
+                  <form:label path="editAAActualite.adherent.id">Adhérent</form:label>
               </div>
               <div class="w-4/6">
-                  <form:select class="w-96 select2" name="editAAActualite.adherentId" path="editAAActualite.adherentId">
-                      <form:option value="" label="Aucun (actualité générale)"></form:option>
+                  <form:select class="w-96 select2" name="editAAActualite.adherent" path="editAAActualite.adherent.id">
+                      <form:option value="null" label="Aucun (actualité générale)"></form:option>
                       <form:options items="${adherentsList}" itemValue="id" itemLabel="libelle"/>
                   </form:select>
-                  <form:errors class="error-message" path="editAAActualite.adherentId"/>
+                  <form:errors class="error-message" path="editAAActualite.adherent.id"/>
               </div>
           </div>
 
         </div>
-        <div class="text-center my-10">
+        <div class="flex justify-center gap-2 my-10">
           <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer l'actualité</button>
+          <button type="button" onclick="window.location.reload(false)" class="btn btn-red focus:ring-4 focus:outline-none focus:ring-neutral-300">Annuler</button>
         </div>
       </fieldset>
     </div>
   </form:form>        
 </div>
 
+
+<div class="flex gap-10 p-1.5">
+  <div class="flex items-center gap-1.5">
+    <input checked type="radio" name="filterRows" value="all" class="input-radio" onchange="filterRows(this)">
+    Toutes
+  </div>  
+  <div class="flex items-center gap-1.5">
+    <input type="radio" name="filterRows" value="actusGenerales" class="input-radio" onchange="filterRows(this)">
+    Actus générales
+  </div>  
+  <div class="flex items-center gap-1.5">
+    <input type="radio" name="filterRows" value="actusAdherent"  class="input-radio" onchange="filterRows(this)">
+    Actus adhérent
+  </div>
+</div>
+
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
   <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-900 dark:text-gray-400">
       <tr>
-        <th scope="col" class="px-3 py-3">
+        <th class="px-3 py-3">
           Titre
         </th>
-        <th scope="col" class="px-3 py-3">
+        <th class="px-3 py-3">
           Contenu
         </th>
-        <th scope="col" class="px-3 py-3">
+        <th class="px-3 py-3">
           Détail contenu
         </th>
-        <th scope="col" class="px-3 py-3">
+        <th class="px-3 py-3">
           Type
         </th>
-        <th scope="col" class="px-3 py-3">
+        <th class="px-3 py-3">
           Sous-type
         </th>
-        <th scope="col" class="px-3 py-3">
+        <th class="px-3 py-3">
           Lien URL
         </th>
-        <th scope="col" class="px-3 py-3">
+        <th class="px-3 py-3 text-center">
           Position
         </th>
-        <th scope="col" class="px-3 py-3">
+        <th class="px-3 py-3 text-center">
           Date d'ajout
         </th>
-        <th scope="col" class="px-3 py-3">
+        <th class="px-3 py-3 text-center">
           Adhérent
         </th>
-        <th scope="col" class="px-0 py-3"></th>
-        <th scope="col" class="px-0 py-3"></th>
+        <th class="px-0 py-3"></th>
+        <th class="px-0 py-3"></th>
       </tr>
     </thead>
     
     <tbody>
-      <c:forEach items="${listeItems}" var="item">
+      <c:forEach items="${itemsList}" var="item">
         <c:url value="/AA-edit-actualite" var="urlAAEdit"><c:param name="idActualite" value="${item.id}"/></c:url>
         <c:url value="/AA-delete-actualite" var="urlAADelete"><c:param name="idActualite" value="${item.id}"/></c:url>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600" id="${item.id}">
-          <td class="px-3 py-4">
-            <c:out value="${item.titre}"/>
-          </td>          
-          <td class="px-3 py-4">
-            <c:out value="${item.contenu}"/>
-          </td>
-          <td class="px-3 py-4">
-            <c:out value="${item.detail_contenu}"/>
-          </td>
-          <td class="px-3 py-4">
-            <c:out value="${item.type}"/>
-          </td>
-          <td class="px-3 py-4">
-            <c:out value="${item.sous_type}"/>
-          </td>
-          <td class="px-3 py-4">
-            <c:out value="${item.lien_url}"/>
-          </td>
-          <td class="px-3 py-4 text-center">
-            <c:out value="${item.position}"/>
-          </td>
-          <td class="px-3 py-4 whitespace-nowrap">
-            <fmt:formatDate value="${item.date_ajout}" pattern="dd/MM/yy"/>
-          </td>
-          <td class="px-3 py-4 text-center">
-            <c:out value="${item.adherentId}"/>
-          </td>
-          <td class="px-0 py-4">
-            <a href="${urlAAEdit}" class="hover:font-medium"><svg class="w-10 h-10 p-2 fill-gray-400 hover:bg-gray-800 hover:fill-white rounded-lg"><use xlink:href="<c:url value="/resources/images/icones.svg#edit"/>"></use></svg></a>
-          </td>           
-          <td class="px-1 py-4">
-            <a href="${urlAADelete}"><svg class="w-10 h-10 p-2 fill-gray-400 hover:bg-red-900 hover:fill-white rounded-lg"><use xlink:href="<c:url value="/resources/images/icones.svg#trash"/>"></use></svg></a>
-          </td>
+        <tr class="<c:choose>
+                      <c:when test='${not empty item.adherent.id}'>
+                        actu-adherent
+                      </c:when>
+                      <c:otherwise>
+                        actu-generale
+                      </c:otherwise>
+                    </c:choose>
+                        adherent bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600">
+            <td class="px-3 py-4">
+              <c:out value="${item.titre}"/>
+            </td>          
+            <td class="px-3 py-4">
+              <c:out value="${item.contenu}"/>
+            </td>
+            <td class="px-3 py-4">
+              <c:out value="${item.detail_contenu}"/>
+            </td>
+            <td class="px-3 py-4">
+              <c:out value="${item.type}"/>
+            </td>
+            <td class="px-3 py-4">
+              <c:out value="${item.sous_type}"/>
+            </td>
+            <td class="px-3 py-4">
+              <c:out value="${item.lien_url}"/>
+            </td>
+            <td class="px-3 py-4 text-center">
+              <c:out value="${item.position}"/>
+            </td>
+            <td class="px-3 py-4 text-center whitespace-nowrap">
+              <fmt:formatDate value="${item.date_ajout}" pattern="dd/MM/yy"/>
+            </td>
+            <td class="px-3 py-4 text-center">
+              <c:out value="${item.adherent.libelle}"/>
+            </td>
+            <td class="px-0 py-4">
+              <a href="${urlAAEdit}" class="hover:font-medium"><svg class="w-10 h-10 p-2 fill-gray-400 hover:bg-gray-800 hover:fill-white rounded-lg"><use xlink:href="<c:url value="/resources/images/icones.svg#edit"/>"></use></svg></a>
+            </td>           
+            <td class="px-1 py-4">
+              <a href="${urlAADelete}"><svg class="w-10 h-10 p-2 fill-gray-400 hover:bg-red-900 hover:fill-white rounded-lg"><use xlink:href="<c:url value="/resources/images/icones.svg#trash"/>"></use></svg></a>
+            </td>
         </tr>     
     </c:forEach>
     </tbody>
@@ -195,11 +220,27 @@
 </div>
 
 
-
 <script>
+  function filterRows(radioButton) {
+      var actusGeneralesRows = $('.actu-generale');
+      var actusAdherentRows = $('.actu-adherent');
+      switch ($(radioButton).val()) {
+        case 'actusAdherent':
+            actusAdherentRows.show();
+            actusGeneralesRows.hide();
+            break;
+        case 'actusGenerales':
+            actusGeneralesRows.show();
+            actusAdherentRows.hide();
+            break;
+        case 'all':
+            actusGeneralesRows.show();
+            actusAdherentRows.show();
+            break;
+      }
+  }
 
   function showAddForm() {
     $("#addItemForm").toggle('quick');
   }
-
 </script>

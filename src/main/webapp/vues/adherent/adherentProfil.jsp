@@ -12,16 +12,16 @@
 <div class="grid grid-cols-4 gap-2 w-full"> 
   <div>
     <div class="bg-neutral-200 rounded-xl p-2">
-      <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')">
-        <div class="flex items-start">
+      <div class="flex items-start <sec:authorize access="not hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')"> h-[10px] </sec:authorize> ">
+        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')">
           <c:url value="/edit/editIdentiteAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
           <a href="${url}" class="rounded-md hover:bg-gray-600 p-0.5 mr-1">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
             </svg>
           </a>
-        </div>
-      </sec:authorize>      
+        </sec:authorize>      
+      </div>
 
       
       <div class="flex flex-col items-center justify-center gap-4">
@@ -182,7 +182,7 @@
           </div>
           <div>
             <spring:message code="label.commune"/> : 
-            <span class="text-black"><spring:message code="message.commune" arguments="${infoExploitation.commune.codePostal}, ${infoExploitation.commune.libelle}"/>
+            <span class="text-black"><c:if test="${not empty infoExploitation.commune.codePostal}"><spring:message code="message.commune" arguments="${infoExploitation.commune.codePostal}, ${infoExploitation.commune.libelle}"/></c:if></span>
           </div>
         </div>
       </div>
@@ -376,16 +376,16 @@
             
           <div id="myTabContent" class="ml-4">
             <div id="profile" role="tabpanel" aria-labelledby="profile-tab">
-              <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')">
-                <div class="flex items-center mb-1">
+              <div class="flex items-center mb-1 <sec:authorize access="not hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')">px-2 h-[28px]</sec:authorize>">
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ADHERENT_EDIT')">
                   <c:url value="/edit/editAdherentContact" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
                   <a href="${url}" class="rounded-md hover:bg-gray-300 p-0.5 mr-1">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                     </svg>
                   </a>
-                </div>
-              </sec:authorize>    
+                </sec:authorize>    
+              </div>
               
               <div class="grid grid-cols-5 gap-2">
                 
@@ -395,10 +395,10 @@
                       <li class="flex justify-center">
                         <c:choose>
                           <c:when test="${contact.photoImg == ''}">
-                            <img class="h-24 w-24 rounded-full" src="<c:url value="/resources/images/noAdh.png" />"/>
+                            <img class="h-24 w-24 rounded-full" src="<c:url value="/resources/images/noAdh.png"/>"/>
                           </c:when>
                           <c:otherwise>
-                            <img class="h-24 w-24 rounded-full" src="${contact.photoImg}"/>
+                            <img class="h-24 w-24 rounded-full object-cover" src="${contact.photoImg}"/>
                           </c:otherwise>
                         </c:choose>
                       </li>

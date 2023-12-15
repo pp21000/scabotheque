@@ -14,7 +14,7 @@
     <div>
       <c:choose>
         <c:when test="${editForm.editAdherent.photo == ''}">
-                <img class="rounded-full h-32" src="<c:url value="/resources/images/noAdh.png" />"/>
+                <img class="rounded-full h-32" src="<c:url value="/resources/images/noAdh.png"/>"/>
         </c:when>
         <c:otherwise>
                 <img class="rounded-full h-32" src="${editForm.editAdherent.photo}">

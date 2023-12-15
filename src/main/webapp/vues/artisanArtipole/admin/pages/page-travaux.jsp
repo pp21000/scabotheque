@@ -1,6 +1,4 @@
-
-<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
-         pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
@@ -18,7 +16,7 @@
       
           <div class="flex items-center mt-2">
             <form:label class="flex-grow mr-2" path="editAATravaux.libelle">Type de travaux</form:label>
-            <form:input id="travauxLibelle" name="editAATravaux.libelle" path="editAATravaux.libelle" class="mr-11 w-96 input-text"/>
+            <form:input id="travauxLibelle" class="mr-11 w-96 input-text" path="editAATravaux.libelle" name="editAATravaux.libelle"/>
             <form:errors class="error-message" path="editAATravaux.libelle"/>
           </div>
       
@@ -56,17 +54,18 @@
         </th>
       </tr>
     </thead>
+    
     <tbody>
-      <c:forEach items="${listeItems}" var="travaux">
-        <c:url value="/AA-edit-travaux" var="urlAAEdit"><c:param name="idTravaux" value="${travaux.id}"/></c:url>
-        <c:url value="/AA-delete-travaux" var="urlAADelete"><c:param name="idTravaux" value="${travaux.id}"/></c:url>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600" id="${travaux.id}">
+      <c:forEach items="${itemsList}" var="item">
+        <c:url value="/AA-edit-travaux" var="urlAAEdit"><c:param name="idTravaux" value="${item.id}"/></c:url>
+        <c:url value="/AA-delete-travaux" var="urlAADelete"><c:param name="idTravaux" value="${item.id}"/></c:url>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600" id="${item.id}">
           <td class="px-6 py-2">
-            <c:out value="${travaux.libelle}"/>
+            <c:out value="${item.libelle}"/>
           </td>
           <td class="px-6 py-2">
             <ul>
-            <c:forEach items="${travaux.specialites}" var="specialite">
+            <c:forEach items="${item.specialites}" var="specialite">
               <li>
                 • <c:out value="${specialite.libelle}"/>
               </li>
@@ -93,23 +92,21 @@
   }
 
   function createNewSpecialiteInput() {
-    numberOfInputs = $('#SpecialiteInputs input').length;
-    id = 'specialiteInput' + numberOfInputs.toString();
-    var newInput = $('<div id="' + id + '" class="hidden flex items-center mt-2 text-right justify-between">' +
+    numberOfInputs = $('#SpecialiteInputs li').length;
+    var newInput = $('<li class="hidden flex items-center mt-2 text-right">' +
                      '   <label class="flex-grow mr-2" for="editAATravaux.libelle">Spécialité</label>' +
-                     '   <input name="editAATravaux.specialites[' + numberOfInputs + '].libelle" path="editAATravaux.specialites[' + numberOfInputs + '].libelle" class="w-96 input-text"/>' +
-                     '   <button type="button" onclick="deleteSpecialite(\'' + id + '\')"><svg class="ml-1 w-10 h-10 p-2 fill-gray-400 hover:bg-red-900 hover:fill-white rounded-lg"><use xlink:href="/scabotheque/resources/images/icones.svg#trash"></use></svg></button>' +
-                     '</div>');
+                     '   <input name="specialites[' + numberOfInputs + '].libelle" path="specialites[' + numberOfInputs + '].libelle" class="w-96 input-text"/>' +
+                     '   <button type="button" onclick="deleteSpecialite(this)"><svg class="ml-1 w-10 h-10 p-2 fill-gray-400 hover:bg-red-900 hover:fill-white rounded-lg"><use xlink:href="/scabotheque/resources/images/icones.svg#trash"></use></svg></button>' +
+                     '</li>');
     $('#SpecialiteInputs').append(newInput);
     newInput.slideDown({ start: function () { $(this).css({ display: "flex" }); }, duration: 200 });
   }
 
-  function deleteSpecialite(id) {
-    $("#" + id).slideUp(200, function () {
+  function deleteSpecialite(elmt) {
+    $(elmt).parent().slideUp(200, function () {
         $(this).remove();
     });
   }
-
   
   function deleteTravaux(url) {
     if (confirm("Êtes-vous certain.e de vouloir supprimer ce type de travaux ainsi que toutes les spécialités qui lui sont associées ?")) {

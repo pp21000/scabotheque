@@ -5,7 +5,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 
-<c:url value="/AA-page-emplacement" var="url"/>
+<c:url value="/AA-page-emplacements" var="url"/>
 <button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location = '${url}'">
   <spring:message code="label.retour"/>
 </button>

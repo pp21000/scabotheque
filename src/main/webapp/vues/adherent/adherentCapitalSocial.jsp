@@ -12,7 +12,7 @@
         <div class="photo">
             <c:choose >
                 <c:when test = "${adherent.photoImg == ''}"> 
-                    <img src="<c:url value="/resources/images/noAdh.png" />" />
+                    <img src="<c:url value="/resources/images/noAdh.png"/>" />
                 </c:when>
                 <c:otherwise> 						
                     <img src="${adherent.photoImg}">

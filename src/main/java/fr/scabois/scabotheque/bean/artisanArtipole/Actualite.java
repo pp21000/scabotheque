@@ -1,12 +1,13 @@
 package fr.scabois.scabotheque.bean.artisanArtipole;
 
 import fr.scabois.scabotheque.bean.HasId;
+import fr.scabois.scabotheque.bean.adherent.Adherent;
 import java.util.Date;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -26,8 +27,8 @@ public class Actualite implements HasId {
   private Date date_ajout;
   private String detail_contenu;
   private String lien_url;
-  @Column(name = "adherent_id")
-  private Integer adherentId;
+  @ManyToOne
+  private Adherent adherent;
 //  @ManyToOne
 //  @JoinTable(name = "actus_adherents", joinColumns = {
 //    @JoinColumn(name = "adherent_id")}, inverseJoinColumns = {
@@ -115,11 +116,11 @@ public class Actualite implements HasId {
     this.type = type;
   }
 
-  public Integer getAdherentId() {
-    return this.adherentId;
+  public Adherent getAdherent() {
+    return this.adherent;
   }
 
-  public void setAdherentId(Integer adherentId) {
-    this.adherentId = adherentId;
+  public void setAdherent(Adherent adherent) {
+    this.adherent = adherent;
   }
 }

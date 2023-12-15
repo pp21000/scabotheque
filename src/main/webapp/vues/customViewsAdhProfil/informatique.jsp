@@ -8,19 +8,17 @@
 
 <div>
     <fieldset>
-      
-        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_INFORMATIQUE_EDIT')">
-          <div class="flex items-center mb-1">
+        <div class="flex items-center mb-1 <sec:authorize access="not hasAnyRole('ROLE_ADMIN', 'ROLE_INFORMATIQUE_EDIT')">px-2 h-[28px]</sec:authorize>">
+          <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_INFORMATIQUE_EDIT')">
             <c:url value="/edit/editInformatiqueAdh" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
             <a href="${url}" class="rounded-md hover:bg-gray-300 p-0.5 mr-1">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
               </svg>
             </a>
-            <spring:message code="label.modifGeneral"/>
-          </div>
-        </sec:authorize>   
-      
+          </sec:authorize>   
+          <spring:message code="label.modifGeneral"/>
+        </div>
 
         <div class="text-center">
             <div>
@@ -66,7 +64,7 @@
 <%--                    <c:choose>--%>
 <%--                        <c:when test="${contact.photoImg == ''}">--%>
 <%--                            <img style="max-width: 8em; max-height: 8em; margin: auto;"--%>
-<%--                                 src="<c:url value="/resources/images/noAdh.png" />"/>--%>
+<%--                                 src="<c:url value="/resources/images/noAdh.png"/>"/>--%>
 <%--                        </c:when>--%>
 <%--                        <c:otherwise>--%>
 <%--                            <img style="max-width: 8em; max-height: 8em; margin: auto;" src="${contact.photoImg}"--%>

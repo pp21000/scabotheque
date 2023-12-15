@@ -7,7 +7,6 @@ package fr.scabois.scabotheque.dao;
 import fr.scabois.scabotheque.bean.adherent.Adherent;
 import fr.scabois.scabotheque.bean.adherent.Type;
 import fr.scabois.scabotheque.bean.artisanArtipole.Actualite;
-import fr.scabois.scabotheque.bean.artisanArtipole.Categorie;
 import fr.scabois.scabotheque.bean.artisanArtipole.Certification;
 import fr.scabois.scabotheque.bean.artisanArtipole.Emplacement;
 import fr.scabois.scabotheque.bean.artisanArtipole.Inspiration;
@@ -21,8 +20,6 @@ import java.util.List;
 public interface IArtisanArtipoleDAO {
 
   void deleteActualite(final int p0);
-
-  void deleteCategorie(final int p0);
 
   void deleteEmplacement(final int p0);
 
@@ -41,10 +38,6 @@ public interface IArtisanArtipoleDAO {
   Actualite loadActualite(final int p0);
 
   List<Adherent> loadArtisanArtipole();
-
-  Categorie loadCategorie(final int p0);
-
-  List<Categorie> loadCategories();
 
   Emplacement loadEmplacement(final int p0);
 
@@ -82,13 +75,9 @@ public interface IArtisanArtipoleDAO {
 
   void saveActualite(final Actualite p0);
 
-  void saveCategories(final List<Categorie> p0);
-
   void saveEmplacement(final Emplacement p0);
 
   void saveTravaux(final Travaux p0);
-
-  void saveCategorie(final Categorie p0);
 
   void saveMetier(final Metier p0);
 

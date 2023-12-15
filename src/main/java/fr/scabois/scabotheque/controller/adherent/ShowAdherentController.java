@@ -6,6 +6,7 @@ import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
 import fr.scabois.scabotheque.bean.adherent.AdherentInformatique;
 import fr.scabois.scabotheque.bean.adherent.AdherentLogistique;
 import fr.scabois.scabotheque.bean.adherent.AdherentSuiviVisite;
+import fr.scabois.scabotheque.bean.artisanArtipole.Actualite;
 import fr.scabois.scabotheque.bean.artisanArtipole.Specialite;
 import fr.scabois.scabotheque.controller.adherent.edit.EditAdherentSuiviVisite;
 import fr.scabois.scabotheque.controller.adherent.edit.EditAdherentSuiviVisiteForm;
@@ -38,9 +39,7 @@ public class ShowAdherentController {
   private IServiceArtipole serviceArtipole;
 
   @RequestMapping(value = "/adherentProfil", method = RequestMethod.GET)
-  public String profile(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel,
-          HttpServletRequest request) {
-
+  public String profile(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel, HttpServletRequest request) {
     PageType pageType = PageType.LIST_ADHERENT;
     String commentaire = "";
     commentaire = this.service.loadAdherentCommentaire(idAdh, pageType);
@@ -52,12 +51,10 @@ public class ShowAdherentController {
     newSuiviForm.setSuiviVisiteAdh(newSuivi);
     pModel.addAttribute("suiviToAdd", newSuiviForm);
     List adhActivites = this.service.loadActivitesAdherent(idAdh);
-
     AdherentLogistique infoExploitation = this.service.loadAdherentLogistique(idAdh);
     AdherentContactRole contactReception = this.service.loadContact(infoExploitation.getContactReceptionId());
     List adherentMetiersId = this.service.loadAdherentMetiers(idAdh).stream().map(am -> am.getMetierId()).collect(Collectors.toList());
     List adherentCertificationsId = this.service.loadAdherentCertifications(idAdh).stream().map(am -> am.getCertificationId()).collect(Collectors.toList());
-
     /*    List<Specialite> specialites = this.serviceArtipole.loadSpecialites();
     List<Specialite> specialitesOfAdherent = this.service.loadAdherentSpecialites(idAdh)
             .stream()
@@ -68,10 +65,11 @@ public class ShowAdherentController {
             .collect(Collectors.toList());*/
     List<Integer> AdherentSpecialitesIds = this.service.loadAdherentSpecialites(idAdh).stream()
             .map(adhSpe -> adhSpe.getSpecialiteId()).collect(Collectors.toList());
-
     List<Specialite> specialitesOfAdherent = this.serviceArtipole.loadSpecialites().stream()
             .filter(spe -> AdherentSpecialitesIds.contains(spe.getId()))
             .collect(Collectors.toList());
+
+    List<Actualite> actualites = this.serviceArtipole.loadActualites().stream().filter(actu -> actu.getAdherent() != null && actu.getAdherent().getId() == idAdh).collect(Collectors.toList());
 
     pModel.addAttribute("contacts", contacts);
     pModel.addAttribute("infoSuiviVisite", infoSuiviVisite);
@@ -87,15 +85,14 @@ public class ShowAdherentController {
     pModel.addAttribute("metiersAdherentId", adherentMetiersId);
     pModel.addAttribute("certificationsAdherentId", adherentCertificationsId);
     pModel.addAttribute("specialitesOfAdherent", specialitesOfAdherent);
+    pModel.addAttribute("actualites", actualites);
     pModel.addAttribute("navType", NavType.ADHERENT);
-    pModel.addAttribute("pageType", pageType);
+    pModel.addAttribute("pageType", pageType.ADHERENT_PROFIL);
     return "adherentProfil";
   }
 
   @RequestMapping(value = "/adherentProfilArtipole", method = RequestMethod.GET)
-
-  public String profileArtipole(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel,
-          HttpServletRequest request) {
+  public String profileArtipole(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel, HttpServletRequest request) {
 
     PageType pageType = PageType.LIST_ADHERENT;
 
@@ -111,8 +108,7 @@ public class ShowAdherentController {
   }
 
   @RequestMapping(value = "/adherentProfilAdmin", method = RequestMethod.GET)
-  public String profileAdmin(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel,
-          HttpServletRequest request) {
+  public String profileAdmin(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel, HttpServletRequest request) {
 
     PageType pageType = PageType.LIST_ADHERENT;
 

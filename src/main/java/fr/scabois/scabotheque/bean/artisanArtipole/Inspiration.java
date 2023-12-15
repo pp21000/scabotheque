@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "photos_inspirations")
+@Table(name = "inspirations_photos")
 public class Inspiration implements HasIdLibelle, Serializable {
 
   @Id

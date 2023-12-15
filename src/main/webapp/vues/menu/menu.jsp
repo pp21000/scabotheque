@@ -15,8 +15,7 @@
             <li class="flex justify-center text-xl px-1 py-5 mt-12 text-gray-600 font-medium w-full border-b border-gray-500">Accueil</li>
            
             <li>
-                <a href="<c:url value="/dashboard" />"
-                   class="<c:choose><c:when test = "${pageType == 'DASHBOARD'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-gray-50">
+                <a href="<c:url value="/dashboard" />" class="<c:choose><c:when test = "${pageType == 'DASHBOARD'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-gray-50">
                     <svg aria-hidden="true"
                          class="w-6 h-6 text-gray-500 transition duration-75  group-hover:text-gray-900"
                          fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -28,8 +27,7 @@
             </li>
                     
             <li>
-                <a href="<c:url value="/listeAdherents" />"
-                   class="<c:choose><c:when test = "${pageType == 'LIST_ADHERENT' || pageType == 'CREATE_ADHERENT'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-gray-50">
+                <a href="<c:url value="/listeAdherents" />" class="<c:choose><c:when test = "${pageType == 'LIST_ADHERENT' || pageType == 'CREATE_ADHERENT' || pageType == 'ADHERENT_PROFIL'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-gray-50">
                     <svg aria-hidden="true"
                          class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900  dark:hover:bg-gray-600"
                          fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -40,8 +38,7 @@
             </li>
             <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_EXPLOITATION')">
             <li>
-                <a href="<c:url value="/ordreTournee" />"
-                   class="<c:choose><c:when test = "${navType == 'LOGISTIQUE'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-gray-50">
+                <a href="<c:url value="/ordreTournee" />" class="<c:choose><c:when test = "${navType == 'LOGISTIQUE'}">bg-green-600 hover:bg-green-700 </c:when><c:otherwise> hover:bg-gray-100 dark:hover:bg-gray-600 </c:otherwise></c:choose> flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-gray-50">
                     <svg aria-hidden="true"
                          class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
                          fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

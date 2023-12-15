@@ -9,6 +9,7 @@ public class EditUtilisateur {
   private boolean enabled;
   private int id;
   private String newPassword;
+
   @NotEmpty(message = "{modification.notempty}")
   private String password;
 

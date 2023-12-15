@@ -334,15 +334,16 @@ public class EditAdhController {
   public String editAdherent(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel, HttpServletRequest request) {
 
     addSelectLists(pModel);
+    final Adherent adh = service.loadAdherent(idAdh);
 
     if (pModel.get("adhToEdit") == null) {
-      final Adherent adh = service.loadAdherent(idAdh);
       final EditAdherentForm editAdhForm = new EditAdherentForm(adh);
       editAdhForm.setCommentaire(service.loadAdherentCommentaire(idAdh, extractPageType(request.getServletPath().substring(6))));
       pModel.addAttribute("editForm", editAdhForm);
     } else {
       pModel.addAttribute("editForm", pModel.get("adhToEdit"));
     }
+    pModel.addAttribute("adherent", adh);
     pModel.addAttribute("navType", NavType.ADHERENT);
     pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
 
@@ -351,8 +352,7 @@ public class EditAdhController {
   }
 
   @RequestMapping(value = "/edit/editActiviteAdh", method = RequestMethod.GET)
-  public String editAdherentActivite(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel,
-          HttpServletRequest request) {
+  public String editAdherentActivite(@RequestParam(value = "idAdh") final int idAdh, final ModelMap pModel, HttpServletRequest request) {
 
     Adherent adh = service.loadAdherent(idAdh);
     List<Activite> activitees = service.loadActivites();
@@ -395,8 +395,7 @@ public class EditAdhController {
   }
 
   @RequestMapping(value = "/edit/editCRMAdh", method = RequestMethod.GET)
-  public String editCRM(@RequestParam(value = "idSuivi") final int idSuivi, final ModelMap pModel,
-          HttpServletRequest request) {
+  public String editCRM(@RequestParam(value = "idSuivi") final int idSuivi, final ModelMap pModel, HttpServletRequest request) {
 
     addSelectLists(pModel);
     AdherentSuiviVisite suivi = service.loadAdherentSuiviVisite(idSuivi);

@@ -3,7 +3,6 @@ package fr.scabois.scabotheque.services;
 import fr.scabois.scabotheque.bean.adherent.Adherent;
 import fr.scabois.scabotheque.bean.adherent.Type;
 import fr.scabois.scabotheque.bean.artisanArtipole.Actualite;
-import fr.scabois.scabotheque.bean.artisanArtipole.Categorie;
 import fr.scabois.scabotheque.bean.artisanArtipole.Certification;
 import fr.scabois.scabotheque.bean.artisanArtipole.Emplacement;
 import fr.scabois.scabotheque.bean.artisanArtipole.Inspiration;
@@ -36,8 +35,6 @@ public interface IServiceArtipole {
 
   void deleteActualite(final int p0);
 
-  void deleteCategorie(final int p0);
-
   void deleteEmplacement(final int p0);
 
   void deleteTravaux(final int p0);
@@ -64,8 +61,6 @@ public interface IServiceArtipole {
 
   Certification loadCertification(final Integer p0);
 
-  List<Categorie> loadCategories();
-
   List<Inspiration> loadInspirations();
 
   List<Photo> loadPhotos();
@@ -79,10 +74,6 @@ public interface IServiceArtipole {
   void saveTravaux(final Travaux p0);
 
   void saveActualite(final Actualite p0);
-
-  void saveCategorie(final Categorie p0);
-
-  void saveCategories(final List<Categorie> p0);
 
   void saveMetier(final Metier p0);
 

@@ -15,7 +15,7 @@
     <div>
       <c:choose>
         <c:when test="${editForm.editAdherent.photo == ''}">
-          <img class="rounded-full h-32" src="<c:url value="/resources/images/noAdh.png" />"/>
+          <img class="rounded-full h-32" src="<c:url value="/resources/images/noAdh.png"/>"/>
         </c:when>
         <c:otherwise>
           <img class="rounded-full h-32" src="${editForm.editAdherent.photo}">
@@ -73,9 +73,9 @@
   <form:input type="hidden" path="editAdherent.longitude"/>
   <form:input type="hidden" path="editAdherent.mail"/>
   <form:input type="hidden" path="editAdherent.telephone"/>
-  <form:input type="hidden" path="editAdherent.description_activite"/>
-  <form:input type="hidden" path="editAdherent.description_entreprise"/>
   <!-- données que je modifie plus bas dans cette page -->
+  <%--<form:input type="hidden" path="editAdherent.description_activite"/>--%>
+  <%--<form:input type="hidden" path="editAdherent.description_entreprise"/>--%>
   <%--<form:input type="hidden" path="editAdherent.isArtipole"/>--%>
   <%--<form:input type="hidden" path="editAdherent.isCharteArtipole"/>--%>
   <%--<form:input type="hidden" path="editAdherent.isFlocageArtipole"/>--%>

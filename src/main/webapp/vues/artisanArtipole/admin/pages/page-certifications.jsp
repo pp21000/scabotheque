@@ -47,8 +47,9 @@
               <form:errors class="error-message" path="editAACertification.alt"/>
             </div>
           </div>
-          <div class="text-center my-10">
+          <div class="flex justify-center gap-2 my-10">
             <button class="btn btn-green focus:ring-4 focus:outline-none focus:ring-neutral-300" type="submit">Enregistrer la certification</button>
+            <button type="button" onclick="window.location.reload(false)" class="btn btn-red focus:ring-4 focus:outline-none focus:ring-neutral-300">Annuler</button>
           </div>
       </fieldset>
     </div>
@@ -75,7 +76,7 @@
       </tr>
     </thead>
     <tbody>
-      <c:forEach items="${listeItems}" var="item">
+      <c:forEach items="${itemsList}" var="item">
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600" id="${item.id}">
           <td class="px-6 py-4">
             <c:out value="${item.libelle}"/>
