@@ -5,6 +5,7 @@ import fr.scabois.scabotheque.bean.adherent.AdherentActivite;
 import fr.scabois.scabotheque.bean.adherent.AdherentContactRole;
 import fr.scabois.scabotheque.bean.adherent.AdherentInformatique;
 import fr.scabois.scabotheque.bean.adherent.AdherentLogistique;
+import fr.scabois.scabotheque.bean.adherent.AdherentSpecialite;
 import fr.scabois.scabotheque.bean.adherent.AdherentSuiviVisite;
 import fr.scabois.scabotheque.bean.artisanArtipole.Actualite;
 import fr.scabois.scabotheque.bean.artisanArtipole.Specialite;
@@ -14,7 +15,9 @@ import fr.scabois.scabotheque.enums.NavType;
 import fr.scabois.scabotheque.enums.PageType;
 import fr.scabois.scabotheque.services.IServiceAdherent;
 import fr.scabois.scabotheque.services.IServiceArtipole;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -55,19 +58,14 @@ public class ShowAdherentController {
     AdherentContactRole contactReception = this.service.loadContact(infoExploitation.getContactReceptionId());
     List adherentMetiersId = this.service.loadAdherentMetiers(idAdh).stream().map(am -> am.getMetierId()).collect(Collectors.toList());
     List adherentCertificationsId = this.service.loadAdherentCertifications(idAdh).stream().map(am -> am.getCertificationId()).collect(Collectors.toList());
-    /*    List<Specialite> specialites = this.serviceArtipole.loadSpecialites();
-    List<Specialite> specialitesOfAdherent = this.service.loadAdherentSpecialites(idAdh)
-            .stream()
-            .map(as -> specialites.stream()
-                    .filter(s -> s.getId() == as.getSpecialiteId())
-                    .findFirst()
-                    .orElse(null))
-            .collect(Collectors.toList());*/
-    List<Integer> AdherentSpecialitesIds = this.service.loadAdherentSpecialites(idAdh).stream()
-            .map(adhSpe -> adhSpe.getSpecialiteId()).collect(Collectors.toList());
-    List<Specialite> specialitesOfAdherent = this.serviceArtipole.loadSpecialites().stream()
-            .filter(spe -> AdherentSpecialitesIds.contains(spe.getId()))
-            .collect(Collectors.toList());
+
+    List<Specialite> specialitesOfAdherent = this.service.loadAdherentSpecialites(idAdh).stream()
+            .sorted(Comparator.comparing(AdherentSpecialite::getNiveau))
+            .map(
+                    as -> serviceArtipole.loadSpecialites().stream()
+                            .filter(s -> Objects.equals(s.getId(), as.getSpecialiteId()))
+                            .findFirst().orElse(null)
+            ).collect(Collectors.toList());
 
     List<Actualite> actualites = this.serviceArtipole.loadActualites().stream().filter(actu -> actu.getAdherent() != null && actu.getAdherent().getId() == idAdh).collect(Collectors.toList());
 

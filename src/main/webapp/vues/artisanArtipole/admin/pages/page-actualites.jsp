@@ -95,13 +95,22 @@
               <div class="w-1/6 text-right">
                   <form:label path="editAAActualite.adherent.id">Adhérent</form:label>
               </div>
-              <div class="w-4/6">
-                  <form:select class="w-96 select2" name="editAAActualite.adherent" path="editAAActualite.adherent.id">
+              <c:choose>
+                <c:when test = "${empty param.idAdh}">
+                  <div class="w-4/6">
+                    <form:select class="w-96 select2" name="editAAActualite.adherent" path="editAAActualite.adherent.id">
                       <form:option value="null" label="Aucun (actualité générale)"></form:option>
                       <form:options items="${adherentsList}" itemValue="id" itemLabel="libelle"/>
-                  </form:select>
-                  <form:errors class="error-message" path="editAAActualite.adherent.id"/>
-              </div>
+                    </form:select>
+                    <form:errors class="error-message" path="editAAActualite.adherent.id"/>
+                  </div>
+                </c:when>
+                <c:otherwise>
+                  <form:input type="hidden" path="editAAActualite.adherent.id"/>
+                  <div class="w-96 text-white">&nbsp;<c:out value="${adherent.denomination}"/></div>
+                </c:otherwise>
+              </c:choose>
+                    
           </div>
 
         </div>
@@ -204,7 +213,7 @@
               <fmt:formatDate value="${item.date_ajout}" pattern="dd/MM/yy"/>
             </td>
             <td class="px-3 py-4 text-center">
-              <c:out value="${item.adherent.libelle}"/>
+              <c:out value="${item.adherent.denomination}"/>
             </td>
             <td class="px-0 py-4">
               <a href="${urlAAEdit}" class="hover:font-medium"><svg class="w-10 h-10 p-2 fill-gray-400 hover:bg-gray-800 hover:fill-white rounded-lg"><use xlink:href="<c:url value="/resources/images/icones.svg#edit"/>"></use></svg></a>

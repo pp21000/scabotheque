@@ -29,7 +29,7 @@
       <tiles:insertAttribute name="navBar"/>
       <tiles:insertAttribute name="menu"/>
       
-      <div class="ml-64 mr-4 pt-20 pb-11">
+      <div class="pt-20 pr-4 pb-12 pl-64">
         <tiles:insertAttribute name="body"/>
         <tiles:insertAttribute name="footer"/>
       </div>

@@ -21,6 +21,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
@@ -227,19 +228,19 @@ public class ArtisanArtipoleDAO implements IArtisanArtipoleDAO {
     update.setLibelle(travaux.getLibelle());
     this.entityManager.persist(update);
 
-    if (travaux.getId() != null) {
-      this.loadSpecialites().stream()
-              .filter(s -> Objects.equals(s.getTravaux().getId(), travaux.getId()))
-              .forEach(s -> this.entityManager.remove(s));
-    }
     travaux.getSpecialites().stream()
-            .filter(s -> s.getLibelle() != null)
+            //.filter(s -> s.getLibelle() != null && s.getLibelle() != "")
             .forEach(s -> {
-              Specialite spe = new Specialite();
+              Specialite spe = (s.getId() == null) ? new Specialite() : this.loadSpecialite(s.getId());
               spe.setLibelle(s.getLibelle());
               spe.setTravaux(update);
               entityManager.persist(spe);
             });
+
+    List<Integer> travauxSpecialitesIds = travaux.getSpecialites().stream().map(Specialite::getId).collect(Collectors.toList());
+    loadSpecialites().stream()
+            .filter(s -> Objects.equals(s.getTravaux().getId(), travaux.getId()) && !travauxSpecialitesIds.contains(s.getId()))
+            .forEach(s -> this.entityManager.remove(s));
   }
 
   @Transactional

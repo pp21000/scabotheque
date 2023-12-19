@@ -41,9 +41,10 @@ public class ArtisanArtipoleEditController {
 
   @RequestMapping(value = {"/AA-add-actualite"}, method = {RequestMethod.POST})
   public String addActualite(@Valid @ModelAttribute("addForm") final EditAAActualiteForm addForm, final BindingResult pBindingResult, final ModelMap pModel, final HttpServletRequest request) {
+    int idAdh = addForm.getActualite().getAdherent().getId();
     if (!pBindingResult.hasErrors()) {
       this.service.saveActualite(addForm.getActualite());
-      return "redirect:/AA-page-actualites";
+      return "redirect:/AA-page-actualites?idAdh=" + idAdh;
     }
     return this.aaController.GETpage_actualites(pModel);
   }

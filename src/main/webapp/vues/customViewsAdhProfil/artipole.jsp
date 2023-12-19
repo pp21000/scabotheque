@@ -303,39 +303,3 @@
 </div> 
 
 <!-- ACTUALITÉS -->
-<div class="mt-5">
-  <div class="flex items-center mb-1 <sec:authorize access="not hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')">px-2 h-[28px]</sec:authorize>">
-    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')">
-      <c:url value="/edit/editSpecialitesAdherent" var="url"><c:param name="idAdh" value="${adherent.id}"/></c:url>
-      <a href="${url}" class="rounded-md hover:bg-gray-300 p-0.5 mr-1">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-        </svg>
-      </a>
-    </sec:authorize>     
-    <spring:message code="label.tags"/>
-  </div>
-  <div class="bg-neutral-200 overflow-hidden shadow rounded-lg sm:divide-y sm:divide-gray-300">
-    <c:choose>
-      <c:when test="${empty actualites}">
-        <dt class="text-gray-400 px-5 py-3">Aucune actualité définie.</dt>
-      </c:when>
-      <c:otherwise>
-        <c:forEach items="${actualites}" var="actualite" varStatus="status">
-          <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
-            <dl>
-              <div class="text-sm grid grid-cols-12 gap-4 items-center py-3 px-1">
-                <dd class="value col-span-4">${actualite.titre}</dd>
-                <dd class="value col-span-3">${actualite.type}</dd>
-                <dd class="value col-span-3">${actualite.sous_type}</dd>
-                <dd class="value text-center">${actualite.position}</dd>
-                <dd class="value text-center">${actualite.date_ajout}</dd>
-
-              </div>
-            </dl>
-          </div>
-        </c:forEach>
-      </c:otherwise>
-    </c:choose>
-  </div>
-</div> 

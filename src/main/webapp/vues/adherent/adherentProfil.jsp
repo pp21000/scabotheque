@@ -66,37 +66,37 @@
 
         <!-- Adhesion Pole & Agence -->
         <div class="w-full">
-          <div class="grid grid-cols-5">
-            <div class="col-span-2 flex justify-end font-semibold"><spring:message code="label.adhArtipole"/></div>
-            <div class="flex justify-center">
+          <div class="grid grid-cols-9">
+            <span class="col-span-4 flex items-center justify-end text-right font-semibold leading-4"><spring:message code="label.adhArtipole"/></span>
+            <div class="flex justify-center items-center">
               <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
               </svg>
             </div>
-            <div class="col-span-2 flex justify-start text-black">
+            <span class="col-span-4 flex items-center text-black">
               <c:choose>
                 <c:when test="${adherent.isArtipole}"><spring:message code="yes"/></c:when>
                 <c:otherwise><spring:message code="no"/></c:otherwise>
               </c:choose>
-            </div>
+            </span>
           </div>
-          <div class="grid grid-cols-5">
-            <div class="col-span-2 font-semibold flex justify-end"><spring:message code="label.pole"/></div>
-            <div class="flex justify-center">
+          <div class="grid grid-cols-9">
+            <span class="col-span-4 flex items-center justify-end text-right font-semibold leading-4"><spring:message code="label.pole"/></span>
+            <div class="flex justify-center items-center">
               <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
               </svg>
             </div>
-            <div class="col-span-2 flex justify-start text-black">${adherent.pole.libelle}</div>
+            <span class="col-span-4 flex items-center text-black">${adherent.pole.libelle}</span>
           </div>
-          <div class="grid grid-cols-5">
-            <div class="col-span-2 font-semibold flex justify-end"><spring:message code="label.agenceRattachement"/></div>
-            <div class="flex justify-center">
+          <div class="grid grid-cols-9">
+            <span class="col-span-4 flex items-center justify-end text-right font-semibold leading-4"><spring:message code="label.agenceRattachement"/></span>
+            <div class="flex justify-center items-center">
               <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
               </svg>
             </div>
-            <div class="col-span-2 flex justify-start text-black">${adherent.agence.libelle}</div>
+            <span class="col-span-4 flex items-center text-black">${adherent.agence.libelle}</span>
           </div>
         </div>
       </div>
@@ -317,47 +317,46 @@
       <div class="flex justify-center w-full">
         <div class="flex flex-col w-full">
           <div class="w-full flex justify-center mb-1">
-            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab"
-                data-tabs-toggle="#myTabContent" role="tablist">
-              <li class="mr-2" role="presentation">
+            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
+              <li class="mr-0.5" role="presentation">
                 <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
                         id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" onclick="changeUrlParameterTabValue('contacts')"
                         aria-selected="<c:if test = "${param.tab == 'contacts'}">true</c:if>">Contacts
                 </button>
               </li>
               <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CRM')">
-              <li class="mr-2" role="presentation">
+              <li class="mr-0.5" role="presentation">
                 <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
                         id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings" onclick="changeUrlParameterTabValue('crm')"
                         aria-selected="<c:if test = "${param.tab == 'crm'}">true</c:if>">CRM
                 </button>
               </li>
               </sec:authorize>
-              <li class="mr-2" role="presentation">
+              <li class="mr-0.5" role="presentation">
                 <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
                         id="commerce-tab" data-tabs-target="#commerce" type="button" role="tab" aria-controls="profile" onclick="changeUrlParameterTabValue('commerce')"
                         aria-selected="<c:if test = "${param.tab == 'commerce'}">true</c:if>">Commerce
                 </button>
               </li>
-              <li class="mr-2" role="presentation">
+              <li class="mr-0.5" role="presentation">
                 <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
                         id="artipole-tab" data-tabs-target="#artipole" type="button" role="tab" aria-controls="profile" onclick="changeUrlParameterTabValue('artipole')"
                         aria-selected="<c:if test = "${param.tab == 'artipole'}">true</c:if>">Artipôle
                 </button>
               </li>
-              <li class="mr-2" role="presentation">
+              <li class="mr-0.5" role="presentation">
                 <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
                         id="logistique-tab" data-tabs-target="#logistique" type="button" role="tab" aria-controls="profile" onclick="changeUrlParameterTabValue('logistique')"
                         aria-selected="<c:if test = "${param.tab == 'logistique'}">true</c:if>">Logistique
                 </button>
               </li>
-              <li class="mr-2" role="presentation">
+              <li class="mr-0.5" role="presentation">
                 <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
                         id="administratif-tab" data-tabs-target="#administratif" type="button" role="tab" aria-controls="profile" onclick="changeUrlParameterTabValue('administratif')"
                         aria-selected="<c:if test = "${param.tab == 'administratif'}">true</c:if>">Administratif
                 </button>
               </li>
-              <li class="mr-2" role="presentation">
+              <li class="mr-0.5" role="presentation">
                 <button class="inline-block py-3 px-6 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 text-gray-500 border-gray-100"
                         id="informatique-tab" data-tabs-target="#informatique" type="button" role="tab" aria-controls="profile" onclick="changeUrlParameterTabValue('informatique')"
                         aria-selected="<c:if test = "${param.tab == 'informatique'}">true</c:if>">Informatique
@@ -388,7 +387,6 @@
               </div>
               
               <div class="grid grid-cols-5 gap-2">
-                
                 <c:forEach items="${contacts}" var="contact">
                   <div class="flex flex-col w-full justify-between items-center gap-1 bg-neutral-200 rounded-lg p-1">
                     <ul class="w-full">  
