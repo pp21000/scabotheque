@@ -17,10 +17,10 @@ import fr.scabois.scabotheque.bean.adherent.Pole;
 import fr.scabois.scabotheque.bean.adherent.Role;
 import fr.scabois.scabotheque.bean.adherent.Secteur;
 import fr.scabois.scabotheque.bean.adherent.Tournee;
-import fr.scabois.scabotheque.bean.artisanArtipole.Certification;
-import fr.scabois.scabotheque.bean.artisanArtipole.Metier;
-import fr.scabois.scabotheque.bean.artisanArtipole.Specialite;
-import fr.scabois.scabotheque.bean.artisanArtipole.Travaux;
+import fr.scabois.scabotheque.bean.artisansArtipole.Certification;
+import fr.scabois.scabotheque.bean.artisansArtipole.Metier;
+import fr.scabois.scabotheque.bean.artisansArtipole.Specialite;
+import fr.scabois.scabotheque.bean.artisansArtipole.Travaux;
 import fr.scabois.scabotheque.bean.commun.Activite;
 import fr.scabois.scabotheque.bean.commun.Agence;
 import fr.scabois.scabotheque.bean.commun.Ape;
@@ -70,7 +70,7 @@ public class EditAdhController {
 
     if (!pBindingResult.hasErrors()) {
       service.createSuiviAdherent(editToSuivi(newSuivi.getSuiviVisiteAdh()));
-      return redirectOkPage(PageType.ADHERENT_CRM, newSuivi.getSuiviVisiteAdh().getAdherentId());
+      return "redirect:/adherentProfil?tab=crm&idAdh=" + newSuivi.getSuiviVisiteAdh().getAdherentId();
     }
     return editCRM(newSuivi.getSuiviVisiteAdh().getAdherentId(), pModel, request);
   }
@@ -202,6 +202,7 @@ public class EditAdhController {
   public String editAdherentMetiers(@RequestParam("idAdh") final int idAdh, final ModelMap pModel, final HttpServletRequest request) {
     final Adherent adh = this.service.loadAdherent(idAdh);
     final List<Metier> metiers = (List<Metier>) this.serviceArtipole.loadMetiers();
+    metiers.sort(Comparator.comparing(Metier::getLibelle));
     final List<AdherentMetier> metiersAdh = this.service.loadAdherentMetiers(idAdh);
     if (pModel.get("editForm") == null) {
       final EditAdherentMetiersForm editForm = new EditAdherentMetiersForm(metiersAdh, metiers, idAdh);
@@ -212,8 +213,8 @@ public class EditAdhController {
     pModel.addAttribute("adherent", adh);
     pModel.addAttribute("metiers", metiers);
     pModel.addAttribute("adherentMetiers", metiersAdh);
-    pModel.addAttribute("navType", NavType.ADHERENT);
-    pModel.addAttribute("pageType", PageType.ADHERENT_METIERS);
+    pModel.addAttribute("navType", NavType.ADHERENTS);
+    pModel.addAttribute("pageType", PageType.ADHERENT_PROFIL);
     return "editMetiersAdherent";
   }
 
@@ -221,7 +222,7 @@ public class EditAdhController {
   public String modifieMetiersAdh(@Valid @ModelAttribute("editForm") final EditAdherentMetiersForm editForm, @PathVariable final int idAdh, final BindingResult pBindingResult, final ModelMap pModel, final HttpServletRequest request) {
     if (!pBindingResult.hasErrors()) {
       this.service.saveAdherentMetiers(idAdh, editForm.getAdherentMetiers());
-      return redirectOkPage(PageType.ADHERENT_ARTIPOLE, idAdh);
+      return "redirect:/adherentProfil?tab=artipole&idAdh=" + idAdh;
     }
     return this.editAdherentMetiers(idAdh, pModel, request);
   }
@@ -230,6 +231,7 @@ public class EditAdhController {
   public String editAdherentCertifications(@RequestParam("idAdh") final int idAdh, final ModelMap pModel, final HttpServletRequest request) {
     final Adherent adh = this.service.loadAdherent(idAdh);
     final List<Certification> certifications = this.serviceArtipole.loadCertifications();
+    certifications.sort(Comparator.comparing(Certification::getLibelle));
     final List<AdherentCertification> certificationsAdh = this.service.loadAdherentCertifications(idAdh);
     if (pModel.get("editForm") == null) {
       final EditAdherentCertificationsForm editForm = new EditAdherentCertificationsForm(certificationsAdh, certifications, idAdh);
@@ -240,8 +242,8 @@ public class EditAdhController {
     pModel.addAttribute("adherent", adh);
     pModel.addAttribute("certifications", certifications);
     pModel.addAttribute("adherentCertifications", certificationsAdh);
-    pModel.addAttribute("navType", NavType.ADHERENT);
-    pModel.addAttribute("pageType", PageType.ADHERENT_CERTIFICATIONS);
+    pModel.addAttribute("navType", NavType.ADHERENTS);
+    pModel.addAttribute("pageType", PageType.ADHERENT_PROFIL);
     return "editCertificationsAdherent";
   }
 
@@ -249,7 +251,7 @@ public class EditAdhController {
   public String modifieCertificationsAdh(@Valid @ModelAttribute("editForm") final EditAdherentCertificationsForm editForm, @PathVariable final int idAdh, final BindingResult pBindingResult, final ModelMap pModel, final HttpServletRequest request) {
     if (!pBindingResult.hasErrors()) {
       this.service.saveAdherentCertifications(idAdh, editForm.getAdherentCertifications());
-      return redirectOkPage(PageType.ADHERENT_ARTIPOLE, idAdh);
+      return "redirect:/adherentProfil?tab=artipole&idAdh=" + idAdh;
     }
     return this.editAdherentCertifications(idAdh, pModel, request);
   }
@@ -272,8 +274,8 @@ public class EditAdhController {
     pModel.addAttribute("travaux", travauxList);
     pModel.addAttribute("specialites", specialites);
     pModel.addAttribute("adherentSpecialites", specialitesAdh);
-    pModel.addAttribute("navType", NavType.ADHERENT);
-    pModel.addAttribute("pageType", PageType.ADHERENT_METIERS);
+    pModel.addAttribute("navType", NavType.ADHERENTS);
+    pModel.addAttribute("pageType", PageType.ADHERENT_PROFIL);
     return "editSpecialitesAdherent";
   }
 
@@ -281,11 +283,60 @@ public class EditAdhController {
   public String modifieSpecialitesAdh(@Valid @ModelAttribute("editForm") final EditAdherentSpecialitesForm editForm, @PathVariable final int idAdh, final BindingResult pBindingResult, final ModelMap pModel, final HttpServletRequest request) {
     if (!pBindingResult.hasErrors()) {
       this.service.saveAdherentSpecialites(idAdh, editForm.getAdherentSpecialites());
-      return redirectOkPage(PageType.ADHERENT_ARTIPOLE, idAdh);
+      return "redirect:/adherentProfil?tab=artipole&idAdh=" + idAdh;
     }
     return this.editAdherentSpecialites(idAdh, pModel, request);
   }
 
+//  @RequestMapping(value = {"/edit/editRealisationsAdherent/{idAdh}"}, method = {RequestMethod.GET})
+//  public String editAdherentRealisations(@RequestParam("idAdh") final int idAdh, final ModelMap pModel) {
+//
+//    EditAARealisationForm addForm;
+//    if (pModel.get("addForm") == null) {
+//      addForm = new EditAARealisationForm();
+//    } else {
+//      addForm = (EditAARealisationForm) pModel.get("addForm");
+//    }
+//    List<Realisation> r = this.service.loadRealisations(idAdh);
+//    pModel.addAttribute("adherent", this.serviceAdherent.loadAdherent(idAdh));
+//    pModel.addAttribute("types", this.service.loadTypes());
+//    pModel.addAttribute("addForm", addForm);
+//    pModel.addAttribute("itemsList", this.service.loadRealisations(idAdh));
+//    pModel.addAttribute("navType", NavType.ADHERENTS);
+//    pModel.addAttribute("pageType", PageType.AA_REALISATIONS);
+//    return "AA-page-realisations";
+//  }
+//  @RequestMapping(value = {"/edit/editRealisationsAdherent"}, method = {RequestMethod.GET})
+//  public String editAdherentRealisations(@RequestParam("idAdh") final int idAdh, final ModelMap pModel, final HttpServletRequest request) {
+//    final Adherent adh = this.service.loadAdherent(idAdh);
+//    final List<Travaux> travauxList = this.serviceArtipole.loadTravauxList();
+//    travauxList.sort(Comparator.comparing(Travaux::getLibelle));
+//    final List<Specialite> specialites = this.serviceArtipole.loadSpecialites();
+//    specialites.sort(Comparator.comparing(Specialite::getLibelle));
+//    final List<AdherentSpecialite> specialitesAdh = this.service.loadAdherentSpecialites(idAdh);
+//    if (pModel.get("editForm") == null) {
+//      final EditAdherentSpecialitesForm editForm = new EditAdherentSpecialitesForm(specialitesAdh, specialites, idAdh);
+//      pModel.addAttribute("editForm", editForm);
+//    } else {
+//      pModel.addAttribute("editForm", pModel.get("editForm"));
+//    }
+//    pModel.addAttribute("adherent", adh);
+//    pModel.addAttribute("travaux", travauxList);
+//    pModel.addAttribute("specialites", specialites);
+//    pModel.addAttribute("adherentSpecialites", specialitesAdh);
+//    pModel.addAttribute("navType", NavType.ADHERENTS);
+//    pModel.addAttribute("pageType", PageType.ADHERENT_PROFIL);
+//    return "editSpecialitesAdherent";
+//  }
+//
+//  @RequestMapping(value = {"/edit/editRealisationsAdherent/{idAdh}"}, method = {RequestMethod.POST})
+//  public String modifieRealisationsAdh(@Valid @ModelAttribute("editForm") final EditAdherentRealisationsForm editForm, @PathVariable final int idAdh, final BindingResult pBindingResult, final ModelMap pModel, final HttpServletRequest request) {
+//    if (!pBindingResult.hasErrors()) {
+//      this.service.saveAdherentRealisations(idAdh, editForm.getAdherentRealisations());
+//      return "redirect:/adherentProfil?tab=artipole&idAdh=" + idAdh;
+//    }
+//    return this.editAdherentRealisations(idAdh, pModel, request);
+//  }
   @RequestMapping(value = {"/edit/editLivraisonAdh"}, method = {RequestMethod.GET})
   public String editAdherentLogistique(@RequestParam("idAdh") final int idAdh, final ModelMap pModel, final HttpServletRequest request) {
     final Adherent adh = this.service.loadAdherent(idAdh);
@@ -300,8 +351,8 @@ public class EditAdhController {
     pModel.addAttribute("adherent", adh);
     pModel.addAttribute("contacts", contacts);
     pModel.addAttribute("logistiqueAdh", logistiqueAdh);
-    pModel.addAttribute("navType", NavType.ADHERENT);
-    pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
+    pModel.addAttribute("navType", NavType.ADHERENTS);
+    pModel.addAttribute("pageType", PageType.ADHERENT_PROFIL);
     return "editLivraisonAdh";
   }
 
@@ -310,7 +361,7 @@ public class EditAdhController {
     final AdherentLogistique adhLog = editForm.getLogistiqueAdh();
     if (!pBindingResult.hasErrors()) {
       this.service.saveAdherentLogistique(adhLog);
-      return redirectOkPage(PageType.ADHERENT_PROFIL, adhLog.getAdherentId());
+      return "redirect:/adherentProfil?tab=logistique&idAdh=" + adhLog.getAdherentId();
     }
     return this.editAdherentLogistique(adhLog.getAdherentId(), pModel, request);
   }
@@ -338,14 +389,14 @@ public class EditAdhController {
 
     if (pModel.get("adhToEdit") == null) {
       final EditAdherentForm editAdhForm = new EditAdherentForm(adh);
-      editAdhForm.setCommentaire(service.loadAdherentCommentaire(idAdh, extractPageType(request.getServletPath().substring(6))));
+      editAdhForm.setCommentaire(service.loadAdherentCommentaire(idAdh, PageType.ADHERENT_PROFIL));
       pModel.addAttribute("editForm", editAdhForm);
     } else {
       pModel.addAttribute("editForm", pModel.get("adhToEdit"));
     }
     pModel.addAttribute("adherent", adh);
-    pModel.addAttribute("navType", NavType.ADHERENT);
-    pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
+    pModel.addAttribute("navType", NavType.ADHERENTS);
+    pModel.addAttribute("pageType", PageType.ADHERENT_PROFIL);
 
     // Implique que le nom des Tiles soit correctement alimenté
     return request.getServletPath().substring(6);
@@ -360,7 +411,7 @@ public class EditAdhController {
     EditAdherentActivitesForm editForm = new EditAdherentActivitesForm();
     List<EditAdherentActivite> editList = new ArrayList<>();
 
-    editForm.setCommentaire(service.loadAdherentCommentaire(idAdh, PageType.ADHERENT_ACTIVITE));
+    editForm.setCommentaire(service.loadAdherentCommentaire(idAdh, PageType.ADHERENT_PROFIL));
 
     // mise en forme des activités Adhérent en ajoutant les activités non renseignées
     if (pModel.get("editForm") == null) {
@@ -388,8 +439,8 @@ public class EditAdhController {
 
     pModel.addAttribute("adherent", adh);
     pModel.addAttribute("activitees", activitees);
-    pModel.addAttribute("navType", NavType.ADHERENT);
-    pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
+    pModel.addAttribute("navType", NavType.ADHERENTS);
+    pModel.addAttribute("pageType", PageType.ADHERENT_PROFIL);
 
     return "editActiviteAdh";
   }
@@ -406,7 +457,7 @@ public class EditAdhController {
 
     pModel.addAttribute("adherent", adh);
     pModel.addAttribute("editForm", editForm);
-    pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
+    pModel.addAttribute("pageType", PageType.ADHERENT_PROFIL);
 
     return "editCRMAdh";
   }
@@ -545,32 +596,8 @@ public class EditAdhController {
     return suivi;
   }
 
-  private PageType extractPageType(String servletPath) {
-
-    switch (servletPath) {
-      case "editActiviteAdh":
-        return PageType.ADHERENT_ACTIVITE;
-      case "editArtipoleAdh":
-        return PageType.ADHERENT_ARTIPOLE;
-      case "editAdministratifAdh":
-        return PageType.ADHERENT_ADMINISTRATIF;
-      case "editExploitationAdh":
-        return PageType.ADHERENT_EXPLOITATION;
-      case "editInformatiqueAdh":
-        return PageType.ADHERENT_INFORMATIQUE;
-      case "editDetailAdh":
-        return PageType.ADHERENT_DETAIL;
-      case "editCRM":
-        return PageType.ADHERENT_CRM;
-      default:
-        return PageType.LIST_ADHERENT;
-    }
-  }
-
   @RequestMapping(value = "/edit/editActiviteAdh", method = RequestMethod.POST)
-  public String modifieActiviteAdh(
-          @Valid @ModelAttribute(value = "editForm") final EditAdherentActivitesForm editForm,
-          final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
+  public String modifieActiviteAdh(@Valid @ModelAttribute(value = "editForm") final EditAdherentActivitesForm editForm, final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
 
     int adhId = editForm.getActivitesAdh().get(0).getAdherentId();
 
@@ -580,7 +607,7 @@ public class EditAdhController {
     }
 
     if (!pBindingResult.hasErrors()) {
-      service.saveAdherentCommentaire(adhId, PageType.ADHERENT_ACTIVITE, editForm.getCommentaire());
+      service.saveAdherentCommentaire(adhId, PageType.ADHERENT_PROFIL, editForm.getCommentaire());
 
       List<AdherentActivite> activitesAdh = new ArrayList<>();
       editForm.getActivitesAdh().stream().forEach(a -> {
@@ -594,29 +621,25 @@ public class EditAdhController {
           activitesAdh.add(aa);
         }
       });
-
       service.saveActivitesAdherent(adhId, activitesAdh);
-      return redirectOkPage(PageType.ADHERENT_ACTIVITE, adhId);
+      return "redirect:/adherentProfil?tab=commerce&idAdh=" + adhId;
     }
-
     return editAdherentActivite(adhId, pModel, request);
   }
 
   @RequestMapping(value = "/edit/editContactComptableAdh", method = RequestMethod.POST)
-  public String modifieContactCptAdh(@Valid @ModelAttribute(value = "adhContactComptable") final EditContactComptableAdherentForm editForm,
-          final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
+  public String modifieContactCptAdh(@Valid @ModelAttribute(value = "adhContactComptable") final EditContactComptableAdherentForm editForm, final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
 
     EditContactComptableAdherent contactEditable = editForm.getContactComptableAdherent();
     AdherentContactComptable contact = editToContactComptable(contactEditable);
 
     if (!pBindingResult.hasErrors()) {
       service.saveContactComptableAdherent(contact);
-      return redirectOkPage(PageType.ADHERENT_ADMINISTRATIF, contact.getAdherentId());
+      return "redirect:/adherentProfil?tab=administratif&idAdh=" + contact.getAdherentId();
     }
     final Adherent adh = this.service.loadAdherent(editForm.getContactComptableAdherent().getAdherentId());
     pModel.addAttribute("adherent", adh);
     return editAdherent(editForm.getContactComptableAdherent().getAdherentId(), pModel, request);
-
   }
 
   @RequestMapping(value = {"/edit/editArtipoleAdh", "/edit/editAdministratifAdh", "/edit/editExploitationAdh"}, method = RequestMethod.POST)
@@ -633,9 +656,16 @@ public class EditAdhController {
     }
 
     if (!pBindingResult.hasErrors()) {
-      service.saveAdherentCommentaire(adh.getId(), extractPageType(request.getServletPath().substring(6)), editForm.getCommentaire());
+      service.saveAdherentCommentaire(adh.getId(), PageType.ADHERENT_PROFIL, editForm.getCommentaire());
       service.saveAdherent(adh);
-      return redirectOkPage(extractPageType(request.getServletPath().substring(6)), adh.getId());
+      switch (request.getServletPath().substring(6)) {
+        case "editArtipoleAdh":
+          return "redirect:/adherentProfil?tab=artipole&idAdh=" + adh.getId();
+        case "editAdministratifAdh":
+          return "redirect:/adherentProfil?tab=administratif&idAdh=" + adh.getId();
+        case "editExploitationAdh":
+          return "redirect:/adherentProfil?tab=logistique&idAdh=" + adh.getId();
+      }
     }
     return editAdherent(editForm.getEditAdherent().getId(), pModel, request);
   }
@@ -653,89 +683,38 @@ public class EditAdhController {
       pBindingResult.addError((ObjectError) new FieldError("dateSortie", "adherent.dateSortie", this.messages.getMessage("modification.notempty", (Object[]) null, Locale.FRANCE)));
     }
     if (!pBindingResult.hasErrors()) {
-      this.service.saveAdherentCommentaire((int) adh.getId(), this.extractPageType(request.getServletPath().substring(6)), editForm.getCommentaire());
+      this.service.saveAdherentCommentaire(adh.getId(), PageType.ADHERENT_PROFIL, editForm.getCommentaire());
       this.service.saveAdherent(adh);
-      return redirectOkPage(PageType.ADHERENT_PROFIL, adh.getId());
+      return "redirect:/adherentProfil?tab=contacts&idAdh=" + adh.getId();
     }
     return this.editAdherent(editForm.getEditAdherent().getId(), pModel, request);
   }
 
   @RequestMapping(value = "/edit/editInformatiqueAdh", method = RequestMethod.POST)
-  public String modifieInformatiqueAdh(@Valid
-          @ModelAttribute(value = "editForm")
-          final EditAdherentActivitesForm editForm,
-          final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
+  public String modifieInformatiqueAdh(@Valid @ModelAttribute(value = "editForm") final EditAdherentActivitesForm editForm, final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
 
     int adhId = editForm.getActivitesAdh().get(0).getAdherentId();
 
     if (!pBindingResult.hasErrors()) {
-      service.saveAdherentCommentaire(adhId, PageType.ADHERENT_INFORMATIQUE, editForm.getCommentaire());
+      service.saveAdherentCommentaire(adhId, PageType.ADHERENT_PROFIL, editForm.getCommentaire());
 //      service.saveInformatiqueAdherent(adhId, );
-      return redirectOkPage(PageType.ADHERENT_INFORMATIQUE, adhId);
+      return "redirect:/adherentProfil?tab=informatique&idAdh=" + adhId;
     }
 
     return cttControler.editContact(adhId, pModel, request);
   }
 
   @RequestMapping(value = "/edit/editCRMAdh", method = RequestMethod.POST)
-  public String modifieCRM(@Valid
-          @ModelAttribute(value = "editForm")
-          final EditAdherentSuiviVisiteForm editForm,
-          final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
+  public String modifieCRM(@Valid @ModelAttribute(value = "editForm") final EditAdherentSuiviVisiteForm editForm, final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request) {
 
     int adhId = editForm.getSuiviVisiteAdh().getAdherentId();
 
     if (!pBindingResult.hasErrors()) {
       service.saveAdherentSuiviVisite(editToSuivi(editForm.getSuiviVisiteAdh()));
-      return redirectOkPage(PageType.ADHERENT_CRM, adhId);
+      return "redirect:/adherentProfil?tab=crm&idAdh=" + adhId;
     }
 
     return editCRM(editForm.getSuiviVisiteAdh().getId(), pModel, request);
-  }
-
-  private String redirectOkPage(PageType pageType, Integer adhId) {
-    String page = "adherentProfil";
-    String tab;
-
-    switch (pageType) {
-      case ADHERENT_ACTIVITE:
-        //page = "adherentActivite";
-        tab = "commerce";
-        break;
-      case ADHERENT_ADMINISTRATIF:
-        //page = "adherentAdministratif";
-        tab = "administratif";
-        break;
-      case ADHERENT_ARTIPOLE:
-        //page = "adherentArtipole";
-        tab = "artipole";
-        break;
-      case ADHERENT_DETAIL:
-        //page = "adherentDetail";
-        tab = "";
-        break;
-      case ADHERENT_EXPLOITATION:
-        //page = "adherentExploitation";
-        tab = "logistique";
-        break;
-      case ADHERENT_INFORMATIQUE:
-        //page = "adherentInformatique";
-        tab = "informatique";
-        break;
-      case ADHERENT_CRM:
-        //page = "adherentCRM";
-        tab = "crm";
-        break;
-      case ADHERENT_PROFIL:
-        //page = "adherentProfil";
-        tab = "contacts";
-        break;
-      default:
-        //page = "adherentProfil";
-        tab = "contacts";
-        break;
-    }
-    return "redirect:/" + page + "?tab=" + tab + "&idAdh=" + adhId;
   }
 
   private EditAdherentSuiviVisite suiviToEdit(AdherentSuiviVisite adhSuivi) {
@@ -748,5 +727,4 @@ public class EditAdhController {
 
     return suiviEditable;
   }
-
 }

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
+<%@page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
          pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
@@ -13,8 +13,8 @@
 <div class="text-2xl mb-3 font-medium text-center">Tableau de bord</div>
 
 <div class="gap-5 flex justify-center">
-    <a href="adherentListe?list=adh"
-       class="flex shadow-lg shadow-green-500/30 gap-4 justify-center pt-7 w-64 flex h-28 bg-green-100 border-t-4 border-green-500 cursor-pointer hover:bg-green-200 rounded-lg">
+    <a href="listeAdherents?list=adh"
+       class="flex shadow-lg shadow-green-500/30 gap-4 justify-center pt-7 w-64 flex h-28 bg-green-100 border-t-4 border-green-500 cursor-pointer hover:bg-green-200 rounded-xl">
         <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"
              xmlns="http://www.w3.org/2000/svg">
             <path class="stroke-emerald-700" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -30,8 +30,8 @@
         </div>
     </a>
 
-    <a href="adherentListe?list=admin"
-       class="w-64 shadow-lg shadow-blue-500/30 flex gap-4 justify-center pt-7 h-28 flex-col p-4 mb-4 bg-blue-100 border-t-4 border-blue-500 cursor-pointer hover:bg-blue-200 rounded-lg"
+    <a href="listeAdherents?list=admin"
+       class="w-64 shadow-lg shadow-blue-500/30 flex gap-4 justify-center pt-7 h-28 flex-col p-4 mb-4 bg-blue-100 border-t-4 border-blue-500 cursor-pointer hover:bg-blue-200 rounded-xl"
        role="alert">
         <div class="flex">
             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -51,7 +51,7 @@
 
     <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_DIRECTION', 'ROLE_EXPLOITATION')">
         <a href="ordreTournee?list=adh"
-           class="flex gap-3 shadow-lg shadow-green-500/30 justify-center items-center w-64 flex h-28 bg-green-100 border-t-4 border-green-500 cursor-pointer hover:bg-green-200 rounded-lg">
+           class="flex gap-3 shadow-lg shadow-green-500/30 justify-center items-center w-64 flex h-28 bg-green-100 border-t-4 border-green-500 cursor-pointer hover:bg-green-200 rounded-xl">
             <svg class="stroke-emerald-700 w-11 h-11" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                  xmlns="http://www.w3.org/2000/svg">
                 <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path>
@@ -88,7 +88,7 @@
             labels: [<c:out value="${dataChartAnnee}"/>],
             datasets: [
                 {
-                    label: 'Adhérents actif',
+                    label: 'Adhérents actifs',
                     fill: false,
                     backgroundColor: 'rgb(108,151,170)',
                     borderColor: 'rgba(60,141,188,0.8)',
@@ -100,7 +100,7 @@
                     data: [<c:out value="${dataChartActif}"/>]
                 },
                 {
-                    label: 'Nouveau',
+                    label: 'Nouveaux adhérents',
 //          fill                : false,
                     backgroundColor: 'rgba(210, 214, 222, 1)',
                     borderColor: 'rgba(210, 214, 222, 1)',

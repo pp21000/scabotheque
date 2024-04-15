@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
+<%@page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
          pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -23,16 +23,14 @@
             </div>
             <div class="px-2 flex flex-col">
                 <label class="text-center">Dépot</label>
-                <form:select class="p-2 w-20 bg-white rounded-lg border border-gray-200 text-black" name="codeAgence" path="codeAgence">
+                <form:select class="p-2 bg-white rounded-lg border border-gray-200 text-black" name="codeAgence" path="codeAgence">
                     <form:options items="${agenceList}" itemValue="code" itemLabel="code"/>
                 </form:select>
             </div>
             <div>
-                <button id="actionButton"
-                        class="text-white bg-gray-800 hover:bg-gray-900 focus:cursor-wait focus:bg-gray-600 focus:disabled focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-3 mt-6 mr-2"
-                        type="submit">
+                <button id="actionButton" type="submit" class="text-white bg-gray-800 hover:bg-gray-900 focus:cursor-wait focus:bg-gray-600 focus:disabled focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-3 mt-6 mr-2">
                     <span id="actionSpinner" role="status" aria-hidden="true"></span>
-                      Interroger RUBIS
+                    Interroger RUBIS
                 </button>
             </div>
         </form:form>
@@ -42,14 +40,11 @@
             <form:input type="hidden" name="codeAgence" path="codeAgence"/>
             <div class="flex flex-col">
                 <label class="text-center">Zone</label>
-                <form:select class="p-2 w-20 bg-white rounded-lg border border-gray-200 text-black" autofocus="true"
-                             path="zone" items="${zonePrep}"/>
+                <form:select class="p-2 min-w-16 bg-white rounded-lg border border-gray-200 text-black" autofocus="true" path="zone" items="${zonePrep}"/>
             </div>
             <div class="form-group px-2 d-flex align-items-end">
-                <button class="text-white bg-gray-800 hover:bg-gray-900 focus:cursor-wait focus:bg-gray-600 focus:disabled focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-3 mt-6"
-                        type="submit">
-                    <span class="spinner-border text-light spinner-border-sm d-none" role="status"
-                          aria-hidden="true"></span>
+                <button type="submit" class="text-white bg-gray-800 hover:bg-gray-900 focus:cursor-wait focus:bg-gray-600 focus:disabled focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-3 mt-6">
+                    <span class="spinner-border text-light spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                     Charger les données de la zone
                 </button>
             </div>
@@ -86,32 +81,25 @@
                             <form:input type="hidden" path="tournees[${status.index}].codePostal"/>
                             <form:input type="hidden" path="tournees[${status.index}].ville"/>
                             <form:input type="hidden" path="tournees[${status.index}].user"/>
-                            <form:input
-                                    class="p-2 w-12 text-center bg-white rounded-lg border border-gray-200"
-                                    type="text"
-                                    path="tournees[${status.index}].ordre"/>
+                            <form:input type="text" path="tournees[${status.index}].ordre" class="p-2 w-12 text-center bg-white rounded-lg border border-gray-200"/>
                         </td>
                         <td class="py-4 px-6">
-                                ${tournee.nomAdresse}
+                            ${tournee.nomAdresse}
                         </td>
                         <td class="py-4 px-6">
-                                ${tournee.codePostal}
+                            ${tournee.codePostal}
                         </td>
                         <td class="py-4 px-6">
-                                ${tournee.ville}
+                            ${tournee.ville}
                         </td>
                         <td class="py-4 px-6">
                             <c:forEach items="${tournee.cmd}" var="cmd" varStatus="cmdStatus">
-                                <form:input type="hidden"
-                                            path="tournees[${status.index}].cmd[${cmdStatus.index}].numeroBon"/>
+                                <form:input type="hidden" path="tournees[${status.index}].cmd[${cmdStatus.index}].numeroBon"/>
                                 ${cmd.numeroBon} <br>
                             </c:forEach>
                         </td>
                         <td class="py-4 px-6">
-                            <form:input placeholder="..."
-                                        class="text-center p-2 w-42 bg-white rounded-lg border border-gray-200"
-                                        type="text"
-                                        path="tournees[${status.index}].commentaire"/>
+                            <form:input type="text" placeholder="..." path="tournees[${status.index}].commentaire" class="text-center p-2 w-42 bg-white rounded-lg border border-gray-200"/>
                         </td>
                     </tr>
                 </c:forEach>
@@ -124,19 +112,19 @@
             <div class="flex gap-4">
                 <div class="flex flex-col">
                     <label for="selectCamion" class="text-center">Camion</label>
-                    <form:select class="p-2 w-96 bg-white rounded-lg border border-gray-200 text-black" id="selectCamion" path="camionId">
+                    <form:select class="p-2 min-w-80 bg-white rounded-lg border border-gray-200 text-black" id="selectCamion" path="camionId">
                         <form:options items="${camions}" itemValue="id" itemLabel="libelle"/>
                     </form:select>
                 </div>
                 <div class="flex flex-col">
                     <label for="selectChauffeur" class="text-center">Chauffeur</label>
-                    <form:select class="p-2 w-52 bg-white rounded-lg border border-gray-200 text-black" id="selectChauffeur" path="chauffeurId">
+                    <form:select class="p-2 min-w-48 bg-white rounded-lg border border-gray-200 text-black" id="selectChauffeur" path="chauffeurId">
                         <form:options items="${chauffeurs}" itemValue="id" itemLabel="libelle"/>
                     </form:select>
                 </div>
                 <div class="flex flex-col">
                     <label for="selectTour" class="text-center">Tour</label>
-                    <form:select class="p-2 w-16 bg-white rounded-lg border border-gray-200 text-black" id="selectTour" path="tournee">
+                    <form:select class="p-2 bg-white rounded-lg border border-gray-200 text-black" id="selectTour" path="tournee">
                         <form:option value="1"/>
                         <form:option value="2"/>
                         <form:option value="3"/>
@@ -145,10 +133,9 @@
                 </div>
                 <div class="col-2 align-bottom">
                     <!--<button class="btn btn-info float-right " type="submit">Envoyer l'ordre de mission</button>-->
-                    <button id="saveButton" class="text-white bg-gray-800 hover:bg-gray-900 focus:cursor-wait focus:bg-gray-600 focus:disabled focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-3 mr-2 mb-2 mt-6" type="submit">
-                      <span id="saveSpinner" class="spinner-border text-light spinner-border-sm d-none"
-                                      role="status" aria-hidden="true"></span>
-                        Envoyer l'ordre de mission
+                    <button id="saveButton" type="submit" class="text-white bg-gray-800 hover:bg-gray-900 focus:cursor-wait focus:bg-gray-600 focus:disabled focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-3 mr-2 mb-2 mt-6">
+                      <span id="saveSpinner" class="spinner-border text-light spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                      Envoyer l'ordre de mission
                     </button>
                 </div>
             </div>

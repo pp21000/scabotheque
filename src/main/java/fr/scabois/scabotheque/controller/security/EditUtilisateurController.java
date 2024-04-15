@@ -2,6 +2,7 @@ package fr.scabois.scabotheque.controller.security;
 
 import fr.scabois.scabotheque.bean.security.User;
 import fr.scabois.scabotheque.bean.security.UserRole;
+import fr.scabois.scabotheque.enums.NavType;
 import fr.scabois.scabotheque.enums.PageType;
 import fr.scabois.scabotheque.enums.RoleEnum;
 import fr.scabois.scabotheque.services.IServiceAdherent;
@@ -42,6 +43,9 @@ public class EditUtilisateurController {
     if (pModel.get("creation") == null) {
       pModel.addAttribute("creation", new CreationUtilisateurForm());
     }
+    pModel.addAttribute("navType", NavType.ADMINISTRATION);
+    pModel.addAttribute("pageType", PageType.GESTION_USERS);
+
     return "listeUtilisateurs";
   }
 

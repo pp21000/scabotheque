@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">  
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
@@ -43,9 +43,9 @@
       <section class="m-auto bg-gray-900 rounded-3xl px-16 py-16">
         <div class="flex flex-col items-center justify-center gap-6">
           <a href="#" class="flex items-center text-2xl font-semibold text-gray-900 dark:text-white">
-            <img class="h-12" src="<c:url value="/resources/images/Scabotheques.png" />" class="col-sm-3 mb-3" style="opacity: .9">
+            <img class="h-12" src="<c:url value="/resources/images/logoScabotheque.png"/>" class="col-sm-3 mb-3" style="opacity: .9">
           </a>
-          <div class="w-full bg-gray rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
+          <div class="w-full bg-gray rounded-xl shadow md:mt-0 sm:max-w-md xl:p-0">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
               
               <h1 class="text-xl my-4 font-bold leading-tight tracking-tight text-white md:text-2xl">
@@ -56,7 +56,7 @@
                 
                 <div>
                   <!--<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>-->
-                  <input name="username" class="form-control input-text text-md" placeholder="E-mail / identifiant" autofocus='true'>
+                  <input name="username" class="form-control input-text text-md" placeholder="E-mail" autofocus='true'>
                   <!--<input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">-->
                 </div>
                 
@@ -71,7 +71,7 @@
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                   </div>
 
-                  <div class="col-7 mx-auto">
+                  <div class="col-9 mx-auto">
                     <button type="submit" class="py-3 w-full font-medium text-white rounded-md bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-neutral-300">
                       Se connecter
                     </button>

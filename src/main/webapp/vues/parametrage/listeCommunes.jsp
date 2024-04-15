@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
+<%@page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -22,7 +22,7 @@
 <!-- 			<option value="" >trop de résultat</option> -->
 <!-- 		</select> -->
 		<div>
-                    <spring:message code="count.adherent" arguments="${communeListe.list.size()}"/>
+                    <spring:message code="count" arguments="${communeListe.list.size()}"/>
 		</div>
 		<div class="textAlignCenter">
 			<c:if test = "${communeListe.list.size() < 200}">

@@ -18,8 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity
 //@NamedNativeQuery(name = "Adherent.count", query = "select count(*) from Adherent", resultClass = Long.class)
+@Entity
 @Table(name = "adherent")
 public class Adherent {
 

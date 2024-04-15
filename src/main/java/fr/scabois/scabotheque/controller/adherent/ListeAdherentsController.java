@@ -47,7 +47,7 @@ public class ListeAdherentsController {
   @Autowired
   private IServiceAdherent service;
 
-  @RequestMapping(value = {"/listeAdherents", "adherentListe"}, method = RequestMethod.GET)
+  @RequestMapping(value = {"/listeAdherents", "listeAdherents"}, method = RequestMethod.GET)
   public String afficher(@CookieValue(value = "criteria", defaultValue = "") String cookie, ModelMap pModel, HttpServletRequest request) {
     String param = request.getParameter("page");
     Integer page = param == null ? 1 : Integer.parseInt(param);
@@ -65,7 +65,7 @@ public class ListeAdherentsController {
     return chargementListe(criteria, pModel, page);
   }
 
-  @RequestMapping(value = "/listeContact", method = RequestMethod.GET)
+  @RequestMapping(value = "/listeContacts", method = RequestMethod.GET)
   public String contactListe(@CookieValue(value = "criteria", defaultValue = "") String cookie, ModelMap pModel, HttpServletRequest request) {
     String param = request.getParameter("page");
     Integer page = param == null ? 1 : Integer.parseInt(param);
@@ -84,18 +84,18 @@ public class ListeAdherentsController {
     return chargementListeContact(criteria, pModel, page);
   }
 
-  @RequestMapping(value = {"/listeRetraite"}, method = {RequestMethod.GET})
+  @RequestMapping(value = {"/listeRetraites"}, method = {RequestMethod.GET})
   public String retraiteListe(@CookieValue(value = "criteria", defaultValue = "") final String cookie, final ModelMap pModel, final HttpServletRequest request) {
     final String param = request.getParameter("page");
     final Integer page = (param == null) ? 1 : Integer.parseInt(param);
     final List<ContactRetraite> list = (List<ContactRetraite>) this.service.loadContactsRetraite();
     final int pageSize = 1000;
     pModel.addAttribute("listeContacts", (Object) list.stream().sorted(Comparator.comparing(ContactRetraite::getNom)).skip(pageSize * (page - 1)).limit(pageSize).collect(Collectors.toList()));
-    pModel.addAttribute("nbContact", (Object) list.size());
+    pModel.addAttribute("nbContacts", (Object) list.size());
     pModel.addAttribute("criteria", (Object) new CriteriaAdherent());
-    pModel.addAttribute("navType", NavType.ADHERENT);
-    pModel.addAttribute("pageType", (Object) PageType.LIST_CONTACT_RETRAITE);
-    return "listeContactRetraite";
+    pModel.addAttribute("navType", NavType.ADHERENTS);
+    pModel.addAttribute("pageType", (Object) PageType.LISTE_RETRAITES);
+    return "listeRetraites";
   }
 
   @RequestMapping(value = {"/listeClubFemmes"}, method = {RequestMethod.GET})
@@ -105,11 +105,11 @@ public class ListeAdherentsController {
     final List<ContactClubFemme> list = (List<ContactClubFemme>) this.service.loadContactsClubFemme();
     final int pageSize = 1000;
     pModel.addAttribute("listeContacts", (Object) list.stream().sorted(Comparator.comparing(ContactClubFemme::getNom)).skip(pageSize * (page - 1)).limit(pageSize).collect(Collectors.toList()));
-    pModel.addAttribute("nbContact", (Object) list.size());
+    pModel.addAttribute("nbContacts", (Object) list.size());
     pModel.addAttribute("criteria", (Object) new CriteriaAdherent());
-    pModel.addAttribute("navType", NavType.ADHERENT);
-    pModel.addAttribute("pageType", (Object) PageType.LIST_CONTACT_CLUB_FEMMES);
-    return "listeContactClubFemmes";
+    pModel.addAttribute("navType", NavType.ADHERENTS);
+    pModel.addAttribute("pageType", (Object) PageType.LISTE_FEMMES);
+    return "listeClubFemmes";
   }
 
   @RequestMapping(value = "/initListeAdherents", method = RequestMethod.GET)
@@ -118,10 +118,10 @@ public class ListeAdherentsController {
     return "redirect:/listeAdherents";
   }
 
-  @RequestMapping(value = "/initListeContact", method = RequestMethod.GET)
+  @RequestMapping(value = "/initListeContacts", method = RequestMethod.GET)
   public String initRechercheContact(ModelMap pModel, HttpServletResponse response) {
     response.addCookie(resetCriteriaAdherentCookie());
-    return "redirect:/listeContact";
+    return "redirect:/listeContacts";
   }
 
   @RequestMapping(value = "/exportContacts", method = RequestMethod.POST)
@@ -157,7 +157,7 @@ public class ListeAdherentsController {
     exportService.exportListToFile(criteria, response);
   }
 
-  @RequestMapping(value = {"/", "/listeAdherents", "/adherentListe"}, method = RequestMethod.POST)
+  @RequestMapping(value = {"/", "/listeAdherents", "/listeAdherents"}, method = RequestMethod.POST)
   public String rechercheAdh(@ModelAttribute(value = "criteria") final CriteriaAdherent criteria,
           final BindingResult pBindingResult, final ModelMap pModel, HttpServletResponse response, HttpServletRequest request) {
 
@@ -174,7 +174,7 @@ public class ListeAdherentsController {
     return chargementListe(criteria, pModel, page);
   }
 
-  @RequestMapping(value = "/listeContact", method = RequestMethod.POST)
+  @RequestMapping(value = "/listeContacts", method = RequestMethod.POST)
   public String rechercheContact(@ModelAttribute(value = "criteria") final CriteriaAdherent criteria,
           final BindingResult pBindingResult, final ModelMap pModel, HttpServletResponse response, HttpServletRequest request) {
 
@@ -262,15 +262,15 @@ public class ListeAdherentsController {
     listeAdherents = service.loadAdherents(criteria).stream().sorted(Comparator.comparing(Adherent::getLibelle)).collect(Collectors.toList());
 
     final int pageSize = 25;
-    pModel.addAttribute("nbAdherent", listeAdherents.size());
+    pModel.addAttribute("nbAdherents", listeAdherents.size());
     pModel.addAttribute("page", page);
     pModel.addAttribute("maxPage", (int) Math.ceil(listeAdherents.size() / pageSize));
     pModel.addAttribute("listeAdherents", listeAdherents.stream().sorted(Comparator.comparing(Adherent::getLibelle)).skip(pageSize * (page - 1)).limit(pageSize).collect(Collectors.toList()));
     pModel.addAttribute("criteria", criteria);
-    pModel.addAttribute("navType", NavType.ADHERENT);
-    pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
+    pModel.addAttribute("navType", NavType.ADHERENTS);
+    pModel.addAttribute("pageType", PageType.LISTE_ADHERENTS);
 
-    return "adherentListe";
+    return "listeAdherents";
   }
 
   private String chargementListeContact(CriteriaAdherent criteria, ModelMap pModel, Integer page) {
@@ -303,12 +303,12 @@ public class ListeAdherentsController {
     pModel.addAttribute("page", page);
     pModel.addAttribute("maxPage", (int) Math.ceil(listContact.size() / pageSize));
     pModel.addAttribute("listeContacts", listContact.stream().sorted(Comparator.comparing(AdherentContactRole::getNom)).skip(pageSize * (page - 1)).limit(pageSize).collect(Collectors.toList()));
-    pModel.addAttribute("nbContact", listContact.size());
+    pModel.addAttribute("nbContacts", listContact.size());
     pModel.addAttribute("criteria", criteria);
-    pModel.addAttribute("navType", NavType.ADHERENT);
-    pModel.addAttribute("pageType", PageType.LIST_CONTACT);
+    pModel.addAttribute("navType", NavType.ADHERENTS);
+    pModel.addAttribute("pageType", PageType.LISTE_CONTACTS);
 
-    return "listeContact";
+    return "listeContacts";
   }
 
   /**

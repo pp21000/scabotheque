@@ -45,48 +45,38 @@
 /* 	text-decoration: none; */
 }
 
-.bottomNavBar {
-    text-align: center;
-	position: fixed;
-	width: 1390px;
-	overflow: hidden;
-	background-color: #333;
-	bottom:0;
-	margin: 0.3em 0;
-}
-
-.menu-item a, .bottomNavBar a, .dropMenuLayout a{
+.menu-item a, .dropMenuLayout a{
   color: #f2f2f2;
   fill:white;
   text-decoration: none;
   text-align: -webkit-center;  
 }
 
-
 .sub-menu-item{
   padding: 0.4em 1.6em;
   min-width: 12em;
 }
+
 .sub-menu-item:hover{
 	background-color: #82aa37;
 /* 	color: white; */
 /* 	fill:white; */
 /* 	text-decoration: none; */
 }
-.menu-dropdown-container:hover, .menu-item:hover, .menu-item a:hover, .bottomNavBar a:hover , .dropMenuLayout a:hover {
+.menu-dropdown-container:hover, .menu-item:hover, .menu-item a:hover, .dropMenuLayout a:hover {
 /* 	background-color: #82aa37; */
 	color: white;
 	fill:white;
 	text-decoration: none;
  }
 
-.menu-active, .bottomNavBar-active {
+.menu-active {
     background-color: #82aa37;
     color: white;
     fill:white;
 }
 
-.menu-item-icon, .bottomNavBar-icon, .optionDropDown-icon{
+.menu-item-icon, .optionDropDown-icon{
 	height:1.5em;
 	vertical-align: middle;
 	width:1.5em;

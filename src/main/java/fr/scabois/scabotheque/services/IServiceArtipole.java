@@ -2,56 +2,61 @@ package fr.scabois.scabotheque.services;
 
 import fr.scabois.scabotheque.bean.adherent.Adherent;
 import fr.scabois.scabotheque.bean.adherent.Type;
-import fr.scabois.scabotheque.bean.artisanArtipole.Actualite;
-import fr.scabois.scabotheque.bean.artisanArtipole.Certification;
-import fr.scabois.scabotheque.bean.artisanArtipole.Emplacement;
-import fr.scabois.scabotheque.bean.artisanArtipole.Inspiration;
-import fr.scabois.scabotheque.bean.artisanArtipole.Metier;
-import fr.scabois.scabotheque.bean.artisanArtipole.Page;
-import fr.scabois.scabotheque.bean.artisanArtipole.Photo;
-import fr.scabois.scabotheque.bean.artisanArtipole.Specialite;
-import fr.scabois.scabotheque.bean.artisanArtipole.Travaux;
+import fr.scabois.scabotheque.bean.artisansArtipole.Actualite;
+import fr.scabois.scabotheque.bean.artisansArtipole.Certification;
+import fr.scabois.scabotheque.bean.artisansArtipole.Emplacement;
+import fr.scabois.scabotheque.bean.artisansArtipole.Inspiration;
+import fr.scabois.scabotheque.bean.artisansArtipole.Metier;
+import fr.scabois.scabotheque.bean.artisansArtipole.Page;
+import fr.scabois.scabotheque.bean.artisansArtipole.Photo;
+import fr.scabois.scabotheque.bean.artisansArtipole.Realisation;
+import fr.scabois.scabotheque.bean.artisansArtipole.Specialite;
+import fr.scabois.scabotheque.bean.artisansArtipole.Travaux;
 import java.util.List;
 
 public interface IServiceArtipole {
 
-  List<Adherent> loadArtisanArtipole();
+  void executeJob(final String p0);
+
+  List<Adherent> loadArtisansArtipole();
+
+  Actualite loadActualite(final int p0);
+
+  List<Actualite> loadActualites();
+
+  void saveActualite(final Actualite p0);
+
+  void deleteActualite(final int p0);
+
+  Certification loadCertification(final Integer p0);
+
+  List<Certification> loadCertifications();
+
+  void saveCertification(final Certification p0);
+
+  void deleteCertification(final int p0);
 
   Emplacement loadEmplacement(final int p0);
 
   List<Emplacement> loadEmplacements();
 
-  Travaux loadTravaux(final int p0);
-
-  List<Travaux> loadTravauxList();
-
-  Specialite loadSpecialite(final int p0);
-
-  List<Specialite> loadSpecialites();
-
-  Inspiration loadInspiration(final int p0);
-
-  Actualite loadActualite(final int p0);
-
-  void deleteActualite(final int p0);
+  void saveEmplacement(final Emplacement p0);
 
   void deleteEmplacement(final int p0);
 
-  void deleteTravaux(final int p0);
+  Inspiration loadInspiration(final int p0);
 
-  void deleteMetier(final int p0);
-
-  void deletePhoto(final int p0);
-
-  void deleteCertification(final int p0);
-
-  void executeJob(final String p0);
-
-  List<Actualite> loadActualites();
+  List<Inspiration> loadInspirations();
 
   Metier loadMetier(final Integer p0);
 
   List<Metier> loadMetiers();
+
+  void saveMetier(final Metier p0);
+
+  void saveMetiers(final List<Metier> p0);
+
+  void deleteMetier(final int p0);
 
   Page loadPage(final Integer p0);
 
@@ -59,27 +64,32 @@ public interface IServiceArtipole {
 
   Photo loadPhoto(final Integer p0);
 
-  Certification loadCertification(final Integer p0);
-
-  List<Inspiration> loadInspirations();
-
   List<Photo> loadPhotos();
-
-  List<Certification> loadCertifications();
-
-  List<Type> loadTypes();
-
-  void saveEmplacement(final Emplacement p0);
-
-  void saveTravaux(final Travaux p0);
-
-  void saveActualite(final Actualite p0);
-
-  void saveMetier(final Metier p0);
-
-  void saveMetiers(final List<Metier> p0);
 
   void savePhoto(final Photo p0);
 
-  void saveCertification(final Certification p0);
+  void deletePhoto(final int p0);
+
+  Realisation loadRealisation(final Integer p0);
+
+  List<Realisation> loadRealisations(final int adhId);
+
+  void saveRealisation(final Realisation p0);
+
+  void deleteRealisation(final int p0);
+
+  Specialite loadSpecialite(final int p0);
+
+  List<Specialite> loadSpecialites();
+
+  List<Type> loadTypes();
+
+  Travaux loadTravaux(final int p0);
+
+  List<Travaux> loadTravauxList();
+
+  void saveTravaux(final Travaux p0);
+
+  void deleteTravaux(final int p0);
+
 }

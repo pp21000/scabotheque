@@ -16,13 +16,13 @@ import javax.persistence.Table;
 @Table(name = "certifications_adherents")
 public class AdherentCertification implements HasId {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
   @Column(name = "certification_id")
   private int certificationId;
   @Column(name = "adherents_id")
   private int adherentId;
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
 
   public int getAdherentId() {
     return this.adherentId;

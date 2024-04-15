@@ -1,33 +1,35 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
-         pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<c:url value="/adherentProfil" var="urlPrev"><c:param name="tab" value="artipole"/><c:param name="idAdh" value="${adherent.id}"/></c:url>
-<button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location = '${urlPrev}'">
-  <spring:message code="label.retour"/>
-</button>
-
-<div class="flex justify-center">
-  <div class="rounded bg-neutral-50 p-4 border border-neutral-200 flex flex-col items-center">
-    <div>
-      <c:choose>
-        <c:when test="${adherent.photoImg == ''}">
-          <img class="rounded-full h-32" src="<c:url value="/resources/images/noAdh.png"/>"/>
-        </c:when>
-        <c:otherwise>
-          <img class="rounded-full h-32" src="${adherent.photoImg}">
-        </c:otherwise>
-      </c:choose>
-    </div>
-    <div class="flex flex-col">
-      <div class="text-center text-lg font-semibold">
-        ${adherent.denomination}
+<div class="flex w-full">
+  <c:url value="/adherentProfil" var="urlPrev"><c:param name="tab" value="artipole"/><c:param name="idAdh" value="${adherent.id}"/></c:url>
+  <div class="w-1/12">
+    <button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" id="cancel" type="reset" onClick="window.location = '${urlPrev}'">
+      <spring:message code="label.retour"/>
+    </button>
+  </div>
+  <div class="w-5/6 flex justify-center items-center gap-2">
+    <div class="flex items-center p-1.5 bg-gray-200 dark:bg-gray-600 rounded-2xl gap-2 min-w-[35rem]">
+      <div class="w-1/2 flex justify-center gap-2">
+        <span class="text-2xl"><spring:message code="label.metiers"/></span>
       </div>
-      <div class="text-center text-sm">
-        <spring:message code="label.codeAdh"/> :
-        ${adherent.code}
+      <div class="w-1/2 flex items-center gap-1">
+        <c:choose>
+          <c:when test="${empty adherent.photoImg}">
+            <img class="rounded h-10" src="<c:url value="/resources/images/noAdhPhoto.png"/>"/>
+          </c:when>
+          <c:otherwise>
+            <img class="rounded h-10" src="${adherent.photoImg}">
+          </c:otherwise>
+        </c:choose>        
+        <div class="w-full flex flex-col gap-0.5 truncate">
+          <span class="font-semibold leading-none truncate">${adherent.denomination}</span>
+          <div class="flex">
+            <span class="bg-green-600 text-white text-xs font-medium px-2 py-0.5 mb-0.5 rounded">${adherent.code}</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -37,26 +39,21 @@
 
   <fieldset class="flex justify-center mt-10">
     <div>
-      <%--<legend class="text-center mt-4 mb-2 underline"><spring:message code="label.artipole"/></legend>--%>
-
 
       <c:forEach items="${editForm.metiersAdh}" var="metierAdh" varStatus="status">
+        
         <form:input type="hidden" path="metiersAdh[${status.index}].id"/>
         <form:input type="hidden" path="metiersAdh[${status.index}].adherentId"/>
         <form:input type="hidden" path="metiersAdh[${status.index}].metierId"/>
-        <div class="flex items-center mt-2">
-          
+        <div class="flex items-center mt-2 gap-2">
           <form:checkbox class="input-checkbox" path="metiersAdh[${status.index}].check"/>
-          
-          <div class="w-56 mx-2">
-            <c:forEach items="${metiers}" var="metier">
-              <c:if test="${metier.id == metierAdh.metierId}">
-                <form:label class="flex items-center text-left" path="metiersAdh[${status.index}].check">${metier.libelle}</form:label>
-              </c:if>
-            </c:forEach>
-          </div>
-
+          <c:forEach items="${metiers}" var="metier">
+            <c:if test="${metier.id == metierAdh.metierId}">
+              <form:label class="flex items-center text-left" path="metiersAdh[${status.index}].check">${metier.libelle}</form:label>
+            </c:if>
+          </c:forEach>
         </div>
+          
       </c:forEach>
     </div>
   </fieldset>

@@ -56,8 +56,7 @@ public class ContactController {
   public String addContact(@Valid @ModelAttribute("contactToAdd") final AddAdherentContactForm newContact, final BindingResult pBindingResult, final ModelMap pModel, final HttpServletRequest request) {
     if (!pBindingResult.hasErrors()) {
       this.service.createContactAdherent(this.editToContact(newContact.getContact()));
-      return redirectOkPage(PageType.ADHERENT_PROFIL, newContact.getContact().getAdherentId());
-
+      return "redirect:/adherentProfil?tab=contacts&idAdh=" + newContact.getContact().getAdherentId();
     }
     return this.editContact(newContact.getContact().getAdherentId(), pModel, request);
   }
@@ -71,8 +70,8 @@ public class ContactController {
       pModel.addAttribute("addContactForm", (Object) editContactForm);
     } else {
       pModel.addAttribute("addContactForm", pModel.get((Object) "addContactForm"));
-    }
-    ;
+    };
+
     final Map<Integer, String> listAdherents = (Map<Integer, String>) this.service.loadAdherents().stream().collect(Collectors.toMap(a -> a.getId(), a -> a.getLibelle()));
     final Map<String, String> civilite = new HashMap<String, String>();
     civilite.put("Mme", "Mme");
@@ -80,7 +79,7 @@ public class ContactController {
     pModel.addAttribute("civilite", (Object) civilite);
     pModel.addAttribute("listAdherents", (Object) listAdherents);
     pModel.addAttribute("criteria", (Object) new CriteriaAdherent());
-    pModel.addAttribute("pageType", (Object) PageType.LIST_CONTACT_CLUB_FEMMES);
+    pModel.addAttribute("pageType", (Object) PageType.LISTE_FEMMES);
     return "addContactClubFemme";
   }
 
@@ -94,8 +93,8 @@ public class ContactController {
       this.service.createContactClubFemme(newContactClub);
       return "redirect:/listeClubFemmes";
     }
-    pModel.addAttribute("navType", NavType.ADHERENT);
-    pModel.addAttribute("pageType", PageType.LIST_CONTACT_CLUB_FEMMES);
+    pModel.addAttribute("navType", NavType.ADHERENTS);
+    pModel.addAttribute("pageType", PageType.LISTE_FEMMES);
     return this.addContactClubFemme(pModel);
   }
 
@@ -116,8 +115,8 @@ public class ContactController {
     pModel.addAttribute("civilite", (Object) civilite);
     pModel.addAttribute("listAdherents", (Object) listAdherents);
     pModel.addAttribute("criteria", (Object) new CriteriaAdherent());
-    pModel.addAttribute("navType", NavType.ADHERENT);
-    pModel.addAttribute("pageType", PageType.LIST_CONTACT_RETRAITE);
+    pModel.addAttribute("navType", NavType.ADHERENTS);
+    pModel.addAttribute("pageType", PageType.LISTE_RETRAITES);
     return "addContactRetraite";
   }
 
@@ -129,10 +128,10 @@ public class ContactController {
       newContactRetraite.setAdherent(this.service.loadAdherent((int) contact.getAdherentId()));
       newContactRetraite.setId(Integer.valueOf(0));
       this.service.createContactRetraite(newContactRetraite);
-      return "redirect:/listeRetraite";
+      return "redirect:/listeRetraites";
     }
-    pModel.addAttribute("navType", NavType.ADHERENT);
-    pModel.addAttribute("pageType", PageType.LIST_CONTACT_RETRAITE);
+    pModel.addAttribute("navType", NavType.ADHERENTS);
+    pModel.addAttribute("pageType", PageType.LISTE_RETRAITES);
     return this.addContactRetraite(pModel);
   }
 
@@ -210,7 +209,7 @@ public class ContactController {
     pModel.addAttribute("civilite", (Object) civilite);
     final Adherent adh = this.service.loadAdherent(idAdh);
     pModel.addAttribute("adherent", adh);
-    pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
+    pModel.addAttribute("pageType", PageType.LISTE_ADHERENTS);
     return "editContactComptableAdh";
   }
 
@@ -252,7 +251,7 @@ public class ContactController {
     pModel.addAttribute("roleSalarieEOLAS", (Object) roleSalarieEOLAS);
     if (pModel.get((Object) "contactToEdit") == null) {
       final EditAdherentContactsForm editAdhContactsForm = new EditAdherentContactsForm();
-      editAdhContactsForm.setCommentaire(this.service.loadAdherentCommentaire(idAdh, PageType.ADHERENT_DETAIL));
+      editAdhContactsForm.setCommentaire(this.service.loadAdherentCommentaire(idAdh, PageType.ADHERENT_PROFIL));
       final List<EditAdherentContact> editableAdhContacts = this.contactToEdit(adh.getContacts());
       editAdhContactsForm.setAdherentContacts((List) editableAdhContacts);
       pModel.addAttribute("contactToEdit", (Object) editAdhContactsForm);
@@ -268,7 +267,7 @@ public class ContactController {
     } else {
       pModel.addAttribute("contactToAdd", pModel.get((Object) "contactToAdd"));
     }
-    pModel.addAttribute("pageType", PageType.LIST_ADHERENT);
+    pModel.addAttribute("pageType", PageType.LISTE_ADHERENTS);
     return "editContactAdh";
   }
 
@@ -375,35 +374,6 @@ public class ContactController {
     return contacts;
   }
 
-  private PageType extractPageType(final String servletPath) {
-    switch (servletPath) {
-      case "editActiviteAdh": {
-        return PageType.ADHERENT_ACTIVITE;
-      }
-      case "editArtipoleAdh": {
-        return PageType.ADHERENT_ARTIPOLE;
-      }
-      case "editAdministratifAdh": {
-        return PageType.ADHERENT_ADMINISTRATIF;
-      }
-      case "editExploitationAdh": {
-        return PageType.ADHERENT_EXPLOITATION;
-      }
-      case "editInformatiqueAdh": {
-        return PageType.ADHERENT_INFORMATIQUE;
-      }
-      case "editDetailAdh": {
-        return PageType.ADHERENT_DETAIL;
-      }
-      case "editCRM": {
-        return PageType.ADHERENT_CRM;
-      }
-      default: {
-        return PageType.LIST_ADHERENT;
-      }
-    }
-  }
-
   @RequestMapping(value = {"/edit/editAdherentContact"}, method = {RequestMethod.POST})
   public String modifieContact(@Valid @ModelAttribute("contactToEdit") final EditAdherentContactsForm editForm, final BindingResult pBindingResult, final ModelMap pModel, final HttpServletRequest request) {
     final List<EditAdherentContact> adhContactEditable = (List<EditAdherentContact>) editForm.getAdherentContacts();
@@ -411,8 +381,8 @@ public class ContactController {
     if (!pBindingResult.hasErrors()) {
       final List<AdherentContactRole> contacts = this.editToContactList(adhContactEditable);
       this.service.saveAdherentContacts((List) contacts);
-      this.service.saveAdherentCommentaire(adhId, PageType.ADHERENT_DETAIL, editForm.getCommentaire());
-      return redirectOkPage(PageType.ADHERENT_PROFIL, adhId);
+      this.service.saveAdherentCommentaire(adhId, PageType.ADHERENT_PROFIL, editForm.getCommentaire());
+      return "redirect:/adherentProfil?tab=contacts&idAdh=" + adhId;
     }
     return this.editContact(adhId, pModel, request);
   }
@@ -421,60 +391,7 @@ public class ContactController {
   public String supprimeAdherentContact(@RequestParam("adhId") final Integer adhId, @RequestParam("ctId") final Integer contactId, final ModelMap pModel, final HttpServletRequest request) {
     if (contactId != null) {
       this.service.supprimeAdherentContact(contactId);
-      return redirectOkPage(PageType.ADHERENT_PROFIL, adhId);
     }
     return this.editContact(adhId, pModel, request);
   }
-
-  private String redirectOkPage(final PageType pageType, final Integer adhId) {
-    String page = null;
-    switch (pageType) {
-      case ADHERENT_ACTIVITE: {
-        page = "adherentActivite";
-        break;
-      }
-      case ADHERENT_ADMINISTRATIF: {
-        page = "adherentAdministratif";
-        break;
-      }
-      case ADHERENT_ARTIPOLE: {
-        page = "adherentArtipole";
-        break;
-      }
-      case ADHERENT_DETAIL: {
-        page = "adherentDetail";
-        break;
-      }
-      case LOGISTIQUE_TOURNEE: {
-        page = "adherentLogistique";
-        break;
-      }
-      case ADHERENT_INFORMATIQUE: {
-        page = "adherentInformatique";
-        break;
-      }
-      case ADHERENT_CRM: {
-        page = "adherentCRM";
-        break;
-      }
-      case ADHERENT_PROFIL: {
-        page = "adherentProfil";
-        break;
-      }
-      case LISTE_CAMIONS: {
-        page = "listeCamions";
-        break;
-      }
-      case LISTE_CONDUCTEURS: {
-        page = "listeConducteurs";
-        break;
-      }
-      default: {
-        page = "adherentProfil";
-        break;
-      }
-    }
-    return "redirect:/" + page + "?idAdh=" + adhId;
-  }
-
 }

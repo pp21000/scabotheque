@@ -516,31 +516,16 @@ public class AdherentDAO implements IAdherentDAO {
     return entityManager.createQuery("from AdherentType", AdherentType.class).getResultList();
   }
 
-  /**
-   * Chargement de tous les adhenrents
-   *
-   * @return Liste de tous le adherents
-   */
   @Override
   public List<Adherent> loadAdherents() {
     return entityManager.createQuery("from Adherent", Adherent.class).getResultList();
   }
 
-  /**
-   * Chargement de tous les adhenrents
-   *
-   * @return Liste de tous le adherents
-   */
   @Override
   public List<AdherentContactRole> loadAdherentsContact() {
     return entityManager.createQuery("from AdherentContactRole", AdherentContactRole.class).getResultList();
   }
 
-  /**
-   * @param criteria Recherche de la liste des adherents correspondant aux
-   * critéres
-   * @return Liste des adhérents
-   */
   @Override
   public List<Adherent> loadAdherents(CriteriaAdherent criteria) {
 
@@ -659,12 +644,12 @@ public class AdherentDAO implements IAdherentDAO {
 
   @Override
   public List<Secteur> loadSecteurs() {
-    return entityManager.createQuery("from Secteur", Secteur.class).getResultList();
+    return entityManager.createQuery("from Secteur order by position", Secteur.class).getResultList();
   }
 
   @Override
   public List<Tournee> loadTournees() {
-    return entityManager.createQuery("from Tournee", Tournee.class).getResultList();
+    return entityManager.createQuery("from Tournee order by position", Tournee.class).getResultList();
   }
 
   @Override
@@ -731,11 +716,8 @@ public class AdherentDAO implements IAdherentDAO {
   @Override
   @Transactional
   public void saveAdherentContacts(List<AdherentContactRole> contacts) {
-
-    // Pour tout les contact de la liste
     contacts.stream().forEach(c -> {
-      AdherentContactRole adhContact = c.getId() == null ? new AdherentContactRole()
-              : entityManager.find(AdherentContactRole.class, c.getId());
+      AdherentContactRole adhContact = c.getId() == null ? new AdherentContactRole() : entityManager.find(AdherentContactRole.class, c.getId());
       updateAdherentContactData(adhContact, c);
       entityManager.persist(adhContact);
     });
@@ -749,10 +731,12 @@ public class AdherentDAO implements IAdherentDAO {
     update.setAdresseComplement(logistiqueAdh.getAdresseComplement());
     update.setContactReceptionId(logistiqueAdh.getContactReceptionId());
     update.setAuthorise(logistiqueAdh.getIsAuthorise());
-    update.setCommune(this.loadCommune(logistiqueAdh.getCommune().getId()));
     update.setMaterielDechargement(logistiqueAdh.getIsMaterielDechargement());
     update.setOutillageCommentaire(logistiqueAdh.getOutillageCommentaire());
     update.setProtocolDechargement(logistiqueAdh.getProtocolDechargement());
+    if (logistiqueAdh.getCommune().getId() != null) {
+      update.setCommune(this.loadCommune(logistiqueAdh.getCommune().getId()));
+    }
     this.entityManager.persist(update);
   }
 
@@ -778,18 +762,14 @@ public class AdherentDAO implements IAdherentDAO {
   @Transactional
   public void saveAdherentSuiviVisite(AdherentSuiviVisite suivi) {
     AdherentSuiviVisite update = loadAdherentSuiviVisite(suivi.getId());
-
     update.setCommentaire(suivi.getCommentaire());
     update.setDateCommentaire(suivi.getDateCommentaire());
-
     entityManager.persist(update);
   }
 
   @Override
   @Transactional
   public void saveAgences(List<Agence> agences) {
-
-    // Pour toutes les agences de la liste
     agences.stream().forEach(a -> {
       Agence agence = a.getId() == null ? new Agence() : entityManager.find(Agence.class, a.getId());
       agence.setPosition(a.getPosition());
@@ -802,7 +782,6 @@ public class AdherentDAO implements IAdherentDAO {
   @Transactional
   public void saveContactComptableAdherent(AdherentContactComptable contact) {
     AdherentContactComptable contactBdd = contact.getId() == null ? new AdherentContactComptable() : entityManager.find(AdherentContactComptable.class, contact.getId());
-
     contactBdd.setAdherentId(contact.getAdherentId());
     contactBdd.setCabinet(contact.getCabinet());
     contactBdd.setCivilite(contact.getCivilite());
@@ -811,17 +790,14 @@ public class AdherentDAO implements IAdherentDAO {
     contactBdd.setMobile(contact.getMobile());
     contactBdd.setNom(contact.getNom());
     contactBdd.setPrenom(contact.getPrenom());
-
     entityManager.persist(contactBdd);
   }
 
   @Override
   @Transactional
   public void saveContactsFonctions(List<ContactFonction> contactFonctions) {
-    // Pour tout les contact de la liste
     contactFonctions.stream().forEach(a -> {
-      ContactFonction contactFonction = a.getId() == null ? new ContactFonction()
-              : entityManager.find(ContactFonction.class, a.getId());
+      ContactFonction contactFonction = a.getId() == null ? new ContactFonction() : entityManager.find(ContactFonction.class, a.getId());
       contactFonction.setPosition(a.getPosition());
       contactFonction.setLibelle(a.getLibelle());
       entityManager.persist(contactFonction);
@@ -831,7 +807,6 @@ public class AdherentDAO implements IAdherentDAO {
   @Override
   @Transactional
   public void savePoles(List<Pole> poles) {
-    // Pour tout les contact de la liste
     poles.stream().forEach(a -> {
       Pole pole = a.getId() == null ? new Pole() : entityManager.find(Pole.class, a.getId());
       pole.setPosition(a.getPosition());
@@ -843,7 +818,6 @@ public class AdherentDAO implements IAdherentDAO {
   @Override
   @Transactional
   public void saveRoles(List<Role> roles) {
-    // Pour tout les contact de la liste
     roles.stream().forEach(a -> {
       Role role = a.getId() == null ? new Role() : entityManager.find(Role.class, a.getId());
       role.setPosition(a.getPosition());
@@ -855,7 +829,6 @@ public class AdherentDAO implements IAdherentDAO {
   @Override
   @Transactional
   public void saveSecteurs(List<Secteur> secteurs) {
-    // Pour tout les contact de la liste
     secteurs.stream().forEach(a -> {
       Secteur secteur = a.getId() == null ? new Secteur() : entityManager.find(Secteur.class, a.getId());
       secteur.setPosition(a.getPosition());
@@ -905,7 +878,6 @@ public class AdherentDAO implements IAdherentDAO {
   public void setAdherentImage(int adhId, byte[] photo) {
     Adherent adh = loadAdherent(adhId);
     adh.setPhoto(photo);
-
     entityManager.persist(adh);
 
   }
@@ -920,15 +892,12 @@ public class AdherentDAO implements IAdherentDAO {
   @Override
   @Transactional
   public void setContactImage(int contactId, byte[] photo) {
-
     try {
       AdherentContactRole contact = entityManager.find(AdherentContactRole.class, contactId);
       contact.setPhoto(photo);
       entityManager.persist(contact);
-
     } catch (NoResultException e) {
     }
-
   }
 
   @Override
@@ -985,9 +954,7 @@ public class AdherentDAO implements IAdherentDAO {
   }
 
   private void loadAchat(AdherentActivite naa) {
-
-    List<ActiviteFamille> listActiviteFamille = entityManager.createQuery("from ActiviteFamille where activiteId = :id", ActiviteFamille.class)
-            .setParameter("id", naa.getActivite().getId()).getResultList();
+    List<ActiviteFamille> listActiviteFamille = entityManager.createQuery("from ActiviteFamille where activiteId = :id", ActiviteFamille.class).setParameter("id", naa.getActivite().getId()).getResultList();
     String queryTmp = "";
 
     for (int i = 0; i < listActiviteFamille.size(); i++) {
@@ -1032,8 +999,7 @@ public class AdherentDAO implements IAdherentDAO {
 
   private void loadAchatDate(AdherentActivite naa) {
 
-    List<ActiviteFamille> listActiviteFamille = entityManager.createQuery("from ActiviteFamille where activiteId = :id", ActiviteFamille.class)
-            .setParameter("id", naa.getActivite().getId()).getResultList();
+    List<ActiviteFamille> listActiviteFamille = entityManager.createQuery("from ActiviteFamille where activiteId = :id", ActiviteFamille.class).setParameter("id", naa.getActivite().getId()).getResultList();
     String queryTmp = "";
 
     for (int i = 0; i < listActiviteFamille.size(); i++) {
@@ -1081,10 +1047,7 @@ public class AdherentDAO implements IAdherentDAO {
 
   private AdherentCommentaire loadAdherentPageCommentaire(int idAdh, PageType type) {
     try {
-      return entityManager
-              .createQuery("from AdherentCommentaire com where adherentId = :adhId and type = :type",
-                      AdherentCommentaire.class)
-              .setParameter("adhId", idAdh).setParameter("type", type).getSingleResult();
+      return entityManager.createQuery("from AdherentCommentaire com where adherentId = :adhId and type = :type", AdherentCommentaire.class).setParameter("adhId", idAdh).setParameter("type", type).getSingleResult();
 
     } catch (NoResultException e) {
       return null;
@@ -1156,9 +1119,7 @@ public class AdherentDAO implements IAdherentDAO {
     naa.setTotalDateN3(totalN3);
   }
 
-  private AdherentContactRole updateAdherentContactData(AdherentContactRole dbbContact,
-          AdherentContactRole adhContact) {
-
+  private AdherentContactRole updateAdherentContactData(AdherentContactRole dbbContact, AdherentContactRole adhContact) {
     dbbContact.setAdherent(adhContact.getAdherent());
     dbbContact.setCivilite(adhContact.getCivilite());
     dbbContact.setFixe(adhContact.getFixe());
@@ -1178,9 +1139,7 @@ public class AdherentDAO implements IAdherentDAO {
     dbbContact.setPassEOLAS(adhContact.getPassEOLAS());
     dbbContact.setRoleSalarieEOLASId(adhContact.getRoleSalarieEOLASId());
     dbbContact.setDateNaissance(adhContact.getDateNaissance());
-
     return dbbContact;
-
   }
 
   private Adherent updateAdherentData(Adherent bddAdherent, Adherent adherent) {

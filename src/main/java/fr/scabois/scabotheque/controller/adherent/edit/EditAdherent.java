@@ -238,7 +238,7 @@ public class EditAdherent {
     this.mail = mail;
   }
 
-  public Integer getNbSalarie() {
+  public Integer getNbSalaries() {
     return this.nbSalaries;
   }
 

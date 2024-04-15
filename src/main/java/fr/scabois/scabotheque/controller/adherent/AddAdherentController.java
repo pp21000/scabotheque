@@ -16,8 +16,10 @@ import fr.scabois.scabotheque.controller.adherent.edit.EditAdherentForm;
 import fr.scabois.scabotheque.enums.NavType;
 import fr.scabois.scabotheque.enums.PageType;
 import fr.scabois.scabotheque.services.IServiceAdherent;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -33,6 +35,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AddAdherentController {
 
   private EditAdherent adhEditable;
+
   @Autowired
   private MessageSource messages;
 
@@ -41,7 +44,7 @@ public class AddAdherentController {
 
   private void addSelectLists(final ModelMap pModel) {
     List<Agence> agences = service.loadAgences();
-    List<Ape> codeApes = service.loadCodeApes();
+    List<Ape> codeApes = service.loadCodeApes().stream().sorted(Comparator.comparing(Ape::getCode, Comparator.comparing(code -> code.equals("NR") ? "" : code))).collect(Collectors.toList());
     List<AdherentEtat> etats = service.loadEtats();
     List<FormeJuridique> formesJuridiques = service.loadFormesJuridiques();
     List<Pole> poles = service.loadPoles();
@@ -61,33 +64,8 @@ public class AddAdherentController {
     pModel.addAttribute("tourneeList", tournees);
     pModel.addAttribute("adherentTypeList", adherentTypes);
     pModel.addAttribute("compteTypeList", compteTypes);
-
   }
 
-//  @RequestMapping(value = "/addAdherent**", method = RequestMethod.GET)
-//  public String newAdherent(final ModelMap pModel) {
-//
-//    addSelectLists(pModel);
-//
-////    List<Commune> communes = service.loadCommunes();
-//    pModel.addAttribute("communeList", new ArrayList<Commune>());
-//
-//    if (pModel.get("adhToAdd") == null) {
-//      final EditAdherentForm editAdhForm = new EditAdherentForm();
-//
-//      // Rend l'adherent éditable (avec des validations test)
-//      EditAdherent editableAdh = new EditAdherent(); // adhToEdit(adh);
-//      editAdhForm.setAdherent(editableAdh);
-//
-//      pModel.addAttribute("adhToAdd", editAdhForm);
-//    } else {
-//      pModel.addAttribute("adhToAdd", pModel.get("adhToAdd"));
-//    }
-//
-//    pModel.addAttribute("pageType", PageType.CREATE_ADHERENT);
-//
-//    return "addAdherent";
-//  }
   @RequestMapping(value = "/addAdherent**", method = RequestMethod.GET)
   public String afficher(final ModelMap pModel) {
 
@@ -104,10 +82,10 @@ public class AddAdherentController {
       pModel.addAttribute("adhToAdd", pModel.get("adhToAdd"));
     }
 
-    pModel.addAttribute("navType", NavType.ADHERENT);
+    pModel.addAttribute("navType", NavType.ADHERENTS);
     pModel.addAttribute("pageType", PageType.CREATE_ADHERENT);
 
-    return "addIdentite";
+    return "addAdherent";
   }
 
   public Adherent editToAdh(EditAdherent editAdh) {
@@ -165,8 +143,7 @@ public class AddAdherentController {
   }
 
   @RequestMapping(value = "/addAdherent", method = RequestMethod.POST)
-  public String modifier(@Valid @ModelAttribute(value = "adhToAdd") final EditAdherentForm editForm,
-          final BindingResult pBindingResult, final ModelMap pModel) {
+  public String modifier(@Valid @ModelAttribute(value = "adhToAdd") final EditAdherentForm editForm, final BindingResult pBindingResult, final ModelMap pModel) {
 
     adhEditable = editForm.getAdherent();
     Adherent adh = editToAdh(adhEditable);

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
-         pageEncoding="UTF-8" %>
+<%@page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -7,10 +6,10 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-
-
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
 
 <c:url value="/adherentProfil" var="urlPrev"><c:param name="tab" value="contacts"/><c:param name="idAdh" value="${editForm.editAdherent.id}"/></c:url>
 <button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location = '${urlPrev}'">
@@ -20,32 +19,22 @@
 <form:form class="" method="post" modelAttribute="editForm" action="editIdentiteAdh?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
   <fieldset class="flex justify-center">
 
-      <!-- Permet de ne pas perdre les données autre que celles modifié -->
-      <form:input type="hidden" name="editAdherent.code" path="editAdherent.id"/> 
+      <!-- Permet de ne pas perdre les données autres que celles modifiées -->
+      <form:input type="hidden" name="editAdherent.id" path="editAdherent.id"/> 
       <form:input type="hidden" name="editAdherent.code" path="editAdherent.code"/> 
-      <%-- 	<form:input type="hidden" name="adherent.libelle" path="adherent.libelle"/> --%>
-      <%-- 	<form:input type="hidden" name="adherent.denomination" path="adherent.denomination"/> --%>
-      <%-- 	<form:input type="hidden" name="adherent.adresse" path="adherent.adresse"/> --%>
-      <%-- 	<form:input type="hidden" name="adherent.adresseComplement" path="adherent.adresseComplement"/> --%>
+      <%--<form:input type="hidden" name="editAdherent.codeERP" path="editAdherent.codeERP"/>--%>
+      <%--<form:input type="hidden" name="editAdherent.codeERPParent" path="editAdherent.codeERPParent"/>--%> 
+      <%--<form:input type="hidden" name="adherent.libelle" path="adherent.libelle"/>--%>
+      <%--<form:input type="hidden" name="adherent.denomination" path="adherent.denomination"/>--%>
+      <%--<form:input type="hidden" name="adherent.adresse" path="adherent.adresse"/>--%>
+      <%--<form:input type="hidden" name="adherent.adresseComplement" path="adherent.adresseComplement"/>--%>
       <%--<form:input type="hidden" path="adherent.commune.id"/>--%> 
-      <%-- 	<form:input type="hidden" path="adherent.pole.id"/> --%>
-      <%-- 	<form:input type="hidden" path="adherent.isArtipole"/> --%>
-      <form:input type="hidden" path="editAdherent.isCharteArtipole"/>
-      <form:input type="hidden" path="editAdherent.isFlocageArtipole"/>
-      <form:input type="hidden" path="editAdherent.isWebArtipole"/>
-      <form:input type="hidden" path="editAdherent.isFacebookArtipole"/>
-
-      <form:input type="hidden" path="editAdherent.siteWeb"/>
-      <form:input type="hidden" path="editAdherent.facebook"/>
-      <form:input type="hidden" path="editAdherent.instagram"/>
-      <form:input type="hidden" path="editAdherent.linkedin"/>
-      <form:input type="hidden" path="editAdherent.youtube"/>
-      <form:input type="hidden" path="editAdherent.pinterest"/>
-
+      <%--<form:input type="hidden" path="adherent.pole.id"/> --%>
       <form:input type="hidden" path="editAdherent.agence.id"/>
       <form:input type="hidden" path="editAdherent.secteur.id"/>
       <form:input type="hidden" path="editAdherent.tournee.id"/>
       <form:input type="hidden" path="editAdherent.isOutilDechargement"/>
+      <form:input type="hidden" path="editAdherent.dateCreation"/>
       <form:input type="hidden" path="editAdherent.dateEntree"/>
       <form:input type="hidden" path="editAdherent.dateSortie"/>
       <form:input type="hidden" path="editAdherent.role.id"/>
@@ -58,7 +47,6 @@
       <form:input type="hidden" path="editAdherent.rcsCommune.id"/>
       <form:input type="hidden" path="editAdherent.rmCommune.id"/>
       <form:input type="hidden" path="editAdherent.dateClotureExe"/>
-      <%--<form:input type="hidden" path="adherent.contactComptable"/>--%>
       <form:input type="hidden" path="editAdherent.formationDirigeant"/>
       <form:input type="hidden" path="editAdherent.cnxEolasAllow"/>
       <form:input type="hidden" path="editAdherent.etat.id"/>
@@ -66,144 +54,164 @@
       <form:input type="hidden" path="editAdherent.compteType.id"/>
       <form:input type="hidden" path="editAdherent.description_entreprise"/>
       <form:input type="hidden" path="editAdherent.description_activite"/>
+      <%--<form:input type="hidden" path="adherent.isArtipole"/> --%>
+      <form:input type="hidden" path="editAdherent.isCharteArtipole"/>
+      <form:input type="hidden" path="editAdherent.isFlocageArtipole"/>
+      <form:input type="hidden" path="editAdherent.isWebArtipole"/>
+      <form:input type="hidden" path="editAdherent.isFacebookArtipole"/>
+      <form:input type="hidden" path="editAdherent.siteWeb"/>
+      <form:input type="hidden" path="editAdherent.facebook"/>
+      <form:input type="hidden" path="editAdherent.instagram"/>
+      <form:input type="hidden" path="editAdherent.linkedin"/>
+      <form:input type="hidden" path="editAdherent.youtube"/>
+      <form:input type="hidden" path="editAdherent.pinterest"/>
       
       
-      <div>
-        <div class="flex">
-          <div class="w-1/2 px-10">
-            <div class="rounded-xl bg-neutral-50 p-4 border border-neutral-200 flex flex-col items-center">
-              <div class="text-sm font-semibold text-center">
-                
-              <div class="flex flex-col">
-                <div class="text-center text-xl font-semibold">
-                  ${editForm.editAdherent.denomination}
-                </div>
-                <div class="flex justify-center items-center font-normal gap-2">
-                  <spring:message code="label.codeAdh"/> : 
-                  <div class="bg-green-200 text-green-800 text-sm font-medium mr-2 px-2 py-0.5 rounded">${editForm.editAdherent.code}</div>
-                </div>
-              </div>                
-              
-              <div class="mt-5">
-                  <span class="text-lg">Logo</span>
-                  <c:choose>
-                    <c:when test="${editForm.editAdherent.logo == ''}">
-                      <img class="mx-auto" src="<c:url value="/resources/images/noImage.png" />" alt="Photo de l'entreprise"/>
-                    </c:when>
-                    <c:otherwise>
-                      <img class="max-w-[14rem] mx-auto rounded" src="${editForm.editAdherent.logo}" alt="Photo de l'entreprise">
-                    </c:otherwise>
-                  </c:choose>
-                  <form:input path="editAdherent.fileLogo" class=" mt-2 text-xs" type="file" name="file" accept="image/x-png,image/gif,image/jpeg"/>
-                </div>
-                
-                <div class="mt-5">
-                  <span class="text-lg">Photo</span>
-                  <c:choose>
-                    <c:when test="${editForm.editAdherent.photo == ''}">
-                      <img class="mx-auto" src="<c:url value="/resources/images/noImage.png" />" alt="Logo de l'entreprise"/>
-                    </c:when>
-                    <c:otherwise>
-                      <img class="max-w-[14rem] mx-auto rounded" src="${editForm.editAdherent.photo}" alt="Logo de l'entreprise"/>
-                    </c:otherwise>
-                  </c:choose>
-                  <form:input path="editAdherent.filePhoto" class="mt-2 text-xs" type="file" name="file" accept="image/x-png,image/gif,image/jpeg"/>
-                </div>
+      <div class="w-5/6">
+        <div class="flex gap-20">
+          <div class="flex flex-col w-2/5 rounded-3xl text-sm text-center bg-gray-200 dark:bg-gray-600 p-4">
+            
+            <div class="flex flex-col">
+              <div class="text-xl font-bold">
+                ${editForm.editAdherent.denomination}
               </div>
-  
-          </div>
+              <div class="flex justify-center">
+                <div class="bg-green-600 text-white text-sm font-medium px-2 py-0.5 rounded">${editForm.editAdherent.code}</div>
+              </div>
+              <c:if test="${not empty adherent.codeERPParent}">
+                <div class="flex justify-center items-center gap-1">
+                  <div class="text-center text-sm"><spring:message code="label.codeERPParent"/> :</div>
+                  <div class="bg-green-600 text-white text-xs font-medium px-1.5 py-0.5 rounded">${adherent.codeERPParent}</div>
+                </div>
+              </c:if> 
+            </div> 
+                
+            <div class="flex flex-col flex-grow justify-evenly">
+              <div class="flex flex-col gap-2">
+                <c:choose>
+                  <c:when test="${not empty adherent.logoImg}">
+                    <div class="flex pr-10">
+                      <div class="-rotate-90 flex items-center">
+                        <span class="font-normal text-lg">Logo</span>
+                      </div>                
+                      <div class="w-full">
+                        <img class="max-w-80 max-h-48 mx-auto" src="${adherent.logoImg}" alt="Logo de l'entreprise">
+                      </div>
+                    </div>
+                  </c:when>
+                  <c:otherwise>
+                    <div class="text-xl my-2">
+                      <spring:message code="label.noLogo"/>
+                    </div>
+                  </c:otherwise>
+                </c:choose>
+                <form:input path="editAdherent.fileLogo" class="mx-auto font-semibold" type="file" name="file" accept="image/x-png,image/gif,image/jpeg"/>
+              </div>
+              
+              <div class="flex flex-col gap-2">
+                <c:choose>
+                  <c:when test="${not empty adherent.photoImg}">
+                    <div class="flex pr-10">
+                      <div class="-rotate-90 flex items-center">
+                        <span class="font-normal text-lg">Photo</span>
+                      </div>                
+                      <div class="w-full">                
+                        <img class="max-w-80 max-h-48 mx-auto" src="${adherent.photoImg}" alt="Photo de l'entreprise"/>
+                      </div>
+                    </div>
+                  </c:when>
+                    <c:otherwise>
+                      <div class="text-xl my-2">
+                        <spring:message code="label.noPhoto"/>
+                      </div>
+                    </c:otherwise>
+                </c:choose>
+                <form:input path="editAdherent.filePhoto" class="mx-auto font-semibold" type="file" name="file" accept="image/x-png,image/gif,image/jpeg"/>
+              </div>
+            </div>
           </div>
 
         <%--<form:form class="card" method="post" modelAttribute="editForm" action="editIdentiteAdh">--%>
         <%--<form:input class="card-header" type="hidden" path="adherent.id"/>--%>
         <%--<form:form class="" method="post" modelAttribute="editForm" action="editIdentiteAdh${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">--%>
 
-          <div class="w-1/2 px-10">
+          <div class="w-3/5">
             <fieldset>
 
-              <div class="flex items-center mt-2">
-                <div class="flex-grow w-56 mr-2 text-right">
-                  <form:label class="mt-2" path="editAdherent.codeERP"><spring:message code="label.codeERP"/></form:label>
+              <div class="flex items-center mt-2 gap-2">
+                <div class="w-64 text-right">
+                  <form:label path="editAdherent.codeERP"><spring:message code="label.codeERP"/></form:label>
                 </div>
-                <form:input class="flex-grow w-96 input-text"
-                            name="editAdherent.codeERP" path="editAdherent.codeERP"/>
+                <form:input class="w-20 input-text" name="editAdherent.codeERP" path="editAdherent.codeERP"/>
                 <form:errors class="error-message" path="editAdherent.codeERP"/>
               </div>
 
 
-              <div class="flex items-center mt-2">
-                <div class="flex-grow w-56 mr-2 text-right">
-                  <form:label class="mt-2" path="editAdherent.codeERPParent"><spring:message code="label.codeERPParent"/></form:label>
-                  </div>
-                <form:input class="flex-grow w-96 input-text"
-                            name="editAdherent.codeERPParent" path="editAdherent.codeERPParent"/>
+              <div class="flex items-center mt-2 gap-2">
+                <div class="w-64 text-right">
+                  <form:label path="editAdherent.codeERPParent"><spring:message code="label.codeERPParent"/></form:label>
+                </div>
+                <form:input class="w-20 input-text" name="editAdherent.codeERPParent" path="editAdherent.codeERPParent"/>
                 <form:errors class="error-message" path="editAdherent.codeERPParent"/>
               </div>
 
-              <div class="flex items-center mt-2">
-                <div class="flex-grow w-56 mr-2 text-right">
-                  <form:label class="mt-2" path="editAdherent.libelle"><spring:message code="label.libelle"/></form:label>
-                  </div>
-                <form:input class="flex-grow w-96 input-text"
-                            name="editAdherent.libelle" path="editAdherent.libelle"/>
+              <div class="flex items-center mt-2 gap-2">
+                <div class="w-64 text-right">
+                  <form:label path="editAdherent.libelle"><spring:message code="label.libelle"/></form:label>
+                </div>
+                <form:input class="w-80 input-text" name="editAdherent.libelle" path="editAdherent.libelle"/>
                 <form:errors class="error-message" path="editAdherent.libelle"/>
               </div>
 
 
-              <div class="flex items-center mt-2">
-                <div class="flex-grow w-56 mr-2 text-right">
-                  <form:label class="mt-2" path="editAdherent.denomination"><spring:message code="label.denomination"/></form:label>
-                  </div>
-                <form:input class="flex-grow w-96 input-text"
-                            name="editAdherent.denomination" path="editAdherent.denomination"/>
+              <div class="flex items-center mt-2 gap-2">
+                <div class="w-64 text-right">
+                  <form:label path="editAdherent.denomination"><spring:message code="label.denomination"/></form:label>
+                </div>
+                <form:input class="w-80 input-text" name="editAdherent.denomination" path="editAdherent.denomination"/>
                 <form:errors class="error-message" path="editAdherent.denomination"/>
               </div>
 
-              <div class="flex items-center mt-2">
-                <div class="flex-grow w-56 mr-2 text-right">
-                  <form:label class="mt-2" path="editAdherent.telephone"><spring:message code="label.telephone"/></form:label>
+              <div class="flex items-center mt-2 gap-2">
+                <div class="w-64 text-right">
+                  <form:label path="editAdherent.telephone"><spring:message code="label.telephone"/></form:label>
                 </div>
-                <form:input class="flex-grow w-96 input-text"
-                            name="editAdherent.telephone" path="editAdherent.telephone"/>
+                <form:input class="w-32 input-text" name="editAdherent.telephone" path="editAdherent.telephone"/>
                 <form:errors class="error-message" path="editAdherent.telephone"/>
               </div>
 
 
-              <div class="flex items-center mt-2">
-                <div class="flex-grow w-56 mr-2 text-right">
-                  <form:label class="mt-2" path="editAdherent.mail"><spring:message code="label.mail"/></form:label>
-                  </div>
-                <form:input class="flex-grow w-96 input-text"
-                            name="editAdherent.mail" path="editAdherent.mail"/>
+              <div class="flex items-center mt-2 gap-2">
+                <div class="w-64 text-right">
+                  <form:label path="editAdherent.mail"><spring:message code="label.mail"/></form:label>
+                </div>
+                <form:input class="w-80 input-text" name="editAdherent.mail" path="editAdherent.mail"/>
                 <form:errors class="error-message" path="editAdherent.mail"/>
               </div>
 
-              <div class="flex items-center mt-2">
-                <div class="flex-grow w-56 mr-2 text-right">
-                  <form:label class="mt-2" path="editAdherent.adresse"><spring:message code="label.adresse"/></form:label>
-                  </div>
-                <form:input class="flex-grow w-96 input-text"
-                            name="editAdherent.adresse" path="editAdherent.adresse"/>
+              <div class="flex items-center mt-2 gap-2">
+                <div class="w-64 text-right">
+                  <form:label path="editAdherent.adresse"><spring:message code="label.adresse"/></form:label>
+                </div>
+                <form:input class="w-80 input-text" name="editAdherent.adresse" path="editAdherent.adresse"/>
                 <form:errors class="error-message" path="editAdherent.adresse"/>
               </div>
 
 
-              <div class="flex items-center mt-2">
-                <div class="flex-grow w-56 mr-2 text-right">
-                  <form:label class="mt-2" path="editAdherent.adresseComplement"><spring:message code="label.adresseComplement"/></form:label>
-                  </div>
-                <form:input class="flex-grow w-96 input-text"
-                            name="editAdherent.adresseComplement" path="editAdherent.adresseComplement"/>
+              <div class="flex items-center mt-2 gap-2">
+                <div class="w-64 text-right">
+                  <form:label path="editAdherent.adresseComplement"><spring:message code="label.adresseComplement"/></form:label>
+                </div>
+                <form:input class="w-80 input-text" name="editAdherent.adresseComplement" path="editAdherent.adresseComplement"/>
                 <form:errors class="error-message" path="editAdherent.adresseComplement"/>
               </div>
 
-              <div class="flex items-center mt-2">
-                <div class="flex-grow w-56 mr-2 text-right">
-                  <%--<form:label  class="flex items-center mt-2 text-center" path="adherent.commune.libelle"><spring:message code="label.commune"/></form:label>--%>
+              <div class="flex items-center mt-2 gap-2">
+                <div class="w-64 text-right">
                   <form:label path="editAdherent.commune"><spring:message code="label.commune"/></form:label>
-                  </div>
+                </div>
                 <form:label path="editAdherent.commune">
-                  <div class="flex w-96 h-10">
+                  <div class="flex w-80 h-10">
                     <a type="button" data-modal-toggle="commune-modal" class="input-group-text inline-flex items-center px-3 text-gray-900 bg-gray-200 hover:bg-gray-300 rounded-l border border-r-0 border-gray-300" href="#" id="editAdhCommune" data-toggle="modal" data-target="#modal-adherentCommune">
                       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
@@ -255,41 +263,37 @@
                 </div>
               </div>
 
-              <div class="flex items-center mt-2">
-                <div class="flex-grow w-56 mr-2 text-right">
-                  <form:label class="mt-2" path="editAdherent.pole.id"><spring:message code="label.pole"/></form:label>
+              <div class="flex items-center mt-2 gap-2">
+                <div class="w-64 text-right">
+                  <form:label path="editAdherent.pole.id"><spring:message code="label.pole"/></form:label>
                 </div>
-                <form:select
-                  class="flex-grow w-96 input-select"
-                  name="editAdherent.pole" path="editAdherent.pole.id">
+                <form:select class=" input-select" name="editAdherent.pole" path="editAdherent.pole.id">
                   <form:option value=""></form:option>
                   <form:options items="${poleList}" itemValue="id" itemLabel="libelle"/>
                 </form:select>
                 <form:errors class="error-message" path="editAdherent.pole"/>
               </div>
 
-              <div class="flex items-center mt-2">
-                <div class="w-56 mr-2 text-right">
-                  <form:label class="mt-2" path="editAdherent.isArtipole"><spring:message code="label.adhArtipole"/></form:label>
+              <div class="flex items-center mt-2 gap-2">
+                <div class="w-64 text-right">
+                  <form:label path="editAdherent.isArtipole"><spring:message code="label.adhArtipole"/></form:label>
                 </div>
                 <form:checkbox class="input-checkbox" path="editAdherent.isArtipole"/>
               </div>
 
-              <div class="flex items-center mt-2">
-                <div class="flex-grow w-56 mr-2 text-right">
-                  <form:label class="mt-2" path="editAdherent.latitude"><spring:message code="label.latitude"/></form:label>
+              <div class="flex items-center mt-2 gap-2">
+                <div class="w-64 text-right">
+                  <form:label path="editAdherent.latitude"><spring:message code="label.latitude"/></form:label>
                 </div>
-                <form:input class="flex-grow w-96 input-text"
-                            name="editAdherent.latitude" path="editAdherent.latitude"/>
+                <form:input class="w-32 input-text" name="editAdherent.latitude" path="editAdherent.latitude"/>
                 <form:errors class="error-message" path="editAdherent.latitude"/>
               </div>
 
-              <div class="flex items-center mt-2">
-                <div class="flex-grow w-56 mr-2 text-right">
-                  <form:label class="mt-2" path="editAdherent.longitude"><spring:message code="label.longitude"/></form:label>
+              <div class="flex items-center mt-2 gap-2">
+                <div class="w-64 text-right">
+                  <form:label path="editAdherent.longitude"><spring:message code="label.longitude"/></form:label>
                 </div>
-                <form:input class="flex-grow w-96 input-text"
-                            name="editAdherent.longitude" path="editAdherent.longitude"/>
+                <form:input class="w-32 input-text" name="editAdherent.longitude" path="editAdherent.longitude"/>
                 <form:errors class="error-message" path="editAdherent.longitude"/>
               </div>
             </fieldset>

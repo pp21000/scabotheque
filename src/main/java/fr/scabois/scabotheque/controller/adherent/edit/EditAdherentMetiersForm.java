@@ -1,7 +1,7 @@
 package fr.scabois.scabotheque.controller.adherent.edit;
 
 import fr.scabois.scabotheque.bean.adherent.AdherentMetier;
-import fr.scabois.scabotheque.bean.artisanArtipole.Metier;
+import fr.scabois.scabotheque.bean.artisansArtipole.Metier;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

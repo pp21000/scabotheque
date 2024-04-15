@@ -29,11 +29,9 @@ import fr.scabois.scabotheque.bean.commun.ContactFonction;
 import fr.scabois.scabotheque.bean.security.User;
 import fr.scabois.scabotheque.bean.security.UserRole;
 import fr.scabois.scabotheque.controller.adherent.CriteriaAdherent;
-import fr.scabois.scabotheque.controller.adherent.CriteriaCRM;
 import fr.scabois.scabotheque.dao.IAdherentDAO;
 import fr.scabois.scabotheque.enums.PageType;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -231,11 +229,6 @@ public class ServiceAdherent implements IServiceAdherent {
   @Override
   public List<AdherentSuiviVisite> loadAdherentSuivisVisites(final int adhId) {
     return this.dao.loadAdherentSuivisVisites(adhId);
-  }
-
-  @Override
-  public List<AdherentSuiviVisite> loadAdherentSuivisVisites(final Integer adhId, final CriteriaCRM criteria) {
-    return this.loadAdherentSuivisVisites(adhId).stream().filter(sv -> sv.getCommentaireString().contains(criteria.getText())).collect(Collectors.toList());
   }
 
   @Override

@@ -29,7 +29,6 @@ import fr.scabois.scabotheque.bean.commun.ContactFonction;
 import fr.scabois.scabotheque.bean.security.User;
 import fr.scabois.scabotheque.bean.security.UserRole;
 import fr.scabois.scabotheque.controller.adherent.CriteriaAdherent;
-import fr.scabois.scabotheque.controller.adherent.CriteriaCRM;
 import fr.scabois.scabotheque.enums.PageType;
 import java.util.List;
 
@@ -76,8 +75,6 @@ public interface IServiceAdherent {
   public AdherentSuiviVisite loadAdherentSuiviVisite(int var1);
 
   public List<AdherentSuiviVisite> loadAdherentSuivisVisites(int var1);
-
-  public List<AdherentSuiviVisite> loadAdherentSuivisVisites(Integer var1, CriteriaCRM var2);
 
   public List<AdherentType> loadAdherentTypes();
 

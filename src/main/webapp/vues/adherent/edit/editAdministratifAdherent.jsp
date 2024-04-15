@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" pageEncoding="UTF-8" %>
+<%@page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
@@ -15,16 +15,23 @@
     </button>
   </div>
   <div class="w-5/6 flex justify-center items-center gap-2">
-    <div class="flex items-center p-2 bg-gray-200 dark:bg-gray-600 rounded-2xl gap-2 min-w-[35rem]">
+    <div class="flex items-center p-1.5 bg-gray-200 dark:bg-gray-600 rounded-2xl gap-2 min-w-[35rem]">
       <div class="w-1/2 flex justify-center gap-2">
         <span class="text-2xl"><spring:message code="label.administratif"/></span>
       </div>
       <div class="w-1/2 flex items-center gap-1">
-        <img class="rounded h-12" src="${adherent.photoImg}">
-        <div class="w-40 flex flex-col truncate">
-          <span class="font-semibold">${editForm.editAdherent.denomination}</span>
+        <c:choose>
+          <c:when test="${empty adherent.photoImg}">
+            <img class="rounded h-10" src="<c:url value="/resources/images/noAdhPhoto.png"/>"/>
+          </c:when>
+          <c:otherwise>
+            <img class="rounded h-10" src="${adherent.photoImg}">
+          </c:otherwise>
+        </c:choose>
+        <div class="w-full flex flex-col gap-0.5 truncate">
+          <span class="font-semibold leading-none truncate">${editForm.editAdherent.denomination}</span>
           <div class="flex">
-            <span class="bg-green-200 text-green-800 text-xs font-medium px-2 py-0.5 rounded">${editForm.editAdherent.code}</span>
+            <span class="bg-green-600 text-white text-xs font-medium px-2 py-0.5 mb-0.5 rounded">${editForm.editAdherent.code}</span>
           </div>
         </div>
       </div>
@@ -34,8 +41,8 @@
 
 <form:form class="editAdherent" method="post" modelAttribute="editForm" action="editAdministratifAdh">
 
-  <!-- Permet de ne pas perdre les données autre que celles modifiées -->
-  <form:input type="hidden" path="editAdherent.id"/>
+  <!-- Permet de ne pas perdre les données autres que celles modifiées -->
+  <form:input type="hidden" name="editAdherent.id" path="editAdherent.id"/>
   <form:input type="hidden" name="editAdherent.code" path="editAdherent.code"/>
   <form:input type="hidden" name="editAdherent.codeERP" path="editAdherent.codeERP"/>
   <form:input type="hidden" name="editAdherent.codeERPParent" path="editAdherent.codeERPParent"/>
@@ -49,11 +56,11 @@
   <form:input type="hidden" path="editAdherent.secteur.id"/>
   <form:input type="hidden" path="editAdherent.tournee.id"/>
   <form:input type="hidden" path="editAdherent.isOutilDechargement"/>
-  <form:input type="hidden" path="editAdherent.etat.id"/>
-  <form:input type="hidden" path="editAdherent.dateCreation"/>
   <!-- données que je modifie plus bas dans cette page -->
+  <%--<form:input type="hidden" path="editAdherent.dateCreation"/>--%>
   <%--<form:input type="hidden" path="editAdherent.dateEntree"/>--%>
   <%--<form:input type="hidden" path="editAdherent.dateSortie"/>--%>
+  <%--<form:input type="hidden" path="editAdherent.etat.id"/>--%>
   <%--<form:input type="hidden" path="editAdherent.role"/>--%>
   <%--<form:input type="hidden" path="editAdherent.formeJuridique"/>--%>
   <%--<form:input type="hidden" path="editAdherent.siren"/>--%>
@@ -68,6 +75,7 @@
   <%--<form:input type="hidden" path="editAdherent.cnxEolasAllow"/>--%>
   <%--<form:input type="hidden" path="editAdherent.adherentType"/>--%>
   <%--<form:input type="hidden" path="editAdherent.compteType"/>--%>
+  <form:input type="hidden" path="editAdherent.nbSalaries"/>
   <form:input type="hidden" path="editAdherent.latitude"/>
   <form:input type="hidden" path="editAdherent.longitude"/>
   <form:input type="hidden" path="editAdherent.telephone"/>
@@ -112,10 +120,10 @@
       </div>
         
       <div class="flex flex-col">
-        <form:label path="editAdherent.dateClotureExe"><spring:message code="label.dateClotureExe"/></form:label>
-        <form:input class="w-36 input-text" type="date" name="editAdherent.dateClotureExe" path="editAdherent.dateClotureExe"/>
-        <form:errors class="error-message" path="editAdherent.dateClotureExe"/>
-      </div>
+        <form:label path="editAdherent.dateSortie"><spring:message code="label.dateSortie"/></form:label>
+        <form:input class="w-36 input-text" type="date" name="editAdherent.dateSortie" path="editAdherent.dateSortie"/>
+        <form:errors class="error-message" path="editAdherent.dateSortie"/>
+      </div>        
 
       <div class="flex flex-col">
         <form:label path="editAdherent.compteType"><spring:message code="label.reglement"/></form:label>
@@ -125,11 +133,24 @@
       </div>
         
       <div class="flex flex-col">
-        <form:label path="editAdherent.dateSortie"><spring:message code="label.dateSortie"/></form:label>
-        <form:input class="w-36 input-text" type="date" name="editAdherent.dateSortie" path="editAdherent.dateSortie"/>
-        <form:errors class="error-message" path="editAdherent.dateSortie"/>
-      </div>        
+        <form:label path="editAdherent.dateClotureExe"><spring:message code="label.dateClotureExe"/></form:label>
+        <form:input class="w-36 input-text" type="date" name="editAdherent.dateClotureExe" path="editAdherent.dateClotureExe"/>
+        <form:errors class="error-message" path="editAdherent.dateClotureExe"/>
+      </div>
 
+      <div class="flex flex-col">
+        <form:label path="editAdherent.etat"><spring:message code="label.etat"/></form:label>
+        <form:select class="w-96 input-select" name="editAdherent.etat" path="editAdherent.etat.id">
+          <form:options items="${etatList}" itemValue="id" itemLabel="libelle"/>
+        </form:select>
+      </div>
+        
+      <div class="flex flex-col">
+        <form:label path="editAdherent.dateCreation"><spring:message code="label.dateCreation"/></form:label>
+        <form:input class="w-36 input-text" type="date" name="editAdherent.dateCreation" path="editAdherent.dateCreation"/>
+        <form:errors class="error-message" path="editAdherent.dateCreation"/>
+      </div>
+        
       <div class="flex flex-col">
         <form:label path="editAdherent.formeJuridique"><spring:message code="label.formeJuridique"/></form:label>
         <form:select class="w-96 input-select" name="editAdherent.formeJuridique" path="editAdherent.formeJuridique.id">
@@ -154,6 +175,12 @@
         <form:label path="editAdherent.siret"><spring:message code="label.siret"/></form:label>
         <form:input class="w-96 input-text" name="editAdherent.siret" path="editAdherent.siret"/>
         <form:errors class="error-message" path="editAdherent.siret"/>
+      </div>
+
+      <div class="flex flex-col">
+        <form:label path="editAdherent.nbSalaries"><spring:message code="label.nbSalaries"/></form:label>
+        <form:input class="w-96 input-text" name="editAdherent.nbSalaries" path="editAdherent.nbSalaries"/>
+        <form:errors class="error-message" path="editAdherent.nbSalaries"/>
       </div>
 
       <div class="flex flex-col">

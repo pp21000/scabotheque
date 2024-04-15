@@ -1,9 +1,9 @@
 package fr.scabois.scabotheque.enums;
 
 public enum NavType {
-  ADHERENT,
+  ADHERENTS,
   LOGISTIQUE,
-  ARTISAN_ARTIPOLE,
+  ARTISANS_ARTIPOLE,
   ADMINISTRATION,
-  FOURNISSEUR;
+  FOURNISSEURS;
 }

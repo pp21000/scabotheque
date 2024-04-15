@@ -53,7 +53,7 @@ public class FournisseurController {
     public String afficher(@RequestParam(value = "idFournisseur") final int idFournisseur, final ModelMap pModel,
             HttpServletRequest request) {
 
-        pModel.addAttribute("pageType", PageType.LIST_FOURNISSEUR);
+        pModel.addAttribute("pageType", PageType.LISTE_FOURNISSEURS);
 
         pModel.addAttribute("commentaire", "Commentaire de crotte");
         pModel.addAttribute("adherent", null);
@@ -83,7 +83,7 @@ public class FournisseurController {
         List<Fournisseur> listeFournisseur = service.LoadFournisseurs();
         pModel.addAttribute("listeFournisseur", listeFournisseur);
         pModel.addAttribute("criteria", criteria);
-        pModel.addAttribute("pageType", PageType.LIST_FOURNISSEUR);
+        pModel.addAttribute("pageType", PageType.LISTE_FOURNISSEURS);
 
         return "listeFournisseur";
     }

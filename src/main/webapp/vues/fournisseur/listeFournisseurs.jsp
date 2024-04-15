@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
+<%@page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
          pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -11,7 +11,7 @@
 <%--    <form:form  class="form-inline" method="post" modelAttribute="criteria" action="listeFournisseur">--%>
 <%--        <form:input class="form-control mr-sm-2" type="text" path="text" placeholder="${recherchePH}" autofocus="true"/>--%>
 <%--        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>--%>
-<%--        <div class="ml-2"><spring:message code="count.fournisseur" arguments="${listeFournisseur.size()}"/></div>--%>
+<%--        <div class="ml-2"><spring:message code="count" arguments="${listeFournisseur.size()}"/></div>--%>
 <%--        <div <c:if test = "${criteria.avertissement == ''}"> style="display: none;" </c:if> >--%>
 <%--                ${criteria.avertissement}--%>
 <%--        </div>--%>
@@ -46,7 +46,7 @@
         <a href="${urlShowFournisseur}" class="hover:bg-gray-50 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md">
             <div class="flex flex-col items-center pb-4">
                 <img class="mb-3 mt-10 w-24 h-24 rounded-full shadow-lg"
-                     src="<c:url value="/resources/images/noAdh.png"/>" alt="Bonnie image">
+                     src="<c:url value="/resources/images/noAdhPhoto.png"/>" alt="Bonnie image">
                 <h5 class="mb-1 text-xl px-4 text-center font-medium text-gray-900"><c:out
                         value="${fournisseur.nom}"/></h5>
                 <div class="flex flex-col px-4 text-center">

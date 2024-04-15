@@ -51,9 +51,7 @@ public class LogistiqueController {
   private IServiceAdherent serviceAdh;
 
   @RequestMapping(value = "/ordreTournee", method = RequestMethod.GET)
-  public String afficherTounee(@CookieValue(value = "criteriaLog", defaultValue = "") String cookieLog, final ModelMap pModel,
-          EditLogistiqueTourneeForm tourneeForm) {
-
+  public String afficherTounee(@CookieValue(value = "criteriaLog", defaultValue = "") String cookieLog, final ModelMap pModel, EditLogistiqueTourneeForm tourneeForm) {
     CriteriaLogistique criteriaLog = null;
     try {
       if (cookieLog.length() != 0) {
@@ -146,10 +144,7 @@ public class LogistiqueController {
   }
 
   @RequestMapping(value = "/chargeTournee", method = RequestMethod.POST)
-  public String loadFromERP(@ModelAttribute(value = "criteriaLog") final CriteriaLogistique criteriaLog,
-          final BindingResult pBindingResult, final ModelMap pModel, HttpServletResponse response, HttpServletRequest request
-  ) {
-
+  public String loadFromERP(@ModelAttribute(value = "criteriaLog") final CriteriaLogistique criteriaLog, final BindingResult pBindingResult, final ModelMap pModel, HttpServletResponse response, HttpServletRequest request) {
     try {
       Cookie cookie = new Cookie("criteriaLog", serialiseTournee(criteriaLog));
       cookie.setMaxAge(7 * 24 * 60 * 60);

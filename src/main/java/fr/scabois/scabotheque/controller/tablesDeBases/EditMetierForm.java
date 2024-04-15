@@ -1,8 +1,8 @@
 package fr.scabois.scabotheque.controller.tablesDeBases;
 
 
-import fr.scabois.scabotheque.bean.artisanArtipole.Metier;
-import fr.scabois.scabotheque.controller.artisanArtipole.edit.EditMetier;
+import fr.scabois.scabotheque.bean.artisansArtipole.Metier;
+import fr.scabois.scabotheque.controller.artisansArtipole.edit.EditMetier;
 import javax.validation.Valid;
 
 public class EditMetierForm {

@@ -1,38 +1,41 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
-         pageEncoding="UTF-8" %>
+<%@page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
-<c:url value="/adherentProfil" var="urlPrev"><c:param name="tab" value="contacts"/><c:param name="idAdh" value="${adherent.id}"/></c:url>
-<button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location = '${urlPrev}'">
-  <spring:message code="label.retour"/>
-</button>
-
-<div class="flex flex-col items-center">
-  <div class="flex justify-center">
-    <div class="rounded bg-neutral-50 p-4 border border-neutral-200 flex flex-col items-center">
-      <div>
+<div class="flex w-full">
+  <c:url value="/adherentProfil" var="urlPrev"><c:param name="tab" value="contacts"/><c:param name="idAdh" value="${adherent.id}"/></c:url>
+  <div class="w-1/12">
+    <button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" id="cancel" type="reset" onClick="window.location = '${urlPrev}'">
+      <spring:message code="label.retour"/>
+    </button>
+  </div>
+  <div class="w-5/6 flex justify-center items-center gap-2">
+    <div class="flex items-center p-1.5 bg-gray-200 dark:bg-gray-600 rounded-2xl gap-2 min-w-[35rem]">
+      <div class="w-1/2 flex justify-center gap-2">
+        <span class="text-2xl"><spring:message code="label.contacts"/></span>
+      </div>
+      <div class="w-1/2 flex items-center gap-1">
         <c:choose>
-          <c:when test="${adherent.photoImg == ''}">
-            <img class="rounded-full h-32" src="<c:url value="/resources/images/noAdh.png"/>"/>
+          <c:when test="${empty adherent.photoImg}">
+            <img class="rounded h-10" src="<c:url value="/resources/images/noAdhPhoto.png"/>"/>
           </c:when>
           <c:otherwise>
-            <img class="rounded-full h-32" src="${adherent.photoImg}">
+            <img class="rounded h-10" src="${adherent.photoImg}">
           </c:otherwise>
-        </c:choose>
-      </div>
-      <div class="flex flex-col">
-        <div class="text-center text-lg font-semibold">
-          ${adherent.denomination}
-        </div>
-        <div class="text-center text-sm"> <spring:message code="label.codeAdh"/> :
-          ${adherent.code}
+        </c:choose>        
+        <div class="w-full flex flex-col gap-0.5 truncate">
+          <span class="font-semibold leading-none truncate">${adherent.denomination}</span>
+          <div class="flex">
+            <span class="bg-green-600 text-white text-xs font-medium px-2 py-0.5 mb-0.5 rounded">${adherent.code}</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
+<div class="flex flex-col items-center">
   <button class="px-3 py-2 my-5 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" 
           id="addContact" type="button" onclick="showNewContact()">Ajouter un contact</button>
 
@@ -40,17 +43,17 @@
     <form:input type="hidden" path="contact.adherentId"/>
 
     <div id="addContactForm" <c:if test="${contactToAdd.contact.nom == null || contactToAdd.contact.nom.isEmpty() }"> class="hidden" </c:if> title="Ajouter un contact">
-        <fieldset>
-          <div>
-            <div class="flex items-center mt-2 text-right">
-              <div class="flex-grow w-32 mx-2">
-              <form:label path="contact.civilite"><spring:message code="label.civilite"/></form:label>
-              </div>
-              <form:select class="flex-grow w-72 input-select" name="contact.civilite" path="contact.civilite">
-                <form:options items="${civilite}"/>
-              </form:select>
-              <form:errors class="error-message" path="contact.civilite"/>
+      <fieldset>
+        <div>
+          <div class="flex items-center mt-2 text-right">
+            <div class="flex-grow w-32 mx-2">
+            <form:label path="contact.civilite"><spring:message code="label.civilite"/></form:label>
             </div>
+            <form:select class="flex-grow w-72 input-select" name="contact.civilite" path="contact.civilite">
+              <form:options items="${civilite}"/>
+            </form:select>
+            <form:errors class="error-message" path="contact.civilite"/>
+          </div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-32 mx-2">
               <form:label path="contact.nom"><spring:message code="label.nom"/></form:label>
@@ -160,13 +163,15 @@
   </form:form>
 
   <form:form class="editAdherentContact" method="post" modelAttribute="contactToEdit" action="editAdherentContact?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
-    <fieldset><c:choose>
-          <c:when test="${not empty contactToEdit.adherentContacts[0].id}">
-            <legend class="legend text-center mt-4"><spring:message code="label.contacts"/> :</legend>
-          </c:when>
-          <c:otherwise>
-            <legend class="legend text-center mt-4">Aucun contact</legend>
-          </c:otherwise></c:choose>
+    <fieldset>
+      <%--<c:choose>
+        <c:when test="${not empty contactToEdit.adherentContacts[0].id}">
+          <legend class="legend text-center mt-4"><spring:message code="label.contacts"/> :</legend>
+        </c:when>
+        <c:otherwise>
+          <legend class="legend text-center mt-4">Aucun contact</legend>
+        </c:otherwise>
+      </c:choose>--%>
       
       
       <c:forEach items="${contactToEdit.adherentContacts}" var="adherentContact" varStatus="status">
@@ -179,15 +184,14 @@
           <div class="flex justify-center ml-4">
             <div class="flex flex-col">
               <c:choose>
-                <c:when test="${adherentContact.photoImg == ''}">
-                  <img class="w-32" src="<c:url value="/resources/images/noAdh.png"/>"/>
+                <c:when test="${empty adherentContact.photoImg}">
+                  <img class="w-32" src="<c:url value="/resources/images/noContact.png"/>"/>
                 </c:when>
                 <c:otherwise>
                   <img style="max-width:15em; max-height:15em;" src="${adherentContact.photoImg}">
                 </c:otherwise>
               </c:choose>
-              <form:input type="file" path="adherentContacts[${status.index}].file"
-                          accept="image/x-png,image/gif,image/jpeg"/> <br/>
+              <form:input type="file" path="adherentContacts[${status.index}].file" accept="image/x-png,image/gif,image/jpeg"/> <br/>
             </div>
           </div>
           <div class="flex flex-col gap-2 ml-4">

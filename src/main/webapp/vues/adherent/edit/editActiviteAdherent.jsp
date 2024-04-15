@@ -1,33 +1,35 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
-    pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<c:url value="/adherentProfil" var="urlPrev"><c:param name="tab" value="commerce"/><c:param name="idAdh" value="${adherent.id}"/></c:url>
-<button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" type="reset" onClick="window.location='${urlPrev}'">
-  <spring:message code="label.retour"/>
-</button>
-
-<div class="flex justify-center">
-  <div class="rounded bg-neutral-50 p-4 border border-neutral-200 flex flex-col items-center">
-    <div>
-      <c:choose>
-        <c:when test="${adherent.photoImg == ''}">
-            <img class="rounded-full h-32" src="<c:url value="/resources/images/noAdh.png"/>"/>
-        </c:when>
-        <c:otherwise>
-            <img class="rounded-full h-32" src="${adherent.photoImg}">
-        </c:otherwise>
-      </c:choose>
-    </div>
-    <div class="flex flex-col">
-      <div class="text-center text-lg font-semibold">
-              ${adherent.denomination}
+<div class="flex w-full">
+  <c:url value="/adherentProfil" var="urlPrev"><c:param name="tab" value="commerce"/><c:param name="idAdh" value="${adherent.id}"/></c:url>
+  <div class="w-1/12">
+    <button class="btn btn-prev focus:ring-4 focus:outline-none focus:ring-neutral-300" id="cancel" type="reset" onClick="window.location = '${urlPrev}'">
+      <spring:message code="label.retour"/>
+    </button>
+  </div>
+  <div class="w-5/6 flex justify-center items-center gap-2">
+    <div class="flex items-center p-1.5 bg-gray-200 dark:bg-gray-600 rounded-2xl gap-2 min-w-[35rem]">
+      <div class="w-1/2 flex justify-center gap-2">
+        <span class="text-2xl"><spring:message code="label.activite"/></span>
       </div>
-      <div class="text-center text-sm">
-              <spring:message code="label.codeAdh"/> :
-              ${adherent.code}
+      <div class="w-1/2 flex items-center gap-1">
+        <c:choose>
+          <c:when test="${empty adherent.photoImg}">
+            <img class="rounded h-10" src="<c:url value="/resources/images/noAdhPhoto.png"/>"/>
+          </c:when>
+          <c:otherwise>
+            <img class="rounded h-10" src="${adherent.photoImg}">
+          </c:otherwise>
+        </c:choose>        
+        <div class="w-full flex flex-col gap-0.5 truncate">
+          <span class="font-semibold leading-none truncate">${adherent.denomination}</span>
+          <div class="flex">
+            <span class="bg-green-600 text-white text-xs font-medium px-2 py-0.5 mb-0.5 rounded">${adherent.code}</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -35,7 +37,6 @@
 
 <form:form class="editAdherent" method="post" modelAttribute="editForm" action="editActiviteAdh">
   <fieldset class="mt-10">
-    <%--<legend class="legend underline text-center mt-4"><spring:message code="label.activite"/></legend>--%>
     <form:input type="hidden" placeholder="messageErreur" path="messageErreur"/>
     <form:errors class="error-message" path="messageErreur" />
     <div class="flex flex-col items-center justiy-center gap-2 mt-2">
@@ -45,9 +46,9 @@
         <form:input type="hidden" path="activitesAdh[${status.index}].activiteId"/>
         <form:input type="hidden" path="activitesAdh[${status.index}].activiteLibelle"/>
         <div class="grid grid-cols-2 w-3/4 flex items-center gap-28">
-          <div class="flex items-center justify-end">
+          <div class="flex items-center justify-end gap-2">
             <span class="text-right">${activite.activiteLibelle}</span>
-            <form:input class="input-text text-center w-10 mx-2" style="padding-left:1px; padding-right:1px" type="text" path="activitesAdh[${status.index}].pourcentage"/>
+            <form:input class="input-text text-center w-10" style="padding-left:1px; padding-right:1px" type="text" path="activitesAdh[${status.index}].pourcentage"/>
             <span class="text-2xl">%</span>
             <form:errors class="error-message" path="activitesAdh[${status.index}].pourcentage"/>
           </div>
