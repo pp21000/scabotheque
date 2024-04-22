@@ -8,7 +8,7 @@
 <div class="listeIdLibelle">
 
 	<form:form method="get" action="listeCommunes">
-		<span class="detailLabel"><spring:message code="label.adhArtipole"/></span>
+		<span class="detailLabel"><spring:message code="label.isArtipole"/></span>
 		${communeListe.departementFilter}
 		<input name="filterCP" value="${filtreCP}" type="text" placeholder="Code postale ou Nom" autofocus="true" />
 		<button class="action-button" type="submit">Rechercher</button>

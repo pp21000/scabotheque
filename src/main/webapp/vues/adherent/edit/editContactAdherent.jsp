@@ -21,7 +21,7 @@
             <img class="rounded h-10" src="<c:url value="/resources/images/noAdhPhoto.png"/>"/>
           </c:when>
           <c:otherwise>
-            <img class="rounded h-10" src="${adherent.photoImg}">
+            <img class="rounded h-10" src="${adherent.photoImg}"/>
           </c:otherwise>
         </c:choose>        
         <div class="w-full flex flex-col gap-0.5 truncate">
@@ -36,8 +36,9 @@
 </div>
 
 <div class="flex flex-col items-center">
-  <button class="px-3 py-2 my-5 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300" 
-          id="addContact" type="button" onclick="showNewContact()">Ajouter un contact</button>
+  <button id="addContact" type="button" onclick="showNewContact()" class="px-3 py-2 my-5 text-xs font-medium text-center text-white bg-neutral-800 rounded-lg hover:bg-neutral-900 focus:ring-4 focus:outline-none focus:ring-neutral-300">
+    Ajouter un contact
+  </button>
 
   <form:form class="editAdherent" method="post" modelAttribute="contactToAdd" action="addAdherentContact">
     <form:input type="hidden" path="contact.adherentId"/>
@@ -47,7 +48,7 @@
         <div>
           <div class="flex items-center mt-2 text-right">
             <div class="flex-grow w-32 mx-2">
-            <form:label path="contact.civilite"><spring:message code="label.civilite"/></form:label>
+              <form:label path="contact.civilite"><spring:message code="label.civilite"/></form:label>
             </div>
             <form:select class="flex-grow w-72 input-select" name="contact.civilite" path="contact.civilite">
               <form:options items="${civilite}"/>

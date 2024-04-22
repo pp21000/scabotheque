@@ -1,15 +1,16 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
-         pageEncoding="UTF-8" %>
+<%@page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<h1 class="text-3xl text-center"><spring:message code="label.addContactRetraite"/></h1>
 
+<div class="flex justify-center">
+  <h1 class="px-14 py-1.5 text-3xl bg-gray-200 dark:bg-gray-600 rounded-2xl"><spring:message code="label.addContactRetraite"/></h1>
+</div>
+  
 <form:form class="content" method="post" modelAttribute="addContactForm" action="addContactRetraite">
   <div class="flex flex-col gap-10 mx-16">
     <div>
@@ -23,7 +24,7 @@
 
     <div class="flex flex-col gap-4">
       <span class="text-2xl"><spring:message code="label.identite"/></span>
-      <div class="flex flex-col gap-6 px-10">
+      <div class="flex flex-col gap-6 ml-10">
         <div class="grid grid-cols-5 gap-6">
           <div>
             <form:label path="editContactRetraite.civilite" class="text-xs"><spring:message code="label.civilite"/></form:label>

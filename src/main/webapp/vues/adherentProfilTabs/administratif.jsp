@@ -21,190 +21,179 @@
     </div>
 
     <div class="bg-neutral-200 overflow-hidden shadow rounded-lg">
-      <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
-        <dl class="sm:divide-y sm:divide-gray-300">
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.dateEntree"/> :
-            </dt>
-            <dd class="value">
-              <fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateEntree}"/>
-            </dd>
-          </div>
+      <dl class="divide-y divide-gray-300 text-sm">
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.role"/> :
+          </dt>
+          <dd class="value<c:if test="${adherent.role.id == 5}"> text-red-600</c:if>">
+            ${adherent.role.libelle}
+          </dd>
+        </div>
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.nbSalaries"/> :
-            </dt>
-            <dd class="value">
-              ${adherent.nbSalaries}
-            </dd>
-          </div>
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.adherentType"/> :
+          </dt>
+          <dd class="value<c:if test="${adherent.adherentType.id == 2}"> text-red-600</c:if>">
+            ${adherent.adherentType.libelle}
+          </dd>
+        </div>
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.role"/> :
-            </dt>
-            <dd class="value">
-              ${adherent.role.libelle}
-            </dd>
-          </div>
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.etat"/> :
+          </dt>
+          <dd class="value text-green-600<c:if test="${adherent.etat.id == 2}"> text-red-600</c:if>">
+            ${adherent.etat.libelle}
+          </dd>
+        </div>
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.adherentType"/> :
-            </dt>
-            <dd class="value">
-              ${adherent.adherentType.libelle}
-            </dd>
-          </div>
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.compteType"/> :
+          </dt>
+          <dd class="value text-green-600<c:if test="${adherent.compteType.id != 1}"> text-red-600</c:if>">
+            ${adherent.compteType.libelle}
+          </dd>
+        </div>
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.dateEntree"/> :
-            </dt>
-            <dd class="value">
-              <fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateEntree}"/>
-            </dd>
-          </div>
-
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.formeJuridique"/> :
-            </dt>
-            <dd class="value">
-              ${adherent.formeJuridique.libelle}
-            </dd>
-          </div>
-
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.siren"/> :
-            </dt>
-            <dd class="value">
-              ${adherent.siren}
-            </dd>
-          </div>
-
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.siret"/> :
-            </dt>
-            <dd class="value">
-              ${adherent.siret}
-            </dd>
-          </div>
-
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.ape"/> :
-            </dt>
-            <dd class="value">
-              ${adherent.ape.libelle}
-            </dd>
-          </div>
-
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.numRepMetier"/> :
-            </dt>
-            <dd class="value">
-              ${adherent.numRepMetier}
-            </dd>
-          </div>
-
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.rcsCommune"/> :
-            </dt>
-            <dd class="value">
-              <spring:message code="message.commune" arguments="${adherent.rcsCommune.codePostal}, ${adherent.rcsCommune.libelle}"/>
-            </dd>
-          </div>
-
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.rmCommune"/> :
-            </dt>
-            <dd class="value">
-              <spring:message code="message.commune" arguments="${adherent.rmCommune.codePostal}, ${adherent.rmCommune.libelle}"/>
-            </dd>
-          </div>            
-
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.reglement"/> :
-            </dt>
-            <dd class="value">
-              <c:choose>
-                <c:when test="${adherent.compteType.id == 1}">
-                  ${adherent.compteType.libelle}
-                </c:when>
-                <c:otherwise>
-                  ${adherent.compteType.libelle}
-                </c:otherwise>
-              </c:choose>
-            </dd>
-          </div>
-
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.dateClotureExe"/> :
-            </dt>
-            <dd class="value">
-              <fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateClotureExe}"/>
-            </dd>
-          </div>
-
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.etat"/> :
-            </dt>
-            <dd class="value">
-              ${adherent.etat.libelle}
-            </dd>
-          </div>
-
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.cnxEolasAllow"/> :
+          </dt>
           <c:choose>
-            <c:when test="${adherent.etat.id == 2}">
-              <div class="px-1 py-3 grid grid-cols-2 gap-3">
-                <dt class="label">
-                  <spring:message code="label.dateSortie"/> :
-                </dt>
-                <dd class="value">
-                  <fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateSortie}"/>
-                </dd>
-              </div>
-            </c:when>
+            <c:when test="${adherent.cnxEolasAllow}"><dd class="value text-green-600"><spring:message code="yes"/></dd></c:when>
+            <c:otherwise><dd class="value text-red-600"><spring:message code="no"/></dd></c:otherwise>
           </c:choose>
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.cnxEolasAllow"/> :
-            </dt>
-            <c:choose>
-              <c:when test="${adherent.cnxEolasAllow}">
-                <dd class="value text-sky-600 font-bold">
-                  <spring:message code="yes"/>
-                </dd>
-              </c:when>
-              <c:otherwise>
-                <dd class="value">
-                  <spring:message code="no"/>
-                </dd>
-              </c:otherwise>
-            </c:choose>
-          </div>
+        </div>
 
-          <div class="py-3 sm:py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
-            <dt class="label">
-              <spring:message code="label.formationCommerce"/> :
-            </dt>
-            <dd class="value">
-              ${adherent.formationDirigeant}
-              </span>
-          </div>
-        </dl>
-      </div>
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.dateEntree"/> :
+          </dt>
+          <dd class="value">
+            <fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateEntree}"/>
+          </dd>
+        </div>
+
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.dateSortie"/> :
+          </dt>
+          <dd class="value">
+            <fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateSortie}"/>
+          </dd>
+        </div>
+
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.dateClotureExe"/> :
+          </dt>
+          <dd class="value">
+            <fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateClotureExe}"/>
+          </dd>
+        </div>
+
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.dateCreation"/> :
+          </dt>
+          <dd class="value">
+            <fmt:formatDate pattern="dd/MM/yyyy" value="${adherent.dateCreation}"/>
+          </dd>
+        </div>
+
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.formeJuridique"/> :
+          </dt>
+          <dd class="value">
+            ${adherent.formeJuridique.libelle}
+          </dd>
+        </div>
+
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.nbSalaries"/> :
+          </dt>
+          <dd class="value">
+            ${adherent.nbSalaries}
+          </dd>
+        </div>
+
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.siren"/> :
+          </dt>
+          <dd class="value">
+            ${adherent.siren}
+          </dd>
+        </div>
+
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.siret"/> :
+          </dt>
+          <dd class="value">
+            ${adherent.siret}
+          </dd>
+        </div>
+
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.ape"/> :
+          </dt>
+          <dd class="value">
+            ${adherent.ape.libelle}
+          </dd>
+        </div>
+
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.numRepMetier"/> :
+          </dt>
+          <dd class="value">
+            ${adherent.numRepMetier}
+          </dd>
+        </div>
+
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.formationCommerce"/> :
+          </dt>
+          <dd class="value">
+            ${adherent.formationDirigeant}
+            </span>
+        </div>
+
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.rcsRm"/> :
+          </dt>
+          <dd class="value">
+            ${adherent.rcsRm}
+            </span>
+        </div>
+
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.rcsCommune"/> :
+          </dt>
+          <dd class="value">
+            <spring:message code="message.commune" arguments="${adherent.rcsCommune.codePostal}, ${adherent.rcsCommune.libelle}"/>
+          </dd>
+        </div>
+
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.rmCommune"/> :
+          </dt>
+          <dd class="value">
+            <spring:message code="message.commune" arguments="${adherent.rmCommune.codePostal}, ${adherent.rmCommune.libelle}"/>
+          </dd>
+        </div>            
+      </dl>
     </div>
   </div>
 
@@ -225,75 +214,55 @@
     <div class="bg-neutral-200 overflow-hidden shadow rounded-lg">
       <c:choose>
         <c:when test="${empty contactComptable.cabinet and empty contactComptable.civilite and empty contactComptable.nom and empty contactComptable.prenom and empty contactComptable.mail and empty contactComptable.fixe and empty contactComptable.mobile}">
-          <dt class="text-gray-400 px-5 py-1">Non renseigné.</dt>
+          <dt class="text-gray-400 px-5 py-1">Non renseigné</dt>
         </c:when>
         <c:otherwise>      
-          <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
-            <dl class="sm:divide-y sm:divide-gray-300">
-              <div class="px-1 py-3 grid grid-cols-2 gap-3">
-                <dt class="label">
-                  Cabinet comptable :              
-                </dt>
-                <dd class="value">
-                  ${contactComptable.cabinet}
-                </dd>
-              </div>
+          <dl class="divide-y divide-gray-300 text-sm">
+            <div class="p-2 grid grid-cols-2 gap-3">
+              <dt class="label">
+                Cabinet comptable :              
+              </dt>
+              <dd class="value">
+                ${contactComptable.cabinet}
+              </dd>
+            </div>
 
-              <div class="px-1 py-3 grid grid-cols-2 gap-3">
-                <dt class="label">
-                  Civilité :
-                </dt>
-                <dd class="value">
-                  ${contactComptable.civilite}
-                </dd>
-              </div>
+            <div class="p-2 grid grid-cols-2 gap-3">
+              <dt class="label">
+                Comptable :
+              </dt>
+              <dd class="value">
+                ${contactComptable.civilite} ${contactComptable.prenom} ${contactComptable.nom}
+              </dd>
+            </div>
 
-              <div class="px-1 py-3 grid grid-cols-2 gap-3">
-                <dt class="label">
-                  Nom :
-                </dt>
-                <dd class="value">
-                  ${contactComptable.nom}
-                </dd>
-              </div>
+            <div class="p-2 grid grid-cols-2 gap-3">
+              <dt class="label">
+                E-mail :
+              </dt>
+              <dd class="value">
+                ${contactComptable.mail}
+              </dd>
+            </div>
 
-              <div class="px-1 py-3 grid grid-cols-2 gap-3">
-                <dt class="label">
-                  Prénom :
-                </dt>
-                <dd class="value">
-                  ${contactComptable.prenom}
-                </dd>
-              </div>
+            <div class="p-2 grid grid-cols-2 gap-3">
+              <dt class="label">
+                Tél fixe :
+              </dt>
+              <dd class="value">
+                ${contactComptable.fixe}
+              </dd>
+            </div>
 
-              <div class="px-1 py-3 grid grid-cols-2 gap-3">
-                <dt class="label">
-                  E-mail :
-                </dt>
-                <dd class="value">
-                  ${contactComptable.mail}
-                </dd>
-              </div>
-
-              <div class="px-1 py-3 grid grid-cols-2 gap-3">
-                <dt class="label">
-                  Tél fixe :
-                </dt>
-                <dd class="value">
-                  ${contactComptable.fixe}
-                </dd>
-              </div>
-
-              <div class="px-1 py-3 grid grid-cols-2 gap-3">
-                <dt class="label">
-                  Tél mobile :
-                </dt>
-                <dd class="value">
-                  ${contactComptable.mobile}
-                </dd>
-              </div>
-            </dl>
-          </div>
+            <div class="p-2 grid grid-cols-2 gap-3">
+              <dt class="label">
+                Tél mobile :
+              </dt>
+              <dd class="value">
+                ${contactComptable.mobile}
+              </dd>
+            </div>
+          </dl>
         </c:otherwise>
       </c:choose>            
     </div>

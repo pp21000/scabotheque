@@ -34,173 +34,175 @@ import java.util.List;
 
 public interface IAdherentDAO {
 
-  public String chartDataActif();
+    public String chartDataActif();
 
-  public String chartDataNew();
+    public String chartDataNew();
 
-  public String chartDataAnnee();
+    public String chartDataAnnee();
 
-  public String chartDataInactif();
+    public String chartDataInactif();
 
-  public Long countAdherents();
+    public Long countAdherents();
 
-  public Long countAdherentsInactif();
+    public Long countAdherentsInactif();
 
-  public Long countAdherentsSansEOLAS();
+    public Long countAdherentsSansEOLAS();
 
-  public void createActivite(String libelle);
+    public Long countContacts();
 
-  public int createAdherent(Adherent adherent);
+    public void createActivite(String libelle);
 
-  public void createAgence(String libelle);
+    public int createAdherent(Adherent adherent);
 
-  public void createContactAdherent(AdherentContactRole contact);
+    public void createAgence(String libelle);
 
-  public void createContactClubFemme(ContactClubFemme contact);
+    public void createContactAdherent(AdherentContactRole contact);
 
-  public void createContactFonction(String libelle);
+    public void createContactClubFemme(ContactClubFemme contact);
 
-  public void createContactRetraite(ContactRetraite contact);
+    public void createContactFonction(String libelle);
 
-  public void createPole(String libelle);
+    public void createContactRetraite(ContactRetraite contact);
 
-  public void createRole(String libelle);
+    public void createPole(String libelle);
 
-  public void createSecteur(String libelle);
+    public void createRole(String libelle);
 
-  public void createSuiviAdherent(AdherentSuiviVisite suivi);
+    public void createSecteur(String libelle);
 
-  public void createUtilisateur(String userName, String password);
+    public void createSuiviAdherent(AdherentSuiviVisite suivi);
 
-  public void editAdherent(Adherent pAdherent);
+    public void createUtilisateur(String userName, String password);
 
-  public Activite loadActivite(int activiteId);
+    public void editAdherent(Adherent pAdherent);
 
-  public List<Activite> loadActivites();
+    public Activite loadActivite(int activiteId);
 
-  public List<AdherentActivite> loadActivitesAdherent(int idAdh);
+    public List<Activite> loadActivites();
 
-  public Adherent loadAdherent(int idAdh);
+    public List<AdherentActivite> loadActivitesAdherent(int idAdh);
 
-  public String loadAdherentCommentaire(int idAdh, PageType type);
+    public Adherent loadAdherent(int idAdh);
 
-  public List<AdherentContactRole> loadAdherentContact(int adhId);
+    public String loadAdherentCommentaire(int idAdh, PageType type);
 
-  public List<AdherentContactRole> loadAdherentContact(CriteriaAdherent criteria);
+    public List<AdherentContactRole> loadAdherentContact(int adhId);
 
-  public List<AdherentMetier> loadAdherentMetiers(final int idAdh);
+    public List<AdherentContactRole> loadAdherentContact(CriteriaAdherent criteria);
 
-  public List<AdherentCertification> loadAdherentCertifications(final int idAdh);
+    public List<AdherentMetier> loadAdherentMetiers(final int idAdh);
 
-  public List<AdherentSpecialite> loadAdherentSpecialites(final int idAdh);
+    public List<AdherentCertification> loadAdherentCertifications(final int idAdh);
 
-  public List<ContactRetraite> loadContactsRetraite();
+    public List<AdherentSpecialite> loadAdherentSpecialites(final int idAdh);
 
-  public List<ContactClubFemme> loadContactsClubFemme();
+    public List<ContactRetraite> loadContactsRetraite();
 
-  public AdherentContactComptable loadAdherentContactComptable(int idAdh);
+    public List<ContactClubFemme> loadContactsClubFemme();
 
-  public List<AdherentContactRole> loadAdherentContactFonction(int adhId, Boolean isDirigeant, Boolean isCommerce, Boolean isAdmin, Boolean isCompta);
+    public AdherentContactComptable loadAdherentContactComptable(int idAdh);
 
-  public AdherentLogistique loadAdherentLogistique(int idAdh);
+    public List<AdherentContactRole> loadAdherentContactFonction(int adhId, Boolean isDirigeant, Boolean isCommerce, Boolean isAdmin, Boolean isCompta);
 
-  public AdherentInformatique loadAdherentInformatique(int idAdh);
+    public AdherentLogistique loadAdherentLogistique(int idAdh);
 
-  public AdherentSuiviVisite loadAdherentSuiviVisite(int suiviId);
+    public AdherentInformatique loadAdherentInformatique(int idAdh);
 
-  public List<AdherentSuiviVisite> loadAdherentSuivisVisites(int adhId);
+    public AdherentSuiviVisite loadAdherentSuiviVisite(int suiviId);
 
-  public List<AdherentType> loadAdherentTypes();
+    public List<AdherentSuiviVisite> loadAdherentSuivisVisites(int adhId);
 
-  public List<Adherent> loadAdherents();
+    public List<AdherentType> loadAdherentTypes();
 
-  public List<AdherentContactRole> loadAdherentsContact();
+    public List<Adherent> loadAdherents();
 
-  public List<Adherent> loadAdherents(CriteriaAdherent criteria);
+    public List<AdherentContactRole> loadAdherentsContact();
 
-  public List<Agence> loadAgences();
+    public List<Adherent> loadAdherents(CriteriaAdherent criteria);
 
-  public List<Ape> loadApes();
+    public List<Agence> loadAgences();
 
-  public List<Commune> loadCommunes();
+    public List<Ape> loadApes();
 
-  public List<CompteType> loadCompteTypes();
+    public List<Commune> loadCommunes();
 
-  public AdherentContactRole loadContact(Integer contactId);
+    public List<CompteType> loadCompteTypes();
 
-  public ContactClubFemme loadContactClubFemme(int idAdh);
+    public AdherentContactRole loadContact(Integer contactId);
 
-  public List<ContactFonction> loadContactFonction();
+    public ContactClubFemme loadContactClubFemme(int idAdh);
 
-  public List<AdherentEtat> loadEtats();
+    public List<ContactFonction> loadContactFonction();
 
-  public List<FormeJuridique> loadFormesJuridiques();
+    public List<AdherentEtat> loadEtats();
 
-  public List<Pole> loadPoles();
+    public List<FormeJuridique> loadFormesJuridiques();
 
-  public List<Role> loadRoles();
+    public List<Pole> loadPoles();
 
-  public List<RoleSalarieEOLAS> loadRolesEOLAS();
+    public List<Role> loadRoles();
 
-  public List<Secteur> loadSecteurs();
+    public List<RoleSalarieEOLAS> loadRolesEOLAS();
 
-  public List<Tournee> loadTournees();
+    public List<Secteur> loadSecteurs();
 
-  public User loadUtilisateur(int userId);
+    public List<Tournee> loadTournees();
 
-  public List<User> loadUtilisateurs();
+    public User loadUtilisateur(int userId);
 
-  public void saveActivites(List<Activite> secteurs);
+    public List<User> loadUtilisateurs();
 
-  public void saveActivitesAdherent(int adhId, List<AdherentActivite> activitesAdh);
+    public void saveActivites(List<Activite> secteurs);
 
-  public void saveAdherentCommentaire(int adhId, PageType type, String commentaire);
+    public void saveActivitesAdherent(int adhId, List<AdherentActivite> activitesAdh);
 
-  public void saveAdherentContacts(List<AdherentContactRole> contacts);
+    public void saveAdherentCommentaire(int adhId, PageType type, String commentaire);
 
-  public void saveAdherentLogistique(AdherentLogistique logistiqueAdh);
+    public void saveAdherentContacts(List<AdherentContactRole> contacts);
 
-  public void saveAdherentMetiers(int adhId, List<AdherentMetier> adherentMetiers);
+    public void saveAdherentLogistique(AdherentLogistique logistiqueAdh);
 
-  public void saveAdherentCertifications(int adhId, List<AdherentCertification> adherentCertifications);
+    public void saveAdherentMetiers(int adhId, List<AdherentMetier> adherentMetiers);
 
-  public void saveAdherentSpecialites(int adhId, List<AdherentSpecialite> adherentSpecialites);
+    public void saveAdherentCertifications(int adhId, List<AdherentCertification> adherentCertifications);
 
-  public void saveAdherentSuiviVisite(AdherentSuiviVisite suivi);
+    public void saveAdherentSpecialites(int adhId, List<AdherentSpecialite> adherentSpecialites);
 
-  public void saveAgences(List<Agence> agences);
+    public void saveAdherentSuiviVisite(AdherentSuiviVisite suivi);
 
-  public void saveContactComptableAdherent(AdherentContactComptable contact);
+    public void saveAgences(List<Agence> agences);
 
-  public void saveContactsFonctions(List<ContactFonction> contactsFonction);
+    public void saveContactComptableAdherent(AdherentContactComptable contact);
 
-  public void savePoles(List<Pole> poles);
+    public void saveContactsFonctions(List<ContactFonction> contactsFonction);
 
-  public void saveRoles(List<Role> roles);
+    public void savePoles(List<Pole> poles);
 
-  public void saveSecteurs(List<Secteur> secteurs);
+    public void saveRoles(List<Role> roles);
 
-  public void saveUtilisateur(List<User> users);
+    public void saveSecteurs(List<Secteur> secteurs);
 
-  public void saveUtilisateurRoles(int usrId, List<UserRole> newUserRoles);
+    public void saveUtilisateur(List<User> users);
 
-  public void setAdherentImage(int adhId, byte[] photo);
+    public void saveUtilisateurRoles(int usrId, List<UserRole> newUserRoles);
 
-  public void setAdherentLogo(int adhId, byte[] logo);
+    public void setAdherentImage(int adhId, byte[] photo);
 
-  public void setContactImage(int contactId, byte[] bytes);
+    public void setAdherentLogo(int adhId, byte[] logo);
 
-  public void supprimeActivite(Integer id);
+    public void setContactImage(int contactId, byte[] bytes);
 
-  public void supprimeAdherentContact(Integer id);
+    public void supprimeActivite(Integer id);
 
-  public void supprimeAgence(Integer id);
+    public void supprimeAdherentContact(Integer id);
 
-  public void supprimeContactFonction(Integer id);
+    public void supprimeAgence(Integer id);
 
-  public void supprimePole(Integer id);
+    public void supprimeContactFonction(Integer id);
 
-  public void supprimeRole(Integer id);
+    public void supprimePole(Integer id);
 
-  public void supprimeSecteur(Integer id);
+    public void supprimeRole(Integer id);
+
+    public void supprimeSecteur(Integer id);
 }

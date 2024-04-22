@@ -7,20 +7,21 @@
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
-
-<h1 class="text-3xl text-center"><spring:message code="label.addAdherent"/></h1>
-
+<div class="flex justify-center">
+  <h1 class="px-14 py-1.5 text-3xl bg-gray-200 dark:bg-gray-600 rounded-2xl"><spring:message code="label.addAdherent"/></h1>
+</div>
+  
 <form:form class="content" method="post" modelAttribute="adhToAdd" action="addAdherent">
   <form:input type="hidden" path="adherent.id"/>
   <form:input type="hidden" path="adherent.rcsCommune.id" id="communeRCSId"/>
   <form:input type="hidden" path="adherent.rmCommune.id" id="communeRMId"/>
   
   <!-- IDENTITÉ -->
-  <div class="flex flex-col gap-10 mx-16">
+  <div class="flex flex-col gap-10 mx-8">
     <div class="flex flex-col gap-4">
       <span class="text-2xl"><spring:message code="label.identite"/></span>
-      <div class="flex flex-col gap-6 px-10">
-        <div class="grid grid-cols-4 gap-6">
+      <div class="flex flex-col gap-6 ml-10">
+        <div class="grid grid-cols-7 gap-6">
           <div>
             <form:label path="adherent.code" class="text-xs"><spring:message code="label.codeAdh"/></form:label>
             <form:input class="form-control block py-2.5 px-1 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -35,7 +36,7 @@
             <form:errors class="error-message" path="adherent.codeERP"/>
           </div>
 
-          <div>
+          <div class="truncate">
             <form:label path="adherent.codeERPParent" class="text-xs"><spring:message code="label.codeERPParent"/></form:label>
             <form:input
               class="block py-2.5 px-1 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -51,6 +52,22 @@
             </form:select>
             <form:errors class="error-message" path="adherent.pole"/>
           </div>
+
+          <div>
+            <form:label path="adherent.telephone" class="text-xs"><spring:message code="label.telephone"/></form:label>
+            <form:input
+              class="block py-2.5 px-1 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              name="adherent.telephone" path="adherent.telephone"/>
+            <form:errors class="error-message" path="adherent.telephone"/>
+          </div>
+
+          <div class="col-span-2">
+            <form:label path="adherent.mail" class="text-xs"><spring:message code="label.mail"/></form:label>
+            <form:input
+              class="block py-2.5 px-1 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              name="adherent.mail" path="adherent.mail"/>
+            <form:errors class="error-message" path="adherent.mail"/>
+          </div>
         </div>
           
         <div class="grid grid-cols-2 gap-6">
@@ -62,8 +79,7 @@
           </div>
 
           <div>
-            <form:label class="text-xs"
-              path="adherent.denomination"><spring:message code="label.denomination"/>
+            <form:label class="text-xs" path="adherent.denomination"><spring:message code="label.denomination"/>
             </form:label>
             <form:input class="block py-2.5 px-1 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               name="adherent.denomination" path="adherent.denomination"/>
@@ -71,25 +87,22 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-3 gap-6">
-          <div>
-            <form:label class="text-xs"
-              path="adherent.adresse"><spring:message code="label.adresse"/></form:label>
+        <div class="grid grid-cols-9 gap-6">
+          <div class="col-span-2">
+            <form:label class="text-xs" path="adherent.adresse"><spring:message code="label.adresse"/></form:label>
             <form:input class="block py-2.5 px-1 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               name="adherent.adresse" path="adherent.adresse"/>
             <form:errors class="error-message" path="adherent.adresse"/>
           </div>
 
-          <div>
+          <div class="col-span-2">
             <form:label class="text-xs" path="adherent.adresseComplement"><spring:message code="label.adresseComplement"/></form:label>
-            <form:input
-              class="block py-2.5 px-1 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              name="adherent.adresseComplement"
-              path="adherent.adresseComplement"/>
+            <form:input class="block py-2.5 px-1 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              name="adherent.adresseComplement" path="adherent.adresseComplement"/>
             <form:errors class="error-message" path="adherent.adresseComplement"/>
           </div>
 
-          <div>
+          <div class="col-span-2">
             <form:label class="text-xs" path="adherent.commune">
               <spring:message code="label.commune"/>
               <div class="flex h-10 mt-0.5">
@@ -141,6 +154,25 @@
               </div>
             </div>
           </div>
+                      
+          <div>
+            <form:label path="adherent.latitude" class="text-xs"><spring:message code="label.latitude"/></form:label>
+            <form:input class="block py-2.5 px-1 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              name="adherent.latitude" path="adherent.latitude"/>
+            <form:errors class="error-message" path="adherent.latitude"/>
+          </div>
+
+          <div>
+            <form:label path="adherent.longitude" class="text-xs"><spring:message code="label.longitude"/></form:label>
+            <form:input class="block py-2.5 px-1 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              name="adherent.longitude" path="adherent.longitude"/>
+            <form:errors class="error-message" path="adherent.longitude"/>
+          </div>  
+          
+          <div class="flex items-end justify-center items-center gap-1.5">
+            <form:checkbox class="input-checkbox" path="adherent.isArtipole"/>  
+            <form:label class="text-sm" path="adherent.isArtipole"><spring:message code="label.isArtipole"/></form:label>
+          </div>
         </div>
       </div>
     </div>
@@ -148,30 +180,34 @@
     <!-- ADMINISTRATIF -->
     <div class="flex flex-col gap-4">
       <span class="text-2xl"><spring:message code="label.administratif"/></span>
-      <div class="flex flex-col gap-6 px-10">
-        <div class="grid grid-cols-7 gap-6">
+      <div class="flex flex-col gap-6 ml-10">
+        <div class="grid grid-cols-8 gap-6">
           <div>
             <form:label class="text-xs" path="adherent.dateEntree"><spring:message code="label.dateEntree"/></form:label>
             <form:input class="block py-2.5 px-1 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        type="date" name="adherent.dateEntree"
-                        path="adherent.dateEntree"/>
+                        type="date" name="adherent.dateEntree" path="adherent.dateEntree"/>
             <form:errors class="error-message" path="adherent.dateEntree"/>
           </div>
           
           <div>
             <form:label class="text-xs" path="adherent.dateSortie"><spring:message code="label.dateSortie"/></form:label>
             <form:input class="block py-2.5 px-1 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        type="date" name="adherent.dateSortie"
-                        path="adherent.dateSortie"/>
+                        type="date" name="adherent.dateSortie" path="adherent.dateSortie"/>
             <form:errors class="error-message" path="adherent.dateSortie"/>
           </div>
 
-          <div>
+          <div class="truncate">
             <form:label class="text-xs" path="adherent.dateClotureExe"><spring:message code="label.dateClotureExe"/></form:label>
             <form:input class="block py-2.5 px-1 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        type="date" name="adherent.dateClotureExe"
-                        path="adherent.dateClotureExe"/>
+                        type="date" name="adherent.dateClotureExe" path="adherent.dateClotureExe"/>
             <form:errors class="error-message" path="adherent.dateClotureExe"/>
+          </div>
+
+          <div class="truncate">
+            <form:label class="text-xs" path="adherent.dateCreation"><spring:message code="label.dateCreation"/></form:label>
+            <form:input class="block py-2.5 px-1 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        type="date" name="adherent.dateCreation" path="adherent.dateCreation"/>
+            <form:errors class="error-message" path="adherent.dateCreation"/>
           </div>
 
           <div>
@@ -192,7 +228,7 @@
           </div>
 
           <div>
-            <form:label class="text-xs" path="adherent.compteType"><spring:message code="label.reglement"/></form:label>
+            <form:label class="text-xs" path="adherent.compteType"><spring:message code="label.compteType"/></form:label>
             <form:select class="block py-2.5 px-1 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                          name="adherent.compteType" path="adherent.compteType.id">
               <form:options items="${compteTypeList}" itemValue="id" itemLabel="libelle" class="dark:bg-gray-600"/>
@@ -208,18 +244,17 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-4 gap-6">
+        <div class="grid grid-cols-7 gap-6">
           <div>
             <form:label class="text-xs" path="adherent.formeJuridique"><spring:message code="label.formeJuridique"/></form:label>
             <form:select class="block py-2.5 px-1 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
-                         name="adherent.formeJuridique"
-                         path="adherent.formeJuridique.id">
+                         name="adherent.formeJuridique" path="adherent.formeJuridique.id">
               <form:options items="${formJuridList}" itemValue="id" itemLabel="libelle" class="dark:bg-gray-600"/>
             </form:select>
             <form:errors class="error-message" path="adherent.formeJuridique"/>
           </div>
 
-          <div>
+          <div class="col-span-2">
             <form:label class="text-xs" path="adherent.ape"><spring:message code="label.ape"/></form:label>
             <form:select class="block py-2.5 px-1 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                          name="adherent.ape" path="adherent.ape.id">
@@ -227,15 +262,21 @@
             </form:select>
           </div>
 
-          <div>
+          <div class="col-span-2">
             <form:label class="text-xs" path="adherent.FormationDirigeant"><spring:message code="label.formationCommerce"/></form:label>
             <form:input class="block py-2.5 px-1 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        name="adherent.FormationDirigeant"
-                        path="adherent.FormationDirigeant"/>
+                        name="adherent.FormationDirigeant" path="adherent.FormationDirigeant"/>
             <form:errors class="error-message" path="adherent.FormationDirigeant"/>
           </div>
+          
+          <div>
+            <form:label class="text-xs" path="adherent.nbSalaries"><spring:message code="label.nbSalaries"/></form:label>
+            <form:input class="block py-2.5 px-1 w-full text-sm text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        name="adherent.nbSalaries" path="adherent.nbSalaries"/>
+            <form:errors class="error-message" path="adherent.nbSalaries"/>
+          </div>
 
-          <div class="flex items-end justify-center gap-1.5 mb-2">
+          <div class="flex items-end justify-center items-center gap-1.5">
             <form:checkbox class="input-checkbox" path="adherent.cnxEolasAllow" checked="checked"/>  
             <form:label class="text-sm" path="adherent.cnxEolasAllow"><spring:message code="label.cnxEolasAllow"/></form:label>
           </div>
@@ -332,13 +373,13 @@
               <spring:message code="label.rmCommune"/>
               <div class="flex h-10 mt-0.5">
                 <a type="button" data-modal-toggle="rmcommune-modal" class="input-group-text inline-flex items-center px-3 text-gray-900 bg-gray-200 hover:bg-gray-300 rounded-l border border-r-0 border-gray-300"
-                   href="#" id="editRcsCommune" data-toggle="modal"
+                   href="#" id="editRmCommune" data-toggle="modal"
                    data-target="#modal-rmCommune">
                   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
                   </svg>
                 </a>
-                <input type="text" id="communeRCSLibelle" disabled class="rounded-r bg-gray-50 text-sm border border-gray-300 text-gray-900 flex-1 min-w-0 border-gray-300" placeholder="">
+                <input type="text" id="communeRMLibelle" disabled class="rounded-r bg-gray-50 text-sm border border-gray-300 text-gray-900 flex-1 min-w-0 border-gray-300" placeholder="">
               </div>
               <form:errors class="error-message" path="adherent.rmCommune"/>
             </form:label>
@@ -359,15 +400,15 @@
                   <div class="space-y-6">
                     <div class="modal-body">
                       <label class="block mb-2 text-sm font-medium text-gray-900 ">Recherche</label>
-                      <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="filterCpRCSCommune" type="text" placeholder="Code postal ou Nom"/>
+                      <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="filterCpRMCommune" type="text" placeholder="Code postal ou Nom"/>
                       <br>
                       <form:label class="sr-only" path="adherent.rmCommune"><spring:message code="label.commune"/></form:label>
-                      <form:select id="communeRCSListe" class="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer" name="adherent.rmCommune" path="adherent.rmCommune.id">
+                      <form:select id="communeRMListe" class="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer" name="adherent.rmCommune" path="adherent.rmCommune.id">
                         <form:options items="${communeList}" itemValue="id" itemLabel="libelle"/>
                       </form:select>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
-                      <button type="button" data-dismiss="modal" id="valideRcsCommune" data-modal-toggle="rmcommune-modal" class="w-full btn btn-green focus:ring-4 focus:outline-none focus:ring-blue-300">
+                      <button type="button" data-dismiss="modal" id="valideRmCommune" data-modal-toggle="rmcommune-modal" class="w-full btn btn-green focus:ring-4 focus:outline-none focus:ring-blue-300">
                         Sélectionner
                       </button>
                       <button type="button" data-modal-toggle="rmcommune-modal" class="w-full btn btn-red focus:ring-4 focus:outline-none focus:ring-blue-300">
@@ -386,7 +427,7 @@
     <!-- LOGISTIQUE -->
     <div class="flex flex-col gap-4">
       <span class="text-2xl"><spring:message code="label.exploitation"/></span>
-      <div class="flex flex-col gap-6 px-10">
+      <div class="flex flex-col gap-6 ml-10">
         <div class="grid grid-cols-4 gap-6">
           <div>
             <form:label class="text-xs" path="adherent.agence"><spring:message code="label.agenceRattachement"/></form:label>
@@ -415,7 +456,7 @@
             </form:select>
           </div>
 
-          <div class="flex items-end justify-center gap-1.5 mb-2">
+          <div class="flex items-end justify-center items-center gap-1.5">
             <form:checkbox class="input-checkbox" path="adherent.isOutilDechargement"/>  
             <form:label class="text-sm" path="adherent.isOutilDechargement"><spring:message code="label.outilDechargement"/></form:label>
           </div>

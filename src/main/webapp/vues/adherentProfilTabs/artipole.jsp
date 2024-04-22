@@ -9,7 +9,6 @@
 
 <div class="grid grid-cols-3 gap-4">
   <div>
-    
     <!-- GÉNÉRAL -->
     <div class="flex items-center mb-1 <sec:authorize access="not hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')">px-2 h-[28px]</sec:authorize>">
       <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_ARTIPOLE_EDIT')">
@@ -23,134 +22,118 @@
       <spring:message code="label.modifGeneral"/>
     </div>
     <div class="bg-neutral-200 overflow-hidden shadow rounded-lg">
-      <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
-        <dl class="sm:divide-y sm:divide-gray-300">
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.adhArtipole"/> :
-            </dt>
-            <c:choose>
-              <c:when test="${adherent.isArtipole}">
-                <dd class="value text-sky-600 font-bold"><spring:message code="yes"/></dd>
-              </c:when>
-              <c:otherwise>
-                <dd class="value"><spring:message code="no"/></dd>
-              </c:otherwise>
-            </c:choose>
-          </div>              
+      <dl class="divide-y divide-gray-300 text-sm">
+        <div class="p-2 grid grid-cols-2 gap-3 bg-green-200<c:if test="${not adherent.isArtipole}"> bg-red-200</c:if>">
+          <dt class="label">
+            <spring:message code="label.isArtipole"/> :
+          </dt>
+          <c:choose>
+            <c:when test="${adherent.isArtipole}"><dd class="value text-green-600"><spring:message code="yes"/></dd></c:when>
+            <c:otherwise><dd class="value text-red-600"><spring:message code="no"/></dd></c:otherwise>
+          </c:choose>
+        </div>              
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.charteArtipole"/> :
-            </dt>
-            <c:choose>
-              <c:when test="${adherent.isCharteArtipole}">
-                <dd class="value text-sky-600 font-bold"><spring:message code="yes"/></dd>
-              </c:when>
-              <c:otherwise>
-                <dd class="value"><spring:message code="no"/></dd>
-              </c:otherwise>
-            </c:choose>
-          </div>
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.charteArtipole"/> :
+          </dt>
+          <c:choose>
+            <c:when test="${adherent.isCharteArtipole}"><dd class="value text-green-600"><spring:message code="yes"/></dd></c:when>
+            <c:otherwise><dd class="value text-red-600"><spring:message code="no"/></dd></c:otherwise>
+          </c:choose>
+        </div>
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.flocageArtipole"/> :
-            </dt>
-            <c:choose>
-              <c:when test="${adherent.isFlocageArtipole}">
-                <dd class="value text-sky-600 font-bold"><spring:message code="yes"/></dd>
-              </c:when>
-              <c:otherwise>
-                <dd class="value"><spring:message code="no"/></dd>
-              </c:otherwise>
-            </c:choose>
-          </div>
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.flocageArtipole"/> :
+          </dt>
+          <c:choose>
+            <c:when test="${adherent.isFlocageArtipole}"><dd class="value text-green-600"><spring:message code="yes"/></dd></c:when>
+            <c:otherwise><dd class="value text-red-600"><spring:message code="no"/></dd></c:otherwise>
+          </c:choose>
+        </div>
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.siteArtipole"/> :
-            </dt>
-            <c:choose>
-              <c:when test="${adherent.isWebArtipole}">
-                <dd class="value text-sky-600 font-bold"><spring:message code="yes"/></dd>
-              </c:when>
-              <c:otherwise>
-                <dd class="value"><spring:message code="no"/></dd>
-              </c:otherwise>
-            </c:choose>
-          </div>
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.siteArtipole"/> :
+          </dt>
+          <c:choose>
+            <c:when test="${adherent.isWebArtipole}"><dd class="value text-green-600"><spring:message code="yes"/></dd></c:when>
+            <c:otherwise><dd class="value text-red-600"><spring:message code="no"/></dd></c:otherwise>
+          </c:choose>
+        </div>
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.facebookArtipole"/> :
-            </dt>
-            <c:choose>
-              <c:when test="${adherent.isFacebookArtipole}">
-                <dd class="value text-sky-600 font-bold"><spring:message code="yes"/></dd>
-              </c:when>
-              <c:otherwise>
-                <dd class="value"><spring:message code="no"/></dd>
-              </c:otherwise>
-            </c:choose>
-          </div>
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.facebookArtipole"/> :
+          </dt>
+          <c:choose>
+            <c:when test="${adherent.isFacebookArtipole}"><dd class="value text-green-600"><spring:message code="yes"/></dd></c:when>
+            <c:otherwise><dd class="value text-red-600"><spring:message code="no"/></dd></c:otherwise>
+          </c:choose>
+        </div>
 
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.siteWeb"/> :
-            </dt>
-            <dd class="value">
-              ${adherent.siteWeb}
-            </dd>
-          </div>
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.siteWeb"/> :
+          </dt>
+          <dd class="value">
+            <c:url value="${adherent.siteWeb}" var="urlSiteWeb"></c:url>
+            <a href="${urlSiteWeb}" class="text-blue-700 font-normal hover:underline">${adherent.siteWeb}</a>
+          </dd>
+        </div>
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.facebook"/> :
-            </dt>
-            <dd class="value">
-              ${adherent.facebook}
-            </dd>
-          </div>
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.facebook"/> :
+          </dt>
+          <dd class="value">
+            <c:url value="${adherent.facebook}" var="urlFacebook"></c:url>
+            <a href="${urlFacebook}" class="text-blue-700 font-normal hover:underline">${adherent.facebook}</a>
+          </dd>
+        </div>
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.instagram"/> :
-            </dt>
-            <dd class="value">
-              ${adherent.instagram}
-            </dd>
-          </div>
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.instagram"/> :
+          </dt>
+          <dd class="value">
+            <c:url value="${adherent.instagram}" var="urlInstagram"></c:url>
+            <a href="${urlInstagram}" class="text-blue-700 font-normal hover:underline">${adherent.instagram}</a>
+          </dd>
+        </div>
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.linkedin"/> :
-            </dt>
-            <dd class="value">
-              ${adherent.linkedin}
-            </dd>
-          </div>
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.linkedin"/> :
+          </dt>
+          <dd class="value">
+            <c:url value="${adherent.linkedin}" var="urlLinkedin"></c:url>
+            <a href="${urlLinkedin}" class="text-blue-700 font-normal hover:underline">${adherent.linkedin}</a>
+          </dd>
+        </div>
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.youtube"/> :
-            </dt>
-            <dd class="value">
-              ${adherent.youtube}
-            </dd>
-          </div>
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.youtube"/> :
+          </dt>
+          <dd class="value">
+            <c:url value="${adherent.youtube}" var="urlYoutube"></c:url>
+            <a href="${urlYoutube}" class="text-blue-700 font-normal hover:underline">${adherent.youtube}</a>
+          </dd>
+        </div>
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.pinterest"/> :
-            </dt>
-            <dd class="value">
-              ${adherent.pinterest}
-            </dd>
-          </div>
-        </dl>
-      </div>
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.pinterest"/> :
+          </dt>
+          <dd class="value">
+            <c:url value="${adherent.pinterest}" var="urlPinterest"></c:url>
+            <a href="${urlPinterest}" class="text-blue-700 font-normal hover:underline">${adherent.pinterest}</a>          
+          </dd>
+        </div>
+      </dl>
     </div>
   </div>
 
@@ -167,26 +150,18 @@
       </sec:authorize>
       <spring:message code="label.metiers"/>
     </div>
-    <div class="bg-neutral-200 overflow-hidden shadow rounded-lg sm:divide-y sm:divide-gray-300">
-      <c:forEach items="${metiers}" var="metier">
-        <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
-          <dl>
-            <div class="px-1 py-3 grid grid-cols-2 gap-3">
-              <dt class="label">${metier.libelle} :</dt>
-              <c:choose>
-                <c:when test="${metiersAdherentId.contains(metier.id)}">
-                  <dd class="value text-sky-600 font-bold"><spring:message code="yes"/></dd>
-                </c:when>
-                <c:otherwise>
-                  <dd class="value">
-                    <spring:message code="no"/>
-                  </dd>
-                </c:otherwise>
-              </c:choose>
-            </div>
-          </dl>
-        </div>
-      </c:forEach>
+    <div class="bg-neutral-200 overflow-hidden shadow rounded-lg">
+      <dl class="divide-y divide-gray-300 text-sm">
+        <c:forEach items="${metiers}" var="metier">
+          <div class="p-2 grid grid-cols-2 gap-3">
+            <dt class="label">${metier.libelle} :</dt>
+            <c:choose>
+              <c:when test="${metiersAdherentId.contains(metier.id)}"><dd class="value text-green-600"><spring:message code="yes"/></dd></c:when>
+              <c:otherwise><dd class="value text-red-600"><spring:message code="no"/></dd></c:otherwise>
+            </c:choose>
+          </div>
+        </c:forEach>
+      </dl>
     </div>
   </div>
 
@@ -203,60 +178,46 @@
       </sec:authorize>
       <spring:message code="label.certifications"/>
     </div>
-    <div class="bg-neutral-200 overflow-hidden shadow rounded-lg sm:divide-y sm:divide-gray-300">
-      <c:forEach items="${certifications}" var="certification">
-        <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
-          <dl>
-            <div class="px-1 py-3 grid grid-cols-2 gap-3">
-              <dt class="label">${certification.libelle} :</dt>
-              <c:choose>
-                <c:when test="${certificationsAdherentId.contains(certification.id)}">
-                  <dd class="value text-sky-600 font-bold"><spring:message code="yes"/></dd>
-                </c:when>
-                <c:otherwise>
-                  <dd class="value">
-                    <spring:message code="no"/>
-                  </dd>
-                </c:otherwise>
-              </c:choose>
-            </div>
-          </dl>
-        </div>
-      </c:forEach>
+    <div class="bg-neutral-200 overflow-hidden shadow rounded-lg">
+      <dl class="divide-y divide-gray-300 text-sm">
+        <c:forEach items="${certifications}" var="certification">
+          <div class="p-2 grid grid-cols-2 gap-3">
+            <dt class="label">${certification.libelle} :</dt>
+            <c:choose>
+              <c:when test="${certificationsAdherentId.contains(certification.id)}"><dd class="value text-green-600"><spring:message code="yes"/></dd></c:when>
+              <c:otherwise><dd class="value text-red-600"><spring:message code="no"/></dd></c:otherwise>
+            </c:choose>
+          </div>
+        </c:forEach>
+      </dl>
     </div>
   </div>
 </div>
     
 <!-- DESCRIPTION ENTREPRISE & ACTIVITÉ -->
-<div class="bg-neutral-200 overflow-hidden shadow rounded-lg sm:divide-y sm:divide-gray-300 mt-4">
-  <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
-    <dl>
-      <div class="py-3 grid grid-cols-9 gap-4 px-2 items-center">
-        <dt class="label text-center whitespace-normal">
-          <spring:message code="label.description_entreprise"/> :
-        </dt>
-        <div class="sm:col-span-8">
-          <dd class="value overflow-visible whitespace-normal">
-            ${adherent.description_entreprise}
-          </dd>
-        </div>
+<div class="bg-neutral-200 overflow-hidden shadow rounded-lg mt-4">
+  <dl class="divide-y divide-gray-300 text-sm">
+    <div class="py-3 grid grid-cols-9 gap-4 px-2 items-center">
+      <dt class="label text-center whitespace-normal">
+        <spring:message code="label.description_entreprise"/> :
+      </dt>
+      <div class="sm:col-span-8">
+        <dd class="value overflow-visible whitespace-normal">
+          ${adherent.description_entreprise}
+        </dd>
       </div>
-    </dl>
-  </div> 
-  <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
-    <dl>
-      <div class="py-3 grid grid-cols-9 gap-4 px-2 items-center">
-        <dt class="label text-center whitespace-normal">
-          <spring:message code="label.description_activite"/> :
-        </dt>
-        <div class="sm:col-span-8">
-          <dd class="value overflow-visible whitespace-normal">
-            ${adherent.description_activite}
-          </dd>
-        </div>
+    </div>
+    <div class="py-3 grid grid-cols-9 gap-4 px-2 items-center">
+      <dt class="label text-center whitespace-normal">
+        <spring:message code="label.description_activite"/> :
+      </dt>
+      <div class="sm:col-span-8">
+        <dd class="value overflow-visible whitespace-normal">
+          ${adherent.description_activite}
+        </dd>
       </div>
-    </dl>
-  </div>
+    </div>
+  </dl>
 </div>
 
 <!-- TAGS -->
@@ -272,24 +233,23 @@
     </sec:authorize>     
     <spring:message code="label.tags"/>
   </div>
-  <div class="bg-neutral-200 overflow-hidden shadow rounded-lg sm:divide-y sm:divide-gray-300">
+  <div class="bg-neutral-200 overflow-hidden shadow rounded-lg">
     <c:choose>
       <c:when test="${empty specialitesOfAdherent}">
         <dt class="text-gray-400 px-5 py-1">Aucun</dt>
       </c:when>
       <c:otherwise>
-        <c:forEach items="${specialitesOfAdherent}" var="speOfAdh" varStatus="status">
-          <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
-            <dl>
-              <div class="text-sm grid grid-cols-12 gap-4 items-center py-3 px-1">
-                <dt class="font-medium text-gray-500 text-right">${status.index+1} :</dt>
-                <dd class="col-span-11 text-gray-400">
-                  <span class="font-medium mr-3">${speOfAdh.libelle}</span>(${speOfAdh.travaux.libelle})
-                </dd>
-              </div>
-            </dl>
-          </div>
-        </c:forEach>
+        <dl class="divide-y divide-gray-300 text-sm">
+          <c:forEach items="${specialitesOfAdherent}" var="speOfAdh" varStatus="status">
+            <div class="grid grid-cols-12 gap-4 items-center p-2">
+              <dt class="label text-right">${status.index+1} :</dt>
+              <dd class="col-span-11 value">
+                <span>${speOfAdh.libelle}</span>
+                <span class="font-normal ml-3">(${speOfAdh.travaux.libelle})</span>
+              </dd>
+            </div>
+          </c:forEach>
+        </dl>
       </c:otherwise>
     </c:choose>
   </div>
@@ -308,25 +268,23 @@
     </sec:authorize>     
     <spring:message code="label.actualites"/>
   </div>
-  <div class="bg-neutral-200 overflow-hidden shadow rounded-lg sm:divide-y sm:divide-gray-300">
+  <div class="bg-neutral-200 overflow-hidden shadow rounded-lg">
     <c:choose>
       <c:when test="${empty actualites}">
         <dt class="text-gray-400 px-5 py-1">Aucune</dt>
       </c:when>
       <c:otherwise>
-        <c:forEach items="${actualites}" var="actualite" varStatus="status">
-          <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
-            <dl>
-              <div class="text-sm grid grid-cols-12 gap-4 items-center py-3 px-1">
-                <dd class="value col-span-4">${actualite.titre}</dd>
-                <dd class="value col-span-3">${actualite.type}</dd>
-                <dd class="value col-span-3">${actualite.sous_type}</dd>
-                <dd class="value text-center">${actualite.position}</dd>
-                <dd class="value text-center">${actualite.date_ajout}</dd>
-              </div>
-            </dl>
-          </div>
-        </c:forEach>
+        <dl class="divide-y divide-gray-300 text-sm">
+          <c:forEach items="${actualites}" var="actualite" varStatus="status">
+            <div class="grid grid-cols-12 gap-4 items-center p-2">
+              <dd class="value col-span-4">${actualite.titre}</dd>
+              <dd class="value col-span-3">${actualite.type}</dd>
+              <dd class="value col-span-3">${actualite.sous_type}</dd>
+              <dd class="value text-center">${actualite.position}</dd>
+              <dd class="value text-center">${actualite.date_ajout}</dd>
+            </div>
+          </c:forEach>
+        </dl>
       </c:otherwise>
     </c:choose>
   </div>
@@ -345,25 +303,23 @@
     </sec:authorize>     
     <spring:message code="label.realisations"/>
   </div>
-  <div class="bg-neutral-200 overflow-hidden shadow rounded-lg sm:divide-y sm:divide-gray-300">
+  <div class="bg-neutral-200 overflow-hidden shadow rounded-lg">
     <c:choose>
       <c:when test="${empty actualites}">
         <dt class="text-gray-400 px-5 py-1">Aucune</dt>
       </c:when>
       <c:otherwise>
-        <c:forEach items="${actualites}" var="actualite" varStatus="status">
-          <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
-            <dl>
-              <div class="text-sm grid grid-cols-12 gap-4 items-center py-3 px-1">
-                <dd class="value col-span-4">${actualite.titre}</dd>
-                <dd class="value col-span-3">${actualite.type}</dd>
-                <dd class="value col-span-3">${actualite.sous_type}</dd>
-                <dd class="value text-center">${actualite.position}</dd>
-                <dd class="value text-center">${actualite.date_ajout}</dd>
-              </div>
-            </dl>
-          </div>
-        </c:forEach>
+        <dl class="divide-y divide-gray-300 text-sm">
+          <c:forEach items="${actualites}" var="actualite" varStatus="status">
+            <div class="grid grid-cols-12 gap-4 items-center p-2">
+              <dd class="value col-span-4">${actualite.titre}</dd>
+              <dd class="value col-span-3">${actualite.type}</dd>
+              <dd class="value col-span-3">${actualite.sous_type}</dd>
+              <dd class="value text-center">${actualite.position}</dd>
+              <dd class="value text-center">${actualite.date_ajout}</dd>
+            </div>
+          </c:forEach>
+        </dl>
       </c:otherwise>
     </c:choose>
   </div>

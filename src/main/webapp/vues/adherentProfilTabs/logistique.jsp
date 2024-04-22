@@ -19,119 +19,91 @@
       <spring:message code="label.livraison"/>
     </div>
     <div class="bg-neutral-200 overflow-hidden shadow rounded-lg">
-      <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
-        <dl class="sm:divide-y sm:divide-gray-300">
-          
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.adresseLivraison"/> :
-            </dt>
-            <dd class="value">
-              ${infoExploitation.adresseLivraison}
-            </dd>
-          </div>
+      <dl class="divide-y divide-gray-300 text-sm">
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.adresseLivraison"/> :
+          </dt>
+          <dd class="value">
+            ${infoExploitation.adresseLivraison}
+          </dd>
+        </div>
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.adresseComplement"/> :
-            </dt>
-            <dd class="value">
-              ${infoExploitation.adresseComplement}
-            </dd>
-          </div>
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.adresseComplement"/> :
+          </dt>
+          <dd class="value">
+            ${infoExploitation.adresseComplement}
+          </dd>
+        </div>
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.commune"/> :
-            </dt>
-            <dd class="value">
-              <spring:message code="message.commune" arguments="${infoExploitation.commune.codePostal}, ${infoExploitation.commune.libelle}"/>
-            </dd>
-          </div>
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.commune"/> :
+          </dt>
+          <dd class="value">
+            <spring:message code="message.commune" arguments="${infoExploitation.commune.codePostal}, ${infoExploitation.commune.libelle}"/>
+          </dd>
+        </div>
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.chargeReception"/> :
-            </dt>
-            <dd class="value">
-              <span class="data">${contactReception.nom}</span>
-              <span class="data">${contactReception.prenom}</span>
-            </dd>
-          </div>
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.chargeReception"/> :
+          </dt>
+          <dd class="value">
+            ${contactReception.nom} ${contactReception.prenom}
+          </dd>
+        </div>
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.accesSemi"/> :
-            </dt>
-            <c:choose>
-              <c:when test="${infoExploitation.isAccesSemi}">
-                <dd class="value text-sky-600 font-bold">
-                  <spring:message code="yes"/>
-                </dd>
-              </c:when>
-              <c:otherwise>
-                <dd class="value">
-                  <spring:message code="no"/>
-                </dd>
-              </c:otherwise>
-            </c:choose> 
-          </div>
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.accesSemi"/> :
+          </dt>
+          <c:choose>
+            <c:when test="${infoExploitation.isAccesSemi}"><dd class="value text-green-600"><spring:message code="yes"/></dd></c:when>
+            <c:otherwise><dd class="value text-red-600"><spring:message code="no"/></dd></c:otherwise>
+          </c:choose> 
+        </div>
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.materielDechargement"/> :
-            </dt>
-            <c:choose>
-              <c:when test="${infoExploitation.isMaterielDechargement}">
-                <dd class="value text-sky-600 font-bold">
-                  <spring:message code="yes"/>
-                </dd>
-              </c:when>
-              <c:otherwise>
-                <dd class="value">
-                  <spring:message code="no"/>
-                </dd>
-              </c:otherwise>
-            </c:choose>             
-          </div>
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.materielDechargement"/> :
+          </dt>
+          <c:choose>
+            <c:when test="${infoExploitation.isMaterielDechargement}"><dd class="value text-green-600"><spring:message code="yes"/></dd></c:when>
+            <c:otherwise><dd class="value text-red-600"><spring:message code="no"/></dd></c:otherwise>
+          </c:choose>             
+        </div>
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.autorisationOutils"/> :
-            </dt>
-            <c:choose>
-              <c:when test="${infoExploitation.isAuthorise}">
-                <dd class="value text-sky-600 font-bold">
-                  <spring:message code="yes"/>
-                </dd>
-              </c:when>
-              <c:otherwise>
-                <dd class="value">
-                  <spring:message code="no"/>
-                </dd>
-              </c:otherwise>
-            </c:choose>             
-          </div>
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.autorisationOutils"/> :
+          </dt>
+          <c:choose>
+            <c:when test="${infoExploitation.isAuthorise}"><dd class="value text-green-600"><spring:message code="yes"/></dd></c:when>
+            <c:otherwise><dd class="value text-red-600"><spring:message code="no"/></dd></c:otherwise>
+          </c:choose>             
+        </div>
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.commentaireMateriel"/> :
-            </dt>
-            <dd class="value">
-              ${infoExploitation.outillageCommentaire}
-            </dd>
-          </div>
+        <div class="p-2 grid grid-cols-2 gap-3 items-center">
+          <dt class="label">
+            <spring:message code="label.commentaireMateriel"/> :
+          </dt>
+          <dd class="value overflow-visible whitespace-normal">
+            ${infoExploitation.outillageCommentaire}
+          </dd>
+        </div>
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.protocolDechargement"/> :
-            </dt>
-            <dd class="value">
-              ${infoExploitation.protocolDechargement}
-            </dd>
-          </div>            
-        </dl>
-      </div>
+        <div class="p-2 grid grid-cols-2 gap-3 items-center">
+          <dt class="label">
+            <spring:message code="label.protocolDechargement"/> :
+          </dt>
+          <dd class="value overflow-visible whitespace-normal">
+            ${infoExploitation.protocolDechargement}
+          </dd>
+        </div>            
+      </dl>
     </div>
   </div>
               
@@ -148,54 +120,44 @@
       <spring:message code="label.agence"/>
     </div>
     <div class="bg-neutral-200 overflow-hidden shadow rounded-lg">
-      <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
-        <dl class="sm:divide-y sm:divide-gray-300">
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.agenceRattachement"/> :
-            </dt>
-            <dd class="value">
-              ${adherent.agence.libelle}
-            </dd>
-          </div>
+      <dl class="divide-y divide-gray-300 text-sm">
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.agenceRattachement"/> :
+          </dt>
+          <dd class="value">
+            ${adherent.agence.libelle}
+          </dd>
+        </div>
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.secteur"/> :
-            </dt>
-            <dd class="value">
-              ${adherent.secteur.libelle}
-            </dd>
-          </div>
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.secteur"/> :
+          </dt>
+          <dd class="value">
+            ${adherent.secteur.libelle}
+          </dd>
+        </div>
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.tournee"/> :
-            </dt>
-            <dd class="value">
-              ${adherent.tournee.libelle}
-            </dd>
-          </div>
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.tournee"/> :
+          </dt>
+          <dd class="value">
+            ${adherent.tournee.libelle}
+          </dd>
+        </div>
 
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.outilDechargement"/> :
-            </dt>
-            <c:choose>
-              <c:when test="${adherent.isOutilDechargement}">
-                <dd class="value text-sky-600 font-bold">
-                  <spring:message code="yes"/>
-                </dd>
-              </c:when>
-              <c:otherwise>
-                <dd class="value">
-                  <spring:message code="no"/>
-                </dd>
-              </c:otherwise>
-            </c:choose>            
-          </div>          
-        </dl>
-      </div>
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.outilDechargement"/> :
+          </dt>
+          <c:choose>
+            <c:when test="${adherent.isOutilDechargement}"><dd class="value text-green-600"><spring:message code="yes"/></dd></c:when>
+            <c:otherwise><dd class="value text-red-600"><spring:message code="no"/></dd></c:otherwise>
+          </c:choose>            
+        </div>          
+      </dl>
     </div>
   </div>
 </div>

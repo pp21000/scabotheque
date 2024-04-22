@@ -20,36 +20,34 @@
   
   <div class="grid grid-cols-2 gap-4">
     <div class="bg-neutral-200 overflow-hidden shadow rounded-lg">
-      <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
-        <dl class="sm:divide-y sm:divide-gray-300">
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.loginEOLAS"/> :
-            </dt>
-            <dd class="value">
-              ${informatique.loginEOLAS}
-            </dd>
-          </div>
-            
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.loginDFIWEB"/> :
-            </dt>
-            <dd class="value">
-              ${informatique.loginDFIWEB}
-            </dd>
-          </div>
-            
-          <div class="px-1 py-3 grid grid-cols-2 gap-3">
-            <dt class="label">
-              <spring:message code="label.loginOrcabElectro"/> :
-            </dt>
-            <dd class="value">
-              ${informatique.loginOrcabElectro}
-            </dd>
-          </div>
-        </dl>
-      </div>
+      <dl class="divide-y divide-gray-300 text-sm">
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.loginEOLAS"/> :
+          </dt>
+          <dd class="value">
+            ${informatique.loginEOLAS}
+          </dd>
+        </div>
+
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.loginDFIWEB"/> :
+          </dt>
+          <dd class="value">
+            ${informatique.loginDFIWEB}
+          </dd>
+        </div>
+
+        <div class="p-2 grid grid-cols-2 gap-3">
+          <dt class="label">
+            <spring:message code="label.loginOrcabElectro"/> :
+          </dt>
+          <dd class="value">
+            ${informatique.loginOrcabElectro}
+          </dd>
+        </div>
+      </dl>
     </div>
   </div>
 </div>  

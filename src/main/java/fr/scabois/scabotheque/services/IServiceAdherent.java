@@ -34,173 +34,175 @@ import java.util.List;
 
 public interface IServiceAdherent {
 
-  public void createActivite(String var1);
+    public void createActivite(String var1);
 
-  public int createAdherent(Adherent var1);
+    public int createAdherent(Adherent var1);
 
-  public void createAgence(String var1);
+    public void createAgence(String var1);
 
-  public void createContactAdherent(AdherentContactRole var1);
+    public void createContactAdherent(AdherentContactRole var1);
 
-  public void createContactFonction(String var1);
+    public void createContactFonction(String var1);
 
-  public void createPole(String var1);
+    public void createPole(String var1);
 
-  public void createRole(String var1);
+    public void createRole(String var1);
 
-  public void createSecteur(String var1);
+    public void createSecteur(String var1);
 
-  public void createSuiviAdherent(AdherentSuiviVisite var1);
+    public void createSuiviAdherent(AdherentSuiviVisite var1);
 
-  public void createUtilisateur(String var1, String var2);
+    public void createUtilisateur(String var1, String var2);
 
-  public Activite loadActivite(int var1);
+    public Activite loadActivite(int var1);
 
-  public List<Activite> loadActivites();
+    public List<Activite> loadActivites();
 
-  public List<AdherentActivite> loadActivitesAdherent(int var1);
+    public List<AdherentActivite> loadActivitesAdherent(int var1);
 
-  public Adherent loadAdherent(int var1);
+    public Adherent loadAdherent(int var1);
 
-  public String loadAdherentCommentaire(int var1, PageType var2);
+    public String loadAdherentCommentaire(int var1, PageType var2);
 
-  public List<AdherentContactRole> loadAdherentContact(int var1);
+    public List<AdherentContactRole> loadAdherentContact(int var1);
 
-  public List<AdherentContactRole> loadAdherentContactFonction(int var1, Boolean var2, Boolean var3, Boolean var4, Boolean var5);
+    public List<AdherentContactRole> loadAdherentContactFonction(int var1, Boolean var2, Boolean var3, Boolean var4, Boolean var5);
 
-  public AdherentLogistique loadAdherentLogistique(int var1);
+    public AdherentLogistique loadAdherentLogistique(int var1);
 
-  public AdherentInformatique loadAdherentInformatique(int var1);
+    public AdherentInformatique loadAdherentInformatique(int var1);
 
-  public AdherentSuiviVisite loadAdherentSuiviVisite(int var1);
+    public AdherentSuiviVisite loadAdherentSuiviVisite(int var1);
 
-  public List<AdherentSuiviVisite> loadAdherentSuivisVisites(int var1);
+    public List<AdherentSuiviVisite> loadAdherentSuivisVisites(int var1);
 
-  public List<AdherentType> loadAdherentTypes();
+    public List<AdherentType> loadAdherentTypes();
 
-  public List<Adherent> loadAdherents();
+    public List<Adherent> loadAdherents();
 
-  public List<AdherentContactRole> loadAdherentsContact();
+    public List<AdherentContactRole> loadAdherentsContact();
 
-  public List<ContactRetraite> loadContactsRetraite();
+    public List<ContactRetraite> loadContactsRetraite();
 
-  public ContactClubFemme loadContactClubFemme(int var1);
+    public ContactClubFemme loadContactClubFemme(int var1);
 
-  public List<ContactClubFemme> loadContactsClubFemme();
+    public List<ContactClubFemme> loadContactsClubFemme();
 
-  public List<Adherent> loadAdherents(CriteriaAdherent var1);
+    public List<Adherent> loadAdherents(CriteriaAdherent var1);
 
-  public List<Agence> loadAgences();
+    public List<Agence> loadAgences();
 
-  public List<Ape> loadCodeApes();
+    public List<Ape> loadCodeApes();
 
-  public List<Commune> loadCommunes();
+    public List<Commune> loadCommunes();
 
-  public List<CompteType> loadCompteTypes();
+    public List<CompteType> loadCompteTypes();
 
-  public List<ContactFonction> loadContactFonctions();
+    public List<ContactFonction> loadContactFonctions();
 
-  public List<AdherentEtat> loadEtats();
+    public List<AdherentEtat> loadEtats();
 
-  public List<FormeJuridique> loadFormesJuridiques();
+    public List<FormeJuridique> loadFormesJuridiques();
 
-  public List<Pole> loadPoles();
+    public List<Pole> loadPoles();
 
-  public List<Role> loadRoles();
+    public List<Role> loadRoles();
 
-  public List<RoleSalarieEOLAS> loadRolesEOLAS();
+    public List<RoleSalarieEOLAS> loadRolesEOLAS();
 
-  public List<Secteur> loadSecteurs();
+    public List<Secteur> loadSecteurs();
 
-  public List<Tournee> loadTournees();
+    public List<Tournee> loadTournees();
 
-  public User loadUtilisateur(int var1);
+    public User loadUtilisateur(int var1);
 
-  public List<User> loadUtilisateurs();
+    public List<User> loadUtilisateurs();
 
-  public void saveActivites(List<Activite> var1);
+    public void saveActivites(List<Activite> var1);
 
-  public void saveActivitesAdherent(int var1, List<AdherentActivite> var2);
+    public void saveActivitesAdherent(int var1, List<AdherentActivite> var2);
 
-  public void saveAdherent(Adherent var1);
+    public void saveAdherent(Adherent var1);
 
-  public void saveAdherentCommentaire(int var1, PageType var2, String var3);
+    public void saveAdherentCommentaire(int var1, PageType var2, String var3);
 
-  public void saveAdherentContacts(List<AdherentContactRole> var1);
+    public void saveAdherentContacts(List<AdherentContactRole> var1);
 
-  public void saveAdherentSuiviVisite(AdherentSuiviVisite var1);
+    public void saveAdherentSuiviVisite(AdherentSuiviVisite var1);
 
-  public void saveAgences(List<Agence> var1);
+    public void saveAgences(List<Agence> var1);
 
-  public void saveContactFonctions(List<ContactFonction> var1);
+    public void saveContactFonctions(List<ContactFonction> var1);
 
-  public void savePoles(List<Pole> var1);
+    public void savePoles(List<Pole> var1);
 
-  public void saveRoles(List<Role> var1);
+    public void saveRoles(List<Role> var1);
 
-  public void saveSecteurs(List<Secteur> var1);
+    public void saveSecteurs(List<Secteur> var1);
 
-  public void saveUtilisateur(List<User> var1);
+    public void saveUtilisateur(List<User> var1);
 
-  public void saveUtilisateurRoles(int var1, List<UserRole> var2);
+    public void saveUtilisateurRoles(int var1, List<UserRole> var2);
 
-  public void setAdherentImage(int var1, byte[] var2);
+    public void setAdherentImage(int var1, byte[] var2);
 
-  public void setAdherentLogo(int var1, byte[] var2);
+    public void setAdherentLogo(int var1, byte[] var2);
 
-  public void setContactImage(int var1, byte[] var2);
+    public void setContactImage(int var1, byte[] var2);
 
-  public void supprimeActivite(Integer var1);
+    public void supprimeActivite(Integer var1);
 
-  public void supprimeAdherentContact(Integer var1);
+    public void supprimeAdherentContact(Integer var1);
 
-  public void supprimeAgence(Integer var1);
+    public void supprimeAgence(Integer var1);
 
-  public void supprimeContactFonction(Integer var1);
+    public void supprimeContactFonction(Integer var1);
 
-  public void supprimePole(Integer var1);
+    public void supprimePole(Integer var1);
 
-  public void supprimeRole(Integer var1);
+    public void supprimeRole(Integer var1);
 
-  public void supprimeSecteur(Integer var1);
+    public void supprimeSecteur(Integer var1);
 
-  public Long countAdherents();
+    public Long countAdherents();
 
-  public Long countAdherentsInactif();
+    public Long countAdherentsInactif();
 
-  public Long countAdherentsSansEOLAS();
+    public Long countAdherentsSansEOLAS();
 
-  public AdherentContactComptable loadAdherentContactComptable(int var1);
+    public Long countContacts();
 
-  public List<AdherentContactRole> loadAdherentContact(CriteriaAdherent var1);
+    public AdherentContactComptable loadAdherentContactComptable(int var1);
 
-  public void saveContactComptableAdherent(AdherentContactComptable var1);
+    public List<AdherentContactRole> loadAdherentContact(CriteriaAdherent var1);
 
-  public String chartDataActif();
+    public void saveContactComptableAdherent(AdherentContactComptable var1);
 
-  public String chartDataNew();
+    public String chartDataActif();
 
-  public String chartDataAnnee();
+    public String chartDataNew();
 
-  public String chartDataInactif();
+    public String chartDataAnnee();
 
-  public void createContactClubFemme(ContactClubFemme var1);
+    public String chartDataInactif();
 
-  public void createContactRetraite(ContactRetraite var1);
+    public void createContactClubFemme(ContactClubFemme var1);
 
-  public List<AdherentMetier> loadAdherentMetiers(int var1);
+    public void createContactRetraite(ContactRetraite var1);
 
-  public List<AdherentCertification> loadAdherentCertifications(int var1);
+    public List<AdherentMetier> loadAdherentMetiers(int var1);
 
-  public List<AdherentSpecialite> loadAdherentSpecialites(int var1);
+    public List<AdherentCertification> loadAdherentCertifications(int var1);
 
-  public AdherentContactRole loadContact(Integer var1);
+    public List<AdherentSpecialite> loadAdherentSpecialites(int var1);
 
-  public void saveAdherentLogistique(AdherentLogistique var1);
+    public AdherentContactRole loadContact(Integer var1);
 
-  public void saveAdherentMetiers(int var1, List<AdherentMetier> var2);
+    public void saveAdherentLogistique(AdherentLogistique var1);
 
-  public void saveAdherentCertifications(int var1, List<AdherentCertification> var2);
+    public void saveAdherentMetiers(int var1, List<AdherentMetier> var2);
 
-  public void saveAdherentSpecialites(int var1, List<AdherentSpecialite> var2);
+    public void saveAdherentCertifications(int var1, List<AdherentCertification> var2);
+
+    public void saveAdherentSpecialites(int var1, List<AdherentSpecialite> var2);
 }

@@ -55,14 +55,14 @@
             </div>
           </div>
 
-          <div class="flex items-center gap-2 mt-2">
+<%--          <div class="flex items-center gap-2 mt-2">
             <div class="w-1/4 text-right">
               <form:label path="editAARealisation.photo.file">Photo</form:label>
             </div>
             <div class="w-3/4">
               <form:input class="w-96" type="file" path="editAARealisation.photo.file" accept="image/x-png,image/gif,image/jpeg"/>
             </div>
-          </div>
+          </div>--%>
 
           <div class="flex items-center gap-2 mt-2">
             <div class="w-1/4 text-right">

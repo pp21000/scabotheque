@@ -54,8 +54,35 @@
         </a>
       </li>
     </ul>
+        
     <ul class="mb-20 flex flex-col">
-
+      <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_RETRAITE_EDIT')">
+        <c:if test = "${pageType == '' || pageType == 'LISTE_RETRAITES'}">
+          <li>
+            <a href="<c:url value="/addContactRetraite"/>" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100 dark:text-gray-50 dark:bg-gray-800 dark:hover:bg-gray-600">
+              <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+              </svg>
+              <div class="ml-1 whitespace-nowrap text-sm"><spring:message code="label.addContactRetraite"/></div>
+            </a>
+          </li>
+        </c:if>
+      </sec:authorize>
+      
+      <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CLUB_FEMMES_EDIT')">
+        <c:if test = "${pageType == '' || pageType == 'LISTE_FEMMES'}">
+          <li>
+            <a href=<c:url value="/addContactClubFemme"/>
+               class="<c:if test = "${pageType == '' || pageType == 'CREATE_ADHERENT'}"> text-green-500 font-bold </c:if> flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100 dark:text-gray-50 dark:bg-gray-800 dark:hover:bg-gray-600">
+                 <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+                 </svg>
+                 <div class="ml-1 whitespace-nowrap text-sm"><spring:message code="label.addContactClubFemmes"/></div>
+            </a>
+          </li>
+        </c:if>
+      </sec:authorize>  
+      
       <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_EXPORT')">
         <li>
           <c:choose>
@@ -90,32 +117,6 @@
           </form:form>
         </li>
       </sec:authorize>
-
-      <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_RETRAITE_EDIT')">
-        <c:if test = "${pageType == '' || pageType == 'LISTE_RETRAITES'}">
-          <li>
-            <a href="<c:url value="/addContactRetraite"/>" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100 dark:text-gray-50 dark:bg-gray-800 dark:hover:bg-gray-600">
-              <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
-              </svg>
-              <div class="ml-1 whitespace-nowrap text-sm"><spring:message code="label.addContactRetraite"/></div>
-            </a>
-          </li>
-        </c:if>
-      </sec:authorize>
-      <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CLUB_FEMMES_EDIT')">
-        <c:if test = "${pageType == '' || pageType == 'LISTE_FEMMES'}">
-          <li>
-            <a href=<c:url value="/addContactClubFemme"/>
-               class="<c:if test = "${pageType == '' || pageType == 'CREATE_ADHERENT'}"> text-green-500 font-bold </c:if> flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100 dark:text-gray-50 dark:bg-gray-800 dark:hover:bg-gray-600">
-                 <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
-                 </svg>
-                 <div class="ml-1 whitespace-nowrap text-sm"><spring:message code="label.addContactClubFemmes"/></div>
-            </a>
-          </li>
-        </c:if>
-      </sec:authorize>  
     </ul>
   </div>
 

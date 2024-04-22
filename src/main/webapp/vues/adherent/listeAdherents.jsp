@@ -89,13 +89,13 @@
             </div>
 
             <div class="flex items-center gap-1.5">
-              <form:checkbox class="input-checkbox" id="showSousCompte" name="showSousCompte" path="showSousCompte"/>
-              <label class="text-gray-500" style="float:none;" for="showSousCompte"><spring:message code="label.filtre.sousCompte"/></label>
+              <form:checkbox class="input-checkbox" id="showArtipoleOnly" name="showArtipoleOnly" path="showArtipoleOnly"/>
+              <label class="text-gray-500" style="float:none;" for="showArtipoleOnly"><spring:message code="label.filtre.isArtipole"/></label>
             </div>
 
             <div class="flex items-center gap-1.5">
-              <form:checkbox class="input-checkbox" id="showArtipoleOnly" name="showArtipoleOnly" path="showArtipoleOnly"/>
-              <label class="text-gray-500" style="float:none;" for="showArtipoleOnly"><spring:message code="label.filtre.isArtipole"/></label>
+              <form:checkbox class="input-checkbox" id="showSousCompte" name="showSousCompte" path="showSousCompte"/>
+              <label class="text-gray-500" style="float:none;" for="showSousCompte"><spring:message code="label.filtre.sousCompte"/></label>
             </div>
 
             <div class="flex items-center gap-1.5">
@@ -195,9 +195,8 @@
               </ul>
               
               <ul>
-                <li class="font-semibold" ><c:out value="${adherent.pole.libelle}"/></li> 
+                <li class="font-bold"><c:out value="${adherent.pole.libelle}"/></li> 
               </ul>
-              
             </div>
           </div>
         </div>

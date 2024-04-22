@@ -55,14 +55,21 @@
           
           <!-- Denomination et Code adherent -->
           <div class="w-full">
-            <div class="text-center text-xl text-gray-600 font-bold">${adherent.denomination}</div>
+            <div class="text-center text-xl text-gray-600 font-bold leading-none my-1">${adherent.denomination}</div>
             <div class="flex justify-center">
               <div class="bg-green-600 text-white text-sm font-medium px-2 py-0.5 rounded">${adherent.code}</div>
             </div>
             <c:if test="${not empty adherent.codeERPParent}">
               <div class="flex justify-center items-center gap-1">
-                <div class="text-center text-sm"><spring:message code="label.codeERPParent"/> :</div>
-                <div class="bg-green-600 text-white text-xs font-medium px-1.5 py-0.5 rounded">${adherent.codeERPParent}</div>
+                <div class="text-center text-sm">
+                  <spring:message code="label.codeERPParent"/> :
+                </div>
+                <c:url value="adherentProfil" var="urlComptePrincipal"><c:param name="tab" value="contacts"/><c:param name="idAdh" value="${adherent.codeERPParent}"/></c:url>
+                <a href="${urlComptePrincipal}">
+                  <div class="bg-green-600 text-white text-xs font-medium px-1.5 py-0.5 rounded">
+                    ${adherent.codeERPParent}
+                  </div>
+                </a>
               </div>
             </c:if> 
           </div>
@@ -107,39 +114,41 @@
           </c:choose>
         </div>
 
-        <!-- Adhesion Pole & Agence -->
+        <!-- Adhesion, Pôle, Agence -->
         <div class="w-full leading-none">
           <div class="grid grid-cols-9">
-            <span class="col-span-4 flex items-center justify-end text-right font-semibold"><spring:message code="label.adhArtipole"/></span>
+            <span class="col-span-4 flex items-center justify-end label whitespace-normal"><spring:message code="label.isArtipole"/></span>
             <div class="flex justify-center items-center">
               <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
               </svg>
             </div>
-            <span class="col-span-4 flex items-center text-black">
+            <span class="col-span-4 flex items-center value whitespace-normal">
               <c:choose>
-                <c:when test="${adherent.isArtipole}"><spring:message code="yes"/></c:when>
-                <c:otherwise><spring:message code="no"/></c:otherwise>
+                <c:when test="${adherent.isArtipole}"><span class="text-green-600"><spring:message code="yes"/></span></c:when>
+                <c:otherwise><span class="text-red-600"><spring:message code="no"/></span></c:otherwise>
               </c:choose>
             </span>
           </div>
+            
           <div class="grid grid-cols-9">
-            <span class="col-span-4 flex items-center justify-end text-right font-semibold"><spring:message code="label.pole"/></span>
+            <span class="col-span-4 flex items-center justify-end label whitespace-normal"><spring:message code="label.pole"/></span>
             <div class="flex justify-center items-center">
               <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
               </svg>
             </div>
-            <span class="col-span-4 flex items-center text-black">${adherent.pole.libelle}</span>
+            <span class="col-span-4 flex items-center value whitespace-normal">${adherent.pole.libelle}</span>
           </div>
+          
           <div class="grid grid-cols-9">
-            <span class="col-span-4 flex items-center justify-end text-right font-semibold"><spring:message code="label.agenceRattachement"/></span>
+            <span class="col-span-4 flex items-center justify-end label whitespace-normal"><spring:message code="label.agenceRattachement"/></span>
             <div class="flex justify-center items-center">
               <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
               </svg>
             </div>
-            <span class="col-span-4 flex items-center text-black">${adherent.agence.libelle}</span>
+            <span class="col-span-4 flex items-center value whitespace-normal">${adherent.agence.libelle}</span>
           </div>
         </div>
 
@@ -152,7 +161,7 @@
               <a href="tel:${adherent.telephone}">${adherent.telephone}</a>
             </li>
           </ul>
-          <ul class="text-black leading-none">
+          <ul class="leading-none value">
             <li>
               <span>${adherent.adresse}</span>
             </li>
@@ -168,12 +177,12 @@
           <ul>
             <li>
               <c:choose>
-                <c:when test="${adherent.latitude!=0 or adherent.longitude!=0}">
+                <c:when test="${adherent.latitude != 0 or adherent.longitude != 0}">
                   <c:url value="https://www.google.com/maps" var="urlMaps"><c:param name="q" value="${adherent.latitude},${adherent.longitude}"/></c:url>
                   <a href="${urlMaps}" target="_blank" class="text-green-600 hover:underline">
                     <spring:message code="label.localisation"/>
                   </a>
-                  <span class="text-black"> : ${adherent.latitude}, ${adherent.longitude}</span>
+                  <span class="value text-sm"> : ${adherent.latitude}, ${adherent.longitude}</span>
                 </c:when>
                 <c:otherwise>
                   <span>Coordonnées GPS non renseignées</span>
@@ -213,16 +222,16 @@
         <c:choose>
           <c:when test="${not empty infoExploitation.adresseLivraison or not empty infoExploitation.commune.codePostal}">
             <li>
-              <spring:message code="label.adresseLivraison"/> : <span class="text-black">${infoExploitation.adresseLivraison}</span>
+              <spring:message code="label.adresseLivraison"/> : <span class="value">${infoExploitation.adresseLivraison}</span>
             </li>
             <c:if test="${not empty infoExploitation.adresseComplement}">
               <li>
-                <spring:message code="label.adresseComplement"/> : <span class="text-black">${infoExploitation.adresseComplement}</span>
+                <spring:message code="label.adresseComplement"/> : <span class="value">${infoExploitation.adresseComplement}</span>
               </li>
             </c:if>
             <li>
               <spring:message code="label.commune"/> : 
-              <span class="text-black">
+              <span class="value">
                 <c:if test="${not empty infoExploitation.commune.codePostal}">
                   <spring:message code="message.commune" arguments="${infoExploitation.commune.codePostal}, ${infoExploitation.commune.libelle}"/>
                 </c:if>
@@ -231,7 +240,7 @@
           </c:when>
           <c:otherwise>
             <li>
-              <span>Adresse non renseignée.</span>
+              <span>Adresse non renseignée</span>
             </li>          
           </c:otherwise>
         </c:choose>
@@ -253,10 +262,8 @@
         </sec:authorize>           
 
         <div class="flex flex-1 justify-center items-center">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
-               xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-8">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"></path>
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"></path>
           </svg>
           <h4 class="text-center text-lg font-semibold ml-1">
             Agence
@@ -266,17 +273,17 @@
 
       <ul class="px-4 py-2">
         <li>
-          <spring:message code="label.agenceRattachement"/> : <span class="text-black">${adherent.agence.libelle}</span>
+          <spring:message code="label.agenceRattachement"/> : <span class="value">${adherent.agence.libelle}</span>
         </li>
         <li>          
-          <spring:message code="label.secteur"/> : <span class="text-black">${adherent.secteur.libelle}</span>
+          <spring:message code="label.secteur"/> : <span class="value">${adherent.secteur.libelle}</span>
         </li>
         <li>          
-          <spring:message code="label.tournee"/> : <span class="text-black">${adherent.tournee.libelle}</span>
+          <spring:message code="label.tournee"/> : <span class="value">${adherent.tournee.libelle}</span>
         </li>
         <li>          
           <spring:message code="label.outilDechargement"/> : 
-          <span class="text-black">              
+          <span class="value">              
             <c:choose>
               <c:when test="${adherent.isOutilDechargement}"><spring:message code="yes"/></c:when>
               <c:otherwise><spring:message code="no"/></c:otherwise>
@@ -302,10 +309,8 @@
         </sec:authorize>--%> 
         
         <div class="flex flex-1 justify-center items-center">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
-               xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-8">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
           <h4 class="text-center text-lg font-semibold ml-1">
             Horaires d'ouverture
@@ -314,7 +319,7 @@
       </div>
       
       <div class="flex flex-col px-4 py-2">
-        Non renseignées.
+        Non renseignées
         <!--<label class="col-sm-2 col-form-label">Lundi : </label>
         <label class="col-sm-2 col-form-label">Mardi : </label>
         <label class="col-sm-2 col-form-label">Mercredi : </label>

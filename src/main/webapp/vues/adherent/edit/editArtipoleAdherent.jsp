@@ -70,10 +70,11 @@
   <form:input type="hidden" path="editAdherent.cnxEolasAllow"/>
   <form:input type="hidden" path="editAdherent.adherentType.id"/>
   <form:input type="hidden" path="editAdherent.compteType.id"/>
+  <form:input type="hidden" path="editAdherent.nbSalaries"/>
   <form:input type="hidden" path="editAdherent.latitude"/>
   <form:input type="hidden" path="editAdherent.longitude"/>
-  <form:input type="hidden" path="editAdherent.mail"/>
   <form:input type="hidden" path="editAdherent.telephone"/>
+  <form:input type="hidden" path="editAdherent.mail"/>
   <!-- données que je modifie plus bas dans cette page -->
   <%--<form:input type="hidden" path="editAdherent.description_activite"/>--%>
   <%--<form:input type="hidden" path="editAdherent.description_entreprise"/>--%>
@@ -95,7 +96,7 @@
 
       <div class="flex items-center mt-2 gap-2">
         <div class="w-56 text-right">
-          <form:label path="editAdherent.isArtipole"><spring:message code="label.adhArtipole"/></form:label>
+          <form:label path="editAdherent.isArtipole"><spring:message code="label.isArtipole"/></form:label>
         </div>
         <form:checkbox class="input-checkbox" path="editAdherent.isArtipole"/>
       </div>

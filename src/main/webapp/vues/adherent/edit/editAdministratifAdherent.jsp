@@ -62,20 +62,20 @@
   <%--<form:input type="hidden" path="editAdherent.dateSortie"/>--%>
   <%--<form:input type="hidden" path="editAdherent.etat.id"/>--%>
   <%--<form:input type="hidden" path="editAdherent.role"/>--%>
-  <%--<form:input type="hidden" path="editAdherent.formeJuridique"/>--%>
+  <%--<form:input type="hidden" path="editAdherent.formeJuridique.id"/>--%>
   <%--<form:input type="hidden" path="editAdherent.siren"/>--%>
   <%--<form:input type="hidden" path="editAdherent.siret"/>--%>
-  <%--<form:input type="hidden" path="editAdherent.ape"/>--%>
+  <%--<form:input type="hidden" path="editAdherent.ape.id"/>--%>
   <%--<form:input type="hidden" path="editAdherent.numRepMetier"/>--%>
   <%--<form:input type="hidden" path="editAdherent.rcsRm"/>--%>
-  <%--<form:input type="hidden" path="editAdherent.rcsCommune"/>--%>
-  <%--<form:input type="hidden" path="editAdherent.rmCommune"/>--%>
+  <%--<form:input type="hidden" path="editAdherent.rcsCommune.id"/>--%>
+  <%--<form:input type="hidden" path="editAdherent.rmCommune.id"/>--%>
   <%--<form:input type="hidden" path="editAdherent.dateClotureExe"/>--%>
   <%--<form:input type="hidden" path="editAdherent.formationDirigeant"/>--%>
   <%--<form:input type="hidden" path="editAdherent.cnxEolasAllow"/>--%>
-  <%--<form:input type="hidden" path="editAdherent.adherentType"/>--%>
-  <%--<form:input type="hidden" path="editAdherent.compteType"/>--%>
-  <form:input type="hidden" path="editAdherent.nbSalaries"/>
+  <%--<form:input type="hidden" path="editAdherent.adherentType.id"/>--%>
+  <%--<form:input type="hidden" path="editAdherent.compteType.id"/>--%>
+  <%--<form:input type="hidden" path="editAdherent.nbSalaries"/>--%>
   <form:input type="hidden" path="editAdherent.latitude"/>
   <form:input type="hidden" path="editAdherent.longitude"/>
   <form:input type="hidden" path="editAdherent.telephone"/>
@@ -97,7 +97,6 @@
   
   <fieldset class="flex flex-col gap-2 justify-center items-center mt-10">
     <div class="grid grid-cols-2 gap-2 w-full w-1/2">
-        
       <div class="flex flex-col">
         <form:label path="editAdherent.role"><spring:message code="label.role"/></form:label>
         <form:select class="w-96 input-select" name="editAdherent.role" path="editAdherent.role.id">
@@ -126,7 +125,7 @@
       </div>        
 
       <div class="flex flex-col">
-        <form:label path="editAdherent.compteType"><spring:message code="label.reglement"/></form:label>
+        <form:label path="editAdherent.compteType"><spring:message code="label.compteType"/></form:label>
         <form:select class="w-96 input-select" name="editAdherent.compteType" path="editAdherent.compteType.id">
           <form:options items="${compteTypeList}" itemValue="id" itemLabel="libelle"/>
         </form:select>
@@ -165,10 +164,9 @@
       </div>
 
       <div class="flex flex-col">
-        <form:label path="editAdherent.ape"><spring:message code="label.ape"/></form:label>
-        <form:select class="w-96 input-select" name="editAdherent.ape" path="editAdherent.ape.id">
-          <form:options items="${apeList}" itemValue="id" itemLabel="libelle"/>
-        </form:select>
+        <form:label path="editAdherent.nbSalaries"><spring:message code="label.nbSalaries"/></form:label>
+        <form:input class="w-96 input-text" name="editAdherent.nbSalaries" path="editAdherent.nbSalaries"/>
+        <form:errors class="error-message" path="editAdherent.nbSalaries"/>
       </div>
 
       <div class="flex flex-col">
@@ -178,9 +176,10 @@
       </div>
 
       <div class="flex flex-col">
-        <form:label path="editAdherent.nbSalaries"><spring:message code="label.nbSalaries"/></form:label>
-        <form:input class="w-96 input-text" name="editAdherent.nbSalaries" path="editAdherent.nbSalaries"/>
-        <form:errors class="error-message" path="editAdherent.nbSalaries"/>
+        <form:label path="editAdherent.ape"><spring:message code="label.ape"/></form:label>
+        <form:select class="w-96 input-select" name="editAdherent.ape" path="editAdherent.ape.id">
+          <form:options items="${apeList}" itemValue="id" itemLabel="libelle"/>
+        </form:select>
       </div>
 
       <div class="flex flex-col">
@@ -312,16 +311,6 @@
           </div>
         </div>
       </div>
-        
-      <!--<div class="grid grid-cols-2 gap-2">-->
-        <%--<form:label path="editAdherent.etat"><spring:message code="label.etat"/> :</form:label>--%>
-        <%--<form:select--%>
-          <!--class="flex py-2 px-4 w-96 input-select"-->
-          <!--name="editAdherent.etat" path="editAdherent.etat.id">-->
-          <%--<form:options items="${etatList}" itemValue="id" itemLabel="libelle"/>--%>
-        <%--</form:select>--%>
-      <!--</div>-->
-
   </fieldset>
 
   <fieldset class="flex justify-center mt-4">
